@@ -405,7 +405,16 @@ else if($action == 'delete_user') {
 		$data['status_code'] = (cl_delete_user_data($user_id) == true) ? 1 : 0;
 	}
 }
+else if($action == 'delete_symbol') {
+	$data['status']   = 404;
+	$data['err_code'] = 0;
+	$symbol_id          = fetch_or_get($_POST['id'], 0);
 
+	if (is_posnum($symbol_id)) {
+		$data['status']      = 200;
+		$data['status_code'] = (cl_delete_symbol_data($symbol_id) == true) ? 1 : 0;
+	}
+}
 else if($action == 'toggle_user_status') {
 	$data['status']   = 404;
 	$data['err_code'] = 0;
@@ -429,7 +438,29 @@ else if($action == 'toggle_user_status') {
 		}
 	}
 }
+else if($action == 'toggle_page_status') {
+	$data['status']   = 404;
+	$data['err_code'] = 0;
+	$symbol_id         = fetch_or_get($_POST['id'], 0);
 
+	if (is_posnum($symbol_id)) {
+		$udata = cl_raw_symbol_data($symbol_id);
+
+		if (not_empty($udata)) {
+			$data['status']  = 200;
+			$data['message'] = "Your changes has been successfully saved!";
+			$status          = (($udata['active'] == '1') ? '2' : '1' );
+
+			cl_update_symbol_data($symbol_id, array(
+				'active' => $status
+			));
+
+			if ($status == '2') {
+				cl_signout_user_by_id($symbol_id);
+			}
+		}
+	}
+}
 else if($action == 'toggle_user_type') {
 	$data['status']   = 404;
 	$data['err_code'] = 0;
@@ -469,7 +500,25 @@ else if($action == 'verify_user') {
 		}
 	}
 }
+else if($action == 'verify_page') {
+	$data['status']   = 404;
+	$data['err_code'] = 0;
+	$symbol_id          = fetch_or_get($_POST['id'], 0);
 
+	if (is_posnum($symbol_id)) {
+		$udata = cl_raw_symbol_data($symbol_id);
+
+		if (not_empty($udata)) {
+			$data['status']  = 200;
+			$data['message'] = "Your changes has been successfully saved!";
+			$is_verified     = (($udata['verified'] == '1') ? '0' : '1');
+
+			cl_update_symbol_data($symbol_id, array(
+				'verified' => $is_verified
+			));
+		}
+	}
+}
 else if($action == 'delete_post') {
     $data['err_code'] = 0;
     $data['status']   = 400;

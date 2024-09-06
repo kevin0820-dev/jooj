@@ -24,13 +24,14 @@ RewriteRule ^confirm_email(\/|)$ index.php?app=confirm_email [QSA]
 RewriteRule ^admin_panel(\/|)$ index.php?app=cpanel [QSA]
 RewriteRule ^admin_panel/(\w{3,25})(\/|)$ index.php?app=cpanel&section=$1 [QSA]
 RewriteRule ^trending(\/|)$ index.php?app=trending [QSA]
+RewriteRule ^symbols(\/|)$ index.php?app=symbols [QSA]
 RewriteRule ^bookmarks(\/|)$ index.php?app=bookmarks [QSA]
 RewriteRule ^notifications(\/|)$ index.php?app=notifications&page=notifs [QSA]
 RewriteRule ^mentions(\/|)$ index.php?app=notifications&page=mentions [QSA]
 RewriteRule ^search(\/|)$ index.php?app=explore [QSA]
 RewriteRule ^explore(\/|)$ index.php?app=explore [QSA]
-RewriteRule ^search/(htags|people|posts)(\/|)$ index.php?app=explore&tab=$1 [QSA]
-RewriteRule ^explore/(htags|people|posts)(\/|)$ index.php?app=explore&tab=$1 [QSA]
+RewriteRule ^search/(htags|symbols|people|posts)(\/|)$ index.php?app=explore&tab=$1 [QSA]
+RewriteRule ^explore/(htags|symbols|people|posts)(\/|)$ index.php?app=explore&tab=$1 [QSA]
 RewriteRule ^thread/(\d+)(\/|)$ index.php?app=thread&thread_id=$1 [QSA]
 RewriteRule ^tmedia/(\d+)(\/|)$ index.php?app=tmedia&thread_id=$1 [QSA]
 RewriteRule ^reset_password(\/|)$ index.php?app=guest [QSA]
@@ -38,11 +39,14 @@ RewriteRule ^home(\/|)$ index.php?app=home [QSA]
 RewriteRule ^logout(\/|)$ index.php?app=logout [QSA]
 RewriteRule ^settings(\/|)$ index.php?app=settings [QSA]
 RewriteRule ^settings/(\w{3,25})(\/|)$ index.php?app=settings&sapp=$1 [QSA]
+RewriteRule ^page_settings(\/|)$ index.php?app=page_settings [QSA]
+RewriteRule ^page_settings/(\w{3,25})(\/|)$ index.php?app=page_settings&sapp=$1 [QSA]
 RewriteRule ^terms_of_use(\/|)$ index.php?app=stat_pages&page=terms [QSA]
 RewriteRule ^privacy_policy(\/|)$ index.php?app=stat_pages&page=privacy_policy [QSA]
 RewriteRule ^cookies_policy(\/|)$ index.php?app=stat_pages&page=cookies_policy [QSA]
 RewriteRule ^about_us(\/|)$ index.php?app=stat_pages&page=about_us [QSA]
 RewriteRule ^faqs(\/|)$ index.php?app=stat_pages&page=faqs [QSA]
+
 RewriteRule ^suggested(\/|)$ index.php?app=suggested [QSA]
 RewriteRule ^chats(\/|)$ index.php?app=chats [QSA]
 RewriteRule ^affiliates(\/|)$ index.php?app=affiliates [QSA]
@@ -67,6 +71,8 @@ RewriteRule ^premium_account(\/|)$ index.php?app=premium_account [QSA]
 RewriteRule ^premium_features(\/|)$ index.php?app=premium_features [QSA]
 RewriteRule ^blue_account(\/|)$ index.php?app=blue_account [QSA]
 RewriteRule ^blue_features(\/|)$ index.php?app=blue_features [QSA]
+RewriteRule ^pages_view(\/|)$ index.php?app=pages_view [QSA]
+RewriteRule ^pages_create(\/|)$ index.php?app=pages_create [QSA]
 
 RewriteRule ^oauth/twitter(\/|)$ index.php?app=oauth&provider=twitter [QSA]
 RewriteRule ^oauth/google(\/|)$ index.php?app=oauth&provider=google [QSA]
@@ -85,8 +91,13 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^(\w{3,25})(\/|)$ index.php?app=profile&uname=$1 [QSA]
-RewriteRule ^(\w{3,25})/(following|followers|follow_requests)(\/|)$ index.php?app=connections&uname=$1&tab=$2 [QSA]
+RewriteRule ^(\w{3,25})/(following|followers|watching|follow_requests)(\/|)$ index.php?app=connections&uname=$1&tab=$2 [QSA]
 RewriteRule ^(\w{3,25})/(posts|media|likes)(\/|)$ index.php?app=profile&uname=$1&tab=$2 [QSA]
+RewriteRule ^symbol/(\w{3,25})(\/|)$ index.php?app=symbol&sname=$1 [QSA]
+# RewriteRule ^symbol/(\w{3,25})/(\d+)(\/|)$ index.php?app=symbol&sname=$1&symbol_id=$2 [QSA]
+# RewriteRule ^(\w{3,25})/(following|followers|follow_requests)(\/|)$ index.php?app=watchings&sname=$1&tab=$2 [QSA]
+RewriteRule ^symbol/(\w{3,25})/(following|watchers|follow_requests)(\/|)$ index.php?app=watchings&sname=$1&tab=$2 [QSA]
+RewriteRule ^symbol/(\w{3,25})/(posts|media|likes)(\/|)$ index.php?app=symbol&sname=$1&tab=$2 [QSA]
 
 ErrorDocument 404 /index.php?app=err404
 
@@ -135,3 +146,32 @@ ErrorDocument 404 /index.php?app=err404
     ExpiresDefault "access plus 190 days"
 </IfModule>
 
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php7_module>
+   php_flag display_errors Off
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 128M
+   php_value post_max_size 800M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php74"
+   php_value upload_max_filesize 200M
+   php_flag zlib.output_compression On
+</IfModule>
+<IfModule lsapi_module>
+   php_flag display_errors Off
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 128M
+   php_value post_max_size 800M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php74"
+   php_value upload_max_filesize 200M
+   php_flag zlib.output_compression On
+</IfModule>
+# END cPanel-generated php ini directives, do not edit

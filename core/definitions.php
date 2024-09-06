@@ -11,12 +11,16 @@
 
 define("PROJ_RP", dirname(dirname(__FILE__)));
 define("T_USERS", "cl_users");
+define("T_SYMBOLS", "cl_symbols");
+define("T_PSYMBOL", "cl_posts_symbol");
 define("T_SESSIONS", "cl_sessions");
 define("T_POSTS", "cl_posts");
 define("T_PUBS", "cl_publications");
 define("T_PUBMEDIA", "cl_pubmedia");
 define("T_CONNECTIONS", "cl_connections");
+define("T_WATCHERS", "cl_watchers");
 define("T_HTAGS", "cl_hashtags");
+define("T_HSYMBOLS", "cl_hsymbols");
 define("T_CHATS", "cl_chats");
 define("T_MSGS", "cl_messages");
 define("T_LIKES", "cl_publikes");

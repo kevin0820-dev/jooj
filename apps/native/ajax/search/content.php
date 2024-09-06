@@ -38,24 +38,49 @@ if ($action == 'load_more') {
                 $data['html']   = implode("", $html_arr);
             }  
         }
-
-        else if($type == "people") {
+        else if ($type == "symbols") {
             if (not_empty($search_query)) {
                 $search_query = cl_text_secure($search_query);
                 $search_query = cl_croptxt($search_query, 32);
             }
 
-            $query_result = cl_search_people($search_query, $offset, 15);
-
+            $query_result = cl_search_symbols($search_query, $offset, 30);
+            
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    $html_arr[] = cl_template('search/includes/li/people_li');
+                    $html_arr[] = cl_template('explore/includes/li/symbols_li');
                 }
 
                 $data['status'] = 200;
                 $data['html']   = implode("", $html_arr);
-            } 
+            }  
         }
+        else if ($type == "people") {
+            if (not_empty($search_query)) {
+                $search_query = cl_text_secure($search_query);
+                $search_query = cl_croptxt($search_query, 32);
+            }
+
+            $query_result_people = cl_search_people($search_query, $offset, 30);
+            $query_result_pages = cl_search_page($search_query, $offset, 30);
+
+            if (not_empty($query_result_people)) {
+                foreach ($query_result_people as $cl['li']) {
+                    $html_arr[] = cl_template('search/includes/li/people_li');
+                }
+            }
+
+            if (not_empty($query_result_pages)) {
+                foreach ($query_result_pages as $cl['li']) {
+                    $html_arr[] = cl_template('search/includes/li/page_li'); 
+                }
+            }
+
+            if (not_empty($html_arr)) {
+                $data['status'] = 200;
+                $data['html'] = implode("", $html_arr);
+            } 
+        } 
 
         else if($type == "posts") {
             if (not_empty($search_query)) {
@@ -100,21 +125,41 @@ else if($action == 'search') {
                 $data['html']   = implode("", $html_arr);
             }  
         }
-
-        else if($type == "people") {
+        if ($type == "symbols") {
             $search_query = cl_text_secure($search_query);
             $search_query = cl_croptxt($search_query, 32);
-            $query_result = cl_search_people($search_query, false, 15);
-
+            $query_result = cl_search_symbols($search_query, false, 30);
+            
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    $html_arr[] = cl_template('search/includes/li/people_li');
+                    $html_arr[] = cl_template('explore/includes/li/symbols_li');
                 }
 
                 $data['status'] = 200;
                 $data['html']   = implode("", $html_arr);
-            } 
+            }  
         }
+        else if ($type == "people") {
+            $query_result_people = cl_search_people($search_query, $offset, 30);
+            $query_result_pages = cl_search_page($search_query, $offset, 30);
+
+            if (not_empty($query_result_people)) {
+                foreach ($query_result_people as $cl['li']) {
+                    $html_arr[] = cl_template('search/includes/li/people_li');
+                }
+            }
+
+            if (not_empty($query_result_pages)) {
+                foreach ($query_result_pages as $cl['li']) {
+                    $html_arr[] = cl_template('search/includes/li/page_li');  
+                }
+            }
+
+            if (not_empty($html_arr)) {
+                $data['status'] = 200;
+                $data['html'] = implode("", $html_arr);
+            }
+        } 
 
         else if($type == "posts") {
             $search_query = cl_text_secure($search_query);

@@ -169,7 +169,16 @@ function cl_update_user_data($user_id = null,$data = array()) {
     $update = $db->update(T_USERS,$data);
     return ($update == true) ? true : false;
 }
+function cl_update_symbol_data($symbol_id = null,$data = array()) {
+    global $db;
+    if ((not_num($symbol_id)) || (empty($data) || is_array($data) != true)) {
+        return false;
+    } 
 
+    $db     = $db->where('id', $symbol_id);
+    $update = $db->update(T_SYMBOLS,$data);
+    return ($update == true) ? true : false;
+}
 function cl_uname_exists($uname = "") {
     global $db;
     return ($db->where('username', cl_text_secure($uname))->getValue(T_USERS, 'count(*)') > 0) ? true : false;
@@ -249,6 +258,58 @@ function cl_user_data($user_id = 0) {
     }
 
     return $user_data;
+}
+function cl_symbol_data($symbol_id = 0) {
+    global $db, $cl;
+    if (!is_numeric($symbol_id) || $symbol_id <= 0) {
+        return false;
+    } 
+
+    $db        = $db->where('id', $symbol_id);
+    $symbol_data = $db->getOne(T_SYMBOLS);
+    if (empty($symbol_data)) {
+        return false;
+    }
+    $cl['symbol'] = $symbol_data;
+
+    // Остальная часть функции остаётся неизменной
+
+
+  
+    $symbol_data['name']         = cl_strf("%s", $symbol_data['fname']);
+    $symbol_data['name']         = cl_rn_strip($symbol_data['name']);  
+    $symbol_data['name']         = stripcslashes($symbol_data['name']);  
+    $symbol_data['name']         = htmlspecialchars_decode($symbol_data['name'], ENT_QUOTES);   
+    $symbol_data['about']        = cl_rn_strip($symbol_data['about']);  
+    $symbol_data['about']        = stripcslashes($symbol_data['about']);  
+    $symbol_data['about']        = htmlspecialchars_decode($symbol_data['about'], ENT_QUOTES);   
+    $symbol_data['raw_sname']    = $symbol_data['username'];
+   
+    $symbol_data['raw_avatar']   = $symbol_data['avatar'];
+    $symbol_data['raw_cover']    = $symbol_data['cover'];
+    $symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+    $symbol_data['cover']        = cl_get_media($symbol_data['cover']);
+    $symbol_data['url']          = cl_link($symbol_data['raw_sname']);
+    $symbol_data['chaturl']      = cl_link(cl_strf("conversation/%s", $symbol_data['raw_sname']));
+    $symbol_data['is_online']    = ($symbol_data['last_active'] > (time() - 60));
+    $symbol_data['last_active']  = cl_time2str($symbol_data['last_active']);
+    $symbol_data['joined']       = cl_date("F Y", $symbol_data['joined']);
+    $symbol_data['settings']     = json($symbol_data['settings']);
+    $symbol_data['premium_settings'] = json($symbol_data['premium_settings']);
+    $symbol_data['blue_settings'] = json($symbol_data['blue_settings']);
+    $symbol_data['swift']        = cl_init_swift($symbol_data['swift']);
+    $symbol_data['country_a2c']  = fetch_or_get($cl['country_codes'][$symbol_data['country_id']], 'us');
+    $symbol_data['country_name'] = cl_translate($cl['countries'][$symbol_data['country_id']], 'Unknown');
+    
+    if ($symbol_data["start_up"] != "done") {
+        $symbol_data["start_up"] = json($symbol_data["start_up"]);
+
+        if (is_array($symbol_data["start_up"]) != true) {
+            $symbol_data["start_up"] = "done";
+        }
+    }
+
+    return $symbol_data;
 }
 
 function cl_init_swift($json = false) {
@@ -338,6 +399,22 @@ function cl_raw_user_data($user_id = 0) {
     return $user_data;
 }
 
+function cl_raw_symbol_data($symbol_id = 0) {
+    global $db;
+    
+    if (not_num($symbol_id)) {
+        return false;
+    } 
+
+    $db        = $db->where('id', $symbol_id);
+    $symbol_data = $db->getOne(T_SYMBOLS);
+
+    if (empty($symbol_data)) {
+        return false;
+    }
+
+    return $symbol_data;
+}
 function cl_get_user_settings($user_id = 0) {
     global $db;
     
@@ -365,10 +442,10 @@ function cl_signout_user() {
         $db->where('session_id', cl_text_secure($_COOKIE['user_id']));
         $db->delete(T_SESSIONS);
         unset($_COOKIE['user_id']);
-        setcookie('user_id', "", -1);
+        setcookie('user_id', null, -1);
 
         unset($_COOKIE['dark_mode']);
-        setcookie('dark_mode', "", -1);
+        setcookie('dark_mode', null, -1);
     }
 
     @session_destroy();
@@ -387,6 +464,251 @@ function cl_signout_user_by_id($user_id = false) {
     $qr = $db->delete(T_SESSIONS);
 
     return $qr;
+}
+function cl_delete_symbol_data($symbol_id = false) {
+    global $db;
+    if (not_num($symbol_id)) {
+        return false;
+    }
+
+    else {
+        $db        = $db->where('id', $symbol_id);
+        $symbol_data = $db->getOne(T_SYMBOLS);
+
+        if (cl_queryset($symbol_data)) {
+
+            /*===== Delete user notifications =====*/
+                // $db = $db->where('notifier_id', $symbol_id);
+                // $qr = $db->delete(T_NOTIFS);
+
+                // $db = $db->where('recipient_id', $symbol_id);
+                // $qr = $db->delete(T_NOTIFS);
+            /*====================================*/
+
+            /*===== Delete user bookmarks =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->delete(T_BOOKMARKS);
+            /*====================================*/
+
+            /*===== Delete user reports =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->delete(T_PROF_REPORTS);
+                
+                // $db = $db->where('profile_id', $symbol_id);
+                // $qr = $db->delete(T_PROF_REPORTS);
+            /*====================================*/
+
+            /*===== Delete user blocks =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->delete(T_BLOCKS);
+                
+                // $db = $db->where('profile_id', $symbol_id);
+                // $qr = $db->delete(T_BLOCKS);
+            /*====================================*/
+
+            /*===== Delete user aff payouts =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->delete(T_AFF_PAYOUTS);
+            /*====================================*/
+
+            /*===== Delete user wallet history =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->delete(T_WALLET_HISTORY);
+            /*====================================*/
+
+            /*===== Delete user post reposts =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->delete(T_PUB_REPORTS);
+            /*====================================*/
+
+            /*===== Delete user ads =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->get(T_ADS);
+
+                // if (cl_queryset($qr)) {
+                //     foreach ($qr as $row) {
+                //         cl_delete_media($row['cover']);
+                //     }
+
+                //     $db = $db->where('symbol_id', $symbol_id);
+                //     $qr = $db->delete(T_ADS);
+                // }
+            /*====================================*/
+
+            /*===== Delete banktrans requests =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->get(T_BANKTRANS_REQS);
+
+                // if (cl_queryset($qr)) {
+                //     foreach ($qr as $row) {
+                //         cl_delete_media($row['receipt_img']);
+                //     }
+
+                //     $db = $db->where('symbol_id', $symbol_id);
+                //     $qr = $db->delete(T_BANKTRANS_REQS);
+                // }
+            /*====================================*/
+
+            /*===== Delete user likes =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->get(T_LIKES);
+
+                // if (cl_queryset($qr)) {
+                //     foreach ($qr as $row) {
+                //         $post_data = cl_raw_post_data($row['pub_id']);
+
+                //         if (not_empty($post_data) && ($post_data['symbol_id'] != $symbol_id)) {
+                //             $num = ($post_data['likes_count'] -= 1);
+                //             $num = (is_posnum($num)) ? $num : 0;
+                //             cl_update_post_data($row['pub_id'], array(
+                //                 'likes_count' => $num
+                //             ));
+                //         }
+                //     }
+
+                //     $db = $db->where('symbol_id', $symbol_id);
+                //     $qr = $db->delete(T_LIKES);
+                // }
+            /*====================================*/
+
+            /*===== Delete user reposts =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $db = $db->where('type', 'repost');
+                // $qr = $db->get(T_PSYMBOL);
+
+                // if (cl_queryset($qr)) {
+                //     foreach ($qr as $row) {
+                //         $post_data = cl_raw_post_data($row['publication_id']);
+
+                //         if (not_empty($post_data) && ($post_data['symbol_id'] != $symbol_id)) {
+                //             $num = ($post_data['reposts_count'] -= 1);
+                //             $num = (is_posnum($num)) ? $num : 0;
+                //             cl_update_post_data($row['publication_id'], array(
+                //                 'reposts_count' => $num
+                //             ));
+                //         }
+                //     }
+
+                //     $db = $db->where('symbol_id', $symbol_id);
+                //     $db = $db->where('type', 'repost');
+                //     $qr = $db->delete(T_PSYMBOL);
+                // }
+            /*====================================*/
+            
+            /*===== Delete user publications =====*/
+                // $db = $db->where('symbol_id', $symbol_id);
+                // $qr = $db->get(T_PUBS);
+
+                // if (cl_queryset($qr)) {
+                //     foreach ($qr as $row) {
+                //         if ($row['target'] == 'pub_reply') {
+                //             cl_update_thread_replys($row['thread_id'], 'minus');
+                //         }
+
+                //         $db = $db->where('publication_id', $row['id']);
+                //         $qr = $db->delete(T_PSYMBOL);
+
+                //         cl_recursive_delete_post($row['id']);
+                //     }
+                // }
+            /*====================================*/
+
+            /*===== Delete user chats =====*/
+                // $db = $db->where('user_one', $symbol_id);
+                // $qr = $db->delete(T_CHATS);
+
+                // $db = $db->where('user_two', $symbol_id);
+                // $qr = $db->delete(T_CHATS);
+
+                // $db = $db->where('sent_by', $symbol_id);
+                // $db = $db->where('sent_to', $symbol_id, '=', 'OR');
+                // $qr = $db->get(T_MSGS);
+
+                // if (cl_queryset($qr)) {
+                //     foreach ($qr as $row) {
+                //         if (not_empty($row['media_file'])) {
+                //             cl_delete_media($row['media_file']);
+                //         }
+                //     }
+
+                //     $db = $db->where('sent_by', $symbol_id);
+                //     $db = $db->where('sent_to', $symbol_id, '=', 'OR');
+                //     $qr = $db->delete(T_MSGS);
+                // }
+            /*====================================*/
+
+            /*===== Delete user connections =====*/
+                // $db = $db->where('follower_id', $symbol_id);
+                // $qr = $db->get(T_CONNECTIONS);
+
+                // if (cl_queryset($qr)) {
+                //     foreach ($qr as $row) {
+                //         $symbol_data = cl_raw_user_data($row['following_id']);
+
+                //         if (not_empty($symbol_data)) {
+                //             $num = ($symbol_data['followers'] -= 1);
+                //             $num = (is_posnum($num)) ? $num : 0;
+                            
+                //             cl_update_user_data($symbol_data['id'], array(
+                //                 'followers' => $num
+                //             ));
+                //         }
+                //     }
+
+                //     $db = $db->where('follower_id', $symbol_id);
+                //     $qr = $db->delete(T_CONNECTIONS);
+                // }
+
+                // $db = $db->where('following_id', $symbol_id);
+                // $qr = $db->get(T_CONNECTIONS);
+
+                // if (cl_queryset($qr)) {
+                //     foreach ($qr as $row) {
+                //         $symbol_data = cl_raw_user_data($row['follower_id']);
+
+                //         if (not_empty($symbol_data)) {
+                //             $num = ($symbol_data['following'] -= 1);
+                //             $num = (is_posnum($num)) ? $num : 0;
+
+                //             cl_update_user_data($symbol_data['id'], array(
+                //                 'following' => $num
+                //             ));
+                //         }
+                //     }
+
+                //     $db = $db->where('following_id', $symbol_id);
+                //     $qr = $db->delete(T_CONNECTIONS);
+                // }
+            /*====================================*/
+
+            // if (not_empty($symbol_data["swift"])) {
+            //     $swift_data = cl_init_swift($symbol_data["swift"]);
+
+            //     if (not_empty($swift_data)) {
+            //         foreach ($swift_data as $row) {
+            //             if ($row["type"] == "image") {
+            //                 cl_delete_media($row["media"]["src"]);
+            //             }
+            //             else if($row["type"] == "video") {
+            //                 cl_delete_media($row["media"]["source"]);
+            //             }
+            //         }
+            //     }
+            // }
+            
+
+            // $db = $db->where('symbol_id', $symbol_id);
+            // $qr = $db->delete(T_SESSIONS);
+            $db = $db->where('id', $symbol_id);
+            $qr = $db->delete(T_SYMBOLS);
+
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
 }
 
 function cl_delete_user_data($user_id = false) {
@@ -652,7 +974,41 @@ function cl_get_user_by_name($uname = null) {
 
     return $udata;
 }
+function cl_get_symbol_by_name($sname = null) {
+    global $cl,$db;
 
+    if (empty($sname)) {
+        return false;
+    }
+
+    $db    = $db->where('username',$sname);
+    $sdata = $db->getOne(T_SYMBOLS, 'id');
+
+    if (cl_queryset($sdata)) {
+        $symbol_id = intval($sdata['id']);
+        $sdata   = cl_symbol_data($symbol_id);
+    }
+
+    return $sdata;
+}
+
+function cl_get_symbol_id_by_name($sname = null) {
+    global $cl, $db;
+
+    if (empty($sname)) {
+        return false;
+    }
+
+    $db      = $db->where('username', $sname);
+    $sdata   = $db->getOne(T_SYMBOLS, 'id');
+    $symbol_id = 0;
+
+    if (cl_queryset($sdata)) {
+        $symbol_id = intval($sdata['id']);
+    }
+
+    return $symbol_id;
+}
 function cl_get_user_id_by_name($uname = null) {
     global $cl, $db;
 
@@ -690,6 +1046,39 @@ function cl_is_following($follower_id = false, $following_id = false) {
     return is_posnum($res);
 }
 
+function cl_is_watching($follower_id = false, $following_id = false) {
+    global $db;
+
+    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
+        return false;
+    }
+
+    // Удалена проверка на совпадение идентификаторов
+    $db  = $db->where('follower_id', $follower_id);
+    $db  = $db->where('following_id', $following_id);
+    $db  = $db->where('status', 'active');
+    $res = $db->getValue(T_WATCHERS,'COUNT(id)');
+    
+    return is_posnum($res);
+}
+function cl_watch_requested($follower_id = false, $following_id = false) {
+    global $db;
+
+    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
+        return false;
+    }
+
+    // else if($follower_id == $following_id) {
+    //     return false;
+    // }
+
+    $db  = $db->where('follower_id', $follower_id);
+    $db  = $db->where('following_id', $following_id);
+    $db  = $db->where('status', 'pending');
+    $res = $db->getValue(T_WATCHERS, 'COUNT(id)');
+    
+    return is_posnum($res);
+}
 function cl_follow_requested($follower_id = false, $following_id = false) {
     global $db;
 
@@ -768,6 +1157,31 @@ function cl_follow($follower_id = false, $following_id = false){
     return $insert_id;
 }
 
+function cl_unwatch($follower_id = false, $following_id = false){
+    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
+        return false;
+    }
+
+    $rm = cl_db_delete_item(T_WATCHERS, array(
+        'follower_id'  => $follower_id,
+        'following_id' => $following_id
+    ));
+    
+    return $rm;
+}
+function cl_watch($follower_id = false, $following_id = false){
+    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
+        return false;
+    }
+
+    $insert_id         = cl_db_insert(T_WATCHERS,array(
+        'follower_id'  => $follower_id,
+        'following_id' => $following_id,
+        'time'         => time()
+    ));
+
+    return $insert_id;
+}
 function cl_follow_increase($follower_id = false, $following_id = false){
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
@@ -797,7 +1211,64 @@ function cl_follow_increase($follower_id = false, $following_id = false){
 
     return true;
 }
+function cl_watch_increase($follower_id = false, $following_id = false){
+    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
+        return false;
+    }
 
+    $follower_udata  = cl_raw_user_data($follower_id);
+    $following_udata = cl_raw_symbol_data($following_id);
+
+    if (not_empty($follower_udata)) {
+
+        $follow_num = ($follower_udata['watching'] += 1);
+        $follow_num = (empty($follow_num)) ? 0 : $follow_num;
+
+        cl_update_user_data($follower_id, array(
+            'watching' => $follow_num
+        ));
+    }
+
+    if (not_empty($following_udata)) {
+        $follow_num = ($following_udata['followers'] += 1);
+        $follow_num = (empty($follow_num)) ? 0 : $follow_num;
+
+        cl_update_symbol_data($following_id, array(
+            'followers' => $follow_num
+        ));
+    }
+
+    return true;
+}
+function cl_watch_decrease($follower_id = false, $following_id = false){
+    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
+        return false;
+    }
+
+    $follower_udata  = cl_raw_user_data($follower_id);
+    $following_udata = cl_raw_symbol_data($following_id);
+
+    if (not_empty($follower_udata)) {
+
+        $follow_num = ($follower_udata['watching'] -= 1);
+        $follow_num = (empty($follow_num)) ? 0 : $follow_num;
+
+        cl_update_user_data($follower_id, array(
+            'watching' => $follow_num
+        ));
+    }
+
+    if (not_empty($following_udata)) {
+        $follow_num = ($following_udata['followers'] -= 1);
+        $follow_num = (empty($follow_num)) ? 0 : $follow_num;
+
+        cl_update_symbol_data($following_id, array(
+            'followers' => $follow_num
+        ));
+    }
+
+    return true;
+}
 function cl_follow_decrease($follower_id = false, $following_id = false){
     if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
         return false;
@@ -841,6 +1312,73 @@ function cl_follow_request($follower_id = false, $following_id = false){
     ));
 
     return $insert_id;
+}
+function cl_watch_request($follower_id = false, $following_id = false){
+    if (is_posnum($follower_id) != true || is_posnum($following_id) != true) {
+        return false;
+    }
+
+    $insert_id         = cl_db_insert(T_WATCHERS,array(
+        'follower_id'  => $follower_id,
+        'following_id' => $following_id,
+        'status'       => "pending",
+        'time'         => time()
+    ));
+
+    return $insert_id;
+}
+function cl_get_watchers($user_id = false, $limit = 30, $offset = false) {
+    global $db, $cl;
+
+    if (is_posnum($user_id) != true) {
+        return false;
+    }
+
+    $data         = array();
+    $sql          = cl_sqltepmlate('components/sql/user/fetch_watchers',array(
+        'w_users' => T_USERS,
+        'w_conns' => T_WATCHERS,
+        'user_id' => $user_id,
+        'limit'   => $limit,
+        'offset'  => $offset,
+    ));
+
+    $query_result = $db->rawQuery($sql);
+
+    if (cl_queryset($query_result)) {
+        foreach ($query_result as $row) {
+            $row['about']            = cl_rn_strip($row['about']);
+            $row['about']            = stripslashes($row['about']);
+            $row['name']             = cl_strf("%s",$row['fname']);      
+            $row['avatar']           = cl_get_media($row['avatar']);
+            $row['url']              = cl_link($row['username']);
+            $row['last_active']      = date("d M, y h:m A",$row['last_active']);
+            $row['is_following']     = false;
+            $row['follow_requested'] = false;
+            $row['is_user']          = false;
+            $row['common_follows']   = array();
+            $row['country_a2c']      = fetch_or_get($cl['country_codes'][$row['country_id']], 'us');
+            $row['country_name']     = cl_translate($cl['countries'][$row['country_id']], 'Unknown');
+
+            if (not_empty($cl['is_logged'])) {
+                $row['is_following'] = cl_is_following($cl['me']['id'], $row['id']);
+
+                if ($cl['me']['id'] == $row['id']) {
+                    $row['is_user'] = true; 
+                }
+
+                if (empty($row['is_following'])) {
+                    $row['follow_requested'] = cl_follow_requested($cl['me']['id'], $row['id']);
+                }
+
+                $row['common_follows'] = cl_get_common_follows($row['id']);
+            }
+
+            $data[] = $row;
+        }
+    }
+
+    return $data;
 }
 
 function cl_get_followers($user_id = false, $limit = 30, $offset = false) {
@@ -950,7 +1488,59 @@ function cl_get_followings($user_id = false, $limit = 30, $offset = false) {
 
     return $data;
 }
+function cl_get_watchings($user_id = false, $limit = 30, $offset = false) {
+    global $db, $cl;
 
+    if (is_posnum($user_id) != true) {
+        return false;
+    }
+
+    $data         =  array();
+    $sql          =  cl_sqltepmlate('components/sql/user/fetch_watchings', array(
+        'w_users' => T_SYMBOLS,
+        'w_conns' => T_WATCHERS,
+        'user_id' => $user_id,
+        'limit'   => $limit,
+        'offset'  => $offset
+    ));
+
+    $query_result = $db->rawQuery($sql);
+
+    if (cl_queryset($query_result)) {
+        foreach ($query_result as $row) {
+            $row['about']            = cl_rn_strip($row['about']);
+            $row['about']            = stripslashes($row['about']);
+            $row['name']             = cl_strf("%s",$row['fname']);      
+            $row['avatar']           = cl_get_media($row['avatar']);
+            $row['url']              = cl_link($row['username']);
+            $row['last_active']      = date("d M, y h:m A",$row['last_active']);
+            $row['is_following']     = false;
+            $row['follow_requested'] = false;
+            $row['is_user']          = false;
+            $row['country_a2c']      = fetch_or_get($cl['country_codes'][$row['country_id']], 'us');
+            $row['country_name']     = cl_translate($cl['countries'][$row['country_id']], 'Unknown');
+            $row['common_follows']   = array();
+
+            if (not_empty($cl['is_logged'])) {
+                $row['is_following'] = cl_is_watching($cl['me']['id'], $row['id']);
+
+                if ($cl['me']['id'] == $row['id']) {
+                    $row['is_user'] = true; 
+                }
+
+                if (empty($row['is_following'])) {
+                    $row['follow_requested'] = cl_watch_requested($cl['me']['id'], $row['id']);
+                }
+
+                $row['common_follows'] = cl_get_common_follows($row['id']);
+            }
+
+            $data[] = $row;
+        }
+    }
+
+    return $data;
+}
 function cl_get_follow_suggestions($limit = 10, $offset = false) {
     global $db, $cl, $me;
 
@@ -1635,7 +2225,38 @@ function cl_mention_ac_search($username = false) {
 
     return false;
 }
+function cl_pages_ac_search($username = false) {
+    global $db, $cl;
 
+    $db = $db->where("username", "%$username%", "LIKE");
+    $db = $db->orWhere("fname", "%$username%", "LIKE");
+    $db = $db->where("active", "1");
+    $qr = $db->get(T_SYMBOLS, 50, array("username", "fname",  "avatar", "verified"));
+
+    if (cl_queryset($qr)) {
+        $data = array();
+
+        foreach ($qr as $row) {
+            $row['name']     = cl_strf("%s", $row['fname']);      
+            $row['avatar']   = cl_get_media($row['avatar']);
+            $row['url']      = cl_link($row['username']);
+            $row['name']     = cl_rn_strip($row['name']);
+            $row['name']     = stripslashes($row['name']);
+
+            array_push($data, array(
+                "name" => $row["name"],
+                "avatar" => $row["avatar"],
+                "username" => $row["username"],
+                "verified" => $row["verified"],
+                "url" => $row["url"]
+            ));
+        }
+
+        return $data;
+    }
+
+    return false;
+}
 function cl_hashtag_ac_search($hashtag = false) {
     global $db, $cl;
 
@@ -1658,7 +2279,28 @@ function cl_hashtag_ac_search($hashtag = false) {
 
     return false;
 }
+function cl_hashsymbol_ac_search($hashsymbol = false) {
+    global $db, $cl;
 
+    $db = $db->where("symbol", "%$hashsymbol%", "LIKE");
+    $db = $db->where("posts", "0", ">");
+    $qr = $db->get(T_HSYMBOLS, 50);
+
+    if (cl_queryset($qr)) {
+        $data = array();
+
+        foreach ($qr as $row) {
+            array_push($data, array(
+                "symbol" => $row["symbol"],
+                "posts" => cl_number($row["posts"])
+            ));
+        }
+
+        return $data;
+    }
+
+    return false;
+}
 function cl_get_ui_langs() {
     global $db;
 

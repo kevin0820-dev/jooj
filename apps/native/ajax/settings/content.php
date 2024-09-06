@@ -435,6 +435,115 @@ else if ($action == 'upload_profile_avatar') {
     }
 }
 
+
+
+ else if ($action == 'upload_page_avatar') {
+    if (not_empty($_FILES['avatar']) && not_empty($_FILES['avatar']['tmp_name'])) {
+        $file_info      =  array(
+            'file'      => $_FILES['avatar']['tmp_name'],
+            'size'      => $_FILES['avatar']['size'],
+            'name'      => $_FILES['avatar']['name'],
+            'type'      => $_FILES['avatar']['type'],
+            'file_type' => 'thumbnail',
+            'folder'    => 'avatars',
+            'slug'      => 'avatar',
+            'crop'      => array('width' => 512, 'height' => 512),
+            'allowed'   => 'jpg,png,jpeg,gif'
+        );
+
+        $file_upload = cl_upload($file_info);
+
+        if (not_empty($file_upload['cropped'])) {
+            $data['status'] = 200;
+            $data['url']    = cl_get_media($file_upload['cropped']);
+
+            cl_delete_media($file_upload['filename']);
+            cl_delete_media($se['raw_avatar']);
+           
+            cl_update_symbol_data($se['id'], array(
+                'avatar' => $file_upload['cropped']
+            ));
+       
+        } 
+
+        else{
+            $data['err_code'] = "invalid_req_data";
+            $data['status']   = 400;
+        }
+    }
+}
+
+
+
+else if ($action == 'upload_page_cover') {
+    if (not_empty($_FILES['cover']) && not_empty($_FILES['cover']['tmp_name'])) {
+        $file_info           = array(
+            'file'           => $_FILES['cover']['tmp_name'],
+            'size'           => $_FILES['cover']['size'],
+            'name'           => $_FILES['cover']['name'],
+            'type'           => $_FILES['cover']['type'],
+            'file_type'      => 'image',
+            'folder'         => 'covers',
+            'slug'           => 'cover',
+            'allowed'        => 'jpg,png,jpeg,gif',
+            'aws_uploadfile' => "N"
+        );
+
+        $file_upload = cl_upload($file_info);
+
+        if (not_empty($file_upload['filename'])) {
+            try {
+                require_once(cl_full_path("core/libs/PHPgumlet/ImageResize.php"));
+                require_once(cl_full_path("core/libs/PHPgumlet/ImageResizeException.php"));
+
+                $prof_cover = new \Gumlet\ImageResize(cl_full_path($file_upload['filename']));
+                $sw         = $prof_cover->getSourceWidth();
+                $sh         = $prof_cover->getSourceHeight();
+                $data['sw'] = $sw;
+                $data['sh'] = $sh;
+
+                $path_info      = explode(".", $file_upload['filename']);
+                $filepath       = fetch_or_get($path_info[0],"");
+                $file_ext       = fetch_or_get($path_info[1],"");
+                $cropped_cover  = cl_strf("%s_600x200.%s", $filepath, $file_ext);
+                $data['status'] = 200;
+
+                $prof_cover->crop(600, 200, true);
+                $prof_cover->save(cl_full_path($cropped_cover));
+
+                cl_delete_media($se['raw_cover']);
+                cl_delete_media($se['cover_orig']);
+
+                cl_update_symbol_data($se['id'], array(
+                    'cover' => $cropped_cover,
+                    'cover_orig' => $file_upload['filename']
+                ));
+
+                if ($sw != 600) {
+                    $prof_cover = new \Gumlet\ImageResize(cl_full_path($file_upload['filename']));
+                    $prof_cover->resize(600,(($sh * 600) / $sw), true);
+                    $prof_cover->save(cl_full_path($file_upload['filename']));
+                }
+
+                if ($cl['config']['as3_storage'] == 'on') {
+                    cl_upload2s3($cropped_cover);
+                    cl_upload2s3($file_upload['filename']);
+                }
+            } 
+
+            catch (Exception $e) {
+                $data['err_code']    = "invalid_req_data";
+                $data['err_message'] = $e->getMessage();
+                $data['status']      = 400;
+            }
+        } 
+
+        else{
+            $data['err_code'] = "invalid_req_data";
+            $data['status']   = 400;
+        }
+    }
+}
 else if ($action == 'upload_profile_cover') {
     if (not_empty($_FILES['cover']) && not_empty($_FILES['cover']['tmp_name'])) {
         $file_info           = array(
@@ -504,7 +613,70 @@ else if ($action == 'upload_profile_cover') {
         }
     }
 }
+else if($action == "save_pagecover_rep") {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+    $new_position     = fetch_or_get($_POST['position'], 0);
+    $dw               = 600;
+    $dh               = 200;
 
+    if (is_numeric($new_position)) {
+        try {
+            require_once(cl_full_path("core/libs/PHPgumlet/ImageResize.php"));
+            require_once(cl_full_path("core/libs/PHPgumlet/ImageResizeException.php"));
+
+
+            $cover_orig = $se['cover_orig'];
+
+            if ($cl['config']['as3_storage'] == 'on') {
+                $cover_orig = cl_import_aws_media($cover_orig);
+            }
+            
+            if (file_exists(cl_full_path($cover_orig))) {
+
+                $prof_cover     = new \Gumlet\ImageResize(cl_full_path($cover_orig));
+                $data['status'] = 200;
+                $file_ext       = explode('.', $se['raw_cover']);
+                $file_ext       = end($file_ext);
+                $file_ext       = (empty($file_ext)) ? 'jpg' : $file_ext;
+                $filename       = cl_gen_path(array(
+                    'file_ext'  => $file_ext,
+                    'file_type' => 'image',
+                    'folder'    => 'covers',
+                    'slug'      => 'cover',
+                ));
+
+                $prof_cover->freecrop($dw, $dh, 0, abs($new_position));
+                $prof_cover->save(cl_full_path($filename));
+                
+                cl_delete_media($se['raw_cover']);
+
+                cl_update_symbol_data($se['id'], array(
+                    'cover' => $filename
+                ));
+
+                if ($cl['config']['as3_storage'] == 'on') {
+                    try {
+                        cl_upload2s3($filename);
+                    } catch (Exception $e) { /* pass */ }
+
+                    cl_delete_loc_media($cover_orig);
+                }
+            }
+
+            else{
+                $data['err_code'] = "invalid_req_data";
+                $data['status']   = 500;
+            }
+        } 
+
+        catch (Exception $e) {
+            $data['err_code']    = "invalid_req_data";
+            $data['err_message'] = $e->getMessage();
+            $data['status']      = 400;
+        }
+    }
+}
 else if($action == "save_profcover_rep") {
     $data['err_code'] = 0;
     $data['status']   = 400;

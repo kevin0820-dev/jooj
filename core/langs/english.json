@@ -1692,7 +1692,37 @@
     "document": "Document",
     "who_can": "Who can reply?",
     "who_can_desc": "Choose who can reply to this Post. Anyone mentioned can always reply.",
-    "choose_audience": "Choose audience"
+    "choose_audience": "Choose audience",
+
+"pages_symbol": "Pages Symbol",
+"pages_create": "Create Pages Symbol",
+"pages_view": "View Pages Symbol",
+"symbol_settings": "Page settings",
+"symbol": "Symbol, Title",
+"general_page_settings": "General page settings",
+"change_symbol": "Change symbol",
+"symbols": "Symbol",
+"title_page": "Title Page",
+"email": "Email",
+"manage_site_pages": "Manage site pages",
+"edit_page": "Edit Page",
+"upload_avatar": "Upload avatar",
+"upload_cover": "Upload cover",
+"enter_the_name_of_your_page": "Enter the title of your page",
+"enter_the_symbol_of_your_page": "Enter the symbol of your page",
+"website": "Website",
+"enter_the_url_of_your_page": "Enter the url of your page",
+"about": "About Page",
+"enter_the_about_of_your_page": "Enter the about of your page",
+"enter_the_email_of_your_page": "Enter the email address of your page",
+"watch": "Watch",
+"unwatch": "Unwatch",
+"watcher": "watchers",
+"watchers": "Watchers",
+"watching": "watching",
+"watchings": "Watching",
+"hot_symbols_for_you": "Trends symbols for you",
+"hot_topics_symbol": "Hot topics symbols"
 
 }
 

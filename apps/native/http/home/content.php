@@ -20,6 +20,7 @@ if (empty($cl["is_logged"])) {
 else {
 	require_once(cl_full_path("core/apps/home/app_ctrl.php"));
 	require_once(cl_full_path("core/apps/feed/app_ctrl.php"));
+	require_once(cl_full_path("core/apps/symbol/app_ctrl.php"));
 	$cl["app_statics"] = array(
 		"scripts" => array(
 			cl_js_template("statics/js/libs/SwiperJS/swiper-bundle.min")
@@ -33,8 +34,10 @@ else {
 	$cl["sbr"]           = true;
 	$cl["sbl"]           = true;
 	$cl["tl_feed"]       = cl_get_timeline_feed(30);
+	$cl["sm_feed"]       = cl_get_page_feed(30);
 	$cl["feed"]       = cl_get_guest_feed(false, 30);
 	$cl["tl_feed_total"] = 30;
 	$cl["tl_swifts"]     = cl_timeline_swifts();
 	$cl["http_res"]      = cl_template("home/content");
+	
 }

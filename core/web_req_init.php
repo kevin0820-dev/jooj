@@ -46,6 +46,7 @@ if (mysqli_connect_errno()) {
 }
 
 $me            = array();
+$se            = array();
 $db_connection = $mysqli;
 $query         = $mysqli->query("SET NAMES utf8");
 $set_charset   = $mysqli->set_charset('utf8mb4');
@@ -103,6 +104,32 @@ if (not_empty($cl['auth_status']['auth'])) {
     $cl['hash_session'] = $cl['auth_status']['token'];
     $user_data_         = cl_user_data($cl['auth_status']['id']);
     $me                 = $cl['me'] = ((empty($user_data_)) ? false : $user_data_);
+   
+    // $symbol_data_         = cl_symbol_data($cl['auth_status']['id']);
+    // $se                 = $cl['se'] = ((empty($symbol_data_)) ? false : $symbol_data_);
+
+    $sname = fetch_or_get($_GET['sname'], '');
+
+    if (!empty($sname)) {
+        $db->where('username', $sname);
+        $symbol_row = $db->getOne(T_SYMBOLS, 'id');
+
+        if ($symbol_row && isset($symbol_row['id'])) {
+            $se['id'] = $symbol_row['id'];
+
+            error_log("Symbol ID: " . $se['id']);
+            echo "<script>console.log('Symbol ID: " . $se['id'] . "');</script>";
+
+            $symbol_data_ = cl_symbol_data($se['id']);
+            $se = $cl['se'] = ((empty($symbol_data_)) ? false : $symbol_data_);
+
+           
+        } else {
+            error_log("No symbol found for sname: $sname");
+            echo "<script>console.log('No symbol found for sname: $sname');</script>";
+            $se = $cl['se'] = false;
+        }
+    } 
 
     if (not_empty($me)) {
         if (isset($cl["languages"][$me['language']])) {

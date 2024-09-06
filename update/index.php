@@ -11,10 +11,10 @@
 
 require_once("../core/settings.php");
 
-$sql_db_host   = (isset($sql_db_host) ? $sql_db_host : "localhost");
-$sql_db_user   = (isset($sql_db_user) ? $sql_db_user : "root");
+$sql_db_host   = (isset($sql_db_host) ? $sql_db_host : "");
+$sql_db_user   = (isset($sql_db_user) ? $sql_db_user : "");
 $sql_db_pass   = (isset($sql_db_pass) ? $sql_db_pass : "");
-$sql_db_name   = (isset($sql_db_name) ? $sql_db_name : "joojtalk-db");
+$sql_db_name   = (isset($sql_db_name) ? $sql_db_name : "");
 $site_url      = (isset($site_url)    ? $site_url    : "");
 $mysqli        = new mysqli($sql_db_host, $sql_db_user, $sql_db_pass, $sql_db_name);
 $server_errors = array();

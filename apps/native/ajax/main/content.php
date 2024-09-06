@@ -79,6 +79,76 @@ if ($action == 'upload_post_image') {
         }
     }
 }
+if ($action == 'upload_page_image') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = "invalid_req_data";
+        $data['status']   = 400;
+        $post_data        = $me['draft_post'];
+        $symbol_id        = fetch_or_get($_POST['symbol_id'], 0);  // Получаем symbol_id
+
+        if (not_empty($_FILES['image']) && not_empty($_FILES['image']['tmp_name'])) {
+            if (empty($post_data)) {
+                $post_id   = cl_create_orphan_post($me['id'], "image", $symbol_id);  // Передаем symbol_id
+                $post_data = cl_get_orphan_post($post_id);
+
+                cl_update_user_data($me['id'],array(
+                    'last_post' => $post_id
+                ));
+            }
+
+            if (not_empty($post_data) && $post_data["type"] == "image") {
+                if (empty($post_data['media']) || count($post_data['media']) < 10) {
+                    $file_info      =  array(
+                        'file'      => $_FILES['image']['tmp_name'],
+                        'size'      => $_FILES['image']['size'],
+                        'name'      => $_FILES['image']['name'],
+                        'type'      => $_FILES['image']['type'],
+                        'file_type' => 'image',
+                        'folder'    => 'images',
+                        'slug'      => 'original',
+                        'crop'      => array('width' => 500, 'height' => 300),
+                        'allowed'   => 'jpg,png,jpeg,gif,webp'
+                    );
+
+                    $file_upload = cl_upload($file_info);
+
+                    if (not_empty($file_upload['filename'])) {
+                        $post_id     =  $post_data['id'];
+                        $img_id      =  $db->insert(T_PUBMEDIA, array(
+                            "pub_id" => $post_id,
+                            "type"   => "image",
+                            "src"    => $file_upload['filename'],
+                            "time"   => time(),
+                            "json_data" => json(array(
+                                "image_thumb" => $file_upload['cropped']
+                            ),true)
+                        ));
+
+                        if (is_posnum($img_id)) {
+                            $data['img']     = array("id" => $img_id, "url" => cl_get_media($file_upload['cropped']));
+                            $data['status']  = 200;
+                        }
+                    }
+                }
+                else {
+                    $data['err_code'] = "total_limit_exceeded";
+                    $data['status']   = 400;
+                }
+            }
+            else {
+                cl_delete_orphan_posts($me['id']);
+                cl_update_user_data($me['id'],array(
+                    'last_post' => 0
+                ));
+            }
+        }
+    }
+}
+
 
 else if ($action == 'upload_post_video') {
     if (empty($cl["is_logged"])) {
@@ -203,7 +273,130 @@ else if ($action == 'upload_post_video') {
         }
     }
 }
+else if ($action == 'upload_page_video') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = "invalid_req_data";
+        $data['status']   = 400;
+        $post_data        = $me['draft_post'];
+        $symbol_id        = fetch_or_get($_POST['symbol_id'], 0);  // Получаем symbol_id
+        
+        if (not_empty($_FILES['video']) && not_empty($_FILES['video']['tmp_name'])) {
+            if (empty($post_data)) {
+                $post_id   = cl_create_orphan_post($me['id'], "video", $symbol_id);  // Передаем symbol_id
+                $post_data = cl_get_orphan_post($post_id);
 
+                cl_update_user_data($me['id'],array(
+                    'last_post' => $post_id
+                ));
+            }
+
+            if (not_empty($post_data) && $post_data["type"] == "video") {
+                if (empty($post_data['media'])) {
+                    $file_info           = array(
+                        'file'           => $_FILES['video']['tmp_name'],
+                        'size'           => $_FILES['video']['size'],
+                        'name'           => $_FILES['video']['name'],
+                        'type'           => $_FILES['video']['type'],
+                        'file_type'      => 'video',
+                        'folder'         => 'videos',
+                        'slug'           => 'original',
+                        'allowed'        => 'mp4,mov,3gp,webm',
+                        'aws_uploadfile' => "N"
+                    );
+
+                    $file_upload = cl_upload($file_info);
+                    $upload_fail = false;
+                    $post_id     = $post_data['id'];
+
+                    if (not_empty($file_upload['filename'])) {
+                        try {
+                            require_once(cl_full_path("core/libs/ffmpeg-php/vendor/autoload.php"));
+                            require_once(cl_full_path("core/libs/getID3/getid3/getid3.php"));
+
+                            $ffmpeg_binary       = ($config['ffmpeg_binary'] == "/core/libs/ffmpeg/ffmpeg") ? cl_full_path($config['ffmpeg_binary']) : $config['ffmpeg_binary']; 
+                            $ffmpeg              = new FFmpeg($ffmpeg_binary);
+                            $getID3              = new getID3;
+                            $getID3_FAR          = $getID3->analyze($file_upload['filename']);
+                            $poster_frame_offset = 3;
+                            $thumb_path          = cl_gen_path(array(
+                                "folder"         => "images",
+                                "file_ext"       => "jpeg",
+                                "file_type"      => "image",
+                                "slug"           => "poster",
+                            ));
+
+                            if (not_empty($getID3_FAR) && isset($getID3_FAR["playtime_seconds"])) {
+                                if ($getID3_FAR["playtime_seconds"] < 3) {
+                                    $poster_frame_offset = 1;
+                                }
+                            }
+
+                            $ffmpeg->input($file_upload['filename']);
+                            $ffmpeg->set('-ss', $poster_frame_offset);
+                            $ffmpeg->set('-vframes','1');
+                            $ffmpeg->set('-f','mjpeg');
+                            $ffmpeg->output($thumb_path)->ready();
+                        } 
+
+                        catch (Exception $e) {
+                            $data["error"] = $e->getMessage();
+                            $upload_fail   = true;
+                        }
+
+                        if (empty($upload_fail)) {
+
+                            if (file_exists($thumb_path) != true) {
+                                $thumb_path = "upload/default/video.png";
+                            }
+
+                            $img_id      = $db->insert(T_PUBMEDIA, array(
+                                "pub_id" => $post_id,
+                                "type"   => "video",
+                                "src"    => $file_upload['filename'],
+                                "time"   => time(),
+                                "json_data" => json(array(
+                                    "poster_thumb" => $thumb_path,
+                                    "ratio" => "8:6"
+                                ),true)
+                            ));
+
+                            if (is_posnum($img_id)) {
+                                $data['status'] =  200;
+                                $data['video']  =  array(
+                                    "source"    => cl_get_media($file_upload['filename']),
+                                    "poster"    => cl_get_media($thumb_path)
+                                );
+
+                                if ($cl['config']['as3_storage'] == 'on') {
+                                    cl_upload2s3($file_upload['filename']);
+
+                                    cl_upload2s3($thumb_path);
+                                }
+                            }
+                        }
+                    }
+                    else if(not_empty($file_upload['error'])) {
+                        $data["error"] = $file_upload['error'];
+                    }
+                }
+                else {
+                    $data['err_code'] = "total_limit_exceeded";
+                    $data['status']   = 400;
+                }
+            }
+            else {
+                cl_delete_orphan_posts($me['id']);
+                cl_update_user_data($me['id'],array(
+                    'last_post' => 0
+                ));
+            }
+        }
+    }
+}
 else if ($action == 'upload_post_arecord') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -831,6 +1024,207 @@ else if ($action == 'publish_new_post') {
     }
 }
 
+else if ($action == 'publish_new_post_symbol') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error'] = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = 0;
+        $data['status'] = 400;
+        $max_post_length = $cl["config"]["max_post_len"];
+        $post_data = $me['draft_post'];
+        $curr_pn = fetch_or_get($_POST['curr_pn'], "none");
+        $post_text = fetch_or_get($_POST['post_text'], "");
+        $gif_src = fetch_or_get($_POST['gif_src'], "");
+        $og_data = fetch_or_get($_POST['og_data'], array());
+        $poll_data = fetch_or_get($_POST['poll_data'], array());
+        $thread_id = fetch_or_get($_POST['thread_id'], 0);
+        $symbol_id = fetch_or_get($_POST['symbol_id'], 0); // Получаем symbol_id
+        $post_privacy = fetch_or_get($_POST['privacy'], "everyone");
+        $post_text = cl_croptxt($post_text, $max_post_length);
+        $thread_data = array();
+
+        if (not_empty($thread_id)) {
+            $thread_data  = cl_raw_post_data($thread_id);
+            $post_privacy = "everyone";
+
+            if (empty($thread_data) || cl_can_reply($thread_data) != true) {
+                $thread_id   = 0;
+                $thread_data = array();
+            }
+        }
+        else {
+            if (in_array($post_privacy, array("everyone", "followers", "mentioned")) != true) {
+                $post_privacy = "everyone";
+            }
+        }
+
+        if (not_empty($post_data) && not_empty($post_data["media"])) {
+            $data['status'] = 200;
+            $thread_id      = ((is_posnum($thread_id)) ? $thread_id : 0);
+            $post_id        = $post_data['id'];
+            $post_text      = cl_upsert_htags($post_text);
+            $post_text      = cl_upsert_symbols($post_text);
+            $mentions       = cl_get_user_mentions($post_text);
+            $qr             = cl_update_post_data($post_id, array(
+                "text"      => cl_text_secure($post_text),
+                "status"    => "active",
+                "thread_id" => $thread_id,
+                "time"      => time(),
+                "priv_wcs"  => $me["profile_privacy"],
+                "priv_wcr"  => $post_privacy
+            ));
+
+            if (empty($thread_id)) {
+                cl_db_insert(T_PSYMBOL, array(
+                    "user_id"        => $me['id'],
+                    "symbol_id"      => $symbol_id, 
+                    "publication_id" => $post_id,
+                    "time"           => time()
+                ));
+
+                // Update posts count for the symbol
+        $symbol_data = cl_raw_symbol_data($symbol_id); // Retrieve symbol data
+        if ($symbol_data) {
+            $new_posts_total = $symbol_data['posts'] + 1; // Increment posts count
+            cl_update_symbol_data($symbol_id, array(
+                'posts' => $new_posts_total
+            ));
+            $data['posts_total'] = $new_posts_total;
+        } else {
+            $data['posts_total'] = 0; // Handle if symbol data not found
+        }
+            }
+            else {
+                $data['replys_total'] = cl_update_thread_replys($thread_id, 'plus');
+
+                cl_update_post_data($post_id, array(
+                    "target" => "pub_reply"
+                ));
+
+                if ($thread_data['user_id'] != $me['id']) {
+                    cl_notify_user(array(
+                        'subject'  => 'reply',
+                        'user_id'  => $thread_data['user_id'],
+                        'entry_id' => $post_id
+                    ));
+                }
+            }
+
+            if (in_array($curr_pn, array('home','thread'))) {
+                $post_data    = cl_raw_post_data($post_id);
+                $cl['li']     = cl_post_data($post_data);
+                $data['html'] = cl_template('timeline/post_symbol');
+            }
+
+            if (not_empty($mentions)) {
+                cl_notify_mentioned_users($mentions, $post_id);
+            }
+
+            cl_delete_post_junk_files($post_data['id'], $post_data['type']);
+        }
+        else {
+            if (not_empty($post_text) || not_empty($gif_src) || not_empty($og_data) || not_empty($poll_data)) {
+                $thread_id      = ((is_posnum($thread_id)) ? $thread_id : 0);
+                $post_text      = cl_upsert_htags($post_text);
+                $post_text      = cl_upsert_symbols($post_text);
+                $mentions       = cl_get_user_mentions($post_text);
+                $insert_data    = array(
+                    "user_id"   => $me['id'],
+                    "symbol_id"   => $symbol_id,
+                    "text"      => cl_text_secure($post_text),
+                    "status"    => "active",
+                    "type"      => "text",
+                    "thread_id" => $thread_id,
+                    "time"      => time(),
+                    "priv_wcs"  => $me["profile_privacy"],
+                    "priv_wcr"  => $post_privacy
+                );
+
+                if (not_empty($gif_src)) {
+                    $insert_data["type"] = "gif";
+                }
+
+                else if (not_empty($og_data)) {
+                    $insert_data["type"] = "og";
+                }
+
+                else if (not_empty($poll_data)) {
+                    $insert_data["type"] = "poll";
+                }
+
+                $post_id = cl_db_insert(T_PUBS, $insert_data);
+
+                if (is_posnum($post_id)) {
+                    $data['status'] = 200;
+
+                    if (empty($thread_id)) {
+                        cl_db_insert(T_PSYMBOL, array(
+                            "user_id"        => $me['id'],
+                            "symbol_id"      => $symbol_id, // Используем symbol_id
+                            "publication_id" => $post_id,
+                            "time"           => time()
+                        ));
+
+                         // Update posts count for the symbol
+        $symbol_data = cl_raw_symbol_data($symbol_id); // Retrieve symbol data
+        if ($symbol_data) {
+            $new_posts_total = $symbol_data['posts'] + 1; // Increment posts count
+            cl_update_symbol_data($symbol_id, array(
+                'posts' => $new_posts_total
+            ));
+            $data['posts_total'] = $new_posts_total;
+        } else {
+            $data['posts_total'] = 0; // Handle if symbol data not found
+        }
+                    }
+                    else {
+                        $data['replys_total'] = cl_update_thread_replys($thread_id, 'plus');
+
+                        cl_update_post_data($post_id, array(
+                            "target" => "pub_reply"
+                        ));
+
+                        if ($thread_data['user_id'] != $me['id']) {
+                            cl_notify_user(array(
+                                'subject'  => 'reply',
+                                'user_id'  => $thread_data['user_id'],
+                                'entry_id' => $post_id
+                            ));
+                        }
+                    }
+
+                    if ($insert_data["type"] == "gif") {
+                        cl_db_insert(T_PUBMEDIA, array(
+                            "pub_id" => $post_id,
+                            "type"   => "gif",
+                            "src"    => $gif_src,
+                            "time"   => time(),
+                        ));
+                    }
+
+                    if (in_array($curr_pn, array('home', 'thread'))) {
+                        $post_data    = cl_raw_post_data($post_id);
+                        $cl['li']     = cl_post_data($post_data);
+                        $data['html'] = cl_template('timeline/post_symbol');
+                    }
+
+                    if (not_empty($mentions)) {
+                        cl_notify_mentioned_users($mentions, $post_id);
+                    }
+                }
+            }
+        }
+
+        cl_delete_orphan_posts($me['id']);
+        cl_update_user_data($me['id'], array(
+            'last_post' => 0
+        ));
+    }
+}
+
+
 else if($action == 'get_draft_post') {
     $data['status']   = 404;
     $data['err_code'] = 0;
@@ -986,6 +1380,97 @@ else if($action == 'follow') {
         }
     }
 }
+else if($action == 'watch') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['status']   = 404;
+        $data['err_code'] = 0;
+        $following_id     = fetch_or_get($_POST['id'], 0); // Получение following_id из POST
+
+        echo "Received Following ID: " . $following_id; // Отладка ID
+
+        if (is_posnum($following_id)) {
+            
+            $udata = cl_raw_symbol_data($following_id);
+
+            if (not_empty($udata)) {    
+                if (cl_is_watching($me['id'], $following_id)) {
+                    if (cl_unwatch($me['id'], $following_id)) {
+                        $data['status'] = 200;
+
+                        cl_db_delete_item(T_NOTIFS, array(
+                            'notifier_id'  => $me['id'],
+                            'recipient_id' => $following_id,
+                            'subject'      => 'subscribe',
+                            'entry_id'     => $following_id
+                        ));
+
+                        if ($udata['profile_privacy'] == 'followers') {
+                            $data['refresh'] = 1;
+                        }
+
+                        cl_watch_decrease($me['id'], $following_id);
+                    }
+                }
+                else {
+                    if ($udata["follow_privacy"] == "everyone") {
+                        if (cl_watch($me['id'], $following_id)) {
+                            $data['status'] = 200;
+
+                            cl_notify_user(array(
+                                'subject'  => 'subscribe',
+                                'user_id'  => $following_id,
+                                'entry_id' => $me["id"]
+                            ));
+
+                            if ($udata['profile_privacy'] == 'followers' && $udata['follow_privacy'] == 'everyone') {
+                                $data['refresh'] = 1;
+                            }
+
+                            cl_watch_increase($me['id'], $following_id);
+                        }
+                    }
+                    else {
+                        if (cl_watch_requested($me['id'], $following_id)) {
+                            if (cl_unwatch($me['id'], $following_id)) {
+                                $data['status'] = 200;
+
+                                cl_db_delete_item(T_NOTIFS, array(
+                                    'notifier_id'  => $me['id'],
+                                    'recipient_id' => $following_id,
+                                    'subject'      => 'subscribe',
+                                    'entry_id'     => $following_id
+                                ));
+
+                                cl_db_delete_item(T_NOTIFS, array(
+                                    'notifier_id'  => $me['id'],
+                                    'recipient_id' => $following_id,
+                                    'subject'      => 'subscribe_request',
+                                    'entry_id'     => $following_id
+                                ));
+                            }
+                        }
+                        else {
+                            if (cl_watch_request($me['id'], $following_id)) {
+                                $data['status'] = 200;
+
+                                cl_notify_user(array(
+                                    'subject'  => 'subscribe_request',
+                                    'user_id'  => $following_id,
+                                    'entry_id' => $me["id"]
+                                ));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 else if($action == 'delete_post') {
     if (empty($cl["is_logged"])) {
@@ -1016,6 +1501,51 @@ else if($action == 'delete_post') {
 
                         $db = $db->where('publication_id', $post_id);
                         $qr = $db->delete(T_POSTS);
+                    }
+
+                    else {
+                        $data['url'] = cl_link(cl_strf("thread/%d", $post_data['thread_id']));
+
+                        cl_update_thread_replys($post_data['thread_id'], 'minus');
+                    }
+                    
+                    cl_recursive_delete_post($post_id);
+                    
+                    $data['status'] = 200;
+                }
+            }
+        }
+    }
+}
+else if($action == 'delete_post_page') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = 0;
+        $data['status']   = 400;
+        $post_id          = fetch_or_get($_POST['id'], 0);
+
+        if (is_posnum($post_id)) {
+            $post_data = cl_raw_post_data($post_id);
+
+            if (not_empty($post_data) && ($post_data['user_id'] == $me['id'] || not_empty($cl["is_admin"]))) {
+
+                $post_owner = cl_raw_symbol_data($post_data['symbol_id']);
+
+                if (not_empty($post_owner)) {
+                    if ($post_data['target'] == 'publication') {
+
+                        $data['posts_total'] = ($post_owner['posts'] -= 1);
+                        $data['posts_total'] = ((is_posnum($data['posts_total'])) ? $data['posts_total'] : 0);
+
+                        cl_update_symbol_data($post_data['symbol_id'], array(
+                            'posts' => $data['posts_total']
+                        ));
+
+                        $db = $db->where('publication_id', $post_id);
+                        $qr = $db->delete(T_PSYMBOL);
                     }
 
                     else {
@@ -1258,6 +1788,48 @@ else if($action == 'update_msb_indicators') {
     }
 }
 
+// else if($action == 'search') {
+    
+//     $data['err_code'] = 0;
+//     $data['status']   = 400;
+//     $search_query     = fetch_or_get($_GET['query'], false); 
+//     $type             = fetch_or_get($_GET['type'], false); 
+
+//     if (not_empty($search_query) && len_between($search_query,3, 32) && in_array($type, array('users','htags'))) {
+//         require_once(cl_full_path("core/apps/explore/app_ctrl.php"));
+
+//         if ($type == "htags") {
+//             $search_query = cl_text_secure($search_query);
+//             $search_query = cl_croptxt($search_query, 32);
+//             $query_result = cl_search_hashtags($search_query, false, 150);
+//             $html_arr     = array();
+            
+//             if (not_empty($query_result)) {
+//                 foreach ($query_result as $cl['li']) {
+//                     $html_arr[] = cl_template('main/includes/search/htags_li');
+//                 }
+
+//                 $data['status'] = 200;
+//                 $data['html']   = implode("", $html_arr);
+//             }  
+//         }
+//         else {
+//             $search_query = cl_text_secure($search_query);
+//             $search_query = cl_croptxt($search_query, 32);
+//             $query_result = cl_search_people($search_query, false, 150);
+//             $html_arr     = array();
+
+//             if (not_empty($query_result)) {
+//                 foreach ($query_result as $cl['li']) {
+//                     $html_arr[] = cl_template('main/includes/search/users_li');
+//                 }
+
+//                 $data['status'] = 200;
+//                 $data['html']   = implode("", $html_arr);
+//             }
+//         }
+//     }
+// }
 else if($action == 'search') {
     
     $data['err_code'] = 0;
@@ -1265,7 +1837,7 @@ else if($action == 'search') {
     $search_query     = fetch_or_get($_GET['query'], false); 
     $type             = fetch_or_get($_GET['type'], false); 
 
-    if (not_empty($search_query) && len_between($search_query,3, 32) && in_array($type, array('users','htags'))) {
+    if (not_empty($search_query) && len_between($search_query,3, 32) && in_array($type, array('users','htags','symbols'))) {
         require_once(cl_full_path("core/apps/explore/app_ctrl.php"));
 
         if ($type == "htags") {
@@ -1283,23 +1855,50 @@ else if($action == 'search') {
                 $data['html']   = implode("", $html_arr);
             }  
         }
-        else {
+        else if ($type == "symbols") {
             $search_query = cl_text_secure($search_query);
             $search_query = cl_croptxt($search_query, 32);
-            $query_result = cl_search_people($search_query, false, 150);
+            $query_result = cl_search_symbols($search_query, false, 150);
             $html_arr     = array();
 
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    $html_arr[] = cl_template('main/includes/search/users_li');
+                    $html_arr[] = cl_template('main/includes/search/symbols_li');
                 }
 
                 $data['status'] = 200;
                 $data['html']   = implode("", $html_arr);
             }
         }
+        else {
+            $search_query = cl_text_secure($search_query);
+            $search_query = cl_croptxt($search_query, 32);
+            $page_result = cl_search_page($search_query, false, 150);
+            $user_result = cl_search_people($search_query, false, 150);
+            $html_arr    = array();
+
+            if (not_empty($page_result)) {
+                $html_arr[] = '<h3 class="px-3 text-[14px] font-semibold pt-3">Symbols</h3>';
+                foreach ($page_result as $cl['li']) {
+                    $html_arr[] = cl_template('main/includes/search/pages_li');
+                }
+            }
+
+            if (not_empty($user_result)) {
+                $html_arr[] = '<h3 class="px-3 text-[14px] font-semibold pt-3">Users</h3>';
+                foreach ($user_result as $cl['li']) {
+                    $html_arr[] = cl_template('main/includes/search/users_li');
+                }
+            }
+
+            if (not_empty($html_arr)) {
+                $data['status'] = 200;
+                $data['html']   = implode("", $html_arr);
+            }
+        }
     }
 }
+
 
 else if($action == 'report_profile') {
     $data['err_code'] = 0;
@@ -1350,6 +1949,32 @@ else if($action == 'user_lbox') {
 
         $data['status'] = 200;
         $data['html']   = cl_template("main/includes/lbox/userinfo");
+    }
+}
+else if($action == 'symbol_lbox') {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+    $user_id          = fetch_or_get($_GET['id'], false); 
+    $user_data        = cl_symbol_data($user_id);
+
+    if (not_empty($user_data)) {
+        $cl["slbox_usr"]                     = $user_data;
+        $cl['slbox_usr']['owner']            = false;
+        $cl['slbox_usr']['is_following']     = false;
+        $cl['slbox_usr']['follow_requested'] = false;
+       
+        if (not_empty($cl["is_logged"])) {
+            $cl['slbox_usr']['owner']            = ($user_id == $me['id']);
+            $cl['slbox_usr']['is_following']     = cl_is_watching($me['id'], $user_id);
+            $cl['slbox_usr']['follow_requested'] = false;
+            $cl['slbox_usr']['common_follows']   = cl_get_common_follows($cl['slbox_usr']['id']);
+            if (empty($cl['slbox_usr']['is_following'])) {
+                $cl['slbox_usr']['follow_requested'] = cl_watch_requested($me['id'], $user_id);
+            }
+        }
+
+        $data['status'] = 200;
+        $data['html']   = cl_template("main/includes/lbox/symbolinfo");
     }
 }
 
@@ -1512,7 +2137,20 @@ elseif ($action == "mentions_autocomp") {
         $data["users"]  = $users_list;
     }
 }
+elseif ($action == "pages_autocomp") {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+    $username         = fetch_or_get($_GET['username'], false);
+    $username         = cl_text_secure($username);
+    $username         = ltrim($username, "$");
+    $username         = cl_croptxt($username, 32);
+    $users_list       = cl_pages_ac_search($username);
 
+    if (not_empty($users_list)) {
+        $data["status"] = 200;
+        $data["users"]  = $users_list;
+    }
+}
 elseif ($action == "hashtags_autocomp") {
     $data['err_code'] = 0;
     $data['status']   = 400;
@@ -1527,7 +2165,20 @@ elseif ($action == "hashtags_autocomp") {
         $data["tags"]   = $hashtag_list;
     }
 }
+elseif ($action == "hashsymbols_autocomp") {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+    $hashsymbol          = fetch_or_get($_GET['hashsymbol'], false);
+    $hashsymbol          = cl_text_secure($hashsymbol);
+    $hashsymbol         = ltrim($hashsymbol, "$");
+    $hashsymbol          = cl_croptxt($hashsymbol, 32);
+    $hashsymbol_list     = cl_hashsymbol_ac_search($hashsymbol);
 
+    if (not_empty($hashsymbol_list)) {
+        $data["status"] = 200;
+        $data["symbols"]   = $hashsymbol_list;
+    }
+}
 else if($action == "cua") {
     setcookie("__c_u_a__", "1", strtotime("+3 years"), '/') or die('unable to create cookie');
 

@@ -22,7 +22,19 @@ function cl_admin_total_users() {
 
 	return $num;
 }
+function cl_admin_total_symbols() {
+	global $db, $cl;
 
+	$db  = $db->where('active', array('1', '2'), 'IN');
+	$qr  = $db->getValue(T_SYMBOLS, 'COUNT(*)');
+	$num = 0;
+
+	if (is_posnum($qr)) {
+		$num = $qr;
+	}
+
+	return $num;
+}
 function cl_admin_total_posts($type = false) {
 	global $db, $cl;
 

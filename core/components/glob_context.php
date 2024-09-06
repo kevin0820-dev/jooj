@@ -21,8 +21,10 @@ $applications       = array(
 	"settings"      => true,
     "profile"       => true,
     "connections"   => true,
+    "watchings"   => true,
     "suggested"     => true,
     "trending"      => true,
+    "symbols"      => true,
     "search"        => true,
     "explore"       => true,
     "chats"         => true,
@@ -56,7 +58,10 @@ $applications       = array(
     "blue_features" => true,
     "wallet_add" => true,
     "wallet_send" => true,
-    "spa_load"      => true
+    "spa_load"      => true,
+    "pages_symbol" => true,
+    "symbol" => true,
+    "page_settings" => true
 );
 
 $cl['profile_report_types'] = array(

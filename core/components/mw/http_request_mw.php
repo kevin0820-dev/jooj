@@ -11,6 +11,7 @@
 
 $cl['follow_suggestion'] = cl_get_follow_suggestions(5);
 $cl['hot_topics']        = cl_get_hot_topics(15);
+$cl['hot_symbols']        = cl_get_hot_symbols(15);
 $cl['visitor_uniqid']    = null;
 
 if (empty($_COOKIE['visid'])) {

@@ -10,7 +10,7 @@
 # @*************************************************************************@
 
 function cl_template($file_path = "") {
-    global $config, $cl, $me;
+    global $config, $cl, $me, $se;
 
     $path  = cl_strf("themes/%s/apps/%s.phtml",$config['theme'],$file_path);
     $path  = cl_full_path($path);
@@ -33,7 +33,7 @@ function cl_template($file_path = "") {
 }
 
 function cl_js_template($file_path = "") {
-    global $config, $cl, $me;
+    global $config, $cl, $me, $se;
 
     $path = cl_strf("themes/%s/%s.js", $config['theme'], $file_path);
     $path = cl_full_path($path);
@@ -56,7 +56,7 @@ function cl_js_template($file_path = "") {
 }
 
 function cl_css_template($file_path = "") {
-    global $config, $cl, $me;
+    global $config, $cl, $me, $se;
 
     $path = cl_strf("themes/%s/%s.css", $config['theme'], $file_path);
     $path = cl_full_path($path);
