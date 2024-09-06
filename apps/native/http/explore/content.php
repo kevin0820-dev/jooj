@@ -30,9 +30,12 @@ if (not_empty($cl["search_query"])) {
 if ($cl["page_tab"] == 'htags') {
 	$cl["query_result"] = cl_search_hashtags($cl["search_query"], false, 30);
 }
-
+else if ($cl["page_tab"] == 'symbols') {
+	$cl["query_result"] = cl_search_symbols($cl["search_query"], false, 30);
+}
 else if($cl["page_tab"] == 'people') {
 	$cl["query_result"] = cl_search_people($cl["search_query"], false, 30);
+	$cl["query_result"] = cl_search_page($cl["search_query"], false, 30);
 }
 
 else {

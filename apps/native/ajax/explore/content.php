@@ -38,23 +38,50 @@ if ($action == 'load_more') {
                 $data['html']   = implode("", $html_arr);
             }  
         }
-
-        else if($type == "people") {
+     if ($type == "symbols") {
             if (not_empty($search_query)) {
                 $search_query = cl_text_secure($search_query);
                 $search_query = cl_croptxt($search_query, 32);
             }
 
-            $query_result = cl_search_people($search_query, $offset, 30);
-
+            $query_result = cl_search_symbols($search_query, $offset, 30);
+            
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    $html_arr[] = cl_template('explore/includes/li/people_li');
+                    $html_arr[] = cl_template('explore/includes/li/symbols_li');
                 }
 
                 $data['status'] = 200;
                 $data['html']   = implode("", $html_arr);
-            } 
+            }  
+        }
+        else if ($type == "people") {
+            if (not_empty($search_query)) {
+                $search_query = cl_text_secure($search_query);
+                $search_query = cl_croptxt($search_query, 32);
+            }
+        
+            // Поиск пользователей
+            $query_result_people = cl_search_people($search_query, false, 30);
+        
+            // Поиск страниц
+            $query_result_pages = cl_search_page($search_query, false, 30);
+        
+            // Объединяем результаты
+            $query_result = array_merge($query_result_people, $query_result_pages);
+        
+            if (not_empty($query_result)) {
+                foreach ($query_result as $cl['li']) {
+                    if ($cl['li']['type'] == 'user') {
+                        $html_arr[] = cl_template('explore/includes/li/people_li');
+                    } elseif ($cl['li']['type'] == 'page') {
+                        $html_arr[] = cl_template('explore/includes/li/page_li');
+                    }
+                }
+        
+                $data['status'] = 200;
+                $data['html']   = implode("", $html_arr);
+            }
         }
 
         else if($type == "posts") {
@@ -100,20 +127,47 @@ else if($action == 'search') {
                 $data['html']   = implode("", $html_arr);
             }  
         }
-
-        else if($type == "people") {
+       if ($type == "symbols") {
             $search_query = cl_text_secure($search_query);
             $search_query = cl_croptxt($search_query, 32);
-            $query_result = cl_search_people($search_query, false, 30);
-
+            $query_result = cl_search_symbols($search_query, false, 30);
+            
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    $html_arr[] = cl_template('explore/includes/li/people_li');
+                    $html_arr[] = cl_template('explore/includes/li/symbols_li');
                 }
 
                 $data['status'] = 200;
                 $data['html']   = implode("", $html_arr);
-            } 
+            }  
+        }
+        else if ($type == "people") {
+            if (not_empty($search_query)) {
+                $search_query = cl_text_secure($search_query);
+                $search_query = cl_croptxt($search_query, 32);
+            }
+        
+           
+            $query_result_people = cl_search_people($search_query, false, 30);
+        
+         
+            $query_result_pages = cl_search_page($search_query, false, 30);
+        
+          
+            $query_result = array_merge($query_result_people, $query_result_pages);
+        
+            if (not_empty($query_result)) {
+                foreach ($query_result as $cl['li']) {
+                    if ($cl['li']['type'] == 'user') {
+                        $html_arr[] = cl_template('explore/includes/li/people_li');
+                    } elseif ($cl['li']['type'] == 'page') {
+                        $html_arr[] = cl_template('explore/includes/li/page_li');
+                    }
+                }
+        
+                $data['status'] = 200;
+                $data['html']   = implode("", $html_arr);
+            }
         }
 
         else if($type == "posts") {

@@ -39,24 +39,26 @@ else {
 		$cl['prof_user']['owner']           = ($cl['prof_user']['id'] == $me['id']);
 		$cl['prof_user']['follow_requests'] = cl_get_follow_requests_total();
 	}
-
 	if (not_empty($cl['can_view'])) {
 		if ($cl['page_tab'] == 'followers') {
 			$cl["users_list"] = cl_get_followers($cl['prof_user']['id'], 30, false);
 		}
-
 		else if ($cl['page_tab'] == 'follow_requests') {
 			if (not_empty($cl['prof_user']['owner'])) {
 				$cl["users_list"] = cl_get_follow_requests(30, false);
 			}
-
-			else{
+			else {
 				cl_redirect("404");
 			}
 		}
-
-		else {
+		else if ($cl['page_tab'] == 'following') {
 			$cl["users_list"] = cl_get_followings($cl['prof_user']['id'], 30, false);
+		}
+		else if ($cl['page_tab'] == 'watching') {
+			$cl["users_list"] = cl_get_watchings($cl['prof_user']['id'], 30, false);
+		}
+		else {
+			$cl["users_list"] = cl_get_watchings($cl['prof_user']['id'], 30, false);
 		}
 	}
 	else {

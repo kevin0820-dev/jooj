@@ -31,15 +31,13 @@ function not_empty(&$var) {
 }
 
 function json($array = array(), $seril = null) {
-    if(is_null($array)) {
-        return false;
-    }
     if ($seril) {
         return json_encode($array,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
     }
-    else {
+    else if($array){
         return json_decode($array,true);
     }
+    else return;
 }
 
 function len($string = '') {

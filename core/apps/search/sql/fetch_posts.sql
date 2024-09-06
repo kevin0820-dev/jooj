@@ -29,7 +29,11 @@ SELECT * FROM `<?php echo($data['t_pubs']); ?>`
 
 		<?php if($data['htag']): ?>
 			OR `text` LIKE "%{#id:<?php echo($data['htag']); ?>#}%"
-		<?php endif; ?>)
+		<?php endif; ?>
+		<?php if($data['symbol']): ?>
+			OR `text` LIKE "%{@id:<?php echo($data['symbol']); ?>@}%"
+		<?php endif; ?>
+		)
 	<?php endif; ?>
 
 	<?php if(not_empty($data['offset'])): ?>

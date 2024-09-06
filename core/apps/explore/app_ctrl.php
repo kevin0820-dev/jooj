@@ -39,7 +39,36 @@ function cl_search_hashtags($keyword = "", $offset = false, $limit = 30) {
     
     return $data;
 }
+function cl_search_symbols($keyword = "", $offset = false, $limit = 30) {
+	global $db;
 
+    $data    = array();
+    $db      = $db->where('posts', '0', '>');
+    $db      = $db->orderBy('posts','DESC');
+    $db      = $db->orderBy('time','DESC');
+    $keyword = ltrim($keyword,'$');
+    $db      = (not_empty($keyword)) ? $db->where('symbol', "%{$keyword}%", 'LIKE') : $db;
+
+    if (is_posnum($offset)) {
+        $symbols = $db->get(T_HSYMBOLS, array($offset, $limit));
+    }
+    else{
+        $symbols = $db->get(T_HSYMBOLS, $limit);
+    }
+    
+
+    if (cl_queryset($symbols)) {
+    	foreach ($symbols as $symbol_data) {
+            $symbol_data['symbol']     = cl_rn_strip($symbol_data['symbol']);
+    		$symbol_data['hashsymbol'] = cl_strf("$%s", $symbol_data['symbol']);
+    		$symbol_data['url']     = cl_link(cl_strf("explore/posts?q=%s", cl_remove_emoji($symbol_data['symbol'])));
+    		$symbol_data['total']   = cl_number($symbol_data['posts']);
+    		$data[]              = $symbol_data;
+    	}
+    }
+    
+    return $data;
+}
 function cl_search_people($keyword = "", $offset = false, $limit = 30) {
     global $db, $cl, $me;
 
@@ -70,7 +99,56 @@ function cl_search_people($keyword = "", $offset = false, $limit = 30) {
             $row['common_follows']   = array();
             $row['country_a2c']      = fetch_or_get($cl['country_codes'][$row['country_id']], 'us');
             $row['country_name']     = cl_translate($cl['countries'][$row['country_id']], 'Unknown');
+            $row['type']             = 'user';
+            if (not_empty($user_id)) {
+            	$row['is_user']      = ($user_id == $row['id']);
+            	$row['is_following'] = cl_is_following($user_id, $row['id']);
 
+                if (empty($row['is_following'])) {
+                    $row['follow_requested'] = cl_follow_requested($user_id, $row['id']);
+                }
+
+                $row['common_follows'] = cl_get_common_follows($row['id']);
+            }
+
+            $row['about'] = cl_linkify_urls($row['about']);
+            $data[]       = $row;
+        }
+    }
+
+    return $data;
+}
+function cl_search_page($keyword = "", $offset = false, $limit = 30) {
+    global $db, $cl, $me;
+
+    $data          = array();
+    $user_id       = ((not_empty($cl['is_logged'])) ? $me['id'] : false);
+    $sql           = cl_sqltepmlate('apps/explore/sql/fetch_page',array(
+        't_users'  => T_SYMBOLS,
+        't_blocks' => T_BLOCKS,
+        'user_id'  => $user_id,
+        'limit'    => $limit,
+        'offset'   => $offset,
+        'keyword'  => $keyword
+    ));
+
+    $query_result = $db->rawQuery($sql);
+
+    if (cl_queryset($query_result)) {
+        foreach ($query_result as $row) {
+            $row['about']            = cl_rn_strip($row['about']);
+            $row['about']            = stripslashes($row['about']);
+            $row['name']             = cl_strf("%s",$row['fname']);      
+            $row['avatar']           = cl_get_media($row['avatar']);
+            $row['url']              = cl_link('symbol/' . $row['username']); 
+            $row['last_active']      = date("d M, y h:m A",$row['last_active']); 
+            $row['is_user']          = false;
+            $row['is_following']     = false;
+            $row['follow_requested'] = false;
+            $row['common_follows']   = array();
+            $row['country_a2c']      = fetch_or_get($cl['country_codes'][$row['country_id']], 'us');
+            $row['country_name']     = cl_translate($cl['countries'][$row['country_id']], 'Unknown');
+            $row['type']             = 'page';
             if (not_empty($user_id)) {
             	$row['is_user']      = ($user_id == $row['id']);
             	$row['is_following'] = cl_is_following($user_id, $row['id']);
@@ -90,12 +168,13 @@ function cl_search_people($keyword = "", $offset = false, $limit = 30) {
     return $data;
 }
 
-function cl_search_posts($keyword = "", $offset = false, $limit = 10) {
+function cl_search_posts($keyword = "",  $offset = false, $limit = 10) {
 	global $db,$cl,$me;
 
 	$user_id       = ((not_empty($cl['is_logged'])) ? $me['id'] : true);
 	$data           = array();
     $htag           = ((not_empty($keyword)) ? cl_get_htag_id($keyword) : false);
+    $symbol           = ((not_empty($keyword)) ? cl_get_symbol_id($keyword) : false);
 	$sql            = cl_sqltepmlate("apps/explore/sql/fetch_posts",array(
 		"t_pubs"    => T_PUBS,
         "t_blocks"  => T_BLOCKS,
@@ -104,6 +183,7 @@ function cl_search_posts($keyword = "", $offset = false, $limit = 10) {
 		"keyword"   => $keyword,
         "user_id"   => $user_id,
         "htag"      => $htag,
+        "symbol"      => $symbol,
 		"offset"    => $offset,
 		"limit"     => $limit
  	));

@@ -10,7 +10,7 @@
 # @*************************************************************************@
 
 require_once(cl_full_path("core/apps/profile/app_ctrl.php"));
-
+require_once(cl_full_path("core/apps/symbol/app_ctrl.php"));
 if ($action == 'load_more') {
 	$data['err_code'] = 0;
     $data['status']   = 400;
@@ -20,29 +20,34 @@ if ($action == 'load_more') {
     $users_list       = array();
     $html_arr         = array();
 
-    if (is_posnum($prof_id) && is_posnum($offset) && in_array($type, array('followers','following', 'follow_requests'))) {
+    if (is_posnum($prof_id) && is_posnum($offset) && in_array($type, array('followers', 'following', 'watching', 'follow_requests'))) {
         if (cl_can_view_profile($prof_id)) {
-        	if ($type == 'followers') {
-        		$users_list = cl_get_followers($prof_id, 30, $offset);	
-        	}
-
-            else if($type = 'follow_requests' && not_empty($cl["is_logged"]) && $prof_id == $me["id"]) {
+            if ($type == 'followers') {
+                $users_list = cl_get_followers($prof_id, 30, $offset);    
+            }
+            else if ($type == 'follow_requests' && not_empty($cl["is_logged"]) && $prof_id == $me["id"]) {
                 $users_list = cl_get_follow_requests(30, $offset);
             }
-
-        	else if ($type == 'following') {
-        		$users_list = cl_get_followings($prof_id, 30, $offset);
-        	}
-
-
-        	if (not_empty($users_list)) {
-    			foreach ($users_list as $cl['li']) {
-    				$html_arr[] = cl_template('connections/includes/list_item');
-    			}
-
-    			$data['status'] = 200;
-    			$data['html']   = implode("", $html_arr);
-    		}
+            else if ($type == 'following') {
+                $users_list = cl_get_followings($prof_id, 30, $offset);
+            }
+            else if ($type == 'watching') {
+                $users_list = cl_get_watchings($prof_id, 30, $offset);
+            }
+    
+            if (not_empty($users_list)) {
+                foreach ($users_list as $cl['li']) {
+                    if ($type == 'watching') {
+                        $html_arr[] = cl_template('connections/includes/watching_item');
+                    }
+                    else {
+                        $html_arr[] = cl_template('connections/includes/list_item');
+                    }
+                }
+    
+                $data['status'] = 200;
+                $data['html']   = implode("", $html_arr);
+            }
         }
     }
 }

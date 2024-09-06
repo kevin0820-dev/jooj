@@ -9,22 +9,23 @@
 # @ Copyright (c) 2020 - 2023 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
 
-function cl_create_orphan_post($user_id = null, $type = "text") {
-	global $db;
+function cl_create_orphan_post($user_id = null, $type = "text", $symbol_id = 0) {
+    global $db;
 
-	if (not_num($user_id)) {
-		return false;
-	}
+    if (not_num($user_id)) {
+        return false;
+    }
 
-	$id           = $db->insert(T_PUBS, array(
-		"user_id" => $user_id,
-		"status"  => "orphan",
-		"type"    => $type
-	));
+    $id = $db->insert(T_PUBS, array(
+        "user_id"   => $user_id,
+        "status"    => "orphan",
+        "type"      => $type,
+        "symbol_id" => $symbol_id,  // Добавляем symbol_id
+        "time"      => time()
+    ));
 
-	return (is_posnum($id)) ? $id : 0;
+    return (is_posnum($id)) ? $id : 0;
 }
-
 function cl_get_orphan_post($id = null) {
 	global $db;
 
@@ -207,7 +208,46 @@ function cl_upsert_htags($text = "") {
 
 	return $text;
 }
+function cl_upsert_symbols($text = "") {
+    global $db;
 
+    if (not_empty($text)) {
+        preg_match_all('/(?:\s|^)\${1,}([^`~!@$%^&*\#()\-+=\\|\/\.,<>?\'\":;{}\[\]*\s]+)/iu', $text, $symbols);
+
+        $symbols = fetch_or_get($symbols[1], null);
+
+        if (not_empty($symbols)) {
+            $symbols = array_unique($symbols);
+
+            foreach ($symbols as $key => $symbol) {
+                $symbol      = cl_remove_emoji($symbol);
+                $symbol_id   = 0;
+                $db        = $db->where('symbol', cl_text_secure($symbol));
+                $symbol_data = $db->getOne(T_HSYMBOLS, array('id', 'posts'));
+
+                if (not_empty($symbol_data)) {
+                    $symbol_id = $symbol_data['id'];
+
+                    $db->where('id', $symbol_id)->update(T_HSYMBOLS, array(
+                        'time'  => time(),
+                        'posts' => ($symbol_data['posts'] += 1)
+                    ));
+                }
+                else{
+                    $symbol_id    = $db->insert(T_HSYMBOLS, array(
+                        'posts' => 1,
+                        'symbol'   => $symbol,
+                        'time'  => time()
+                    ));
+                }
+
+                $text = preg_replace(cl_strf("/\\$%s\b/", $symbol), cl_strf("{@id:%s@}", $symbol_id), $text);
+            }
+        }
+    }
+
+    return $text;
+}
 function cl_update_htags($text = "") {
 	global $db;
 
@@ -241,7 +281,39 @@ function cl_update_htags($text = "") {
 		}
 	}
 }
+function cl_update_symbols($text = "") {
+	global $db;
 
+	if (not_empty($text)) {
+		preg_match_all('/(\{\@id\:([0-9]+)\@\})/i', $text, $matches);
+
+		$matches = fetch_or_get($matches[2], null);
+
+		if (not_empty($matches)) {
+			$matches = array_unique($matches);
+			$matches = array_count_values($matches);
+
+			foreach ($matches as $symbol_id => $symbol_usage) {
+
+				$symbol_data = cl_db_get_item(T_HSYMBOLS, array('id' => $symbol_id));
+
+				if (not_empty($symbol_data)) {
+					$num = ($symbol_data['posts'] -= $symbol_usage);
+					$num = ((is_posnum($num)) ? $num : 0);
+
+					if (empty($num)) {
+						$db = $db->where('id', $symbol_data['id']);
+						$qr = $db->delete(T_HSYMBOLS);
+					}
+					else {
+						$db = $db->where('id', $symbol_data['id']);
+						$qr = $db->update(T_HSYMBOLS, array('posts' => $num));
+					}
+				}
+			}
+		}
+	}
+}
 function cl_listify_htags($text = "") {
 	global $db;
 
@@ -260,7 +332,24 @@ function cl_listify_htags($text = "") {
 
     return array();
 }
+function cl_listify_symbols($text = "") {
+    global $db;
 
+    if (not_empty($text)) {
+        preg_match_all('/(\{\@id\:([0-9]+)\@\})/i', $text, $matches);
+
+        $matches = fetch_or_get($matches[2], null);
+
+        if (not_empty($matches)) {
+            $db    = $db->where('id', $matches, "IN");        
+            $symbols = $db->get(T_HSYMBOLS, null, array('id', 'symbol'));
+
+            return $symbols;
+        }
+    }
+
+    return array();
+}
 function cl_tagify_htags($text = "", $htags = array()) {
 	global $db;
 
@@ -272,7 +361,17 @@ function cl_tagify_htags($text = "", $htags = array()) {
 
     return $text;
 }
+function cl_tagify_symbols($text = "", $symbols = array()) {
+    global $db;
 
+    if (not_empty($text) && not_empty($symbols)) {
+        foreach ($symbols as $symbol) {
+            $text = str_replace(cl_strf("{@id:%d@}", $symbol['id']), cl_strf("$%s", $symbol['symbol']), $text);
+        }
+    }
+
+    return $text;
+}
 function cl_linkify_htags($text = "") {
     $text = preg_replace_callback('/(?:\s|^)#{1,}([^`~!@$%^&*\#()\-+=\\|\/\.,<>?\'\":;{}\[\]*\s]+)/iu', function($m) {
 
@@ -283,6 +382,21 @@ function cl_linkify_htags($text = "") {
 	            'href' => cl_link(cl_strf("search/posts?q=%s",cl_remove_emoji($tag))),
 	            'class' => 'inline-link'
 	        )) . " ");
+        }
+
+    }, $text);
+
+    return $text;
+}
+function cl_linkify_symbol($text = "") {
+    $text = preg_replace_callback('/(?:\s|^)\${1,}([^`~!@$%^&*\#()\-+=\\|\/\.,<>?\'\":;{}\[\]*\s]+)/iu', function($m) {
+        $symbol = fetch_or_get($m[1], "");
+
+        if (not_empty($symbol)) {
+            return (" " . cl_html_el('a', cl_strf("$%s", $symbol), array(
+                'href' => cl_link(cl_strf("symbol/%s",cl_remove_emoji($symbol))),
+                'class' => 'inline-link'
+            )) . " ");
         }
 
     }, $text);
@@ -314,7 +428,30 @@ function cl_get_hot_topics($limit = 8, $offset = false) {
     
     return $data;
 }
+function cl_get_hot_symbols($limit = 8, $offset = false) {
+    global $db, $cl, $me;
 
+    $data = array();
+    $sql  = cl_sqltepmlate('components/sql/post/fetch_symbols', array(
+    	't_htags' => T_HSYMBOLS,
+    	'limit'   => $limit,
+    	'offset'  => $offset
+    ));
+
+    $symbols = $db->rawQuery($sql);
+
+    if (cl_queryset($symbols)) {
+    	foreach ($symbols as $symbol_data) {
+    		$symbol_data['symbol']     = cl_rn_strip($symbol_data['symbol']);
+    		$symbol_data['hashsymbol'] = cl_strf("$%s", $symbol_data['symbol']);
+    		$symbol_data['url']     = cl_link(cl_strf("search/posts?q=%s", cl_remove_emoji($symbol_data['symbol'])));
+    		$symbol_data['total']   = cl_number($symbol_data['posts']);
+    		$data[]              = $symbol_data;
+    	}
+    }
+    
+    return $data;
+}
 function cl_get_htag_id($htag = "") {
 	global $db;
 
@@ -332,7 +469,23 @@ function cl_get_htag_id($htag = "") {
 
 	return $htag_id;
 }
+function cl_get_symbol_id($symbol = "") {
+	global $db;
 
+	if (empty($symbol)) {
+		return false;
+	}
+
+	$symbol_id      = 0;
+	$db           = $db->where('symbol', $symbol);
+	$query_result = $db->getOne(T_HSYMBOLS, 'id');
+
+	if (cl_queryset($query_result)) {
+		$symbol_id = $query_result['id'];
+	}
+
+	return $symbol_id;
+}
 function cl_update_thread_replys($id = false, $count = "plus") {
 	global $db, $cl;
 
@@ -364,6 +517,7 @@ function cl_post_data($post = array()) {
 	}
 
 	$post_owner_data       = cl_user_data($post["user_id"]);
+	$post_page_data       = cl_symbol_data($post["symbol_id"]);
 	$user_id               = ((empty($cl['is_logged'])) ? false : $cl['me']['id']);
 	$post["advertising"]   = false;
 	$post["time_raw"]      = $post["time"];
@@ -373,9 +527,12 @@ function cl_post_data($post = array()) {
 	$post['text']          = stripcslashes($post['text']);
 	$post['text']          = htmlspecialchars_decode($post['text'], ENT_QUOTES);
 	$post["htags"]         = cl_listify_htags($post['text']);
+	$post["symbols"]         = cl_listify_symbols($post['text']);
 	$post["text"]          = cl_linkify_urls($post['text']);
     $post["text"]          = cl_tagify_htags($post['text'], $post["htags"]);
+	$post["text"]          = cl_tagify_symbols($post['text'], $post["symbols"]);
     $post["text"]          = cl_linkify_htags($post['text']);
+	$post["text"]         = cl_linkify_symbol($post['text']);
     $post["text"]          = cl_likify_mentions($post['text']);
     $post["url"]           = cl_link(cl_strf("thread/%d",$post['id']));
 	$post["url2"]           = cl_link(cl_strf("tmedia/%d",$post['id']));
@@ -394,6 +551,18 @@ function cl_post_data($post = array()) {
 	$post["me_blocked"]    = false;
 	$post["can_see"]       = false;
 	$post["reply_to"]      = array();
+	if (is_array($post_page_data)) {
+		$post["page"] = array(
+			'id'       => $post_page_data['id'],
+			'url'      => $post_page_data['url'],
+			'avatar'   => $post_page_data['avatar'],
+			'username' => $post_page_data['username'],
+			'name'     => $post_page_data['name'],
+			'verified' => $post_page_data['verified']
+		);
+	} else {
+		$post["page"] = array();
+	}
 	$post["owner"]         = array(
 		'id'               => $post_owner_data['id'],
 		'url'              => $post_owner_data['url'],
@@ -402,7 +571,7 @@ function cl_post_data($post = array()) {
 		'name'             => $post_owner_data['name'],
 		'verified'         => $post_owner_data['verified']
 	);
-
+	
 	if ($post["type"] != "text") {
 		$post["media"] = cl_get_post_media($post["id"]);
 
@@ -626,6 +795,9 @@ function cl_recursive_delete_post($post_id = false) {
 
         if (not_empty($post_data['text'])) {
         	cl_update_htags($post_data['text']);
+        }
+		if (not_empty($post_data['text'])) {
+        	cl_update_symbols($post_data['text']);
         }
         
 		if (not_empty($post_data['replys'])) {

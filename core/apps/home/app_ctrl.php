@@ -95,7 +95,93 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false) {
 
 	return $data;
 }
+function cl_get_page_feed($limit = false, $offset = false, $onset = false) {
+	global $db, $cl, $me;
 
+	if (empty($cl["is_logged"])) {
+		return false;
+	}
+	$symbol_id = fetch_or_get($_POST['symbol_id'], 0); // Получаем symbol_id
+	$data           = array();
+	$sql            = cl_sqltepmlate("apps/home/sql/fetch_timeline_page",array(
+		"t_posts"   => T_PSYMBOL,
+		"t_pubs"    => T_PUBS,
+		"t_conns"   => T_WATCHERS,
+		"t_reports" => T_PUB_REPORTS,
+		"limit"     => $limit,
+		"offset"    => $offset,
+		"onset"     => $onset,
+		"user_id"   => $me['id'],
+		"symbol_id"   => $symbol_id 
+ 	));
+
+	$query_res = $db->rawQuery($sql);
+	$counter   = 0;
+
+	if (cl_queryset($query_res)) {
+		foreach ($query_res as $row) {
+			$post_data = cl_raw_post_data($row['publication_id']);
+
+			
+
+			if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
+				$post_data['offset_id']   = $row['offset_id'];
+				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
+				$post_data['is_reposter'] = false;
+				$post_data['attrs']       = array();
+
+				if ($post_data['is_repost']) {
+					$post_data['attrs'][]  = cl_html_attrs(array('data-repost' => $row['offset_id']));
+					$reposter_data         = cl_user_data($row['user_id']);
+					$post_data['reposter'] = array(
+						'name' => $reposter_data['name'],
+						'username' => $reposter_data['username'],
+						'url' => $reposter_data['url'],
+					);
+				}
+
+				if ($row['symbol_id'] == $symbol_id) {
+					$post_data['is_reposter'] = true;
+				}
+
+				$post_data['attrs'] = ((not_empty($post_data['attrs'])) ? implode(' ', $post_data['attrs']) : '');
+				$data[]             = cl_post_data($post_data);
+			}
+
+			if ($cl['config']['advertising_system'] == 'on') {
+				if (cl_is_feed_nad_allowed()) {
+					if (not_empty($offset)) {
+						if ($counter == 5) {
+							$counter = 0;
+							$ad      = cl_get_timeline_ads();
+
+							if (not_empty($ad)) {
+								$data[] = $ad;
+							}
+						}
+						else {
+							$counter += 1;
+						}
+					}
+				}
+			}
+		}
+
+		if ($cl['config']['advertising_system'] == 'on') {
+			if (cl_is_feed_nad_allowed()) {
+				if (empty($offset)) {
+					$ad = cl_get_timeline_ads();
+
+					if (not_empty($ad)) {
+						$data[] = $ad;
+					}
+				}
+			}
+		}
+	}
+
+	return $data;
+}
 function cl_timeline_swifts() {
 	global $db, $cl, $me;
 

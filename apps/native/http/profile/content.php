@@ -76,6 +76,7 @@ if (not_empty($cl["is_logged"])) {
             'entry_id' => $me["id"]
         ));
 	}
+	 
 }
 
 if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked']) && $cl['prof_user']['active'] == "1") {

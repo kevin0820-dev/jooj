@@ -1068,7 +1068,8 @@ function cl_encode_og_text($text = "") {
     $text  = cl_croptxt($text, 180);
     $htags = cl_listify_htags($text);
     $text  = cl_tagify_htags($text, $htags);
-
+    $symbols = cl_listify_symbols($text);
+    $text  = cl_tagify_symbols($text, $symbols);
     return $text;
 }
 
