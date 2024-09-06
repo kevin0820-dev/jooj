@@ -1,0 +1,4 @@
+[21-Jul-2024 23:16:50 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function fetch_or_get() in /home/cointwee/public_html/apps/native/http/oauth/content.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/cointwee/public_html/apps/native/http/oauth/content.php on line 23
