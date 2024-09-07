@@ -1,0 +1,1695 @@
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.main-timeline-pubbox-wrapper {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  border-bottom: 1px solid var(--smc-main-border-color);
+  padding: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-top: 7px;
+  padding-bottom: 5px;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder {
+  width: 100%;
+  display: block;
+  border-bottom: 2px solid var(--smc-main-border-color);
+  padding: 15px;
+  background: var(--smc-main-bg-color);
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr {
+  width: 100%;
+  display: block;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr.owl-carousel {
+  width: 100%;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr.owl-carousel
+  div.owl-stage-outer
+  div.owl-stage
+  div.owl-item
+  div.swift-item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  min-width: 50px;
+  overflow: hidden;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr.owl-carousel
+  div.owl-stage-outer
+  div.owl-stage
+  div.owl-item
+  div.swift-item
+  div.swift-item-body {
+  line-height: 0;
+  margin-bottom: 5px;
+}
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr.owl-carousel
+  div.owl-stage-outer
+  div.owl-stage
+  div.owl-item
+  div.swift-item
+  div.swift-item-body
+  div.avatar
+  img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10em;
+  border: 2px solid #fff;
+  max-width: 50px;
+  max-height: 50px;
+}
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr.owl-carousel
+  div.owl-stage-outer
+  div.owl-stage
+  div.owl-item
+  div.swift-item
+  div.swift-item-body.create-swift
+  span.add-ikon
+  svg {
+  width: 100%;
+  height: 100%;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr.owl-carousel
+  div.owl-stage-outer
+  div.owl-stage
+  div.owl-item
+  div.swift-item
+  div.swift-item-footer {
+  line-height: 0px;
+  max-width: 100%;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr.owl-carousel
+  div.owl-stage-outer
+  div.owl-stage
+  div.owl-item
+  div.swift-item
+  div.swift-item-footer
+  span {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  line-height: 11px;
+  white-space: nowrap;
+  color: var(--smc-main-text-color-2);
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.timeline-swifts-holder
+  div.timeline-swifts-cr.owl-carousel
+  div.owl-stage-outer
+  div.owl-stage
+  div.owl-item
+  div.swift-item.active
+  div.swift-item-body
+  div.avatar {
+  border-color: var(--smc-main-uiel-color);
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.empty-user-timeline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  line-height: 0px;
+  padding: 50px;
+  height: 350px;
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.empty-user-timeline
+  div.icon {
+  line-height: 0px;
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.empty-user-timeline
+  div.icon
+  svg {
+  width: 50px;
+  height: 50px;
+  stroke: var(--smc-main-uiel-color);
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.empty-user-timeline
+  div.pl-message {
+  line-height: 0px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.empty-user-timeline
+  div.pl-message
+  h4 {
+  font-size: 20px;
+  padding: 0;
+  margin: 0 0 15px 0;
+  line-height: 20px;
+  color: var(--smc-main-text-color);
+  font-weight: 700;
+  text-align: center;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.empty-user-timeline
+  div.pl-message
+  p {
+  font-size: 13px;
+  line-height: 20px;
+  padding: 0;
+  margin: 0;
+  color: var(--smc-main-text-color-2);
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.empty-user-timeline
+  div.c2action-single {
+  width: 100%;
+  line-height: 0px;
+  text-align: center;
+}
+
+body.cl-app-symbol
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.empty-user-timeline
+  div.c2action-single
+  button {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+body.cl-app-symbol div.swift-app-container {
+  display: none;
+  visibility: hidden;
+}
+
+body.cl-app-symbol div.swift-app-container.show {
+  display: block;
+  visibility: visible;
+  -webkit-backface-visibility: hidden;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  outline: none;
+  position: fixed;
+  -webkit-tap-highlight-color: transparent;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  z-index: 99992;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.cl-app-symbol div.swift-app-container.show div.swift-data-cont {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  line-height: 0px;
+  padding: 30px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data {
+  max-width: 500px;
+  min-width: 500px;
+  background: #081725;
+  height: 100%;
+  position: relative;
+  box-shadow: var(--smc-main-box-shadow-eff);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: block;
+  padding: 20px;
+  z-index: 100;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(38, 38, 38, 0.8)),
+    to(rgba(38, 38, 38, 0))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(38, 38, 38, 0.8) 0%,
+    rgba(38, 38, 38, 0) 100%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(38, 38, 38, 0.8) 0%,
+    rgba(38, 38, 38, 0) 100%
+  );
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-sliders {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-sliders
+  div.slider-item {
+  flex: 1;
+  margin-right: 5px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  max-width: 100%;
+  min-width: 10px;
+  cursor: pointer;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-sliders
+  div.slider-item
+  span {
+  height: 100%;
+  display: block;
+  background: var(--smc-main-bg-color);
+  border-radius: inherit;
+  width: 0px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-sliders
+  div.slider-item:last-child {
+  margin-right: 0px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.swift-user-info {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.swift-user-info
+  div.avatar {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 10em;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.swift-user-info
+  div.avatar
+  img {
+  width: 100%;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.swift-user-info
+  div.uname {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  padding-left: 15px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.swift-user-info
+  div.uname
+  h6 {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: #fff;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.swift-user-info
+  div.uname
+  h6
+  a {
+  color: inherit;
+  display: inline-block;
+  overflow: hidden;
+  max-width: 150px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.swift-user-info
+  div.uname
+  h6
+  time {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 13px;
+  opacity: 0.9;
+  font-weight: normal;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group {
+  width: 100%;
+  display: block;
+  line-height: 0;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  line-height: 0;
+  width: 20px;
+  height: 20px;
+  outline: 0;
+  border: none;
+  box-shadow: none;
+  margin-left: 15px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  > svg {
+  width: 100%;
+  height: 100%;
+  stroke: #fff;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  a.dropdown-toggle {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  width: 20px;
+  height: 20px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  a.dropdown-toggle:before,
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  a.dropdown-toggle:after {
+  display: none;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  a.dropdown-toggle
+  svg {
+  width: 100%;
+  height: 100%;
+  stroke: #fff;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu {
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views {
+  width: 300px;
+  display: block;
+  line-height: 0px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-header {
+  width: 100%;
+  display: block;
+  padding: 15px;
+  line-height: 0;
+  border-bottom: 1px solid var(--smc-main-border-color);
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-header
+  h6 {
+  font-size: 13px;
+  color: var(--smc-main-text-color);
+  line-height: 13px;
+  padding: 0;
+  margin: 0;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-body {
+  width: 100%;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-body
+  div.view-li {
+  width: 100%;
+  display: block;
+  padding: 10px 15px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-body
+  div.view-li
+  div.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 10em;
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-body
+  div.view-li
+  div.avatar
+  img {
+  width: 100%;
+  display: block;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-body
+  div.view-li
+  div.user-name {
+  padding-left: 15px;
+  display: block;
+  width: 100%;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-body
+  div.view-li
+  div.user-name
+  a {
+  color: inherit;
+  display: block;
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--smc-main-text-color);
+  margin-bottom: 3px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-header
+  div.swift-data-ctrls
+  div.ctrl-group
+  div.swift-data-ctrl-item
+  button
+  div.dropdown-menu
+  div.swift-views
+  div.swift-views-body
+  div.view-li
+  div.user-name
+  time {
+  font-weight: 300;
+  display: block;
+  font-size: 11px;
+  line-height: 11px;
+  color: var(--smc-main-text-color-2);
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  div.swift-data-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  div.swift-data-item
+  div.swift-data-image {
+  width: 100%;
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  div.swift-data-item
+  div.swift-data-image
+  img {
+  width: 100%;
+  display: block;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  div.swift-data-item
+  div.swift-data-video {
+  width: 100%;
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  div.swift-data-item
+  div.swift-data-video
+  video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: 0;
+  object-fit: cover;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  button.swift-data-slide-ctrl {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  border: none;
+  box-shadow: var(--smc-main-box-shadow-eff);
+  outline: 0;
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: calc(50% - 15px);
+  cursor: pointer;
+  border-radius: 10em;
+  visibility: hidden;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  button.swift-data-slide-ctrl.prev {
+  left: 20px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  button.swift-data-slide-ctrl.next {
+  right: 20px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  button.swift-data-slide-ctrl.pause {
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  button.swift-data-slide-ctrl
+  span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body
+  button.swift-data-slide-ctrl
+  span
+  svg {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body:hover
+  button.swift-data-slide-ctrl,
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-body:active
+  button.swift-data-slide-ctrl {
+  visibility: visible;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: block;
+  padding: 20px;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-footer
+  div.swift-caption {
+  width: 100%;
+  display: block;
+}
+
+body.cl-app-symbol
+  div.swift-app-container.show
+  div.swift-data-cont
+  div.swift-data
+  div.swift-data-footer
+  div.swift-caption
+  p {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 18px;
+  color: #fff;
+  font-weight: normal;
+}
+
+body.cl-app-symbol div.modal.modal-swift-pubbox div.modal-body form {
+  width: 100%;
+  max-width: 100%;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.input-holder {
+  width: 100%;
+  margin-bottom: 10px;
+  max-width: 100%;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.input-holder
+  textarea {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  max-height: 400px;
+  resize: none;
+  font-size: 16px;
+  color: var(--smc-main-text-color);
+  line-height: 20px;
+  border: none;
+  border-radius: 0px;
+  outline: 0;
+  background: transparent;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.input-holder
+  textarea::placeholder {
+  color: var(--smc-main-iph-color);
+  font-size: 17px;
+  font-weight: normal;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--smc-main-border-color);
+  margin-bottom: 20px;
+  border-radius: var(--smc-main-border-rad1);
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid var(--smc-main-border-color);
+  background: var(--smc-main-bg-color-2);
+  overflow: hidden;
+  padding: 0px 15px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav
+  span.emoticons-group-nav-item {
+  height: 45px;
+  width: 45px;
+  min-width: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav
+  span.emoticons-group-nav-item
+  span.emoji_group_icon {
+  font-size: 15px;
+  line-height: 15px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav
+  span.emoticons-group-nav-item
+  span.emoji_group_icon
+  svg {
+  width: 22px;
+  height: 22px;
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav
+  span.emoticons-group-nav-item.active {
+  border-bottom: 2px solid var(--smc-main-uiel-color);
+  border-bottom-style: inset;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav
+  span.emoticons-group-nav-item.active
+  span.emoji_group_icon
+  svg {
+  filter: unset;
+  opacity: 1;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav
+  span.emoticons-group-nav-item.ml-auto {
+  width: 22px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav
+  span.emoticons-group-nav-item.ml-auto
+  span.emoji_group_icon {
+  line-height: 0;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-nav
+  span.emoticons-group-nav-item.ml-auto
+  span.emoji_group_icon
+  svg {
+  stroke: var(--smc-main-uiel-color);
+  filter: unset;
+  opacity: 1;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-ls {
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-ls
+  div.emoticons-group {
+  width: 100%;
+  display: block;
+  line-height: 20px;
+  border-bottom: 1px solid var(--smc-main-border-color);
+  padding: 15px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-ls
+  div.emoticons-group
+  span {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-size: 22px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-ls
+  div.emoticons-group:last-child {
+  border-bottom: none;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-ls::-webkit-scrollbar {
+  width: 5px;
+  background: var(--smc-main-border-color);
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.cl-emoticons
+  div.emoticons-group-ls::-webkit-scrollbar-thumb {
+  background-color: var(--smc-main-uiel-color);
+  outline: 0;
+  border-radius: 5px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-image-holder {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  margin-bottom: 10px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-image-holder
+  div.preview-image-inner {
+  border-radius: var(--smc-main-border-rad1);
+  border: 1px solid var(--smc-main-border-color);
+  overflow: hidden;
+  position: relative;
+  background: #e6ecf0;
+  height: 100%;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-image-holder
+  div.preview-image-inner
+  img {
+  width: 100%;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-image-holder
+  div.preview-image-inner
+  button.delete-preview-image {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 10em;
+  cursor: pointer;
+  transition: visibility 0.1s linear, opacity 0.1s linear;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--smc-main-uiel-color);
+  border: none;
+  box-shadow: none;
+  outline: 0;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-image-holder
+  div.preview-image-inner
+  button.delete-preview-image:disabled {
+  cursor: wait !important;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-image-holder
+  div.preview-image-inner
+  button.delete-preview-image
+  svg {
+  width: 17px;
+  height: 17px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-image-holder
+  div.preview-image-inner
+  button.delete-preview-image
+  svg
+  * {
+  stroke: #fff;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-video-holder {
+  width: 100%;
+  display: block;
+  line-height: 0;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-video-holder
+  button.delete-preview-video {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 10em;
+  cursor: pointer;
+  transition: visibility 0.1s linear, opacity 0.1s linear;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--smc-main-uiel-color);
+  border: none;
+  box-shadow: none;
+  outline: 0;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-video-holder
+  button.delete-preview-video:disabled {
+  cursor: wait !important;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-video-holder
+  button.delete-preview-video
+  svg {
+  width: 17px;
+  height: 17px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-video-holder
+  button.delete-preview-video
+  svg
+  * {
+  stroke: #fff;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.preview-video-holder
+  div.video-player {
+  width: 100%;
+  display: block;
+  max-height: 50%;
+  background: #e6ecf0;
+  border-radius: var(--smc-main-border-rad1);
+  border: 1px solid var(--smc-main-border-color);
+  overflow: hidden;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0px;
+  margin: 0 15px 0 0;
+  box-shadow: none;
+  line-height: 0px;
+  width: 20px;
+  height: 35px;
+  border-radius: 10em;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item
+  svg {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  fill: var(--cl-primary-color);
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item
+  svg
+  * {
+  stroke: var(--smc-main-uiel-color);
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length {
+  text-align: center;
+  border: none;
+  padding: 0px;
+  width: auto;
+  margin-right: 0;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length:hover,
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length:active,
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length:focus {
+  background: transparent;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length:hover:after,
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length:active:after,
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length:focus:after {
+  display: none;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length
+  small {
+  color: var(--smc-main-text-color-2);
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 35px;
+  vertical-align: middle;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item.text-length
+  small.len-error {
+  color: var(--smc-main-red-color);
+  font-weight: bold;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item:hover::after,
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item:active::after,
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item:focus::after {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: -7px;
+  top: 0;
+  bottom: 0;
+  right: -7px;
+  background: #0074b01f;
+  content: "";
+  border-radius: 5em;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-ctrls-holder
+  button.ctrl-item:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-publisher {
+  display: block;
+  line-height: 0;
+  width: 100%;
+}
+
+body.cl-app-symbol
+  div.modal.modal-swift-pubbox
+  div.modal-body
+  form
+  div.swift-publisher
+  button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
