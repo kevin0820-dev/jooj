@@ -1,0 +1,102 @@
+<div class="cp-app-container" data-app="users">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-6">
+                    <h3> <?php echo cl_translate('pages_symbol'); ?></h3>
+                </div>
+                <div class="col-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> <a href="<?php echo cl_link('admin_panel'); ?>"> <i
+                                    data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item"> <?php echo cl_translate('pages_symbol'); ?></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .dropdown .dropdown-toggle::after {
+            right: 25px !important;
+        }
+    </style>
+    <div class="d-block" id="vue-cpanel-users-app">
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card" data-an="info-content">
+                        <div class="card-header">
+                            <h5>
+                                <?php echo cl_translate('manage_site_pages'); ?> - <label
+                                    class="badge badge-primary">({{total_symbols}}) </label>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="regular-table">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>
+                                                Symbols, Page Title
+                                            </th>
+
+                                            <th>
+                                                E-mail address
+                                            </th>
+                                            <th>
+                                                Website
+                                            </th>
+                                            <th>
+                                                Country
+                                            </th>
+
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                Verified
+                                            </th>
+
+                                            <th>
+                                                Last seen
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-an="users-list">
+                                        <?php if (not_empty($cl['site_symbols'])): ?>
+                                            <?php foreach ($cl['site_symbols'] as $cl['li']): ?>
+                                                <?php echo cl_template('cpanel/assets/pages_view/includes/list_item'); ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <?php echo cl_template('cpanel/assets/pages_view/includes/empty_table'); ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+
+                                <div class="table-pagination">
+                                    <a v-if="show_ctrls" v-bind:class="{'disabled': dis_prev_ctrl}"
+                                        v-on:click="paginate('up')" href="javascript:void(0);"
+                                        class="pagination-ctrls prev">
+                                        <?php echo cl_ikon("chevron-left"); ?>
+                                    </a>
+
+                                    <a v-if="show_ctrls" v-bind:class="{'disabled': dis_next_ctrl}"
+                                        v-on:click="paginate('down')" href="javascript:void(0);"
+                                        class="pagination-ctrls next">
+                                        <?php echo cl_ikon("chevron-right"); ?>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php echo cl_template('cpanel/assets/pages_view/scripts/app_master_script'); ?>

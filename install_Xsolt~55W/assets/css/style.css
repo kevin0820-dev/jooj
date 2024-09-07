@@ -10955,7 +10955,7 @@ thead, tbody, tfoot, tr, td, th {
 }
 .comment-box p {
     font-size: 14px;
-    line-height: 2;
+    line-height: 1;
     color: rgba(43, 43, 43, 0.7);
     text-align: justify;
     margin-bottom: 0;

@@ -1,0 +1,177 @@
+<?php
+// Включаем глобальные переменные и необходимые функции
+global $db, $cl;
+
+// Функция для добавления новой записи в таблицу T_SYMBOLS
+function cl_add_new_symbol($data = array()) {
+    global $db;
+    
+    if (empty($data) || !is_array($data)) {
+        return false;
+    }
+    $data['active'] = '1';
+    $data['verified'] = '1';
+    $data['user_id'] = '1';
+    $insert = $db->insert(T_SYMBOLS, $data);
+    return ($insert) ? true : false;
+}
+
+// Проверка отправки формы
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Получение данных из формы
+    $fname          = $_POST['fname'];
+    $about          = $_POST['about'];
+    $username       = $_POST['username'];
+    $email         = $_POST['email'];
+    $website          = $_POST['website'];
+    // $country_id     = $_POST['country_id'];
+    // $settings       = $_POST['settings'];
+    // $premium_settings = $_POST['premium_settings'];
+    // $blue_settings  = $_POST['blue_settings'];
+    // $swift          = $_POST['swift'];
+    // $csrf_token     = $_POST['csrf_token'];
+
+    // // Проверка CSRF токена
+    // if ($csrf_token !== fetch_or_get($cl['csrf_token'], 'none')) {
+    //     die("Invalid CSRF token");
+    // }
+
+    // Подготовка данных для вставки
+    $data = [
+        'fname'            => $fname,
+        'about'            => $about,
+        'username'         => $username,
+        'email'           => $email,
+        'website'            => $website,
+        
+        // 'country_id'       => $country_id,
+        // 'settings'         => json($settings),
+        // 'premium_settings' => json($premium_settings),
+        // 'blue_settings'    => json($blue_settings),
+        // 'swift'            => json($swift),
+        'joined'           => time(),
+        'last_active'      => time()
+    ];
+
+    // Вставка данных в базу данных
+    $insert = cl_add_new_symbol($data);
+
+    if ($insert) {
+        echo "Page created successfully!";
+    } else {
+        echo "Error creating page!";
+    }
+}
+?>
+
+<div class="cp-app-container" data-app="users">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-6">
+                    <h3> <?php echo cl_translate('pages_create'); ?></h3>
+                </div>
+                <div class="col-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> <a href="<?php echo cl_link('admin_panel'); ?>"> <i
+                                    data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item"> <?php echo cl_translate('pages_create'); ?></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>
+                            <?php echo cl_translate('pages_create'); ?>
+                        </h5>
+                    </div>
+                    <form class="form mega-inline"  data-an="form" method="post" action="">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="name-input">
+                                    <label>
+                                        <?php echo cl_translate('title_page'); ?>
+                                    </label>
+                                    <div class="input-group"><span class="input-group-text"><i
+                                                class="icofont icofont-pencil-alt-5"></i></span>
+                                        <input value="" name="fname" id="fname" type="text" class="form-control"
+                                            placeholder="<?php echo cl_translate('enter_the_name_of_your_page'); ?>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="title-input">
+                                    <label for="username">
+                                        <?php echo cl_translate('symbols'); ?>
+                                    </label>
+                                    <div class="input-group"><span class="input-group-text"><i
+                                                class="icofont icofont-pencil-alt-5"></i></span>
+                                        <input value="" name="username" id="username" type="text" class="form-control"
+                                            placeholder="<?php echo cl_translate('enter_the_symbol_of_your_page'); ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                            <div class="form-group" data-an="email-input">
+                                    <label for="email">
+                                    <?php echo cl_translate('E-mail address'); ?>
+                                    </label>
+                                    <div class="input-group"><span class="input-group-text">@</span>
+                                        <input value="" name="email" id="email" class="form-control" placeholder="<?php echo cl_translate('enter_the_email_of_your_page'); ?>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group" data-an="title-input">
+                                    <label for="website">
+                                        <?php echo cl_translate('website'); ?>
+                                    </label>
+                                    <div class="input-group"><span class="input-group-text"><i
+                                                class="icofont icofont-pencil-alt-5"></i></span>
+                                        <input value="" name="website" id="website" type="text" class="form-control"
+                                            placeholder="<?php echo cl_translate('enter_the_url_of_your_page'); ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group" data-an="description-input">
+                                    <label for="about">
+                                    <?php echo cl_translate('about'); ?>
+                                    </label>
+                                    <div class="form-line">
+                                        <textarea  name="about" id="about" class="form-control" rows="2" placeholder="<?php echo cl_translate('enter_the_about_of_your_page'); ?>"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 no-mb">
+                                <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
+                                <?php echo cl_translate("Save changes"); ?>
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
+                               
+                        <div class="alert alert-light dark" role="alert" style="margin-top: 15px; margin-bottom: 15px;">
+                      <p>After creating the page, you can add other data. Upload avatar, cover</p>
+                    </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
