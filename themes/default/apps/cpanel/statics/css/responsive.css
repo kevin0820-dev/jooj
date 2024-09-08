@@ -3404,7 +3404,7 @@ div.dataTables_wrapper .dataTables_filter input[type="search"] {
 }
 .comingsoon .comingsoon-inner .coming-soon-bottom-link {
     margin-top: 20px;
-    line-height: 2;
+    line-height: 1;
 }
 .comingsoon .comingsoon-inner h5 {
     margin-bottom: 20px;
@@ -4012,7 +4012,7 @@ ul.notification-dropdown.onhover-show-div:before, ul.notification-dropdown.onhov
     padding-left: 17px;
 }
 .star-ratings .stars .title {
-    line-height: 2;
+    line-height: 1;
 }
 .user-profile .hovercard .social-media a {
     padding: 0 12px;

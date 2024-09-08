@@ -121,7 +121,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="cl-emoticons" v-if="emoticons_picker.status">
+			<!-- THIS IS FOR EMOTICONS -->
+
+			 <div class="cl-emoticons" v-if="emoticons_picker.status">
 				<div class="emoticons-group-nav">
 					<span class="emoticons-group-nav-item"
 						v-bind:class="{'active': (emoticons_picker.active_group == 'fused')}"
@@ -246,6 +248,7 @@
 					</div>
 				</div>
 			</div>
+
 			<!-- Og Data -->
 			<div class="timeline-pubbox__open-graph" v-if="show_og_data">
 					<div class="pubbox-open-graph">
@@ -940,7 +943,7 @@
 		outline: 0;
 		padding: 6px;
 		z-index: 1000;
-		line-height: 2;
+		line-height: 1;
 		backdrop-filter: blur(4px);
 		background-color: rgba(15, 20, 25, 0.75);
 		transition-property: background-color, box-shadow;
@@ -977,7 +980,7 @@
 		outline: 0;
 		padding: 6px;
 		z-index: 1000;
-		line-height: 2;
+		line-height: 1;
 		backdrop-filter: blur(4px);
 		background-color: rgba(15, 20, 25, 0.75) !important;
 		transition-property: background-color, box-shadow;

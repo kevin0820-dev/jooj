@@ -86,7 +86,7 @@ div.timeline-users-container {
                                     span.text {
                                         padding: 0px 5px;
                                         font-size: 14px;
-                                        line-height: 2;
+                                        line-height: 1;
                                         color: var(--cl-secondary-text-color);
                                         @include media-breakpoint-down(xl) {
                                             font-size: 13px;
@@ -100,7 +100,7 @@ div.timeline-users-container {
                                     }
                                     span.banner {
                                         height: 15px;
-                                        line-height: 2;
+                                        line-height: 1;
                                         overflow: hidden;
                                         svg {
                                             height: 100%;
@@ -226,7 +226,7 @@ div.timeline-users-container {
                                             span {
                                                 font-size: 16px;
                                                 color: var(--cl-primary-color);
-                                                line-height: 2;
+                                                line-height: 1;
                                                 font-weight: 700;
                                             }
                                         }

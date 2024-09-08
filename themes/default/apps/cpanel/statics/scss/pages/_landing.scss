@@ -123,7 +123,7 @@
       -webkit-background-clip: text;
       background-image: -webkit-linear-gradient(rgba(158, 107, 248, 0.5), rgba(119, 101, 250, 0.5)), url(../../assets/images/landing/title.gif);
       background-position: left;
-      line-height: 2;
+      line-height: 1;
       font-size: calc(25px + (57 - 25) * ((100vw - 300px) / (1920 - 300)));
     }
 
@@ -748,7 +748,7 @@ $landing-color : var(--theme-deafult);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           margin-bottom: 0;
-          line-height: 2;
+          line-height: 1;
         }
       }
     }

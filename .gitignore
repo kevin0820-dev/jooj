@@ -117,3 +117,4 @@ build/static/.DS_Store
 
 core/libs
 *.png
+install/

@@ -420,7 +420,7 @@ $badge-light-color in (primary, $primary-color),
             margin-left: 10px;
 
             h4 {
-              line-height: 2;
+              line-height: 1;
               font-weight: 500;
             }
 
@@ -1165,7 +1165,7 @@ $badge-light-color in (primary, $primary-color),
       color: $theme-body-sub-title-color;
       font-size: 12px;
       display: inline-block;
-      line-height: 2;
+      line-height: 1;
 
       +li {
         border-left: 1px solid $light-semi-gray;

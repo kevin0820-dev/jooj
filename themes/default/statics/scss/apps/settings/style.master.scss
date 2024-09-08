@@ -39,11 +39,11 @@ body.cl-app-settings {
                 div.mp {
                     flex: 1;
                     margin: 0px var(--cl-primary-offset-size);
-                    line-height: 2;
+                    line-height: 1;
                     overflow: hidden;
                     span.preview-label {
                         font-size: 14px;
-                        line-height: 2;
+                        line-height: 1;
                         font-weight: 500;
                         color: var(--cl-primary-text-color);
                         display: block;
@@ -55,7 +55,7 @@ body.cl-app-settings {
                     span.preview-value {
                         font-size: 14px;
                         color: var(--cl-secondary-text-color);
-                        line-height: 2;
+                        line-height: 1;
                         white-space: nowrap;
                         display: inline-block;
                         max-width: 100%;
@@ -68,7 +68,7 @@ body.cl-app-settings {
                 }
                 div.rp,
                 div.lp {
-                    line-height: 2;
+                    line-height: 1;
                     flex-shrink: 0;
                     svg {
                         width: 22px;

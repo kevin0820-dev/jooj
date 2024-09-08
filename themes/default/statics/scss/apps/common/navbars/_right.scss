@@ -147,7 +147,7 @@ div.right-sb-container {
                                                     }
                                                     div.result-item-data__botline {
                                                         font-size: 14px;
-                                                        line-height: 2;
+                                                        line-height: 1;
                                                         color: var(--cl-secondary-text-color);
                                                         white-space: nowrap;
                                                         overflow: hidden;
@@ -239,7 +239,7 @@ div.right-sb-container {
                         font-size: 14px;
                         color: var(--cl-primary-text-color);
                         font-weight: 700;
-                        line-height: 2;
+                        line-height: 1;
                         text-transform: uppercase;
                         margin-bottom: 20px;
                     }
@@ -255,7 +255,7 @@ div.right-sb-container {
                                 div.sidebar-users__item-avatar {
                                     flex-basis: 45px;
                                     flex-shrink: 0;
-                                    line-height: 2;
+                                    line-height: 1;
                                     img {
                                         width: 45px;
                                         height: 45px;
@@ -275,7 +275,7 @@ div.right-sb-container {
                                             white-space: nowrap;
                                             text-overflow: ellipsis;
                                             overflow: hidden;
-                                            line-height: 2;
+                                            line-height: 1;
                                             &:hover,
                                             &:focus,
                                             &:active {
@@ -286,7 +286,7 @@ div.right-sb-container {
                                     div.sidebar-users__item-followers {
                                         font-size: 14px;
                                         color: var(--cl-secondary-text-color);
-                                        line-height: 2;
+                                        line-height: 1;
                                         white-space: nowrap;
                                         text-overflow: ellipsis;
                                         overflow: hidden;
@@ -314,7 +314,7 @@ div.right-sb-container {
                                     padding: 7px 10px;
                                     display: inline-flex;
                                     align-items: center;
-                                    line-height: 2;
+                                    line-height: 1;
                                     span.icon {
                                         width: 18px;
                                         height: 18px;

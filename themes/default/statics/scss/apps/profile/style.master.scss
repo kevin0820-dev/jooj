@@ -57,7 +57,7 @@ body.cl-app-profile {
                             justify-content: center;
                             outline: 0;
                             cursor: pointer;
-                            line-height: 2;
+                            line-height: 1;
                             svg {
                                 width: 24px;
                                 height: 24px;
@@ -108,7 +108,7 @@ body.cl-app-profile {
                         justify-content: center;
                         outline: 0;
                         cursor: pointer;
-                        line-height: 2;
+                        line-height: 1;
                         transition: visibility 0.1s linear, opacity 0.1s linear;
                         position: absolute;
                         bottom: 0px;
@@ -222,7 +222,7 @@ body.cl-app-profile {
                     display: block;
                     color: var(--cl-secondary-text-color);
                     font-size: var(--cl-primary-name-size);
-                    line-height: 2;
+                    line-height: 1;
                     text-decoration: none;
                 }
             }
@@ -287,7 +287,7 @@ body.cl-app-profile {
                     margin-bottom: var(--cl-primary-offset-size);
                     display: inline-flex;
                     align-items: center;
-                    line-height: 2;
+                    line-height: 1;
                     span.banner {
                         svg {
                             width: 22px;
@@ -357,7 +357,7 @@ body.cl-app-profile {
                                 span {
                                     font-size: 16px;
                                     color: var(--cl-secondary-text-color);
-                                    line-height: 2;
+                                    line-height: 1;
                                     font-weight: 700;
                                 }
                             }

@@ -660,7 +660,7 @@ div.publication-document a.document-file div.document-file__icon svg {
   transition: fill 0.27s ease-in-out;
 }
 div.publication-document a.document-file div.document-file__type {
-  line-height: 2;
+  line-height: 1;
   font-size: 13px;
   font-weight: 500;
   color: var(--cl-secondary-text-color);
@@ -12611,7 +12611,7 @@ div.common-follows__item.common-follows__item_total
 span {
 
 color: var(--cl-secondary-text-color);
-line-height: 2;
+line-height: 1;
 font-weight: 700;
 font-size: 12px;
 margin-top: -7px;
@@ -13963,7 +13963,7 @@ body.cl-app-profile
   span {
   
   color: var(--cl-secondary-text-color);
-  line-height: 2;
+  line-height: 1;
   font-weight: 700;
   font-size: 12px;
 margin-top: -7px;

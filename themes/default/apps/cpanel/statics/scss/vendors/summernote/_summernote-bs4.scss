@@ -380,7 +380,7 @@ $font: summernote;
       font-size: 10px;
     }
     .note-color-palette {
-      line-height: 2;
+      line-height: 1;
       div .note-color-btn {
         @extend %summernote-position-8;
         &:hover {
@@ -770,7 +770,7 @@ $font: summernote;
     font-size: 10px;
   }
   .note-color-palette {
-    line-height: 2;
+    line-height: 1;
     div .note-color-btn {
       @extend %summernote-position-8;
       &:hover {

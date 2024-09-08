@@ -34,10 +34,9 @@ function json($array = array(), $seril = null) {
     if ($seril) {
         return json_encode($array,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
     }
-    else if($array){
-        return json_decode($array,true);
+    else {
+        return json_decode($array != null ? $array : "",true);
     }
-    else return;
 }
 
 function len($string = '') {
@@ -56,7 +55,7 @@ function is_url($url = null) {
     return filter_var($url, FILTER_VALIDATE_URL);
 }
 
-function are_all($arr = array(), $type = none) {
+function are_all($arr = array(), $type = null) {
 
     if (empty($arr) || is_array($arr) != true) {
         return false;
@@ -84,7 +83,6 @@ function are_all($arr = array(), $type = none) {
 
     return true;
 }
-
 function array_max_key($array = array()) {
     if (empty($array) || is_array($array) != true) {
         return false;
