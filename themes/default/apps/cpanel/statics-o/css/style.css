@@ -4054,7 +4054,7 @@ div.acp-main-left-sidebar {
         padding-left: 15px; }
         div.acp-main-left-sidebar div.admin-info div.user-info div.uname h5 {
           font-size: 18px;
-          line-height: 2;
+          line-height: 1;
           font-weight: 700;
           color: #fff;
           overflow: hidden;

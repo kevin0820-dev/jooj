@@ -930,7 +930,7 @@ progress {
 
   margin-bottom: 0.5rem;
 
-  line-height: 2; }
+  line-height: 1; }
 
 
 
@@ -6260,7 +6260,7 @@ textarea.form-control-lg {
 
   font-size: 1.25rem;
 
-  line-height: 2;
+  line-height: 1;
 
   background-color: transparent;
 
@@ -7242,7 +7242,7 @@ textarea.form-control-lg {
 
   font-weight: 700;
 
-  line-height: 2;
+  line-height: 1;
 
   color: #fff;
 

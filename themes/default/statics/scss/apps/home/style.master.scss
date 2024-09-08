@@ -246,7 +246,7 @@ body.cl-app-home {
                                 justify-content: center;
                                 outline: 0;
                                 cursor: pointer;
-                                line-height: 2;
+                                line-height: 1;
                                 svg {
                                     width: 24px;
                                     height: 24px;
@@ -324,7 +324,7 @@ body.cl-app-home {
                         div.swift-views__header {
                             padding: var(--cl-primary-offset-size);
                             border-bottom: 1px solid var(--cl-primary-border-color);
-                            line-height: 2;
+                            line-height: 1;
                             display: flex;
                             flex-wrap: nowrap;
                             justify-content: space-between;
@@ -375,7 +375,7 @@ body.cl-app-home {
                                 flex-wrap: nowrap;
                                 align-items: center;
                                 padding: var(--cl-primary-offset-size);
-                                line-height: 2;
+                                line-height: 1;
                                 border-bottom: 1px solid var(--cl-primary-border-color);
                                 div.avatar {
                                     width: 45px;
@@ -456,7 +456,7 @@ body.cl-app-home {
                         justify-content: center;
                         padding: 10px var(--cl-primary-offset-size);
                         cursor: pointer;
-                        line-height: 2;
+                        line-height: 1;
                         span.icon {
                             width: 22px;
                             height: 22px;
@@ -507,7 +507,7 @@ body.cl-app-home {
                 border-radius: 100%;
                 outline: 0;
                 cursor: pointer;
-                line-height: 2;
+                line-height: 1;
                 transition: all 0.27s ease;
                 position: absolute;
                 top: calc(50% - 20px);
@@ -550,7 +550,7 @@ body.cl-app-home {
             justify-content: center;
             outline: 0;
             cursor: pointer;
-            line-height: 2;
+            line-height: 1;
             transition: all 0.27s ease;
             svg {
                 width: 100%;
@@ -584,7 +584,7 @@ body.cl-app-home {
                         outline: 0;
                         padding: 3px;
                         z-index: 1000;
-                        line-height: 2;
+                        line-height: 1;
                         &:disabled {
                             cursor: wait !important;
                         }
@@ -611,7 +611,7 @@ body.cl-app-home {
                             resize: none;
                             font-size: 16px;
                             color: var(--cl-primary-text-color);
-                            line-height: 2;
+                            line-height: 1;
                             border: none;
                             border-radius: 0px;
                             outline: 0;
@@ -781,7 +781,7 @@ body.cl-app-home {
                                     color: var(--cl-secondary-text-color);
                                     font-weight: normal;
                                     font-size: 13px;
-                                    line-height: 2;
+                                    line-height: 1;
                                     &.len-error {
                                         color: var(--cl-danger-color);
                                         font-weight: bold;

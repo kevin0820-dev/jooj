@@ -77,7 +77,7 @@ body.cl-app-guest {
                     div.welcome-title {
                         font-size: 44px;
                         color: #e7e6f2;
-                        line-height: 2;
+                        line-height: 1;
                         font-weight: 900;
                         margin-bottom: 15px;
                     }
@@ -133,7 +133,7 @@ body.cl-app-guest {
                                     padding: 0px;
                                     margin: 0px 0px 10px 0px;
                                     color: #e7e6f2;
-                                    line-height: 2;
+                                    line-height: 1;
                                     text-align: center;
                                     text-transform: uppercase;
                                 }
@@ -231,7 +231,7 @@ body.cl-app-guest {
                                             h2 {
                                                 color: var(--cl-primary-text-color);
                                                 font-size: 28px;
-                                                line-height: 2;
+                                                line-height: 1;
                                                 padding: 0;
                                                 margin: 0;
                                                 font-weight: 700;
@@ -378,7 +378,7 @@ body.cl-app-guest {
                         li.footer-nav-item {
                             margin-right: 20px;
                             margin-bottom: 20px;
-                            line-height: 2;
+                            line-height: 1;
                             font-weight: 500;
                             &>a {
                                 font-size: 13px;

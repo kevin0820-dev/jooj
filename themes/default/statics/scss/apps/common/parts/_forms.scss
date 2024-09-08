@@ -21,7 +21,7 @@ form {
         }
         label {
             font-size: 13px;
-            line-height: 2;
+            line-height: 1;
             color: var(--cl-secondary-text-color);
             margin-bottom: 7px;
             font-weight: 500;
@@ -328,7 +328,7 @@ form {
             border-bottom: 1px solid var(--cl-primary-border-color);
             padding: var(--cl-primary-offset-size);
             div.form-toggle__lp {
-                line-height: 2;
+                line-height: 1;
                 flex-shrink: 0;
                 svg {
                     width: 22px;
@@ -344,11 +344,11 @@ form {
             div.form-toggle__mp {
                 flex: 1;
                 margin: 0px var(--cl-primary-offset-size);
-                line-height: 2;
+                line-height: 1;
                 overflow: hidden;
                 span.form-toggle__title {
                     font-size: 14px;
-                    line-height: 2;
+                    line-height: 1;
                     font-weight: 500;
                     color: var(--cl-primary-text-color);
                     display: block;
@@ -360,7 +360,7 @@ form {
                 span.form-toggle__desc {
                     font-size: 14px;
                     color: var(--cl-secondary-text-color);
-                    line-height: 2;
+                    line-height: 1;
                     white-space: nowrap;
                     display: inline-block;
                     max-width: 100%;
@@ -375,7 +375,7 @@ form {
                 div.form-check {
                     padding: 0px;
                     min-height: auto;
-                    line-height: 2;
+                    line-height: 1;
                     input.form-check-input {
                         margin: 0px;
                         cursor: pointer;

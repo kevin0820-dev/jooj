@@ -140,7 +140,7 @@ body.cl-app-thread {
                                                                     margin: 0;
                                                                     border: none;
                                                                     background: none;
-                                                                    line-height: 2;
+                                                                    line-height: 1;
                                                                     div.dropdown-toggle {
                                                                         padding: 0;
                                                                         margin: 0;
@@ -289,12 +289,12 @@ body.cl-app-thread {
                                                 font-size: 13px;
                                                 color: var(--cl-secondary-text-color);
                                                 text-transform: uppercase;
-                                                line-height: 2;
+                                                line-height: 1;
                                                 font-weight: 500;
                                             }
                                             span.icon {
                                                 margin-left: 5px;
-                                                line-height: 2;
+                                                line-height: 1;
                                                 transition: all 0.27s ease;
                                                 svg {
                                                     width: 22px;

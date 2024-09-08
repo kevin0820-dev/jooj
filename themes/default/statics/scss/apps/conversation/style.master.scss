@@ -70,7 +70,7 @@ body.cl-app-conversation {
                                 cursor: pointer;
                                 display: inline-flex;
                                 align-items: center;
-                                line-height: 2;
+                                line-height: 1;
                                 div.dropdown-toggle {
                                     display: inline-flex;
                                     align-items: center;
@@ -111,7 +111,7 @@ body.cl-app-conversation {
                     div.message-time {
                         font-size: 12px;
                         color: var(--cl-secondary-text-color);
-                        line-height: 2;
+                        line-height: 1;
                         @include media-breakpoint-down(xl) {
                             font-size: 11px;
                         }
@@ -205,7 +205,7 @@ body.cl-app-conversation {
                         outline: 0;
                         position: relative;
                         cursor: pointer;
-                        line-height: 2;
+                        line-height: 1;
                         display: inline-flex;
                         align-items: center;
                         justify-content: center;

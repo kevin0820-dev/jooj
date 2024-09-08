@@ -91,7 +91,7 @@ body.cl-app-affiliates {
             div.affiliates__body-topline {
                 text-align: center;
                 font-size: 14px;
-                line-height: 2;
+                line-height: 1;
                 font-weight: 500;
                 color: var(--cl-primary-text-color);
                 margin-bottom: 20px;
@@ -101,7 +101,7 @@ body.cl-app-affiliates {
                 text-align: center;
                 font-size: 22px;
                 font-weight: 700;
-                line-height: 2;
+                line-height: 1;
                 color: var(--cl-primary-link-color);
                 text-decoration: underline;
                 @include media-breakpoint-down(xl) {
@@ -128,7 +128,7 @@ body.cl-app-affiliates {
                     span.social-link-btn__icon {
                         width: 24px;
                         height: 24px;
-                        line-height: 2;
+                        line-height: 1;
                         svg {
                             width: 100%;
                             height: 100%;
@@ -176,7 +176,7 @@ body.cl-app-affiliates {
                     text-align: center;
                     font-size: 16px;
                     color: var(--cl-secondary-text-color);
-                    line-height: 2;
+                    line-height: 1;
                     margin-bottom: 15px;
                     font-weight: 500;
                 }
@@ -188,7 +188,7 @@ body.cl-app-affiliates {
                     text-align: center;
                     font-size: 16px;
                     color: var(--cl-primary-color);
-                    line-height: 2;
+                    line-height: 1;
                     cursor: pointer;
                     font-weight: 500;
                     &.show-history {
@@ -366,7 +366,7 @@ body.cl-app-affiliates {
                             margin-bottom: 5px;
                             div.history-item__amount {
                                 font-size: 20px;
-                                line-height: 2;
+                                line-height: 1;
                                 font-weight: 500;
                                 color: var(--cl-primary-text-color);
                                 margin-right: var(--cl-primary-offset-size);
@@ -386,7 +386,7 @@ body.cl-app-affiliates {
                         div.history-item__body-botline {
                             font-size: 14px;
                             color: var(--cl-secondary-text-color);
-                            line-height: 2;
+                            line-height: 1;
                             span {
                                 color: var(--cl-primary-text-color);
                             }
