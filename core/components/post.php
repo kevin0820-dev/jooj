@@ -392,7 +392,7 @@ function cl_linkify_symbol($text = "") {
     $text = preg_replace_callback('/(?:\s|^)\${1,}([^`~!@$%^&*\#()\-+=\\|\/\.,<>?\'\":;{}\[\]*\s]+)/iu', function($m) {
         $symbol = fetch_or_get($m[1], "");
 
-        if (not_empty($symbol) && cl_get_symbol_id_by_name($symbol)) {
+        if (not_empty($symbol) && cl_get_symbol_id_by_name($symbol)) {							/* edited by kevin */
             return (" " . cl_html_el('a', cl_strf("$%s", $symbol), array(
                 'href' => cl_link(cl_strf("symbol/%s",cl_remove_emoji($symbol))),
                 'class' => 'inline-link'

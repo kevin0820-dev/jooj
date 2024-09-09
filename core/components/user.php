@@ -442,15 +442,15 @@ function cl_signout_user() {
         $db->where('session_id', cl_text_secure($_COOKIE['user_id']));
         $db->delete(T_SESSIONS);
         unset($_COOKIE['user_id']);
-        setcookie('user_id', null, -1);
+        setcookie('user_id', "", -1);
 
         unset($_COOKIE['dark_mode']);
-        setcookie('dark_mode', null, -1);
+        setcookie('dark_mode', "", -1);
     }
 
     @session_destroy();
 
-    cl_redirect('/');
+    cl_redirect('./');                  /* edited by Kevin */
 }
 
 function cl_signout_user_by_id($user_id = false) {
@@ -465,6 +465,7 @@ function cl_signout_user_by_id($user_id = false) {
 
     return $qr;
 }
+
 function cl_delete_symbol_data($symbol_id = false) {
     global $db;
     if (not_num($symbol_id)) {
