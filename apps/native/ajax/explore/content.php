@@ -38,7 +38,7 @@ if ($action == 'load_more') {
                 $data['html']   = implode("", $html_arr);
             }  
         }
-     if ($type == "symbols") {
+        if ($type == "symbols") {
             if (not_empty($search_query)) {
                 $search_query = cl_text_secure($search_query);
                 $search_query = cl_croptxt($search_query, 32);
@@ -62,13 +62,13 @@ if ($action == 'load_more') {
             }
         
             // Поиск пользователей
-            $query_result_people = cl_search_people($search_query, false, 30);
+            // $query_result_people = cl_search_people($search_query, false, 30);                       /* Edited by Kevin, coin & show more button resolved */
         
             // Поиск страниц
             $query_result_pages = cl_search_page($search_query, false, 30);
         
             // Объединяем результаты
-            $query_result = array_merge($query_result_people, $query_result_pages);
+            // $query_result = array_merge($query_result_people, $query_result_pages);                  /* Edited by Kevin, coin & show more button resolved */
         
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
