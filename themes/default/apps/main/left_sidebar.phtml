@@ -84,19 +84,19 @@
 		</div>
 		<div class="sidebar-v-nav-wrapper">
 			<ul class="sidebar-v-nav">
-				<li data-navitem="home" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'home') {
+				<li data-navitem="home" onclick="window.location.href='./'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'home') {
 					echo ('active');
 				} ?>">
 					<span class="icon home">
 						<?php echo cl_ikon('home'); ?>
 					</span>
 					<span class="nav-item-holder">
-						<a href="<?php echo cl_link('/'); ?>">
+						<a href="<?php echo cl_link('./'); ?>">
 							<?php echo cl_translate('Home'); ?>
 						</a>
 					</span>
 				</li>
-				<li data-navitem="explore" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'explore') {
+				<li data-navitem="explore" onclick="window.location.href='<?php echo cl_link('explore'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'explore') {
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -108,7 +108,7 @@
 						</a>
 					</span>
 				</li>
-				<li data-navitem="notifications" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'notifications') {
+				<li data-navitem="notifications" onclick="window.location.href='<?php echo cl_link('notifications'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'notifications') {
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -125,7 +125,7 @@
 						</a>
 					</span>
 				</li>
-				<li data-navitem="chat" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'chat') {
+				<li data-navitem="chat" onclick="window.location.href='<?php echo cl_link('chats'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'chat') {
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -141,7 +141,7 @@
 						</a>
 					</span>
 				</li>
-				<li data-navitem="bookmarks" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'bookmarks') {
+				<li data-navitem="bookmarks" onclick="window.location.href='<?php echo cl_link('bookmarks'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'bookmarks') {
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -154,7 +154,7 @@
 					</span>
 				</li>
 				<?php if ($cl['config']['blue_account_system_status'] == 'off'): ?>
-					<li data-navitem="trending" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {
+					<li data-navitem="trending" onclick="window.location.href='<?php echo cl_link('trending'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {
 						echo ('active');
 					} ?>">
 						<span class="icon">
@@ -170,7 +170,7 @@
 				<!-- Blue Account -->
 				<?php if ($cl['config']['blue_account_system_status'] == 'on'): ?>
 					<?php if ($me["is_blue"] == 1): ?>
-						<li data-navitem="trending" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {
+						<li data-navitem="trending" onclick="window.location.href='<?php echo cl_link('trending'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {
 							echo ('active');
 						} ?>">
 							<span class="icon">
@@ -183,7 +183,7 @@
 							</span>
 						</li>
 					<?php else: ?>
-						<li data-navitem="blue_account" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'blue_account') {
+						<li data-navitem="blue_account" onclick="window.location.href='<?php echo cl_link('blue_account'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'blue_account') {
 							echo ('active');
 						} ?>">
 
@@ -205,7 +205,7 @@
 						</li>
 					<?php endif; ?>
 				<?php endif; ?>
-				<li data-navitem="profile" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {
+				<li data-navitem="profile" onclick="window.location.href='<?php echo ($me['url']); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -221,8 +221,8 @@
 					<span class="icon">
 						<?php echo cl_ikon('more'); ?>
 					</span>
-					<span class="nav-item-holder dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="nav-item-holder dropdown" style="width:100%">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width:100%; display:block">
 							<?php echo cl_translate('More'); ?>
 						</a>
 						<div class="dropdown-menu dropdown-icons">
