@@ -25,7 +25,7 @@
 		</button>
 		<button class="navbar-ctrl" data-anchor="<?php echo cl_link("chats"); ?>">
 			<?php echo cl_ikon('chat-m'); ?>			
-			<?php if(fetch_or_get($me['new_notifs']) > 0) { ?>			<!-- edited by kevin notification only valid -->
+			<?php if(fetch_or_get($me['new_messages']) > 0) { ?>			<!-- edited by kevin notification only valid -->
 				<span class="info-indicators" data-an="new-messages">
 					<?php echo fetch_or_get($me['new_messages']); ?>
 				</span>
