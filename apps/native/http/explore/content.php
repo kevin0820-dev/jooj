@@ -35,7 +35,7 @@ else if ($cl["page_tab"] == 'symbols') {
 }
 else if($cl["page_tab"] == 'people') {
 	$cl["query_result"] = cl_search_people($cl["search_query"], false, 30);
-	$cl["query_result"] = cl_search_page($cl["search_query"], false, 30);
+	// $cl["query_result"] = cl_search_page($cl["search_query"], false, 30);	/* edited by Kevin removed because it doesn't get people */
 }
 
 else {
