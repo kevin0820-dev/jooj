@@ -38,7 +38,7 @@ if ($action == 'load_more') {
                 $data['html']   = implode("", $html_arr);
             }  
         }
-        if ($type == "symbols") {
+        else if ($type == "symbols") {
             if (not_empty($search_query)) {
                 $search_query = cl_text_secure($search_query);
                 $search_query = cl_croptxt($search_query, 32);
@@ -61,22 +61,17 @@ if ($action == 'load_more') {
                 $search_query = cl_croptxt($search_query, 32);
             }
         
-            // Поиск пользователей
+            $query_result = cl_search_people($search_query, $offset, 30);
             // $query_result_people = cl_search_people($search_query, false, 30);                       /* Edited by Kevin, coin & show more button resolved */
-        
-            // Поиск страниц
-            $query_result_pages = cl_search_page($search_query, false, 30);
-        
-            // Объединяем результаты
+            // $query_result_pages = cl_search_page($search_query, false, 30);
             // $query_result = array_merge($query_result_people, $query_result_pages);                  /* Edited by Kevin, coin & show more button resolved */
         
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    if ($cl['li']['type'] == 'user') {
                         $html_arr[] = cl_template('explore/includes/li/people_li');
-                    } elseif ($cl['li']['type'] == 'page') {
-                        $html_arr[] = cl_template('explore/includes/li/page_li');
-                    }
+                    // } elseif ($cl['li']['type'] == 'page') {
+                    //     $html_arr[] = cl_template('explore/includes/li/page_li');
+                    // }
                 }
         
                 $data['status'] = 200;
@@ -142,27 +137,16 @@ else if($action == 'search') {
             }  
         }
         else if ($type == "people") {
-            if (not_empty($search_query)) {
-                $search_query = cl_text_secure($search_query);
-                $search_query = cl_croptxt($search_query, 32);
-            }
-        
-           
-            $query_result_people = cl_search_people($search_query, false, 30);
-        
-         
-            $query_result_pages = cl_search_page($search_query, false, 30);
-        
-          
-            $query_result = array_merge($query_result_people, $query_result_pages);
+            $search_query = cl_text_secure($search_query);
+            $search_query = cl_croptxt($search_query, 32);
+            $query_result = cl_search_people($search_query, false, 30);
+            // $query_result_people = cl_search_people($search_query, false, 30);       
+            // $query_result_pages = cl_search_page($search_query, false, 30);          /* Edited by Kevin, show more button resolved *//
+            // $query_result = array_merge($query_result_people, $query_result_pages);
         
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    if ($cl['li']['type'] == 'user') {
-                        $html_arr[] = cl_template('explore/includes/li/people_li');
-                    } elseif ($cl['li']['type'] == 'page') {
-                        $html_arr[] = cl_template('explore/includes/li/page_li');
-                    }
+                    $html_arr[] = cl_template('explore/includes/li/people_li');
                 }
         
                 $data['status'] = 200;

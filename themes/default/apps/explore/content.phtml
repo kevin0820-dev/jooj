@@ -58,31 +58,31 @@
 				</a>
 			</div>
 			<div class="timeline-navbar__item">
-				<a v-bind:href="search_people_url" data-spa="true">
-					<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "people") { echo("active");} ?>">
-						<span class="btn-flex-inner">
-						
-							<span class="text">
-								<?php echo cl_translate("Coin"); ?>
-							</span>
-						</span>
-					</button>
-					<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'people') {
-													echo ('active');
-												} ?>"></div>
-				</a>
-			</div>
-			<div class="timeline-navbar__item">
 				<a v-bind:href="search_symbols_url" data-spa="true">
 					<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "symbols") { echo("active");} ?>">		<!-- edited by Kevin -->
 						<span class="btn-flex-inner">
 							
 							<span class="text">
-								<?php echo cl_translate("Page"); ?>																<!-- edited by Kevin -->
+								<?php echo cl_translate("Coins"); ?>																<!-- edited by Kevin -->
 							</span>
 						</span>
 					</button>
 					<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'symbols') {
+													echo ('active');
+												} ?>"></div>
+				</a>
+			</div>
+			<div class="timeline-navbar__item">
+				<a v-bind:href="search_people_url" data-spa="true">
+					<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "people") { echo("active");} ?>">
+						<span class="btn-flex-inner">
+						
+							<span class="text">
+								<?php echo cl_translate("People"); ?>
+							</span>
+						</span>
+					</button>
+					<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'people') {
 													echo ('active');
 												} ?>"></div>
 				</a>

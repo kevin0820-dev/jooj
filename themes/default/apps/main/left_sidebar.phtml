@@ -84,7 +84,7 @@
 		</div>
 		<div class="sidebar-v-nav-wrapper">
 			<ul class="sidebar-v-nav">
-				<li data-navitem="home" onclick="window.location.href='./'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'home') {
+				<li data-navitem="home" onclick="window.location.href='./'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'home') {	/* edited by kevin change into button with full width */
 					echo ('active');
 				} ?>">
 					<span class="icon home">
@@ -96,7 +96,7 @@
 						</a>
 					</span>
 				</li>
-				<li data-navitem="explore" onclick="window.location.href='<?php echo cl_link('explore'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'explore') {
+				<li data-navitem="explore" onclick="window.location.href='<?php echo cl_link('explore'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'explore') {	/* edited by kevin change into button with full width */
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -108,7 +108,7 @@
 						</a>
 					</span>
 				</li>
-				<li data-navitem="notifications" onclick="window.location.href='<?php echo cl_link('notifications'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'notifications') {
+				<li data-navitem="notifications" onclick="window.location.href='<?php echo cl_link('notifications'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'notifications') {	/* edited by kevin change into button with full width */
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -117,15 +117,16 @@
 
 					<span class="nav-item-holder">
 						<a href="<?php echo cl_link("notifications"); ?>">
-							<span class="info-indicators" data-an="new-notifs">
-								<?php echo fetch_or_get($me['new_notifs']); ?>
-							</span>
-							<?php echo cl_translate('Notifications'); ?>
-
+							<?php if(fetch_or_get($me['new_notifs']) > 0) { ?>  			<!-- edited by kevin notification only valid -->
+								<span class="info-indicators" data-an="new-notifs">
+									<?php echo fetch_or_get($me['new_notifs']); ?>
+								</span>
+							<?php } ?>														<!-- edited by kevin notification only valid -->
+								<?php echo cl_translate('Notifications'); ?>
 						</a>
 					</span>
 				</li>
-				<li data-navitem="chat" onclick="window.location.href='<?php echo cl_link('chats'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'chat') {
+				<li data-navitem="chat" onclick="window.location.href='<?php echo cl_link('chats'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'chat') {	/* edited by kevin change into button with full width */
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -133,15 +134,16 @@
 					</span>
 					<span class="nav-item-holder">
 						<a href="<?php echo cl_link("chats"); ?>">
-							<span class="info-indicators" data-an="new-messages">
-								<?php echo fetch_or_get($me['new_messages']); ?>
-							</span>
+							<?php if(fetch_or_get($me['new_messages']) > 0) { ?>		<!-- edited by kevin notification only valid -->
+								<span class="info-indicators" data-an="new-messages">
+									<?php echo fetch_or_get($me['new_messages']); ?>
+								</span>
+							<?php } ?>													<!-- edited by kevin notification only valid -->
 							<?php echo cl_translate('Messages'); ?>
-
 						</a>
 					</span>
 				</li>
-				<li data-navitem="bookmarks" onclick="window.location.href='<?php echo cl_link('bookmarks'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'bookmarks') {
+				<li data-navitem="bookmarks" onclick="window.location.href='<?php echo cl_link('bookmarks'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'bookmarks') {	/* edited by kevin change into button with full width */
 					echo ('active');
 				} ?>">
 					<span class="icon">
@@ -154,7 +156,7 @@
 					</span>
 				</li>
 				<?php if ($cl['config']['blue_account_system_status'] == 'off'): ?>
-					<li data-navitem="trending" onclick="window.location.href='<?php echo cl_link('trending'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {
+					<li data-navitem="trending" onclick="window.location.href='<?php echo cl_link('trending'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
 						echo ('active');
 					} ?>">
 						<span class="icon">
@@ -170,7 +172,7 @@
 				<!-- Blue Account -->
 				<?php if ($cl['config']['blue_account_system_status'] == 'on'): ?>
 					<?php if ($me["is_blue"] == 1): ?>
-						<li data-navitem="trending" onclick="window.location.href='<?php echo cl_link('trending'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {
+						<li data-navitem="trending" onclick="window.location.href='<?php echo cl_link('trending'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
 							echo ('active');
 						} ?>">
 							<span class="icon">
@@ -183,7 +185,7 @@
 							</span>
 						</li>
 					<?php else: ?>
-						<li data-navitem="blue_account" onclick="window.location.href='<?php echo cl_link('blue_account'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'blue_account') {
+						<li data-navitem="blue_account" onclick="window.location.href='<?php echo cl_link('blue_account'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'blue_account') {	/* edited by kevin change into button with full width */
 							echo ('active');
 						} ?>">
 
@@ -205,7 +207,7 @@
 						</li>
 					<?php endif; ?>
 				<?php endif; ?>
-				<li data-navitem="profile" onclick="window.location.href='<?php echo ($me['url']); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {
+				<li data-navitem="profile" onclick="window.location.href='<?php echo ($me['url']); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {	/* edited by kevin change into button with full width */
 					echo ('active');
 				} ?>">
 					<span class="icon">
