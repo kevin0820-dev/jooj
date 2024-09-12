@@ -44,11 +44,13 @@ if ($action == 'load_more') {
                 $search_query = cl_croptxt($search_query, 32);
             }
 
-            $query_result = cl_search_symbols($search_query, $offset, 30);
+            // $query_result = cl_search_symbols($search_query, $offset, 30);
+            $query_result = cl_search_page($search_query, $offset, 30);
             
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    $html_arr[] = cl_template('explore/includes/li/symbols_li');
+                    // $html_arr[] = cl_template('explore/includes/li/symbols_li');
+                    $html_arr[] = cl_template('explore/includes/li/page_li');
                 }
 
                 $data['status'] = 200;
@@ -125,11 +127,13 @@ else if($action == 'search') {
        if ($type == "symbols") {
             $search_query = cl_text_secure($search_query);
             $search_query = cl_croptxt($search_query, 32);
-            $query_result = cl_search_symbols($search_query, false, 30);
+            // $query_result = cl_search_symbols($search_query, false, 30);
+            $query_result = cl_search_page($search_query, false, 30);
             
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    $html_arr[] = cl_template('explore/includes/li/symbols_li');
+                    // $html_arr[] = cl_template('explore/includes/li/symbols_li');
+                    $html_arr[] = cl_template('explore/includes/li/page_li');
                 }
 
                 $data['status'] = 200;
