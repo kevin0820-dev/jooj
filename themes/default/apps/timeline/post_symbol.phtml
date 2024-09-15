@@ -2,7 +2,7 @@
 	<?php echo cl_template('timeline/ad'); ?>
 <?php else: ?>
 	<!-- <?php
-	// Добавим отладочный вывод значения symbol_id
+	// ??????? ?????????? ????? ???????? symbol_id
 	echo "<p>Debug: symbol_id = " . htmlspecialchars($cl['symbol_id']) . "</p>";
 	?> -->
 	<div class="post-list-item" data-list-item="<?php echo ($cl['li']['id']); ?>"
@@ -782,10 +782,16 @@
 		<?php endif; ?>
 	</div>
 	<?php if (not_empty($cl["gads_horiz"])): ?>
-		<?php if (cl_show_feed_gad()): ?>
+
+		<!-- Edited by Kevin -->
+		<?php
+		/*
+			 if (cl_show_feed_gad()): ?>
 			<div class="cl-google-ads centered">
 				<?php echo $cl["gads_horiz"]; ?>
 			</div>
-		<?php endif; ?>
+		<?php endif; 
+		*/
+		?>
 	<?php endif; ?>
 <?php endif; ?>

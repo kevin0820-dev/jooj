@@ -17,19 +17,21 @@
 					</path>
 				</g>
 			</svg>
-			<?php if(fetch_or_get($me['new_notifs']) > 0) { ?>			<!-- edited by kevin notification only valid -->
+
+			<!-- edited by kevin notification only valid -->
+			<?php if(fetch_or_get($me['new_notifs']) > 0) { ?>		
 				<span class="info-indicators" data-an="new-notifs">
 					<?php echo fetch_or_get($me['new_notifs']); ?>
 				</span>
-			<?php }	?>													<!-- edited by kevin notification only valid -->
+			<?php }	?>													
 		</button>
 		<button class="navbar-ctrl" data-anchor="<?php echo cl_link("chats"); ?>">
 			<?php echo cl_ikon('chat-m'); ?>			
-			<?php if(fetch_or_get($me['new_messages']) > 0) { ?>			<!-- edited by kevin notification only valid -->
+			<?php if(fetch_or_get($me['new_messages']) > 0) { ?>			
 				<span class="info-indicators" data-an="new-messages">
 					<?php echo fetch_or_get($me['new_messages']); ?>
 				</span>
-			<?php }	?>													<!-- edited by kevin notification only valid -->
+			<?php }	?>													
 		</button>
 	</div>
 </div>

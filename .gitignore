@@ -119,3 +119,4 @@ core/libs
 *.png
 install/
 wordpress/
+upload/

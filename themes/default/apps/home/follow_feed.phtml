@@ -3,14 +3,14 @@
     <div class="body_follow">
         <?php if (not_empty($cl['follow_suggestion'])): ?>
             <div class="follow_head">
-                <h6>
-                    <?php echo cl_translate("who_to_follow"); ?>
-                </h6>
-            </div>
-            <div id="cardSlider2" class="carousel mb-6 max-w-6xl mx-auto bg-gray-50 py-10">
-                <div class="carousel__viewport px-12">
+        <h6>
+            <?php echo cl_translate("who_to_follow"); ?>
+        </h6>
+    </div>
+            <div id="cardSlider2" class="carousel mb-2 max-w-6xl mx-auto bg-gray-50" style="background: bottom;"> <!-- Edited By Kevin.. Following bg when dark mode  -->
+                <div class="carousel__track px-12"> <!-- Edited by Kevin.. Original: carousel__viewport -->
                     <?php foreach ($cl['follow_suggestion'] as $row): ?>
-                        <figure class="carousel__slide py-3 px-4 w-1/6">
+                        <figure class="carousel__slide py-3 w-1/6"> <!-- edited by kevin to make it center 2024.9.15 2:11 removed class px-4 -->
 
                             <img class="mb-4 avatar" src="<?php echo ($row['avatar']); ?>" alt="avatar">
 
@@ -99,7 +99,7 @@
 
                     <?php endforeach; ?>
                 </div>
-                <div class="mb-4 mt-2 follow-suggestion__footer">
+                <div class="mb-2 mt-2 follow-suggestion__footer">
                     <a class="more" href="<?php echo cl_link("suggested"); ?>" data-spa="true">
                         <?php echo cl_translate("Show more"); ?>
                     </a>
@@ -199,6 +199,7 @@
     }
 
     .carousel__slide .avatar {
+        display: inline;            /* edited by kevin to make it center 2024.9.15 2:11 */
         width: 65px;
         height: 65px;
         border-radius: 9999px;
@@ -220,7 +221,7 @@
     }
 
     .carousel__slide .user-info-holder {
-        max-width: 150px;
+        max-width: 100%;
 
     }
 
@@ -281,7 +282,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        display: inline-block;
+        display: inline-flex;                   /* edited by kevin to make it center 2024.9.15 2:11 */
     }
 
     .carousel__track figure {

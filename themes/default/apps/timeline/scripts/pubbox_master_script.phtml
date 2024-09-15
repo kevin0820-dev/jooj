@@ -32,18 +32,5 @@
 		        pubbox_app_2.post_privacy = "everyone";
 		    });
 		}
-		if ($("form#vue-pubbox-app-3").length) {
-			var pubbox_app_2 = new Vue({
-				el:"#vue-pubbox-app-4",
-				mixins: [pubbox_form_app_mixin]
-			});
-
-			SMColibri.extend_vue('pubbox2', pubbox_app_2);
-
-			$(document).on('hidden.bs.modal', 'div#add_new_post', function () {  
-		        pubbox_app_2.thread_id    = 0;
-		        pubbox_app_2.post_privacy = "everyone";
-		    });
-		}
 	});
 </script>

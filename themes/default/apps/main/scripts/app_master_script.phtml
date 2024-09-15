@@ -39,6 +39,7 @@
 
 			if (_smc.curr_pn != "conversation") {
 				if ($(window).width() > 1024) {
+					console.log("StickySidebar");
 					_smc.lsb = new StickySidebar('[data-app="left-sidebar"]', {
 						topSpacing: 0,
 						bottomSpacing: 0
@@ -49,6 +50,26 @@
 						bottomSpacing: 0
 					});
 				}
+
+				//Edited by Kevin
+				$(window).on('resize', function() {
+					console.log('resize');
+					console.log('$(window).width()', $(window).width());
+					if ($(window).width() < 586) {
+						if (_smc.lsb) {
+							_smc.lsb.destroy(); // Destroy the StickySidebar instance
+							_smc.lsb = null; // Optional: clear the instance if you want to recreate it later
+						}
+					} else {
+						if (!_smc.lsb) {
+							// Reinitialize StickySidebar when the width is greater than or equal to 586
+							_smc.lsb = new StickySidebar('[data-app="left-sidebar"]', {
+								topSpacing: 0,
+								bottomSpacing: 0
+							});
+						}
+					}
+				});
 			}
 			_smc.toggleSB = function (a = false) {
 				var left_sidebar = $('[data-app="left-sidebar"]');
@@ -799,27 +820,6 @@ _smc.userlbox.curr_el = false;
 				}
 			}
 
-			_smc.repost_comment = function (id = false, event = false) {
-				if (_smc.is_logged()) {
-					if ($.isNumeric(id) && id) {
-						$.ajax({
-							url: '<?php echo cl_link("native_api/edit_post/get_data"); ?>',
-							type: 'GET',
-							dataType: 'json',
-							data: { id: id },
-						}).done(function (data) {
-							if (data.status == 200) {
-								$('div[data-app="black-hole"]').append($(data.html)).find('div[data-app="post-repost-comment"]').modal('show');
-							}
-							else {
-								_smc.errorMSG();
-							}
-						});
-						$(event).attr('disabled', 'true');
-					}
-				}
-			}
-
 			_smc.share_post = function (url = false, encoded_url = false) {
 				if (url && encoded_url) {
 					var modal = "<div class='modal fadeIn share-post-modal' data-an='share-post' tabindex='-1' data-onclose='remove' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'><div class='modal-dialog modal-md' role='document'><div class='modal-content'><div class='modal-header'><div class='modal-header__inner'><h5 class='modal-title'><?php echo cl_translate('Share post'); ?></h5><span class='dismiss-modal' data-dismiss='modal'><?php echo str_replace('"', '\'', cl_icon('close')); ?></span></div></div><div class='modal-body'><div class='social-media-links'><a href='https://twitter.com/intent/tweet?url={0}' target='_blank' class='link-item twitter'><?php echo str_replace('"', '\'', cl_icon('logos/logo-twitter')); ?></a><a href='https://www.facebook.com/sharer.php?u={0}' target='_blank' class='link-item facebook'><?php echo str_replace('"', '\'', cl_icon('logos/logo-facebook')); ?></a><a href='https://www.linkedin.com/shareArticle?mini=true&url={0}' target='_blank' class='link-item linkedin'><?php echo str_replace('"', '\'', cl_icon('logos/logo-linkedin')); ?></a><a href='https://www.pinterest.ru/pin/create/button/?url={0}' target='_blank' class='link-item pinterest'><?php echo str_replace('"', '\'', cl_icon('logos/logo-pinterest')); ?></a><a href='https://www.reddit.com/submit?url={0}' target='_blank' class='link-item reddit'><?php echo str_replace('"', '\'', cl_icon('logos/logo-reddit')); ?></a><a href='https://api.whatsapp.com/send?text={0}' target='_blank' class='link-item whatsapp'><?php echo str_replace('"', '\'', cl_icon('logos/logo-whatsapp')); ?></a><a href='https://telegram.me/share/url?url={0}' target='_blank' class='link-item telegram'><?php echo str_replace('"', '\'', cl_icon('logos/logo-telegram')); ?></a></div><div class='raw-link'><p><?php echo cl_translate('Or copy link'); ?></p><div class='link-input'><input type='text' readonly='true' value='{1}' id='copy-link-input'><button data-clipboard-target='#copy-link-input' data-clipboard-action='copy' class='clip-board-copy copy-link'><?php echo str_replace('"', '\'', cl_icon('content_copy')); ?></button></div></div></div></div></div></div>";
@@ -988,7 +988,7 @@ _smc.userlbox.curr_el = false;
                     target.text("<?php echo cl_translate("watch"); ?>");
                     target.replaceClass('main-inline', 'main-outline');
 
-                    console.log("Unfollowing ID:", target.data('id')); // Отладка ID
+                    console.log("Unfollowing ID:", target.data('id')); // ??????? ID
 
                     $.ajax({
                         url: '<?php echo cl_link("native_api/main/watch"); ?>',
@@ -996,7 +996,7 @@ _smc.userlbox.curr_el = false;
                         dataType: 'json',
                         data: { id: target.data('id') },
                     }).done(function (data) {
-                        console.log("Response data:", data); // Отладочный вывод
+                        console.log("Response data:", data); // ?????????? ?????
                         if (data.status != 200) {
                             _smc.errorMSG();
                         }
@@ -1027,7 +1027,7 @@ _smc.userlbox.curr_el = false;
                     target.text("<?php echo cl_translate("unwatch"); ?>");
                 }, 1500);
 
-                console.log("Following ID:", target.data('id')); // Отладка ID
+                console.log("Following ID:", target.data('id')); // ??????? ID
 
                 $.ajax({
                     url: '<?php echo cl_link("native_api/main/watch"); ?>',
@@ -1035,7 +1035,7 @@ _smc.userlbox.curr_el = false;
                     dataType: 'json',
                     data: { id: target.data('id') },
                 }).done(function (data) {
-                    console.log("Response data:", data); // Отладочный вывод
+                    console.log("Response data:", data); // ?????????? ?????
                     if (data.status != 200) {
                         _smc.errorMSG();
                     }
@@ -1819,7 +1819,10 @@ _smc.userlbox.curr_el = false;
 <!-- Logo Anime -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-<script>
+
+<!-- Edited by Kevin Static Logo Text display-->
+
+<!-- <script>
 	// Wrap every letter in a span
 	var textWrapper = document.querySelector('.ml11 .letters');
 	textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
@@ -1854,7 +1857,7 @@ _smc.userlbox.curr_el = false;
 			easing: "easeOutExpo",
 			delay: 3000
 		});
-</script>
+</script> -->
 <!-- Fancyapps -->
 <script type="text/javascript">
 	function showHtmlDiv() {
@@ -1881,6 +1884,7 @@ _smc.userlbox.curr_el = false;
 <!-- <script src="{%config theme_url%}/apps/timeline/scripts/js/fancyapps.js"></script> -->
 
 <script>
+
 	Fancybox.Plugins.Toolbar.defaults.items.rate = {
 		type: "div",
 		class: "fancybox__rate",

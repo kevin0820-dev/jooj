@@ -31,7 +31,7 @@ if ($cl["page_tab"] == 'htags') {
 	$cl["query_result"] = cl_search_hashtags($cl["search_query"], false, 30);
 }
 else if ($cl["page_tab"] == 'symbols') {
-	// $cl["query_result"] = cl_search_symbols($cl["search_query"], false, 30);		/* edited by kevin to show coins */
+	// $cl["query_result"] = cl_search_symbols($cl["search_query"], false, 30);		/* edited by kevin. New Update. to show coins */
 	$cl["query_result"] = cl_search_page($cl["search_query"], false, 30);
 }
 else if($cl["page_tab"] == 'people') {
