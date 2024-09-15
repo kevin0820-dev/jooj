@@ -1,7 +1,7 @@
 <?php if ($cl['li']['advertising']): ?>
 	<?php echo cl_template('timeline/ad'); ?>
 <?php else: ?>
-	<?php if (empty($cl['li']['is_blocked']) && (not_empty($cl['li']['can_see'])) && empty($cl['li']['me_blocked'])): ?>		<!-- edited by kevin, to resolve blocked and unfollowed users -->
+	<?php if (empty($cl['li']['is_blocked']) && (not_empty($cl['li']['can_see'])) && empty($cl['li']['me_blocked'])): ?> <!-- edited by kevin, New Update. Resolve blocked and unfollowed users -->
 		<div class="post-list-item" data-list-item="<?php echo ($cl['li']['id']); ?>"
 			data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>>
 			<?php if (not_empty($cl['li']['me_blocked'])): ?>
@@ -95,11 +95,11 @@
 							<?php else: ?>
 								<!-- For post page coauthor -->
 								<div class="">
-								<a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
-									<div class="avatar-holder">
-										<img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
-									</div>
-								</a>
+									<a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
+										<div class="avatar-holder">
+											<img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+										</div>
+									</a>
 								</div>
 							<?php endif; ?>
 						<?php endif; ?>
@@ -153,7 +153,7 @@
 													<?php echo $cl['li']['owner']['name']; ?>
 												</span>
 												<p class="<?php if ($cl['li']['owner']['verified'] == '1')
-													echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+																echo 'verified-badge'; ?>" style="display:inline-block;"></p>
 											</b>
 										</a>
 										<span class="uname">
@@ -177,7 +177,7 @@
 									<div class="lp">
 										<!-- For post page admin -->
 										<?php if ($cl['li']['owner']['id'] == 1): ?>
-											<a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>"  
+											<a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>"
 												data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
 												data-placement="bottom">
 												<b>
@@ -185,9 +185,9 @@
 														<?php echo $cl['li']['page']['name']; ?>
 													</span>
 													<p class="<?php if ($cl['li']['owner']['verified'] == '1')
-														echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+																	echo 'verified-badge'; ?>" style="display:inline-block;"></p>
 												</b>
-												</a>
+											</a>
 											<span class="uname">
 												$<?php echo $cl['li']['page']['username']; ?>
 											</span>
@@ -206,25 +206,25 @@
 											<!-- For post page coauthor -->
 											<div class="flex items-center ">
 												<div>
-											<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
-												data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
-												data-placement="bottom">
-												<b>
-													<span class="user-name-holder">
-														<?php echo $cl['li']['owner']['name']; ?>
+													<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
+														data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
+														data-placement="bottom">
+														<b>
+															<span class="user-name-holder">
+																<?php echo $cl['li']['owner']['name']; ?>
+															</span>
+															<p class="<?php if ($cl['li']['owner']['verified'] == '1')
+																			echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+														</b>
+													</a>
+													<span class="uname">
+														@<?php echo $cl['li']['owner']['username']; ?>
 													</span>
-													<p class="<?php if ($cl['li']['owner']['verified'] == '1')
-														echo 'verified-badge'; ?>" style="display:inline-block;"></p>
-												</b>
-											</a>
-											<span class="uname">
-												@<?php echo $cl['li']['owner']['username']; ?>
-											</span>
-											</div>
-											
-											<!-- <span class="point">&</span> -->
-											
-											<!-- <div class="px-2">
+												</div>
+
+												<!-- <span class="point">&</span> -->
+
+												<!-- <div class="px-2">
 											
 											<a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>" 
 												data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
@@ -234,24 +234,24 @@
 														<?php echo $cl['li']['page']['name']; ?>
 													</span>
 													<p class="<?php if ($cl['li']['page']['verified'] == '1')
-														echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+																	echo 'verified-badge'; ?>" style="display:inline-block;"></p>
 												</b>
 											</a>
 											<span class="uname">
 												$<?php echo $cl['li']['page']['username']; ?>
 											</span>
 											</div> -->
-											<span class="point px-2">&#183;</span>
+												<span class="point px-2">&#183;</span>
 
-											<span class="posted-time">
-												<time><?php echo $cl['li']['time']; ?></time>
-												<?php if (not_empty($cl['li']['edited'])): ?>
-													<span
-														title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
-														&nbsp; (E)
-													</span>
-												<?php endif; ?>
-											</span>
+												<span class="posted-time">
+													<time><?php echo $cl['li']['time']; ?></time>
+													<?php if (not_empty($cl['li']['edited'])): ?>
+														<span
+															title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
+															&nbsp; (E)
+														</span>
+													<?php endif; ?>
+												</span>
 											</div>
 										<?php endif; ?>
 
@@ -504,7 +504,7 @@
 									$cl['li']['text'] = cl_strip_brs($cl['li']['text']);
 									?>
 									<script>
-										jQuery(document).ready(function ($) {
+										jQuery(document).ready(function($) {
 
 											$('div.publication-text').find('a[href*="/search/"]').addClass('hash');
 										})
@@ -760,8 +760,8 @@
 									</a>
 								</button>
 								<?php if (empty($cl['li']['has_reposted'])): ?>
-									<button onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this);" class="ctrls-item repost" data-an="repost-ctrl">
-									<!-- <button class="ctrls-item repost" data-an="repost-ctrl" data-toggle="modal" data-target="#add_new_post_repost" > -->
+									<button onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this);"
+										class="ctrls-item repost" data-an="repost-ctrl">
 										<span class="icon">
 											<?php echo cl_ikon('repost'); ?>
 										</span>
@@ -817,12 +817,17 @@
 				</div>
 			<?php endif; ?>
 		</div>
-	<?php endif; ?>		<!-- edited by kevin blocked and unfollowed users -->
+	<?php endif; ?>
+	<!-- Edited by Kevin -->
 	<?php if (not_empty($cl["gads_horiz"])): ?>
-		<?php if (cl_show_feed_gad()): ?>
+		<?php
+		/*
+			if (cl_show_feed_gad()): ?>
 			<div class="cl-google-ads centered">
 				<?php echo $cl["gads_horiz"]; ?>
 			</div>
-		<?php endif; ?>
+		<?php endif; 
+		*/
+		?>
 	<?php endif; ?>
 <?php endif; ?>

@@ -1612,10 +1612,11 @@ align-items: center;
 }
 
 .ml11 {
-  font-weight: 700;
-  font-size: 24px;
-  color: var(--smc-main-uiel-color);
-  margin-left: 3px;
+  font-weight: 600;/*Edited by Kevin.. logo text fontweight*/
+  font-size: 28px; /*Edited by Kevin.. logo text font size*/
+  color: var(--smc-main-text-color); /*Edited by Kevin.. logo text font color*/
+  margin-top:-3px;
+  margin-left: 8px;
 }
 
 .ml11 .text-wrapper {
@@ -1760,7 +1761,7 @@ iframe.reply_frame {
   position: relative;
   left: 10px;
   width: auto;
-  max-height: 40px;
+  max-height: 45px; /* Edited By kevin.. The height of the logo*/
 }
 
 body.cl-app-ads
@@ -7544,7 +7545,7 @@ body
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  height: 53px;
+  height: 50px; /*Edited by Kevin left sidebar menu height*/
   padding-left: 5px;
   align-items: center;
 }
@@ -7699,7 +7700,7 @@ body
   span.nav-item-holder
   span.info-indicators {
   display: inline-block;
-  background: var(--smc-main-uiel-color);
+  background: var(--cl-danger-color); /*Message and Notification Badge Color - Red*/
   color: #fff;
   text-align: center;
   padding: 0 5px;
@@ -7709,11 +7710,11 @@ body
   -webkit-font-smoothing: subpixel-antialiased;
   line-height: 18px;
   vertical-align: middle;
-  min-height: 13px;
-  min-width: 20px;
+  min-height: 17px; /*Edited by Kevin.. Badge size*/
+  min-width: 17px;
   font-weight: 400;
   position: relative;
-  margin-left: -32px;
+  margin-left: -32px; /*Edited by Kevin.. Margin between badges and icons*/
   margin-top: -23px;
   margin-right: 7px;
 }
@@ -9087,7 +9088,7 @@ body
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color);
-  font-weight: 800;
+  font-weight: 500; /*Edited by Kevin.. Right menu. Who to follow*/
   line-height: 24px;
   font-size: 20px;
 }
@@ -9371,7 +9372,7 @@ body
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color);
-  font-weight: 800;
+  font-weight: 500; /*Edited by Kevin.. Right menu. Trends for you..*/
   line-height: 24px;
   font-size: 20px;
 }
@@ -9450,7 +9451,7 @@ body
   font-size: 15px;
   color: var(--smc-main-text-color);
   line-height: 15px;
-  font-weight: 700;
+  font-weight: 400; /*Edited by Kevin.. The items under the Trends for you.*/
   overflow-wrap: break-word;
   min-width: 0px;
   max-width: 100%;
@@ -14280,6 +14281,15 @@ body div.timeline-pubbox-container > div.rp form div.cl-emoticons {
   overflow: hidden;
 }
 
+/* Edited by Kevin.. Emoj Responsive Issue */
+@media only screen and (max-width: 586px) {
+  body div.timeline-pubbox-container > div.rp form div.cl-emoticons{
+    margin-top: 5px;
+    margin-left: -68px;
+    width: calc(100vw - 40px);
+  }
+}
+
 body
   div.timeline-pubbox-container
   > div.rp
@@ -15894,6 +15904,15 @@ body div.timeline-pubbox-container > div.rp form div.preview-poll-holder {
   background: var(--smc-main-bg-color);
   border-radius: var(--smc-main-border-rad1);
   border: 1px solid var(--smc-main-border-color);
+}
+
+/*Edited by Kevin.. Poll responsive issue*/
+@media only screen and (max-width: 586px) {
+  body div.timeline-pubbox-container > div.rp form div.preview-poll-holder{
+    margin-top: 5px;
+    margin-left: -68px;
+    width: calc(100vw - 40px);
+  }
 }
 
 body

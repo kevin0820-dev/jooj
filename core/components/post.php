@@ -20,7 +20,7 @@ function cl_create_orphan_post($user_id = null, $type = "text", $symbol_id = 0) 
         "user_id"   => $user_id,
         "status"    => "orphan",
         "type"      => $type,
-        "symbol_id" => $symbol_id,  // Добавляем symbol_id
+        "symbol_id" => $symbol_id,  // ????????? symbol_id
         "time"      => time()
     ));
 

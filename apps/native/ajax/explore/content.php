@@ -44,12 +44,12 @@ if ($action == 'load_more') {
                 $search_query = cl_croptxt($search_query, 32);
             }
 
-            // $query_result = cl_search_symbols($search_query, $offset, 30);                       /* edited by kevin, to show coins not hot symbols */
+            // $query_result = cl_search_symbols($search_query, $offset, 30);                       /* edited by kevin, New Update. to show coins not hot symbols */
             $query_result = cl_search_page($search_query, $offset, 30);
             
             if (not_empty($query_result)) {
                 foreach ($query_result as $cl['li']) {
-                    // $html_arr[] = cl_template('explore/includes/li/symbols_li');                     /* edited by kevin, to show coins not hot symbols */
+                    // $html_arr[] = cl_template('explore/includes/li/symbols_li');                     /* edited by kevin, New Update. to show coins not hot symbols */
                     $html_arr[] = cl_template('explore/includes/li/page_li');                   
                 }
 
