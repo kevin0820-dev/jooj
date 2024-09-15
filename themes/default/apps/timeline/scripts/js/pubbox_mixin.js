@@ -390,7 +390,7 @@ var pubbox_form_app_mixin = Object({
 			var _app_ = this;
 
 			$(_self.target).ajaxSubmit({
-				url: "<?php echo cl_link("native_api/main/publish_new_post"); ?>",
+				url: "<?php echo cl_link('native_api/main/publish_new_post'); ?>",
 				type: 'POST',
 				dataType: 'json',
 				data: {
@@ -1316,7 +1316,7 @@ var pubbox_form_app_mixin = Object({
 	mounted: function() {
 		var _app_ = this;
 
-		<?php if (not_empty($me['draft_post'])): ?>
+		if (not_empty($me['draft_post'])){
 			if ($(this.$el).attr('id') == 'vue-pubbox-app-1') {
 				$.ajax({
 					url: '<?php echo cl_link("native_api/main/get_draft_post"); ?>',
@@ -1350,7 +1350,7 @@ var pubbox_form_app_mixin = Object({
 					_app_.disable_ctrls();
 				});
 			}
-		<?php endif; ?>
+		}
 
 		_app_.text_ph = _app_.text_ph_orig;
 	}

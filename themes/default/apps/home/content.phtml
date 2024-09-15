@@ -113,7 +113,7 @@
 									} ?>
 							<?php endforeach; ?>
 						</div>
-						<?php if (count($cl["feed"]) == 30): ?>
+						<?php if (is_array($cl["feed"]) && count($cl["feed"]) == 30): ?>
 								<div class="timeline-data-loader">
 									<button class="btn btn-custom main-outline lg" data-an="load-more">
 										<?php echo cl_translate("Show more"); ?>
@@ -153,7 +153,7 @@
 									} ?>
 							<?php endforeach; ?>
 						</div>
-						<?php if (count($cl["tl_feed"]) == 30): ?>
+						<?php if (is_array($cl["tl_feed"]) && count($cl["tl_feed"]) == 30): ?>
 								<div class="timeline-data-loader">
 									<button class="btn btn-custom main-outline lg" data-an="load-more">
 										<?php echo cl_translate("Show more"); ?>
@@ -190,11 +190,11 @@
 									<?php $count++; ?>
 									<?php echo cl_template('timeline/post'); ?>
 									<?php if ($count == 3) {
-										echo cl_template('home/follow_feed');
+										echo cl_template('home/follow_feed2');			/* edited to make watching work (button to slide) 2024.9.15*/
 									} ?>
 							<?php endforeach; ?>
 						</div>
-						<?php if (count($cl["sm_feed"]) == 30): ?>
+						<?php if (is_array($cl["sm_feed"]) && count($cl["sm_feed"]) == 30): ?>
 								<div class="timeline-data-loader">
 									<button class="btn btn-custom main-outline lg" data-an="load-more">
 										<?php echo cl_translate("Show more"); ?>
@@ -317,6 +317,9 @@
 		Dots: false,
 	})
 	const cardSlider2 = new Carousel(document.querySelector("#cardSlider2"), {
+		Dots: false,
+	})
+	const cardSlider3 = new Carousel(document.querySelector("#cardSlider3"), {		/* edited by kevin to make watching work (button to slide) 2024.9.15*/
 		Dots: false,
 	})
 </script>
