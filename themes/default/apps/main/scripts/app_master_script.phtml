@@ -799,6 +799,27 @@ _smc.userlbox.curr_el = false;
 				}
 			}
 
+			_smc.repost_comment = function (id = false, event = false) {
+				if (_smc.is_logged()) {
+					if ($.isNumeric(id) && id) {
+						$.ajax({
+							url: '<?php echo cl_link("native_api/edit_post/get_data"); ?>',
+							type: 'GET',
+							dataType: 'json',
+							data: { id: id },
+						}).done(function (data) {
+							if (data.status == 200) {
+								$('div[data-app="black-hole"]').append($(data.html)).find('div[data-app="post-repost-comment"]').modal('show');
+							}
+							else {
+								_smc.errorMSG();
+							}
+						});
+						$(event).attr('disabled', 'true');
+					}
+				}
+			}
+
 			_smc.share_post = function (url = false, encoded_url = false) {
 				if (url && encoded_url) {
 					var modal = "<div class='modal fadeIn share-post-modal' data-an='share-post' tabindex='-1' data-onclose='remove' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'><div class='modal-dialog modal-md' role='document'><div class='modal-content'><div class='modal-header'><div class='modal-header__inner'><h5 class='modal-title'><?php echo cl_translate('Share post'); ?></h5><span class='dismiss-modal' data-dismiss='modal'><?php echo str_replace('"', '\'', cl_icon('close')); ?></span></div></div><div class='modal-body'><div class='social-media-links'><a href='https://twitter.com/intent/tweet?url={0}' target='_blank' class='link-item twitter'><?php echo str_replace('"', '\'', cl_icon('logos/logo-twitter')); ?></a><a href='https://www.facebook.com/sharer.php?u={0}' target='_blank' class='link-item facebook'><?php echo str_replace('"', '\'', cl_icon('logos/logo-facebook')); ?></a><a href='https://www.linkedin.com/shareArticle?mini=true&url={0}' target='_blank' class='link-item linkedin'><?php echo str_replace('"', '\'', cl_icon('logos/logo-linkedin')); ?></a><a href='https://www.pinterest.ru/pin/create/button/?url={0}' target='_blank' class='link-item pinterest'><?php echo str_replace('"', '\'', cl_icon('logos/logo-pinterest')); ?></a><a href='https://www.reddit.com/submit?url={0}' target='_blank' class='link-item reddit'><?php echo str_replace('"', '\'', cl_icon('logos/logo-reddit')); ?></a><a href='https://api.whatsapp.com/send?text={0}' target='_blank' class='link-item whatsapp'><?php echo str_replace('"', '\'', cl_icon('logos/logo-whatsapp')); ?></a><a href='https://telegram.me/share/url?url={0}' target='_blank' class='link-item telegram'><?php echo str_replace('"', '\'', cl_icon('logos/logo-telegram')); ?></a></div><div class='raw-link'><p><?php echo cl_translate('Or copy link'); ?></p><div class='link-input'><input type='text' readonly='true' value='{1}' id='copy-link-input'><button data-clipboard-target='#copy-link-input' data-clipboard-action='copy' class='clip-board-copy copy-link'><?php echo str_replace('"', '\'', cl_icon('content_copy')); ?></button></div></div></div></div></div></div>";

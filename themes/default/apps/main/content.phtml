@@ -199,6 +199,23 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade modal-pubbox" data-app="modal-pubbox" id="add_new_post_repost" tabindex="-1" role="dialog"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="close">
+								<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+							</div>
+
+						</div>
+						<div class="modal-body">
+							<?php $cl['pb_id'] = 4;
+							echo cl_template('timeline/pubbox'); ?>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="modal fade modal-pubbox" data-app="modal-pubbox" id="add_new_post_reply" tabindex="-1" role="dialog"
 				aria-hidden="true">
 				<div class="modal-dialog" role="document">
