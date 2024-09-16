@@ -33,7 +33,7 @@ else {
 	        $data['message'] = "Email address is unknown";
         }
 
-        else { 
+        else {
             $cl['me']            = $me;
             $user_id             = $me["id"];
             $email_code          = sha1(rand(11111, 99999) . $me["password"]);

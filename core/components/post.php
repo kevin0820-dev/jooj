@@ -1000,3 +1000,33 @@ function cl_is_poll_voted($poll = array()) {
 
 	return 0;
 }
+
+function cl_get_guest_feed_one($id = 0) {
+	global $db, $cl;
+
+	$data        = array();
+	$sql         = cl_sqltepmlate("apps/feed/sql/fetch_feed_one", array(
+		"t_pubs" => T_PUBS,
+        "id" => $id
+ 	));
+
+	$query_res = $db->rawQuery($sql);
+
+	if (cl_queryset($query_res)) {
+		foreach ($query_res as $row) {
+			$data[] = cl_post_data($row);
+            // echo($data);
+		}
+       
+        if ($cl['config']['advertising_system'] == 'on') {
+            if (cl_is_feed_nad_allowed()) {
+                $ad = cl_get_timeline_ads();
+
+                if (not_empty($ad)) {
+                }
+            }
+        }
+	}
+
+	return $data;
+}

@@ -1775,7 +1775,32 @@ else if($action == 'repost') {
         }
     }
 }
+else if($action == 'repost_comment') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = 0;
+        $data['status']   = 400;
+        $post_id          = fetch_or_get($_POST['id'], 0);
 
+        if (is_posnum($post_id)) {
+            $post_data = cl_get_guest_feed_one($post_id);
+   
+            if (not_empty($post_data)) {
+                $data['status'] = 200;
+                $cl['li'] = $post_data[0];
+                // $data['data'] = $post_data[0];
+                $data['html'] = cl_template('timeline/modals/repost_comment');
+            } else {
+                $data['error'] = 'Post not found';
+            }
+        } else {
+            $data['error'] = 'Invalid post ID';
+        }
+    }
+}
 else if($action == 'update_msb_indicators') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;

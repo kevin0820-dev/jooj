@@ -442,10 +442,11 @@ function cl_signout_user() {
         $db->where('session_id', cl_text_secure($_COOKIE['user_id']));
         $db->delete(T_SESSIONS);
         unset($_COOKIE['user_id']);
-        setcookie('user_id', null, -1);
+        setcookie('user_id', "", -1);
 
         unset($_COOKIE['dark_mode']);
-        setcookie('dark_mode', null, -1);
+        setcookie('dark_mode', "", -1);
+        cl_redirect("./");
     }
 
     @session_destroy();
