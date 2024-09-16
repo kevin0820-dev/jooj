@@ -216,6 +216,25 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade modal-pubbox" data-app="modal-pubbox-repost" id="add_new_post_repost" tabindex="-1" role="dialog" 
+				data-keyboard="false" data-backdrop="static" data-onclose="close" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="title">
+								You are going to repost...
+							</div>
+							<div class="close">
+								<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+							</div>
+
+						</div>
+						<div class="modal-body">
+							<?php $cl['pb_id'] = "repost"; echo cl_template('timeline/pubbox_repost'); ?>
+						</div>
+					</div>
+				</div>
+			</div>
 			<?php echo cl_template('timeline/scripts/pubbox_master_script'); ?>
 		<?php endif; ?>
 		<div data-app="black-hole"></div>
