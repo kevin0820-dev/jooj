@@ -828,6 +828,7 @@ _smc.userlbox.curr_el = false;
 						}).done(function (data) {
 							if (data.status == 200) {
 								$('div[data-app="repost_comment"]').html($(data.html));
+								$('input[data-app="selected_repost_id"]').val(data.id);
 								$('div[data-app="modal-pubbox-repost"]').modal('show');
 							}
 

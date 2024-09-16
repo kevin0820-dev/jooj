@@ -9,7 +9,8 @@
 # @ Copyright (c) 2020 - 2023 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
 
-global $cl;
+use Aws\DynamoDb\NumberValue;
+
 if ($action == 'upload_post_image') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -1043,6 +1044,7 @@ else if ($action == 'publish_new_repost') {
         $post_privacy     = fetch_or_get($_POST['privacy'], "everyone");
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
+        $comment_id       = fetch_or_get($_POST['selected_repost_id'], 0);
 
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
@@ -1079,7 +1081,9 @@ else if ($action == 'publish_new_repost') {
                 cl_db_insert(T_POSTS, array(
                     "user_id"        => $me['id'],
                     "publication_id" => $post_id,
-                    "time"           => time()
+                    "time"           => time(),
+                    "type"          => "repost",
+                    "comment_on"    => $comment_id,
                 ));
 
                 $data['posts_total'] = ($me['posts'] += 1);
@@ -1191,7 +1195,7 @@ else if ($action == 'publish_new_repost') {
                             "publication_id" => $post_id,
                             "time" => time(),
                             "type" => "repost",
-                            "comment_on" => $cl['li']['id'],
+                            "comment_on" => $comment_id,
                         ));
 
 
@@ -2015,7 +2019,7 @@ else if($action == 'repost_comment') {
                 $data['status'] = 200;
                 $cl['li'] = $post_data[0];
                 $data['html'] = cl_template('timeline/modals/repost_comment');
-                $data['data'] = $post_data[0];
+                $data['id'] = $post_data[0]['id'];
             } else {
                 $data['error'] = 'Post not found';
             }
