@@ -9,7 +9,7 @@
 # @ Copyright (c) 2020 - 2023 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
 
-
+global $cl;
 if ($action == 'upload_post_image') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -1024,6 +1024,229 @@ else if ($action == 'publish_new_post') {
     }
 }
 
+else if ($action == 'publish_new_repost') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = 0;
+        $data['status']   = 400;
+        $max_post_length  = $cl["config"]["max_post_len"];
+        $post_data        = $me['draft_post'];
+        $curr_pn          = fetch_or_get($_POST['curr_pn'], "none");
+        $post_text        = fetch_or_get($_POST['post_text'], "");
+        $gif_src          = fetch_or_get($_POST['gif_src'], "");
+        $og_data          = fetch_or_get($_POST['og_data'], array());
+        $poll_data        = fetch_or_get($_POST['poll_data'], array());
+        $thread_id        = fetch_or_get($_POST['thread_id'], 0);
+        $post_privacy     = fetch_or_get($_POST['privacy'], "everyone");
+        $post_text        = cl_croptxt($post_text, $max_post_length);
+        $thread_data      = array();
+
+        if (not_empty($thread_id)) {
+            $thread_data  = cl_raw_post_data($thread_id);
+            $post_privacy = "everyone";
+
+            if (empty($thread_data) || cl_can_reply($thread_data) != true) {
+                $thread_id   = 0; 
+                $thread_data = array();
+            }
+        }
+
+        else {
+            if (in_array($post_privacy, array("everyone", "followers", "mentioned")) != true) {
+                $post_privacy = "everyone";
+            }
+        }
+
+        if (not_empty($post_data) && not_empty($post_data["media"])) {
+            $data['status'] = 200;
+            $thread_id      = ((is_posnum($thread_id)) ? $thread_id : 0);
+            $post_id        = $post_data['id'];
+            $post_text      = cl_upsert_htags($post_text);
+            $mentions       = cl_get_user_mentions($post_text);
+            $qr             = cl_update_post_data($post_id, array(
+                "text"      => cl_text_secure($post_text),
+                "status"    => "active",
+                "thread_id" => $thread_id,
+                "time"      => time(),
+                "priv_wcs"  => $me["profile_privacy"],
+                "priv_wcr"  => $post_privacy
+            ));
+
+            if (empty($thread_id)) {
+                cl_db_insert(T_POSTS, array(
+                    "user_id"        => $me['id'],
+                    "publication_id" => $post_id,
+                    "time"           => time()
+                ));
+
+                $data['posts_total'] = ($me['posts'] += 1);
+                
+                cl_update_user_data($me['id'], array(
+                    'posts' => $data['posts_total']
+                ));
+            }
+
+            else {
+                $data['replys_total'] = cl_update_thread_replys($thread_id, 'plus');
+
+                cl_update_post_data($post_id, array(
+                    "target" => "pub_reply"
+                ));
+
+                if ($thread_data['user_id'] != $me['id']) {
+                    cl_notify_user(array(
+                        'subject'  => 'reply',
+                        'user_id'  => $thread_data['user_id'],
+                        'entry_id' => $post_id
+                    ));
+                }
+            }
+
+            if (in_array($curr_pn, array('home','thread'))) {
+                $post_data    = cl_raw_post_data($post_id);
+                $cl['li']     = cl_post_data($post_data);
+                $data['html'] = cl_template('timeline/post');
+            }
+
+            if (not_empty($mentions)) {
+                cl_notify_mentioned_users($mentions, $post_id);
+            }
+
+            cl_delete_post_junk_files($post_data['id'], $post_data['type']);
+        }
+
+        else {
+            if (not_empty($post_text) || not_empty($gif_src) || not_empty($og_data) || not_empty($poll_data)) {
+                $thread_id      = ((is_posnum($thread_id)) ? $thread_id : 0);
+                $post_text      = cl_upsert_htags($post_text);
+                $mentions       = cl_get_user_mentions($post_text);
+                $insert_data    = array(
+                    "user_id"   => $me['id'],
+                    "text"      => cl_text_secure($post_text),
+                    "status"    => "active",
+                    "type"      => "text",
+                    "thread_id" => $thread_id,
+                    "time"      => time(),
+                    "priv_wcs"  => $me["profile_privacy"],
+                    "priv_wcr"  => $post_privacy
+                );
+
+                if(not_empty($post_text) && not_empty($poll_data) && cl_is_valid_poll($poll_data)) {
+                    $insert_data['og_data']   = "";
+                    $gif_src                  = "";
+                    $insert_data['type']      = "poll";
+                    $insert_data['poll_data'] = array_map(function($option) {
+                        return array(
+                            "option" => cl_text_secure($option["value"]),
+                            "voters" => array(),
+                            "votes"  => 0
+                        );
+                    }, $poll_data);
+
+                    $insert_data['poll_data'] = json($insert_data['poll_data'], true);
+                }
+
+                else if (not_empty($gif_src) && is_url($gif_src)) {
+                    $insert_data['og_data'] = "";
+                    $insert_data['type']    = "gif";
+                }
+
+                else if(not_empty($og_data) && cl_is_valid_og($og_data)) {
+                    if (not_empty($og_data["image"]) && is_url($og_data["image"])) {
+                        $og_data["image"] = cl_import_image(array(
+                            'url' => $og_data["image"],
+                            'file_type' => 'thumbnail',
+                            'folder' => 'images',
+                            'slug' => 'og_img'
+                        ));
+
+                        if (empty($og_data["image"])) {
+                            $og_data["image"] = "";
+                        }
+                        else{
+                            $og_data["image_loc"] = true;
+                        }
+
+                        $insert_data['og_data'] = json($og_data, true);
+                        $gif_src = "";
+                    }
+                    else{
+                        $insert_data['og_data'] = json(array(), true);
+                        $gif_src = "";
+                    }
+                }
+
+                $post_id = cl_db_insert(T_PUBS, $insert_data);
+
+                if (is_posnum($post_id)) {
+
+                    $data['status'] = 200;
+
+                    if (empty($thread_id)) {
+                        cl_db_insert(T_POSTS, array(
+                            "user_id" => $me['id'],
+                            "publication_id" => $post_id,
+                            "time" => time(),
+                            "type" => "repost",
+                            "comment_on" => $cl['li']['id'],
+                        ));
+
+
+                        $data['posts_total'] = ($me['posts'] += 1);
+
+                        cl_update_user_data($me['id'], array(
+                            'posts' => $data['posts_total']
+                        ));
+                    }
+
+                    else {
+                        $data['replys_total'] = cl_update_thread_replys($thread_id, 'plus');
+
+                        cl_update_post_data($post_id, array(
+                            "target" => "pub_reply"
+                        ));
+
+                        if ($thread_data['user_id'] != $me['id']) {
+                            cl_notify_user(array(
+                                'subject'  => 'reply',
+                                'user_id'  => $thread_data['user_id'],
+                                'entry_id' => $post_id
+                            ));
+                        }
+                    }
+
+                    if ($insert_data["type"] == "gif") {
+                        cl_db_insert(T_PUBMEDIA, array(
+                            "pub_id" => $post_id,
+                            "type"   => "gif",
+                            "src"    => $gif_src,
+                            "time"   => time(),
+                        ));
+                    }
+
+                    if (in_array($curr_pn, array('home', 'thread'))) {
+                        $post_data    = cl_raw_post_data($post_id);
+                        $cl['li']     = cl_post_data($post_data);
+                        $data['html'] = cl_template('timeline/post');
+                    }
+
+                    if (not_empty($mentions)) {
+                        cl_notify_mentioned_users($mentions, $post_id);
+                    }
+                }
+            }
+        }
+
+        cl_delete_orphan_posts($me['id']);
+        cl_update_user_data($me['id'], array(
+            'last_post' => 0
+        ));
+    }
+}
+
 else if ($action == 'publish_new_post_symbol') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -1792,7 +2015,7 @@ else if($action == 'repost_comment') {
                 $data['status'] = 200;
                 $cl['li'] = $post_data[0];
                 $data['html'] = cl_template('timeline/modals/repost_comment');
-                $cl['li']['id'] = $post_id;
+                $data['data'] = $post_data[0];
             } else {
                 $data['error'] = 'Post not found';
             }
