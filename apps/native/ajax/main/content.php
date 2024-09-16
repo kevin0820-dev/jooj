@@ -1080,10 +1080,10 @@ else if ($action == 'publish_new_repost') {
             if (empty($thread_id)) {
                 cl_db_insert(T_POSTS, array(
                     "user_id"        => $me['id'],
-                    "publication_id" => $post_id,
+                    "publication_id" => $comment_id,
                     "time"           => time(),
                     "type"          => "repost",
-                    "comment_on"    => $comment_id,
+                    "comment_on"    => $post_id,
                 ));
 
                 $data['posts_total'] = ($me['posts'] += 1);
@@ -1192,10 +1192,10 @@ else if ($action == 'publish_new_repost') {
                     if (empty($thread_id)) {
                         cl_db_insert(T_POSTS, array(
                             "user_id" => $me['id'],
-                            "publication_id" => $post_id,
+                            "publication_id" => $comment_id,
                             "time" => time(),
                             "type" => "repost",
-                            "comment_on" => $comment_id,
+                            "comment_on" =>  $post_id,
                         ));
 
 
@@ -1239,6 +1239,29 @@ else if ($action == 'publish_new_repost') {
 
                     if (not_empty($mentions)) {
                         cl_notify_mentioned_users($mentions, $post_id);
+                    }
+
+                    if (is_posnum($comment_id)) {
+                        $post_id = $comment_id;
+                        $post_data = cl_raw_post_data($post_id);
+            
+                        if (not_empty($post_data)) {        
+                            $reposts_count         = ($post_data['reposts_count'] += 1);
+                            $data['status']        = 200;
+                            $data['reposts_count'] = $reposts_count;
+        
+                            cl_update_post_data($post_id, array(
+                                'reposts_count' => $reposts_count
+                            ));
+        
+                            if ($post_data['user_id'] != $me['id']) {
+                                cl_notify_user(array(
+                                    'subject'  => 'repost',
+                                    'user_id'  => $post_data['user_id'],
+                                    'entry_id' => $post_id
+                                ));
+                            }
+                        }
                     }
                 }
             }
