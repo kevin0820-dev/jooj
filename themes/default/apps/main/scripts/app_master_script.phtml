@@ -750,6 +750,7 @@ _smc.userlbox.curr_el = false;
 				}
 			}
 			_smc.repost = function (id = false, event = false) {
+				alert(id);
 				if (_smc.is_logged()) {
 					if ($.isNumeric(id) && id) {
 						$(event).attr('disabled', 'true');
@@ -827,7 +828,8 @@ _smc.userlbox.curr_el = false;
 							data: { id: id },
 						}).done(function (data) {
 							if (data.status == 200) {
-								$('div[data-app="black-hole"]').append($(data.html)).find('div[data-app="post-repost-comment"]').modal('show');
+								$('div[data-app="repost_comment"]').html($(data.html));
+								$('div[data-app="modal-pubbox-repost"]').modal('show');
 							}
 
 							else if (data.status == 404) {
