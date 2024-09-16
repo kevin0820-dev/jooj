@@ -3,14 +3,14 @@
 <div class="post-list-item-content" style="display: flex; border: 1px solid #e0e0e0; border-radius: 5px; padding: 10px; margin:10px;">
     <div class="avatar" style="width: 45px; height: 45px;">
         <?php if ($cl['li']['symbol_id'] == 0): ?>
-            <a href="#" class="block-link" data-spa="true">
+            <a class="block-link" data-spa="true">
                 <div class="avatar-holder">
                     <img class="lozad" style="border-radius: 10em;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                 </div>
             </a>
         <?php else: ?>
             <?php if ($cl['li']['owner']['id'] == 1): ?>
-                <a href="#" class="block-link" data-spa="true">
+                <a class="block-link" data-spa="true">
                     <div class="avatar-holder">
                         <img class="lozad" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
                     </div>
@@ -18,7 +18,7 @@
             <?php else: ?>
                 <!-- For post page coauthor -->
                 <div class="">
-                    <a href="#" class="block-link" data-spa="true">
+                    <a class="block-link" data-spa="true">
                         <div class="avatar-holder">
                             <img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                         </div>
@@ -34,7 +34,7 @@
                 <?php if ($cl['li']['symbol_id'] == 0): ?>
                     <div class="lp">
 
-                        <a href="#" data-spa="true" data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover" data-placement="bottom">
+                        <a data-spa="true" data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover" data-placement="bottom">
                             <b>
                                 <span class="user-name-holder">
                                     <?php echo $cl['li']['owner']['name']; ?>
@@ -64,7 +64,7 @@
                     <div class="lp">
                         <!-- For post page admin -->
                         <?php if ($cl['li']['owner']['id'] == 1): ?>
-                            <a href="#" data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
+                            <a data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
                                 data-placement="bottom">
                                 <b>
                                     <span class="user-name-holder">
@@ -92,7 +92,7 @@
                             <!-- For post page coauthor -->
                             <div class="flex items-center ">
                                 <div>
-                                    <a href="#" data-spa="true" data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
+                                    <a data-spa="true" data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
                                         data-placement="bottom">
                                         <b>
                                             <span class="user-name-holder">
@@ -111,7 +111,7 @@
 
                                 <!-- <div class="px-2">
                             
-                            <a href="#" href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>" 
+                            <a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>" 
                                 data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
                                 data-placement="bottom">
                                 <b>
@@ -147,8 +147,8 @@
             <div class="publication-content">
                 <?php if (not_empty($cl['li']['text'])): ?>
                     <?php
-                    $cl['li']['text'] = cl_rn2br($cl['li']['text']);
-                    $cl['li']['text'] = cl_strip_brs($cl['li']['text']);
+                        $cl['li']['text'] = cl_rn2br($cl['li']['text']);
+                        $cl['li']['text'] = cl_strip_brs($cl['li']['text']);
                     ?>
                     <script>
                         jQuery(document).ready(function($) {
@@ -167,7 +167,7 @@
                     <?php if (count($cl['li']['media']) == 1): ?>
                         <div class="lozad-media">
                             <div class="publication-image">
-                                <a href="#" class="fbox-media2" data-btn='<?php echo cl_template('timeline/likes'); ?>'
+                                <a class="fbox-media2" data-btn='<?php echo cl_template('timeline/likes'); ?>'
                                     data-fancybox="gallery" data-info='<?php echo cl_template('timeline/right_col'); ?>'>
                                     <img class="lozad"
                                         data-src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
@@ -178,7 +178,7 @@
                     <?php else: ?>
                         <div class="publication-images-collage">
                             <?php foreach ($cl['li']['media'] as $i => $row): ?>
-                                <a href="#" class="fbox-media2"
+                                <a class="fbox-media2"
                                     data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
                                     data-info='<?php echo cl_template('timeline/right_col'); ?>'>
                                     <div class="image-collage-item">
@@ -197,7 +197,7 @@
                 <?php elseif ($cl['li']['type'] == 'video' && not_empty($cl['li']['media'])): ?>
                     <div class="lozad-media">
                         <div class="publication-image">
-                            <a href="#" data-type="html5video" class="fbox-media2"
+                            <a data-type="html5video" class="fbox-media2"
                                 data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
                                 data-info='<?php echo cl_template('timeline/right_col'); ?>'>
                                 <img class="lozad"
@@ -215,7 +215,7 @@
                 <?php elseif ($cl['li']['type'] == 'audio' && not_empty($cl['li']['media'])): ?>
                     <div class="publication-audio" style="margin-top:15px;">
                         <div class="cl-plyr-audio">
-                            <a href="#"udio controls preload="metadata" class="plyr">
+                            <audio controls preload="metadata" class="plyr">
                                 <source
                                     src="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
                                     type="audio/mp3">
@@ -231,7 +231,7 @@
 
                 <?php elseif ($cl['li']['type'] == 'document' && not_empty($cl['li']['media'])): ?>
                     <div class="publication-document">
-                        <a href="#"  target="_blank"
+                        <a  target="_blank"
                             class="document-file">
                             <div class="document-file__icon">
                                 <?php echo cl_icon("description"); ?>
@@ -250,7 +250,7 @@
                 <?php elseif ($cl['li']['type'] == 'gif' && not_empty($cl['li']['media'])): ?>
                     <div class="lozad-media">
                         <div class="publication-image">
-                            <a href="#" class="fbox-media2" data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
+                            <a class="fbox-media2" data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
                                 data-info='<?php echo cl_template('timeline/right_col'); ?>'>
                                 <img class="lozad"
                                     data-src="<?php echo fetch_or_get($cl['li']['media'][0]['src'], ''); ?>"
@@ -298,7 +298,7 @@
                             <div class="publication-og-data-inner embeded-iframe">
                                 <div class="og-image">
                                     <div class="lozad-media">
-                                        <a href="#"  class="fbox-media2"
+                                        <a href="<?php echo ($cl['li']['og_data']['video_embed']); ?>" class="fbox-media2"
                                             data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
                                             data-info='<?php echo cl_template('timeline/right_col'); ?>'>
                                             <img class="lozad" data-src="<?php echo ($cl['li']['og_data']['image']); ?>"
@@ -321,7 +321,7 @@
                                         </p>
                                     <?php else: ?>
                                         <p>
-                                            <a href="#" target="_blank" >
+                                            <a target="_blank" href="<?php echo ($cl['li']['og_data']['video_embed']); ?>">
                                                 <?php echo ($cl['li']['og_data']['video_embed']); ?>
                                             </a>
                                         </p>
@@ -334,7 +334,7 @@
                             <div class="publication-og-data-inner embeded-iframe">
                                 <div class="og-image">
                                     <div class="lozad-media">
-                                        <a href="#" class="fbox-media">
+                                        <a href="<?php echo ($cl['li']['og_data']['url']); ?>" class="fbox-media">
                                             <img class="lozad" data-src="<?php echo ($cl['li']['og_data']['image']); ?>"
                                                 alt="Video">
                                             <div class="og-icon no-ml">
@@ -362,7 +362,7 @@
                         <div class="publication-og-data">
                             <div class="publication-og-data-inner link">
                                 <?php if (not_empty($cl['li']['og_data']['image'])): ?>
-                                    <a href="#"  class="fbox-media2"
+                                    <a href="<?php echo ($cl['li']['og_data']['image']); ?>" class="fbox-media2"
                                         data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
                                         data-info='<?php echo cl_template('timeline/right_col'); ?>'>
                                         <div class="og-image">
@@ -378,7 +378,7 @@
                                     <p>
                                         <?php echo ($cl['li']['og_data']['description']); ?>
                                     </p>
-                                    <a href="#"  target="_blank">
+                                    <a href="<?php echo ($cl['li']['og_data']['url']); ?>" target="_blank">
                                         <span class="pup-link-icon">
                                             <?php echo cl_ikon('pub-icon'); ?>
                                         </span><span class="pup-link-icon-a">

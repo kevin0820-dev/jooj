@@ -750,7 +750,6 @@ _smc.userlbox.curr_el = false;
 				}
 			}
 			_smc.repost = function (id = false, event = false) {
-				alert(id);
 				if (_smc.is_logged()) {
 					if ($.isNumeric(id) && id) {
 						$(event).attr('disabled', 'true');
