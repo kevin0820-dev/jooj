@@ -6,10 +6,10 @@
     </div>
     <div class="body_follow">
         <?php if (not_empty($cl['follow_suggestion'])): ?>
-            <div id="cardSlider" class="carousel mb-2 max-w-6xl mx-auto bg-gray-50" style="background: bottom;">  <!--Edited By Kevin.. follow bg when dark mode.. style="background: bottom;"  -->
+            <div id="cardSlider" class="carousel mb-6 max-w-6xl mx-auto bg-gray-50 py-10">
                 <div class="carousel__viewport px-12">
                     <?php foreach ($cl['follow_suggestion'] as $row): ?>
-                        <figure class="carousel__slide py-3  w-1/6">            <!-- edited by kevin to make it center 2024.9.15 2:11 removed class px-4 -->
+                        <figure class="carousel__slide py-3 w-1/6">     <!-- edited by kevin to make "who to follow" act -->
 
                             <img class="mb-4 avatar" src="<?php echo ($row['avatar']); ?>" alt="avatar">
 
@@ -98,7 +98,7 @@
 
                     <?php endforeach; ?>
                 </div>
-                <div class="mb-2 mt-2 follow-suggestion__footer">
+                <div class="mb-4 mt-2 follow-suggestion__footer">
                     <a class="more" href="<?php echo cl_link("suggested"); ?>" data-spa="true">
                         <?php echo cl_translate("Show more"); ?>
                     </a>

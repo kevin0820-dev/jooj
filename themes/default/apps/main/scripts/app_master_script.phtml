@@ -12,13 +12,11 @@
 
 
 	"use strict";
-
 	(function (window) {
 		function _SMColibri() {
 			var data = {
 				url: "{%config url%}"
 			};
-
 			var _smc = Object({
 				curr_pn: "<?php echo fetch_or_get($cl["pn"], "none"); ?>",
 				PS: Object({}),
@@ -812,6 +810,33 @@ _smc.userlbox.curr_el = false;
 							}
 						}).always(function () {
 							$(event).removeAttr('disabled');
+						});
+					}
+				}
+				else {
+					_smc.req_auth();
+				}
+			}
+			_smc.repost_comment = function (id = false, event = false) {
+				if (_smc.is_logged()) {
+					if ($.isNumeric(id) && id) {
+						$.ajax({
+							url: '<?php echo cl_link("native_api/main/repost_comment"); ?>',
+							type: 'POST',
+							dataType: 'json',
+							data: { id: id },
+						}).done(function (data) {
+							if (data.status == 200) {
+								$('div[data-app="black-hole"]').append($(data.html)).find('div[data-app="post-repost-comment"]').modal('show');
+							}
+
+							else if (data.status == 404) {
+								_smc.info("<?php echo cl_translate("No data!"); ?>", "<?php echo cl_translate("This post appears to be deleted.", array('svg_icon' => str_replace('"', '\'', cl_icon('sentiment_satisfied')))); ?>");
+							}
+
+							else {
+								_smc.errorMSG();
+							}
 						});
 					}
 				}
