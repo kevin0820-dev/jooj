@@ -1080,10 +1080,10 @@ else if ($action == 'publish_new_repost') {
             if (empty($thread_id)) {
                 cl_db_insert(T_POSTS, array(
                     "user_id"        => $me['id'],
-                    "publication_id" => $comment_id,
+                    "publication_id" => $post_id,
                     "time"           => time(),
-                    "type"          => "repost",
-                    "comment_on"    => $post_id,
+                    "type"          => "quote",
+                    "comment_on"    => $comment_id,
                 ));
 
                 $data['posts_total'] = ($me['posts'] += 1);
@@ -1192,10 +1192,10 @@ else if ($action == 'publish_new_repost') {
                     if (empty($thread_id)) {
                         cl_db_insert(T_POSTS, array(
                             "user_id" => $me['id'],
-                            "publication_id" => $comment_id,
+                            "publication_id" => $post_id,
                             "time" => time(),
-                            "type" => "repost",
-                            "comment_on" =>  $post_id,
+                            "type" => "quote",
+                            "comment_on" =>  $comment_id,
                         ));
 
 
