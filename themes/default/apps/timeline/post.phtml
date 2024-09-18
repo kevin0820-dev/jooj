@@ -746,6 +746,9 @@
 										</div>
 									<?php endif; ?>
 								<?php endif; ?>
+								<?php if (not_empty($cl['li']['comment_on'])): ?>
+									<?php echo cl_template('timeline/post_comment_on'); ?>
+								<?php endif; ?>
 							</div>
 
 							<div class="publication-footer-ctrls">
@@ -771,8 +774,8 @@
 											</span>
 										</button>
 										<ul class="dropdown-menu">
-											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this);">Quote</button></li>
-											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this);">Reshare</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.repost'));">Quote</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.repost'));">Reshare</button></li>
 										</ul>
 									</div>
 								<?php else: ?>
@@ -786,8 +789,8 @@
 											</span>
 										</button>
 										<ul class="dropdown-menu">
-											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this);">Quote</button></li>
-											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this);">Reshare</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.reposted2'));">Quote</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.reposted2'));">Reshare</button></li>
 										</ul>
 									</div>
 								<?php endif; ?>

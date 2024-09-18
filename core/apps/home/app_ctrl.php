@@ -40,8 +40,10 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false) {
 			if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
 				$post_data['offset_id']   = $row['offset_id'];
 				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
+				$post_data['is_quote']   = (($row['type'] == 'quote') ? true : false);
 				$post_data['is_reposter'] = false;
 				$post_data['attrs']       = array();
+				$post_data['comment_on']  = null;
 
 				if ($post_data['is_repost']) {
 					$post_data['attrs'][]  = cl_html_attrs(array('data-repost' => $row['offset_id']));
@@ -51,6 +53,10 @@ function cl_get_timeline_feed($limit = false, $offset = false, $onset = false) {
 						'username' => $reposter_data['username'],
 						'url' => $reposter_data['url'],
 					);
+				}
+
+				if($post_data['is_quote']){
+					$post_data['comment_on']  = cl_get_guest_feed_one($row['comment_on'])[0];
 				}
 
 				if ($row['user_id'] == $me['id']) {
@@ -112,7 +118,7 @@ function cl_get_page_feed($limit = false, $offset = false, $onset = false) {
 		"offset"    => $offset,
 		"onset"     => $onset,
 		"user_id"   => $me['id'],
-		"symbol_id"   => $symbol_id 
+		"symbol_id"   => $symbol_id,
  	));
 
 	$query_res = $db->rawQuery($sql);
@@ -127,8 +133,10 @@ function cl_get_page_feed($limit = false, $offset = false, $onset = false) {
 			if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
 				$post_data['offset_id']   = $row['offset_id'];
 				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
+				$post_data['is_quote']   = (($row['type'] == 'quote') ? true : false);
 				$post_data['is_reposter'] = false;
 				$post_data['attrs']       = array();
+				$post_data['comment_on']  = null;
 
 				if ($post_data['is_repost']) {
 					$post_data['attrs'][]  = cl_html_attrs(array('data-repost' => $row['offset_id']));
@@ -138,6 +146,10 @@ function cl_get_page_feed($limit = false, $offset = false, $onset = false) {
 						'username' => $reposter_data['username'],
 						'url' => $reposter_data['url'],
 					);
+				}
+
+				if($post_data['is_quote']){
+					$post_data['comment_on']  = cl_raw_post_data($row['comment_on']);
 				}
 
 				if ($row['symbol_id'] == $symbol_id) {

@@ -749,7 +749,7 @@ _smc.userlbox.curr_el = false;
 					_smc.req_auth();
 				}
 			}
-			_smc.repost = function (id = false, event = false) {
+			_smc.repost = function (id = false, event = false) {			/* edited by kevin - reposted => reposted2 */
 				if (_smc.is_logged()) {
 					if ($.isNumeric(id) && id) {
 						$(event).attr('disabled', 'true');
@@ -761,10 +761,10 @@ _smc.userlbox.curr_el = false;
 							data: { id: id },
 						}).done(function (data) {
 							if (data.status == 200) {
-								if ($(event).hasClass('reposted')) {
-									$(event).removeClass('reposted');
+								if ($(event).hasClass('reposted2')) {
+									$(event).removeClass('reposted2');
 
-									$(event).removeClass('reposted').addClass('animated bounceIn').promise().done(function () {
+									$(event).removeClass('reposted2').addClass('animated bounceIn').promise().done(function () {
 										delay(function () {
 											$(event).removeClass('animated bounceIn');
 										}, 1000);
@@ -785,7 +785,7 @@ _smc.userlbox.curr_el = false;
 										}
 
 										if (orig_post.length) {
-											orig_post.find('button[data-an="repost-ctrl"]').removeClass('reposted');
+											orig_post.find('button[data-an="repost-ctrl"]').removeClass('reposted2');
 											orig_post.find('span[data-an="reposts-count"]').text(data.reposts_count);
 											orig_post.find('span[data-an="reposts-count"]').addClass('animated bounceIn').promise().done(function () {
 												delay(function () {
@@ -796,7 +796,7 @@ _smc.userlbox.curr_el = false;
 									}
 								}
 								else {
-									$(event).addClass('reposted').addClass('animated bounceIn').promise().done(function () {
+									$(event).addClass('reposted2').addClass('animated bounceIn').promise().done(function () {
 										delay(function () {
 											$(event).removeClass('animated bounceIn');
 										}, 1000);
