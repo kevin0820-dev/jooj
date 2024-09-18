@@ -817,7 +817,7 @@ _smc.userlbox.curr_el = false;
 					_smc.req_auth();
 				}
 			}
-			_smc.repost_comment = function (id = false, event = false) {
+			_smc.repost_comment = function (id = false, event = false) {			/* edited by kevin - to show modal for quote (added)*/
 				if (_smc.is_logged()) {
 					if ($.isNumeric(id) && id) {
 						$.ajax({

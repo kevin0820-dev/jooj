@@ -9,8 +9,6 @@
 # @ Copyright (c) 2020 - 2023 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
 
-use Aws\DynamoDb\NumberValue;
-
 if ($action == 'upload_post_image') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -1025,7 +1023,7 @@ else if ($action == 'publish_new_post') {
     }
 }
 
-else if ($action == 'publish_new_repost') {
+else if ($action == 'publish_new_repost') {             /* edited by kevin to show modal for repost */
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';
@@ -2025,7 +2023,7 @@ else if($action == 'repost') {
         }
     }
 }
-else if($action == 'repost_comment') {
+else if($action == 'repost_comment') { 									/* edited by kevin to quote comment */
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';

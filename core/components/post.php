@@ -1001,7 +1001,7 @@ function cl_is_poll_voted($poll = array()) {
 	return 0;
 }
 
-function cl_get_guest_feed_one($id = 0) {
+function cl_get_guest_feed_one($id = 0) {									/* edited by kevin to fetch only one post */
 	global $db, $cl;
 
 	$data        = array();

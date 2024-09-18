@@ -6,10 +6,10 @@
     </div>
     <div class="body_follow">
         <?php if (not_empty($cl['follow_suggestion'])): ?>
-            <div id="cardSlider" class="carousel mb-6 max-w-6xl mx-auto bg-gray-50 py-10">
-                <div class="carousel__viewport px-12">
+            <div id="cardSlider" class="carousel mb-6 max-w-6xl mx-auto bg-gray-50">   <!-- edited by kevin to make "who to follow" act -->
+                <div class="carousel__viewport">
                     <?php foreach ($cl['follow_suggestion'] as $row): ?>
-                        <figure class="carousel__slide py-3 w-1/6">     <!-- edited by kevin to make "who to follow" act -->
+                        <figure class="carousel__slide py-3 w-1/6">     <!-- edited by kevin to make "who to follow" act 2024.9.15 2:11 removed class px-4 -->
 
                             <img class="mb-4 avatar" src="<?php echo ($row['avatar']); ?>" alt="avatar">
 

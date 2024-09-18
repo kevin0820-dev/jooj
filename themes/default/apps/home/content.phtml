@@ -113,7 +113,7 @@
 									} ?>
 							<?php endforeach; ?>
 						</div>
-						<?php if (is_array($cl["feed"]) && count($cl["feed"]) == 30): ?>
+						<?php if (is_array($cl["feed"]) && count($cl["feed"]) == 30): ?>			<!-- edited by kevin to make "show more" act well. 2024.9.15 2:11 removed class px-4 -->
 								<div class="timeline-data-loader">
 									<button class="btn btn-custom main-outline lg" data-an="load-more">
 										<?php echo cl_translate("Show more"); ?>
@@ -318,7 +318,7 @@
 	})
 	const cardSlider2 = new Carousel(document.querySelector("#cardSlider2"), {
 		Dots: false,
-		itemtsToShow : 5,
+		itemtsToShow : 5,							/* edited by kevin to make watching work (button to slide) 2024.9.15*/
 	})
 	const cardSlider3 = new Carousel(document.querySelector("#cardSlider3"), {		/* edited by kevin to make watching work (button to slide) 2024.9.15*/
 		Dots: false,

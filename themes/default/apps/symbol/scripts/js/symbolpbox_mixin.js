@@ -432,7 +432,7 @@ var pubbox_form_app_mixin = Object({
                         if($(_app_.$el).attr('id') == 'vue-pubbox-app-3') {
                             $(_app_.$el).parents("div#add_new_post_reply").modal('hide');
                         }
-                        if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
+                        if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {				/* edited by kevin to show modal for repost (added)*/
                             $(_app_.$el).parents("div#add_new_post_repost").modal('hide');
                         }
 
