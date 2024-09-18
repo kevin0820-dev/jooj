@@ -390,7 +390,7 @@ var pubbox_form_app_mixin = Object({
 			var _app_ = this;
 
 			$(_self.target).ajaxSubmit({
-				url: "<?php echo cl_link('native_api/main/publish_new_post'); ?>",
+				url: "<?php echo cl_link('native_api/main/publish_new_post'); ?>",			/* edited by kevin 2024.9.15 */
 				type: 'POST',
 				dataType: 'json',
 				data: {
@@ -449,7 +449,7 @@ var pubbox_form_app_mixin = Object({
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-3') {
 							$(_app_.$el).parents("div#add_new_post_reply").modal('hide');
 						}
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
+						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {				/* edited by kevin to show modal for repost (added)*/
 							$(_app_.$el).parents("div#add_new_post_repost").modal('hide');
 						}
 					}
@@ -465,7 +465,7 @@ var pubbox_form_app_mixin = Object({
 				}
 			});
 		},
-		publish_repost: function(_self = null) {
+		publish_repost: function(_self = null) {			/* edited by kevin to show modal for repost (added)*/
 			_self.preventDefault();
 
 			var form  = $(_self.$el);

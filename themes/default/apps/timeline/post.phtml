@@ -746,7 +746,7 @@
 										</div>
 									<?php endif; ?>
 								<?php endif; ?>
-								<?php if (not_empty($cl['li']['comment_on'])): ?>
+								<?php if (not_empty($cl['li']['comment_on'])): ?>			<!-- edited by kevin to show quoted post -->
 									<?php echo cl_template('timeline/post_comment_on'); ?>
 								<?php endif; ?>
 							</div>
@@ -763,8 +763,8 @@
 									</a>
 								</button>
 
-								<?php if (empty($cl['li']['has_reposted'])): ?>
-									<div class="dropup ">
+								<?php if (empty($cl['li']['has_reposted'])): ?>					<!-- edited by kevin to show buttongroup for repost/quote -->
+									<div class="dropup ">										
 										<button class="ctrls-item repost dropdown-toggle" data-an="repost-ctrl" data-toggle="dropdown">
 											<span class="icon">
 												<?php echo cl_ikon('repost'); ?>
@@ -778,7 +778,7 @@
 											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.repost'));">Reshare</button></li>
 										</ul>
 									</div>
-								<?php else: ?>
+								<?php else: ?>					<!-- edited by kevin to show buttongroup for repost/quote -->
 									<div class="dropup ">
 										<button class="ctrls-item reposted2 dropdown-toggle" data-an="repost-ctrl" data-toggle="dropdown">
 											<span class="icon">
