@@ -759,27 +759,37 @@
 										</span>
 									</a>
 								</button>
+
 								<?php if (empty($cl['li']['has_reposted'])): ?>
-									<!-- <button class="ctrls-item repost" data-toggle="modal" data-target="#add_new_post_repost" data-an="repost-ctrl"> -->
-									<button onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this);"
-										class="ctrls-item repost" data-an="repost-ctrl">
-										<span class="icon">
-											<?php echo cl_ikon('repost'); ?>
-										</span>
-										<span class="num" data-an="reposts-count">
-											<?php echo $cl['li']['reposts_count']; ?>
-										</span>
-									</button>
+									<div class="dropup ">
+										<button class="ctrls-item repost dropdown-toggle" data-an="repost-ctrl" data-toggle="dropdown">
+											<span class="icon">
+												<?php echo cl_ikon('repost'); ?>
+											</span>
+											<span class="num" data-an="reposts-count">
+												<?php echo $cl['li']['reposts_count']; ?>
+											</span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this);">Quote</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this);">Reshare</button></li>
+										</ul>
+									</div>
 								<?php else: ?>
-									<button onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this);"
-										class="ctrls-item reposted2" data-an="repost-ctrl">
-										<span class="icon">
-											<?php echo cl_ikon('repost'); ?>
-										</span>
-										<span class="num" data-an="reposts-count">
-											<?php echo $cl['li']['reposts_count']; ?>
-										</span>
-									</button>
+									<div class="dropup ">
+										<button class="ctrls-item reposted2 dropdown-toggle" data-an="repost-ctrl" data-toggle="dropdown">
+											<span class="icon">
+												<?php echo cl_ikon('repost'); ?>
+											</span>
+											<span class="num" data-an="reposts-count">
+												<?php echo $cl['li']['reposts_count']; ?>
+											</span>
+										</button>
+										<ul class="dropdown-menu">
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this);">Quote</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this);">Reshare</button></li>
+										</ul>
+									</div>
 								<?php endif; ?>
 								<?php if (empty($cl['li']['has_liked'])): ?>
 									<button class="ctrls-item likes"

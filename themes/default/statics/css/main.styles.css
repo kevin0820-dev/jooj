@@ -3911,7 +3911,7 @@ body
   div.publication-data {
   flex: 1;
   padding-left: 15px;
-  overflow: hidden;
+  /* overflow: hidden; */ /*edited by kevin to make button group visible */
 }
 
 body
