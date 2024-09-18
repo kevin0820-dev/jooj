@@ -2041,6 +2041,7 @@ else if($action == 'repost_comment') {
             if (not_empty($post_data)) {
                 $data['status'] = 200;
                 $cl['li'] = $post_data[0];
+                
                 $data['html'] = cl_template('timeline/modals/repost_comment');
                 $data['id'] = $post_data[0]['id'];
             } else {

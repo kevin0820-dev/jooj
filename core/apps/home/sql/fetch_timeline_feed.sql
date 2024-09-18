@@ -10,7 +10,7 @@
 @*************************************************************************@
  */
 
-SELECT posts.`id` as offset_id, posts.`publication_id`, posts.`type`, posts.`user_id` FROM `<?php echo($data['t_posts']); ?>` posts
+SELECT posts.`id` as offset_id, posts.`publication_id`, posts.`type`, posts.`user_id`, posts.`comment_on` FROM `<?php echo($data['t_posts']); ?>` posts
 	
 	INNER JOIN `<?php echo($data['t_pubs']); ?>` pubs ON posts.`publication_id` = pubs.`id`
 
