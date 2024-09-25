@@ -66,7 +66,7 @@
             <div class="publication-data-inner">
                 <div class="publisher-info">
                     <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
-                        <div class="lp">
+                        <div class="lp" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'">
 
                             <a href="<?php echo $cl['li']['comment_on']['owner']['url']; ?>" data-spa="true"
                                 data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"

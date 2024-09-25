@@ -68,7 +68,7 @@
             <div class="publisher-info">
                 <?php if ($cl['li']['comment_on']['owner']['id'] == 1 && not_empty($cl['li']['comment_on']['page']['username'])): ?>
                     <!-- For admin -->
-                    <div class="lp">
+                    <div class="lp" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'">
                         <a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['comment_on']['page']['username'])); ?>"
                             data-sinfo-lbox="<?php echo $cl['li']['comment_on']['page']['id']; ?>" data-toggle="popover"
                             data-placement="bottom">
