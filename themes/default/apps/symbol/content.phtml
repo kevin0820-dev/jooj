@@ -641,7 +641,7 @@
                     <?php if (not_empty($cl["user_posts"])): ?>
                         <?php foreach ($cl["user_posts"] as $cl['li']): ?>
                             <?php $count++; ?>
-                            <?php echo cl_template('timeline/post'); ?>
+                            <?php echo cl_template('timeline/post_symbol'); ?>
                             <?php if ($count == 3) {
                                 echo cl_template('home/follow');
                             } ?>
@@ -656,7 +656,7 @@
                 <div class="timeline-posts-ls py-3" data-an="entry-list">
                     <?php if (not_empty($cl["user_likes"])): ?>
                         <?php foreach ($cl["user_likes"] as $cl['li']): ?>
-                            <?php echo cl_template('timeline/post'); ?>
+                            <?php echo cl_template('timeline/post_symbol'); ?>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <?php echo cl_template('symbol/includes/no_posts'); ?>

@@ -76,7 +76,7 @@
 					</div>
 				<?php endif; ?>
 				<div class="post-list-item-content">
-					<div class="publisher-avatar">
+					<div class="publisher-avatar" onclick="window.location.href='<?php echo $cl['li']['owner']['url']; ?>'">
 						<!-- For post -->
 						<?php if ($cl['li']['symbol_id'] == 0): ?>
 							<a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
@@ -801,8 +801,8 @@
 											</span>
 										</button>
 										<ul class="dropdown-menu">
-											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.repost'));">Quote</button></li>
-											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.repost'));">Reshare</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.ctrls-item'));">Quote</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.ctrls-item'));">Reshare</button></li>
 										</ul>
 									</div>
 								<?php else: ?>					<!-- edited by kevin to show buttongroup for repost/quote -->
@@ -816,8 +816,8 @@
 											</span>
 										</button>
 										<ul class="dropdown-menu">
-											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.reposted2'));">Quote</button></li>
-											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.reposted2'));">Reshare</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost_comment('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.ctrls-item'));">Quote</button></li>
+											<li><button style="height: 40px;" class="dropdown-item" onclick="SMColibri.repost('<?php echo $cl['li']['id']; ?>', this.closest('.dropup').querySelector('.ctrls-item'));">Reshare</button></li>
 										</ul>
 									</div>
 								<?php endif; ?>
