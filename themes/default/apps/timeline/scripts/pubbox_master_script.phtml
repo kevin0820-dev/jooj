@@ -1,63 +1,49 @@
 <script>
-"use strict";
+	
+	"use strict";
 
-$(document).ready(function($) {
-    <?php echo cl_js_template('apps/timeline/scripts/js/pubbox_mixin'); ?>
-    
-    if ($("form#vue-pubbox-app-2").length) {
-        var pubbox_app_2 = new Vue({
-            el:"#vue-pubbox-app-2",
-            mixins: [pubbox_form_app_mixin]
-        });
+	$(document).ready(function($) {
 
-        SMColibri.extend_vue('pubbox2', pubbox_app_2);
+		 <?php echo cl_js_template('apps/timeline/scripts/js/pubbox_mixin'); ?>
+		
+		if ($("form#vue-pubbox-app-2").length) {
+			var pubbox_app_2 = new Vue({
+				el:"#vue-pubbox-app-2",
+				mixins: [pubbox_form_app_mixin]
+			});
 
-        $(document).on('hidden.bs.modal', 'div#add_new_post', function () {  
-            pubbox_app_2.thread_id    = 0;
-            pubbox_app_2.post_privacy = "everyone";
-        });
-    }
+			SMColibri.extend_vue('pubbox2', pubbox_app_2);
 
-    if ($("form#vue-pubbox-app-3").length) {
-        var pubbox_app_2 = new Vue({
-            el:"#vue-pubbox-app-3",
-            mixins: [pubbox_form_app_mixin]
-        });
+			$(document).on('hidden.bs.modal', 'div#add_new_post', function () {  
+		        pubbox_app_2.thread_id    = 0;
+		        pubbox_app_2.post_privacy = "everyone";
+		    });
+		}
+		if ($("form#vue-pubbox-app-3").length) {
+			var pubbox_app_2 = new Vue({
+				el:"#vue-pubbox-app-3",
+				mixins: [pubbox_form_app_mixin]
+			});
 
-        SMColibri.extend_vue('pubbox2', pubbox_app_2);
+			SMColibri.extend_vue('pubbox2', pubbox_app_2);
 
-        $(document).on('hidden.bs.modal', 'div#add_new_post', function () {  
-            pubbox_app_2.thread_id    = 0;
-            pubbox_app_2.post_privacy = "everyone";
-        });
-    }
+			$(document).on('hidden.bs.modal', 'div#add_new_post', function () {  
+		        pubbox_app_2.thread_id    = 0;
+		        pubbox_app_2.post_privacy = "everyone";
+		    });
+		}
+		if ($("form#vue-pubbox-app-repost").length) {				/* edited by kevin to show modal for repost (added)*/
+			var pubbox_app_2 = new Vue({
+				el:"#vue-pubbox-app-repost",
+				mixins: [pubbox_form_app_mixin]
+			});
 
-    if ($("form#vue-pubbox-app-repost").length) {
-        var pubbox_app_2 = new Vue({
-            el:"#vue-pubbox-app-repost",
-            mixins: [pubbox_form_app_mixin]
-        });
+			SMColibri.extend_vue('pubbox2', pubbox_app_2);
 
-        SMColibri.extend_vue('pubbox3', pubbox_app_2);
-
-        $(document).on('hidden.bs.modal', 'div#add_new_post_repost', function () {  
-            pubbox_app_2.thread_id    = 0;
-            pubbox_app_2.post_privacy = "everyone";
-        });
-    }
-
-    if ($("form#vue-pubbox-app-repost_symbol").length) {
-        var pubbox_app_repost_symbol = new Vue({
-            el:"#vue-pubbox-app-repost_symbol",
-            mixins: [pubbox_form_app_mixin]
-        });
-
-        SMColibri.extend_vue('pubbox4', pubbox_app_repost_symbol);
-
-        $(document).on('hidden.bs.modal', 'div#add_new_post_repost_symbol', function () {  
-            pubbox_app_repost_symbol.thread_id    = 0;
-            pubbox_app_repost_symbol.post_privacy = "everyone";
-        });
-    }
-});
+			$(document).on('hidden.bs.modal', 'div#add_new_post_repost', function () {  
+		        pubbox_app_2.thread_id    = 0;
+		        pubbox_app_2.post_privacy = "everyone";
+		    });
+		}
+	});
 </script>

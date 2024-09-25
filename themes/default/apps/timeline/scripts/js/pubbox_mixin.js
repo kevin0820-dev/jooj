@@ -390,7 +390,7 @@ var pubbox_form_app_mixin = Object({
 			var _app_ = this;
 
 			$(_self.target).ajaxSubmit({
-				url: "<?php echo cl_link('native_api/main/publish_new_post'); ?>",			/* edited by kevin 2024.9.15 */
+				url: "<?php echo cl_link('native_api/main/publish_new_post'); ?>",
 				type: 'POST',
 				dataType: 'json',
 				data: {
@@ -449,11 +449,8 @@ var pubbox_form_app_mixin = Object({
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-3') {
 							$(_app_.$el).parents("div#add_new_post_reply").modal('hide');
 						}
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {				/* edited by kevin to show modal for repost (added)*/
+						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
 							$(_app_.$el).parents("div#add_new_post_repost").modal('hide');
-						}
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost_symbol') {				/* edited by kevin to show modal for repost (added) 9/20 */
-							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
 					}
 
@@ -525,7 +522,7 @@ var pubbox_form_app_mixin = Object({
 							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
 						}
 						else {
-							cl_bs_notify("<?php echo cl_translate('Your Quote has been posted on your timeline'); ?>", 1200);
+							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 1200);
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
@@ -536,71 +533,6 @@ var pubbox_form_app_mixin = Object({
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
 							$(_app_.$el).parents("div#add_new_post_repost").modal('hide');
-						}
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost_symbol') {				/* edited by kevin to show modal for repost symbol (added) 9/20 */
-							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
-						}
-					}
-
-					else {
-						_app_.submitting = false;
-						SMColibri.errorMSG();
-					}
-				},
-				complete: function() {
-					_app_.submitting = false;
-					_app_.reset_data();
-				}
-			});
-		},
-		publish_repost_symbol: function(_self = null) {			/* edited by kevin to show modal for repost (added)*/
-			_self.preventDefault();
-
-			var form  = $(_self.$el);
-			var _app_ = this;
-
-			$(_self.target).ajaxSubmit({
-				url: "<?php echo cl_link('native_api/main/publish_new_repost_symbol'); ?>",
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					gif_src: _app_.gif_source,
-					thread_id: ((_app_.thread_id) ? _app_.thread_id : 0),
-					curr_pn: SMColibri.curr_pn,
-					og_data: _app_.og_data,
-					privacy: _app_.post_privacy,
-					poll_data: _app_.poll
-				},
-				beforeSend: function() {
-					_app_.submitting = true;
-				},
-				success: function(data) {
-					if (data.status == 200) {
-						var home_timeline = $('div[data-app="symbol"]');
-						var new_post      = $(data.html).addClass('animated fadeIn');
-
-						if (home_timeline.find('div[data-an="entry-list"]').length) {
-							home_timeline.find('div[data-an="entry-list"]').prepend(new_post).promise().done(function() {
-								setTimeout(function() {
-									home_timeline.find('div[data-an="entry-list"]').find('[data-list-item]').first().removeClass('animated fadeIn');
-								}, 1000);
-							});
-						}
-						else {
-							SMColibri.spa_reload();
-						}
-
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
-							$(_app_.$el).parents("div#add_new_post").modal('hide');
-						}
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-3') {
-							$(_app_.$el).parents("div#add_new_post_reply").modal('hide');
-						}
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
-							$(_app_.$el).parents("div#add_new_post_repost").modal('hide');
-						}
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost_symbol') {				/* edited by kevin to show modal for repost symbol (added) 9/20 */
-							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
 					}
 

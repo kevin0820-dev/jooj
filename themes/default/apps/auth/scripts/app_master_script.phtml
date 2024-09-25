@@ -341,7 +341,7 @@
 						var _app_ = this;
 
 						$(_self.target).ajaxSubmit({
-							url: "<?php echo cl_link("native_api/auth/resetpass"); ?>",
+							url: "<?php echo cl_link("native_api/auth/resetpass"); ?>", //This is password reset email sending part.
 							type: 'POST',
 							dataType: 'json',
 							beforeSend: function() {

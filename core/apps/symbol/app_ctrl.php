@@ -43,10 +43,8 @@ function cl_get_profile_posts($symbol_id = false, $limit = 30, $media = false, $
             if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
                 $post_data['offset_id'] = isset($row['offset_id']) ? $row['offset_id'] : null;
                 $post_data['is_repost'] = (($row['type'] == 'repost') ? true : false);
-                $post_data['is_quote'] = (($row['type'] == 'quote') ? true : false);
                 $post_data['is_reposter'] = false;
                 $post_data['attrs'] = array();
-                $post_data['comment_on'] = null;
 
                 if ($post_data['is_repost']) {
                     $post_data['attrs'][] = cl_html_attrs(array('data-repost' => $post_data['offset_id']));
@@ -58,10 +56,6 @@ function cl_get_profile_posts($symbol_id = false, $limit = 30, $media = false, $
                     );
                 }
 
-                if($post_data['is_quote']){
-					$post_data['comment_on'] = cl_get_guest_feed_one($row['comment_on'])[0];		/* edited by kevin to fetch comment on (added) */	
-				}
-                
                 if (not_empty($cl['is_logged'])) {
                     if ($row['symbol_id'] == $se['id']) {
                         $post_data['is_reposter'] = true;

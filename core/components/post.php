@@ -665,7 +665,7 @@ function cl_post_data($post = array()) {
 		$post["has_liked"]    = cl_has_liked($user_id, $post["id"]);
 		$post["has_saved"]    = cl_has_saved($user_id, $post["id"]);
 		$post["has_reposted"] = cl_has_reposted($user_id, $post["id"]);
-		
+
 		if (cl_is_blocked($post['user_id'], $user_id)) {
 			$post['me_blocked'] = true;
 		}
@@ -899,20 +899,7 @@ function cl_has_reposted($user_id = false, $post_id = false) {
 
 	return (($qr > 0) ? true : false);
 }
-function cl_has_reposted_symbol($user_id = false, $post_id = false) {
-	global $db, $cl;
 
-	if (not_num($user_id) || not_num($post_id)) {
-		return false;
-	}
-
-	$db = $db->where('user_id', $user_id);
-	$db = $db->where('publication_id', $post_id);
-	$db = $db->where('type', 'repost');
-	$qr = $db->getValue(T_PSYMBOL, 'COUNT(*)');
-
-	return (($qr > 0) ? true : false);
-}
 function cl_get_post_likes($post_id = false, $limit = 10, $offset = false) {
     global $db, $cl;
 
