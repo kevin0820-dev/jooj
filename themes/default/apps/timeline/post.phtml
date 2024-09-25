@@ -143,7 +143,7 @@
 							<div class="publisher-info">
 								<!-- For post -->
 								<?php if ($cl['li']['symbol_id'] == 0): ?>
-									<div class="lp">
+									<div class="lp" onclick="window.location.href='<?php echo $cl['li']['owner']['url']; ?>'">
 
 										<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
 											data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
