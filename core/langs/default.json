@@ -1407,6 +1407,7 @@
     "user_b_b_started_following_you_click_on_the_link_below_to_learn_m": "User <b>@{@user_name@}<\/b> started following you. Click on the link below to learn more",
     "user_b_b_wants_to_follow_you_click_on_the_link_below_to_learn_mor": "User <b>@{@user_name@}<\/b> wants to follow you. Click on the link below to learn more",
     "user_b_b_accepted_your_follow_request_click_on_the_link_below_to_": "User <b>@{@user_name@}<\/b> accepted your follow request. Click on the link below to learn more",
+    "p_p_user_b_b_sent_you_a_message_click_on_the_link_below_to_learn_": " <p>{@message@}</p> User <b>@{@user_name@}</b> sent you a message. Click on the link below to learn more",
     "user_b_b_mentioned_you_in_a_post": "User <b>@{@user_name@}<\/b> mentioned you in a post.",
     "user_b_b_liked_your_post": "User <b>@{@user_name@}<\/b> liked your post.",
     "user_b_b_shared_your_publication": "User <b>@{@user_name@}<\/b> shared your publication.",
@@ -1695,11 +1696,3 @@
     "choose_audience": "Choose audience"
 
 }
-
-   
-
-
-
-
-
-

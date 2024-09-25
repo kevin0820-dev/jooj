@@ -278,7 +278,7 @@ function cl_send_mail($data = array()) {
         } 
 
         else if ($cl['config']['smtp_or_mail'] == 'smtp') {
-            $mail->isSMTP();
+            $mail->isSMTP(); 
             $mail->Timeout     = 30;
             $mail->SMTPDebug   = false;
             $mail->Host        = $cl['config']['smtp_host'];

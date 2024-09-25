@@ -381,6 +381,7 @@
 					</a>
 				</h4>
 				<div class="font-semibold pt-3 pb-1">
+				<img src="/themes/default/statics/img/symbol_imgs/<?php echo strtolower($cl['prof_user']['username']); ?>.png" style="height: 15px;  display:inline;" alt="<?php echo ($cl['prof_user']['username']); ?>"> <!--Edited By Kevin.. 9/20-->
 					$<?php echo ($cl['prof_user']['username']); ?>
 				</div>
 			</div>
@@ -640,7 +641,7 @@
                     <?php if (not_empty($cl["user_posts"])): ?>
                         <?php foreach ($cl["user_posts"] as $cl['li']): ?>
                             <?php $count++; ?>
-                            <?php echo cl_template('timeline/post_symbol'); ?>			<!-- edited by kevin to make symbol post work 9/20 -->
+                            <?php echo cl_template('timeline/post'); ?>
                             <?php if ($count == 3) {
                                 echo cl_template('home/follow');
                             } ?>
@@ -655,7 +656,7 @@
                 <div class="timeline-posts-ls py-3" data-an="entry-list">
                     <?php if (not_empty($cl["user_likes"])): ?>
                         <?php foreach ($cl["user_likes"] as $cl['li']): ?>
-                            <?php echo cl_template('timeline/post_symbol'); ?>			<!-- edited by kevin to make symbol post work 9/20-->
+                            <?php echo cl_template('timeline/post'); ?>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <?php echo cl_template('symbol/includes/no_posts'); ?>
@@ -684,7 +685,7 @@
 
 </div>
 <script src="https://cdn.tailwindcss.com"></script>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(function () {
 		moveScroller();
 	});
@@ -711,7 +712,7 @@
 		$(window).scroll(move);
 		move();
 	}
-</script> -->
+</script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#verPopover").popover({

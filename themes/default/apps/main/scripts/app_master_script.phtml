@@ -817,75 +817,7 @@ _smc.userlbox.curr_el = false;
 					_smc.req_auth();
 				}
 			}
-			_smc.repost_symbol = function (id = false, event = false) {			/* edited by kevin - reposted => reposted2 */
-				if (_smc.is_logged()) {
-					if ($.isNumeric(id) && id) {
-						$(event).attr('disabled', 'true');
-
-						$.ajax({
-							url: '<?php echo cl_link("native_api/main/repost_symbol"); ?>',
-							type: 'POST',
-							dataType: 'json',
-							data: { id: id },
-						}).done(function (data) {
-							if (data.status == 200) {
-								if ($(event).hasClass('reposted2')) {
-									$(event).removeClass('reposted2');
-
-									$(event).removeClass('reposted2').addClass('animated bounceIn').promise().done(function () {
-										delay(function () {
-											$(event).removeClass('animated bounceIn');
-										}, 1000);
-									});
-
-									$(event).find('span[data-an="reposts-count"]').text(data.reposts_count);
-
-									if (_smc.curr_pn == 'home' || _smc.curr_pn == 'profile') {
-
-										var timeline_app = ((_smc.curr_pn == 'home') ? $('div[data-app="homepage"]') : $('div[data-app="profile"]'));
-										var orig_post = timeline_app.find('div[data-an="entry-list"]').find('[data-list-item="{0}"]'.format(id));
-										var repost = timeline_app.find('div[data-an="entry-list"]').find('[data-repost="{0}"]'.format(data.repost_id));
-
-										if (repost.length) {
-											repost.slideUp(200, function () {
-												$(this).remove();
-											});
-										}
-
-										if (orig_post.length) {
-											orig_post.find('button[data-an="repost-ctrl"]').removeClass('reposted2');
-											orig_post.find('span[data-an="reposts-count"]').text(data.reposts_count);
-											orig_post.find('span[data-an="reposts-count"]').addClass('animated bounceIn').promise().done(function () {
-												delay(function () {
-													$(event).removeClass('animated bounceIn');
-												}, 1000);
-											});
-										}
-									}
-								}
-								else {
-									$(event).addClass('reposted2').addClass('animated bounceIn').promise().done(function () {
-										delay(function () {
-											$(event).removeClass('animated bounceIn');
-										}, 1000);
-									});
-
-									$(event).find('span[data-an="reposts-count"]').text(data.reposts_count);
-								}
-							}
-							else {
-								_smc.errorMSG();
-							}
-						}).always(function () {
-							$(event).removeAttr('disabled');
-						});
-					}
-				}
-				else {
-					_smc.req_auth();
-				}
-			}
-			_smc.repost_comment = function (id = false, event = false) {			/* edited by kevin - to show modal for quote (added)*/
+			_smc.repost_comment = function (id = false, event = false) {
 				if (_smc.is_logged()) {
 					if ($.isNumeric(id) && id) {
 						$.ajax({
@@ -914,35 +846,7 @@ _smc.userlbox.curr_el = false;
 					_smc.req_auth();
 				}
 			}
-			_smc.repost_comment_symbol = function (id = false, event = false) {			/* edited by kevin - to show modal for quote symbol (added) 9/20 */
-				if (_smc.is_logged()) {
-					if ($.isNumeric(id) && id) {
-						$.ajax({
-							url: '<?php echo cl_link("native_api/main/repost_comment_symbol"); ?>',
-							type: 'POST',
-							dataType: 'json',
-							data: { id: id },
-						}).done(function (data) {
-							if (data.status == 200) {
-								$('div[data-app="repost_comment_symbol"]').html($(data.html));
-								$('input[data-app="selected_repost_id_symbol"]').val(data.id);
-								$('div[data-app="modal-pubbox-repost_symbol"]').modal('show');
-							}
 
-							else if (data.status == 404) {
-								_smc.info("<?php echo cl_translate("No data!"); ?>", "<?php echo cl_translate("This post appears to be deleted.", array('svg_icon' => str_replace('"', '\'', cl_icon('sentiment_satisfied')))); ?>");
-							}
-
-							else {
-								_smc.errorMSG();
-							}
-						});
-					}
-				}
-				else {
-					_smc.req_auth();
-				}
-			}
 			_smc.share_post = function (url = false, encoded_url = false) {
 				if (url && encoded_url) {
 					var modal = "<div class='modal fadeIn share-post-modal' data-an='share-post' tabindex='-1' data-onclose='remove' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'><div class='modal-dialog modal-md' role='document'><div class='modal-content'><div class='modal-header'><div class='modal-header__inner'><h5 class='modal-title'><?php echo cl_translate('Share post'); ?></h5><span class='dismiss-modal' data-dismiss='modal'><?php echo str_replace('"', '\'', cl_icon('close')); ?></span></div></div><div class='modal-body'><div class='social-media-links'><a href='https://twitter.com/intent/tweet?url={0}' target='_blank' class='link-item twitter'><?php echo str_replace('"', '\'', cl_icon('logos/logo-twitter')); ?></a><a href='https://www.facebook.com/sharer.php?u={0}' target='_blank' class='link-item facebook'><?php echo str_replace('"', '\'', cl_icon('logos/logo-facebook')); ?></a><a href='https://www.linkedin.com/shareArticle?mini=true&url={0}' target='_blank' class='link-item linkedin'><?php echo str_replace('"', '\'', cl_icon('logos/logo-linkedin')); ?></a><a href='https://www.pinterest.ru/pin/create/button/?url={0}' target='_blank' class='link-item pinterest'><?php echo str_replace('"', '\'', cl_icon('logos/logo-pinterest')); ?></a><a href='https://www.reddit.com/submit?url={0}' target='_blank' class='link-item reddit'><?php echo str_replace('"', '\'', cl_icon('logos/logo-reddit')); ?></a><a href='https://api.whatsapp.com/send?text={0}' target='_blank' class='link-item whatsapp'><?php echo str_replace('"', '\'', cl_icon('logos/logo-whatsapp')); ?></a><a href='https://telegram.me/share/url?url={0}' target='_blank' class='link-item telegram'><?php echo str_replace('"', '\'', cl_icon('logos/logo-telegram')); ?></a></div><div class='raw-link'><p><?php echo cl_translate('Or copy link'); ?></p><div class='link-input'><input type='text' readonly='true' value='{1}' id='copy-link-input'><button data-clipboard-target='#copy-link-input' data-clipboard-action='copy' class='clip-board-copy copy-link'><?php echo str_replace('"', '\'', cl_icon('content_copy')); ?></button></div></div></div></div></div></div>";

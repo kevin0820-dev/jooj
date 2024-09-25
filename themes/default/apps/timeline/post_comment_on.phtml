@@ -1,6 +1,6 @@
 
 
-<div style="border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
+<div style="border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;">
     <div class="post-list-item-content">
         <div class="publisher-avatar">
             <!-- For post -->
@@ -229,11 +229,35 @@
                                 $('div.publication-text').find('a[href*="/search/"]').addClass('hash');
                             })
                         </script>
-                        <div class="publication-text">
-                            <p class="pub-text">
-                                <?php echo ($cl['li']['comment_on']['text']); ?>
-                            </p>
-                        </div>
+                        
+                        <!-- Edited By Kevin. 9/20 -->
+                                    <div class="publication-text">
+										<p class="pub-text">
+											<?php
+											// Sample text from $cl['li']['text']
+											$text = $cl['li']['comment_on']['text'];
+
+											// Regular expression to find <a> tags containing text starting with $ (like $abc)
+											$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+
+											// Use preg_replace_callback to replace matches with an image tag
+											$modified_text = preg_replace_callback($pattern, function($matches) {
+												// Extract the word inside the <a> tag without the $ sign
+												$symbol = strtolower($matches[2]);
+
+												// Create the image tag
+												$image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 15px; padding-right: 5px; display:inline;" alt="' . $symbol . '">';
+
+												// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
+												return $image_tag . $matches[1];
+											}, $text);
+
+											// Output the modified text
+											echo $modified_text;
+											?>
+										</p>
+									</div>
+                        
                     <?php endif; ?>
 
                     <?php if ($cl['li']['comment_on']['type'] == 'image' && not_empty($cl['li']['comment_on']['media'])): ?>

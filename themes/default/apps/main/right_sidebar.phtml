@@ -223,6 +223,10 @@
 					<?php foreach ($cl['hot_symbols'] as $row): ?>
 						<div class="topical-posts__item">
 							<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>" >
+							
+							<img src="/themes/default/statics/img/symbol_imgs/<?php echo strtolower($row['symbol']); ?>.png" style="height: 17px; padding-right: 5px;" alt="">
+							<!-- Edited By Kevin.. Attached Symbol Icon in Right Side Bar. 9/20 -->
+
 								<b>$</b>
 
 								<strong>
