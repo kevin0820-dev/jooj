@@ -1784,7 +1784,7 @@ function cl_notify_user($data = array()) {
                     "repost" => cl_translate('User <b>@{@user_name@}</b> shared your publication.', array("user_name" => $me["name"])),
                     "visit" => cl_translate('User <b>@{@user_name@}</b> visited your profile.', array("user_name" => $me["name"])),
                     "ad_approval" => cl_translate('Congratulations! Your add has been approved. Click on the link below to learn more'),
-                    "comment" => cl_translate(' <p>{@message@}</p> User <b>@{@user_name@}</b> sent you a message. Click on the link below to learn more', array("user_name" => $me["name"], "message" => $data["message"]))
+                    "comment" => cl_translate(' <p>{@message@}</p> User <b>@{@user_name@}</b> sent you a message. Click on the link below to learn more', array("user_name" => $me["name"], "message" => array_key_exists("message", $data) ? $data["message"] : ""))
                 ),
             );
             if (in_array($data['subject'], array('reply', 'repost', 'like', 'mention'))) {
