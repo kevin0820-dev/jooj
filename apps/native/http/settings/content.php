@@ -13,6 +13,7 @@ if (empty($cl["is_logged"])) {
 	cl_redirect("404");
 }
 
+
 $cl["page_title"]    = cl_translate("Account settings");
 $cl["page_desc"]     = $cl["config"]["description"];
 $cl["page_kw"]       = $cl["config"]["keywords"];

@@ -8,8 +8,9 @@
 			
 				<form data-an="search-form" class="form timeline-searchbar__form" v-on:submit="search_entries($event)"
 					autocomplete="off">
+
+				<!--Edited By Kevin.. Search Input box. Not edited yet -->
 					<div class="keyword-input">
-						
 						<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')"
 							type="text"  data-toggle="modal" data-target="#loginModal" placeholder="<?php echo cl_translate("search_form"); ?> {%config name%}"
 							autofocus="true">
@@ -20,6 +21,9 @@
 							<?php echo cl_icon('spinner-icon'); ?>
 						</span>
 					</div>
+
+
+					
 				</form>
 			</div>
 			<div class="login-feed">

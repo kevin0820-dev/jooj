@@ -446,12 +446,11 @@ function cl_signout_user() {
 
         unset($_COOKIE['dark_mode']);
         setcookie('dark_mode', "", -1);
-        cl_redirect("./");
     }
 
     @session_destroy();
 
-    cl_redirect('/');
+    cl_redirect('/./');                  /* edited by Kevin */
 }
 
 function cl_signout_user_by_id($user_id = false) {
@@ -466,6 +465,7 @@ function cl_signout_user_by_id($user_id = false) {
 
     return $qr;
 }
+
 function cl_delete_symbol_data($symbol_id = false) {
     global $db;
     if (not_num($symbol_id)) {
@@ -1754,7 +1754,7 @@ function cl_notify_user($data = array()) {
                 "lang_data"    => $cl["languages"][$cl['enotif_user']['language']],
                 "lang_text"    => cl_get_langs($cl['enotif_user']['language'])
             );
-
+            
             $cl['enotif_data'] = array(
                 "url" => cl_link($me['username']),
                 "subject" => $data['subject'],
@@ -1770,7 +1770,8 @@ function cl_notify_user($data = array()) {
                     "like" => cl_translate('Liked your post'),
                     "repost" => cl_translate('Shared your publication'),
                     "visit" => cl_translate('Visited your profile'),
-                    "ad_approval" => cl_translate('Your add has been approved')
+                    "ad_approval" => cl_translate('Your add has been approved'),
+                    "comment" => cl_translate('Sent you a new message')
                 ),
                 "notif_text" => array(
                     "verified" => cl_translate('Congratulations! Your account has been successfully verified. Click on the link below to learn more'),
@@ -1782,10 +1783,10 @@ function cl_notify_user($data = array()) {
                     "like" => cl_translate('User <b>@{@user_name@}</b> liked your post.', array("user_name" => $me["name"])),
                     "repost" => cl_translate('User <b>@{@user_name@}</b> shared your publication.', array("user_name" => $me["name"])),
                     "visit" => cl_translate('User <b>@{@user_name@}</b> visited your profile.', array("user_name" => $me["name"])),
-                    "ad_approval" => cl_translate('Congratulations! Your add has been approved. Click on the link below to learn more')
-                )
+                    "ad_approval" => cl_translate('Congratulations! Your add has been approved. Click on the link below to learn more'),
+                    "comment" => cl_translate(' <p>{@message@}</p> User <b>@{@user_name@}</b> sent you a message. Click on the link below to learn more', array("user_name" => $me["name"], "message" => $data["message"]))
+                ),
             );
-
             if (in_array($data['subject'], array('reply', 'repost', 'like', 'mention'))) {
                 $cl['enotif_data']['url'] = cl_link(cl_strf("thread/%d", $data['entry_id']));
             }

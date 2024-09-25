@@ -866,7 +866,9 @@ else if ($action == "save_enotif_settings") {
         "subscribe_accept"     => ((not_empty($_POST["subscribe_accept"])) ? 1 : 0),
         "reply"                => ((not_empty($_POST["reply"])) ? 1 : 0),
         "repost"               => ((not_empty($_POST["repost"])) ? 1 : 0),
-        "mention"              => ((not_empty($_POST["mention"])) ? 1 : 0)
+        "mention"              => ((not_empty($_POST["mention"])) ? 1 : 0),
+        "comment"              => ((not_empty($_POST["comment"])) ? 1 : 0),
+        // Kevin. 9/24. New "comment" item
     );
 
     if ($cl["config"]["email_notifications"] == "on") {

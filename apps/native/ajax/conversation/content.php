@@ -22,7 +22,7 @@ else {
 		$data['status']   = 400;
 		$data['err_code'] = 0;
 		$send_to          = cl_session('interloc_user_id');
-
+		
 		if (is_posnum($send_to) && cl_is_blocked($send_to, $me['id']) != true && cl_is_blocked($me['id'], $send_to) != true) {
 			if (cl_can_direct_message($send_to)) {
 				if (not_empty($_FILES['image']) && not_empty($_FILES['image']['tmp_name'])) {	
@@ -104,6 +104,13 @@ else {
 	                        	'name' => $me['name']
 	                        )
 	                    ));
+						// Edited By Kevin. 9/24. e-notification for message
+						cl_notify_user(array(
+							'subject'  => 'comment',
+							'user_id'  => $send_to,
+							'entry_id' => $me['id'],
+							'message' => cl_text_secure($_POST['message'])
+						));
 					}
 				}
 			}
