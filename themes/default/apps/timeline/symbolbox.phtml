@@ -1,20 +1,13 @@
 <div class="timeline-pubbox-container">
 	<div class="flex py-2">
-		<!-- <div class="avatar">
-			<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
-		</div> -->
         <div class="w-full">
-        <div class="flex -space-x-2 overflow-hidden">
-			<img src="<?php echo ($cl['prof_user']['avatar']); ?>" class="inline-block h-9 w-9 rounded-full ring-2 ring-white" alt="Avatar">
-            <img src="<?php echo ($me['avatar']); ?>" class="inline-block h-9 w-9 rounded-full ring-2 ring-white" alt="Avatar">
-		</div>
+			<div class="flex -space-x-2 overflow-hidden">
+				<img src="<?php echo ($cl['prof_user']['avatar']); ?>" class="inline-block h-9 w-9 rounded-full ring-2 ring-white" alt="Avatar">
+				<img src="<?php echo ($me['avatar']); ?>" class="inline-block h-9 w-9 rounded-full ring-2 ring-white" alt="Avatar">
+			</div>
         </div>
 	</div>
 	<div class="rp">
-	<!-- <?php 
-    // Добавим отладочный вывод значения symbol_id
-    echo "<p>Debug: symbol_id = " . htmlspecialchars($cl['symbol_id']) . "</p>";
-    ?> -->
 		<form class="form" id="vue-pubbox-app-<?php echo ($cl['pb_id']); ?>" v-on:submit="publish($event)">
 			<!-- Post Privacy -->
 			<input type="hidden" name="symbol_id" value="<?php echo htmlspecialchars($cl['symbol_id']); ?>">
@@ -73,7 +66,7 @@
 			</div>
 			<!-- End Post Privacy -->
 			<div class="input-holder">
-        <textarea ref="text_input"
+        		<textarea ref="text_input"
                   v-on:input.trim="text_input_trigger"
                   v-on:blur="text_blur_trigger"
                   v-on:focus="text_focus_trigger"
@@ -81,7 +74,7 @@
                   v-model="text"
                   name="post_text"
                   placeholder="Share your idea on $<?php echo ($cl['prof_user']['username']); ?>"></textarea>
-    </div>
+    		</div>
 			<div class="input-autocomplete" v-if="hashtags.tags.length">
 				<div class="input-autocomplete__hashtags">
 					<div class="input-autocomplete__hashtags-list">

@@ -216,7 +216,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal fade modal-pubbox" data-app="modal-pubbox-repost" id="add_new_post_repost" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" data-onclose="close" aria-hidden="true">		<!-- edited by kevin to show modal for repost (added)-->
+			<div class="modal fade modal-pubbox" data-app="modal-pubbox-repost" id="add_new_post_repost" tabindex="-1" role="dialog" data-keyboard="true" data-backdrop="static" data-onclose="close" aria-hidden="true">		<!-- edited by kevin to show modal for repost (added) -->
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -230,6 +230,23 @@
 						</div>
 						<div class="modal-body">
 							<?php $cl['pb_id'] = "repost"; echo cl_template('timeline/pubbox_repost'); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade modal-pubbox" data-app="modal-pubbox-repost_symbol" id="add_new_post_repost_symbol" tabindex="-1" role="dialog" data-keyboard="true" data-backdrop="static" data-onclose="close" aria-hidden="true">		<!-- edited by kevin to show modal for repost_symbol (added) 9/20 -->
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="title">
+								<h5>You are going to quote...</h5>
+							</div>
+							<div class="close">
+								<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+							</div>
+						</div>
+						<div class="modal-body">
+							<?php $cl['pb_id'] = "repost_symbol"; echo cl_template('timeline/pubbox_repost_symbol'); ?>
 						</div>
 					</div>
 				</div>
