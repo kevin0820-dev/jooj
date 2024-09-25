@@ -390,7 +390,7 @@ var pubbox_form_app_mixin = Object({
 			var _app_ = this;
 
 			$(_self.target).ajaxSubmit({
-				url: "<?php echo cl_link('native_api/main/publish_new_post'); ?>",			/* edited by kevin 2024.9.15 */
+				url: "<?php echo cl_link('native_api/main/publish_new_post'); ?>",
 				type: 'POST',
 				dataType: 'json',
 				data: {
@@ -449,7 +449,7 @@ var pubbox_form_app_mixin = Object({
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-3') {
 							$(_app_.$el).parents("div#add_new_post_reply").modal('hide');
 						}
-						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {				/* edited by kevin to show modal for repost (added)*/
+						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
 							$(_app_.$el).parents("div#add_new_post_repost").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost_symbol') {				/* edited by kevin to show modal for repost (added) 9/20 */
@@ -525,7 +525,7 @@ var pubbox_form_app_mixin = Object({
 							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
 						}
 						else {
-							cl_bs_notify("<?php echo cl_translate('Your Quote has been posted on your timeline'); ?>", 1200);
+							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 1200);
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
@@ -588,6 +588,7 @@ var pubbox_form_app_mixin = Object({
 						}
 						else {
 							SMColibri.spa_reload();
+							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 1200);
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {

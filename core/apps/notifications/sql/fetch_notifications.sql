@@ -23,7 +23,7 @@ SELECT n.`id`, n.`notifier_id`, n.`recipient_id`, n.`status`, n.`subject`, n.`en
 	<?php endif; ?>
 
 	<?php if($data['type'] == "notifs"): ?>
-		AND n.`subject` IN ('reply','subscribe', 'like', 'repost', 'verified', 'visit', 'subscribe_request', 'subscribe_accept', 'ad_approval')
+		AND n.`subject` IN ('reply','subscribe', 'like', 'repost', 'verified', 'visit', 'subscribe_request', 'subscribe_accept', 'ad_approval', 'comment')
 	<?php else: ?>
 		AND n.`subject` = 'mention'
 	<?php endif; ?>
