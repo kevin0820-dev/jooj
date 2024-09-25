@@ -640,7 +640,7 @@
                     <?php if (not_empty($cl["user_posts"])): ?>
                         <?php foreach ($cl["user_posts"] as $cl['li']): ?>
                             <?php $count++; ?>
-                            <?php echo cl_template('timeline/post'); ?>
+                            <?php echo cl_template('timeline/post_symbol'); ?>			<!-- edited by kevin to make symbol post work 9/20 -->
                             <?php if ($count == 3) {
                                 echo cl_template('home/follow');
                             } ?>
@@ -655,7 +655,7 @@
                 <div class="timeline-posts-ls py-3" data-an="entry-list">
                     <?php if (not_empty($cl["user_likes"])): ?>
                         <?php foreach ($cl["user_likes"] as $cl['li']): ?>
-                            <?php echo cl_template('timeline/post'); ?>
+                            <?php echo cl_template('timeline/post_symbol'); ?>			<!-- edited by kevin to make symbol post work 9/20-->
                         <?php endforeach; ?>
                     <?php else: ?>
                         <?php echo cl_template('symbol/includes/no_posts'); ?>
@@ -684,7 +684,7 @@
 
 </div>
 <script src="https://cdn.tailwindcss.com"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function () {
 		moveScroller();
 	});
@@ -711,7 +711,7 @@
 		$(window).scroll(move);
 		move();
 	}
-</script>
+</script> -->
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#verPopover").popover({
