@@ -900,6 +900,21 @@ function cl_has_reposted($user_id = false, $post_id = false) {
 	return (($qr > 0) ? true : false);
 }
 
+function cl_has_reposted_symbol($user_id = false, $post_id = false) {
+	global $db, $cl;
+
+	if (not_num($user_id) || not_num($post_id)) {
+		return false;
+	}
+
+	$db = $db->where('user_id', $user_id);
+	$db = $db->where('publication_id', $post_id);
+	$db = $db->where('type', 'repost');
+	$qr = $db->getValue(T_PSYMBOL, 'COUNT(*)');
+
+	return (($qr > 0) ? true : false);
+}
+
 function cl_get_post_likes($post_id = false, $limit = 10, $offset = false) {
     global $db, $cl;
 

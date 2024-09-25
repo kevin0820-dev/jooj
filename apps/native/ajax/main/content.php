@@ -9,8 +9,6 @@
 # @ Copyright (c) 2020 - 2023 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
 
-use Aws\DynamoDb\NumberValue;
-
 if ($action == 'upload_post_image') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -1025,7 +1023,7 @@ else if ($action == 'publish_new_post') {
     }
 }
 
-else if ($action == 'publish_new_repost') {
+else if ($action == 'publish_new_repost') {             /* edited by kevin to show modal for repost */
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';
@@ -1112,7 +1110,9 @@ else if ($action == 'publish_new_repost') {
             if (in_array($curr_pn, array('home','thread'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
-                $data['html'] = cl_template('timeline/post');
+                $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
+                $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];    #edited by kevin to make quote arise in timeline when publish it
+                $data['html'] = cl_template('timeline/post');            #edited by kevin to make quote arise in timeline when publish it
             }
 
             if (not_empty($mentions)) {
@@ -1234,7 +1234,9 @@ else if ($action == 'publish_new_repost') {
                     if (in_array($curr_pn, array('home', 'thread'))) {
                         $post_data    = cl_raw_post_data($post_id);
                         $cl['li']     = cl_post_data($post_data);
-                        $data['html'] = cl_template('timeline/post');
+                        $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
+                        $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];    #edited by kevin to make quote arise in timeline when publish it
+                        $data['html'] = cl_template('timeline/post');            #edited by kevin to make quote arise in timeline when publish it
                     }
 
                     if (not_empty($mentions)) {
@@ -1335,16 +1337,16 @@ else if ($action == 'publish_new_post_symbol') {
                 ));
 
                 // Update posts count for the symbol
-        $symbol_data = cl_raw_symbol_data($symbol_id); // Retrieve symbol data
-        if ($symbol_data) {
-            $new_posts_total = $symbol_data['posts'] + 1; // Increment posts count
-            cl_update_symbol_data($symbol_id, array(
-                'posts' => $new_posts_total
-            ));
-            $data['posts_total'] = $new_posts_total;
-        } else {
-            $data['posts_total'] = 0; // Handle if symbol data not found
-        }
+                $symbol_data = cl_raw_symbol_data($symbol_id); // Retrieve symbol data
+                if ($symbol_data) {
+                    $new_posts_total = $symbol_data['posts'] + 1; // Increment posts count
+                    cl_update_symbol_data($symbol_id, array(
+                        'posts' => $new_posts_total
+                    ));
+                    $data['posts_total'] = $new_posts_total;
+                } else {
+                    $data['posts_total'] = 0; // Handle if symbol data not found
+                }
             }
             else {
                 $data['replys_total'] = cl_update_thread_replys($thread_id, 'plus');
@@ -1418,16 +1420,16 @@ else if ($action == 'publish_new_post_symbol') {
                         ));
 
                          // Update posts count for the symbol
-        $symbol_data = cl_raw_symbol_data($symbol_id); // Retrieve symbol data
-        if ($symbol_data) {
-            $new_posts_total = $symbol_data['posts'] + 1; // Increment posts count
-            cl_update_symbol_data($symbol_id, array(
-                'posts' => $new_posts_total
-            ));
-            $data['posts_total'] = $new_posts_total;
-        } else {
-            $data['posts_total'] = 0; // Handle if symbol data not found
-        }
+                        $symbol_data = cl_raw_symbol_data($symbol_id); // Retrieve symbol data
+                        if ($symbol_data) {
+                            $new_posts_total = $symbol_data['posts'] + 1; // Increment posts count
+                            cl_update_symbol_data($symbol_id, array(
+                                'posts' => $new_posts_total
+                            ));
+                            $data['posts_total'] = $new_posts_total;
+                        } else {
+                            $data['posts_total'] = 0; // Handle if symbol data not found
+                        }
                     }
                     else {
                         $data['replys_total'] = cl_update_thread_replys($thread_id, 'plus');
@@ -1474,6 +1476,276 @@ else if ($action == 'publish_new_post_symbol') {
     }
 }
 
+else if ($action == 'publish_new_repost_symbol') {             /* edited by kevin to show modal for repost */
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = 0;
+        $data['status'] = 400;
+        $max_post_length = $cl["config"]["max_post_len"];
+        $post_data = $me['draft_post'];
+        $curr_pn = fetch_or_get($_POST['curr_pn'], "none");
+        $post_text = fetch_or_get($_POST['post_text'], "");
+        $gif_src = fetch_or_get($_POST['gif_src'], "");
+        $og_data = fetch_or_get($_POST['og_data'], array());
+        $poll_data = fetch_or_get($_POST['poll_data'], array());
+        $thread_id = fetch_or_get($_POST['thread_id'], 0);
+        $symbol_id = fetch_or_get($_POST['symbol_id'], 0); // Получаем symbol_id
+        $post_privacy = fetch_or_get($_POST['privacy'], "everyone");
+        $post_text = cl_croptxt($post_text, $max_post_length);
+        $thread_data = array();
+        $comment_id       = fetch_or_get($_POST['selected_repost_id_symbol'], 0);
+
+        if (not_empty($thread_id)) {
+            $thread_data  = cl_raw_post_data($thread_id);
+            $post_privacy = "everyone";
+
+            if (empty($thread_data) || cl_can_reply($thread_data) != true) {
+                $thread_id   = 0; 
+                $thread_data = array();
+            }
+        }
+
+        else {
+            if (in_array($post_privacy, array("everyone", "followers", "mentioned")) != true) {
+                $post_privacy = "everyone";
+            }
+        }
+
+        if (not_empty($post_data) && not_empty($post_data["media"])) {
+            $data['status'] = 200;
+            $thread_id      = ((is_posnum($thread_id)) ? $thread_id : 0);
+            $post_id        = $post_data['id'];
+            $post_text      = cl_upsert_htags($post_text);
+            $post_text      = cl_upsert_symbols($post_text);
+            $mentions       = cl_get_user_mentions($post_text);
+            $qr             = cl_update_post_data($post_id, array(
+                "text"      => cl_text_secure($post_text),
+                "status"    => "active",
+                "thread_id" => $thread_id,
+                "time"      => time(),
+                "priv_wcs"  => $me["profile_privacy"],
+                "priv_wcr"  => $post_privacy
+            ));
+
+
+            if (empty($thread_id)) {
+                cl_db_insert(T_PSYMBOL, array(
+                    "user_id"        => $me['id'],
+                    "publication_id" => $post_id,
+                    "time"           => time(),
+                    "type"          => "quote",
+                    "symbol_id"     => $symbol_id,
+                    "comment_on"    => $comment_id,
+                ));
+
+                // Update posts count for the symbol
+                $symbol_data = cl_raw_symbol_data($symbol_id); // Retrieve symbol data
+                if ($symbol_data) {
+                    $new_posts_total = $symbol_data['posts'] + 1; // Increment posts count
+                    cl_update_symbol_data($symbol_id, array(
+                        'posts' => $new_posts_total
+                    ));
+                    $data['posts_total'] = $new_posts_total;
+                } else {
+                    $data['posts_total'] = 0; // Handle if symbol data not found
+                }
+            }
+
+            else {
+                $data['replys_total'] = cl_update_thread_replys($thread_id, 'plus');
+
+                cl_update_post_data($post_id, array(
+                    "target" => "pub_reply"
+                ));
+
+                if ($thread_data['user_id'] != $me['id']) {
+                    cl_notify_user(array(
+                        'subject'  => 'reply',
+                        'user_id'  => $thread_data['user_id'],
+                        'entry_id' => $post_id
+                    ));
+                }
+            }
+
+            if (in_array($curr_pn, array('home','thread', 'symbol'))) {
+                $post_data    = cl_raw_post_data($post_id);
+                $cl['li']     = cl_post_data($post_data);
+                $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
+                $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];    #edited by kevin to make quote arise in timeline when publish it
+                $data['html'] = cl_template('timeline/post_symbol');            #edited by kevin to make quote arise in timeline when publish it
+            }
+
+            if (not_empty($mentions)) {
+                cl_notify_mentioned_users($mentions, $post_id);
+            }
+
+            cl_delete_post_junk_files($post_data['id'], $post_data['type']);
+        }
+
+        else {
+            if (not_empty($post_text) || not_empty($gif_src) || not_empty($og_data) || not_empty($poll_data)) {
+                $thread_id      = ((is_posnum($thread_id)) ? $thread_id : 0);
+                $post_text      = cl_upsert_htags($post_text);
+                $post_text      = cl_upsert_symbols($post_text);
+                $mentions       = cl_get_user_mentions($post_text);
+                $insert_data    = array(
+                    "user_id"   => $me['id'],
+                    "symbol_id"   => $symbol_id,
+                    "text"      => cl_text_secure($post_text),
+                    "status"    => "active",
+                    "type"      => "text",
+                    "thread_id" => $thread_id,
+                    "time"      => time(),
+                    "priv_wcs"  => $me["profile_privacy"],
+                    "priv_wcr"  => $post_privacy
+                );
+
+                if(not_empty($post_text) && not_empty($poll_data) && cl_is_valid_poll($poll_data)) {
+                    $insert_data['og_data']   = "";
+                    $gif_src                  = "";
+                    $insert_data['type']      = "poll";
+                    $insert_data['poll_data'] = array_map(function($option) {
+                        return array(
+                            "option" => cl_text_secure($option["value"]),
+                            "voters" => array(),
+                            "votes"  => 0
+                        );
+                    }, $poll_data);
+
+                    $insert_data['poll_data'] = json($insert_data['poll_data'], true);
+                }
+
+                else if (not_empty($gif_src) && is_url($gif_src)) {
+                    $insert_data['og_data'] = "";
+                    $insert_data['type']    = "gif";
+                }
+
+                else if(not_empty($og_data) && cl_is_valid_og($og_data)) {
+                    if (not_empty($og_data["image"]) && is_url($og_data["image"])) {
+                        $og_data["image"] = cl_import_image(array(
+                            'url' => $og_data["image"],
+                            'file_type' => 'thumbnail',
+                            'folder' => 'images',
+                            'slug' => 'og_img'
+                        ));
+
+                        if (empty($og_data["image"])) {
+                            $og_data["image"] = "";
+                        }
+                        else{
+                            $og_data["image_loc"] = true;
+                        }
+
+                        $insert_data['og_data'] = json($og_data, true);
+                        $gif_src = "";
+                    }
+                    else{
+                        $insert_data['og_data'] = json(array(), true);
+                        $gif_src = "";
+                    }
+                }
+
+                $post_id = cl_db_insert(T_PUBS, $insert_data);
+
+                if (is_posnum($post_id)) {
+
+                    $data['status'] = 200;
+
+                    if (empty($thread_id)) {
+                        cl_db_insert(T_PSYMBOL, array(
+                            "user_id" => $me['id'],
+                            "publication_id" => $post_id,
+                            "time" => time(),
+                            "type" => "quote",
+                            "symbol_id" => $symbol_id,
+                            "comment_on" =>  $comment_id,
+                        ));
+
+                        // Update posts count for the symbol
+                        $symbol_data = cl_raw_symbol_data($symbol_id); // Retrieve symbol data
+                        if ($symbol_data) {
+                            $new_posts_total = $symbol_data['posts'] + 1; // Increment posts count
+                            cl_update_symbol_data($symbol_id, array(
+                                'posts' => $new_posts_total
+                            ));
+                            $data['posts_total'] = $new_posts_total;
+                        } else {
+                            $data['posts_total'] = 0; // Handle if symbol data not found
+                        }
+                    }
+
+                    else {
+                        $data['replys_total'] = cl_update_thread_replys($thread_id, 'plus');
+
+                        cl_update_post_data($post_id, array(
+                            "target" => "pub_reply"
+                        ));
+
+                        if ($thread_data['user_id'] != $me['id']) {
+                            cl_notify_user(array(
+                                'subject'  => 'reply',
+                                'user_id'  => $thread_data['user_id'],
+                                'entry_id' => $post_id
+                            ));
+                        }
+                    }
+
+                    if ($insert_data["type"] == "gif") {
+                        cl_db_insert(T_PUBMEDIA, array(
+                            "pub_id" => $post_id,
+                            "type"   => "gif",
+                            "src"    => $gif_src,
+                            "time"   => time(),
+                        ));
+                    }
+
+                    if (in_array($curr_pn, array('home', 'thread', 'symbol'))) {
+                        $post_data    = cl_raw_post_data($post_id);
+                        $cl['li']     = cl_post_data($post_data);
+                        $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
+                        $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];    #edited by kevin to make quote arise in timeline when publish it
+                        $data['html'] = cl_template('timeline/post_symbol');            #edited by kevin to make quote arise in timeline when publish it
+                    }
+
+                    if (not_empty($mentions)) {
+                        cl_notify_mentioned_users($mentions, $post_id);
+                    }
+
+                    if (is_posnum($comment_id)) {
+                        $post_id = $comment_id;
+                        $post_data = cl_raw_post_data($post_id);
+            
+                        if (not_empty($post_data)) {        
+                            $reposts_count         = ($post_data['reposts_count'] += 1);
+                            $data['status']        = 200;
+                            $data['reposts_count'] = $reposts_count;
+        
+                            cl_update_post_data($post_id, array(
+                                'reposts_count' => $reposts_count
+                            ));
+        
+                            if ($post_data['user_id'] != $me['id']) {
+                                cl_notify_user(array(
+                                    'subject'  => 'repost',
+                                    'user_id'  => $post_data['user_id'],
+                                    'entry_id' => $post_id
+                                ));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        cl_delete_orphan_posts($me['id']);
+        cl_update_user_data($me['id'], array(
+            'last_post' => 0
+        ));
+    }
+}
 
 else if($action == 'get_draft_post') {
     $data['status']   = 404;
@@ -2025,7 +2297,77 @@ else if($action == 'repost') {
         }
     }
 }
-else if($action == 'repost_comment') { 									/* edited by kevin to quote comment 9/18*/
+else if($action == 'repost_symbol') {
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = 0;
+        $data['status']   = 400;
+        $post_id          = fetch_or_get($_POST['id'], 0);
+
+        if (is_posnum($post_id)) {
+            $post_data = cl_raw_post_data($post_id);
+
+            if (not_empty($post_data)) {
+                if (cl_has_reposted_symbol($me['id'], $post_id) != true) {
+                    $db->insert(T_PSYMBOL, array(
+                        'publication_id'  => $post_id,
+                        'user_id'         => $me['id'],
+                        'type'            => 'repost',
+                        'time'            => time(),
+                        "symbol_id"       => $post_data['symbol_id'],
+                    ));
+
+                    $reposts_count         = ($post_data['reposts_count'] += 1);
+                    $data['status']        = 200;
+                    $data['reposts_count'] = $reposts_count;
+
+                    cl_update_post_data($post_id, array(
+                        'reposts_count' => $reposts_count
+                    ));
+
+                    if ($post_data['user_id'] != $me['id']) {
+                        cl_notify_user(array(
+                            'subject'  => 'repost',
+                            'user_id'  => $post_data['user_id'],
+                            'entry_id' => $post_id
+                        ));
+                    }
+                }
+                else {
+                    $db     = $db->where('publication_id', $post_id);
+                    $db     = $db->where('user_id', $me['id']);
+                    $db     = $db->where('type', 'repost');
+                    $repost = $db->getOne(T_PSYMBOL);
+
+                    if (cl_queryset($repost)) {
+                        $db                    = $db->where('publication_id', $post_id);
+                        $db                    = $db->where('user_id', $me['id']);
+                        $db                    = $db->where('type', 'repost');
+                        $qr                    = $db->delete(T_PSYMBOL);
+                        $data['status']        = 200;
+                        $data['repost_id']     = $repost['id'];
+                        $reposts_count         = ($post_data['reposts_count'] -= 1);
+                        $data['reposts_count'] = $reposts_count;
+
+                        cl_update_post_data($post_id, array(
+                            'reposts_count' => $reposts_count
+                        ));
+
+                        $db = $db->where('notifier_id', $me['id']);
+                        $db = $db->where('recipient_id', $post_data['user_id']);
+                        $db = $db->where('subject', 'repost');
+                        $db = $db->where('entry_id', $post_id);
+                        $rq = $db->delete(T_NOTIFS);
+                    }
+                }
+            }
+        }
+    }
+}
+else if($action == 'repost_comment') { 									/* edited by kevin to quote comment */
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';
@@ -2043,6 +2385,33 @@ else if($action == 'repost_comment') { 									/* edited by kevin to quote comm
                 $cl['li'] = $post_data[0];
                 
                 $data['html'] = cl_template('timeline/modals/repost_comment');
+                $data['id'] = $post_data[0]['id'];
+            } else {
+                $data['error'] = 'Post not found';
+            }
+        } else {
+            $data['error'] = 'Invalid post ID';
+        }
+    }
+}
+else if($action == 'repost_comment_symbol') { 									/* edited by kevin to quote comment */
+    if (empty($cl["is_logged"])) {
+        $data['status'] = 400;
+        $data['error']  = 'Invalid access token';
+    }
+    else {
+        $data['err_code'] = 0;
+        $data['status']   = 400;
+        $post_id          = fetch_or_get($_POST['id'], 0);
+
+        if (is_posnum($post_id)) {
+            $post_data = cl_get_guest_feed_one($post_id);
+   
+            if (not_empty($post_data)) {
+                $data['status'] = 200;
+                $cl['li'] = $post_data[0];
+                
+                $data['html'] = cl_template('timeline/modals/repost_comment_symbol');
                 $data['id'] = $post_data[0]['id'];
             } else {
                 $data['error'] = 'Post not found';

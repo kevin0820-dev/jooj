@@ -450,7 +450,7 @@ function cl_signout_user() {
 
     @session_destroy();
 
-    cl_redirect('./');                  /* edited by Kevin */
+    cl_redirect('/./');                  /* edited by Kevin */
 }
 
 function cl_signout_user_by_id($user_id = false) {
