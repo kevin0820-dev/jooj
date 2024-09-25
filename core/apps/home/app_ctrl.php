@@ -126,9 +126,7 @@ function cl_get_page_feed($limit = false, $offset = false, $onset = false) {
 
 	if (cl_queryset($query_res)) {
 		foreach ($query_res as $row) {
-			$post_data = cl_raw_post_data($row['publication_id']);
-
-			
+			$post_data = cl_raw_post_data($row['publication_id']);			
 
 			if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
 				$post_data['offset_id']   = $row['offset_id'];
