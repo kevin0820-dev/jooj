@@ -486,7 +486,7 @@
 								<?php endif; ?>
 
 								<?php if ($cl['li']['type'] == 'image' && not_empty($cl['li']['media'])): ?>
-									<?php if (count($cl['li']['media']) == 1): ?>
+									<?php if (is_array($cl['li']['media']) &&  count($cl['li']['media']) == 1): ?>
 										<div class="lozad-media">
 											<div class="publication-image">
 												<a href="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
@@ -500,21 +500,23 @@
 										</div>
 									<?php else: ?>
 										<div class="publication-images-collage">
-											<?php foreach ($cl['li']['media'] as $i => $row): ?>
-												<a href="<?php echo cl_get_media($row['src']); ?>" class="fbox-media2"
-													data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
-													data-info='<?php echo cl_template('timeline/right_col'); ?>'>
-													<div class="image-collage-item">
-														<div class="lozad-media">
-															<div class="publication-image">
-																<img class="d-block w-100 lozad"
-																	data-src='<?php echo cl_get_media($row['x']['image_thumb']); ?>'
-																	alt="Image">
+											<?php if (is_array($cl['li']['media']) && !empty($cl['li']['media'])): ?>
+												<?php foreach ($cl['li']['media'] as $i => $row): ?>
+													<a href="<?php echo cl_get_media($row['src']); ?>" class="fbox-media2"
+														data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
+														data-info='<?php echo cl_template('timeline/right_col'); ?>'>
+														<div class="image-collage-item">
+															<div class="lozad-media">
+																<div class="publication-image">
+																	<img class="d-block w-100 lozad"
+																		data-src='<?php echo cl_get_media($row['x']['image_thumb']); ?>'
+																		alt="Image">
+																</div>
 															</div>
 														</div>
-													</div>
-												</a>
-											<?php endforeach; ?>
+													</a>
+												<?php endforeach; ?>
+											<?php endif; ?>
 										</div>
 									<?php endif; ?>
 								<?php elseif ($cl['li']['type'] == 'video' && not_empty($cl['li']['media'])): ?>
