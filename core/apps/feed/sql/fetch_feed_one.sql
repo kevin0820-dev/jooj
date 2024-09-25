@@ -18,5 +18,5 @@ SELECT * FROM `<?php echo($data['t_pubs']); ?>`
 
 	AND `target` = "publication"
 
-	AND `priv_wcs` = "everyone"
+	-- AND `priv_wcs` = "everyone"
 
