@@ -486,7 +486,7 @@
 								<?php endif; ?>
 
 								<?php if ($cl['li']['type'] == 'image' && not_empty($cl['li']['media'])): ?>
-									<?php if (count($cl['li']['media']) == 1): ?>
+									<?php if (is_array($cl['li']['media']) && count($cl['li']['media']) == 1): ?>
 										<div class="lozad-media">
 											<div class="publication-image">
 												<a href="<?php echo cl_get_media(fetch_or_get($cl['li']['media'][0]['src'], '')); ?>"
@@ -498,7 +498,7 @@
 												</a>
 											</div>
 										</div>
-									<?php else: ?>
+									<?php else if(is_array($cl['li']['media'])): ?>
 										<div class="publication-images-collage">
 											<?php foreach ($cl['li']['media'] as $i => $row): ?>
 												<a href="<?php echo cl_get_media($row['src']); ?>" class="fbox-media2"
