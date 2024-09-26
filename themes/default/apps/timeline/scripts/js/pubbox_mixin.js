@@ -407,7 +407,7 @@ var pubbox_form_app_mixin = Object({
 				success: function(data) {
 					if (data.status == 200) {
 						if (SMColibri.curr_pn == "home") {
-							var home_timeline = $('div[data-app="homepage"]');
+							var home_timeline = $('div[aria-labelledby="profile-tab"]');
 							var new_post      = $(data.html).addClass('animated fadeIn');
 
 							if (home_timeline.find('div[data-an="entry-list"]').length) {
@@ -492,7 +492,7 @@ var pubbox_form_app_mixin = Object({
 				success: function(data) {
 					if (data.status == 200) {
 						if (SMColibri.curr_pn == "home") {
-							var home_timeline = $('div[data-app="homepage"]');
+							var home_timeline = $('div[aria-labelledby="profile-tab"]');
 							var new_post      = $(data.html).addClass('animated fadeIn');
 
 							if (home_timeline.find('div[data-an="entry-list"]').length) {
