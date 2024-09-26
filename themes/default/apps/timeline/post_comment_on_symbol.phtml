@@ -1,22 +1,22 @@
 
 
-<div style="border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
+<div class="inner-content"  style="border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
     <div class="post-list-item-content">
         <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
-            <a href="<?php echo ($cl['li']['comment_on']['owner']['url']); ?>" data-spa="true">
+            <a data-spa="true">
                 <div class="avatar-holder">
                     <img class="lozad" style="width:45px; height:45px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
                 </div>
             </a>
         <?php else: ?>
             <?php if ($cl['li']['comment_on']['owner']['id'] == 1): ?>
-                <a href="<?php echo ($cl['li']['comment_on']['owner']['url']); ?>" data-spa="true">
+                <a data-spa="true">
                     <div class="avatar-holder">
                         <img class="lozad" style="width:45px; height:45px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
-                <a href="<?php echo ($cl['li']['comment_on']['owner']['url']); ?>" data-spa="true">
+                <a data-spa="true">
                     <img src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>" style="width:45px; height:45px; border-radius:10em;">
                 </a>
             <?php endif; ?>
@@ -61,8 +61,7 @@
                     <?php if ($cl['li']['comment_on']['owner']['id'] == 1 && not_empty($cl['li']['comment_on']['page']['username'])): ?>
                         <!-- For admin -->
                         <div class="lp">
-                            <a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['comment_on']['page']['username'])); ?>"
-                                data-sinfo-lbox="<?php echo $cl['li']['comment_on']['page']['id']; ?>" data-toggle="popover"
+                            <a data-sinfo-lbox="<?php echo $cl['li']['comment_on']['page']['id']; ?>" data-toggle="popover"
                                 data-placement="bottom">
                                 <b>
 
@@ -94,8 +93,7 @@
                         <!-- For other authors -->
                         <div class="lp">
                             <div class="flex items-center ">
-                                <a href="<?php echo $cl['li']['comment_on']['owner']['url']; ?>" data-spa="true"
-                                    data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
+                                <a data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
                                     data-placement="bottom">
                                     <b>
                                         <span class="user-name-holder">

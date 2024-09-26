@@ -1,25 +1,25 @@
 
 
-<div style="border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
+<div class="inner-content" style="cursor:pointer; border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
     <div class="post-list-item-content">
         <div class="publisher-avatar">
             <!-- For post -->
             <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
-                <a class="block-link" href="<?php echo ($cl['li']['comment_on']['owner']['url']); ?>" data-spa="true">
+                <a class="block-link" data-spa="true">
                     <div class="avatar-holder">
                         <img class="lozad" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
                 <?php if ($cl['li']['comment_on']['owner']['id'] == 1): ?>
-                    <a class="block-link" href="<?php echo ($cl['li']['comment_on']['owner']['url']); ?>" data-spa="true">
+                    <a class="block-link" data-spa="true">
                         <div class="avatar-holder">
                             <img class="lozad" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
                         </div>
                     </a>
                 <?php else: ?>
                     <div class="avatar-holder" style="width: 45px; height: 45px;border-radius: 50%; overflow: hidden;">
-                        <a class="block-link" href="<?php echo ($cl['li']['comment_on']['owner']['url']); ?>" data-spa="true">
+                        <a class="block-link" data-spa="true">
                             <div class="avatar-holder">
                                 <img class="lozad" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
                             </div>
@@ -68,7 +68,7 @@
                     <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
                         <div class="lp" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'">
 
-                            <a href="<?php echo $cl['li']['comment_on']['owner']['url']; ?>" data-spa="true"
+                            <a  data-spa="true"
                                 data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
                                 data-placement="bottom">
                                 <b>
