@@ -1,6 +1,6 @@
 <div class="timeline-container" data-app="homepage">
 	<div class="timeline-header" data-el="tl-header" style="display: block; padding: 0;">
-		<div class="timeline-header__botline" style="">
+		<div class="timeline-header__botline">
 			<div class="lp">
 				<div class="nav-link-holder h-mobile">
 					<a href="<?php echo cl_link("/"); ?>" data-spa="true">
@@ -67,7 +67,7 @@
 										</div>
 									</div>
 								</div>
-								<?php if (not_empty($cl["tl_swifts"])): ?>
+								<?php if (not_empty($cl["tl_swifts"]) && is_array($cl["tl_swifts"])): ?>
 										<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
 												<div class="swiper-slide">
 													<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
@@ -102,7 +102,7 @@
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 			<?php $count = 0; ?>
-			<?php if (not_empty($cl["feed"])): ?>
+			<?php if (not_empty($cl["feed"]) && is_array($cl['feed'])): ?>
 					<div class="timeline-posts-container">
 						<div class="timeline-posts-ls" data-an="entry-list">
 							<?php foreach ($cl["feed"] as $cl['li']): ?>
@@ -113,7 +113,7 @@
 									} ?>
 							<?php endforeach; ?>
 						</div>
-						<?php if (is_array($cl["feed"]) && count($cl["feed"]) == 30): ?>
+						<?php if (count($cl["feed"]) == 30): ?>
 								<div class="timeline-data-loader">
 									<button class="btn btn-custom main-outline lg" data-an="load-more">
 										<?php echo cl_translate("Show more"); ?>
