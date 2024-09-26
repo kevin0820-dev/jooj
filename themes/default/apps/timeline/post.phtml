@@ -3,7 +3,9 @@
 <?php else: ?>
 	<?php if (empty($cl['li']['is_blocked']) && (not_empty($cl['li']['can_see'])) && empty($cl['li']['me_blocked'])): ?> <!-- edited by kevin, New Update. Resolve blocked and unfollowed users -->
 		<div class="post-list-item" data-list-item="<?php echo ($cl['li']['id']); ?>"
-			data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>>
+			data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>
+			onclick="analyze(event, <?php echo ($cl['li']['id']); ?>)"
+			style="cursor:pointer">
 			<?php if (not_empty($cl['li']['me_blocked'])): ?>
 				<div class="post-placeholder">
 					<div class="d-flex flex-wn align-items-center">
@@ -76,7 +78,7 @@
 					</div>
 				<?php endif; ?>
 				<div class="post-list-item-content">
-					<div class="publisher-avatar" onclick="window.location.href='<?php echo $cl['li']['owner']['url']; ?>'">
+					<div class="publisher-avatar">
 						<!-- For post -->
 						<?php if ($cl['li']['symbol_id'] == 0): ?>
 							<a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
@@ -141,7 +143,7 @@
 							<div class="publisher-info">
 								<!-- For post -->
 								<?php if ($cl['li']['symbol_id'] == 0): ?>
-									<div class="lp" onclick="window.location.href='<?php echo $cl['li']['owner']['url']; ?>'">
+									<div class="lp">
 
 										<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
 											data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
@@ -868,3 +870,11 @@
 		?>
 	<?php endif; ?>
 <?php endif; ?>
+<script>
+	analyze = function(e, id) {
+		// Check if the click is not on an anchor tag (or any interactive element)
+		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button')) {
+			window.location.href = '/thread/' + id; // Set your root link here
+		}
+	}
+</script>

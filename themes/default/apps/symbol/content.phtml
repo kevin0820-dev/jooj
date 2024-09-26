@@ -35,7 +35,26 @@
 		</div>
 	</div>
 
-	<div class="timeline-prof-info-area">
+	<div class="timeline-prof-info-area d-block" id = "vue-explore-app">
+		<div class="timeline-searchbar">			
+			<form data-an="search-form" class="form timeline-searchbar__form" v-on:submit="search_entries($event)" autocomplete="off">
+				<div class="keyword-input">
+				<?php if (not_empty($cl["is_logged"])) : ?>
+					<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')" type="text" placeholder="<?php echo cl_translate("Type a query and press Enter. E.g. #hashtag, username, etc.."); ?>" autofocus="true">
+					<?php else : ?>
+						<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')"
+							type="text"  data-toggle="modal" data-target="#loginModal" placeholder="<?php echo cl_translate("search_form"); ?> {%config name%}"
+							autofocus="true">
+							<?php endif; ?>
+					<span class="keyword-input__left-icon">
+						<?php echo cl_icon('search'); ?>
+					</span>
+					<span class="keyword-input__right-spinner" v-if="searching">
+						<?php echo cl_icon('spinner-icon'); ?>
+					</span>
+				</div>
+			</form>
+		</div>
 		<?php if (empty($cl['prof_user']['owner'])): ?>
 			<div class="profile-info-header">
 				<div class="profile-cover-holder">
@@ -89,7 +108,6 @@
 				<div class="d-none">
 					<input id="f1" v-on:change="upload_cover($event)" type="file" accept="image/*" class="hidden d-none">
 					<input id="f2" v-on:change="upload_avatar($event)" type="file" accept="image/*" class="hidden d-none">
-
 				</div>
 			</div>
 		<?php endif; ?>
