@@ -10,29 +10,37 @@
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
 		$response = curl_exec($ch);
 		if (curl_errno($ch)) {
-			echo 'Error:';
+			$cl['coin_one'] = "";
 		} else {
 			$cl['coin_one'] = json_decode($response, true);
 		}
 		curl_close($ch);
 	?>
-	<div class="timeline-header" data-el="tl-header" style="display: block; height:auto; line-height:normal;">
-		<div class="timeline-searchbar">			
-			<form data-an="search-form" class="form timeline-searchbar__form" v-on:submit="search_entries($event)" autocomplete="off">
-				<div class="keyword-input">
-				<?php if (not_empty($cl["is_logged"])) : ?>
-					<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')" type="text" placeholder="<?php echo cl_translate("Type a query and press Enter. E.g. #hashtag, username, etc.."); ?>" autofocus="true">
-					<?php else : ?>
-						<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')"
-							type="text"  data-toggle="modal" data-target="#loginModal" placeholder="<?php echo cl_translate("search_form"); ?> {%config name%}"
-							autofocus="true">
-							<?php endif; ?>
-					<span class="keyword-input__left-icon">
-						<?php echo cl_icon('search'); ?>
+	<div class="timeline-header" data-el="tl-header" style="display: block; height:auto; line-height:normal;" id="vue-symbol-app">
+		<div class="main-search-bar-container">
+			<form class="form" id="vue-main-search-app" v-on:submit="search_onsubmit" autocomplete="off">
+				<div class="input-holder">
+					<input v-model="search_query" v-on:input="search" type="text" class="form-control"
+						placeholder="<?php echo cl_translate("Search for people, hashtags..", array('name' => $cl['config']['name'])); ?>">
+					<a href="#">
+						<?php echo cl_ikon('search'); ?>
+					</a>
+					<span class="spinner-icon" v-if="searching">
+						<?php echo cl_ikon('spinner-icon'); ?>
 					</span>
-					<span class="keyword-input__right-spinner" v-if="searching">
-						<?php echo cl_icon('spinner-icon'); ?>
+					<span v-on:click="cancel" class="clear-result" v-else-if="search_result">
+						<?php echo cl_ikon('close'); ?>
 					</span>
+				</div>
+				<div class="search-result-holder" v-show="search_result">
+					<div class="search-result-body">
+						<ul class="result-list" data-an="result"></ul>
+					</div>
+					<div class="search-result-footer" v-bind:class="{'disabled': (advanced_search != true) }">
+						<a v-bind:href="search_page_url" data-spa="true">
+							<?php echo cl_translate('Advanced search'); ?>
+						</a>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -237,21 +245,11 @@
 										<?php endif; ?>
 							</div>
 						</button>
-						<!-- <?php if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'])): ?>
-							<?php if (not_empty($cl['is_logged'])): ?>
-								<button class="ctrl-item">
-									<a href="<?php echo ($cl['prof_user']['chaturl']); ?>" class="ctrl-inner" data-spa="true">
-										<?php echo cl_ikon('envelope-h'); ?>
-									</a>
-								</button>
-							<?php endif; ?>
-						<?php endif; ?> -->
 						<?php if (empty($cl['prof_user']['is_blocked'])): ?>
 							<?php if (empty($cl['prof_user']['me_blocked'])): ?>
 								<?php if ($cl['prof_user']['follow_privacy'] == 'approved'): ?>
 									<?php if (not_empty($cl['prof_user']['is_following'])): ?>
-										<div id="scroller-anchor"></div>
-										<div id="scroller" style="z-index: 700;">
+										<div>
 											<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-inline md"
 												data-action="unfollow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 												data-id="<?php echo ($cl['prof_user']['id']); ?>">
@@ -259,8 +257,7 @@
 											</button>
 										</div>
 									<?php elseif (not_empty($cl['prof_user']['follow_requested'])): ?>
-										<div id="scroller-anchor"></div>
-										<div id="scroller" style="z-index: 700;">
+										<div>
 											<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-inline md"
 												data-action="cancel" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 												data-id="<?php echo ($cl['prof_user']['id']); ?>">
@@ -268,8 +265,7 @@
 											</button>
 										</div>
 									<?php else: ?>
-										<div id="scroller-anchor"></div>
-										<div id="scroller" style="z-index: 700;">
+										<div>
 											<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-outline md"
 												data-action="follow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 												data-id="<?php echo ($cl['prof_user']['id']); ?>">
@@ -279,8 +275,7 @@
 									<?php endif; ?>
 								<?php else: ?>
 									<?php if (not_empty($cl['prof_user']['is_following'])): ?>
-										<div id="scroller-anchor"></div>
-										<div id="scroller" style="z-index: 700;">
+										<div>
 											<button onclick="SMColibri.watch(this);" class="btn btn-custom main-inline md"
 												data-action="unfollow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 												data-id="<?php echo ($cl['prof_user']['id']); ?>">
@@ -288,8 +283,7 @@
 											</button>
 										</div>
 									<?php else: ?>
-										<div id="scroller-anchor"></div>
-										<div id="scroller" style="z-index: 700;">
+										<div>
 											<button onclick="SMColibri.watch(this);" class="btn btn-custom main-outline md" data-action="follow"
 												data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 												data-id="<?php echo ($cl['prof_user']['id']); ?>">
@@ -754,6 +748,122 @@
 				padding-top: 110px !important;
 			}
 		}
+	}
+	div.main-search-bar-container form div.input-holder span.spinner-icon {
+		position: absolute;
+		right: 15px;
+		top: 7px;
+		text-decoration: none;
+		line-height: 0px;
+		z-index: 2;
+		width: 22px;
+		height: 22px;
+	}
+	div.main-search-bar-container form div.input-holder a svg {
+		width: 100%;
+		height: 100%;
+		stroke: var(--smc-main-text-color-2);
+		opacity: 0.8;
+	}
+	div.main-search-bar-container form div.input-holder a {
+			position: absolute;
+			left: 15px;
+			top: 12px;
+			text-decoration: none;
+			line-height: 0px;
+			z-index: 2;
+			width: 22px;
+			height: 22px;
+	}
+	div.main-search-bar-container form div.input-holder input {
+		border: 1px solid var(--smc-main-border-color);
+		background: var(--smc-main-ibg-color);
+		border-radius: 10em;
+		padding: 0 0 0px 50px;
+		height: 44px;
+		font-size: 13px;
+		color: var(--smc-main-text-color);
+	}
+	div.main-search-bar-container form div.input-holder {
+		width: 100%;
+		overflow: hidden;
+		display: block;
+		line-height: 0;
+		position: relative;
+	}
+	div.main-search-bar-container form {
+		display: block;
+		position: relative;
+	}
+	div.main-search-bar-container {
+		width: 100%;
+		line-height: 0;
+		padding:10px 0px
+	}
+	div.main-search-bar-container form div.search-result-holder {
+		width: 100%;
+		border-radius: var(--smc-main-border-rad1) !important;
+		box-shadow: var(--smc-main-box-shadow-eff);
+		padding: 0;
+		position: absolute;
+		left: 0;
+		top: 40px;
+		right: 0;
+		z-index: 10;
+		background: var(--smc-main-bg-color);
+		overflow: hidden;
+	}
+	div.main-search-bar-container form div.search-result-holder div.search-result-body {
+		width: 100%;
+		display: block;
+		line-height: 0;
+	}
+	div.main-search-bar-container form div.search-result-holder div.search-result-body ul.result-list {
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+		max-height: 250px;
+	}
+	div.search-result-footer {
+		width: 100%;
+		display: block;
+		text-align: center;
+		border-top: 1px solid var(--smc-main-border-color);
+		padding: 10px 20px;
+		background: var(--smc-main-uiel-color);
+	}
+	div.main-search-bar-container form div.search-result-holder div.search-result-footer a {
+		color: #fff;
+		font-size: 11px;
+		line-height: 11px;
+		text-transform: uppercase;
+		font-weight: 500;
+		color: #fff;
+		font-size: 14px;
+		line-height: 11px;
+		text-transform: none;
+		font-weight: 500;
+		text-decoration: none;
+	}
+	div.main-search-bar-container form div.input-holder span.clear-result {
+		position: absolute;
+		right: 15px;
+		top: 7px;
+		text-decoration: none;
+		line-height: 0px;
+		z-index: 2;
+		width: 22px;
+		height: 22px;
+		cursor: pointer;
+	} 
+	div.main-search-bar-container form div.input-holder span.clear-result svg {
+		width: 100%;
+		height: 100%;
+		stroke: #fff;
+		background: var(--smc-main-uiel-color);
+		border-radius: 50%;
 	}
 </style>
 <script>
