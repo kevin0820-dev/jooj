@@ -114,7 +114,11 @@
 									} ?>
 							<?php endforeach; ?>
 						</div>
+<<<<<<< HEAD
 						<?php if (count($cl["feed"]) == 30): ?>
+=======
+						<?php if (is_array($cl["feed"]) && count($cl["feed"]) == 30): ?>
+>>>>>>> f82cf4d5691f8fd194725a7a4b0b9abce10f8144
 								<div class="timeline-data-loader">
 									<button class="btn btn-custom main-outline lg" data-an="load-more">
 										<?php echo cl_translate("Show more"); ?>
