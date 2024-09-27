@@ -11,14 +11,15 @@
 				<span class="day_night_mode">Terms</span>
 			
 		</div>
-	
-	<!-- TradingView Widget BEGIN -->
-	<div id="tradingview-widget-container" class="tradingview-widget-container">
-		<div class="tradingview-widget-container__widget"></div>
-		<div id="tradingview-widget"></div>
-		  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
-	</div>
-	<!-- TradingView Widget END -->
+	<?php if($cl['pn'] == "symbol"): ?>
+		<!-- TradingView Widget BEGIN -->
+		<div id="tradingview-widget-container" class="tradingview-widget-container">
+			<div class="tradingview-widget-container__widget"></div>
+			<div id="tradingview-widget"></div>
+			<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+		</div>
+		<!-- TradingView Widget END -->
+	<?php endif ?>
 
 	<!-- User Media -->
 	<?php if (not_empty($cl["is_logged"])): ?>
@@ -568,7 +569,7 @@ jQuery(document).ready(function($) {
 
 				// Set up the widget configuration with the dynamic theme
 				script.innerHTML = JSON.stringify({
-					"symbol": "BITSTAMP:BTCUSD",
+					"symbol": "BITSTAMP:<?php echo strtoupper(isset($cl['prof_user']['username']) ? $cl['prof_user']['username'] : "BTC")."USD" ?>",
 					"width": 350,
 					"height": 220,
 					"locale": "en",
