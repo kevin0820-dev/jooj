@@ -3,9 +3,13 @@
 <?php else: ?>
 	<?php if (empty($cl['li']['is_blocked']) && (not_empty($cl['li']['can_see'])) && empty($cl['li']['me_blocked'])): ?> <!-- edited by kevin, New Update. Resolve blocked and unfollowed users -->
 		<div class="post-list-item" data-list-item="<?php echo ($cl['li']['id']); ?>"
+<<<<<<< HEAD
 			data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>
 			onclick="analyze(event, <?php echo ($cl['li']['id']); ?>)"
 			style="cursor:pointer">
+=======
+			data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>>
+>>>>>>> f82cf4d5691f8fd194725a7a4b0b9abce10f8144
 			<?php if (not_empty($cl['li']['me_blocked'])): ?>
 				<div class="post-placeholder">
 					<div class="d-flex flex-wn align-items-center">
