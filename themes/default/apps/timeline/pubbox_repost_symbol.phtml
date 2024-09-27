@@ -1,12 +1,5 @@
 <div class="timeline-pubbox-container">
-	<div class="flex py-2">
-        <div class="w-full">
-			<div class="flex -space-x-2 overflow-hidden">
-				<img src="<?php echo ($cl['prof_user']['avatar']); ?>" class="inline-block h-9 w-9 rounded-full ring-2 ring-white" alt="Avatar">
-				<img src="<?php echo ($me['avatar']); ?>" class="inline-block h-9 w-9 rounded-full ring-2 ring-white" alt="Avatar">
-			</div>
-        </div>
-	</div>
+	<img src="<?php echo ($me['avatar']); ?>" style="width:45px; height:45px; border-radius:10em;" alt="Avatar">
 	<div class="rp">
 		<form class="form" id="vue-pubbox-app-<?php echo ($cl['pb_id']); ?>" data-app="repost_comment_symbol_form" v-on:submit="publish_repost_symbol($event);">
 			<div v-show="active_media" class="post-privacy" v-if="post_privacy">

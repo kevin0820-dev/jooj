@@ -3,7 +3,9 @@
 <?php else: ?>
 	<?php if (empty($cl['li']['is_blocked']) && (not_empty($cl['li']['can_see'])) && empty($cl['li']['me_blocked'])): ?> <!-- edited by kevin, New Update. Resolve blocked and unfollowed users -->
 		<div class="post-list-item" data-list-item="<?php echo ($cl['li']['id']); ?>"
-			data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?> >
+			data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>
+			onclick="analyze(event, <?php echo ($cl['li']['id']); ?>)"
+			style="cursor:pointer">
 			<?php if (not_empty($cl['li']['me_blocked'])): ?>
 				<div class="post-placeholder">
 					<div class="d-flex flex-wn align-items-center">
@@ -76,7 +78,7 @@
 					</div>
 				<?php endif; ?>
 				<div class="post-list-item-content">
-					<div class="publisher-avatar" onclick="window.location.href='<?php echo $cl['li']['owner']['url']; ?>'">
+					<div class="publisher-avatar">
 						<!-- For post -->
 						<?php if ($cl['li']['symbol_id'] == 0): ?>
 							<a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
@@ -94,13 +96,11 @@
 								</a>
 							<?php else: ?>
 								<!-- For post page coauthor -->
-								<div class="">
 									<a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
 										<div class="avatar-holder">
 											<img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
 										</div>
 									</a>
-								</div>
 							<?php endif; ?>
 						<?php endif; ?>
 					</div>
@@ -205,7 +205,6 @@
 										<?php else: ?>
 											<!-- For post page coauthor -->
 											<div class="flex items-center ">
-												<div>
 													<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
 														data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
 														data-placement="bottom">
@@ -220,7 +219,6 @@
 													<span class="uname">
 														@<?php echo $cl['li']['owner']['username']; ?>
 													</span>
-												</div>
 
 												<!-- <span class="point">&</span> -->
 
@@ -509,11 +507,38 @@
 											$('div.publication-text').find('a[href*="/search/"]').addClass('hash');
 										})
 									</script>
+
+									<!-- Edited By Kevin.. Attached Symbol Icon in Post Page. 9/20  -->
+
 									<div class="publication-text">
 										<p class="pub-text">
-											<?php echo ($cl['li']['text']); ?>
+											<?php
+											// Sample text from $cl['li']['text']
+											$text = $cl['li']['text'];
+
+											// Regular expression to find <a> tags containing text starting with $ (like $abc)
+											$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+
+											// Use preg_replace_callback to replace matches with an image tag
+											$modified_text = preg_replace_callback($pattern, function($matches) {
+												// Extract the word inside the <a> tag without the $ sign
+												$symbol = strtolower($matches[2]);
+
+												// Create the image tag
+												$image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 15px; padding-right: 5px; display:inline;" alt="' . $symbol . '">';
+
+												// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
+												return $image_tag . $matches[1];
+											}, $text);
+
+											// Output the modified text
+											echo $modified_text;
+											?>
 										</p>
 									</div>
+
+									<!-- End of  Attached Symbol Icon in Post Page-->
+
 								<?php endif; ?>
 
 								<?php if ($cl['li']['type'] == 'image' && not_empty($cl['li']['media'])): ?>
@@ -845,3 +870,11 @@
 		?>
 	<?php endif; ?>
 <?php endif; ?>
+<script>
+	analyze = function(e, id) {
+		// Check if the click is not on an anchor tag (or any interactive element)
+		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button')) {
+			window.location.href = '/thread/' + id; // Set your root link here
+		}
+	}
+</script>

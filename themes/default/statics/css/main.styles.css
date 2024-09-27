@@ -326,6 +326,14 @@ h3.login-home {
   bottom: 90px !important;
   position: fixed !important;
 }
+/* edited by kevin.. leftside gap issue. NewKevin*/
+.right-sb-container .inner-wrapper-sticky {
+  top: 10px !important;
+  bottom: 90px !important;
+  position: fixed !important;
+  width: 350px;
+}
+
 body.cl-app-conversation
   div.conversation
   div.conversation__footer
@@ -388,8 +396,8 @@ body
   background: rgba(255, 255, 255, 0.18);
   border-radius: 5px;
   box-shadow: none;
-  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -748,7 +756,7 @@ body
   svg {
   width: 100%;
   height: 100%;
-  fill: var(--smc-main-text-color-2) !important;
+  fill: var(--smc-primary-text-color-2) !important;
   opacity: 0.8;
   stroke: none !important;
   opacity: 1;
@@ -3911,7 +3919,7 @@ body
   div.publication-data {
   flex: 1;
   padding-left: 15px;
-  /* overflow: hidden; */ /*edited by kevin to make button group visible */
+   /* overflow: hidden; */ /*edited by kevin to make button group visible. 9/18*/
 }
 
 body
@@ -4396,7 +4404,9 @@ body
   div.publication-text
   p.pub-text
   a.inline-link {
-  display: inline;
+  display: inline-flex;  /* Edited By Kevin.. Post text content styling. 9/19  */
+  vertical-align: middle;
+  align-items: center;
 }
 
 body
@@ -7545,7 +7555,7 @@ body
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  height: 50px; /*Edited by Kevin left sidebar menu height*/
+  height: 55px; /*Edited by Kevin left sidebar menu height*/
   padding-left: 5px;
   align-items: center;
 }
@@ -7595,7 +7605,7 @@ body
   span.icon.home
   svg {
   stroke: var(--smc-main-text-color);
-  stroke-width: 1.7;
+  stroke-width: 1;
   fill: none;
 }
 
@@ -7645,6 +7655,7 @@ body
   margin-left: 20px;
 }
 
+/* Edited by Kevin... Left menu bar font size and icon arragement*/
 body
   main.main-content-container
   div.main-content-container-inner
@@ -7655,11 +7666,12 @@ body
   li.sidebar-v-nav-item
   span.nav-item-holder
   > a {
-  font-size: 20px;
+  font-size: 16px;
   color: var(--smc-main-text-color);
   font-weight: 400;
   text-decoration: none;
-  line-height: 20px;
+  line-height: 10px;
+  letter-spacing: 1px
 }
 
 body
@@ -7714,7 +7726,7 @@ body
   min-width: 17px;
   font-weight: 400;
   position: relative;
-  margin-left: -32px; /*Edited by Kevin.. Margin between badges and icons*/
+  margin-left: -30px; /*Edited by Kevin.. Margin between badges and icons*/
   margin-top: -23px;
   margin-right: 7px;
 }
@@ -8178,7 +8190,7 @@ body
   div.sidebar__inner
   div.publish-post-btn
   button {
-  max-width: 220px;
+  max-width: 180px;
 }
 
 body
@@ -9255,7 +9267,7 @@ body
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--cl-primary-text-color);
-  font-weight: 700;
+  font-weight: 630; /*Eidited by Kevin.. Who to follow username fontweight*/
   display: inline;
 }
 body
@@ -10031,7 +10043,7 @@ body
   height: 100%;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 10px;
   bottom: 0;
   right: 0;
   background: transparent;
@@ -14043,19 +14055,20 @@ body button.btn-custom.main-outline {
 
 body .user-data__ctrls button.btn-custom.main-outline {
   background-color: var(--smc-main-bg-color-4);
-  min-height: 32px;
+  min-height: 33px;
   min-width: 32px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 23px;
+  padding-right: 23px;
   border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 9999px;
   color: var(--smc-main-bg-color);
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 18px;
+  /* font-weight: 700; */
+  font-size: 12px; /*Edited By Kevin.. Watching, Unwatching style. 9/14/2024*/
+  line-height: 20px;
   max-height: 32px;
   padding-top: 6px;
+  margin-top: 1px;
 }
 
 body .user-data__ctrls button.btn-custom.main-outline:not([disabled]):hover,
@@ -14116,10 +14129,11 @@ body button.btn-custom.lg {
 }
 
 body button.btn-custom.md {
-  padding: 10px 15px;
-  font-size: 14px;
+  max-width: 100px;/*Edited By Kevin.. 9/14/2024*/
+  padding: 10px 25px;
+  font-size: 13px;  /**/
   line-height: 13px;
-  font-weight: 500;
+  font-weight: 400;
   border-radius: 9999px;
 }
 
@@ -14280,7 +14294,6 @@ body div.timeline-pubbox-container > div.rp form div.cl-emoticons {
   border-radius: var(--smc-main-border-rad1);
   overflow: hidden;
 }
-
 /* Edited by Kevin.. Emoj Responsive Issue */
 @media only screen and (max-width: 586px) {
   body div.timeline-pubbox-container > div.rp form div.cl-emoticons{
@@ -14289,6 +14302,7 @@ body div.timeline-pubbox-container > div.rp form div.cl-emoticons {
     width: calc(100vw - 40px);
   }
 }
+
 
 body
   div.timeline-pubbox-container
@@ -15104,7 +15118,7 @@ body div.timeline-pubbox-container > div.rp form div.preview-gifs-holder {
   overflow: hidden;
 }
 
-/* Edited by Kevin */
+/* Edited by Kevin.. Gif responsive issue */
 @media only screen and (max-width: 586px) {
   body div.timeline-pubbox-container > div.rp form div.preview-gifs-holder{
     margin-left: -68px;
@@ -15914,6 +15928,7 @@ body div.timeline-pubbox-container > div.rp form div.preview-poll-holder {
     width: calc(100vw - 40px);
   }
 }
+
 
 body
   div.timeline-pubbox-container
@@ -20543,7 +20558,7 @@ body
   li.sidebar-v-nav-item.active
   span.icon
   svg.booka {
-  fill: var(--smc-main-text-color);
+  fill: var(--smc-main-text-color); /*Leftside bar icon color when clicked*/
   stroke: none;
   display: block !important;
 }
@@ -20680,7 +20695,7 @@ body
   svg.active {
   fill: none;
   stroke: var(--smc-main-text-color);
-  stroke-width: 1.8;
+  stroke-width: 1;
 }
 
 body
