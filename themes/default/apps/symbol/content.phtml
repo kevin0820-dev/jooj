@@ -54,16 +54,17 @@
 	</div>
 
 	<div class="timeline-prof-info-area">
+		
 		<div class="profile-main-info-holder">
 			<div style="display: flex; align-items: center; padding: 10px;">
-				<div class="profile-name-holder" style="display: inline-flex; align-items: center; margin-bottom:0px">				
-					<div class="profile-avatar" style="width: 100px; height:100px;">
+				<div class="profile-name-holder" style="display: inline-flex; align-items: center; margin-bottom:0px; width:50%; vertical-align: middle;">				
+					<div class="profile-avatar" style="max-width: 100px; max-height:100px;">
 						<a href="<?php echo ($cl['prof_user']['avatar']); ?>" class="image-wrapper fbox-media">
 							<img src="<?php echo ($cl['prof_user']['avatar']); ?>" alt="Avatar" style="border-radius:50%;">
 						</a>
 					</div>
 					<div style="display: block; padding-left:10px;">
-						<h4 style="display: inline-flex;">
+						<h4 style="display: inline-flex;  align-items: center;">
 							<span class="user-name-holder">
 								<?php echo ($cl['prof_user']['name']); ?>
 							</span>
@@ -83,7 +84,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="profile-page-ctrls">
+				<div class="profile-page-ctrls" style="width: 50%;">
 					<?php if (empty($cl['is_admin'])): ?>
 						<button class="ctrl-item dropleft ">
 							<span class=" flex items-center justify-center border rounded-full h-9 w-9 -mt-1"
@@ -351,7 +352,7 @@
 				</div>
 			</div>
 			<div style="display: flex; text-align:left; align-items:center">
-        		<div style="width: 50%; display:flex;">
+        		<div style="width: 60%; display:flex;">
 					<div style="padding-left: 20px; font-size:xx-large; font-weight:bold">
 						<?php if(is_array($cl['coin_one']) && $cl['coin_one']) : echo "$" . $cl['coin_one'][0]['current_price']; ?>
 						<?php else : echo "Error" ?>
@@ -363,7 +364,7 @@
 						<?php endif ?>
 					</div>
 				</div>
-				<div style="width: 50%; display: flex; padding:10px;">
+				<div style="width: 40%; display: flex; padding:10px;">
 					<div class="profile-activity-stats-info" style="justify-content: end; margin-bottom: 0px;">
 						<div class="stat-holder">
 							<?php if (not_empty($cl["can_view"])): ?>
@@ -738,10 +739,20 @@
 			overflow-wrap: break-word;
 			min-width: 0px;
 			max-width: 295px;
-			overflow: hidden;
+			overflow: visible;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			display: inline-block;
+		}
+		@media (max-width: 1024px) {
+			body
+			main.main-content-container
+			div.main-content-container-inner
+			div.timeline-container-wrapper
+			div.timeline-container-inner
+			div.timeline-container {
+				padding-top: 110px !important;
+			}
 		}
 	}
 </style>
