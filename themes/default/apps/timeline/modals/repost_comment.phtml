@@ -1,29 +1,27 @@
 
 
 <div class="post-list-item-content" style="display: flex; border: 1px solid #e0e0e0; border-radius: 5px; padding: 10px; margin:10px;">
-    <div class="avatar" style="width: 45px; height: 45px;">
+    <div class="avatar" style = "width: 45px; flex-basis: 45px; max-width: 45px; min-width: 45px; padding-top: 5px;">
         <?php if ($cl['li']['symbol_id'] == 0): ?>
             <a class="block-link" data-spa="true">
                 <div class="avatar-holder">
-                    <img class="lozad" style="border-radius: 10em;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+                    <img class="lozad" style="border-radius: 10em; width:45px;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                 </div>
             </a>
         <?php else: ?>
             <?php if ($cl['li']['owner']['id'] == 1): ?>
                 <a class="block-link" data-spa="true">
                     <div class="avatar-holder">
-                        <img class="lozad" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
+                        <img class="lozad" style="border-radius: 10em; width:45px;" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
                 <!-- For post page coauthor -->
-                <div class="">
                     <a class="block-link" data-spa="true">
                         <div class="avatar-holder">
-                            <img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+                            <img style="border-radius: 10em; width:45px;" class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                         </div>
                     </a>
-                </div>
             <?php endif; ?>
         <?php endif; ?>
     </div>
@@ -31,7 +29,6 @@
         <div class="publication-data-inner">
             <div class="publisher-info">
                 <!-- For post -->
-                <?php if ($cl['li']['symbol_id'] == 0): ?>
                     <div class="lp">
 
                         <a data-spa="true" data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover" data-placement="bottom">
@@ -59,89 +56,7 @@
                             <?php endif; ?>
                         </span>
                     </div>
-                <?php else: ?>
-                    <!-- For Page -->
-                    <div class="lp">
-                        <!-- For post page admin -->
-                        <?php if ($cl['li']['owner']['id'] == 1): ?>
-                            <a data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
-                                data-placement="bottom">
-                                <b>
-                                    <span class="user-name-holder">
-                                        <?php echo $cl['li']['page']['name']; ?>
-                                    </span>
-                                    <p class="<?php if ($cl['li']['owner']['verified'] == '1')
-                                                    echo 'verified-badge'; ?>" style="display:inline-block;"></p>
-                                </b>
-                            </a>
-                            <span class="uname">
-                                $<?php echo $cl['li']['page']['username']; ?>
-                            </span>
-                            <span class="point">&#183;</span>
-
-                            <span class="posted-time">
-                                <time><?php echo $cl['li']['time']; ?></time>
-                                <?php if (not_empty($cl['li']['edited'])): ?>
-                                    <span
-                                        title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
-                                        &nbsp; (E)
-                                    </span>
-                                <?php endif; ?>
-                            </span>
-                        <?php else: ?>
-                            <!-- For post page coauthor -->
-                            <div class="flex items-center ">
-                                <div>
-                                    <a data-spa="true" data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
-                                        data-placement="bottom">
-                                        <b>
-                                            <span class="user-name-holder">
-                                                <?php echo $cl['li']['owner']['name']; ?>
-                                            </span>
-                                            <p class="<?php if ($cl['li']['owner']['verified'] == '1')
-                                                            echo 'verified-badge'; ?>" style="display:inline-block;"></p>
-                                        </b>
-                                    </a>
-                                    <span class="uname">
-                                        @<?php echo $cl['li']['owner']['username']; ?>
-                                    </span>
-                                </div>
-
-                                <!-- <span class="point">&</span> -->
-
-                                <!-- <div class="px-2">
-                            
-                            <a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>" 
-                                data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
-                                data-placement="bottom">
-                                <b>
-                                    <span class="user-name-holder">
-                                        <?php echo $cl['li']['page']['name']; ?>
-                                    </span>
-                                    <p class="<?php if ($cl['li']['page']['verified'] == '1')
-                                                    echo 'verified-badge'; ?>" style="display:inline-block;"></p>
-                                </b>
-                            </a>
-                            <span class="uname">
-                                $<?php echo $cl['li']['page']['username']; ?>
-                            </span>
-                            </div> -->
-                                <span class="point px-2">&#183;</span>
-
-                                <span class="posted-time">
-                                    <time><?php echo $cl['li']['time']; ?></time>
-                                    <?php if (not_empty($cl['li']['edited'])): ?>
-                                        <span
-                                            title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
-                                            &nbsp; (E)
-                                        </span>
-                                    <?php endif; ?>
-                                </span>
-                            </div>
-                        <?php endif; ?>
-
-                    </div>
-                <?php endif; ?>
+                
             </div>                                    
 
             <div class="publication-content">
@@ -156,11 +71,34 @@
                             $('div.publication-text').find('a[href*="/search/"]').addClass('hash');
                         })
                     </script>
-                    <div class="publication-text">
-                        <p class="pub-text">
-                            <?php echo ($cl['li']['text']); ?>
-                        </p>
-                    </div>
+                    
+                    <!-- Edited By Kevin. 9/20 -->
+                                    <div class="publication-text">
+										<p class="pub-text">
+											<?php
+											// Sample text from $cl['li']['text']
+											$text = $cl['li']['text'];
+
+											// Regular expression to find <a> tags containing text starting with $ (like $abc)
+											$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+
+											// Use preg_replace_callback to replace matches with an image tag
+											$modified_text = preg_replace_callback($pattern, function($matches) {
+												// Extract the word inside the <a> tag without the $ sign
+												$symbol = strtolower($matches[2]);
+
+												// Create the image tag
+												$image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 15px; padding-right: 5px; display:inline;" alt="' . $symbol . '">';
+
+												// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
+												return $image_tag . $matches[1];
+											}, $text);
+
+											// Output the modified text
+											echo $modified_text;
+											?>
+										</p>
+									</div>
                 <?php endif; ?>
 
                 <?php if ($cl['li']['type'] == 'image' && not_empty($cl['li']['media'])): ?>

@@ -1,32 +1,24 @@
 
 
-<div style="border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
+<div class="inner-content"  style="border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
     <div class="post-list-item-content">
         <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
-            <div class="avatar" style="width: 45px; height: 45px;border-radius: 50%; overflow: hidden;">
-                <a class="block-link" href="<?php echo ($cl['li']['comment_on']['owner']['url']); ?>" data-spa="true">
-                    <div class="avatar-holder">
-                        <img class="lozad" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
-                    </div>
-                </a>
-            </div>
+            <a data-spa="true">
+                <div class="avatar-holder">
+                    <img class="lozad" style="width:45px; height:45px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
+                </div>
+            </a>
         <?php else: ?>
             <?php if ($cl['li']['comment_on']['owner']['id'] == 1): ?>
-                    <a class="block-link" href="<?php echo ($cl['li']['comment_on']['owner']['url']); ?>" data-spa="true">
-                        <div class="avatar-holder">
-                            <img class="lozad" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
-                        </div>
-                    </a>
-            <?php else: ?>
-                <!-- For post page coauthor -->
-                <div class="-ml-2 ">
-                    <div class="flex -space-x-2 overflow-hidden pt-2 pl-1">
-                        <img src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>"
-                            class="inline-block h-8 w-8 rounded-full ring-2 ring-white" alt="Avatar">
-                        <img src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>"
-                            class="inline-block h-8 w-8 rounded-full ring-2 ring-white" alt="Avatar">
+                <a data-spa="true">
+                    <div class="avatar-holder">
+                        <img class="lozad" style="width:45px; height:45px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
                     </div>
-                </div>
+                </a>
+            <?php else: ?>
+                <a data-spa="true">
+                    <img src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>" style="width:45px; height:45px; border-radius:10em;">
+                </a>
             <?php endif; ?>
         <?php endif; ?>
         <div class="publication-data">
@@ -65,79 +57,27 @@
             <?php endif; ?>
 
             <div class="publication-data-inner">
-            <div class="publisher-info">
-                <?php if ($cl['li']['comment_on']['owner']['id'] == 1 && not_empty($cl['li']['comment_on']['page']['username'])): ?>
-                    <!-- For admin -->
-                    <div class="lp">
-                        <a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['comment_on']['page']['username'])); ?>"
-                            data-sinfo-lbox="<?php echo $cl['li']['comment_on']['page']['id']; ?>" data-toggle="popover"
-                            data-placement="bottom">
-                            <b>
-
-                                <span class="user-name-holder">
-                                    <?php echo $cl['li']['comment_on']['page']['name']; ?>
-                                </span>
-                                <p class="<?php if ($cl['li']['comment_on']['page']['verified'] == '1')
-                                    echo 'verified-badge'; ?>"
-                                    style="display:inline-block;"></p>
-                            </b>
-                        </a>
-                        <span class="uname">
-                            $<?php echo $cl['li']['comment_on']['page']['username']; ?>
-                        </span>
-
-                        <span class="point">&#183;</span>
-
-                        <span class="posted-time">
-                            <time><?php echo $cl['li']['comment_on']['time']; ?></time>
-                            <?php if (not_empty($cl['li']['comment_on']['edited'])): ?>
-                                <span
-                                    title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['comment_on']['edited']); ?>">
-                                    &nbsp; (E)
-                                </span>
-                            <?php endif; ?>
-                        </span>
-                    </div>
-                <?php else: ?>
-                    <!-- For other authors -->
-                    <div class="lp">
-                        <div class="flex items-center ">
-                            <a href="<?php echo $cl['li']['comment_on']['owner']['url']; ?>" data-spa="true"
-                                data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
+                <div class="publisher-info">
+                    <?php if ($cl['li']['comment_on']['owner']['id'] == 1 && not_empty($cl['li']['comment_on']['page']['username'])): ?>
+                        <!-- For admin -->
+                        <div class="lp">
+                            <a data-sinfo-lbox="<?php echo $cl['li']['comment_on']['page']['id']; ?>" data-toggle="popover"
                                 data-placement="bottom">
                                 <b>
+
                                     <span class="user-name-holder">
-                                        <?php echo $cl['li']['comment_on']['owner']['name']; ?>
+                                        <?php echo $cl['li']['comment_on']['page']['name']; ?>
                                     </span>
-                                    <p class="<?php if ($cl['li']['comment_on']['owner']['verified'] == '1')
+                                    <p class="<?php if ($cl['li']['comment_on']['page']['verified'] == '1')
                                         echo 'verified-badge'; ?>"
                                         style="display:inline-block;"></p>
                                 </b>
                             </a>
                             <span class="uname">
-                                @<?php echo $cl['li']['comment_on']['owner']['username']; ?>
+                                $<?php echo $cl['li']['comment_on']['page']['username']; ?>
                             </span>
-                            <?php if (not_empty($cl['li']['comment_on']['page']['username'])): ?>
-                                <span class="point">&</span>
-                                <div class="px-2">
 
-                                    <a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['comment_on']['page']['username'])); ?>"
-                                        data-sinfo-lbox="<?php echo $cl['li']['comment_on']['page']['id']; ?>" data-toggle="popover"
-                                        data-placement="bottom">
-                                        <b>
-                                            <span class="user-name-holder">
-                                                <?php echo $cl['li']['comment_on']['page']['name']; ?>
-                                            </span>
-                                            <p class="<?php if ($cl['li']['comment_on']['page']['verified'] == '1')
-                                                echo 'verified-badge'; ?>" style="display:inline-block;"></p>
-                                        </b>
-                                    </a>
-                                    <span class="uname">
-                                        $<?php echo $cl['li']['comment_on']['page']['username']; ?>
-                                    </span>
-                                </div>
-                            <?php endif; ?>
-                            <span class="point px-1">&#183;</span>
+                            <span class="point">&#183;</span>
 
                             <span class="posted-time">
                                 <time><?php echo $cl['li']['comment_on']['time']; ?></time>
@@ -149,9 +89,38 @@
                                 <?php endif; ?>
                             </span>
                         </div>
-                    </div>
-                <?php endif; ?>
-            </div>
+                    <?php else: ?>
+                        <!-- For other authors -->
+                        <div class="lp">
+                            <div class="flex items-center ">
+                                <a data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
+                                    data-placement="bottom">
+                                    <b>
+                                        <span class="user-name-holder">
+                                            <?php echo $cl['li']['comment_on']['owner']['name']; ?>
+                                        </span>
+                                        <p class="<?php if ($cl['li']['comment_on']['owner']['verified'] == '1')
+                                            echo 'verified-badge'; ?>"
+                                            style="display:inline-block;"></p>
+                                    </b>
+                                </a>
+                                <span class="uname">
+                                    @<?php echo $cl['li']['comment_on']['owner']['username']; ?>
+                                </span>
+                                <span class="point px-1">&#183;</span>
+                                <span class="posted-time">
+                                    <time><?php echo $cl['li']['comment_on']['time']; ?></time>
+                                    <?php if (not_empty($cl['li']['comment_on']['edited'])): ?>
+                                        <span
+                                            title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['comment_on']['edited']); ?>">
+                                            &nbsp; (E)
+                                        </span>
+                                    <?php endif; ?>
+                                </span>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
                 <?php if ($cl['li']['comment_on']['target'] == 'pub_reply' && not_empty($cl['li']['comment_on']['reply_to'])): ?>
                     <div class="publication-target">
                         <?php if (not_empty($cl['li']['comment_on']['reply_to']['is_owner'])): ?>

@@ -6308,7 +6308,7 @@ body
   justify-content: center;
   flex-wrap: nowrap;
   overflow: hidden;
-  line-height: 1;
+  line-height: 2; /*Edited by Kevin..Explore/items bottom height. 9/14/2024*/
 }
 
 @media (max-width: 1199.98px) {
