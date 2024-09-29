@@ -36,6 +36,8 @@ function cl_get_profile_posts($user_id = false, $limit = 30, $media = false, $of
 				$post_data['offset_id']   = $row['offset_id'];
 				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
 				$post_data['is_reposter'] = false;
+				$post_data['is_quote']   = (($row['type'] == 'quote') ? true : false);	
+				$post_data['comment_on']  = null;	
 				$post_data['attrs']       = array();
 
 				if ($post_data['is_repost']) {
@@ -46,6 +48,10 @@ function cl_get_profile_posts($user_id = false, $limit = 30, $media = false, $of
 						'username' => $reposter_data['username'],
 						'url' => $reposter_data['url'],
 					);
+				}
+
+				if($post_data['is_quote']){
+					$post_data['comment_on']  = cl_get_guest_feed_one($row['comment_on'])[0];		/* edited by kevin to fetch comment on (added) */
 				}
 
 				if (not_empty($cl['is_logged'])) {
@@ -111,6 +117,34 @@ function cl_get_profile_likes($user_id = false, $limit = 30, $offset = false) {
 			$post_data = cl_raw_post_data($row['pub_id']);
 			if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
 				$post_data['offset_id'] = $row['id'];
+				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
+				$post_data['is_reposter'] = false;
+				$post_data['is_quote']   = (($row['type'] == 'quote') ? true : false);	
+				$post_data['comment_on']  = null;	
+
+				$post_data['attrs']       = array();
+
+				if ($post_data['is_repost']) {
+					$post_data['attrs'][]  = cl_html_attrs(array('data-repost' => $row['offset_id']));
+					$reposter_data         = cl_user_data($row['user_id']);
+					$post_data['reposter'] = array(
+						'name' => $reposter_data['name'],
+						'username' => $reposter_data['username'],
+						'url' => $reposter_data['url'],
+					);
+				}
+
+				if($post_data['is_quote']){
+					$post_data['comment_on']  = cl_get_guest_feed_one($row['comment_on'])[0];		/* edited by kevin to fetch comment on (added) */
+				}
+
+				if (not_empty($cl['is_logged'])) {
+					if ($row['user_id'] == $me['id']) {
+						$post_data['is_reposter'] = true;
+					}
+				}
+
+				$post_data['attrs'] = ((not_empty($post_data['attrs'])) ? implode(' ', $post_data['attrs']) : '');
 				$data[]                 = cl_post_data($post_data);
 			}
 		}
