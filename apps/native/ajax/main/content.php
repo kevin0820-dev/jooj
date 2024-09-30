@@ -883,7 +883,7 @@ else if ($action == 'publish_new_post') {
                 }
             }
 
-            if (in_array($curr_pn, array('home','thread'))) {
+            if (in_array($curr_pn, array('home','thread', 'profile'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
                 $data['html'] = cl_template('timeline/post');
@@ -1003,7 +1003,7 @@ else if ($action == 'publish_new_post') {
                         ));
                     }
 
-                    if (in_array($curr_pn, array('home', 'thread'))) {
+                    if (in_array($curr_pn, array('home', 'thread', 'profile'))) {
                         $post_data    = cl_raw_post_data($post_id);
                         $cl['li']     = cl_post_data($post_data);
                         $data['html'] = cl_template('timeline/post');
@@ -1024,6 +1024,12 @@ else if ($action == 'publish_new_post') {
 }
 
 else if ($action == 'publish_new_repost') {             /* edited by kevin to show modal for repost */
+    if (isset($me['name']) && not_empty($cl['prof_user'])) {
+        $data['can_add'] = $cl['me']['name'] == $cl['prof_user']['username'];
+    } else {
+        $data['can_add'] = false; // or handle the error as needed
+    }
+
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';
@@ -1107,7 +1113,7 @@ else if ($action == 'publish_new_repost') {             /* edited by kevin to sh
                 }
             }
 
-            if (in_array($curr_pn, array('home','thread'))) {
+            if (in_array($curr_pn, array('home','thread', 'profile'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
                 $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
@@ -1231,7 +1237,7 @@ else if ($action == 'publish_new_repost') {             /* edited by kevin to sh
                         ));
                     }
 
-                    if (in_array($curr_pn, array('home', 'thread'))) {
+                    if (in_array($curr_pn, array('home', 'thread', 'profile'))) {
                         $post_data    = cl_raw_post_data($post_id);
                         $cl['li']     = cl_post_data($post_data);
                         $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
@@ -1364,7 +1370,7 @@ else if ($action == 'publish_new_post_symbol') {
                 }
             }
 
-            if (in_array($curr_pn, array('home','thread'))) {
+            if (in_array($curr_pn, array('home','thread', 'profile'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
                 $data['html'] = cl_template('timeline/post_symbol');
@@ -1456,7 +1462,7 @@ else if ($action == 'publish_new_post_symbol') {
                         ));
                     }
 
-                    if (in_array($curr_pn, array('home', 'thread'))) {
+                    if (in_array($curr_pn, array('home', 'thread', 'profile'))) {
                         $post_data    = cl_raw_post_data($post_id);
                         $cl['li']     = cl_post_data($post_data);
                         $data['html'] = cl_template('timeline/post_symbol');
@@ -1570,7 +1576,7 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
                 }
             }
 
-            if (in_array($curr_pn, array('home','thread', 'symbol'))) {
+            if (in_array($curr_pn, array('home','thread', 'symbol', 'profile'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
                 $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
@@ -1702,7 +1708,7 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
                         ));
                     }
 
-                    if (in_array($curr_pn, array('home', 'thread', 'symbol'))) {
+                    if (in_array($curr_pn, array('home', 'thread', 'symbol', 'profile'))) {
                         $post_data    = cl_raw_post_data($post_id);
                         $cl['li']     = cl_post_data($post_data);
                         $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it

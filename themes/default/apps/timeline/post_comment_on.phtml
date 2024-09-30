@@ -125,22 +125,20 @@
                                 </span>
                             <?php else: ?>
                                 <div class="flex items-center ">
-                                    <div>
-                                        <a href="<?php echo $cl['li']['comment_on']['owner']['url']; ?>" data-spa="true"
-                                            data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
-                                            data-placement="bottom">
-                                            <b>
-                                                <span class="user-name-holder">
-                                                    <?php echo $cl['li']['comment_on']['owner']['name']; ?>
-                                                </span>
-                                                <p class="<?php if ($cl['li']['comment_on']['owner']['verified'] == '1')
-                                                                echo 'verified-badge'; ?>" style="display:inline-block;"></p>
-                                            </b>
-                                        </a>
-                                        <span class="uname">
-                                            @<?php echo $cl['li']['comment_on']['owner']['username']; ?>
-                                        </span>
-                                    </div>
+                                    <a href="<?php echo $cl['li']['comment_on']['owner']['url']; ?>" data-spa="true"
+                                        data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
+                                        data-placement="bottom">
+                                        <b>
+                                            <span class="user-name-holder">
+                                                <?php echo $cl['li']['comment_on']['owner']['name']; ?>
+                                            </span>
+                                            <p class="<?php if ($cl['li']['comment_on']['owner']['verified'] == '1')
+                                                            echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+                                        </b>
+                                    </a>
+                                    <span class="uname">
+                                        @<?php echo $cl['li']['comment_on']['owner']['username']; ?>
+                                    </span>
 
                                     <span class="point px-2">&#183;</span>
 
