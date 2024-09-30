@@ -67,7 +67,6 @@
 					class="autoresize" v-model="text" name="post_text" placeholder="Add your comment."></textarea>
 			</div>
 			<input type="text" data-app="selected_repost_id" id = "selected_repost_id" style="display:none" name="selected_repost_id"/>
-			<div data-app="repost_comment"></div>
 			<div class="input-autocomplete" v-if="hashtags.tags.length">
 				<div class="input-autocomplete__hashtags">
 					<div class="input-autocomplete__hashtags-list">
@@ -133,34 +132,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- <div class="input-autocomplete" v-if="mentions.pages.length">
-				<div class="input-autocomplete__usernames">
-					<div class="nput-autocomplete__username-list">
-						<div v-for="i in mentions.pages" class="username-list-item"
-							v-on:click="page_autocomplete(i.username)">
-							<div class="d-flex flex-wn ov-h">
-								<div class="flex-item">
-									<div class="avatar">
-										<img v-bind:src="i.avatar" alt="IMG">
-									</div>
-								</div>
-								<div class="flex-item flex-grow-1 ov-h">
-									<div class="username">
-										<span class="user-name-holder"
-											v-bind:class="{'verified-badge': (i.verified == 1)}">
-											{{i.name}}
-										</span>
-										<span>
-											${{i.username}}
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
+			</div>			
+			<div data-app="repost_comment"></div>
 			<div class="cl-emoticons" v-if="emoticons_picker.status">
 				<div class="emoticons-group-nav">
 					<span class="emoticons-group-nav-item"

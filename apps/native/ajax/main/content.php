@@ -1024,11 +1024,6 @@ else if ($action == 'publish_new_post') {
 }
 
 else if ($action == 'publish_new_repost') {             /* edited by kevin to show modal for repost */
-    if (isset($me['name']) && not_empty($cl['prof_user'])) {
-        $data['can_add'] = $cl['me']['name'] == $cl['prof_user']['username'];
-    } else {
-        $data['can_add'] = false; // or handle the error as needed
-    }
 
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
@@ -1049,6 +1044,13 @@ else if ($action == 'publish_new_repost') {             /* edited by kevin to sh
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
         $comment_id       = fetch_or_get($_POST['selected_repost_id'], 0);
+
+        
+        if ($curr_pn == 'profile') {
+            // $data['can_add'] = $me['name'] == 'aaaa';
+            // $data['can_add'] =  == 'aaaa';
+            $data['can_add'] = true;
+        }
 
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
