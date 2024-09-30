@@ -1047,9 +1047,9 @@ else if ($action == 'publish_new_repost') {             /* edited by kevin to sh
 
         
         if ($curr_pn == 'profile') {
-            // $data['can_add'] = $me['name'] == 'aaaa';
-            // $data['can_add'] =  == 'aaaa';
-            $data['can_add'] = true;
+            $prof = cl_raw_post_data($comment_id);
+            $user = cl_user_data($prof['user_id']);
+            $data['can_add'] = $me['name'] == $user['username'];
         }
 
         if (not_empty($thread_id)) {
