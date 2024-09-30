@@ -439,6 +439,24 @@ var pubbox_form_app_mixin = Object({
 
 							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
 						}
+						else if(SMColibri.curr_pn == "profile") {
+							_app_.thread_id     = 0;
+							var thread_timeline = $('div[data-app="profile"]');
+							var new_post        = $(data.html).addClass('animated fadeIn');
+
+							if(thread_timeline.find('div[data-an="entry-list"]').length) {
+								thread_timeline.find('div[data-an="entry-list"]').prepend(new_post).promise().done(function() {
+									setTimeout(function() {
+										thread_timeline.find('div[data-an="entry-list"]').find('[data-list-item]').first().removeClass('animated fadeIn');
+									}, 1000);
+								});
+							}
+							else {
+								SMColibri.spa_reload();
+							}
+
+							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
+						}
 						else {
 							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 1200);
 						}
@@ -491,6 +509,7 @@ var pubbox_form_app_mixin = Object({
 				},
 				success: function(data) {
 					if (data.status == 200) {
+						alert(data.can_add);
 						if (SMColibri.curr_pn == "home") {
 							var home_timeline = $('div[aria-labelledby="profile-tab"]');
 							var new_post      = $(data.html).addClass('animated fadeIn');
@@ -506,15 +525,14 @@ var pubbox_form_app_mixin = Object({
 								SMColibri.spa_reload();
 							}
 						}
-						else if(SMColibri.curr_pn == "thread" && _app_.thread_id) {
-							_app_.thread_id     = 0;
-							var thread_timeline = $('div[data-app="thread"]');
+						else if(SMColibri.curr_pn == "profile" && data.can_add) {
+							var thread_timeline = $('div[data-app="profile"]');
 							var new_post        = $(data.html).addClass('animated fadeIn');
 
-							if(thread_timeline.find('div[data-an="replys-list"]').length) {
-								thread_timeline.find('div[data-an="replys-list"]').prepend(new_post).promise().done(function() {
+							if(thread_timeline.find('div[data-an="entry-list"]').length) {
+								thread_timeline.find('div[data-an="entry-list"]').prepend(new_post).promise().done(function() {
 									setTimeout(function() {
-										thread_timeline.find('div[data-an="replys-list"]').find('[data-list-item]').first().removeClass('animated fadeIn');
+										thread_timeline.find('div[data-an="entry-list"]').find('[data-list-item]').first().removeClass('animated fadeIn');
 									}, 1000);
 								});
 							}

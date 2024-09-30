@@ -391,10 +391,10 @@ else if ($action == 'delete_account') {
         $data['status'] = 200;
 
         unset($_COOKIE['user_id']);
-        setcookie('user_id', null, -1);
+        setcookie('user_id', "", -1);
 
         unset($_COOKIE['dark_mode']);
-        setcookie('dark_mode', null, -1);
+        setcookie('dark_mode', "", -1);
 
         cl_delete_user_data($me['id']);
     }
