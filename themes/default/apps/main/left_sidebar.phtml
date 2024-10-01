@@ -436,6 +436,14 @@
 				<?php echo cl_translate('New post'); ?>
 			</button>
 		</div>
+		<div class="topical-posts-custom">
+			<div class="">
+				Coming Soon!</br>
+				New content will be filled later.
+				Maybe this will be advertisement panel or widget from stock info providers
+			</div>
+		</div>
+		
 		<div class="user-info h-mobile" style="position: fixed; bottom: 15px; flex-direction: row;">
 			<div class="avatar">
 				<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
@@ -593,8 +601,45 @@
 				</span>
 			</div>
 		</div>
+
 	</div>
 	<?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true): ?>
 			<?php echo cl_template('main/bottom_navbar'); ?>
 		<?php endif; ?>
 </div>
+
+<style>
+	.topical-posts-custom {
+  color: var(--smc-main-text-color-2);
+  width: 260px;
+  overflow: hidden;
+  display: block;
+  margin-bottom: 5px;
+  border: 0px solid var(--smc-main-border-color);
+  background-color: var(--smc-main-bg-color-2);
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  border-radius: 16px;
+}
+.test_content_break{
+	word-break: break-all;
+}
+.left-extra-square{
+  height: 80px;
+  color: var(--smc-main-text-color-2);
+  width: 260px;
+  overflow: hidden;
+  display: block;
+  margin-bottom: 5px;
+  border: 0px solid var(--smc-main-border-color);
+  background-color: var(--smc-main-bg-color-2);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  border-radius: 16px;
+	
+}
+
+</style>

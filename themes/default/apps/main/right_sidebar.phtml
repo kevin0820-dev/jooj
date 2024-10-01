@@ -4,22 +4,25 @@
 <div class="sidebar__inner">
 		<div style="display: flex; justify-content:space-evenly; align-items: center; padding-bottom:10px;">
 			
-				<button onclick="toggleBackground()">
-					<img style="padding-right: 10px;" id="mode-icon" src="/themes/default/statics/img/black_mode_square.png" alt="Toggle Background" width="32" height="32" >
-				</button>
+				<div onclick="toggleBackground()">
+					<img style="padding-right: 10px;" id="mode-icon" src="/themes/default/statics/img/black_mode_square.png" alt="Toggle Background" width="28">
+				</div>
 				<span class="day_night_mode" style=" padding-right:10px; ">Disclaimer</span>
 				<span class="day_night_mode">Terms</span>
 			
 		</div>
-	<?php if($cl['pn'] == "symbol"): ?>
-		<!-- TradingView Widget BEGIN -->
-		<div id="tradingview-widget-container" class="tradingview-widget-container">
-			<div class="tradingview-widget-container__widget"></div>
-			<div id="tradingview-widget"></div>
-			<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+	
+		<?php if($cl['pn'] == "symbol"): ?>
+		<div class="topical-posts">
+		
+			<div id="tradingview-widget-container" class="tradingview-widget-container">
+				<div class="tradingview-widget-container__widget"></div>
+				<div id="tradingview-widget"></div>
+				<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+			</div>
 		</div>
-		<!-- TradingView Widget END -->
-	<?php endif ?>
+		<?php endif ?>
+	
 
 	<!-- User Media -->
 	<?php if (not_empty($cl["is_logged"])): ?>
