@@ -222,25 +222,28 @@ function cl_upsert_symbols($text = "") {
             foreach ($symbols as $key => $symbol) {
                 $symbol      = cl_remove_emoji($symbol);
                 $symbol_id   = 0;
-                $db        = $db->where('symbol', cl_text_secure($symbol));
-                $symbol_data = $db->getOne(T_HSYMBOLS, array('id', 'posts'));
+				$db 	   = $db->where('username', cl_text_secure($symbol));
+				$symbols_data = $db->getOne(T_SYMBOLS, array('id'));
+				if(not_empty($symbols_data)){
+					$db        = $db->where('symbol', cl_text_secure($symbol));
+					$symbol_data = $db->getOne(T_HSYMBOLS, array('id', 'posts'));
 
-                if (not_empty($symbol_data)) {
-                    $symbol_id = $symbol_data['id'];
+					if (not_empty($symbol_data)) {
+						$symbol_id = $symbol_data['id'];
 
-                    $db->where('id', $symbol_id)->update(T_HSYMBOLS, array(
-                        'time'  => time(),
-                        'posts' => ($symbol_data['posts'] += 1)
-                    ));
-                }
-                else{
-                    $symbol_id    = $db->insert(T_HSYMBOLS, array(
-                        'posts' => 1,
-                        'symbol'   => $symbol,
-                        'time'  => time()
-                    ));
-                }
-
+						$db->where('id', $symbol_id)->update(T_HSYMBOLS, array(
+							'time'  => time(),
+							'posts' => ($symbol_data['posts'] += 1)
+						));
+					}
+					else{
+						$symbol_id    = $db->insert(T_HSYMBOLS, array(
+							'posts' => 1,
+							'symbol'   => $symbol,
+							'time'  => time()
+						));
+					}
+				}
                 $text = preg_replace(cl_strf("/\\$%s\b/", $symbol), cl_strf("{@id:%s@}", $symbol_id), $text);
             }
         }

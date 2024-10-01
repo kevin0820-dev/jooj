@@ -57,12 +57,49 @@
 				</div>
 			</form>
 		</div>
+
+		<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+		<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+		{
+		"symbols": [
+			{
+			"proName": "FOREXCOM:SPXUSD",
+			"title": "S&P 500 Index"
+			},
+			{
+			"proName": "FOREXCOM:NSXUSD",
+			"title": "US 100 Cash CFD"
+			},
+			{
+			"proName": "FX_IDC:EURUSD",
+			"title": "EUR to USD"
+			},
+			{
+			"proName": "BITSTAMP:BTCUSD",
+			"title": "Bitcoin"
+			},
+			{
+			"proName": "BITSTAMP:ETHUSD",
+			"title": "Ethereum"
+			}
+		],
+		"showSymbolLogo": true,
+		"isTransparent": true,
+		"displayMode": "compact",
+		"colorTheme": "dark",
+		"locale": "en"
+		}
+		</script>
+</div>		
+
 		<div class="lp" style="display: inline-flex; align-items:center;">
 			<span class="go-back" onclick="SMColibri.go_back();" style="width:auto; height:auto; margin-right:10px;">
 				<?php echo cl_ikon('arrow-left'); ?>
 			</span>
 			<div class="nav-link-holder" style="font-size: large; font-weight:bold;">
-				<span class="user-name-holder">
+				<span style="color: var(--smc-main-text-color);" class="user-name-holder">
 					<?php echo ($cl['prof_user']['name']); ?>
 				</span>
 				<?php if ($cl['prof_user']['verified'] == '1'): ?>
@@ -100,7 +137,7 @@
 								<?php endif; ?>
 							</a>
 						</h4>
-						<div class="font-semibold pt-3 pb-1">
+						<div style="color:var(--smc-main-text-color-2);" class="font-semibold pt-3 pb-1">
 							$<?php echo ($cl['prof_user']['username']); ?>
 						</div>
 					</div>
@@ -360,7 +397,7 @@
 			</div>
 			<div style="display: flex; text-align:left; align-items:center">
         		<div style="width: 60%; display:flex;">
-					<div style="padding-left: 20px; font-size:xx-large; font-weight:bold" id = 'price'>
+					<div style="padding-left: 20px; font-size:xx-large; color:var(--smc-main-text-color-2); font-weight:bold" id = 'price'>
 						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : echo "$" . $cl['coin_one']['price']; ?>
 						<?php else : echo "Error" ?>
 						<?php endif ?>

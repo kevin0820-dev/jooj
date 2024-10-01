@@ -48,7 +48,7 @@ function cl_get_guest_feed($offset = false, $limit = 10) {
 					if($post_data['comment_on']) $post_data['comment_on'] = $post_data['comment_on'][0];		/* edited by kevin to fetch comment on (added) */
 				}
 
-				if ($row['user_id'] == $me['id']) {
+				if (isset($me['id']) && $row['user_id'] == $me['id']) {
 					$post_data['is_reposter'] = true;
 				}
 
