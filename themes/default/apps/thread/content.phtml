@@ -684,11 +684,11 @@
 											<?php echo cl_template('timeline/post'); ?>
 
 											<?php
-											$parent_thread = $cl['thread_data']['post'];
+											$parent_thread = $cl['li'];
 											$post_replys = $parent_thread['replys'];
 											$post_replys = array_reverse($post_replys);
 
-											foreach ($post_replys as $cl['thread_data']['post']) {
+											foreach ($post_replys as $cl['li']) {
 												echo cl_template('timeline/post');
 											}
 											?>
