@@ -684,13 +684,13 @@
 											<?php echo cl_template('timeline/post'); ?>
 
 											<?php
-												$parent_thread = $cl['thread_data']['post'];
-												$post_replys = $parent_thread['replys'];
-												$post_replys = array_reverse($post_replys);
+											$parent_thread = $cl['thread_data']['post'];
+											$post_replys = $parent_thread['replys'];
+											$post_replys = array_reverse($post_replys);
 
-												foreach ($post_replys as $cl['thread_data']['post']) {
-													echo cl_template('timeline/post');
-												}
+											foreach ($post_replys as $cl['thread_data']['post']) {
+												echo cl_template('timeline/post');
+											}
 											?>
 										</div>
 
