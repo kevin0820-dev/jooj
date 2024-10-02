@@ -329,10 +329,12 @@ h3.login-home {
 /* edited by kevin.. leftside gap issue. NewKevin*/
 .right-sb-container .inner-wrapper-sticky {
   top: 10px !important;
-  bottom: 90px !important;
+  bottom: 0px !important;
   position: fixed !important;
   width: 350px;
+  overflow-y: scroll;
 }
+/* Kevin 9/29 */
 
 body.cl-app-conversation
   div.conversation
@@ -6996,7 +6998,7 @@ body
   overflow-y: auto;
   -moz-box-pack: justify;
   justify-content: space-between;
-  height: 100%;
+  /* height: 100%; Kevin 9/29 */
   width: 275px;
   padding: 12px;
   display: block;
@@ -35232,3 +35234,5 @@ body.cl-app-wallet
 /* ===================================================== */
 
 /*# sourceMappingURL=master.styles.css.map */
+
+

@@ -413,6 +413,12 @@
 					</span>
 				</li>
 			</ul>
+			<div class="publish-post-btn">
+			<button class="btn btn-custom main-inline lg home btn-block" data-toggle="modal"
+				data-target="#add_new_post">
+				<?php echo cl_translate('New post'); ?>
+			</button>
+		</div>
 		</div>
 		<div class="mobile-sb-footer">
 			<?php echo cl_template('main/footer'); ?>
@@ -430,19 +436,8 @@
 					</svg>
 				</span></div>
 		</a>
-		<div class="publish-post-btn">
-			<button class="btn btn-custom main-inline lg home btn-block" data-toggle="modal"
-				data-target="#add_new_post">
-				<?php echo cl_translate('New post'); ?>
-			</button>
-		</div>
-		<div class="topical-posts-custom">
-			<div class="">
-				Coming Soon!</br>
-				New content will be filled later.
-				Maybe this will be advertisement panel or widget from stock info providers
-			</div>
-		</div>
+		
+		
 		
 		<div class="user-info h-mobile" style="position: fixed; bottom: 15px; flex-direction: row;">
 			<div class="avatar">
@@ -603,6 +598,12 @@
 		</div>
 
 	</div>
+	<div class="sidebar__inner">
+		<div class="topical-posts-custom">
+		</div>
+	</div>
+	
+
 	<?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true): ?>
 			<?php echo cl_template('main/bottom_navbar'); ?>
 		<?php endif; ?>
@@ -612,6 +613,7 @@
 	.topical-posts-custom {
   color: var(--smc-main-text-color-2);
   width: 260px;
+  height: 200px;
   overflow: hidden;
   display: block;
   margin-bottom: 5px;
