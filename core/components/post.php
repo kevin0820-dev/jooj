@@ -727,7 +727,7 @@ function cl_comment_on($post_id = 0){
     global $db;
 
     if (not_num($post_id)) {
-        return false;
+        return -1;
     } 
 
     $db        = $db->where('type', 'quote');
@@ -735,13 +735,15 @@ function cl_comment_on($post_id = 0){
     $post_data = $db->getOne(T_POSTS);
 
     if (empty($post_data)) {
+		$db        = $db->where('type', 'quote');
+    	$db        = $db->where('publication_id', $post_id);
 		$post_data = $db->getOne(T_PSYMBOL);
 		if (empty($post_data)) return -1;
     }
 	$post_data['comment_on'] = cl_get_guest_feed_one($post_data['comment_on']);
 	if(isset($post_data['comment_on'][0])) return $post_data['comment_on'][0];
-	else return $post_data['comment_on'];
 }
+
 function cl_raw_post_data($post_id = 0) {
     global $db;
 

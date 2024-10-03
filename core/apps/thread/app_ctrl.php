@@ -29,7 +29,7 @@ function cl_get_thread_data($post_id = false) {
 		$data['can_reply'] = cl_can_reply($post);
 		$data['post']      = cl_post_data($post);
 		$data['next']      = cl_get_thread_child_posts($post_id, 30);
-		$data['comment_on']=cl_comment_on($post_id);
+		$data['comment_on'] = cl_comment_on($post_id);
 	}
 
 	return $data;
