@@ -21,13 +21,15 @@ function cl_get_thread_data($post_id = false) {
 		'post'      => array(),
 		'next'      => array(),
 		'can_reply' => true,
-		'can_see'   => true
+		'can_see'   => true,
+		'comment_on'=> -1
 	);
 
 	if (cl_queryset($post) && $post["status"] != "orphan") {
 		$data['can_reply'] = cl_can_reply($post);
 		$data['post']      = cl_post_data($post);
 		$data['next']      = cl_get_thread_child_posts($post_id, 30);
+		$data['comment_on']=cl_comment_on($post_id);
 	}
 
 	return $data;
