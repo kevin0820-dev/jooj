@@ -106,6 +106,7 @@ function cl_get_profile_posts($symbol_id = false, $limit = 30, $media = false, $
     // Fetch posts mentioning the symbol by name
     $sql_mentions = cl_sqltepmlate("apps/symbol/sql/fetch_symbol_mentions", array(
         "t_pubs" => T_PUBS,
+        "t_posts" => T_POSTS,
         "symbol_name" => $symbol_name,
         "limit" => $limit,
         "offset" => $offset
@@ -116,7 +117,12 @@ function cl_get_profile_posts($symbol_id = false, $limit = 30, $media = false, $
         foreach ($query_res_mentions as $row) {
             $post_data = cl_raw_post_data($row['id']);
             if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
-                $post_data['offset_id'] = isset($row['offset_id']) ? $row['offset_id'] : null;
+                $post_data['offset_id'] = isset($row['offset_id']) ? $row['offset_id'] : null;                
+                $post_data['is_quote'] = (($row['type'] == 'quote') ? true : false);
+                $post_data['comment_on'] = null;
+                if($post_data['is_quote']){
+					$post_data['comment_on'] = cl_get_guest_feed_one($row['comment_on'])[0];		/* edited by kevin to fetch comment on (added) */	
+				}
                 $data[] = cl_post_data($post_data);
             }
         }
