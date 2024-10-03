@@ -126,16 +126,6 @@
 							<span class="user-name-holder">
 								<?php echo ($cl['prof_user']['name']); ?>
 							</span>
-
-							<a tabindex="0" data-container="body" data-toggle="popover" id="verPopover">
-								<span class="user-name-holder">
-								</span>
-								<?php if ($cl['prof_user']['verified'] == '1'): ?>
-									<span class="user-name-holder__badge" style="display:inline-block;">
-										<?php echo cl_icon("verified_user_badge"); ?>
-									</span>
-								<?php endif; ?>
-							</a>
 						</h4>
 						<div style="color:var(--smc-main-text-color-2); font-size: 25px;" class="font-semibold pt-4 pb-1">
 							$<?php echo ($cl['prof_user']['username']); ?>
