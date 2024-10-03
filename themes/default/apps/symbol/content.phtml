@@ -558,43 +558,28 @@
 			<?php endif; ?> -->
 			<?php if (not_empty($cl["can_view"])): ?>
 				<div class="profile-activity-navbar">
-					<a href="<?php echo cl_link(cl_strf("symbol/%s/posts", $cl['prof_user']['raw_sname'])); ?>"
+					<a href="<?php echo cl_link(cl_strf("symbol/%s/foryou", $cl['prof_user']['raw_sname'])); ?>"
 						data-spa="true">
 						<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {
 							echo ('active');
 						} ?>">
-							<?php echo cl_translate("Posts"); ?>
+							<?php echo cl_translate("For You"); ?>
 						</button>
 						<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'posts') {
 							echo ('active');
 						} ?>"></div>
 					</a>
-					<a href="<?php echo cl_link(cl_strf("symbol/%s/media", $cl['prof_user']['raw_sname'])); ?>"
+					<a href="<?php echo cl_link(cl_strf("symbol/%s/following", $cl['prof_user']['raw_sname'])); ?>"
 						data-spa="true">
 						<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {
 							echo ('active');
 						} ?>">
-							<?php echo cl_translate("Media"); ?>
+							<?php echo cl_translate("Following"); ?>
 						</button>
 						<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'media') {
 							echo ('active');
 						} ?>"></div>
 					</a>
-					<?php if (not_empty($cl["can_view"])): ?>
-						<a href="<?php echo cl_link(cl_strf("symbol/%s/likes", $cl['prof_user']['raw_sname'])); ?>"
-							data-spa="true">
-						<?php else: ?>
-							<a href="javascript:void(0);" onclick="SMColibri.PS.profile.privacy_alert();">
-							<?php endif; ?>
-							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'likes') {
-								echo ('active');
-							} ?>">
-								<?php echo cl_translate("Likes"); ?>
-							</button>
-							<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'likes') {
-								echo ('active');
-							} ?>"></div>
-						</a>
 				</div>
 			<?php endif; ?>
 		</div>
