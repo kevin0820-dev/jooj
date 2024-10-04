@@ -69,15 +69,15 @@
 			</div>
 			<!-- End Post Privacy -->
 			<div class="input-holder">
-				<textarea ref="text_input"
-						v-on:input.trim="text_input_trigger"
-						v-on:blur="text_blur_trigger"
-						v-on:focus="text_focus_trigger"
-						class="autoresize"
-						v-model="text"
-						name="post_text"
-						placeholder="Share your thought on $<?php echo ($cl['prof_user']['username']); ?>"></textarea>
-   			 </div>
+        <textarea ref="text_input"
+                  v-on:input.trim="text_input_trigger"
+                  v-on:blur="text_blur_trigger"
+                  v-on:focus="text_focus_trigger"
+                  class="autoresize"
+                  v-model="text"
+                  name="post_text"
+                  placeholder="Share your idea on $<?php echo ($cl['prof_user']['username']); ?>"></textarea>
+    </div>
 			<div class="input-autocomplete" v-if="hashtags.tags.length">
 				<div class="input-autocomplete__hashtags">
 					<div class="input-autocomplete__hashtags-list">
@@ -513,25 +513,25 @@
 					v-bind:disabled="image_ctrl != true">
 					<?php echo cl_ikon("image"); ?>
 				</button>
-				<!-- <button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
+				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Video"); ?>" v-on:click="select_video"
 					v-bind:disabled="video_ctrl != true">
 					<?php echo cl_ikon("film"); ?>
-				</button> -->
-				<!-- <button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
+				</button>
+				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Music"); ?>" v-on:click="select_music"
 					v-bind:disabled="music_ctrl != true">
 					<?php echo cl_icon('music'); ?>
-				</button> -->
+				</button>
 				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom" title="GIF"
 					v-on:click="select_gifs" v-bind:disabled="gif_ctrl != true">
 					<?php echo cl_ikon('gif'); ?>
 				</button>
-				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
+				<!-- <button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Poll"); ?>" v-on:click="create_poll"
 					v-bind:disabled="poll_ctrl != true">
 					<?php echo cl_ikon('poll'); ?>
-				</button>
+				</button> -->
 
 				<button v-on:click="emoticon_picker" data-toggle="tooltip" data-placement="bottom" title="Emoji"
 					type="button" class="ctrl-item">
@@ -539,22 +539,22 @@
 				</button>
 
 				<!-- Audio record CTRLs -->
-				<!-- <button type="button" v-if="audio_rec.is_recording == false"
+				<button type="button" v-if="audio_rec.is_recording == false"
 					title="<?php echo cl_translate("Audio"); ?>" class="ctrl-item" v-on:click="record_audio_start"
 					v-bind:disabled="audio_ctrl != true">
 					<?php echo cl_ikon("sounds"); ?>
-				</button> -->
-				<!-- <button type="button" v-if="audio_rec.is_recording == true" class="ctrl-item audio-recording"
+				</button>
+				<button type="button" v-if="audio_rec.is_recording == true" class="ctrl-item audio-recording"
 					v-on:click="record_audio_stop" v-bind:disabled="audio_ctrl != true || audio_rec.record_time < 1">
 					<?php echo cl_ikon("stop"); ?> <span class="record-timer">{{audio_rec.record_ftime}}</span>
-				</button> -->
+				</button>
 
 				<!-- Audio record CTRLs -->
-				<!-- <button type="button" class="ctrl-item doc" data-toggle="tooltip" data-placement="bottom"
+				<button type="button" class="ctrl-item doc" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Document"); ?>" v-on:click="select_doc"
 					v-bind:disabled="doc_ctrl != true">
 					<?php echo cl_icon('file_present'); ?>
-				</button> -->
+				</button>
 				<div class="flex-item ml-auto">
 					<button v-bind:disabled="valid_form != true || submitting" type="submit"
 						class="btn-custom main-inline md post-pub-btn">
