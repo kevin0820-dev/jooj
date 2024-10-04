@@ -194,8 +194,9 @@ margin-top: -1px;
 margin-right: 5px;
 position: absolute;
 }
-.btn-close,
-.sidebar__inner .cp img {
+.btn-close
+/* , .sidebar__inner .cp img */
+ {
   filter: var(--smc-filter) !important;
 }
 .fancybox__rightCol {
