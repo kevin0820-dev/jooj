@@ -1174,7 +1174,7 @@ body.modal-open {
 }
 
 body main.main-content-container {
-  background: var(--cl-primary-bg-color);
+  background: var(--smc-main-bg-color-2);
   min-width: 320px;
 }
 
@@ -1193,11 +1193,13 @@ body
   main.main-content-container
   div.main-content-container-inner
   div.timeline-container-wrapper {
+  margin-top: 13px;
   flex: 2;
-  max-width: 600px;
-  min-width: 600px;
-  border-left: 1px solid var(--cl-primary-border-color);
-  border-right: 1px solid var(--cl-primary-border-color);
+  max-width: 700px;
+  min-width: 700px;
+  /* border-left: 1px solid var(--cl-primary-border-color); */
+  /* border-right: 1px solid var(--cl-primary-border-color); */
+  /* box-shadow: var(--smc-main-box-shadow-eff); */
   min-height: 100vh;
   position: relative;
 }
@@ -18963,7 +18965,7 @@ body.cl-app-home
 
 body.cl-app-chat div.chats div.chat-contacts div.contacts-list__item {
   padding: var(--cl-primary-offset-size);
-  border-bottom: 1px solid var(--cl-primary-border-color);
+  border-top: 1px solid var(--cl-primary-border-color);
   cursor: pointer;
   overflow: hidden;
 }
