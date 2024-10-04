@@ -10169,7 +10169,7 @@ body form div.form-group input.form-control:not(:disabled):active {
 
   outline: 0;
 
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  /* box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); */
 }
 body form div.form-group input.form-control.is-invalid {
   border-color: var(--smc-main-red-color);
