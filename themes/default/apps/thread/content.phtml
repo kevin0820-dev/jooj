@@ -405,9 +405,11 @@
 											</div>
 										</div>
 									<?php endif; ?>
-								<?php endif; ?>
+								<?php endif; ?>								
+								<?php if(not_empty($cl['thread_data']['comment_on'])): ?>
+									<?php echo cl_template('thread/post_comment_on'); ?>
+								<?php endif ?>
 							</div>
-
 							<div class="publication-meta-info">
 								<div class="posted-time">
 									<?php echo cl_ikon('calendar'); ?>
@@ -684,11 +686,11 @@
 											<?php echo cl_template('timeline/post'); ?>
 
 											<?php
-											$parent_thread = $cl['thread_data']['post'];
+											$parent_thread = $cl['li'];
 											$post_replys = $parent_thread['replys'];
 											$post_replys = array_reverse($post_replys);
 
-											foreach ($post_replys as $cl['thread_data']['post']) {
+											foreach ($post_replys as $cl['li']) {
 												echo cl_template('timeline/post');
 											}
 											?>
