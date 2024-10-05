@@ -31923,7 +31923,38 @@ body.cl-app-thread
   * {
   stroke: var(--smc-main-uiel-color);
 }
-
+body.cl-app-thread
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.publication--thread-container
+  div.publication--thread-container-inner
+  div.publication--thread-data-holder
+  div.publication-data
+  div.publication-data-inner
+  div.post-reply{
+    width: 100%;
+    display: block;
+    line-height: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  body.cl-app-thread
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.publication--thread-container
+  div.publication--thread-container-inner
+  div.publication--thread-data-holder
+  div.publication-data
+  div.publication-data-inner
+  div.post-reply
+  {
+    color: var(--smc-main-text-color-2);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+  }
 body.cl-app-thread
   main.main-content-container
   div.main-content-container-inner
