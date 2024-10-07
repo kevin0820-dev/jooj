@@ -1,6 +1,6 @@
 
 
-<div class="inner-content" style="cursor:pointer; border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
+<div class="inner-content" style="cursor:pointer; border: 1px solid #e4eaef; padding : 10px; border-radius: 10px;" onclick="analyze_quote(event, <?php echo ($cl['li']['comment_on']['id']); ?>)"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
     <div class="post-list-item-content">
         <div class="publisher-avatar">
             <!-- For post -->
@@ -66,7 +66,7 @@
             <div class="publication-data-inner">
                 <div class="publisher-info">
                     <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
-                        <div class="lp" onclick="window.location.href='<?php echo $cl['li']['comment_on']['url']; ?>'">
+                        <div class="lp">
 
                             <a  data-spa="true"
                                 data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
