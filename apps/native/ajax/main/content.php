@@ -1372,7 +1372,7 @@ else if ($action == 'publish_new_post_symbol') {
                 }
             }
 
-            if (in_array($curr_pn, array('home','thread', 'profile'))) {
+            if (in_array($curr_pn, array('home','thread', 'profile', 'symbol'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
                 $data['html'] = cl_template('timeline/post_symbol');
@@ -1464,7 +1464,7 @@ else if ($action == 'publish_new_post_symbol') {
                         ));
                     }
 
-                    if (in_array($curr_pn, array('home', 'thread', 'profile'))) {
+                    if (in_array($curr_pn, array('home', 'thread', 'profile', 'symbol'))) {
                         $post_data    = cl_raw_post_data($post_id);
                         $cl['li']     = cl_post_data($post_data);
                         $data['html'] = cl_template('timeline/post_symbol');
@@ -1578,7 +1578,7 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
                 }
             }
 
-            if (in_array($curr_pn, array('home','thread', 'symbol', 'profile'))) {
+            if (in_array($curr_pn, array('home','thread', 'symbol', 'profile', 'symbol'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
                 $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it

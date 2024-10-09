@@ -60,6 +60,7 @@ function cl_get_profile_posts($symbol_id = false, $limit = 30, $media = false, $
 
                 if($post_data['is_quote']){
 					$post_data['comment_on'] = cl_get_guest_feed_one($row['comment_on'])[0];		/* edited by kevin to fetch comment on (added) */	
+                    if($post_data['comment_on']) $post_data['comment_on'] = $post_data['comment_on'][0];
 				}
                 
                 if (not_empty($cl['is_logged'])) {
