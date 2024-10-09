@@ -426,17 +426,14 @@ var pubbox_form_app_mixin = Object({
 							var thread_timeline = $('div[data-app="thread"]');
 							var new_post        = $(data.html).addClass('animated fadeIn');
 
-							if(thread_timeline.find('div[data-an="replys-list"]').length) {
-								thread_timeline.find('div[data-an="replys-list"]').prepend(new_post).promise().done(function() {
-									setTimeout(function() {
-										thread_timeline.find('div[data-an="replys-list"]').find('[data-list-item]').first().removeClass('animated fadeIn');
-									}, 1000);
-								});
+							if(thread_timeline.find('div[data-an="replys-list"]').length < 1){
+								thread_timeline.find('div[class="publication--thread-replys-holder"]').html('<div class="timeline-posts-container"><div class="timeline-posts-ls" data-an="replys-list"></div></div>');
 							}
-							else {
-								SMColibri.spa_reload();
-							}
-
+							thread_timeline.find('div[data-an="replys-list"]').prepend(new_post).promise().done(function() {
+								setTimeout(function() {
+									thread_timeline.find('div[data-an="replys-list"]').find('[data-list-item]').first().removeClass('animated fadeIn');
+								}, 1000);
+							});
 							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
 						}
 						else if(SMColibri.curr_pn == "profile") {
