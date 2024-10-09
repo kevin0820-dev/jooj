@@ -4435,6 +4435,7 @@ body
   div.lozad-media {
   width: 100%;
   display: block;
+  margin-bottom: 10px;
 }
 
 body
@@ -31983,6 +31984,7 @@ body.cl-app-thread
   div.lozad-media {
   width: 100%;
   display: block;
+  margin-bottom: 10px;
 }
 
 body.cl-app-thread
@@ -33114,6 +33116,7 @@ div.publication-content
 div.lozad-media {
 width: 100%;
 display: block;
+margin-bottom: 10px;
 }
 
 
