@@ -555,20 +555,20 @@
 				<?php if (not_empty($cl["can_view"])): ?>
 					<?php if (in_array($cl['page_tab'], array('posts', 'media'))): ?>
 						<div class="timeline-posts-container py-3">
-							<div class="timeline-posts-ls" data-an="entry-list">
-								<?php $count = 0; ?>
-								<?php if (not_empty($cl["user_posts"]) && is_array($cl["user_posts"])): ?>
-									<?php foreach ($cl["user_posts"] as $cl['li']): ?>
-										<?php $count++; ?>
-										<?php echo cl_template('timeline/post_symbol'); ?>
-										<?php if ($count == 3) {
-											echo cl_template('home/follow');
-										} ?>
-									<?php endforeach; ?>
-								<?php else: ?>
-									<?php echo cl_template('symbol/includes/no_posts'); ?>
-								<?php endif; ?>
-							</div>
+							<?php $count = 0; ?>
+							<?php if (not_empty($cl["user_posts"]) && is_array($cl["user_posts"])): ?>
+								<div class="timeline-posts-ls" data-an="entry-list">
+								<?php foreach ($cl["user_posts"] as $cl['li']): ?>
+									<?php $count++; ?>
+									<?php echo cl_template('timeline/post_symbol'); ?>
+									<?php if ($count == 3) {
+										echo cl_template('home/follow');
+									} ?>
+								<?php endforeach; ?>
+								</div>
+							<?php else: ?>
+								<?php echo cl_template('symbol/includes/no_posts'); ?>
+							<?php endif; ?>
 						</div>
 					<?php else: ?>
 						<div class="timeline-posts-container">
