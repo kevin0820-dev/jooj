@@ -1495,6 +1495,7 @@ align-items: center;
     div.timeline-header {
     position: fixed !important;
     left: 0;
+    top: 0px !important;
   }
   body
     main.main-content-container
