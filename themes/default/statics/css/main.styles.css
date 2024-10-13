@@ -4396,7 +4396,7 @@ body
   margin: 0;
   color: var(--smc-main-text-color);
   word-break: break-word;
-  display: block;
+  display: inline-flex;
 }
 
 body
@@ -33073,7 +33073,7 @@ padding: 0;
 margin: 0;
 color: var(--smc-main-text-color);
 word-break: break-word;
-display: block;
+display: inline-flex;
 }
 
 
