@@ -194,8 +194,9 @@ margin-top: -1px;
 margin-right: 5px;
 position: absolute;
 }
-.btn-close,
-/* .sidebar__inner .cp img {
+.btn-close
+/* , .sidebar__inner .cp img */
+ {
   filter: var(--smc-filter) !important;
 } */
 .fancybox__rightCol {
@@ -1494,6 +1495,7 @@ align-items: center;
     div.timeline-header {
     position: fixed !important;
     left: 0;
+    top: 0px !important;
   }
   body
     main.main-content-container
@@ -4394,7 +4396,7 @@ body
   margin: 0;
   color: var(--smc-main-text-color);
   word-break: break-word;
-  display: block;
+  display: inline-flex;
 }
 
 body
@@ -4434,6 +4436,7 @@ body
   div.lozad-media {
   width: 100%;
   display: block;
+  margin-bottom: 10px;
 }
 
 body
@@ -31926,7 +31929,38 @@ body.cl-app-thread
   * {
   stroke: var(--smc-main-uiel-color);
 }
-
+body.cl-app-thread
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.publication--thread-container
+  div.publication--thread-container-inner
+  div.publication--thread-data-holder
+  div.publication-data
+  div.publication-data-inner
+  div.post-reply{
+    width: 100%;
+    display: block;
+    line-height: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  body.cl-app-thread
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container
+  div.publication--thread-container
+  div.publication--thread-container-inner
+  div.publication--thread-data-holder
+  div.publication-data
+  div.publication-data-inner
+  div.post-reply
+  {
+    color: var(--smc-main-text-color-2);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+  }
 body.cl-app-thread
   main.main-content-container
   div.main-content-container-inner
@@ -31955,6 +31989,7 @@ body.cl-app-thread
   div.lozad-media {
   width: 100%;
   display: block;
+  margin-bottom: 10px;
 }
 
 body.cl-app-thread
@@ -33042,7 +33077,7 @@ padding: 0;
 margin: 0;
 color: var(--smc-main-text-color);
 word-break: break-word;
-display: block;
+display: inline-flex;
 }
 
 
@@ -33086,6 +33121,7 @@ div.publication-content
 div.lozad-media {
 width: 100%;
 display: block;
+margin-bottom: 10px;
 }
 
 
