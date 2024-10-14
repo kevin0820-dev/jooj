@@ -244,7 +244,7 @@
 												$symbol = strtolower($matches[2]);
 
 												// Create the image tag
-												$image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 15px; padding-right: 5px; display:inline; position:relative; top:2.5px;" alt="' . $symbol . '">';
+												$image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 15px; padding-right: 2px; display:inline;" alt="' . $symbol . '">';
 
 												// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
 												return $image_tag . $matches[1];

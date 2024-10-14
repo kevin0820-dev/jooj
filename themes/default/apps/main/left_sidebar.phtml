@@ -3,16 +3,16 @@
 <div class="left-sb-container sidebar" data-app="left-sidebar">
 	<div class="sidebar__inner">
 		<div style="display: flex; flex-direction: column; height: 100%; gap: 20px">
-			<div style="background-color: var(--smc-main-bg-color); border-radius: 10px; padding-top: 20px;">
+			<div style="border-radius: 10px;">
 				<div class="cp h-mobile" style="margin-bottom: 10px; margin-left:25px;">
 					<a href="<?php echo cl_link("/"); ?>">
 						<img src="{%config site_logo%}" alt="Logo">
-						<h1 class="ml11">
+						<span class="ml11">
 							<span class="text-wrapper">
 								<span class="line line1"></span> 
-								<span class="letters">{%config name%}</span>
+								<span style="font-family:sans-serif" class="letters">{%config name%}</span>
 							</span>
-						</h1>
+						</span>
 					</a>
 				</div>
 				<div class="user-info h-laptop">
@@ -437,15 +437,15 @@
 				<div class="publish-post-btn">
 					<button class="btn btn-custom main-inline lg home btn-block" data-toggle="modal"
 						data-target="#add_new_post">
-						<span style="margin-right:10px; font-size:20px;"> + </span>
+						<span style="margin-right:10px; font-size:17px;"> + </span>
 						<?php echo cl_translate('New post'); ?>
 					</button>
 				</div>
 			</div>
-			<div style="background-color: var(--smc-main-bg-color); border-radius: 10px; flex: 1;">
-			</div>
+			<!-- <div style="background-color: var(--smc-main-bg-color); border-radius: 10px; flex: 1;">
+			</div> -->
 		</div>
-		<div class="user-info h-mobile" style="position: fixed; bottom: 15px; flex-direction: row; background-color: var(--smc-main-bg-color); border-radius: 10px; padding: 14px 0px 14px 14px;">
+		<div class="user-info h-mobile" style="margin-left: 25px; position: fixed; bottom: 15px; flex-direction: row; background-color: var(--smc-main-bg-color); border-radius: 10px; padding: 14px 0px 14px 14px;">
 			<div class="avatar">
 				<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
 			</div>
