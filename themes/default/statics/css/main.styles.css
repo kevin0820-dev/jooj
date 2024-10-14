@@ -4418,6 +4418,8 @@ body
   /* display: inline-flex;  */
   vertical-align: middle;
   align-items: center;
+  position:relative;
+  bottom: 1px;
 }
 
 body
