@@ -1159,7 +1159,7 @@ html {
 }
 
 body {
-  font-family: inherit !important;
+  /* font-family: inherit !important; */
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -1193,7 +1193,7 @@ body
   main.main-content-container
   div.main-content-container-inner
   div.timeline-container-wrapper {
-  margin-top: 13px;
+  /* margin-top: 13px; */
   flex: 2;
   max-width: 700px;
   min-width: 700px;
@@ -7676,7 +7676,7 @@ body
   div.timeline-hashtags-container
   div.timeline-hashtags-ls
   div.hashtag-list-item:active {
-  background: var(--cl-event-hover-bg);
+  background: var(--smc-main-ehbg-color);
 }
 
 body
@@ -18973,7 +18973,7 @@ body.cl-app-chat div.chats div.chat-contacts div.contacts-list__item {
 
 body.cl-app-chat div.chats div.chat-contacts div.contacts-list__item:hover,
 body.cl-app-chat div.chats div.chat-contacts div.contacts-list__item:active {
-  background: var(--cl-event-hover-bg);
+  background: var(--smc-main-ehbg-color);
 }
 
 body.cl-app-chat div.chats div.chat-contacts div.contacts-list__item a {
