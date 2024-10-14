@@ -21794,6 +21794,10 @@ body.cl-app-guest
   .stat-holder a {
     text-decoration: none !important;
   }
+  .stat-holder-inner b{
+    display: inline-block;
+    text-align: center;
+  }
   body.cl-app-search
     main.main-content-container
     div.main-content-container-inner
