@@ -406,7 +406,7 @@
 										</div>
 									<?php endif; ?>
 								<?php endif; ?>								
-								<?php if(not_empty($cl['thread_data']['comment_on'])): ?>
+								<?php if(not_empty($cl['thread_data']['comment_on']) && $cl['thread_data']['comment_on'] != -1): ?>
 									<?php echo cl_template('thread/post_comment_on'); ?>
 								<?php endif ?>
 							</div>

@@ -12,7 +12,7 @@
 var pubbox_form_app_mixin = Object({
     data: function() {
         return {
-            text: "Share your thought on $<?php echo ($cl['prof_user']['username']); ?>",
+            text: "Share your idea on $<?php echo ($cl['prof_user']['username']); ?>",
             prefix: "$<?php echo ($cl['prof_user']['username']); ?>",
             text_ph_orig: "<?php echo cl_translate('Hello {@name@}, What is new with you today?', array('name' => $cl['me']['name'])); ?>",
             text_ph: "",
@@ -268,7 +268,7 @@ var pubbox_form_app_mixin = Object({
             var _app_ = this;
 
             if (this.text === this.prefix) {
-                this.text = 'Share your thought on ' + this.prefix;
+                this.text = 'Share your idea on ' + this.prefix;
             }
 
             setTimeout(function() {
@@ -276,7 +276,7 @@ var pubbox_form_app_mixin = Object({
             }, 1500);
         },
         text_focus_trigger: function(e = false) {
-			if (this.text === 'Share your thought on ' + this.prefix) {
+			if (this.text === 'Share your idea on ' + this.prefix) {
 				this.text = this.prefix + ' ';
 			}
 		
@@ -419,6 +419,19 @@ var pubbox_form_app_mixin = Object({
 
                             thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
                         }
+						else if(SMColibri.curr_pn == "symbol") {
+							var thread_timeline = $('div[data-app="symbol"]');
+							var new_post        = $(data.html).addClass('animated fadeIn');
+
+							if(!thread_timeline.find('div[data-an="entry-list"]').length) {
+								thread_timeline.find('div[class="timeline-posts-container py-3"]').html('<div class="timeline-posts-ls" data-an="entry-list"></div>');
+							}
+							thread_timeline.find('div[data-an="entry-list"]').prepend(new_post).promise().done(function() {
+								setTimeout(function() {
+									thread_timeline.find('div[data-an="entry-list"]').find('[post-list-item]').first().removeClass('animated fadeIn');
+								}, 1000);
+							});
+						}
                         else {
                             cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 1200);
                             setTimeout(function() {
