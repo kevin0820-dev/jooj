@@ -59,10 +59,10 @@
 						</div>
 					</form>
 				</div>
-				<div style="margin-bottom: 10px; border-radius: 10px; border: 1px solid var(--smc-main-border-color);">
+				<!-- <div style="margin-bottom: 10px; border-radius: 10px; border: 1px solid var(--smc-main-border-color);">
 					<script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
 					<gecko-coin-price-marquee-widget locale="en" dark-mode="true" transparent-background="true" coin-ids="" initial-currency="usd"></gecko-coin-price-marquee-widget>
-				</div>
+				</div> -->
 			</div>
 
 		</div>
@@ -368,7 +368,7 @@
 					</div>
 					<div style="display: flex; text-align:left; align-items:center">
 						<div style="width: 60%; display:flex;">
-							<div style="padding-left: 20px; font-size:xx-large; color:var(--smc-main-text-color-2); font-weight:bold" id='price'>
+							<div style="padding-left: 20px; font-size:xx-large; color:var(--smc-main-text-color); font-weight:bold" id='price'>
 								<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : echo "$" . $cl['coin_one']['price']; ?>
 								<?php else : echo "Error" ?>
 								<?php endif ?>
@@ -804,7 +804,7 @@
 
 	div.main-search-bar-container form div.input-holder input {
 		border: 1px solid var(--smc-main-border-color);
-		background: var(--smc-main-ibg-color);
+		background: var(--smc-main-bg-color);
 		border-radius: 1em;
 		padding: 0 0 0px 50px;
 		height: 44px;
