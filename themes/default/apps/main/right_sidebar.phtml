@@ -2,7 +2,7 @@
 <div class="right-sb-container sidebar" data-app="right-sidebar">
 
 <div class="sidebar__inner">
-		<div style="display: flex; justify-content:space-evenly; align-items: center; padding-bottom:10px;">
+		<!-- <div style="display: flex; justify-content:space-evenly; align-items: center; padding-bottom:10px;">
 			
 				<div onclick="toggleBackground()">
 					<img style="padding-right: 10px;" id="mode-icon" src="/themes/default/statics/img/black_mode_square.png" alt="Toggle Background" width="28">
@@ -10,10 +10,10 @@
 				<span class="day_night_mode" style=" padding-right:10px; ">Disclaimer</span>
 				<span class="day_night_mode">Terms</span>
 			
-		</div>
+		</div> -->
 	
 		<?php if($cl['pn'] == "symbol"): ?>
-		<div class="topical-posts">
+		<div class="topical-posts trading_widget_style_p1">
 		
 			<div id="tradingview-widget-container" class="tradingview-widget-container">
 				<div class="tradingview-widget-container__widget"></div>
@@ -653,6 +653,9 @@ jQuery(document).ready(function($) {
 .day_night_mode{
 	color: var(--smc-main-text-color);
 	font-weight: 500;
+}
+.trading_widget_style_p1{
+	padding: 0px !important;
 }
 </style>
 

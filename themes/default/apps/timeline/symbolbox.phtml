@@ -1,16 +1,16 @@
 <div class="timeline-pubbox-container">
 	<div class="lp">
 		<div class="avatar">
-		<img src="<?php echo ($me['avatar']); ?>" class="inline-block w-9 rounded-full" alt="Avatar">
+			<img src="<?php echo ($me['avatar']); ?>" class="inline-block w-9 rounded-full" alt="Avatar">
 		</div>
 
 	</div>
-	
+
 	<div class="rp">
-	<!-- <?php 
-    // Добавим отладочный вывод значения symbol_id
-    echo "<p>Debug: symbol_id = " . htmlspecialchars($cl['symbol_id']) . "</p>";
-    ?> -->
+		<!-- <?php
+				// Добавим отладочный вывод значения symbol_id
+				echo "<p>Debug: symbol_id = " . htmlspecialchars($cl['symbol_id']) . "</p>";
+				?> -->
 		<form class="form" id="vue-pubbox-app-<?php echo ($cl['pb_id']); ?>" v-on:submit="publish($event)">
 			<!-- Post Privacy -->
 			<input type="hidden" name="symbol_id" value="<?php echo htmlspecialchars($cl['symbol_id']); ?>">
@@ -70,14 +70,14 @@
 			<!-- End Post Privacy -->
 			<div class="input-holder">
 				<textarea ref="text_input"
-						v-on:input.trim="text_input_trigger"
-						v-on:blur="text_blur_trigger"
-						v-on:focus="text_focus_trigger"
-						class="autoresize"
-						v-model="text"
-						name="post_text"
-						placeholder="Share your thought on $<?php echo ($cl['prof_user']['username']); ?>"></textarea>
-   			 </div>
+					v-on:input.trim="text_input_trigger"
+					v-on:blur="text_blur_trigger"
+					v-on:focus="text_focus_trigger"
+					class="autoresize"
+					v-model="text"
+					name="post_text"
+					placeholder="Share your thought on $<?php echo ($cl['prof_user']['username']); ?>"></textarea>
+			</div>
 			<div class="input-autocomplete" v-if="hashtags.tags.length">
 				<div class="input-autocomplete__hashtags">
 					<div class="input-autocomplete__hashtags-list">
@@ -119,7 +119,7 @@
 			</div>
 			<!-- THIS IS FOR EMOTICONS -->
 
-			 <div class="cl-emoticons" v-if="emoticons_picker.status">
+			<div class="cl-emoticons" v-if="emoticons_picker.status">
 				<div class="emoticons-group-nav">
 					<span class="emoticons-group-nav-item"
 						v-bind:class="{'active': (emoticons_picker.active_group == 'fused')}"
@@ -247,28 +247,28 @@
 
 			<!-- Og Data -->
 			<div class="timeline-pubbox__open-graph" v-if="show_og_data">
-					<div class="pubbox-open-graph">
-						<div class="pubbox-open-graph__data">
-							<div class="pubbox-open-graph__image" v-if="og_data.image">
-								<img v-bind:src="og_data.image" alt="IMG">
-							</div>
-							<div class="pubbox-open-graph__description">
-								<h5>
-									{{og_data.title}}
-								</h5>
-								<p>
-									{{og_data.description}}
-								</p>
-								<a v-bind:href="og_data.url" target="_blank">
-									{{og_data.url}}
-								</a>
-							</div>
+				<div class="pubbox-open-graph">
+					<div class="pubbox-open-graph__data">
+						<div class="pubbox-open-graph__image" v-if="og_data.image">
+							<img v-bind:src="og_data.image" alt="IMG">
 						</div>
-						<button type="button" class="delete-preview" v-on:click="rm_preview_og">
-							<?php echo cl_icon('close'); ?>
-						</button>
+						<div class="pubbox-open-graph__description">
+							<h5>
+								{{og_data.title}}
+							</h5>
+							<p>
+								{{og_data.description}}
+							</p>
+							<a v-bind:href="og_data.url" target="_blank">
+								{{og_data.url}}
+							</a>
+						</div>
 					</div>
+					<button type="button" class="delete-preview" v-on:click="rm_preview_og">
+						<?php echo cl_icon('close'); ?>
+					</button>
 				</div>
+			</div>
 			<div v-show="active_media" class="timeline-pubbox__images" v-if="active_media == 'image'">
 				<div class="pubbox-images">
 					<div class="pubbox-images__list" data-an="post-images">
@@ -436,77 +436,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="post-privacy-holder" v-show="text.length">
-				<div class="d-flex align-items-center flex-wn">
-					<div class="flex-item" v-if="post_privacy">
-						<button class="privacy-settings dropdown" type="button">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<span class="d-inline-flex align-items-center flex-wn">
 
-									<span class="flex-item icon" v-if="post_privacy == 'everyone'">
-										<?php echo cl_ikon('language'); ?>
-									</span>
-									<span class="flex-item icon" v-else-if="post_privacy == 'mentioned'">
-										<?php echo cl_ikon('ear'); ?>
-									</span>
-									<span class="flex-item icon" v-else>
-										<?php echo cl_ikon('people'); ?>
-									</span>
-									<span class="flex-item flex-grow-1 label">
-										{{sdds.privacy[post_privacy]}}
-									</span>
-								</span>
-							</a>
-							<div class="pub dropdown-menu dropdown-icons">
-								<span class="flex-item text1"><?php echo cl_translate('who_can'); ?></span>
-								<span class="flex-item text2"><?php echo cl_translate('who_can_desc'); ?></span>
-								<a class="dropdown-item" href="javascript:void(0);"
-									v-on:click="post_privacy = 'everyone'">
-									<span class="flex-item dropdown-item-icon lang">
-										<?php echo cl_ikon('language'); ?>
-									</span>
-									<span class="flex-item ">
-										<?php echo cl_translate('Everyone can reply'); ?>
-									</span>
-								</a>
-								<a class="dropdown-item" href="javascript:void(0);"
-									v-on:click="post_privacy = 'followers'">
-									<span class="flex-item dropdown-item-icon">
-										<?php echo cl_ikon('people'); ?>
-									</span>
-									<span class="flex-item ">
-										<?php echo cl_translate('Only my followers'); ?>
-									</span>
-								</a>
-								<a class="dropdown-item" href="javascript:void(0);"
-									v-on:click="post_privacy = 'mentioned'">
-									<span class="flex-item dropdown-item-icon">
-										<?php echo cl_ikon('ear'); ?>
-									</span>
-									<span class="flex-item ">
-										<?php echo cl_translate('Only mentioned people'); ?>
-									</span>
-								</a>
-							</div>
-						</button>
-					</div>
-					<div class="flex-item ml-auto">
-						<?php if ($cl['config']['blue_account_system_status'] == 'on'): ?>
-							<?php if ($me["is_blue"] == 1): ?>
-								<small v-show="text.length"
-									v-bind:class="{'len-error': (text.length > settings.max_length_blue) }">
-									{{text.length}}/{{settings.max_length_blue}}
-								</small>
-							<?php else: ?>
-								<small v-show="text.length" v-bind:class="{'len-error': (text.length > settings.max_length) }">
-									{{text.length}}/{{settings.max_length}}
-								</small>
-								</li>
-							<?php endif; ?>
-						<?php endif; ?>
-					</div>
-				</div>
-			</div>
 			<div class="post-ctrls-holder">
 				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Media"); ?>" v-on:click="select_images"
@@ -555,6 +485,77 @@
 					v-bind:disabled="doc_ctrl != true">
 					<?php echo cl_icon('file_present'); ?>
 				</button> -->
+				<div class="post-privacy-holder" v-show="text.length">
+					<div class="d-flex align-items-center flex-wn">
+						<div class="flex-item" v-if="post_privacy">
+							<button class="privacy-settings dropdown" type="button">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<span class="d-inline-flex align-items-center flex-wn">
+
+										<span class="flex-item icon" v-if="post_privacy == 'everyone'">
+											<?php echo cl_ikon('language'); ?>
+										</span>
+										<span class="flex-item icon" v-else-if="post_privacy == 'mentioned'">
+											<?php echo cl_ikon('ear'); ?>
+										</span>
+										<span class="flex-item icon" v-else>
+											<?php echo cl_ikon('people'); ?>
+										</span>
+										<span class="flex-item flex-grow-1 label">
+											{{sdds.privacy[post_privacy]}}
+										</span>
+									</span>
+								</a>
+								<div class="pub dropdown-menu dropdown-icons">
+									<span class="flex-item text1"><?php echo cl_translate('who_can'); ?></span>
+									<span class="flex-item text2"><?php echo cl_translate('who_can_desc'); ?></span>
+									<a class="dropdown-item" href="javascript:void(0);"
+										v-on:click="post_privacy = 'everyone'">
+										<span class="flex-item dropdown-item-icon lang">
+											<?php echo cl_ikon('language'); ?>
+										</span>
+										<span class="flex-item ">
+											<?php echo cl_translate('Everyone can reply'); ?>
+										</span>
+									</a>
+									<a class="dropdown-item" href="javascript:void(0);"
+										v-on:click="post_privacy = 'followers'">
+										<span class="flex-item dropdown-item-icon">
+											<?php echo cl_ikon('people'); ?>
+										</span>
+										<span class="flex-item ">
+											<?php echo cl_translate('Only my followers'); ?>
+										</span>
+									</a>
+									<a class="dropdown-item" href="javascript:void(0);"
+										v-on:click="post_privacy = 'mentioned'">
+										<span class="flex-item dropdown-item-icon">
+											<?php echo cl_ikon('ear'); ?>
+										</span>
+										<span class="flex-item ">
+											<?php echo cl_translate('Only mentioned people'); ?>
+										</span>
+									</a>
+								</div>
+							</button>
+						</div>
+						<div class="flex-item ml-auto">
+							<?php if ($cl['config']['blue_account_system_status'] == 'on'): ?>
+								<?php if ($me["is_blue"] == 1): ?>
+									<small v-show="text.length"
+										v-bind:class="{'len-error': (text.length > settings.max_length_blue) }">
+										{{text.length}}/{{settings.max_length_blue}}
+									</small>
+								<?php else: ?>
+									<small v-show="text.length" v-bind:class="{'len-error': (text.length > settings.max_length) }">
+										{{text.length}}/{{settings.max_length}}
+									</small>
+									</li>
+								<?php endif; ?>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
 				<div class="flex-item ml-auto">
 					<button v-bind:disabled="valid_form != true || submitting" type="submit"
 						class="btn-custom main-inline md post-pub-btn">
@@ -562,7 +563,7 @@
 					</button>
 				</div>
 				<!-- Document -->
-				
+
 			</div>
 
 
@@ -578,57 +579,75 @@
 	</div>
 </div>
 <script>
-	$(function () {
+	$(function() {
 		$('[data-toggle="tooltip"]').tooltip()
 	});
 </script>
 <style>
 	/* Og Data */
-	 div.timeline-pubbox__open-graph {
-    margin-bottom: 20px; }
-     div.timeline-pubbox__open-graph div.pubbox-open-graph {
-      margin-bottom: 10px;
-      background: var(--cl-primary-bg-color);
-      border-radius: var(--cl-secondary-border-radius);
-      border: 2px solid var(--cl-primary-border-color);
-      position: relative;
-      overflow: hidden; }
-       div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__image {
-        overflow: hidden;
-        border-bottom: 1px solid var(--cl-primary-border-color);
-        background: var(--cl-event-hover-bg); }
-         div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__image img {
-          width: 100%; }
-     div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__description {
-        padding: var(--cl-primary-offset-size); }
-         div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__description h5 {
-          padding: 0;
-          margin: 0 0 5px 0;
-          font-size: 18px;
-          line-height: 1.4;
-          color: var(--cl-primary-text-color);
-          word-wrap: break-word; }
-         div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__description p {
-          font-size: 14px;
-          color: var(--cl-secondary-text-color);
-          line-height: 1.4;
-          padding: 0;
-          margin: 0 0 5px 0;
-          word-wrap: break-word; }
-      div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__description a {
-          font-size: 14px;
-          line-height: 1.2;
-          color: var(--cl-primary-color);
-          text-decoration: none;
-          display: block;
-          word-wrap: break-word; }
+	div.timeline-pubbox__open-graph {
+		margin-bottom: 20px;
+	}
+
+	div.timeline-pubbox__open-graph div.pubbox-open-graph {
+		margin-bottom: 10px;
+		background: var(--cl-primary-bg-color);
+		border-radius: var(--cl-secondary-border-radius);
+		border: 2px solid var(--cl-primary-border-color);
+		position: relative;
+		overflow: hidden;
+	}
+
+	div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__image {
+		overflow: hidden;
+		border-bottom: 1px solid var(--cl-primary-border-color);
+		background: var(--cl-event-hover-bg);
+	}
+
+	div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__image img {
+		width: 100%;
+	}
+
+	div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__description {
+		padding: var(--cl-primary-offset-size);
+	}
+
+	div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__description h5 {
+		padding: 0;
+		margin: 0 0 5px 0;
+		font-size: 18px;
+		line-height: 1.4;
+		color: var(--cl-primary-text-color);
+		word-wrap: break-word;
+	}
+
+	div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__description p {
+		font-size: 14px;
+		color: var(--cl-secondary-text-color);
+		line-height: 1.4;
+		padding: 0;
+		margin: 0 0 5px 0;
+		word-wrap: break-word;
+	}
+
+	div.timeline-pubbox__open-graph div.pubbox-open-graph div.pubbox-open-graph__data div.pubbox-open-graph__description a {
+		font-size: 14px;
+		line-height: 1.2;
+		color: var(--cl-primary-color);
+		text-decoration: none;
+		display: block;
+		word-wrap: break-word;
+	}
+
 	/* Document Preview */
 	div.timeline-pubbox__doc {
 		margin-bottom: 20px;
 	}
+
 	div.timeline-pubbox__doc button.delete-preview {
-  position: static;
+		position: static;
 	}
+
 	div.timeline-pubbox__doc div.pubbox-document {
 		display: flex;
 		overflow: hidden;
