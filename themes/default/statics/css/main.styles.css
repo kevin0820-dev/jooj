@@ -23605,7 +23605,7 @@ body.cl-app-home
   padding: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
-  padding-top: 7px;
+  padding-top: 20px;
   padding-bottom: 5px;
 }
 
@@ -28508,7 +28508,7 @@ body.cl-app-profile
   justify-content: center;
   justify-items: center;
   align-items: center;
-  margin: 0px 23px;
+  margin-left: 40%;
 }
 
 body.cl-app-profile
