@@ -7606,8 +7606,8 @@ body
   span.icon
   svg {
   stroke-width: 1.5px;
-  height: 18.5px;
-  width: 18.5px;
+  height: 18.5px !important;
+  width: 18.5px !important;
   user-select: none;
   list-style: none;
   text-align: inherit;
@@ -7626,6 +7626,8 @@ body
   svg {
   stroke: var(--smc-main-text-color);
   stroke-width: 1.5px;
+  width: 18.5px !important;
+  height: 18.5px !important;
   fill: none;
 }
 
@@ -7670,7 +7672,7 @@ body
   li.sidebar-v-nav-item
   span.nav-item-holder {
   line-height: 0px;
-  padding: 0;
+  padding-top: 3px;
   margin: 0;
   margin-left: 20px;
 }
