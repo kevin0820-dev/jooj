@@ -73,11 +73,11 @@
 					<?php echo cl_ikon('arrow-left'); ?>
 				</span>
 				<div class="nav-link-holder" style="font-size: large; font-weight:bold;">
-					<span style="color: var(--smc-main-text-color); vertical-align:middle;" class="user-name-holder">
+					<span style="color: var(--smc-main-text-color);" class="user-name-holder">
 						<?php echo ($cl['prof_user']['name']); ?>
 					</span>
 					<?php if ($cl['prof_user']['verified'] == '1'): ?>
-						<span class="user-name-holder__badge" style="display:inline-block; vertical-align:middle;padding-top:2px;">
+						<span class="user-name-holder__badge" style="display:inline-block;">
 							<?php echo cl_icon("verified_user_badge"); ?>
 						</span>
 					<?php endif; ?>

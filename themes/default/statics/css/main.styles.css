@@ -7624,8 +7624,8 @@ body
   span.icon
   svg {
   stroke-width: 1.5px;
-  height: 18.5px;
-  width: 18.5px;
+  height: 18.5px !important;
+  width: 18.5px !important;
   user-select: none;
   list-style: none;
   text-align: inherit;
@@ -7644,6 +7644,8 @@ body
   svg {
   stroke: var(--smc-main-text-color);
   stroke-width: 1.5px;
+  width: 18.5px !important;
+  height: 18.5px !important;
   fill: none;
 }
 
@@ -7689,8 +7691,8 @@ body
   span.nav-item-holder {
   margin-top: 4px;
   line-height: 0px;
-  padding: 0;
-  /* margin: 0; */
+  padding-top: 3px;
+  margin: 0;
   margin-left: 20px;
 }
 
