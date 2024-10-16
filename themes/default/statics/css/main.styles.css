@@ -20,6 +20,18 @@ body[data-skin="default"] {
   --smc-main-link-color: #1b95e0;
   /*==================================================*/
 }
+.x-24{
+  width: 24px;
+}
+.auto-x{
+  width: auto !important;
+}
+.logo-text{
+  align-content: center;
+  font-size: large;
+  font-weight: bold;
+  margin-left: 10px;
+}
 .symbol_header{
   height:auto !important;
   line-height:normal;
