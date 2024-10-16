@@ -6226,8 +6226,13 @@ body
   background: transparent;
   z-index: 10;
   border-bottom: 1px solid var(--smc-main-border-color);
+  position: relative;
+  top: 13px;
 }
-
+.ads-management{
+  top: 13px;
+  position: relative;
+}
 body
   main.main-content-container
   div.main-content-container-inner
