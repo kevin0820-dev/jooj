@@ -377,7 +377,11 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 				</div>
 				<?php if (not_empty($cl['hot_topics'])): ?>
 					<div class="topical-posts__body">
-						<?php foreach ($cl['hot_topics'] as $row): ?>
+						<?php
+						// Limit the hot topics list to the first 5 items
+						$limited_topics = array_slice($cl['hot_topics'], 0, 5);
+						?>
+						<?php foreach ($limited_topics as $row): ?>
 							<div class="topical-posts__item">
 								<a class="htag" href="<?php echo ($row['url']); ?>" data-spa="true">
 									<b>#</b>
@@ -386,11 +390,7 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 										<?php echo ($row['tag']); ?>
 									</strong>
 
-									<span>
-										<?php echo ($row['total']); ?>
-										<?php echo cl_translate("Posts"); ?>
-									</span>
-
+									<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
 								</a>
 								<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
 										<?php echo cl_ikon('pub-more'); ?>
@@ -409,44 +409,45 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 					</div>
 				<?php endif; ?>
 			</div>
+
 			<div class="topical-posts">
-			<div class="topical-posts__header">
-				<h4>
-					<?php echo cl_translate("hot_symbols_for_you"); ?>
-				</h4>
+				<div class="topical-posts__header">
+					<h4>
+						<?php echo cl_translate("hot_symbols_for_you"); ?>
+					</h4>
+				</div>
+				<?php if (not_empty($cl['hot_symbols'])): ?>
+					<div class="topical-posts__body">
+						<?php foreach ($cl['hot_symbols'] as $row): ?>
+							<div class="topical-posts__item">
+								<a class="htag" href="<?php echo ($row['url']); ?>" data-spa="true">
+									<b>$</b>
+
+									<strong>
+										<?php echo ($row['symbol']); ?>
+									</strong>
+
+									<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
+
+								</a>
+								<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
+										<?php echo cl_ikon('pub-more'); ?>
+									</a></span>
+							</div>
+						<?php endforeach; ?>
+					</div>
+					<div class="topical-posts__footer">
+						<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
+							<?php echo cl_translate("Show more"); ?>
+						</a>
+					</div>
+				<?php else: ?>
+					<div class="topical-posts__placeholder">
+						<?php echo cl_translate("Here will be a (symbols) list of the most relevant topics and events"); ?>
+					</div>
+				<?php endif; ?>
 			</div>
-			<?php if (not_empty($cl['hot_symbols'])): ?>
-				<div class="topical-posts__body">
-					<?php foreach ($cl['hot_symbols'] as $row): ?>
-						<div class="topical-posts__item">
-							<a class="htag" href="<?php echo ($row['url']); ?>" data-spa="true">
-								<b>$</b>
-
-								<strong>
-									<?php echo ($row['symbol']); ?>
-								</strong>
-
-								<span><?php echo ($row['total']); ?> 		<?php echo cl_translate("Posts"); ?></span>
-
-							</a>
-							<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
-									<?php echo cl_ikon('pub-more'); ?>
-								</a></span>
-						</div>
-					<?php endforeach; ?>
-				</div>
-				<div class="topical-posts__footer">
-					<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
-						<?php echo cl_translate("Show more"); ?>
-					</a>
-				</div>
-			<?php else: ?>
-				<div class="topical-posts__placeholder">
-					<?php echo cl_translate("Here will be a (symbols) list of the most relevant topics and events"); ?>
-				</div>
-			<?php endif; ?>
-		</div>
-		<!-- Edited by Kevin -->
+			<!-- Edited by Kevin -->
 			<?php echo cl_template('main/footer'); ?>
 			<?php /*
 			if (not_empty($cl["gads_vert"])): ?>
@@ -462,87 +463,86 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 <!-- Search -->
 <script>
 	new Vue({
-    el: "#vue-main-search-app",
-    data: {
-        searching: false,
-        search_query: "",
-        advanced_search: false,
-        search_result: false
-    },
-    computed: {
-        search_page_url: function () {
-            if (this.search_query.length > 2) {
-                var search_htags_url = "<?php echo cl_link('search/htags?q={0}'); ?>";
-                var search_users_url = "<?php echo cl_link('search/people?q={0}'); ?>";
-                var search_symbols_url = "<?php echo cl_link('search/symbols?q={0}'); ?>";
-                this.advanced_search = true;
+		el: "#vue-main-search-app",
+		data: {
+			searching: false,
+			search_query: "",
+			advanced_search: false,
+			search_result: false
+		},
+		computed: {
+			search_page_url: function() {
+				if (this.search_query.length > 2) {
+					var search_htags_url = "<?php echo cl_link('search/htags?q={0}'); ?>";
+					var search_users_url = "<?php echo cl_link('search/people?q={0}'); ?>";
+					var search_symbols_url = "<?php echo cl_link('search/symbols?q={0}'); ?>";
+					this.advanced_search = true;
 
-                if (this.search_query.charAt(0) == '#') {
-                    return search_htags_url.format(this.search_query.replace('#', ''));
-                } else if (this.search_query.charAt(0) == '$') {
-                    return search_symbols_url.format(this.search_query.replace('$', ''));
-                } else {
-                    return search_users_url.format(this.search_query);
-                }
-            } else {
-                this.advanced_search = false;
-                return "javascript:void(0);";
-            }
-        },
-        query_type: function () {
-            if (this.search_query.charAt(0) == '#') {
-                return 'htags';
-            } else if (this.search_query.charAt(0) == '$') {
-                return 'symbols';
-            } else {
-                return 'users';
-            }
-        }
-    },
-    methods: {
-        search_onsubmit: function (e = false) {
-            e.preventDefault();
-            this.search();
-        },
-        search: function () {
-            if (this.search_query.length > 2) {
-                var _app_ = this;
-                delay(function () {
-                    $.ajax({
-                        url: '<?php echo cl_link('native_api/main/search'); ?>',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
-                            type: _app_.query_type
-                        },
-                        beforeSend: function () {
-                            _app_.searching = true;
-                        }
-                    }).done(function (data) {
-                        if (data.status == 200) {
-                            _app_.search_result = true;
-                            $(_app_.$el).find('[data-an="result"]').html($(data.html));
-                        } else {
-                            $(_app_.$el).find('[data-an="result"]').empty('');
-                            _app_.search_result = false;
-                        }
-                    }).always(function () {
-                        _app_.searching = false;
-                    });
-                }, 800);
-            }
-        },
-        cancel: function () {
-            var _app_ = this;
-            _app_.searching = false;
-            _app_.search_query = "";
-            _app_.advanced_search = false;
-            _app_.search_result = false;
+					if (this.search_query.charAt(0) == '#') {
+						return search_htags_url.format(this.search_query.replace('#', ''));
+					} else if (this.search_query.charAt(0) == '$') {
+						return search_symbols_url.format(this.search_query.replace('$', ''));
+					} else {
+						return search_users_url.format(this.search_query);
+					}
+				} else {
+					this.advanced_search = false;
+					return "javascript:void(0);";
+				}
+			},
+			query_type: function() {
+				if (this.search_query.charAt(0) == '#') {
+					return 'htags';
+				} else if (this.search_query.charAt(0) == '$') {
+					return 'symbols';
+				} else {
+					return 'users';
+				}
+			}
+		},
+		methods: {
+			search_onsubmit: function(e = false) {
+				e.preventDefault();
+				this.search();
+			},
+			search: function() {
+				if (this.search_query.length > 2) {
+					var _app_ = this;
+					delay(function() {
+						$.ajax({
+							url: '<?php echo cl_link('native_api/main/search'); ?>',
+							type: 'GET',
+							dataType: 'json',
+							data: {
+								query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
+								type: _app_.query_type
+							},
+							beforeSend: function() {
+								_app_.searching = true;
+							}
+						}).done(function(data) {
+							if (data.status == 200) {
+								_app_.search_result = true;
+								$(_app_.$el).find('[data-an="result"]').html($(data.html));
+							} else {
+								$(_app_.$el).find('[data-an="result"]').empty('');
+								_app_.search_result = false;
+							}
+						}).always(function() {
+							_app_.searching = false;
+						});
+					}, 800);
+				}
+			},
+			cancel: function() {
+				var _app_ = this;
+				_app_.searching = false;
+				_app_.search_query = "";
+				_app_.advanced_search = false;
+				_app_.search_result = false;
 
-            $(_app_.$el).find('[data-an="result"]').empty('');
-        }
-    }
-});
-
+				$(_app_.$el).find('[data-an="result"]').empty('');
+			}
+		}
+	});
 </script>
