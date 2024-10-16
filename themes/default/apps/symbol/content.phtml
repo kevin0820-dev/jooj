@@ -30,7 +30,7 @@
 		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
 			<div class="mobile-bottom-navbar-inner">
 				<div class="avatar-menu">
-					<a href="#" onclick="SMColibri.toggleSB();"> <?php echo cl_icon('list_custom'); ?></a>
+					<a href="#" onclick="SMColibri.toggleSB();"> <?php echo cl_icon('hamburger'); ?></a>
 				</div>
 
 			</div>
@@ -41,7 +41,7 @@
 			<div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
 		</div>
 		<div class="timeline-header__botline selectable">
-			<div class="lp x-24">
+			<div class="lp x-16">
 				<div class="nav-link-holder h-mobile">
 					<a href="" data-spa="true">Coin</a>
 				</div>
@@ -52,7 +52,7 @@
 					<span class="logo-text">Cointweets</span>
 				</a>
 			</div>
-			<div class="rp">
+			<div class="rp middle">
 				<div class="nav-link-holde">
 					<button class="go-options dropleft show" onclick = '$("#searchBar").slideToggle()'>
 						<?php echo cl_icon('search'); ?>
@@ -118,7 +118,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="profile-activity-navbar" id = "selectionPane" style="display: none;">
+		<div class="profile-activity-navbar noBorder" id = "selectionPane" style="display: none;">
 			<a href="<?php echo cl_link(cl_strf("symbol/%s/foryou", $cl['prof_user']['raw_sname'])); ?>"
 				data-spa="true">
 				<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {
