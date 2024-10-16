@@ -20,7 +20,21 @@ body[data-skin="default"] {
   --smc-main-link-color: #1b95e0;
   /*==================================================*/
 }
-
+.symbol_header{
+  height:auto !important;
+  line-height:normal;
+  padding:12px;
+  display: block !important;
+}
+.selectable{
+  display: none !important;
+}
+div.nav-link-holder-symbol{
+  display: flex !important;
+  align-items: center;
+  font-size: large;
+  font-weight: bold;
+}
 body[data-skin="green"] {
   /*UI-EL-COLORS*/
   --smc-main-uiel-color: rgb(0, 186, 124);
@@ -10025,6 +10039,13 @@ div.mobile-bottom-navbar2 div.mobile-bottom-navbar-inner {
   margin-left: 10px;
 }
 
+.avatar-menu svg {
+  width: 25px;
+  height: 25px;
+  border-radius: 9999px;
+  margin-left: 12px;
+}
+
 div.mobile-bottom-navbar2 div.mobile-bottom-navbar-inner button.navbar-ctrl {
   margin: 0;
   line-height: 0;
@@ -13689,6 +13710,69 @@ b {
 color: var(--smc-main-uiel-color);
 }
 
+
+body.cl-app-symbol
+main.main-content-container
+div.main-content-container-inner
+div.timeline-container
+div.timeline-header
+div.profile-activity-navbar {
+margin-left: 18px;
+width: 97%;
+overflow: hidden;
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+/* justify-content: space-between; */
+border-top: 1px solid var(--smc-main-bg-color-2);
+}
+
+body.cl-app-symbol
+main.main-content-container
+div.main-content-container-inner
+div.timeline-container
+div.timeline-header
+div.profile-activity-navbar
+a {
+/* flex: 1; */
+outline: 0;
+}
+
+body.cl-app-symbol
+main.main-content-container
+div.main-content-container-inner
+div.timeline-container
+div.timeline-header
+div.profile-activity-navbar
+a
+button.navbar-item-btn {
+background: transparent;
+font-size: 18px;
+font-weight: 700;
+color: var(--smc-main-text-color-2);
+line-height: 13px;
+box-shadow: none;
+border: none;
+padding: 22px 5px 19px 0px;
+width: 100%;
+cursor: pointer;
+outline: 0;
+text-transform: none;
+}
+
+body.cl-app-symbol
+main.main-content-container
+div.main-content-container-inner
+div.timeline-container
+div.timeline-header
+div.profile-activity-navbar
+a
+button.navbar-item-btn.active {
+border-bottom: 0px solid var(--smc-main-uiel-color);
+margin-bottom: -4px;
+color: var(--smc-main-text-color);
+}
+
 body.cl-app-symbol
 main.main-content-container
 div.main-content-container-inner
@@ -13762,7 +13846,9 @@ div.timeline-prof-info-area
 div.profile-main-info-holder
 div.profile-activity-navbar
 a
-/* button.navbar-item-btn:hover, */
+button.navbar-item-btn:hover{
+/* background: var(--smc-main-ehbg-color); */
+}
 body.cl-app-symbol
 main.main-content-container
 div.main-content-container-inner
@@ -13771,7 +13857,9 @@ div.timeline-prof-info-area
 div.profile-main-info-holder
 div.profile-activity-navbar
 a
-button.navbar-item-btn:active,
+button.navbar-item-btn:active{
+  /* background: var(--smc-main-ehbg-color); */
+}
 body.cl-app-symbol
 main.main-content-container
 div.main-content-container-inner
@@ -21627,6 +21715,13 @@ body.cl-app-guest
     div.timeline-header
     div.lp
     div.nav-link-holder {
+      display: flex;
+      align-items: center;
+      font-size: large;
+      font-weight: bold;
+  }
+  .selectable{
+    display: flex !important;
   }
   body
     main.main-content-container
