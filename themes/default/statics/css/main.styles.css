@@ -3501,7 +3501,7 @@ body
   padding: 0;
   margin: 0;
   font-size: 20px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 700;
   color: var(--smc-main-text-color);
   text-decoration: none;
@@ -3680,6 +3680,8 @@ body
   width: 100%;
   display: block;
   line-height: 0px;
+  position: relative;
+  top: 13px;
 }
 
 body
@@ -27624,6 +27626,8 @@ body.cl-app-profile
   width: 100%;
   display: block;
   line-height: 0;
+  top: 13px;
+  position: relative;
 }
 
 .pl-message svg.chata {
