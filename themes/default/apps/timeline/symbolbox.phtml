@@ -76,7 +76,7 @@
 					class="autoresize"
 					v-model="text"
 					name="post_text"
-					placeholder="Share your thought on $<?php echo ($cl['prof_user']['username']); ?>"></textarea>
+					placeholder="Share your thoughts on $<?php echo ($cl['prof_user']['username']); ?>"></textarea>
 			</div>
 			<div class="input-autocomplete" v-if="hashtags.tags.length">
 				<div class="input-autocomplete__hashtags">
@@ -485,7 +485,7 @@
 					v-bind:disabled="doc_ctrl != true">
 					<?php echo cl_icon('file_present'); ?>
 				</button> -->
-				<div class="post-privacy-holder" v-show="text.length">
+				<!-- <div class="post-privacy-holder" v-show="text.length">
 					<div class="d-flex align-items-center flex-wn">
 						<div class="flex-item" v-if="post_privacy">
 							<button class="privacy-settings dropdown" type="button">
@@ -555,7 +555,7 @@
 							<?php endif; ?>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="flex-item ml-auto">
 					<button v-bind:disabled="valid_form != true || submitting" type="submit"
 						class="btn-custom main-inline md post-pub-btn">
