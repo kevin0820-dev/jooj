@@ -20,8 +20,14 @@ body[data-skin="default"] {
   --smc-main-link-color: #1b95e0;
   /*==================================================*/
 }
-.x-24{
-  width: 24px;
+.noBorder{
+  border: none !important;
+}
+.middle{
+  align-content: center;
+}
+.x-16{
+  width: 16px;
 }
 .auto-x{
   width: auto !important;
@@ -29,7 +35,7 @@ body[data-skin="default"] {
 .logo-text{
   align-content: center;
   font-size: large;
-  font-weight: bold;
+  font-weight: 500;
   margin-left: 10px;
 }
 .symbol_header{
