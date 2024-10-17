@@ -10708,11 +10708,6 @@ body .ov-h {
 
 body .ml-auto {
   margin-left: auto;
-  position: absolute;
-  top: -50px;
-  right: 0;
-  margin-top: 10px;
-  margin-right: 20px;
 }
 
 body svg[stroke-width="1.8"] {
