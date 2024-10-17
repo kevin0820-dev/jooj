@@ -20,6 +20,9 @@ body[data-skin="default"] {
   --smc-main-link-color: #1b95e0;
   /*==================================================*/
 }
+.svg-icon{
+  fill: var(--cl-primary-text-color) !important;
+}
 .noBorder{
   border: none !important;
 }
@@ -36,7 +39,8 @@ body[data-skin="default"] {
   align-content: center;
   font-size: large;
   font-weight: 500;
-  margin-left: 10px;
+  margin-left: 6px;
+  color:var(--cl-primary-text-color);
 }
 .symbol_header{
   height:auto !important;
@@ -3681,7 +3685,7 @@ body
   display: block;
   line-height: 0px;
   position: relative;
-  top: 13px;
+  padding-top: 13px;
 }
 
 body
@@ -23746,9 +23750,8 @@ body.cl-app-home
   line-height: 0;
   border-bottom: 1px solid var(--smc-main-border-color);
   padding: 15px;
-  padding-top: 15px;
+  padding-top: 33px;
   padding-bottom: 15px;
-  padding-top: 20px;
   padding-bottom: 5px;
 }
 
