@@ -20,6 +20,9 @@ body[data-skin="default"] {
   --smc-main-link-color: #1b95e0;
   /*==================================================*/
 }
+.no-border-bottom{
+  border-bottom: none !important;
+}
 .svg-icon{
   fill: var(--cl-primary-text-color) !important;
 }
@@ -10696,7 +10699,9 @@ body .col-grey {
 body .col-blue {
   color: var(--smc-main-uiel-color) !important;
 }
-
+.user-name-holder, .uname, .point, .posted-time{
+  color: var(--smc-main-text-color-2);
+}
 body .ov-h {
   overflow: hidden;
 }
@@ -11126,7 +11131,7 @@ body div.modal div.modal-content {
 
 body div.modal div.modal-content div.modal-header {
   padding: 15px;
-  border-bottom: 1px solid var(--smc-main-border-color);
+  /* border-bottom: 1px solid var(--smc-main-border-color); */
 }
 
 body div.modal div.modal-content div.modal-header div.main---mh--block {
