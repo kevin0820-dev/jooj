@@ -873,14 +873,14 @@
 	analyze = function(e, id) {
 		if(e.target === HTMLImageElement) return;
 		// Check if the click is not on an anchor tag (or any interactive element)
-		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button')) {
+		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button') && !e.target.closest('.publication-poll-data')) {
 			window.location.href = '/thread/' + id; // Set your root link here
 		}
 	}
 	analyze_quote = function(e, id) {
 		if(e.target === HTMLImageElement) return;
 		// Check if the click is not on an anchor tag (or any interactive element)
-		if (!e.target.closest('a') && !e.target.closest('button')) {
+		if (!e.target.closest('a') && !e.target.closest('button') && !e.target.closest('.publication-poll-data')) {
 			window.location.href = '/thread/' + id; // Set your root link here
 		}
 	}
