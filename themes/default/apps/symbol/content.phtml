@@ -92,9 +92,9 @@
 				<?php echo cl_ikon('arrow-left'); ?>
 			</span>
 			<div class="nav-link-holder nav-link-holder-symbol">
-				<span style="color: var(--smc-main-text-color);" class="user-name-holder">
+				<a style="color: var(--smc-main-text-color);" class="user-name-holder">
 					<?php echo ($cl['prof_user']['name']); ?>
-				</span>
+				</a>
 				<?php if ($cl['prof_user']['verified'] == '1'): ?>
 					<span class="user-name-holder__badge" style="display:inline-block;">
 						<?php echo cl_icon("verified_user_badge"); ?>
@@ -816,7 +816,7 @@
 
 		@media (max-width: 1024px) {
 			body main.main-content-container div.main-content-container-inner div.timeline-container-wrapper div.timeline-container-inner div.timeline-container {
-				padding-top: 61px !important;
+				padding-top: 70px !important;
 			}
 		}
 	}
