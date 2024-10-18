@@ -3,7 +3,7 @@
 		<div data-el="timeline-bs-notifs" class="timeline-bs-notifs"></div>
 	</div>
 	<div class="timeline-header" data-el="tl-header">
-		<div class="lp" style="display: inline-flex;">
+		<div class="lp" style="display: inline-flex; align-items:center;">
 			<span class="go-back" onclick="SMColibri.go_back();">
 				<?php echo cl_ikon('arrow-left'); ?>
 			</span>
@@ -690,6 +690,9 @@
 	});
 </script>
 <style>
+	body{
+		font-family: "Roboto", sans-serif;
+	}
 	body div.popover1 div.popover-body {
 		box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
 		background-color: var(--smc-main-bg-color);
@@ -779,7 +782,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	display: inline-block;
+	display: inline-flex;
   }
 }
 </style>

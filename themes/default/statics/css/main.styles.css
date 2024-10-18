@@ -42,7 +42,7 @@ body[data-skin="default"] {
   align-content: center;
   font-size: large;
   font-weight: 500;
-  margin-left: 6px;
+  margin-left: 3px;
   color:var(--cl-primary-text-color);
 }
 .symbol_header{
@@ -53,6 +53,10 @@ body[data-skin="default"] {
 }
 .selectable{
   display: none !important;
+}
+.bt-3{
+  bottom: 3px;
+  position: relative;
 }
 div.nav-link-holder-symbol{
   display: flex !important;
@@ -1229,11 +1233,6 @@ body.modal-open {
     width: auto;
     height: 32px;
   }
-  body main.main-content-container div.main-content-container-inner div.timeline-container-wrapper div.timeline-container-inner div.timeline-container div.timeline-posts-container div.timeline-posts-ls div.post-list-item div.post-list-item-content div.publication-data div.publication-data-inner div.publisher-info div.lp{
-    display: flex;
-justify-content: space-between;
-align-items: center;
-  }
   div.timeline-pubbox__images
     div.pubbox-images
     div.pubbox-images__list
@@ -1434,7 +1433,7 @@ align-items: center;
     padding-right: 0px !important;
   }
   .carousel__slide {
-    width: var(--carousel-slide-width, 58%) !important;
+    width: var(--carousel-slide-width, 45%) !important;
   }
   body span.user-name-holder {
     overflow-wrap: break-word;
@@ -4111,23 +4110,6 @@ body
   justify-content: space-between;
   align-items: center;
   color: var(--smc-main-text-color-2);
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
-  div.publisher-info
-  div.lp {
-  flex: 1;
 }
 
 body
@@ -14429,8 +14411,10 @@ body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
   border-radius: 10px;
   padding-left: 15px;
   padding-top: 16px;
+  padding-bottom: 15px;
   display: block;
   width: 100%;
+  height: 50px;
   min-height: 40px;
   max-height: 400px;
   resize: none;
@@ -21744,7 +21728,7 @@ body.cl-app-guest
     div.timeline-header
     div.lp
     div.nav-link-holder {
-      display: flex;
+      /* display: flex; */
       align-items: center;
       font-size: large;
       font-weight: bold;

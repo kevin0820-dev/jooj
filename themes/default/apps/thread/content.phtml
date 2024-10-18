@@ -1,6 +1,6 @@
 <div class="timeline-container" data-app="thread">
 	<div class="timeline-header" data-el="tl-header">
-		<div class="lp" style="display: inline-flex;">
+		<div class="lp" style="display: inline-flex; align-items:center;">
 			<span class="go-back" onclick="SMColibri.go_back();">
 				<?php echo cl_ikon('arrow-left'); ?>
 			</span>
@@ -205,12 +205,33 @@
 							<div class="publication-content">
 								<?php if (not_empty($cl['thread_data']['post']['text'])): ?>
 									<div class="publication-text">
-										<p>
+										<p class="pub-text">
 											<?php
-											$cl['thread_data']['post']['text'] = cl_rn2br($cl['thread_data']['post']['text']);
-											$cl['thread_data']['post']['text'] = cl_strip_brs($cl['thread_data']['post']['text']);
+												$cl['thread_data']['post']['text'] = cl_rn2br($cl['thread_data']['post']['text']);
+												$cl['thread_data']['post']['text'] = cl_strip_brs($cl['thread_data']['post']['text']);
 											?>
-											<?php echo ($cl['thread_data']['post']['text']); ?>
+											<?php
+                                                // Sample text from $cl['thread_data']['text']
+                                                $text = $cl['thread_data']['post']['text'];
+
+                                                // Regular expression to find <a> tags containing text starting with $ (like $abc)
+                                                $pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+
+                                                // Use preg_replace_callback to replace matches with an image tag
+                                                $modified_text = preg_replace_callback($pattern, function($matches) {
+                                                    // Extract the word inside the <a> tag without the $ sign
+                                                    $symbol = strtolower($matches[2]);
+
+                                                    // Create the image tag
+                                                    $image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 16px; padding-right: 2px; display: inline; position: relative; bottom: 2px; visibility: visible;" alt="' . $symbol . '">';
+
+                                                    // Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
+                                                    return $image_tag . $matches[1];
+                                                }, $text);
+
+                                                // Output the modified text
+                                                echo $modified_text;
+											?>
 										</p>
 									</div>
 								<?php endif; ?>
@@ -754,6 +775,10 @@
 </div>
 
 <style>
+	
+	body{
+		font-family: "Roboto", sans-serif;
+	}
 	body main.main-content-container div.main-content-container-inner div.timeline-container-wrapper div.timeline-container-inner div.timeline-container div.timeline-header div.lp div.nav-link-holder {
 		line-height: 20px;
 		display: inline-flex;
