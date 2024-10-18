@@ -257,6 +257,7 @@
 	}
 
 	.timeline-header__botline {
+		border-bottom: 1px solid var(--smc-main-bg-color-2);
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
@@ -268,9 +269,9 @@
 
 	.nav-tabs {
 
-		border-bottom-color: var(--smc-main-border-color);
-		border-bottom-style: solid;
-		border-bottom-width: 1px;
+		/* border-bottom-color: var(--smc-main-border-color); */
+		/* border-bottom-style: solid; */
+		/* border-bottom-width: 1px; */
 	}
 
 	.nav-fill .nav-item .nav-link,
@@ -280,7 +281,7 @@
 		text-transform: none;
 		color: var(--smc-main-text-color-lighten-5);
 		font-weight: 500;
-		font-size: 15px;
+		font-size: 18px;
 	}
 
 	.nav-tabs .nav-item.show .nav-link,
@@ -296,7 +297,7 @@
 	.nav-tabs .nav-link.active div.css-1dbjc4n {
 		background-color: rgb(29, 155, 240);
 		height: 4px;
-		width: 56px;
+		width: 28px;
 		border-radius: 9999px;
 		text-align: center;
 		display: block;
@@ -304,9 +305,17 @@
 		bottom: 0;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: 15px;
+		margin-top: 12px;
 		margin-bottom: -15px;
-
+	}
+	.left-push-nav{
+		display: inline-flex;
+	}
+	.nav-tabs .nav-link:hover {
+		background-color: inherit;
+		border: 0px !important;
+		border-color: transparent !important;
+		transition: none !important;
 	}
 </style>
 <script>

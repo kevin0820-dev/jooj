@@ -265,7 +265,7 @@ div.publication--thread-container-inner div.publication--thread-data-holder {
   color: var(--smc-main-text-color-2) !important;
 }
 .nav-justified .nav-item .nav-link:hover {
-  background: var(--smc-main-bg-color-2) !important;
+  /* background: var(--smc-main-bg-color-2) !important; */
 }
 .nav-justified .nav-item .nav-link {
   color: var(--smc-main-text-color-2) !important;
@@ -319,6 +319,8 @@ div.publication--thread-container-inner div.publication--thread-data-holder {
 :-moz-focusring {
   outline: 0px;
 }
+
+
 h1.login-home {
   overflow-wrap: break-word;
   line-height: 84px !important;
@@ -378,12 +380,14 @@ h3.login-home {
   
 }
 /* edited by kevin.. leftside gap issue. NewKevin*/
-.right-sb-container .inner-wrapper-sticky {
-  top: 10px !important;
+
+
+/* .right-sb-container .inner-wrapper-sticky {
+  top: 0px !important;
   bottom: 90px !important;
   position: fixed !important;
   width: 350px;
-}
+} */
 
 body.cl-app-conversation
   div.conversation
@@ -1685,11 +1689,9 @@ body.modal-open {
 }
 
 .ml11 {
-  font-weight: 300;/*Edited by Kevin.. logo text fontweight*/
-  font-size: 28px; /*Edited by Kevin.. logo text font size*/
-  color: var(--smc-main-text-color); /*Edited by Kevin.. logo text font color*/
-  /* margin-top:-4px; */
-  /* margin-left: 10px; */
+  font-weight: 300;
+  font-size: 28px; 
+  color: var(--smc-main-text-color);
 }
 
 .ml11 .text-wrapper {
@@ -3687,7 +3689,7 @@ body
   display: block;
   line-height: 0px;
   position: relative;
-  padding-top: 13px;
+  top: 13px;
 }
 
 body
@@ -3988,7 +3990,7 @@ body
   div.publication-data {
   flex: 1;
   padding-left: 15px;
-   /* overflow: hidden; */ /*edited by kevin to make button group visible. 9/18*/
+   /* overflow: hidden;  */
 }
 
 body
@@ -14227,7 +14229,7 @@ body .user-data__ctrls button.btn-custom.main-outline:not([disabled]):focus {
 body button.btn-custom.lg.home {
   font-family: Roboto, sans-serif;
   color: white;
-  background: var(--smc-main-uiel-color);
+  background: #007afc;
   /* box-shadow: var(--smc-main-box-shadow-eff); */
   border: 1px solid var(--smc-main-border-color);
   font-size: 16px;
@@ -14236,7 +14238,7 @@ body button.btn-custom.lg.home {
   box-shadow: rgba(0, 0, 0, 0) 0px 8px 28px;
   min-height: 35px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 6px;
   margin-left: 15px;
 }
 
@@ -26587,12 +26589,12 @@ body.cl-app-notifications
   padding-bottom: 0px !important;
 }
 
-body.cl-app-notifications
+/* body.cl-app-notifications
   main.main-content-container
   div.main-content-container-inner
   div.timeline-container-wrapper {
   min-height: 100%;
-}
+} */
 
 body.cl-app-notifications
   main.main-content-container
@@ -28652,16 +28654,29 @@ body.cl-app-profile
   /* bottom: 0px; */
   position: relative;
   width: 100%;
-  min-width: 25px;
+  /* min-width: 25px; */
   background-color: var(--smc-main-uiel-color);
   align-self: center;
   height: 4px;
-  max-width: 25px;
+  max-width: 30px;
   text-align: center;
   /* justify-content: center; */
   /* justify-items: center; */
   /* align-items: center; */
-  margin-left: 44%;
+  margin-left: 23%;
+}
+
+.css-1dbjc4ncb.active {
+  border-radius: 9999px;
+  display: flex;
+  position: relative;
+  min-width: 25px;
+  background-color: var(--smc-main-uiel-color);
+  align-self: center;
+  height: 4px;
+  max-width: 23px;
+  text-align: center;
+  margin-left: calc(46% - 3px);
 }
 
 body.cl-app-profile
