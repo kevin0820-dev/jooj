@@ -1255,7 +1255,7 @@ body
   div.timeline-container
   div.timeline-header {
   position: sticky;
-  top: 13px;
+  top: 6px;
   z-index: 700;
   background: var(--cl-primary-bg-color);
   border-bottom: 0px solid var(--cl-primary-border-color);
@@ -6222,7 +6222,7 @@ body
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background: transparent;
   z-index: 10;
   border-bottom: 1px solid var(--smc-main-border-color);
@@ -6241,7 +6241,9 @@ body
   div.timeline-container
   div.timeline-navbar
   div.timeline-navbar__item {
-  flex: 1;
+  margin-right: 16px;
+  margin-left: 20px;
+  /* flex: 1; */
   overflow: hidden;
 }
 
@@ -6311,13 +6313,29 @@ body
   a
   button.timeline-navbar__item-btn
   span.btn-flex-inner {
+  color: var(--smc-main-text-color-2) !important;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
   overflow: hidden;
-  line-height: 2; /*Edited by Kevin..Explore/items bottom height. 9/14/2024*/
+  line-height: 2;
 }
+body
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container-wrapper
+  div.timeline-container-inner
+  div.timeline-container
+  div.timeline-navbar
+  div.timeline-navbar__item
+  a
+  button.timeline-navbar__item-btn
+  span.btn-flex-inner.active {
+    color: var(--smc-main-text-color) !important;
+}
+
 
 @media (max-width: 1199.98px) {
   body
@@ -6511,7 +6529,7 @@ body
   div.timeline-navbar__item
   a
   button.timeline-navbar__item-btn:focus {
-  background: var(--cl-event-hover-bg);
+  background: none;
 }
 
 body

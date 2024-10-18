@@ -1760,6 +1760,7 @@ function cl_notify_user($data = array()) {
                 "subject" => $data['subject'],
                 "user_avatar" => $me['avatar'],
                 "user_name" => $me['name'],
+                "email_logo" => $cl['config']['site_logo'],
                 "title" => array(
                     "verified" => cl_translate('Your verification request has been accepted'),
                     "reply" => cl_translate('Replied to your post'),
