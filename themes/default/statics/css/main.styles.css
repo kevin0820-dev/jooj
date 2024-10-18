@@ -22043,8 +22043,7 @@ body.cl-app-symbol
   width: 100%;
   display: block;
   line-height: 0;
-
-  
+  border-top: 1px solid var(--smc-main-bg-color-2);
 }
 
 body.cl-app-symbol
