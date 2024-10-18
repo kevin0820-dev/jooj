@@ -992,6 +992,13 @@ function cl_get_post_likes($post_id = false, $limit = 10, $offset = false) {
 }
 
 function cl_cacl_poll_votes($poll = array()) {
+	if (!is_array($poll)) {
+        return array(
+            "has_voted" => 0,
+            "total"     => 0,
+            "options"   => array()
+        );
+    }
 	$data           = array(
 		"has_voted" => cl_is_poll_voted($poll),
 		"total"     => 0,
@@ -1024,6 +1031,13 @@ function cl_cacl_poll_votes($poll = array()) {
 }
 
 function cl_is_poll_voted($poll = array()) {
+	if (!is_array($poll)) {
+        return array(
+            "has_voted" => 0,
+            "total"     => 0,
+            "options"   => array()
+        );
+    }
 	global $cl, $me;
 
 	$user_id = (not_empty($cl["is_logged"])) ? $me["id"] : 0;

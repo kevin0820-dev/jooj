@@ -54,7 +54,7 @@
 			</div>
 			<div class="rp middle">
 				<div class="nav-link-holde">
-					<button class="go-options dropleft show" onclick = '$("#searchBar").slideToggle()'>
+					<button class="go-options dropleft show bt-3" onclick = '$("#searchBar").slideToggle()'>
 						<?php echo cl_icon('search'); ?>
 					</button>
 				</div>
@@ -92,9 +92,9 @@
 				<?php echo cl_ikon('arrow-left'); ?>
 			</span>
 			<div class="nav-link-holder nav-link-holder-symbol">
-				<span style="color: var(--smc-main-text-color);" class="user-name-holder">
+				<a style="color: var(--smc-main-text-color);" class="user-name-holder">
 					<?php echo ($cl['prof_user']['name']); ?>
-				</span>
+				</a>
 				<?php if ($cl['prof_user']['verified'] == '1'): ?>
 					<span class="user-name-holder__badge" style="display:inline-block;">
 						<?php echo cl_icon("verified_user_badge"); ?>
@@ -119,31 +119,25 @@
 			</div>
 		</div>
 		<div class="profile-activity-navbar noBorder" id = "selectionPane" style="display: none;">
-			<a href="<?php echo cl_link(cl_strf("symbol/%s/foryou", $cl['prof_user']['raw_sname'])); ?>"
-				data-spa="true">
-				<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {
-													echo ('active');
-												} ?>">
+			<a>
+				<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {echo ('active');} ?>" onclick='select("posts")'>
 					<?php echo cl_translate("For You"); ?>
 				</button>
-				<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'posts') {
+				<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {
 											echo ('active');
 										} ?>"></div>
 			</a>
-			<a href="<?php echo cl_link(cl_strf("symbol/%s/about", $cl['prof_user']['raw_sname'])); ?>"
-				data-spa="true">
-				<button style="margin-left: 15px;" class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {
-																				echo ('active');
-																			} ?>">
+			<a>
+				<button style="margin-left: 15px;" class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {echo ('active');} ?>"onclick='select("about")'>
 					<?php echo cl_translate("About"); ?>
 				</button>
-				<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'media') {
+				<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'media') {
 											echo ('active');
 										} ?>"></div>
 			</a>
 		</div>
 	</div>
-	<div style="background-color:var(--smc-main-bg-color); position:relative; top:6px;">
+	<div style="background-color:var(--smc-main-bg-color); position:relative; top:13px;">
 		<div class="timeline-prof-info-area">
 			<div class="profile-main-info-holder">
 				<div style="display: flex; align-items: center; padding: 15px 10px 10px 0px;">
@@ -580,79 +574,80 @@
 				<?php endif; ?> -->
 				<?php if (not_empty($cl["can_view"])): ?>
 					<div class="profile-activity-navbar">
-						<a href="<?php echo cl_link(cl_strf("symbol/%s/foryou", $cl['prof_user']['raw_sname'])); ?>"
-							data-spa="true">
-							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {
-																echo ('active');
-															} ?>">
+						<a>
+							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {echo ('active');} ?>" onclick='select("posts")'>
 								<?php echo cl_translate("For You"); ?>
 							</button>
-							<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'posts') {
-														echo ('active');
-													} ?>"></div>
+							<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {echo ('active');} ?>"></div>
 						</a>
-						<a href="<?php echo cl_link(cl_strf("symbol/%s/about", $cl['prof_user']['raw_sname'])); ?>"
-							data-spa="true">
-							<button style="margin-left: 15px;" class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {
-																							echo ('active');
-																						} ?>">
+						<a>
+							<button style="margin-left: 15px;" class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {echo ('active');} ?>" onclick='select("about")'>
 								<?php echo cl_translate("About"); ?>
 							</button>
-							<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'media') {
-														echo ('active');
-													} ?>"></div>
+							<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'media') {	echo ('active');} ?>"></div>
 						</a>
 					</div>
 				<?php endif; ?>
 			</div>
 		</div>
-		<?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])): ?>
-			<div class="timeline-posts-container">
-				<div class="timeline-posts-ls">
-					<?php echo cl_template('symbol/includes/blocked_profile'); ?>
-				</div>
-			</div>
-		<?php else: ?>
-			<?php if (not_empty($cl["can_view"])): ?>
-				<?php if (in_array($cl['page_tab'], array('posts', 'media'))): ?>
-					<div class="timeline-posts-container py-3">
-						<?php $count = 0; ?>
-						<?php if (not_empty($cl["user_posts"]) && is_array($cl["user_posts"])): ?>
-							<div class="timeline-posts-ls" data-an="entry-list">
-								<?php foreach ($cl["user_posts"] as $cl['li']): ?>
-									<?php $count++; ?>
-									<?php echo cl_template('timeline/post_symbol'); ?>
-									<?php if ($count == 3) {
-										echo cl_template('home/follow');
-									} ?>
-								<?php endforeach; ?>
-							</div>
-						<?php else: ?>
-							<?php echo cl_template('symbol/includes/no_posts'); ?>
-						<?php endif; ?>
-					</div>
-				<?php else: ?>
+		<div class="tab-content">
+			<div class="tab-pane fade active show" id = "posts">
+				<?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])): ?>
 					<div class="timeline-posts-container">
-						<div class="timeline-posts-ls py-3" data-an="entry-list">
-							<?php if (not_empty($cl["user_likes"]) && is_array($cl["user_likes"])): ?>
-								<?php foreach ($cl["user_likes"] as $cl['li']): ?>
-									<?php echo cl_template('timeline/post_symbol'); ?>
-									<?php echo cl_template('timeline/post_symbol'); ?>
-								<?php endforeach; ?>
-							<?php else: ?>
-								<?php echo cl_template('symbol/includes/no_posts'); ?>
-							<?php endif; ?>
+						<div class="timeline-posts-ls">
+							<?php echo cl_template('symbol/includes/blocked_profile'); ?>
 						</div>
 					</div>
+				<?php else: ?>
+					<?php if (not_empty($cl["can_view"])): ?>
+						<?php if (in_array($cl['page_tab'], array('posts', 'media'))): ?>
+							<div class="timeline-posts-container py-3">
+								<?php $count = 0; ?>
+								<?php if (not_empty($cl["user_posts"]) && is_array($cl["user_posts"])): ?>
+									<div class="timeline-posts-ls" data-an="entry-list">
+										<?php foreach ($cl["user_posts"] as $cl['li']): ?>
+											<?php $count++; ?>
+											<?php echo cl_template('timeline/post_symbol'); ?>
+											<?php if ($count == 3) {
+												echo cl_template('home/follow');
+											} ?>
+										<?php endforeach; ?>
+									</div>
+								<?php else: ?>
+									<?php echo cl_template('symbol/includes/no_posts'); ?>
+								<?php endif; ?>
+							</div>
+						<?php else: ?>
+							<div class="timeline-posts-container">
+								<div class="timeline-posts-ls py-3" data-an="entry-list">
+									<?php if (not_empty($cl["user_likes"]) && is_array($cl["user_likes"])): ?>
+										<?php foreach ($cl["user_likes"] as $cl['li']): ?>
+											<?php echo cl_template('timeline/post_symbol'); ?>
+											<?php echo cl_template('timeline/post_symbol'); ?>
+										<?php endforeach; ?>
+									<?php else: ?>
+										<?php echo cl_template('symbol/includes/no_posts'); ?>
+									<?php endif; ?>
+								</div>
+							</div>
+						<?php endif; ?>
+					<?php else: ?>
+						<div class="timeline-posts-container">
+							<div class="timeline-posts-ls">
+								<?php echo cl_template('symbol/includes/private_profile'); ?>
+							</div>
+						</div>
+					<?php endif; ?>
 				<?php endif; ?>
-			<?php else: ?>
+			</div>
+			<div class="tab-pane fade" id = "about">
 				<div class="timeline-posts-container">
-					<div class="timeline-posts-ls">
-						<?php echo cl_template('symbol/includes/private_profile'); ?>
+					<div class="timeline-posts-ls py-3" data-an="entry-list">
+						<?php echo cl_template('symbol/includes/about'); ?>
 					</div>
 				</div>
-			<?php endif; ?>
-		<?php endif; ?>
+			</div>
+		</div>
 
 
 		<?php echo cl_template('symbol/scripts/app_master_script'); ?>
@@ -811,12 +806,12 @@
 			overflow: visible;
 			text-overflow: ellipsis;
 			white-space: nowrap;
-			display: inline-block;
+			display: inline-flex;
 		}
 
 		@media (max-width: 1024px) {
 			body main.main-content-container div.main-content-container-inner div.timeline-container-wrapper div.timeline-container-inner div.timeline-container {
-				padding-top: 61px !important;
+				padding-top: 70px !important;
 			}
 		}
 	}
@@ -872,12 +867,6 @@
 		display: block;
 		position: relative;
 		margin-bottom: 0px;
-	}
-
-	div.main-search-bar-container {
-		width: 100%;
-		line-height: 0;
-		padding: 10px 0px
 	}
 
 	div.main-search-bar-container form div.search-result-holder {
@@ -953,10 +942,37 @@
 	}
 </style>
 <script>
+	var state = "posts";
 	// Initialise Carousel
 	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
 		Dots: false,
-	})
+	});
+
+	select = (pane) => {
+		var posts = document.getElementById("posts");
+		var about = document.getElementById("about");
+		var selectionPane = document.getElementsByClassName("profile-activity-navbar");
+		if(pane === 'posts'){
+			if(state === 'posts') return;
+			posts.classList.add("show", "active");
+			about.classList.remove("show", "active");
+			state = "posts";
+			for(var i = 0; i < 2; i++){
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[0].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[1].classList.remove("active");
+			}
+		}
+		else{
+			if(state === 'about') return;
+			about.classList.add('show', 'active');
+			posts.classList.remove('show', 'active');
+			state = 'about';
+			for(var i = 0; i < 2; i++){
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[1].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[0].classList.remove("active");
+			}
+		}
+	}
 </script>
 
 <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
