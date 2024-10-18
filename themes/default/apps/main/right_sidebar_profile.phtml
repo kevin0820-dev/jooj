@@ -372,6 +372,46 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 			<div class="topical-posts">
 				<div class="topical-posts__header">
 					<h4>
+						<?php echo cl_translate("hot_symbols_for_you"); ?>
+					</h4>
+				</div>
+				<?php if (not_empty($cl['hot_symbols'])): ?>
+					<div class="topical-posts__body">
+						<?php
+						$count = 0; // Initialize a counter
+						foreach ($cl['hot_symbols'] as $row):
+							if ($count >= 5) break; // Stop after displaying 5 symbols
+							$count++;
+						?>
+							<div class="topical-posts__item">
+								<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>">
+									<img src="/themes/default/statics/img/symbol_imgs/<?php echo strtolower($row['symbol']); ?>.png" style="height: 17px; padding-right: 5px;" alt="">
+									<!-- Edited By Kevin.. Attached Symbol Icon in Right Side Bar. 9/20 -->
+									<b>$</b>
+									<strong><?php echo ($row['symbol']); ?></strong>
+									<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
+								</a>
+								<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
+										<?php echo cl_ikon('pub-more'); ?>
+									</a></span>
+							</div>
+						<?php endforeach; ?>
+					</div>
+					<div class="topical-posts__footer">
+						<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
+							<?php echo cl_translate("Show more"); ?>
+						</a>
+					</div>
+				<?php else: ?>
+					<div class="topical-posts__placeholder">
+						<?php echo cl_translate("Here will be a (symbols) list of the most relevant topics and events"); ?>
+					</div>
+				<?php endif; ?>
+			</div>
+
+			<div class="topical-posts">
+				<div class="topical-posts__header">
+					<h4>
 						<?php echo cl_translate("hot_topics_for_you"); ?>
 					</h4>
 				</div>
@@ -406,44 +446,6 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 				<?php else: ?>
 					<div class="topical-posts__placeholder">
 						<?php echo cl_translate("Here will be a (#hashtag) list of the most relevant topics and events"); ?>
-					</div>
-				<?php endif; ?>
-			</div>
-
-			<div class="topical-posts">
-				<div class="topical-posts__header">
-					<h4>
-						<?php echo cl_translate("hot_symbols_for_you"); ?>
-					</h4>
-				</div>
-				<?php if (not_empty($cl['hot_symbols'])): ?>
-					<div class="topical-posts__body">
-						<?php foreach ($cl['hot_symbols'] as $row): ?>
-							<div class="topical-posts__item">
-								<a class="htag" href="<?php echo ($row['url']); ?>" data-spa="true">
-									<b>$</b>
-
-									<strong>
-										<?php echo ($row['symbol']); ?>
-									</strong>
-
-									<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
-
-								</a>
-								<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
-										<?php echo cl_ikon('pub-more'); ?>
-									</a></span>
-							</div>
-						<?php endforeach; ?>
-					</div>
-					<div class="topical-posts__footer">
-						<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
-							<?php echo cl_translate("Show more"); ?>
-						</a>
-					</div>
-				<?php else: ?>
-					<div class="topical-posts__placeholder">
-						<?php echo cl_translate("Here will be a (symbols) list of the most relevant topics and events"); ?>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -545,4 +547,39 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 			}
 		}
 	});
+	// jQuery(document).ready(function($) {
+	// 	var lastScrollTop = 0; // Store the last scroll position
+
+	// 	var changePoint = 0;
+
+	// 	var fixedHeight = 220;
+
+	// 	$(window).scroll(function() {
+
+	// 		var currentScroll = $(this).scrollTop(); // Get current scroll position
+
+	// 		var height = $('.right-sb-container .sidebar__inner').height();
+	// 		var viewPortHeight = $(window).height();
+
+	// 		const deltaHeight = height - viewPortHeight + 10;
+
+	// 		$('.right-sb-container .sidebar__inner').css({
+	// 			'transform': currentScroll > deltaHeight ? `translate(0px, ${-deltaHeight}px)` : `translate(0px, ${-currentScroll}px)`
+	// 		});
+
+	// 		if (currentScroll < lastScrollTop) {
+
+	// 			// User is scrolling up
+	// 			$('.inner-wrapper-sticky').css({
+	// 				'position': 'fixed !important',
+	// 				'top': '10px'
+	// 			}); // Set the attribute when scrolling up
+
+	// 		} else {
+
+	// 		}
+
+	// 		lastScrollTop = currentScroll; // Update the last scroll position
+	// 	});
+	// });
 </script>

@@ -416,9 +416,9 @@ const StickySidebar = (() => {
           case 'VIEWPORT-TOP':
             /** edited by kevin.. leftside gap issue. NewKevin*/
 
-            // style.inner = {position: 'fixed', top: dims.topSpacing,
-            //       left: dims.sidebarLeft - dims.viewportLeft, width: dims.sidebarWidth};
-              style.inner = {position: 'relative'}
+            style.inner = {position: 'fixed', top: dims.topSpacing,
+                  left: dims.sidebarLeft - dims.viewportLeft, width: dims.sidebarWidth};
+              // style.inner = {position: 'relative'}
             break;
           case 'VIEWPORT-BOTTOM':
             style.inner = {position: 'fixed', top: 'auto', left: dims.sidebarLeft,
