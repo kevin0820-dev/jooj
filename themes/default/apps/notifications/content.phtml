@@ -2,9 +2,9 @@
 	<div class="timeline-header" data-el="tl-header">
 		<div class="timeline-header__botline" style="display: flex;width: 100%;justify-content: space-between;">
 			<div class="lp">
-			<div class="nav-link-holder" style="display: flex;justify-content: center;align-items: center;">
-				<span class="go-back" onclick="SMColibri.go_back();">
-				<?php echo cl_ikon('arrow-left'); ?>
+				<div class="nav-link-holder" style="display: flex;justify-content: center;align-items: center;">
+					<span class="go-back" onclick="SMColibri.go_back();">
+						<?php echo cl_ikon('arrow-left'); ?>
 					</span>
 					<a href="<?php echo cl_link("notifications"); ?>" data-spa="true">
 						<?php echo cl_translate("Notifications"); ?>
@@ -12,7 +12,7 @@
 				</div>
 			</div>
 			<div class="cp">
-				
+
 			</div>
 			<div class="rp">
 				<div class="nav-link-holder">
@@ -63,55 +63,60 @@
 	</div>
 	<style>
 		.timeline-navbar__item-btn.active .css-1dbjc4n {
-  border-radius: 9999px;
-  display: flex;
-  bottom: 0px;
-  position: relative;
-  width: 100%;
-  min-width: 56px;
-  background-color: var(--smc-main-uiel-color);
-  align-self: center;
-  height: 4px;
-  max-width: 56px;
-  text-align: center;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  margin-left: 40%;
-position: absolute;
+			border-radius: 9999px;
+			display: flex;
+			bottom: 0px;
+			position: relative;
+			width: 100%;
+			min-width: 25px;
+			background-color: var(--smc-main-uiel-color);
+			align-self: center;
+			height: 4px;
+			max-width: 30px;
+			text-align: center;
+			justify-content: center;
+			justify-items: center;
+			align-items: center;
+			margin-left: 30%;
+			position: absolute;
 
-}
-.timeline-navbar__item-btn .css-1dbjc4n {
-	display:none;
-}
-		</style>
+		}
+
+		.timeline-navbar__item-btn .css-1dbjc4n {
+			display: none;
+		}
+	</style>
 	<div class="timeline-navbar">
 		<div class="timeline-navbar__item">
 			<a href="<?php echo cl_link("notifications"); ?>" data-spa="true">
-				<button class="timeline-navbar__item-btn <?php if($cl['page_tab'] == 'notifs') {echo('active');} ?>">
+				<button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'notifs') {
+																echo ('active');
+															} ?>">
 					<span class="btn-flex-inner">
-						
+
 						<span class="text">
 							<?php echo cl_translate("Notifications"); ?>
 						</span>
 					</span>
 					<div class="css-1dbjc4n"></div>
 				</button>
-				
+
 			</a>
 		</div>
 		<div class="timeline-navbar__item">
 			<a href="<?php echo cl_link("mentions"); ?>" data-spa="true">
-				<button class="timeline-navbar__item-btn <?php if($cl['page_tab'] == 'mentions') {echo('active');} ?>">
+				<button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'mentions') {
+																echo ('active');
+															} ?>">
 					<span class="btn-flex-inner">
-						
+
 						<span class="text">
 							<?php echo cl_translate("Mentions"); ?>
 						</span>
 					</span>
 					<div class="css-1dbjc4n"></div>
 				</button>
-				
+
 			</a>
 		</div>
 	</div>
