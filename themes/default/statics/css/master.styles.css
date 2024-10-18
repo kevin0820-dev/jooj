@@ -1567,6 +1567,16 @@ div.rp
   display: flex;
   width: 100%;
   justify-content: space-between;
+  position:relative;
+}
+.timeline-header__botline::after {
+  content: "";
+  position: absolute;
+  left: -10px; /* Align to the left, offset by parent's padding */
+  right: -10px; /* Align to the right, offset by parent's padding */
+  bottom: 0; /* Position at the bottom */
+  height: 1px; /* Height of the border */
+  background: var(--smc-main-bg-color-2); /* Use the same color as the border */
 }
 body
   main.main-content-container
@@ -7897,7 +7907,7 @@ body
   position: absolute;
   display: block;
   left: 0;
-  top: 65px;
+  top: 58px;
   bottom: 0;
   right: 0;
   width: 100%;

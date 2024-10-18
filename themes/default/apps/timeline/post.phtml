@@ -173,9 +173,7 @@
 										</span>
 									</div>
 								<?php else: ?>
-									<!-- For Page -->
 									<div class="lp">
-										<!-- For post page admin -->
 										<?php if ($cl['li']['owner']['id'] == 1): ?>
 											<a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>"
 												data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
@@ -203,54 +201,31 @@
 												<?php endif; ?>
 											</span>
 										<?php else: ?>
-											<!-- For post page coauthor -->
-											<div class="flex items-center ">
-													<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
-														data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
-														data-placement="bottom">
-														<b>
-															<span class="user-name-holder">
-																<?php echo $cl['li']['owner']['name']; ?>
-															</span>
-															<p class="<?php if ($cl['li']['owner']['verified'] == '1')
-																			echo 'verified-badge'; ?>" style="display:inline-block;"></p>
-														</b>
-													</a>
-													<span class="uname">
-														@<?php echo $cl['li']['owner']['username']; ?>
-													</span>
-
-												<!-- <span class="point">&</span> -->
-
-												<!-- <div class="px-2">
-											
-											<a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>" 
-												data-sinfo-lbox="<?php echo $cl['li']['page']['id']; ?>" data-toggle="popover"
+											<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
+												data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
 												data-placement="bottom">
 												<b>
 													<span class="user-name-holder">
-														<?php echo $cl['li']['page']['name']; ?>
+														<?php echo $cl['li']['owner']['name']; ?>
 													</span>
-													<p class="<?php if ($cl['li']['page']['verified'] == '1')
+													<p class="<?php if ($cl['li']['owner']['verified'] == '1')
 																	echo 'verified-badge'; ?>" style="display:inline-block;"></p>
 												</b>
 											</a>
 											<span class="uname">
-												$<?php echo $cl['li']['page']['username']; ?>
+												@<?php echo $cl['li']['owner']['username']; ?>
 											</span>
-											</div> -->
-												<span class="point px-2">&#183;</span>
+											<span class="point px-2">&#183;</span>
 
-												<span class="posted-time">
-													<time><?php echo $cl['li']['time']; ?></time>
-													<?php if (not_empty($cl['li']['edited'])): ?>
-														<span
-															title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
-															&nbsp; (E)
-														</span>
-													<?php endif; ?>
-												</span>
-											</div>
+											<span class="posted-time">
+												<time><?php echo $cl['li']['time']; ?></time>
+												<?php if (not_empty($cl['li']['edited'])): ?>
+													<span
+														title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
+														&nbsp; (E)
+													</span>
+												<?php endif; ?>
+											</span>
 										<?php endif; ?>
 
 									</div>
@@ -873,14 +848,14 @@
 	analyze = function(e, id) {
 		if(e.target === HTMLImageElement) return;
 		// Check if the click is not on an anchor tag (or any interactive element)
-		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button')) {
+		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button') && !e.target.closest('.publication-poll-data')) {
 			window.location.href = '/thread/' + id; // Set your root link here
 		}
 	}
 	analyze_quote = function(e, id) {
 		if(e.target === HTMLImageElement) return;
 		// Check if the click is not on an anchor tag (or any interactive element)
-		if (!e.target.closest('a') && !e.target.closest('button')) {
+		if (!e.target.closest('a') && !e.target.closest('button') && !e.target.closest('.publication-poll-data')) {
 			window.location.href = '/thread/' + id; // Set your root link here
 		}
 	}

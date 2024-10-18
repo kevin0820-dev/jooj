@@ -113,33 +113,31 @@
 								</div>
 							<?php else: ?>
 								<div class="lp">
-									<div class="flex items-center ">
-										<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
-											data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
-											data-placement="bottom">
-											<b>
-												<span class="user-name-holder">
-													<?php echo $cl['li']['owner']['name']; ?>
-												</span>
-												<p class="<?php if ($cl['li']['owner']['verified'] == '1')
-													echo 'verified-badge'; ?>"
-													style="display:inline-block;"></p>
-											</b>
-										</a>
-										<span class="uname">
-											@<?php echo $cl['li']['owner']['username']; ?>
-										</span>
-										<span class="point px-1">&#183;</span>
-										<span class="posted-time">
-											<time><?php echo $cl['li']['time']; ?></time>
-											<?php if (not_empty($cl['li']['edited'])): ?>
-												<span
-													title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
-													&nbsp; (E)
-												</span>
-											<?php endif; ?>
-										</span>
-									</div>
+									<a href="<?php echo $cl['li']['owner']['url']; ?>" data-spa="true"
+										data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover"
+										data-placement="bottom">
+										<b>
+											<span class="user-name-holder">
+												<?php echo $cl['li']['owner']['name']; ?>
+											</span>
+											<p class="<?php if ($cl['li']['owner']['verified'] == '1')
+												echo 'verified-badge'; ?>"
+												style="display:inline-block;"></p>
+										</b>
+									</a>
+									<span class="uname">
+										@<?php echo $cl['li']['owner']['username']; ?>
+									</span>
+									<span class="point px-1">&#183;</span>
+									<span class="posted-time">
+										<time><?php echo $cl['li']['time']; ?></time>
+										<?php if (not_empty($cl['li']['edited'])): ?>
+											<span
+												title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
+												&nbsp; (E)
+											</span>
+										<?php endif; ?>
+									</span>
 								</div>
 							<?php endif; ?>
 
@@ -397,7 +395,28 @@
 							
 								<div class="publication-text">
 									<p class="pub-text">
-										<?php echo ($cl['li']['text']); ?>
+										<?php
+										// Sample text from $cl['li']['text']
+										$text = $cl['li']['text'];
+
+										// Regular expression to find <a> tags containing text starting with $ (like $abc)
+										$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+
+										// Use preg_replace_callback to replace matches with an image tag
+										$modified_text = preg_replace_callback($pattern, function($matches) {
+											// Extract the word inside the <a> tag without the $ sign
+											$symbol = strtolower($matches[2]);
+
+											// Create the image tag
+											$image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 16px; padding-right: 2px; display:inline; position:relative; bottom:2px;" alt="' . $symbol . '">';
+
+											// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
+											return $image_tag . $matches[1];
+										}, $text);
+
+										// Output the modified text
+										echo $modified_text;
+										?>
 									</p>
 								</div>
 							<?php endif; ?>
@@ -733,15 +752,16 @@
 <?php endif; ?>
 <script>
 	analyze = function(e, id) {
+		if(e.target === HTMLImageElement) return;
 		// Check if the click is not on an anchor tag (or any interactive element)
-		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button')) {
+		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button') && !e.target.closest('.publication-poll-data')) {
 			window.location.href = '/thread/' + id; // Set your root link here
 		}
 	}
 	analyze_quote = function(e, id) {
 		if(e.target === HTMLImageElement) return;
 		// Check if the click is not on an anchor tag (or any interactive element)
-		if (!e.target.closest('a') && !e.target.closest('button')) {
+		if (!e.target.closest('a') && !e.target.closest('button') && !e.target.closest('.publication-poll-data')) {
 			window.location.href = '/thread/' + id; // Set your root link here
 		}
 	}
