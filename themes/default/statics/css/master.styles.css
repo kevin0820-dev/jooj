@@ -2076,7 +2076,7 @@ body
   input {
   border: 0px solid var(--smc-main-border-color);
   background: var(--smc-main-ibg-color);
-  border-radius: 10em;
+  border-radius: .7em;
   padding: 3px 0 3px 50px;
   height: 44px;
   width: 100%;
@@ -6237,7 +6237,7 @@ body
   z-index: 10;
   border-bottom: 1px solid var(--smc-main-border-color);
   position: relative;
-  top: 13px;
+  /* top: 13px; */
 }
 .ads-management{
   top: 13px;
