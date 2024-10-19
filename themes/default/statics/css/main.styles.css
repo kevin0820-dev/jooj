@@ -9,7 +9,9 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
-
+.btn-top{
+  padding: 10px 5px 19px 0px !important;
+}
 body[data-skin="default"] {
   
   /*UI-EL-COLORS*/
@@ -19,6 +21,11 @@ body[data-skin="default"] {
   /*LINK-COLORS*/
   --smc-main-link-color: #1b95e0;
   /*==================================================*/
+}
+.right-top{
+  position: absolute;
+  right: 20px;
+  top: -45px;
 }
 .no-border-bottom{
   border-bottom: none !important;
@@ -1242,13 +1249,6 @@ body.modal-open {
     div.pubbox-images__list
     div.pubbox-images__list-item {
     max-width: 300px!important;
-  }
-  #add_new_post .flex-item.ml-auto {
-    position: absolute;
-    top: -50px;
-    right: 0;
-    margin-top: 10px;
-    margin-right: 10px;
   }
   #add_new_post .post-privacy-holder .flex-item.ml-auto {
     position: fixed;
@@ -3689,7 +3689,7 @@ body
   display: block;
   line-height: 0px;
   position: relative;
-  top: 13px;
+  /* top: 13px; */
 }
 
 body
@@ -8429,7 +8429,7 @@ body
   input {
   border: 1px solid var(--smc-main-border-color);
   background: var(--smc-main-ibg-color);
-  border-radius: 10em;
+  border-radius: .7em;
   padding: 0 0 0px 50px;
   height: 44px;
   font-size: 13px;

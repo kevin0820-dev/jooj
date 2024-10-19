@@ -320,7 +320,7 @@ function cl_send_mail($data = array()) {
 }
 
 function cl_curl_httpreq($url = "", $payload = array()) {
-
+    global $config;
     if (empty($url)) {
         return false;
     }
@@ -443,7 +443,7 @@ function cl_imagerotate($img_source = false, $source_url = false) {
         try {
             $file_exif = @exif_read_data($source_url);
 
-            if (not_empty($file_exif["Orientation"])) {
+            if (not_empty($file_exif["Orientation"]) && is_resource($img_source)) {
                 if ($file_exif["Orientation"] == 3) {
                     return imagerotate($img_source, 180, 0);
                 }
