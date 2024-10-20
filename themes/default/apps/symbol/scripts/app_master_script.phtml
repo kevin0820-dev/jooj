@@ -398,82 +398,80 @@
 			});
 		<?php endif; ?>
 
-		<?php if (empty($cl['prof_user']['owner'])): ?>
-			SMColibri.PS.profile_report = new Vue({
-	            el: "#cl-report-profile-vue-app",
-	            data: {
-	                profile_id: <?php echo ($cl['prof_user']['id']); ?>,
-	                fe_state: {
-	                    submitting: false,
-	                    done: false,
-	                    fail: false
-	                },
-	                reason: 0,
-	                comment: ""
-	            },
-	            computed: {
-	                is_invalid_form: function() {
-	                    if (this.reason == 0) {
-	                        return true;
-	                    }
+		SMColibri.PS.profile_report = new Vue({
+			el: "#cl-report-profile-vue-app-1",
+			data: {
+				profile_id: <?php echo ($cl['prof_user']['id']); ?>,
+				fe_state: {
+					submitting: false,
+					done: false,
+					fail: false
+				},
+				reason: 0,
+				comment: ""
+			},
+			computed: {
+				is_invalid_form: function() {
+					if (this.reason == 0) {
+						return true;
+					}
 
-	                    else if(this.comment.length > 2900) {
-	                        return true;
-	                    }
+					else if(this.comment.length > 2900) {
+						return true;
+					}
 
-	                    else {
-	                        return false;
-	                    }
-	                }
-	            },
-	            methods: {
-	                open: function(id = 0) {
-	                    if (SMColibri.is_logged()) {
-	                        $('div[data-app="report-profile-app"]').modal('show');
-	                    }
-	                    else {
-	                        SMColibri.req_auth();
-	                    }
-	                },
-	                close: function() {
-	                    let _app_      = this;
-	                    _app_.reason   = 0;
-	                    _app_.comment  = "";
+					else {
+						return false;
+					}
+				}
+			},
+			methods: {
+				open: function(id = 0) {
+					if (SMColibri.is_logged()) {
+						$('div[data-app="report-profile-app"]').modal('show');
+					}
+					else {
+						SMColibri.req_auth();
+					}
+				},
+				close: function() {
+					let _app_      = this;
+					_app_.reason   = 0;
+					_app_.comment  = "";
 
-	                    $('div[data-app="report-profile-app"]').modal('hide');
-	                },
-	                send_report: function(id = false) {
-	                    let _app_ = this;
-	                    let data  = Object({
-	                        reason: _app_.reason,
-	                        profile_id: _app_.profile_id,
-	                        comment: _app_.comment
-	                    });
+					$('div[data-app="report-profile-app"]').modal('hide');
+				},
+				send_report: function(id = false) {
+					let _app_ = this;
+					let data  = Object({
+						reason: _app_.reason,
+						profile_id: _app_.profile_id,
+						comment: _app_.comment
+					});
 
-	                    if (_app_.fe_state.submitting != true) {
-	                        $.ajax({
-	                            url: '<?php echo cl_link("native_api/main/report_profile"); ?>',
-	                            type: 'POST',
-	                            dataType: 'json',
-	                            data: data,
-	                            beforeSend: function() {
-	                                _app_.fe_state.submitting = true;
-	                            }
-	                        }).done(function(data) {
-	                            if (data.status == 200) {
-	                                cl_bs_notify("<?php echo cl_translate('Thank you for letting us know! Your feedback is greatly appreciated.'); ?>", 3000);
-	                            }
-	                            else {
-	                                SMColibri.errorMSG();
-	                            }
-	                        }).always(function() {
-	                            _app_.close();
-	                            _app_.fe_state.submitting = false;
-	                        });
-	                    } 
-	                }
-	            }
-	        });
-		<?php endif; ?>
+					if (_app_.fe_state.submitting != true) {
+						$.ajax({
+							url: '<?php echo cl_link("native_api/main/report_profile"); ?>',
+							type: 'POST',
+							dataType: 'json',
+							data: data,
+							beforeSend: function() {
+								_app_.fe_state.submitting = true;
+							}
+						}).done(function(data) {
+							if (data.status == 200) {
+								cl_bs_notify("<?php echo cl_translate('Thank you for letting us know! Your feedback is greatly appreciated.'); ?>", 3000);
+							}
+							else {
+								SMColibri.errorMSG();
+							}
+						}).always(function() {
+							_app_.close();
+							_app_.fe_state.submitting = false;
+						});
+					} 
+				}
+			}
+		});
 	});
 </script>

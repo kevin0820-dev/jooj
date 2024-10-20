@@ -27619,7 +27619,7 @@ body.cl-app-profile
   width: 100%;
   display: block;
   line-height: 0;
-  top: 13px;
+  /* top: 13px; */
   position: relative;
 }
 
