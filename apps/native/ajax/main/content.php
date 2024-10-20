@@ -2578,6 +2578,31 @@ else if($action == 'report_profile') {
     }
 }
 
+else if($action == 'report_symbol') {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+    $report_reason    = fetch_or_get($_POST['reason'], false); 
+    $profile_id       = fetch_or_get($_POST['profile_id'], false); 
+    $comment          = fetch_or_get($_POST['comment'], false); 
+    $profile_data     = cl_raw_symbol_data($profile_id);
+
+    if (not_empty($profile_data) && $profile_id != $me['id'] && in_array($report_reason, array_keys($cl['profile_report_types']))) {
+        $data['status']  = 200;
+        $db              = $db->where('user_id', $me['id']);
+        $db              = $db->where('profile_id', $profile_id);
+        $qr              = $db->delete(T_PROF_REPORTS);
+        $comment         = (empty($comment)) ? "" : cl_croptxt($comment, 2900);
+        $qr              = $db->insert(T_PROF_REPORTS, array(
+            'user_id'    => $me['id'],
+            'symbol_id' => $profile_id,
+            'reason'     => $report_reason,
+            'comment'    => $comment,
+            'seen'       => '0',
+            'time'       => time()
+        ));
+    }
+}
+
 else if($action == 'user_lbox') {
     $data['err_code'] = 0;
     $data['status']   = 400;
