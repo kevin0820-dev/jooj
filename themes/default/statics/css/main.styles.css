@@ -9337,7 +9337,7 @@ body
   white-space: nowrap;
   color: var(--cl-primary-text-color);
   font-weight: 630; /*Eidited by Kevin.. Who to follow username fontweight*/
-  display: inline;
+  display: inline-flex;
 }
 body
   main.main-content-container
