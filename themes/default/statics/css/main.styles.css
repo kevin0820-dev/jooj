@@ -8425,7 +8425,7 @@ body
   input {
   border: 1px solid var(--smc-main-border-color);
   background: var(--smc-main-ibg-color);
-  border-radius: .7em;
+  border-radius: 1em;
   padding: 0 0 0px 50px;
   height: 44px;
   font-size: 13px;
