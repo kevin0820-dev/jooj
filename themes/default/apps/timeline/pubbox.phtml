@@ -8,8 +8,8 @@
 	<div class="rp">
 
 		<form class="form" id="vue-pubbox-app-<?php echo ($cl['pb_id']); ?>" v-on:submit="publish($event)">
-			<!-- Post Privacy -->
-			<div v-show="active_media" class="post-privacy" v-if="post_privacy">
+			<!-- Post Privacy  everyone when clicked gif button-->
+			<!-- <div v-show="active_media" class="post-privacy" v-if="post_privacy">
 				<button class="privacy-settings dropdown" type="button">
 					<div class="dropdown-toggle" data-toggle="dropdown">
 						<span class="d-inline-flex align-items-center flex-wn">
@@ -61,7 +61,7 @@
 						</a>
 					</div>
 				</button>
-			</div>
+			</div> -->
 			<!-- End Post Privacy -->
 			<div class="input-holder">
 				<textarea ref="text_input" v-on:input.trim="text_input_trigger" v-on:blur="text_blur_trigger"

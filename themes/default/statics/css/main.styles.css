@@ -1697,10 +1697,8 @@ body.modal-open {
 .ml11 .text-wrapper {
   position: relative;
   display: inline-block;
-  /* padding-top: 4px; */
   padding-right: 0.05em;
-  /* padding-bottom: 0.15em; */
-  margin-left: 10px;
+  margin-left: 18px;
 }
 
 .swifts-slider__footer {
@@ -1834,7 +1832,7 @@ iframe.reply_frame {
 
 .sidebar__inner .cp img {
   position: relative;
-  left: 10px;
+  left: 19px;
   width: auto;
   max-height: 45px; /* Edited By kevin.. The height of the logo*/
 }
@@ -7035,7 +7033,6 @@ body
   main.main-content-container
   div.main-content-container-inner
   div.left-sb-container {
-  /* margin-right: 15px; */
   width: 275px;
   min-width: 275px;
   flex-basis: 275px;
@@ -7044,7 +7041,6 @@ body
   -o-transition: left 0.5s;
   -webkit-transition: left 0.5s;
   transition: left 0.5s;
-  margin-right: 15px;
 }
 
 body
@@ -7375,7 +7371,7 @@ body
   div.uname {
   color: var(--smc-main-text-color-2);
   flex-basis: 100%;
-  width: 175px;
+  width: 170px;
   line-height: 0px;
   margin-left: 15px;
   max-width: 200px;
@@ -7778,24 +7774,24 @@ body
   li.sidebar-v-nav-item
   span.nav-item-holder
   span.info-indicators {
-  display: inline-block;
-  background: var(--cl-danger-color); /*Message and Notification Badge Color - Red*/
-  color: #fff;
-  text-align: center;
-  padding: 0 5px;
-  border-radius: 10px;
-  background-clip: padding-box;
-  font-size: 11px;
-  -webkit-font-smoothing: subpixel-antialiased;
-  line-height: 18px;
-  vertical-align: middle;
-  min-height: 17px; /*Edited by Kevin.. Badge size*/
-  min-width: 17px;
-  font-weight: 400;
-  position: relative;
-  margin-left: -30px; /*Edited by Kevin.. Margin between badges and icons*/
-  margin-top: -23px;
-  margin-right: 7px;
+    display: inline-block;
+    background: var(--cl-danger-color);
+    color: #fff;
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 10px;
+    background-clip: padding-box;
+    font-size: 11px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    line-height: 18px;
+    vertical-align: middle;
+    min-height: 17px;
+    min-width: 17px;
+    font-weight: 400;
+    position: relative;
+    margin-left: -30px;
+    margin-top: -23px;
+    margin-right: 7px;
 }
 .feed_follow .follow_head h6 {
   color: var(--smc-main-text-color);
@@ -16616,9 +16612,7 @@ body div.timeline-pubbox-container > div.rp form div.post-privacy-holder {
   /* width: 100%; */
   padding-left: 10px;
   display: block;
-  /* border-bottom: 1px solid var(--smc-main-border-color); */
-  /* margin-bottom: 15px; */
-  /* padding-bottom: 10px; */
+  padding-top: 6px;
 }
 
 body
