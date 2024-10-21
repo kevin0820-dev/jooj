@@ -1,10 +1,10 @@
-<div class="modal report-modal" tabindex="-1" role="dialog" data-app="report-profile-app">
-    <div class="modal-dialog" role="document" id="cl-report-profile-vue-app">
+<div class="modal report-modal" tabindex="-1" role="dialog" data-app="report-symbol-app">
+    <div class="modal-dialog" role="document" id="cl-report-symbol-vue-app">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-header__inner">
                     <h5 class="modal-title">
-                        <?php echo cl_translate("Report this profile"); ?>
+                        <?php echo cl_translate("Report this Symbol"); ?>
                     </h5>
                     <span class="dismiss-modal" data-dismiss="modal">
                         <?php echo cl_icon('close'); ?>
@@ -30,7 +30,7 @@
                             <span><?php echo cl_translate("Message to the reviewer"); ?></span><span class="fw-400" v-bind:class="{'col-red': (comment.length > 2900)}">({{comment.length}}/2900)</span>
                         </label>
                         <div class="comment-input-holder">
-                            <textarea v-model.trim="comment" rows="4" class="form-control" placeholder="<?php echo cl_translate("Please write briefly about the problem with this account"); ?>"></textarea>
+                            <textarea v-model.trim="comment" rows="4" class="form-control" placeholder="<?php echo cl_translate("Please write briefly about the problem with this symbol"); ?>"></textarea>
                         </div>
                     </div>
                 </form>
