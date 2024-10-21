@@ -2,154 +2,673 @@
 	"use strict";
 
 	$(document).ready(function($) {
-		var _app = new Vue({
-			el: "#vue-symbol-app",
-			data: {
-				loading_more: false,
-				load_more: true,
-				load_offset: 30,
-				searching: false,
-				search_query: "<?php echo($cl["search_query"]); ?>",
-				action: "<?php echo($cl["page_tab"]); ?>",
-				query_result: "<?php echo ((not_empty($cl["query_result"])) ? 1 : 0); ?>",
-				empty_list: "<?php echo ((empty($cl["query_result"]) && empty($cl["search_query"])) ? 1 : 0); ?>",
-				init_result: ""
-			},
-			computed: {
-				show_loader: function() {
-					if (this.query_result == '1' && cl_empty(this.searching)) {
-						return true;
-					}
-
-					return false;
-				},
-				search_htags_url: function() {
-					var url = '<?php echo cl_link("explore/htags?q={0}"); ?>';
-					return url.format(this.search_query);
-				},
-				search_symbols_url: function() {
-					var url = '<?php echo cl_link("explore/symbols?q={0}"); ?>';
-					return url.format(this.search_query);
-				},
-				search_people_url: function() {
-					var url = '<?php echo cl_link("explore/people?q={0}"); ?>';
-					return url.format(this.search_query);
-				},
-				search_posts_url: function() {
-					var url = '<?php echo cl_link("explore/posts?q={0}"); ?>';
-					return url.format(this.search_query);
-				}
-			},
-			methods: {
-				search_entries: function(e = false) {
-					if (e) {
-						e.preventDefault();
-						
-						if (_app.search_query.length >= 2) {
-							delay(function() {
-								$.ajax({
-									url: "<?php echo cl_link("native_api/explore/search"); ?>",
-									type: 'GET',
-									dataType: 'json',
-									data: {
-										type: "<?php echo($cl["page_tab"]); ?>",
-										q: _app.search_query
-									},
-									beforeSend: function() {
-										_app.searching = true;
-									}
-								}).done(function(data) {
-									if (data.status == 200) {
-										$(_app.$el).find('[data-an="entry-list"]').html(data.html).promise().done(function() {
-											delay(function() {
-												SMColibri.fix_sidebars();
-											}, 300);
-										});
-
-										_app.query_result = '1';
-										_app.load_more    = true;
-									}
-
-									else {
-										_app.query_result = '0';
-									}
-
-								}).always(function() {
-									_app.searching = false;
-								});
-							}, 500);
-						}
-						else {
-							_app.searching = false;
-							_app.load_more = true;
-
-							if (cl_empty(_app.init_result) != true) {
-								$(_app.$el).find('[data-an="entry-list"]').html(_app.init_result);
-								_app.query_result = '1';
-								
-							}
-							else {
-								_app.query_result = '0';
-								$(_app.$el).find('[data-an="entry-list"]').html("");
-							}
-						}
-					}
-
-					else {
-						$(_app.$el).find('form[data-an="search-form"]').trigger('submit');
-					}
-				},
-				load_entries: function(e = false) {
-					e.preventDefault();
-
-					var type = "<?php echo($cl["page_tab"]); ?>";
-					
-					$.ajax({
-						url: "<?php echo cl_link("native_api/explore/load_more"); ?>",
-						type: 'GET',
-						dataType: 'json',
-						data: {
-							offset: _app.load_offset,
-							type: type,
-							q: _app.search_query
-						},
-						beforeSend: function() {
-							_app.loading_more = true;
-						}
-					}).done(function(data) {
-						if (data.status == 200) {
-							$(_app.$el).find('div[data-an="entry-list"]').append(data.html).promise().done(function() {
-								delay(function() {
-									SMColibri.fix_sidebars();
-								}, 300);
-							});
-
-							_app.load_more = true;
-
-							_app.load_offset += 30;
-						}
-
-						else {
-							_app.load_more = false;
-						}
-					}).always(function() {
-						_app.loading_more = false;
-					});
-				}
-			},
-			mounted: function() {
-				if (cl_empty(this.init_result)) {
-					this.init_result = $(this.$el).find('[data-an="entry-list"]').html();
-				}
-			}
-		});
 		<?php echo cl_js_template('apps/symbol/scripts/js/symbolpbox_mixin'); ?>
-		
+
+		var _app     = $('[data-app="symbol"]');
+
 		SMColibri.PS = Object({
 			app: $('[data-app="symbol"]'),
 			page_tab: "<?php echo($cl['page_tab']); ?>",
-			prof_user: "<?php echo($cl['prof_user']['id']); ?>"
+			prof_user: "<?php echo($cl['prof_user']['id']); ?>",
+			init_app: function() {
+				var _self_ = this;
+
+				if ($("form#vue-pubbox-app-1").length) {
+					new Vue({
+						el:"#vue-pubbox-app-1",
+						mixins: [pubbox_form_app_mixin]
+					});
+				}
+				
+				$(window).on('scroll', function() {
+					if (SMColibri.curr_pn == "symbol") {
+					    if(($(window).scrollTop() + $(window).height()) > ($(document).height() - 100)) {
+					    	if (cl_empty(_self_.timeline.loading) && _self_.timeline.loadmore) {
+					            _self_.timeline.load_old();
+				       		}
+					    }
+					}
+				});
+
+				setInterval(function() {
+					if (SMColibri.curr_pn == "symbol") {
+						_self_.timeline.update();
+					}
+				}, (60 * 1000));
+			},
+			timeline: {
+				loading: false,
+				loadmore: true,
+				load_offset: 30,
+				load_old: function() {
+					var post_ls = _app.find('[data-an="entry-list"]');
+		            var offset  = 30;
+		            var _self_  = this;
+
+		            if ($.isNumeric(offset) && offset) {
+						$.ajax({
+							url: '<?php echo cl_link("native_api/symbol/load_more"); ?>',
+							type: 'GET',
+							dataType: 'json',
+							data: {
+								offset: _self_.load_offset
+							},
+							beforeSend: function() {
+								_self_.loading = true;
+							}
+						}).done(function(data) {
+							if (data.status == 200) {
+								post_ls.append($(data.html));
+
+								_self_.load_offset += 30;
+							}
+							else{
+								_self_.loadmore = false;
+							}
+						}).always(function() {
+							_self_.loading = false;
+						});
+					}
+				},
+				update: function() {
+					var post_ls = _app.find('[data-an="entry-list"]');
+					var onset   = 0;
+
+		            if (post_ls.find('div[data-post-offset]').length) {
+		            	onset  = post_ls.find('div[data-post-offset]').first().data('post-offset');
+		            }
+
+		            if ($.isNumeric(onset) && onset) {
+						$.ajax({
+							url: '<?php echo cl_link("native_api/symbol/update_timeline"); ?>',
+							type: 'GET',
+							dataType: 'json',
+							data: {
+								onset: onset
+							}
+						}).done(function(data) {
+							if (data.status == 200) {
+								post_ls.prepend($(data.html));
+							}
+						});
+					}
+				}
+			}
 		});
+
+		<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+
+			new Swiper("div#homepage-swifts-slider", {
+				slidesPerView: "auto",
+				speed: 500,
+				spaceBetween: 15,
+				loop: false,
+				autoplay: false,
+				scrollbar: {
+					el: 'div#homepage-swifts-scrollbar',
+					draggable: true,
+					hide: false
+				}
+			});
+
+			SMColibri.PS.new_swift = new Vue({
+				el: "#cl-new-swift-vue-app",
+				data: {
+					text: "",
+					image: {},
+					video: {},
+					image_ctrl: true,
+					video_ctrl: true,
+					submitting: false,
+					active_media: null,
+					emoticons_picker: {
+						icons: window.cl_emoticons,
+						status: false,
+						active_group: "people"
+					},
+				},
+				computed: {
+					valid_form: function() {
+						if (this.active_media != null && cl_empty(this.submitting)) {
+							return true;
+						}
+						else {
+							return false;
+						}
+					}
+				},
+				methods: {
+					add_swift: function() {
+						_app.find('[data-an="swift-pubbox"]').modal("show");
+					},
+					emoticon_picker: function() {
+
+						var _app_ = this;
+
+						_app_.emoticons_picker.status = !_app_.emoticons_picker.status;
+
+					},
+					emoticon_insert: function(em = "") {
+						var _app_    = this;
+						var curs_pos = _app_.$refs.swift_text.selectionStart;
+
+						if ($.isNumeric(curs_pos) != true) {
+							curs_pos = 0;
+						}
+						
+						_app_.text = _app_.text.insert_at(curs_pos, em);
+					},
+					textarea_resize: function(_self = null) {
+						autosize($(_self.target));
+					},
+					publish: function(_self = null) {
+						_self.preventDefault();
+
+						var form  = $(_self.$el);
+						var _app_ = this;
+
+						$(_self.target).ajaxSubmit({
+							url: "<?php echo cl_link("native_api/swift/publish_new_swift"); ?>",
+							type: 'POST',
+							dataType: 'json',
+							beforeSend: function() {
+								_app_.submitting = true;
+							},
+							success: function(data) {
+								if (data.status != 200) {
+									_app_.submitting = false;
+									SMColibri.errorMSG();
+								}
+
+								else {
+									SMColibri.spa_reload();
+								}
+							},
+							complete: function() {
+								_app_.submitting = false;
+								_app_.reset_data();
+
+								_app.find('[data-an="swift-pubbox"]').modal("hide");
+							}
+						});
+					},
+					select_images: function() {
+						var _app_ = this;
+
+						if (_app_.active_media == 'image' || cl_empty(_app_.active_media)) {
+							if (_app_.image_ctrl) {
+								var app_el = $(_app_.$el);
+								app_el.find('input[data-an="images-input"]').trigger('click');
+							}
+						}
+					},
+					select_video: function() {
+						var _app_ = this;
+
+						if (cl_empty(_app_.active_media)) {
+							if (_app_.video_ctrl) {
+								var app_el = $(_app_.$el);
+								app_el.find('input[data-an="video-input"]').trigger('click');
+							}
+						}
+					},
+					upload_images: function(event = null) {
+						var _app_  = this;
+						var app_el = $(_app_.$el);
+
+						if (cl_empty(_app_.active_media) || _app_.active_media == 'image') {
+							if (SMColibri.max_upload(event.target.files[0].size)) {
+								SMColibri.progress_bar("show");
+
+								var form_data = new FormData();
+
+								form_data.append('delay', 1);
+								form_data.append('image', event.target.files[0]);
+								form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
+								
+								$.ajax({
+									url: '<?php echo cl_link("native_api/swift/upload_swift_image"); ?>',
+									type: 'POST',
+									dataType: 'json',
+									enctype: 'multipart/form-data',
+									data: form_data,
+									cache: false,
+									contentType: false,
+									processData: false,
+									timeout: 600000,
+									beforeSend: function() {
+										_app_.submitting = true;
+									},
+									success: function(data) {
+										if (data.status == 200) {
+											_app_.image = data.img;
+										}
+										else {
+											SMColibri.errorMSG();
+										}
+									},
+									complete: function() {
+										if (cl_empty(_app_.active_media)) {
+											_app_.active_media = "image";
+										}
+
+										_app_.disable_ctrls();
+
+										_app_.submitting = false;
+									}
+								});
+
+								setTimeout(function() {
+									SMColibri.progress_bar("end");
+								}, 1500);
+							}
+
+							app_el.find('input[data-an="images-input"]').val('');
+						}
+					},
+					upload_video: function(event = null) {
+						var _app_  = this;
+						var app_el = $(_app_.$el);
+
+						if (cl_empty(_app_.active_media)) {
+							var video  = event.target.files[0];
+							if (video && SMColibri.max_upload(video.size)) {
+
+								var form_data = new FormData();
+								form_data.append('video', video);
+								form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
+
+								$.ajax({
+									url: '<?php echo cl_link("native_api/swift/upload_swift_video"); ?>',
+									type: 'POST',
+									dataType: 'json',
+									enctype: 'multipart/form-data',
+									data: form_data,
+									cache: false,
+									contentType: false,
+									processData: false,
+									timeout: 600000,
+									beforeSend: function() {
+										SMColibri.progress_bar("show");
+									},
+									success: function(data) {
+										if (data.status == 200) {
+											_app_.video = data.video;
+										}
+										else {
+											SMColibri.errorMSG();
+										}
+									},
+									complete: function() {
+										if ($.isEmptyObject(_app_.video) != true && cl_empty(_app_.active_media)) {
+											_app_.active_media = "video";
+										}
+
+										_app_.disable_ctrls();
+										app_el.find('input[data-an="video-input"]').val('');
+
+										setTimeout(function() {
+											SMColibri.progress_bar("end");
+										}, 1500);
+									}
+								});
+							}
+						}
+					},
+					delete_image: function() {
+						var _app_ = this;
+
+						$.ajax({
+							url: '<?php echo cl_link("native_api/swift/delete_swift_image"); ?>',
+							type: 'POST',
+							dataType: 'json',
+						}).done(function(data) {
+							if (data.status != 200) {
+								SMColibri.errorMSG();
+							}
+							else {
+								_app_.video = Object({});
+							}
+						}).always(function() {
+							_app_.active_media = null;
+
+							_app_.disable_ctrls();
+						});
+					},
+					delete_video: function() {
+						var _app_ = this;
+
+						$.ajax({
+							url: '<?php echo cl_link("native_api/swift/delete_swift_video"); ?>',
+							type: 'POST',
+							dataType: 'json',
+						}).done(function(data) {
+							if (data.status != 200) {
+								SMColibri.errorMSG();
+							}
+							else {
+								_app_.video = Object({});
+							}
+						}).always(function() {
+							if ($.isEmptyObject(_app_.video)) {
+								_app_.active_media = null;
+							}
+
+							_app_.disable_ctrls();
+						});
+					},
+					disable_ctrls: function() {
+						var _app_ = this;
+
+						if(_app_.active_media != null) {
+							_app_.image_ctrl = false;
+							_app_.video_ctrl = false;
+						}
+						else {
+							_app_.image_ctrl = true;
+							_app_.video_ctrl = true;
+						}
+					},
+					reset_data: function() {
+						var _app_          = this;
+						_app_.image_ctrl   = true;
+						_app_.video_ctrl   = true;
+						_app_.text         = "";
+						_app_.images       = Object({});
+						_app_.video        = Object({});
+						_app_.active_media = null;
+					}
+				},
+				mounted: function() {
+					var _app_ = this;
+				}
+			});
+
+			SMColibri.PS.play_swift =new Vue({
+				el: "#cl-play-swift-vue-app",
+				data:{
+					swifts: <?php echo cl_minify_js(json($cl["tl_swifts"], true)); ?>,
+					swift_data: Object({}),
+					status: false,
+					curr_swift: Object({}),
+					curr_swift_id: false,
+					next_slide_id: false,
+					prev_slide_id: false,
+					slide_bar_int: false,
+					slide_bar_status: 0,
+					slide_bar_time: 10000,
+					slide_bar_pause: false,
+					curr_swift_views: 0,
+					show_swift_views: false,
+					swift_loaded: false
+				},
+				computed: {
+					has_next: function() {
+						var _app_     = this;
+						var next_swid = (_app_.curr_swift_id + 1);
+
+						if ($.isEmptyObject(_app_.swift_data) != true) {
+							if (_app_.swift_data.swift.hasIndex(next_swid) == true) {
+								_app_.next_slide_id = next_swid;
+
+								return true;
+							}
+							else {
+								_app_.next_slide_id = false;
+								return false;
+							}
+						}
+					},
+					has_prev: function() {
+						var _app_     = this;
+						var prev_swid = (_app_.curr_swift_id - 1);
+
+						if ($.isEmptyObject(_app_.swift_data) != true) {
+							if (_app_.swift_data.swift.hasIndex(prev_swid) == true) {
+								_app_.prev_slide_id = prev_swid;
+
+								return true;
+							}
+							else {
+								_app_.prev_slide_id = false;
+
+								return false;
+							}
+						}
+					}
+				},
+				methods: {
+					show: function(id = false) {
+						var _app_           = this;
+						_app_.swift_data    = _app_.swifts[id];
+						_app_.curr_swift_id = _app_.init_slide_id();
+						_app_.status        = _app_.slide_to(_app_.curr_swift_id);
+
+						$("body").addClass("ov-h");
+					},
+					init_slide_id: function() {
+						var _app_ = this;
+
+						if ($.isEmptyObject(_app_.swift_data) != true) {
+
+							var curr_swift_id = 0;
+
+							for (var i = 0; i < _app_.swift_data.swift.length; i++) {
+								if (_app_.swift_data.swift[i].seen == 0) {
+									curr_swift_id = i; break;	
+								}
+							}
+
+							return curr_swift_id;
+						}
+						else {
+							return false;
+						}
+					},
+					slide_to: function(id = false) {
+						var _app_        = this;
+						_app_.curr_swift = Object({});
+
+						if (_app_.swift_data.swift.hasIndex(id) == true) {
+							_app_.curr_swift       = _app_.swift_data.swift[id];
+							_app_.curr_swift       = _app_.init_swift_data(_app_.curr_swift);
+							_app_.curr_swift_id    = id;
+							_app_.slide_bar_pause  = false;
+							_app_.swift_loaded     = false;
+							_app_.curr_swift_views = Object.keys(_app_.curr_swift.views).length;
+							_app_.show_swift_views = false;
+
+							for (var i = 0; i < _app_.swift_data.swift.length; i++) {
+								if (i < id) {
+									_app_.swift_data.swift[i].slide_bar = 100;
+								}
+
+								else {
+									_app_.swift_data.swift[i].slide_bar = 0;
+								}
+							}
+
+							if (_app_.swift_data.swift[id].seen == 0) {
+								_app_.swift_data.swift[id].seen = 1;
+
+								if (_app_.swift_data.is_user != true) {
+									_app_.register_swift_view();
+								}
+							}
+
+							_app_.start_swift_slidebar();
+							_app_.off_swift_indicator();
+
+							return true;
+						}
+						
+						else {
+							return false;
+						}
+					},
+					start_swift_slidebar: function() {
+						var _app_ = this;
+
+						if (_app_.slide_bar_int !== false) {
+							clearInterval(_app_.slide_bar_int);
+						}
+
+						_app_.slide_bar_status = 0;
+						_app_.slide_bar_int    = setInterval(function() {
+							if (_app_.slide_bar_pause != true && _app_.swift_loaded == true) {
+								if (_app_.slide_bar_status == 100) {
+									if (_app_.has_next == true) {
+										_app_.slide_to(_app_.next_slide_id);
+									}
+									else {
+										_app_.close();
+									}
+								}
+								else {
+									_app_.slide_bar_status = (_app_.slide_bar_status + 1);
+								}
+							}
+						}, (_app_.slide_bar_time / 100));
+					},
+					init_swift_data: function(swift_data = false) {
+						var _app_ = this;
+
+						if (swift_data.type == "image") {
+							_app_.slide_bar_time = 10000;
+						}
+
+						else if (swift_data.type == "video") {
+
+							_app_.slide_bar_time = (swift_data.media.duration * 1000);
+
+							setTimeout(function() {
+								_app_.$refs.video.load();
+								_app_.$refs.video.play();
+							}, 500);
+						}
+
+						return swift_data;
+					},
+					slide_prev: function() {
+						var _app_ = this;
+
+						_app_.slide_to(_app_.prev_slide_id);
+					},
+					slide_next: function() {
+						var _app_ = this;
+
+						_app_.slide_to(_app_.next_slide_id);
+					},
+					close: function() {
+						var _app_              = this;
+						_app_.swift_data       = Object({});
+						_app_.curr_swift       = Object({});
+						_app_.status           = false;
+						_app_.curr_swift_id    = false;
+						_app_.next_slide_id    = false;
+						_app_.prev_slide_id    = false;
+						_app_.slide_bar_status = 0;
+						_app_.slide_bar_time   = 10000;
+						_app_.curr_swift_views = 0;
+
+						if (_app_.slide_bar_int != false) {
+							clearInterval(_app_.slide_bar_int);
+
+							_app_.slide_bar_int = false;
+						}
+
+						$("body").removeClass("ov-h");
+					},
+					delete_swift: function() {
+						var _app_ = this;
+
+						$.ajax({
+							url: "<?php echo cl_link('native_api/swift/delete_swift'); ?>",
+							type: "POST",
+							dataType: "json",
+							data: {swid: _app_.curr_swift.swid},
+						}).done(function(data) {
+							if (data.status != 200) {
+								SMColibri.errorMSG();
+							}
+
+							else {
+								for (var i = 0; i < _app_.swift_data.swift.length; i++) {
+									if (_app_.swift_data.swift[i].swid == _app_.curr_swift.swid) {
+										_app_.swift_data.swift.splice(i, 1);
+										break;
+									}
+								}
+
+								if (_app_.swift_data.swift.length) {
+									_app_.slide_to(0);
+									
+								}
+
+								else {
+									SMColibri.spa_reload();
+									_app_.close();
+								}
+							}
+						});
+					},
+					do_pause: function() {
+						var _app_ = this;
+						_app_.slide_bar_pause = true;
+
+						if(_app_.curr_swift.type == "video") {
+							_app_.$refs.video.pause();
+						}
+					},
+					un_pause: function() {
+						var _app_ = this;
+
+						_app_.slide_bar_pause = false;
+
+						if(_app_.curr_swift.type == "video") {
+							_app_.$refs.video.play();
+						}
+					},
+					off_swift_indicator: function() {
+						var _app_    = this;
+						var all_seen = true;
+
+						for (var i = 0; i < _app_.swift_data.swift.length; i++) {
+							if (_app_.swift_data.swift[i].seen == 0) {
+								all_seen = false; break;
+							}
+						}
+
+						if (all_seen === true) {
+							_app.find("div#homepage-swifts-slider").find('[data-an="swift-item-{0}"]'.format(_app_.swift_data.id)).removeClass('active');
+						}
+					},
+					register_swift_view: function() {
+						var _app_ = this;
+
+						$.ajax({
+							url: "<?php echo cl_link('native_api/swift/swift_view'); ?>",
+							type: "POST",
+							dataType: "json",
+							data: {
+								user_id: _app_.swift_data.id,
+								swid: _app_.curr_swift.swid
+							}
+						});
+					},
+					toggle_views_list: function() {
+						var _app_ = this;
+
+						if (_app_.show_swift_views == true) {
+							_app_.show_swift_views = false;
+						}
+						else{
+							_app_.show_swift_views = true;
+						}
+					}
+				}
+			});
+		<?php endif; ?>
 
 		<?php if (empty($cl['prof_user']['is_blocked']) && not_empty($cl["can_view"])): ?>
 			SMColibri.PS.timeline = Object({
@@ -205,275 +724,84 @@
 				}
 			});
 		<?php endif; ?>
-
+		
 		<?php if (not_empty($cl['prof_user']['owner'])): ?>
-			new Vue({
-				el: "#vue-profile-cover-app",
+			SMColibri.PS.profile_report = new Vue({
+				el: "#cl-report-symbol-vue-app",
 				data: {
-					rep_position: 0,
-					submitting: false,
-					rep_opened: false,
-					avatar: "",
-					cover: ""
+					profile_id: <?php echo ($cl['prof_user']['id']); ?>,
+					fe_state: {
+						submitting: false,
+						done: false,
+						fail: false
+					},
+					reason: 0,
+					comment: ""
 				},
-				methods: {
-					rep_start: function() {
-						var _self        = this;
-						var rep_area     = $(_self.$el).find('div#rep-area');
-						_self.rep_opened = true;
-
-					    rep_area.find('img').draggable({
-				        	scroll: false,
-					        axis: "y",
-					        drag: function (event, ui) {
-					            var y1 = rep_area.height();
-					            var y2 = rep_area.find('img').height();
-					            if (ui.position.top >= 0) {
-					                ui.position.top = 0;
-					            }
-
-					            else {
-					            	if (ui.position.top <= (y1 - y2)) {
-					                    ui.position.top = (y1- y2);
-					                }
-					            } 
-				            },
-				            stop: function(event, ui) {
-				                _self.rep_position = ui.position.top;
-				            }
-				        });
-					},
-					rep_end: function() {
-						var _self        = this;
-						_self.rep_opened = false;
-
-						$(_self.$el).find('img.original-cover').draggable('destroy');
-					},
-					select_cover: function() {
-						$(this.$el).find("input#f1").trigger("click");
-					},
-					select_avatar: function() {
-						$(this.$el).find("input#f2").trigger("click");
-					},
-					upload_cover: function(_self = null) {
-						var app   = this;
-						var event = _self;
-
-						if (SMColibri.max_upload(event.target.files[0].size)) {
-							var form_data  = new FormData();
-							app.submitting = true;
-							form_data.append('cover', event.target.files[0]);
-							form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
-							
-							SMColibri.progress_bar("show");
-
-							$.ajax({
-								url: '<?php echo cl_link("native_api/settings/upload_page_cover"); ?>',
-								type: 'POST',
-								dataType: 'json',
-								enctype: 'multipart/form-data',
-								data: form_data,
-								cache: false,
-						        contentType: false,
-						        processData: false,
-						        timeout: 600000,
-								success: function(data) {
-									if (data.status == 200) {
-										cl_bs_notify("<?php echo cl_translate("Your new profile cover has been successfully saved!"); ?>");
-
-										setTimeout(function() {
-											SMColibri.spa_reload();
-										}, 1200);
-									}
-									else {
-										app.submitting = false;
-
-										SMColibri.errorMSG();
-									}
-								},
-								complete: function() {
-									SMColibri.progress_bar("end");
-								}
-							});
+				computed: {
+					is_invalid_form: function() {
+						if (this.reason == 0) {
+							return true;
 						}
-					},
-					upload_avatar: function(_self = null) {
-						var app   = this;
-						var event = _self;
 
-						if (SMColibri.max_upload(event.target.files[0].size)) {
-							var form_data  = new FormData();
-							app.submitting = true;
-							form_data.append('avatar', event.target.files[0]);
-							form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
-							_self.submitting = true;
-
-							SMColibri.progress_bar("show");
-							console.log('Uploading avatar...');
-							$.ajax({
-								url: '<?php echo cl_link("native_api/settings/upload_page_avatar"); ?>',
-								type: 'POST',
-								dataType: 'json',
-								enctype: 'multipart/form-data',
-								data: form_data,
-								cache: false,
-						        contentType: false,
-						        processData: false,
-						        timeout: 600000,
-								success: function(data) {
-									if (data.status == 200) {
-										cl_bs_notify("<?php echo cl_translate("Your new avatar has been successfully saved!"); ?>");
-									
-                 
-										setTimeout(function() {
-											SMColibri.spa_reload();
-										}, 1200);
-									}
-									else {
-										app.submitting = false;
-										console.error('Error uploading avatar:', data);
-										SMColibri.errorMSG();
-									}
-								},
-								error: function(jqXHR, textStatus, errorThrown) {
-                console.error('Upload error:', textStatus, errorThrown);
-            },
-								complete: function() {
-									setTimeout(function() {
-										SMColibri.progress_bar("end");
-									}, 1500);
-								}
-							});
+						else if(this.comment.length > 2900) {
+							return true;
 						}
-					},
-					rep_save: function() {
-						var _self = this;
 
-						if ($.isNumeric(_self.rep_position)) {
-
-							_self.submitting = true;
-							
-							$(_self.$el).find('img.original-cover').draggable('destroy');
-
-							$.ajax({
-								url: "<?php echo cl_link("native_api/settings/save_pagecover_rep"); ?>",
-								type: 'POST',
-								dataType: 'json',
-								data: {position: _self.rep_position},
-							}).done(function(data) {
-								if (data.status == 200) {
-									cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>");
-
-									setTimeout(function() {
-										SMColibri.spa_reload();
-									}, 1200);
-								}
-								else {
-									_self.submitting = false;
-
-									SMColibri.errorMSG();
-								}
-							});
+						else {
+							return false;
 						}
 					}
 				},
-				mounted: function() {
+				methods: {
+					open: function(id = 0) {
+						if (SMColibri.is_logged()) {
+							$('div[data-app="report-symbol-app"]').modal('show');
+						}
+						else {
+							SMColibri.req_auth();
+						}
+					},
+					close: function() {
+						let _app_      = this;
+						_app_.reason   = 0;
+						_app_.comment  = "";
 
-					$('[data-app="symbol"]').find("img#c600x200").on('load', function(event) {
-						event.preventDefault();
-						$('[data-app="symbol"]').find("div#rep-area").css('height', "{0}px".format($(this).height()));
-					});
+						$('div[data-app="report-symbol-app"]').modal('hide');
+					},
+					send_report: function(id = false) {
+						let _app_ = this;
+						let data  = Object({
+							reason: _app_.reason,
+							profile_id: _app_.profile_id,
+							comment: _app_.comment
+						});
 
-					$('[data-app="symbol"]').find("img#c600x200").on('error', function(event) {
-						event.preventDefault();
-						$('[data-app="symbol"]').find("div#rep-area").css('height', "150px");
-					});
+						if (_app_.fe_state.submitting != true) {
+							$.ajax({
+								url: '<?php echo cl_link("native_api/main/report_symbol"); ?>',
+								type: 'POST',
+								dataType: 'json',
+								data: data,
+								beforeSend: function() {
+									_app_.fe_state.submitting = true;
+								}
+							}).done(function(data) {
+								if (data.status == 200) {
+									cl_bs_notify("<?php echo cl_translate('Thank you for letting us know! Your feedback is greatly appreciated.'); ?>", 3000);
+								}
+								else {
+									SMColibri.errorMSG();
+								}
+							}).always(function() {
+								_app_.close();
+								_app_.fe_state.submitting = false;
+							});
+						} 
+					}
 				}
 			});
-		<?php else: ?>
-			SMColibri.PS.profile = Object({
-				privacy_alert: function() {
-					SMColibri.info("<?php echo cl_translate("This account is private"); ?>", "<?php echo cl_translate("Only approved followers can see the posts and content of this profile, click the (Follow) button to see their posts!"); ?>");
-				}
-			});
-		<?php endif; ?>
-
-		<?php if (empty($cl['prof_user']['owner'])): ?>
-			SMColibri.PS.profile_report = new Vue({
-	            el: "#cl-report-profile-vue-app",
-	            data: {
-	                profile_id: <?php echo ($cl['prof_user']['id']); ?>,
-	                fe_state: {
-	                    submitting: false,
-	                    done: false,
-	                    fail: false
-	                },
-	                reason: 0,
-	                comment: ""
-	            },
-	            computed: {
-	                is_invalid_form: function() {
-	                    if (this.reason == 0) {
-	                        return true;
-	                    }
-
-	                    else if(this.comment.length > 2900) {
-	                        return true;
-	                    }
-
-	                    else {
-	                        return false;
-	                    }
-	                }
-	            },
-	            methods: {
-	                open: function(id = 0) {
-	                    if (SMColibri.is_logged()) {
-	                        $('div[data-app="report-profile-app"]').modal('show');
-	                    }
-	                    else {
-	                        SMColibri.req_auth();
-	                    }
-	                },
-	                close: function() {
-	                    let _app_      = this;
-	                    _app_.reason   = 0;
-	                    _app_.comment  = "";
-
-	                    $('div[data-app="report-profile-app"]').modal('hide');
-	                },
-	                send_report: function(id = false) {
-	                    let _app_ = this;
-	                    let data  = Object({
-	                        reason: _app_.reason,
-	                        profile_id: _app_.profile_id,
-	                        comment: _app_.comment
-	                    });
-
-	                    if (_app_.fe_state.submitting != true) {
-	                        $.ajax({
-	                            url: '<?php echo cl_link("native_api/main/report_profile"); ?>',
-	                            type: 'POST',
-	                            dataType: 'json',
-	                            data: data,
-	                            beforeSend: function() {
-	                                _app_.fe_state.submitting = true;
-	                            }
-	                        }).done(function(data) {
-	                            if (data.status == 200) {
-	                                cl_bs_notify("<?php echo cl_translate('Thank you for letting us know! Your feedback is greatly appreciated.'); ?>", 3000);
-	                            }
-	                            else {
-	                                SMColibri.errorMSG();
-	                            }
-	                        }).always(function() {
-	                            _app_.close();
-	                            _app_.fe_state.submitting = false;
-	                        });
-	                    } 
-	                }
-	            }
-	        });
-		<?php endif; ?>
+		<?php endif ?>
+		SMColibri.PS.init_app();
 	});
 </script>

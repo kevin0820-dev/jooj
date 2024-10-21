@@ -1,6 +1,6 @@
 
 
-<div class="inner-content" style="cursor:pointer; border: 1px solid var(--smc-main-border-color);; padding : 10px; border-radius: 10px;" onclick="analyze_quote(event, <?php echo ($cl['li']['comment_on']['id']); ?>)"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
+<div class="inner-content" style="cursor:pointer; border: 1px solid var(--smc-main-border-color); padding : 10px; border-radius: 10px;" onclick="analyze_quote(event, <?php echo ($cl['li']['comment_on']['id']); ?>)"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
     <div class="post-list-item-content">
         <div class="publisher-avatar">
             <!-- For post -->
@@ -18,7 +18,7 @@
                         </div>
                     </a>
                 <?php else: ?>
-                    <div class="avatar-holder" style="width: 45px; height: 45px;border-radius: 50%; overflow: hidden;">
+                    <div class="avatar-holder">
                         <a class="block-link" data-spa="true">
                             <div class="avatar-holder">
                                 <img class="lozad" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">

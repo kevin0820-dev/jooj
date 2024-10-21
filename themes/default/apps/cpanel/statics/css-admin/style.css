@@ -5199,6 +5199,7 @@ form.filter-data-form div.filter-data-form-option div.dropdown button.dropdown-t
     word-wrap: normal;
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
 
