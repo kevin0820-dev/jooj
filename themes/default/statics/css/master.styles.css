@@ -6228,17 +6228,20 @@ body
   div.timeline-container-inner
   div.timeline-container
   div.timeline-navbar {
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  /* justify-content: space-between; */
-  background: transparent;
-  z-index: 10;
-  border-bottom: 1px solid var(--smc-main-border-color);
-  position: relative;
-  /* top: 13px; */
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background: var(--smc-main-bg-color);
+    opacity: 0.97;
+    z-index: 500;
+    /* border-bottom: 1px solid var(--smc-main-border-color); */
+    position: sticky;
+    top: 59px;
 }
+
+
+
 .ads-management{
   top: 13px;
   position: relative;
@@ -6293,7 +6296,7 @@ body
   outline: 0;
   position: relative;
   font-weight: 500;
-  height: 50px;
+  /* height: 50px; */
 }
 
 @media (max-width: 1199.98px) {
@@ -6308,7 +6311,7 @@ body
     a
     button.timeline-navbar__item-btn {
     padding-top: 15px;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
   }
 }
 
@@ -6360,8 +6363,50 @@ body
     button.timeline-navbar__item-btn
     span.btn-flex-inner
     span.text {
-    font-size: 14px;
+      font-size: 18px;
   }
+}
+
+body
+  main.main-content-container
+  div.main-content-container-inner
+  div.timeline-container-wrapper
+  div.timeline-container-inner
+  div.timeline-container
+  div.timeline-navbar {
+    padding-bottom:10px;
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background: var(--smc-main-bg-color);
+    opacity: 0.97;
+    z-index: 500;
+    position: sticky;
+    top: 58px;
+}
+
+@media (max-width: 1199.98px) {
+  body
+    main.main-content-container
+    div.main-content-container-inner
+    div.timeline-container-wrapper
+    div.timeline-container-inner
+    div.timeline-container
+    div.timeline-navbar {
+      width: 100%;
+      position: fixed;
+      top: 52px;
+    }
+  body
+    main.main-content-container
+    div.main-content-container-inner
+    div.timeline-container-wrapper
+    div.timeline-container-inner
+    div.timeline-container
+    div.timeline-searchbar {
+      margin-top: 66px;
+    }
 }
 
 body
@@ -6461,7 +6506,7 @@ body
   a
   button.timeline-navbar__item-btn.active:hover {
   max-height: 50px !important;
-  min-height: 50px !important;
+  /* min-height: 50px !important; */
 }
 body
   main.main-content-container
@@ -6488,6 +6533,7 @@ body
   button.timeline-navbar__item-btn.active
   span.btn-flex-inner
   span.text {
+  margin-bottom:5px;
   color: var(--cl-primary-text-color);
   cursor: pointer;
   font-weight: 500;
@@ -10580,6 +10626,8 @@ body form div.valid-main-feedback.mb-20 {
 }
 
 body div.main-preloader-holder {
+  /* margin-left: 600px;
+  margin-right:600px; */
   position: fixed;
   left: 0;
   top: 0;

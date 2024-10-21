@@ -20,20 +20,20 @@
 		</div>
 		<div>
 			<ul class="nav nav-tabs nav-justified mb-3" id="myTab" role="tablist">
-				<li class="nav-item" role="presentation">
-					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+				<li  role="presentation">
+					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
 						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
 							class="css-1dbjc4n"></div></a>
 				</li>
-				<li class="nav-item" role="presentation">
-					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+				<li  role="presentation">
+					<a class="nav-link home_nav_btn" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile" aria-selected="false">
 						<?php echo cl_translate("Following"); ?>
 						<div class="css-1dbjc4n"></div>
 					</a>
 				</li>
-				<li class="nav-item" role="presentation">
-					<a class="nav-link" id="page-tab" data-toggle="tab" href="#page" role="tab"
+				<li  role="presentation">
+					<a class="nav-link home_nav_btn" id="page-tab" data-toggle="tab" href="#page" role="tab"
 						aria-controls="page" aria-selected="false">
 						<?php echo cl_translate("watchings"); ?>
 						<div class="css-1dbjc4n"></div>
@@ -316,6 +316,11 @@
 		border: 0px !important;
 		border-color: transparent !important;
 		transition: none !important;
+	}
+	.home_nav_btn{
+		color: var(--smc-main-text-color-2);
+		font-size: 18px !important;
+		text-transform: none !important;
 	}
 </style>
 <script>
