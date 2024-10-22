@@ -148,20 +148,8 @@
 								</a>
 							</span>
 						</li>
-						<li data-navitem="bookmarks" onclick="window.location.href='<?php echo cl_link('bookmarks'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'bookmarks') {	/* edited by kevin change into button with full width */
-							echo ('active');
-						} ?>">
-							<span class="icon">
-								<?php echo cl_ikon('bookmark'); ?>
-							</span>
-							<span class="nav-item-holder">
-								<a href="<?php echo cl_link("bookmarks"); ?>">
-									<?php echo cl_translate('Bookmarks'); ?>
-								</a>
-							</span>
-						</li>
 						<?php if ($cl['config']['blue_account_system_status'] == 'off'): ?>
-							<li data-navitem="trending" onclick="window.location.href='<?php echo cl_link('trending'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
+							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
 								echo ('active');
 							} ?>">
 								<span class="icon">
@@ -177,7 +165,7 @@
 						<!-- Blue Account -->
 						<?php if ($cl['config']['blue_account_system_status'] == 'on'): ?>
 							<?php if ($me["is_blue"] == 1): ?>
-								<li data-navitem="trending" onclick="window.location.href='<?php echo cl_link('trending'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
+								<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
 									echo ('active');
 								} ?>">
 									<span class="icon">
@@ -212,6 +200,18 @@
 								</li>
 							<?php endif; ?>
 						<?php endif; ?>
+						<li data-navitem="bookmarks" onclick="window.location.href='<?php echo cl_link('bookmarks'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'bookmarks') {	/* edited by kevin change into button with full width */
+							echo ('active');
+						} ?>">
+							<span class="icon">
+								<?php echo cl_ikon('bookmark'); ?>
+							</span>
+							<span class="nav-item-holder">
+								<a href="<?php echo cl_link("bookmarks"); ?>">
+									<?php echo cl_translate('Bookmarks'); ?>
+								</a>
+							</span>
+						</li>
 						<li data-navitem="profile" onclick="window.location.href='<?php echo ($me['url']); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {	/* edited by kevin change into button with full width */
 							echo ('active');
 						} ?>">
