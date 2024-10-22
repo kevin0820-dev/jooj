@@ -527,11 +527,11 @@
 					v-bind:disabled="video_ctrl != true">
 					<?php echo cl_ikon("film"); ?>
 				</button>
-				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
+				<!-- <button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Music"); ?>" v-on:click="select_music"
 					v-bind:disabled="music_ctrl != true">
 					<?php echo cl_icon('music'); ?>
-				</button>
+				</button> -->
 				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom" title="GIF"
 					v-on:click="select_gifs" v-bind:disabled="gif_ctrl != true">
 					<?php echo cl_ikon('gif'); ?>
@@ -559,11 +559,11 @@
 				</button>
 
 				<!-- Audio record CTRLs -->
-				<button type="button" class="ctrl-item doc" data-toggle="tooltip" data-placement="bottom"
+				<!-- <button type="button" class="ctrl-item doc" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Document"); ?>" v-on:click="select_doc"
 					v-bind:disabled="doc_ctrl != true">
 					<?php echo cl_icon('file_present'); ?>
-				</button>
+				</button> -->
 				<div class="flex-item ml-auto right-top">
 					<button v-bind:disabled="valid_form != true || submitting" type="submit"
 						class="btn-custom main-inline md post-pub-btn">
