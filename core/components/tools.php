@@ -568,7 +568,6 @@ function cl_upload($data = array()) {
 
     if (move_uploaded_file($data['file'], $filename)) {
         if (in_array($file_ext, array('gif','png','jpeg','jpg')) == true) {
-            echo "<script>console.log('fdsfsdfasdfasdfasdfasdf');</script>";
             try {
                 if ($file_ext != 'gif') {
                     cl_compress_img($filename, $filename, 90);
