@@ -385,6 +385,10 @@ function cl_cropimg($max_width, $max_height, $source_file, $dst_dir, $quality = 
             $image_create = "imagecreatefromjpeg";
             $image        = "imagejpeg";
             break;
+        case 'image/webp':
+            $image_create = "imagecreatefromwebp";
+            $image        = "imagewebp";
+            break;
         default:
             return false;
             break;
@@ -567,7 +571,7 @@ function cl_upload($data = array()) {
     ));
 
     if (move_uploaded_file($data['file'], $filename)) {
-        if (in_array($file_ext, array('gif','png','jpeg','jpg')) == true) {
+        if (in_array($file_ext, array('gif','png','jpeg','jpg','webp')) == true) {
             try {
                 if ($file_ext != 'gif') {
                     cl_compress_img($filename, $filename, 90);
@@ -582,7 +586,7 @@ function cl_upload($data = array()) {
                     "file_type"    => $file_type,
                     "slug"         => $crop_size,
                 ));
-                $crop_image        = cl_cropimg($data['crop']['width'], $data['crop']['height'], $filename, $cropped_img, 60);
+                cl_cropimg($data['crop']['width'], $data['crop']['height'], $filename, $cropped_img, 60);
                 $result['cropped'] = $cropped_img;
             }
         }
