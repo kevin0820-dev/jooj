@@ -1402,16 +1402,49 @@ else if ($action == 'publish_new_post_symbol') {
                     "priv_wcr"  => $post_privacy
                 );
 
-                if (not_empty($gif_src)) {
-                    $insert_data["type"] = "gif";
+                if(not_empty($post_text) && not_empty($poll_data) && cl_is_valid_poll($poll_data)) {
+                    $insert_data['og_data']   = "";
+                    $gif_src                  = "";
+                    $insert_data['type']      = "poll";
+                    $insert_data['poll_data'] = array_map(function($option) {
+                        return array(
+                            "option" => cl_text_secure($option["value"]),
+                            "voters" => array(),
+                            "votes"  => 0
+                        );
+                    }, $poll_data);
+
+                    $insert_data['poll_data'] = json($insert_data['poll_data'], true);
                 }
 
-                else if (not_empty($og_data)) {
-                    $insert_data["type"] = "og";
+                else if (not_empty($gif_src) && is_url($gif_src)) {
+                    $insert_data['og_data'] = "";
+                    $insert_data['type']    = "gif";
                 }
 
-                else if (not_empty($poll_data)) {
-                    $insert_data["type"] = "poll";
+                else if(not_empty($og_data) && cl_is_valid_og($og_data)) {
+                    if (not_empty($og_data["image"]) && is_url($og_data["image"])) {
+                        $og_data["image"] = cl_import_image(array(
+                            'url' => $og_data["image"],
+                            'file_type' => 'thumbnail',
+                            'folder' => 'images',
+                            'slug' => 'og_img'
+                        ));
+
+                        if (empty($og_data["image"])) {
+                            $og_data["image"] = "";
+                        }
+                        else{
+                            $og_data["image_loc"] = true;
+                        }
+
+                        $insert_data['og_data'] = json($og_data, true);
+                        $gif_src = "";
+                    }
+                    else{
+                        $insert_data['og_data'] = json(array(), true);
+                        $gif_src = "";
+                    }
                 }
 
                 $post_id = cl_db_insert(T_PUBS, $insert_data);
