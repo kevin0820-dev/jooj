@@ -18,43 +18,18 @@
 		</div>
 	</div>
 	<div class="timeline-navbar">
-		<?php if (not_empty($cl['prof_user']['followers'])) : ?>
-			<div class="timeline-navbar__item">
-				<a href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>" data-spa="true">
-					<button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'watchers') {
-																	echo 'active';
-																} ?>">
-						<span class="btn-flex-inner">
-							
-							<span class="text">
-								<?php echo cl_translate("watchers"); ?> (<?php echo cl_number($cl['prof_user']['followers']); ?>)
-							</span>
-						</span>
-					</button>
-					<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'watchers') {
-													echo ('active');
-												} ?>"></div>
-				</a>
-			</div>
-		<?php else : ?>
-			<div class="timeline-navbar__item">
+		<div class="timeline-navbar__item">
 			<a href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>" data-spa="true">
-			<button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'watchers') {
-																	echo 'active';
-																} ?>">
-						<span class="btn-flex-inner">
-							
-							<span class="text">
-								<?php echo cl_translate("watchers"); ?> (<?php echo cl_number($cl['prof_user']['followers']); ?>)
-							</span>
+				<button class="timeline-navbar__item-btn <?php if ($cl['page_tab'] == 'watchers') {	echo 'active'; } ?>">
+					<span class="btn-flex-inner">							
+						<span class="text">
+							<?php echo cl_translate("watchers"); ?> (<?php echo cl_number($cl['prof_user']['followers']); ?>)
 						</span>
-					</button>
-					<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'watchers') {
-													echo ('active');
-												} ?>"></div>
-				</a>
-			</div>
-		<?php endif; ?>
+					</span>
+				</button>
+				<div class="css-1dbjc4n <?php if ($cl['page_tab'] == 'watchers') { echo ('active'); } ?>"></div>
+			</a>
+		</div>
 
 		<?php if (not_empty($cl['prof_user']['following'])) : ?>
 			<div class="timeline-navbar__item">
