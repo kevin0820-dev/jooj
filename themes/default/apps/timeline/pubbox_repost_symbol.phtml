@@ -58,7 +58,7 @@
 			<!-- End Post Privacy -->
 			<div class="input-holder">
 				<textarea ref="text_input" v-on:input.trim="text_input_trigger" v-on:blur="text_blur_trigger"
-					class="autoresize" v-model="text" name="post_text" placeholder="Add your comment."></textarea>
+					class="autoresize" v-model="text" name="post_text" placeholder="What's on your mind? (use $ before coin ticker: eg $SYMBOL)"></textarea>
 			</div>
 			<input type="text" data-app="selected_repost_id_symbol" style="display:none" name="selected_repost_id_symbol"/>
 			<input type="hidden" name="symbol_id" value="<?php echo htmlspecialchars($cl['symbol_id']); ?>">
