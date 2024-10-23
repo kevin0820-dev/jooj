@@ -10,7 +10,8 @@
   --smc-main-border-rad2: 5px;
 }
 .custom-lineheight textarea{
-  line-height: 12px !important;
+  align-content: center;
+  height: 57px !important;
 }
 .btn-top{
   padding: 10px 5px 19px 0px !important;
@@ -41,6 +42,12 @@ body[data-skin="default"] {
 }
 .middle{
   align-content: center;
+}
+.middle-text{
+  text-align: center;
+}
+.no-left{
+  margin-left: 0px !important;
 }
 .x-16{
   width: 16px;
@@ -14230,7 +14237,7 @@ body button.btn-custom.lg.home {
   color: white;
   background: #007afc;
   /* box-shadow: var(--smc-main-box-shadow-eff); */
-  border: 1px solid var(--smc-main-border-color);
+  /* border: 1px solid var(--smc-main-border-color); */
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
