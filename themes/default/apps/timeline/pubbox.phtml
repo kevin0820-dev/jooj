@@ -8,61 +8,6 @@
 	<div class="rp">
 
 		<form class="form" id="vue-pubbox-app-<?php echo ($cl['pb_id']); ?>" v-on:submit="publish($event)">
-			<!-- Post Privacy  everyone when clicked gif button-->
-			<!-- <div v-show="active_media" class="post-privacy" v-if="post_privacy">
-				<button class="privacy-settings dropdown" type="button">
-					<div class="dropdown-toggle" data-toggle="dropdown">
-						<span class="d-inline-flex align-items-center flex-wn">
-
-							<span class="flex-item flex-grow-1 label">
-								{{sdds.privacy[post_privacy]}}
-							</span>
-						</span>
-					</div>
-					<div class="dropdown-menu dropdown-icons">
-						<h3><?php echo cl_translate('Choose audience'); ?></h3>
-						<a class="dropdown-item" href="javascript:void(0);" v-on:click="post_privacy = 'everyone'">
-							<span class="flex-item dropdown-item-icon">
-								<?php echo cl_icon('public'); ?>
-							</span>
-							<span class="flex-item">
-								<?php echo cl_translate('Everyone'); ?>
-							</span>
-							<span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo"
-								v-if="post_privacy == 'everyone'">
-								<?php echo cl_icon('ok_single'); ?>
-							</span>
-						</a>
-
-						<a class="dropdown-item" href="javascript:void(0);" v-on:click="post_privacy = 'mentioned'">
-							<span class="flex-item dropdown-item-icon green">
-								<?php echo cl_icon('hearing'); ?>
-							</span>
-							<span class="flex-item">
-								<?php echo cl_translate('Only mentioned people'); ?>
-							</span>
-							<span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo"
-								v-if="post_privacy == 'mentioned'">
-								<?php echo cl_icon('ok_single'); ?>
-							</span>
-						</a>
-
-						<a class="dropdown-item" href="javascript:void(0);" v-on:click="post_privacy = 'followers'">
-							<span class="flex-item dropdown-item-icon purple">
-								<?php echo cl_icon('groups'); ?>
-							</span>
-							<span class="flex-item">
-								<?php echo cl_translate('Only my followers'); ?>
-							</span>
-							<span class="flex-item dropdown-item-icon dropdown-item-icon_adinfo"
-								v-if="post_privacy == 'followers'">
-								<?php echo cl_icon('ok_single'); ?>
-							</span>
-						</a>
-					</div>
-				</button>
-			</div> -->
-			<!-- End Post Privacy -->
 			<div class="input-holder">
 				<textarea ref="text_input" v-on:input.trim="text_input_trigger" v-on:blur="text_blur_trigger"
 					class="autoresize" v-model="text" name="post_text" placeholder="What's on your mind? (use $ before coin ticker: eg $SYMBOL)"></textarea>		<!-- edited by kevin to show placeholder well -->
@@ -567,11 +512,11 @@
 					v-bind:disabled="video_ctrl != true">
 					<?php echo cl_ikon("film"); ?>
 				</button>
-				<!-- <button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
+				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Music"); ?>" v-on:click="select_music"
 					v-bind:disabled="music_ctrl != true">
 					<?php echo cl_icon('music'); ?>
-				</button> -->
+				</button>
 				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom" title="GIF"
 					v-on:click="select_gifs" v-bind:disabled="gif_ctrl != true">
 					<?php echo cl_ikon('gif'); ?>
