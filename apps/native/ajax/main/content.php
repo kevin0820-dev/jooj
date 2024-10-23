@@ -2473,49 +2473,6 @@ else if($action == 'update_msb_indicators') {
         $data['messages']      = cl_total_new_messages();
     }
 }
-
-// else if($action == 'search') {
-    
-//     $data['err_code'] = 0;
-//     $data['status']   = 400;
-//     $search_query     = fetch_or_get($_GET['query'], false); 
-//     $type             = fetch_or_get($_GET['type'], false); 
-
-//     if (not_empty($search_query) && len_between($search_query,3, 32) && in_array($type, array('users','htags'))) {
-//         require_once(cl_full_path("core/apps/explore/app_ctrl.php"));
-
-//         if ($type == "htags") {
-//             $search_query = cl_text_secure($search_query);
-//             $search_query = cl_croptxt($search_query, 32);
-//             $query_result = cl_search_hashtags($search_query, false, 150);
-//             $html_arr     = array();
-            
-//             if (not_empty($query_result)) {
-//                 foreach ($query_result as $cl['li']) {
-//                     $html_arr[] = cl_template('main/includes/search/htags_li');
-//                 }
-
-//                 $data['status'] = 200;
-//                 $data['html']   = implode("", $html_arr);
-//             }  
-//         }
-//         else {
-//             $search_query = cl_text_secure($search_query);
-//             $search_query = cl_croptxt($search_query, 32);
-//             $query_result = cl_search_people($search_query, false, 150);
-//             $html_arr     = array();
-
-//             if (not_empty($query_result)) {
-//                 foreach ($query_result as $cl['li']) {
-//                     $html_arr[] = cl_template('main/includes/search/users_li');
-//                 }
-
-//                 $data['status'] = 200;
-//                 $data['html']   = implode("", $html_arr);
-//             }
-//         }
-//     }
-// }
 else if($action == 'search') {
     
     $data['err_code'] = 0;
@@ -2583,6 +2540,7 @@ else if($action == 'search') {
             }
         }
     }
+    else $data['html']   = cl_template('main/includes/search/no_result');
 }
 
 

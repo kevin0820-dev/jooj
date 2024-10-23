@@ -12,7 +12,7 @@
 var pubbox_form_app_mixin = Object({
     data: function() {
         return {
-            text: "Share your thoughts on $<?php echo ($cl['prof_user']['username']); ?>",
+            text: "",
             prefix: "$<?php echo ($cl['prof_user']['username']); ?>",
             text_ph_orig: "<?php echo cl_translate('Hello {@name@}, What is new with you today?', array('name' => $cl['me']['name'])); ?>",
             text_ph: "",
@@ -220,8 +220,8 @@ var pubbox_form_app_mixin = Object({
 
             autosize($(e.target));
 
-            if (!this.text.startsWith(this.prefix)) {
-             
+            if (!this.text.startsWith(this.prefix + ' ')) {
+				if(this.text.length < 5) this.text = this.prefix + ' ';
             }
 
             if (mention_input) {
@@ -276,7 +276,7 @@ var pubbox_form_app_mixin = Object({
             }, 1500);
         },
         text_focus_trigger: function(e = false) {
-			if (this.text === 'Share your thoughts on ' + this.prefix) {
+			if (this.text === '') {
 				this.text = this.prefix + ' ';
 			}
 		

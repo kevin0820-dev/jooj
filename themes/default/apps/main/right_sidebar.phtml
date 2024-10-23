@@ -199,6 +199,46 @@
 				</div>
 			<?php endif; ?>
 			<!-- End Media -->
+
+			<div class="topical-posts">
+				<div class="topical-posts__header">
+					<h4><?php echo cl_translate("Watchlist"); ?></h4>
+				</div>
+
+				<div class="spinner-container" style="display: none;">
+					<!-- Spinner element -->
+					<div class="spinner"></div>
+				</div>
+
+				<div class="topical-posts__body" id="topical-posts-body">
+					<?php
+					$count = 0; // Initialize a counter
+					foreach ($cl['hot_symbols'] as $row):
+						if ($count >= 5) break; // Stop after displaying 5 symbols
+						$count++;
+					?>
+						<div class="topical-posts__item">
+							<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>">
+								<img src="/themes/default/statics/img/symbol_imgs/<?php echo strtolower($row['symbol']); ?>.png" style="height: 17px; padding-right: 5px;" alt="">
+								<!-- Edited By Kevin.. Attached Symbol Icon in Right Side Bar. 9/20 -->
+								<b>$</b>
+								<strong><?php echo ($row['symbol']); ?></strong>
+								<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
+							</a>
+							<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
+									<?php echo cl_ikon('pub-more'); ?>
+								</a></span>
+						</div>
+					<?php endforeach; ?>
+				</div>
+
+				<div class="topical-posts__footer" id="topical-posts-footer" style="display: none;">
+					<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
+						<?php echo cl_translate("Show more"); ?>
+					</a>
+				</div>
+			</div>
+
 			<div class="topical-posts">
 				<div class="topical-posts__header">
 					<h4><?php echo cl_translate("hot_symbols_for_you"); ?></h4>
@@ -413,7 +453,7 @@
 					this.search();
 				},
 				search: function() {
-					if (this.search_query.length > 2) {
+					if (this.search_query.length > 1) {
 						var _app_ = this;
 						delay(function() {
 							$.ajax({
@@ -432,14 +472,15 @@
 									_app_.search_result = true;
 									$(_app_.$el).find('[data-an="result"]').html($(data.html));
 								} else {
-									$(_app_.$el).find('[data-an="result"]').empty('');
-									_app_.search_result = false;
+									$(_app_.$el).find('[data-an="result"]').html(data.html);
+									_app_.search_result = true;
 								}
 							}).always(function() {
 								_app_.searching = false;
 							});
 						}, 800);
 					}
+					else this.search_result = false;
 				},
 				cancel: function() {
 					var _app_ = this;
@@ -496,7 +537,7 @@
 					this.search();
 				},
 				search: function() {
-					if (this.search_query.length > 2) {
+					if (this.search_query.length > 1) {
 						var _app_ = this;
 						delay(function() {
 							$.ajax({
@@ -515,14 +556,15 @@
 									_app_.search_result = true;
 									$(_app_.$el).find('[data-an="result"]').html($(data.html));
 								} else {
-									$(_app_.$el).find('[data-an="result"]').empty('');
-									_app_.search_result = false;
+									$(_app_.$el).find('[data-an="result"]').html(data.html);
+									_app_.search_result = true;
 								}
 							}).always(function() {
 								_app_.searching = false;
 							});
 						}, 800);
 					}
+					else this.search_result = false;
 				},
 				cancel: function() {
 					var _app_ = this;
@@ -543,14 +585,6 @@
 		"use strict";
 
 		jQuery(document).ready(function($) {
-
-
-
-
-
-
-
-
 			var vueInstance = new Vue({
 				el: "#cl-display-settings-main",
 				data: {
