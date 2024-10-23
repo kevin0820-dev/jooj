@@ -9,6 +9,9 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.custom-lineheight textarea{
+  line-height: 12px !important;
+}
 .btn-top{
   padding: 10px 5px 19px 0px !important;
 }
