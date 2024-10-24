@@ -1193,7 +1193,7 @@ body
   main.main-content-container
   div.main-content-container-inner
   div.timeline-container-wrapper {
-  /* margin-top: 13px; */
+  margin-top: 13px;
   flex: 2;
   max-width: 700px;
   min-width: 700px;
@@ -10622,6 +10622,7 @@ body div.main-preloader-holder div.main-preloader {
 }
 
 body div.main-preloader-holder div.main-preloader div.loading {
+  margin-right: 0px;
   flex-basis: auto;
   text-align: center;
 }

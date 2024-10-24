@@ -5,19 +5,19 @@
         <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
             <a data-spa="true">
                 <div class="avatar-holder">
-                    <img class="lozad" style="width:45px; height:45px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
+                    <img class="lozad" style="width:24px; height:24px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
                 </div>
             </a>
         <?php else: ?>
             <?php if ($cl['li']['comment_on']['owner']['id'] == 1): ?>
                 <a data-spa="true">
                     <div class="avatar-holder">
-                        <img class="lozad" style="width:45px; height:45px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
+                        <img class="lozad" style="width:24px; height:24px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
                 <a data-spa="true">
-                    <img src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>" style="width:45px; height:45px; border-radius:10em;">
+                    <img src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>" style="width:24px; height:24px; border-radius:10em;">
                 </a>
             <?php endif; ?>
         <?php endif; ?>
@@ -191,7 +191,7 @@
                             })
                         </script>
                         <div class="publication-text">
-                            <p class="pub-text">
+                            <p style="margin-left:-34px; margin-top:10px;" class="pub-text">
                                 <?php
                                 // Sample text from $cl['thread_data']['text']
                                 $text = $cl['li']['comment_on']['text'];
