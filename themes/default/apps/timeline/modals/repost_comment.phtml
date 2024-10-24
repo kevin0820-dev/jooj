@@ -1,31 +1,31 @@
 
 
 <div class="post-list-item-content" style="display: flex; border: 1px solid var(--smc-main-border-color); border-radius: 5px; padding: 10px; margin:10px;">
-    <div class="avatar" style = "width: 45px; flex-basis: 45px; max-width: 45px; min-width: 45px; padding-top: 5px;">
+    <div class="publisher-avatar" style = "max-width: 35px; min-width:35px;">
         <?php if ($cl['li']['symbol_id'] == 0): ?>
             <a class="block-link" data-spa="true">
-                <div class="avatar-holder">
+                <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
                     <img class="lozad" style="border-radius: 10em; width:45px;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                 </div>
             </a>
         <?php else: ?>
             <?php if ($cl['li']['owner']['id'] == 1): ?>
                 <a class="block-link" data-spa="true">
-                    <div class="avatar-holder">
+                    <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
                         <img class="lozad" style="border-radius: 10em; width:45px;" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
                 <!-- For post page coauthor -->
                     <a class="block-link" data-spa="true">
-                        <div class="avatar-holder">
+                        <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
                             <img style="border-radius: 10em; width:45px;" class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                         </div>
                     </a>
             <?php endif; ?>
         <?php endif; ?>
     </div>
-    <div class="publication-data" style="padding-left: 15px;">
+    <div class="publication-data">
         <div class="publication-data-inner">
             <div class="publisher-info">
                 <!-- For post -->
@@ -74,7 +74,7 @@
                     
                     <!-- Edited By Kevin. 9/20 -->
                                     <div class="publication-text">
-										<p class="pub-text">
+										<p style="margin-left:-34px; margin-top:10px;" class="pub-text">
 											<?php
 											// Sample text from $cl['li']['text']
 											$text = $cl['li']['text'];
@@ -340,7 +340,7 @@
   div.publication-content
   div.publication-text {
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: block;
   line-height: 0px;
   margin-bottom: 10px;
