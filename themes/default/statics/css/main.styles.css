@@ -4409,7 +4409,7 @@ body
   div.publication-content
   div.publication-text {
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: block;
   line-height: 0px;
   margin-bottom: 10px;
