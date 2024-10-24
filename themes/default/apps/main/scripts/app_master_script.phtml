@@ -1647,7 +1647,12 @@ _smc.userlbox.curr_el = false;
 			}
 
 			_smc.go_back = function () {
-				history.back();
+				console.log(_smc.curr_pn);
+				if (["notifications", "explore", "chat", "connections", "bookmarks", "profile", "stat_pages"].includes(_smc.curr_pn)) {
+					history.go(-2); // Go back twice
+				} else {
+					history.back(); // Go back once
+				}
 			}
 
 			_smc.jump_back = function (step = 1) {
