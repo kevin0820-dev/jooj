@@ -818,6 +818,7 @@
 			}
 		}
 		else{
+			console.log(window.scrollY);
 			if(state === 'about') return;
 			$("#posts").toggleClass("show active");
 			$("#about").toggleClass("show active");
@@ -827,6 +828,10 @@
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[0].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.add("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
+			}
+			if (window.scrollY > 400) { // {{ edit_1 }}
+				about.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				window.scrollTo(0, 400);
 			}
 		}
 	}
