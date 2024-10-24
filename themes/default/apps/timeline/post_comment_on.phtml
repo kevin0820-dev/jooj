@@ -2,18 +2,18 @@
 
 <div class="inner-content" style="cursor:pointer; border: 1px solid var(--smc-main-border-color); padding : 10px; border-radius: 10px;" onclick="analyze_quote(event, <?php echo ($cl['li']['comment_on']['id']); ?>)"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
     <div class="post-list-item-content">
-        <div class="publisher-avatar">
+        <div style="max-width: 30px; min-width: 30px;" class="publisher-avatar">
             <!-- For post -->
             <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
                 <a class="block-link" data-spa="true">
-                    <div class="avatar-holder">
+                    <div style="width:22px; height:22px; margin-top:-5px;"  class="avatar-holder">
                         <img class="lozad" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
                 <?php if ($cl['li']['comment_on']['owner']['id'] == 1): ?>
                     <a class="block-link" data-spa="true">
-                        <div class="avatar-holder">
+                        <div class="avatar-holder ">
                             <img class="lozad" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
                         </div>
                     </a>
@@ -28,7 +28,7 @@
                 <?php endif; ?>
             <?php endif; ?>
         </div>
-        <div class="publication-data">
+        <div style="padding-left:0px;" class="publication-data">
             <?php if (not_empty($cl['li']['comment_on']['is_blocked'])): ?>
                 <div class="soft-hidden-post" data-softhidden-post="<?php echo ($cl['li']['comment_on']['id']); ?>">
                     <div class="d-flex align-items-center flex-wn">
@@ -228,7 +228,7 @@
                         
                         <!-- Edited By Kevin. 9/20 -->
                                     <div class="publication-text">
-										<p class="pub-text">
+										<p style="position:relative; left:-26px; margin-right: 5px; margin-top:10px;" class="pub-text">
 											<?php
 											// Sample text from $cl['li']['text']
 											$text = $cl['li']['comment_on']['text'];
@@ -491,3 +491,10 @@
         </div>
     </div>
 </div>
+<!-- <style>
+    .avatar-holder {
+        width: 24px !important;
+        height: 24px !important;
+    
+    }
+</style> -->
