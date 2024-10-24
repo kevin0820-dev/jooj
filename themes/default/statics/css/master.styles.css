@@ -1255,7 +1255,7 @@ body
   div.timeline-container
   div.timeline-header {
   position: sticky;
-  top: 6px;
+  top: 13px;
   z-index: 700;
   background: var(--cl-primary-bg-color);
   border-bottom: 0px solid var(--cl-primary-border-color);
