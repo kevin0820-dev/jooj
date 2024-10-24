@@ -401,7 +401,7 @@ function cl_linkify_symbol($text = "") {
                 'class' => 'inline-link'
             )) . " ");
         }
-		else return $symbol;
+		else return '$'.$symbol;
 
     }, $text);
 

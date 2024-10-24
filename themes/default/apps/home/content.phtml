@@ -1,6 +1,6 @@
 
 <div class="timeline-container" data-app="homepage">
-	<div class="timeline-header" data-el="tl-header" style="display: block; padding: 0;">
+	<div class="timeline-header symbol_header" data-el="tl-header">
 		<div class="timeline-header__botline">
 			<div class="lp">
 				<div class="nav-link-holder h-mobile">
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div>
-			<ul class="nav nav-tabs nav-justified mb-3" id="myTab" role="tablist">
+			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li  role="presentation">
 					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
 						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
@@ -43,7 +43,7 @@
 		</div>
 	</div>
 	<div class="homepage">
-		<div class="main-timeline-pubbox-wrapper h-mobile">
+		<div class="main-timeline-pubbox-wrapper h-mobile custom-lineheight">
 			<?php $cl['pb_id'] = 1;
 			echo cl_template('timeline/pubbox'); ?>
 		</div>
@@ -261,17 +261,9 @@
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
-		height: 53px !important;
 		align-items: center;
 		padding-left: 16px;
 		padding-right: 16px;
-	}
-
-	.nav-tabs {
-
-		/* border-bottom-color: var(--smc-main-border-color); */
-		/* border-bottom-style: solid; */
-		/* border-bottom-width: 1px; */
 	}
 
 	.nav-fill .nav-item .nav-link,
@@ -283,7 +275,9 @@
 		font-weight: 500;
 		font-size: 18px;
 	}
-
+	.nav-tabs .nav-link {
+		color: var(--smc-main-text-color-2);
+	}
 	.nav-tabs .nav-item.show .nav-link,
 	.nav-tabs .nav-link.active {
 		color: var(--smc-main-text-color);

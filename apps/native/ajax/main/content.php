@@ -100,7 +100,7 @@ if ($action == 'upload_page_image') {
             }
 
             if (not_empty($post_data) && $post_data["type"] == "image") {
-                if (empty($post_data['media']) || count($post_data['media']) < 10) {
+                if (empty($post_data['media']) || count($post_data['media']) < 4) {
                     $file_info      =  array(
                         'file'      => $_FILES['image']['tmp_name'],
                         'size'      => $_FILES['image']['size'],
@@ -1402,16 +1402,49 @@ else if ($action == 'publish_new_post_symbol') {
                     "priv_wcr"  => $post_privacy
                 );
 
-                if (not_empty($gif_src)) {
-                    $insert_data["type"] = "gif";
+                if(not_empty($post_text) && not_empty($poll_data) && cl_is_valid_poll($poll_data)) {
+                    $insert_data['og_data']   = "";
+                    $gif_src                  = "";
+                    $insert_data['type']      = "poll";
+                    $insert_data['poll_data'] = array_map(function($option) {
+                        return array(
+                            "option" => cl_text_secure($option["value"]),
+                            "voters" => array(),
+                            "votes"  => 0
+                        );
+                    }, $poll_data);
+
+                    $insert_data['poll_data'] = json($insert_data['poll_data'], true);
                 }
 
-                else if (not_empty($og_data)) {
-                    $insert_data["type"] = "og";
+                else if (not_empty($gif_src) && is_url($gif_src)) {
+                    $insert_data['og_data'] = "";
+                    $insert_data['type']    = "gif";
                 }
 
-                else if (not_empty($poll_data)) {
-                    $insert_data["type"] = "poll";
+                else if(not_empty($og_data) && cl_is_valid_og($og_data)) {
+                    if (not_empty($og_data["image"]) && is_url($og_data["image"])) {
+                        $og_data["image"] = cl_import_image(array(
+                            'url' => $og_data["image"],
+                            'file_type' => 'thumbnail',
+                            'folder' => 'images',
+                            'slug' => 'og_img'
+                        ));
+
+                        if (empty($og_data["image"])) {
+                            $og_data["image"] = "";
+                        }
+                        else{
+                            $og_data["image_loc"] = true;
+                        }
+
+                        $insert_data['og_data'] = json($og_data, true);
+                        $gif_src = "";
+                    }
+                    else{
+                        $insert_data['og_data'] = json(array(), true);
+                        $gif_src = "";
+                    }
                 }
 
                 $post_id = cl_db_insert(T_PUBS, $insert_data);
@@ -2440,49 +2473,6 @@ else if($action == 'update_msb_indicators') {
         $data['messages']      = cl_total_new_messages();
     }
 }
-
-// else if($action == 'search') {
-    
-//     $data['err_code'] = 0;
-//     $data['status']   = 400;
-//     $search_query     = fetch_or_get($_GET['query'], false); 
-//     $type             = fetch_or_get($_GET['type'], false); 
-
-//     if (not_empty($search_query) && len_between($search_query,3, 32) && in_array($type, array('users','htags'))) {
-//         require_once(cl_full_path("core/apps/explore/app_ctrl.php"));
-
-//         if ($type == "htags") {
-//             $search_query = cl_text_secure($search_query);
-//             $search_query = cl_croptxt($search_query, 32);
-//             $query_result = cl_search_hashtags($search_query, false, 150);
-//             $html_arr     = array();
-            
-//             if (not_empty($query_result)) {
-//                 foreach ($query_result as $cl['li']) {
-//                     $html_arr[] = cl_template('main/includes/search/htags_li');
-//                 }
-
-//                 $data['status'] = 200;
-//                 $data['html']   = implode("", $html_arr);
-//             }  
-//         }
-//         else {
-//             $search_query = cl_text_secure($search_query);
-//             $search_query = cl_croptxt($search_query, 32);
-//             $query_result = cl_search_people($search_query, false, 150);
-//             $html_arr     = array();
-
-//             if (not_empty($query_result)) {
-//                 foreach ($query_result as $cl['li']) {
-//                     $html_arr[] = cl_template('main/includes/search/users_li');
-//                 }
-
-//                 $data['status'] = 200;
-//                 $data['html']   = implode("", $html_arr);
-//             }
-//         }
-//     }
-// }
 else if($action == 'search') {
     
     $data['err_code'] = 0;
@@ -2550,6 +2540,7 @@ else if($action == 'search') {
             }
         }
     }
+    else $data['html']   = cl_template('main/includes/search/no_result');
 }
 
 
