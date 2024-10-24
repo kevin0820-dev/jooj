@@ -8368,7 +8368,6 @@ body
   will-change: min-height;
   margin-right: 10px;
   margin-left: 15px;
-  margin-top: 8px;
 }
 
 body
@@ -8382,7 +8381,7 @@ body
   transform: translate(0, 0);
   transform: translate3d(0, 0, 0);
   will-change: position, transform;
-  padding-top: 5px;
+  padding-top: 13px;
 }
 
 body
