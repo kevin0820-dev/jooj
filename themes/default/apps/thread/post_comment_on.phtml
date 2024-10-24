@@ -2,11 +2,11 @@
 
 <div class="inner-content" style="cursor:pointer; border: 1px solid var(--smc-main-border-color);; padding : 10px; border-radius: 10px;" onclick="window.location.href='<?php echo $cl['thread_data']['comment_on']['url']; ?>'"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
     <div class="post-list-item-content">
-        <div class="publisher-avatar">
+        <div style="max-width: 35px; min-width:35px; margin-top:-5px;" class="publisher-avatar">
             <!-- For post -->
             <?php if ($cl['thread_data']['comment_on']['symbol_id'] == 0): ?>
                 <a class="block-link" data-spa="true">
-                    <div class="avatar-holder">
+                    <div style="width:24px; height:24px;" class="avatar-holder">
                         <img class="lozad" data-src="<?php echo ($cl['thread_data']['comment_on']['owner']['avatar']); ?>">
                     </div>
                 </a>
@@ -28,7 +28,7 @@
                 <?php endif; ?>
             <?php endif; ?>
         </div>
-        <div class="publication-data">
+        <div style="padding-left:0 !important; overflow:visible !important;" class="publication-data">
             <?php if (not_empty($cl['thread_data']['comment_on']['is_blocked'])): ?>
                 <div class="soft-hidden-post" data-softhidden-post="<?php echo ($cl['thread_data']['comment_on']['id']); ?>">
                     <div class="d-flex align-items-center flex-wn">
@@ -227,7 +227,7 @@
                         </script>
                         
                         <!-- Edited By Kevin. 9/20 -->
-                                    <div class="publication-text">
+                                    <div style="margin-left:-32px;" class="publication-text">
 										<p class="pub-text">
 											<?php
                                                 // Sample text from $cl['thread_data']['text']
