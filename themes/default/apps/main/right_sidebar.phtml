@@ -207,7 +207,7 @@
 				<div class="topical-posts__body" id="topical-posts-body">
 					<?php
 					$count = 0;
-					$cl['watchers']	= cl_get_watchings($me['id'], 30, false);
+					$cl['watchers']	= cl_get_watchings($me['id'], 7, false);
 					foreach ($cl['watchers'] as $row):
 						if ($count >= 5) break;
 						$count++;
