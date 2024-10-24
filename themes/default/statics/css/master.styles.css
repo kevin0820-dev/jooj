@@ -1508,8 +1508,8 @@ body
 div.rp div.nav-link-holder div.dropdown-toggle.go-options__icon {
   padding: 0;
   margin: 0;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2076,7 +2076,7 @@ body
   input {
   border: 0px solid var(--smc-main-border-color);
   background: var(--smc-main-ibg-color);
-  border-radius: .7em;
+  border-radius: 1em;
   padding: 3px 0 3px 50px;
   height: 44px;
   width: 100%;
@@ -6299,22 +6299,6 @@ body
   /* height: 50px; */
 }
 
-@media (max-width: 1199.98px) {
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.timeline-container-wrapper
-    div.timeline-container-inner
-    div.timeline-container
-    div.timeline-navbar
-    div.timeline-navbar__item
-    a
-    button.timeline-navbar__item-btn {
-    padding-top: 15px;
-    /* padding-bottom: 15px; */
-  }
-}
-
 body
   main.main-content-container
   div.main-content-container-inner
@@ -6374,7 +6358,7 @@ body
   div.timeline-container-inner
   div.timeline-container
   div.timeline-navbar {
-    padding-bottom:10px;
+    padding-bottom:8px;
     overflow: visible;
     display: flex;
     flex-direction: row;
@@ -6405,7 +6389,7 @@ body
     div.timeline-container-inner
     div.timeline-container
     div.timeline-searchbar {
-      margin-top: 66px;
+      margin-top: 45px;
     }
 }
 
@@ -7594,9 +7578,7 @@ body
   padding: 12px var(--cl-primary-offset-size);
   border-bottom: 0px solid var(--cl-primary-border-color);
 }
-#add_new_post_reply div.timeline-pubbox-container {
-    max-width: 300px!important;
-}
+
 #add_new_post_reply div.timeline-pubbox-container button.doc{
     display:none!important;
 }
@@ -7605,14 +7587,6 @@ body
 }
 #add_new_post_reply div.timeline-pubbox-container button.ctrl-item:hover::after {
     background: transparent!important;
-}
-#add_new_post_reply div.post-ctrls-holder button.ctrl-item {
-    width: 20px;
-    height: 20px;
-}
-#add_new_post_reply div.post-ctrls-holder button.ctrl-item svg {
-    width: 15px;
-height: 15px;
 }
 
 body

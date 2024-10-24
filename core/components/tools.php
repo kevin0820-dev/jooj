@@ -385,6 +385,10 @@ function cl_cropimg($max_width, $max_height, $source_file, $dst_dir, $quality = 
             $image_create = "imagecreatefromjpeg";
             $image        = "imagejpeg";
             break;
+        case 'image/webp':
+            $image_create = "imagecreatefromwebp";
+            $image        = "imagewebp";
+            break;
         default:
             return false;
             break;
@@ -396,13 +400,13 @@ function cl_cropimg($max_width, $max_height, $source_file, $dst_dir, $quality = 
     $height_new = ($width * $max_height / $max_width);
 
     if ($width_new > $width) {
-        $h_point = (($height - $height_new) / 2);
-        @imagecopyresampled($dst_img, $src_img, 0, 0, 0, $h_point, $max_width, $max_height, $width, $height_new);
+        $h_point = intval(($height - $height_new) /2);
+        @imagecopyresampled($dst_img, $src_img, 0, 0, 0, $h_point, intval($max_width), intval($max_height), intval($width), intval($height_new));
     } 
 
     else {
-        $w_point = (($width - $width_new) / 2);
-        @imagecopyresampled($dst_img, $src_img, 0, 0, $w_point, 0, $max_width, $max_height, $width_new, $height);
+        $w_point = intval(($width - $width_new) / 2);
+        @imagecopyresampled($dst_img, $src_img, 0, 0, $w_point, 0, intval($max_width), intval($max_height), intval($width), intval($height_new));
     }
 
     @imagejpeg($dst_img, $dst_dir, $quality);
@@ -541,9 +545,9 @@ function cl_upload($data = array()) {
     $slug              = $data['slug'];
 
     if (in_array($data['type'], $cl["media_mime_types"]) != true) {
-        // return array(
-        //     'error' => 'File format not supported'
-        // );
+        return array(
+            'error' => 'File format not supported'
+        );
     }
     else if(in_array($file_extension, $extension_allowed) != true) {
         return array(
@@ -567,7 +571,7 @@ function cl_upload($data = array()) {
     ));
 
     if (move_uploaded_file($data['file'], $filename)) {
-        if (in_array($file_ext, array('gif','png','jpeg','jpg')) == true) {
+        if (in_array($file_ext, array('gif','png','jpeg','jpg','webp')) == true) {
             try {
                 if ($file_ext != 'gif') {
                     cl_compress_img($filename, $filename, 90);
@@ -582,7 +586,7 @@ function cl_upload($data = array()) {
                     "file_type"    => $file_type,
                     "slug"         => $crop_size,
                 ));
-                $crop_image        = cl_cropimg($data['crop']['width'], $data['crop']['height'], $filename, $cropped_img, 60);
+                cl_cropimg($data['crop']['width'], $data['crop']['height'], $filename, $cropped_img, 60);
                 $result['cropped'] = $cropped_img;
             }
         }
