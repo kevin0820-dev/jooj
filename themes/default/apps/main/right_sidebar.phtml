@@ -187,7 +187,6 @@
 						<?php else: ?>
 							<button type="button" class="btn btn-custom main-inline lg btn-block" data-toggle="modal"
 								data-target="#loginModal"><?php echo cl_translate("Log in"); ?></button>
-
 						<?php endif; ?>
 					</div>
 					<p><?php echo cl_translate("by_signing"); ?> <a href="<?php echo cl_link('terms_of_use'); ?>">
@@ -198,32 +197,27 @@
 					</p>
 				</div>
 			<?php endif; ?>
-			<!-- End Media -->
-
 			<div class="topical-posts">
 				<div class="topical-posts__header">
 					<h4><?php echo cl_translate("Watchlist"); ?></h4>
 				</div>
-
 				<div class="spinner-container" style="display: none;">
-					<!-- Spinner element -->
 					<div class="spinner"></div>
 				</div>
-
 				<div class="topical-posts__body" id="topical-posts-body">
 					<?php
-					$count = 0; // Initialize a counter
-					foreach ($cl['hot_symbols'] as $row):
-						if ($count >= 5) break; // Stop after displaying 5 symbols
+					$count = 0;
+					$cl['watchers']	= cl_get_watchings($me['id'], 30, false);
+					foreach ($cl['watchers'] as $row):
+						if ($count >= 5) break;
 						$count++;
 					?>
 						<div class="topical-posts__item">
-							<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>">
-								<img src="/themes/default/statics/img/symbol_imgs/<?php echo strtolower($row['symbol']); ?>.png" style="height: 17px; padding-right: 5px;" alt="">
-								<!-- Edited By Kevin.. Attached Symbol Icon in Right Side Bar. 9/20 -->
+							<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['id']))); ?>">
+								<img src="<?php echo strtolower($row['avatar']); ?>" style="height: 17px; padding-right: 5px; border-radius:50%;" alt="">
 								<b>$</b>
-								<strong><?php echo ($row['symbol']); ?></strong>
-								<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
+								<strong><?php echo ($row['username']); ?></strong>
+								<span><?php echo ($row['posts']); ?> <?php echo cl_translate("Posts"); ?></span>
 							</a>
 							<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
 									<?php echo cl_ikon('pub-more'); ?>
@@ -231,35 +225,30 @@
 						</div>
 					<?php endforeach; ?>
 				</div>
-
 				<div class="topical-posts__footer" id="topical-posts-footer" style="display: none;">
 					<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
 						<?php echo cl_translate("Show more"); ?>
 					</a>
 				</div>
 			</div>
-
 			<div class="topical-posts">
 				<div class="topical-posts__header">
 					<h4><?php echo cl_translate("hot_symbols_for_you"); ?></h4>
 				</div>
-
 				<div class="spinner-container" style="display: none;">
-					<!-- Spinner element -->
 					<div class="spinner"></div>
 				</div>
 
 				<div class="topical-posts__body" id="topical-posts-body">
 					<?php
-					$count = 0; // Initialize a counter
+					$count = 0;
 					foreach ($cl['hot_symbols'] as $row):
-						if ($count >= 5) break; // Stop after displaying 5 symbols
+						if ($count >= 5) break;
 						$count++;
 					?>
 						<div class="topical-posts__item">
 							<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>">
 								<img src="/themes/default/statics/img/symbol_imgs/<?php echo strtolower($row['symbol']); ?>.png" style="height: 17px; padding-right: 5px;" alt="">
-								<!-- Edited By Kevin.. Attached Symbol Icon in Right Side Bar. 9/20 -->
 								<b>$</b>
 								<strong><?php echo ($row['symbol']); ?></strong>
 								<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
@@ -270,15 +259,12 @@
 						</div>
 					<?php endforeach; ?>
 				</div>
-
 				<div class="topical-posts__footer" id="topical-posts-footer" style="display: none;">
 					<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
 						<?php echo cl_translate("Show more"); ?>
 					</a>
 				</div>
 			</div>
-
-
 			<div class="topical-posts">
 				<div class="topical-posts__header">
 					<h4>
@@ -287,19 +273,14 @@
 				</div>
 				<?php if (not_empty($cl['hot_topics'])): ?>
 					<div class="topical-posts__body">
-						<?php
-						// Limit the hot topics list to the first 5 items
-						$limited_topics = array_slice($cl['hot_topics'], 0, 5);
-						?>
+						<?php $limited_topics = array_slice($cl['hot_topics'], 0, 5); ?>
 						<?php foreach ($limited_topics as $row): ?>
 							<div class="topical-posts__item">
 								<a class="htag" href="<?php echo ($row['url']); ?>" data-spa="true">
 									<b>#</b>
-
 									<strong>
 										<?php echo ($row['tag']); ?>
 									</strong>
-
 									<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
 								</a>
 								<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
