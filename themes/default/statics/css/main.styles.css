@@ -354,23 +354,24 @@ h3.login-home {
   color: rgb(15, 20, 25);
 }
 .lp .go-back {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  -moz-box-align: center;
+  -webkit-box-align: center; /* Added for compatibility */
+  -moz-box-align: center; /* For Firefox */
   align-items: center;
-  -moz-box-pack: center;
+  -webkit-box-pack: center; /* Added for compatibility */
+  -moz-box-pack: center; /* For Firefox */
   justify-content: center;
-  -moz-box-flex: 1;
+  -webkit-box-flex: 1; /* Added for compatibility */
+  -moz-box-flex: 1; /* For Firefox */
   flex-grow: 1;
-  -moz-box-direction: normal;
-  -moz-box-orient: horizontal;
+  -webkit-box-direction: normal; /* Added for compatibility */
+  -moz-box-direction: normal; /* For Firefox */
   flex-direction: row;
   display: flex;
   line-height: 20px;
-  margin-top: 5px;
   margin-right: 20px;
-  /* margin-left: 10px; */
 }
 .lp .go-back:hover {
   background: var(--cl-primary-border-color);
@@ -380,6 +381,7 @@ h3.login-home {
   width: 20px;
   height: 20px;
   color: rgb(15, 20, 25);
+  -webkit-user-select: none;
   user-select: none;
   line-height: 20px;
   position: relative;
@@ -394,10 +396,7 @@ h3.login-home {
   /* border: 1px solid var(--smc-main-border-color); */
   /* box-shadow: var(--smc-main-box-shadow-eff); */
   /* background-color: var(--smc-main-bg-color); */
-  
 }
-/* edited by kevin.. leftside gap issue. NewKevin*/
-
 
 /* .right-sb-container .inner-wrapper-sticky {
   top: 0px !important;
