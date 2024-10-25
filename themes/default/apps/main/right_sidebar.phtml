@@ -214,7 +214,14 @@
 						?>
 							<div class="topical-posts__item">
 								<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['username']))); ?>">
-									<img src="/themes/default/statics/img/symbol_imgs/<?php echo strtolower($row['username']); ?>.png" style="height: 17px; padding-right: 5px;" alt="">
+									<?php
+										global $db;
+										$symbol = $row['username'];
+										$db        = $db->where('username', $symbol);
+										$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+										$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+									?>
+									<img src="<?php echo strtolower($symbol_data['avatar']); ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
 									<b>$</b>
 									<strong><?php echo ($row['username']); ?></strong>
 									<span><?php echo ($row['posts']); ?> <?php echo cl_translate("Posts"); ?></span>
@@ -248,7 +255,14 @@
 						?>
 							<div class="topical-posts__item">
 								<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>">
-									<img src="/themes/default/statics/img/symbol_imgs/<?php echo strtolower($row['symbol']); ?>.png" style="height: 17px; padding-right: 5px;" alt="">
+									<?php
+										global $db;
+										$symbol = $row['symbol'];
+										$db        = $db->where('username', $symbol);
+										$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+										$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+									?>
+									<img src="<?php echo strtolower($symbol_data['avatar']); ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
 									<b>$</b>
 									<strong><?php echo ($row['symbol']); ?></strong>
 									<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>

@@ -500,7 +500,11 @@
 												$symbol = strtolower($matches[2]);
 
 												// Create the image tag
-												$image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 16px; padding-right: 2px; display:inline; position:relative; bottom:2px;" alt="' . $symbol . '">';
+												global $db;
+												$db        = $db->where('username', $symbol);
+												$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+												$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+												$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
 
 												// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
 												return $image_tag . $matches[1];
