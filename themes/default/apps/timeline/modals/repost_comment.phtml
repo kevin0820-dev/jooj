@@ -73,36 +73,36 @@
                     </script>
                     
                     <!-- Edited By Kevin. 9/20 -->
-                                    <div class="publication-text">
-										<p style="margin-left:-34px; margin-top:10px;" class="pub-text">
-											<?php
-											// Sample text from $cl['li']['text']
-											$text = $cl['li']['text'];
+                    <div class="publication-text">
+                        <p style="margin-left:-34px; margin-top:10px;" class="pub-text">
+                            <?php
+                            // Sample text from $cl['li']['text']
+                            $text = $cl['li']['text'];
 
-											// Regular expression to find <a> tags containing text starting with $ (like $abc)
-											$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+                            // Regular expression to find <a> tags containing text starting with $ (like $abc)
+                            $pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
 
-											// Use preg_replace_callback to replace matches with an image tag
-											$modified_text = preg_replace_callback($pattern, function($matches) {
-												// Extract the word inside the <a> tag without the $ sign
-												$symbol = strtolower($matches[2]);
+                            // Use preg_replace_callback to replace matches with an image tag
+                            $modified_text = preg_replace_callback($pattern, function($matches) {
+                                // Extract the word inside the <a> tag without the $ sign
+                                $symbol = strtolower($matches[2]);
 
-												// Create the image tag
-												global $db;
-												$db        = $db->where('username', $symbol);
-												$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
-												$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
-												$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
+                                // Create the image tag
+                                global $db;
+                                $db        = $db->where('username', $symbol);
+                                $symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+                                $symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+                                $image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
 
-												// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
-												return $image_tag . $matches[1];
-											}, $text);
+                                // Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
+                                return $image_tag . $matches[1];
+                            }, $text);
 
-											// Output the modified text
-											echo $modified_text;
-											?>
-										</p>
-									</div>
+                            // Output the modified text
+                            echo $modified_text;
+                            ?>
+                        </p>
+                    </div>
                 <?php endif; ?>
 
                 <?php if ($cl['li']['type'] == 'image' && not_empty($cl['li']['media'])): ?>
