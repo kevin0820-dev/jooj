@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "about" => $_POST["about"],
                     "country_id" => $_POST["country"],
                     "website" => $_POST["website"],
-                    "city" => $_POST["city"]
+                    "city" => $_POST["city"],
+                    "symbol_fetch" => $_POST['symbol_fetch'],
                 );
 
                

@@ -12,6 +12,7 @@
 define("PROJ_RP", dirname(dirname(__FILE__)));
 define("T_USERS", "cl_users");
 define("T_SYMBOLS", "cl_symbols");
+define("T_SYMBOL_QUIZ", "cl_symbol_questions");
 define("T_PSYMBOL", "cl_posts_symbol");
 define("T_SESSIONS", "cl_sessions");
 define("T_POSTS", "cl_posts");
