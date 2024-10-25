@@ -6,25 +6,23 @@
             <!-- For post -->
             <?php if ($cl['thread_data']['comment_on']['symbol_id'] == 0): ?>
                 <a class="block-link" data-spa="true">
-                    <div style="width:24px; height:24px;" class="avatar-holder">
+                    <div style="width:22px; height:22px;" class="avatar-holder">
                         <img class="lozad" data-src="<?php echo ($cl['thread_data']['comment_on']['owner']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
                 <?php if ($cl['thread_data']['comment_on']['owner']['id'] == 1): ?>
                     <a class="block-link" data-spa="true">
-                        <div class="avatar-holder">
+                        <div style="width:22px; height:22px;" class="avatar-holder">
                             <img class="lozad" data-src="<?php echo ($cl['thread_data']['comment_on']['page']['avatar']); ?>">
                         </div>
                     </a>
                 <?php else: ?>
-                    <div class="avatar-holder">
-                        <a class="block-link" data-spa="true">
-                            <div class="avatar-holder">
-                                <img class="lozad" data-src="<?php echo ($cl['thread_data']['comment_on']['owner']['avatar']); ?>">
-                            </div>
-                        </a>
-                    </div>
+                    <a class="block-link" data-spa="true">
+                        <div style="width:22px; height:22px;" class="avatar-holder">
+                            <img class="lozad" data-src="<?php echo ($cl['thread_data']['comment_on']['owner']['avatar']); ?>">
+                        </div>
+                    </a>
                 <?php endif; ?>
             <?php endif; ?>
         </div>
