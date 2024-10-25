@@ -1,25 +1,35 @@
 <div class="timeline-placeholder">
-	<div class="pl-message">
-		<h4>
+	<div class="pl-message flex">
+		<h4 style="margin-right: 10px !important;">
 			<?php echo ($cl['prof_user']['name']); ?>
 		</h4>
-		<h4>
+		<!-- <h4>
 			$<?php echo ($cl['prof_user']['username']); ?>
-		</h4>
-		<p>
+		</h4> -->
+		<!-- <p>
 			<?php echo $cl['prof_user']['id']; ?>
-		</p>
-		<p>
+		</p> -->
+		<p style="margin-right: 10px !important;">
 			<?php echo $cl['prof_user']['country_name']; ?>
 		</p>
-		<p>
+		<p style="margin-right: 10px !important;">
 			<?php echo $cl['prof_user']['joined']; ?>
 		</p>
-		<p>
+		<p style="margin-right: 10px !important;">
 			<?php echo $cl['symbol']['email']; ?>
 		</p>
-		<p>
-			<?php echo $cl['symbol']['about']; ?>
+
+	</div>
+	<div style="border-bottom: 1px solid var(--smc-main-border-color);">
+		<p style="padding: 0px 5px 15px 0px;">
+			<?php echo $cl['symbol']['about']; ?>The company was founded by Brian Armstrong in May 2012
 		</p>
 	</div>
+	<div style="padding-top: 20px;">
+		<p style="padding: 10px 5px 15px 0px; font-size: 20px;">
+			Frequenttly Asked Questions
+		</p>
+	</div>
+
+
 </div>
