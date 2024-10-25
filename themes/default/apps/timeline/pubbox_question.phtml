@@ -1,0 +1,26 @@
+<div class="timeline-pubbox-container">
+	<div class="lp">
+		<div class="avatar">
+			<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+		</div>
+
+	</div>
+	<div class="rp">
+		<form class="form" id="vue-pubbox-app-<?php echo ($cl['pb_id']); ?>" v-on:submit="publish($event)">
+			<div class="question-holder" v-on:dragover.prevent v-on:drop.prevent="handleDrop">
+				<textarea ref="text_input" v-on:input.trim="text_input_trigger" v-on:blur="text_blur_trigger"
+					class="autoresize" v-model="text" name="question" placeholder="Question"></textarea>		<!-- edited by kevin to show placeholder well -->
+				<textarea ref="text_input" v-on:input.trim="text_input_trigger" v-on:blur="text_blur_trigger"
+					class="autoresize" v-model="text" name="answer" placeholder="Answer"></textarea>
+			</div>
+			<div class="post-ctrls-holder">
+				<div class="flex-item ml-auto">
+					<button v-bind:disabled="valid_form != true || submitting" type="submit"
+						class="btn-custom main-inline md post-pub-btn">
+						<?php echo cl_translate("Add"); ?>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
