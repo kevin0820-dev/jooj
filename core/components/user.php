@@ -173,8 +173,7 @@ function cl_update_symbol_data($symbol_id = null,$data = array()) {
     global $db;
     if ((not_num($symbol_id)) || (empty($data) || is_array($data) != true)) {
         return false;
-    } 
-
+    }
     $db     = $db->where('id', $symbol_id);
     $update = $db->update(T_SYMBOLS,$data);
     return ($update == true) ? true : false;

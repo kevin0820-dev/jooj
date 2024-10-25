@@ -701,7 +701,7 @@ jQuery(document).ready(function($) {
 
 				// Set up the widget configuration with the dynamic theme
 				script.innerHTML = JSON.stringify({
-					"symbol": "BITSTAMP:<?php echo strtoupper(isset($cl['prof_user']['username']) ? $cl['prof_user']['username'] : "BTC") . "USD" ?>",
+					"symbol": <?php echo json_encode(strtoupper(isset($cl['prof_user']['symbol_fetch']) && $cl['prof_user']['symbol_fetch'] != "" ? $cl['prof_user']['symbol_fetch'] : 'BITSTAMP:'.(isset($cl['prof_user']['username']) ? $cl['prof_user']['username'] : 'BTC') . 'USD')); ?>,
 					"width": 350,
 					"height": 220,
 					"locale": "en",
