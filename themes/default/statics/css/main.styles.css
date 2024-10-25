@@ -13735,7 +13735,7 @@ div.main-content-container-inner
 div.timeline-container
 div.timeline-header
 div.profile-activity-navbar {
-margin-left: 18px;
+margin-left: 6px;
 width: 97%;
 overflow: hidden;
 display: flex;
@@ -20359,7 +20359,8 @@ body.cl-app-guest
   div.welcome-page-form__header {
   display: block;
   height: 50px;
-  margin-bottom: 70px;
+  margin-top: 70px;
+  margin-bottom: 20px;
 }
 
 body.cl-app-guest

@@ -136,20 +136,45 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+
             <div class="flex w-full justify-end">
                 <button type="submit"
                     class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><?php echo cl_translate("save_changes"); ?></button>
             </div>
         </form>
-        <!-- <form method="post" action="" class="px-3 py-3">
-            <input type="hidden" name="symbol_id" value="<?php echo $cl['symbol']['id']; ?>">
+        <form method="post" action="" class="px-3 py-3">
+    <div id="qa-container">
+        <div class="qa-item mb-1">
+            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Add some questions and answers
+            </label>
+            <input name="city[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Enter your question">
+        </div>
+        <div class="mb-2">
+            <textarea name="answer[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Enter your answer"></textarea>
+        </div>
+    </div>
 
-        </form> -->
+    <button type="button" class="flex items-center p-2" id="add-more">
+        <img class="w-6" src="/themes/default/statics/img/plus.svg" alt="">
+        <span class="ml-2">Add more</span>
+    </button>
+
+    <div class="flex w-full justify-end">
+        <button type="submit"
+                class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <?php echo cl_translate("save_changes"); ?>
+        </button>
+    </div>
+</form>
+
         <div class="flex flex-col w-full mb-3 mt-5 items-center bg-gray-100 rounded-lg border border-gray-200">
             <img src="<?php echo $cl['symbol']['avatar']; ?>" class="w-16 h-16 mt-4 rounded-full" />
             <div class="flex justify-center items-center py-2">
                 <img src="<?php echo $cl['symbol']['avatar']; ?>" class="w-5 h-5  rounded-full" />
-                <div>$<?php echo $cl['symbol']['username'];?></div>
+                <div>$<?php echo $cl['symbol']['username']; ?></div>
             </div>
             <form method="post" action="" class="px-3 py-3 flex flex-col w-full" enctype="multipart/form-data">
                 <input type="hidden" name="symbol_id" value="<?php echo $cl['symbol']['id']; ?>">
