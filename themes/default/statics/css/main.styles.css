@@ -26593,7 +26593,7 @@ body.cl-app-chat
 body.cl-app-notifications
   main.main-content-container
   div.main-content-container-inner {
-  height: 100vh !important;
+  /* height: 100vh !important; */
   padding-bottom: 0px !important;
 }
 
@@ -27578,7 +27578,7 @@ body.cl-app-notifications
   main.main-content-container
   div.main-content-container-inner
   div.left-sb-container {
-  height: 100vh;
+  /* height: 100vh; */
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -27948,7 +27948,7 @@ body.cl-app-profile
   div.timeline-prof-info-area
   div.profile-main-info-holder {
   width: 100%;
-  border-bottom: 1px solid var(--smc-main-border-color);
+  /* border-bottom: 1px solid var(--smc-main-border-color); */
   position: relative;
 }
 
@@ -28630,12 +28630,13 @@ body.cl-app-profile
   div.timeline-prof-info-area
   div.profile-main-info-holder
   div.profile-activity-navbar {
+  position: relative;
+  margin-bottom:10px;
   width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
   border-top: 0px solid var(--smc-main-border-color);
 }
 
@@ -28684,7 +28685,7 @@ body.cl-app-profile
   height: 4px;
   max-width: 23px;
   text-align: center;
-  margin-left: calc(46% - 3px);
+  margin-left: calc(37% - 3px);
 }
 
 body.cl-app-profile
@@ -28695,7 +28696,7 @@ body.cl-app-profile
   div.profile-main-info-holder
   div.profile-activity-navbar
   a {
-  flex: 1;
+  /* flex: 1; */
   outline: 0;
 }
 
@@ -28709,13 +28710,13 @@ body.cl-app-profile
   a
   button.navbar-item-btn {
   background: transparent;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--smc-main-text-color-2);
   line-height: 13px;
   box-shadow: none;
   border: none;
-  padding: 15px 30px;
+  padding: 15px 22px 15px 15px;
   width: 100%;
   cursor: pointer;
   outline: 0;
@@ -28732,7 +28733,7 @@ body.cl-app-profile
   a
   button.navbar-item-btn.active {
   border-bottom: 0px solid var(--smc-main-uiel-color);
-  margin-bottom: -4px;
+  margin-bottom: 0px;
   color: var(--smc-main-text-color);
 }
 
@@ -28763,7 +28764,7 @@ body.cl-app-profile
   div.profile-activity-navbar
   a
   button.navbar-item-btn:focus {
-  background: var(--smc-main-ehbg-color);
+  background: none;
 }
 
 body.cl-app-profile
