@@ -42,6 +42,23 @@
 		</div>
 
 		<div class="timeline-navbar">
+		<div class="timeline-navbar__item">
+				<a v-bind:href="search_posts_url" data-spa="true">
+					<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "posts") { echo("active");} ?>">
+						<span class="btn-flex-inner">
+							
+							<span class="text">
+								<?php echo cl_translate("Posts"); ?>
+							</span>
+						</span>
+						
+					</button>
+					<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {
+													echo ('active');
+												} ?>"></div>
+					
+				</a>
+			</div>
 			<div class="timeline-navbar__item">
 				<a v-bind:href="search_htags_url" data-spa="true">
 					<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "htags") { echo("active");} ?>">
@@ -91,23 +108,7 @@
 			</div>
 			<!-- End of edited by Kevin... Coin, People -->
 
-			<div class="timeline-navbar__item">
-				<a v-bind:href="search_posts_url" data-spa="true">
-					<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "posts") { echo("active");} ?>">
-						<span class="btn-flex-inner">
-							
-							<span class="text">
-								<?php echo cl_translate("Posts"); ?>
-							</span>
-						</span>
-						
-					</button>
-					<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {
-													echo ('active');
-												} ?>"></div>
-					
-				</a>
-			</div>
+			
 		</div>
 
 		<?php if (empty($cl["query_result"]) && empty($cl["search_query"])): ?>
