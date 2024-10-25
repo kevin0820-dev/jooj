@@ -545,60 +545,61 @@
 							<?php endif; ?>
 						</div>
 					</div>
-
-				</div>
-			<?php endif; ?>
-			<?php if (not_empty($cl["can_view"])): ?>
-				<div class="profile-activity-navbar">
-					<a href="<?php echo cl_link(cl_strf("%s/posts", $cl['prof_user']['raw_uname'])); ?>" data-spa="true">
-						<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {
-							echo ('active');
-						} ?>">
-							<?php echo cl_translate("Posts"); ?>
-						</button>
-						<div class="css-1dbjc4ncb <?php if ($cl['page_tab'] == 'posts') {
-							echo ('active');
-						} ?>"></div>
-					</a>
-					<a href="<?php echo cl_link(cl_strf("%s/media", $cl['prof_user']['raw_uname'])); ?>" data-spa="true">
-						<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {
-							echo ('active');
-						} ?>">
-							<?php echo cl_translate("Media"); ?>
-						</button>
-						<div class="css-1dbjc4ncb <?php if ($cl['page_tab'] == 'media') {
-							echo ('active');
-						} ?>"></div>
-					</a>
-					<?php if (not_empty($cl["can_view"])): ?>
-						<a href="<?php echo cl_link(cl_strf("%s/likes", $cl['prof_user']['raw_uname'])); ?>" data-spa="true">
-						<?php else: ?>
-							<a href="javascript:void(0);" onclick="SMColibri.PS.profile.privacy_alert();">
-							<?php endif; ?>
-							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'likes') {
-								echo ('active');
-							} ?>">
-								<?php echo cl_translate("Likes"); ?>
-							</button>
-							<div class="css-1dbjc4ncb <?php if ($cl['page_tab'] == 'likes') {
-								echo ('active');
-							} ?>"></div>
-						</a>
 				</div>
 			<?php endif; ?>
 		</div>
 	</div>
-
-	<?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])): ?>
-		<div class="timeline-posts-container">
+	<div class="timeline-posts-container">
+		<?php if (not_empty($cl["can_view"])): ?>
+			<div class="timeline-navbar">
+				<div class="timeline-navbar__item">
+					<a href="<?php echo cl_link(cl_strf("%s/posts", $cl['prof_user']['raw_uname'])); ?>" data-spa="true">
+						<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "posts") { echo("active");} ?>">
+							<span class="btn-flex-inner">
+								<span class="text">
+									<?php echo cl_translate("Posts"); ?>
+								</span>
+							</span>
+						</button>
+						<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {echo ('active');} ?>"></div>
+					</a>
+				</div>
+				<div class="timeline-navbar__item">
+					<a  href="<?php echo cl_link(cl_strf("%s/media", $cl['prof_user']['raw_uname'])); ?>" data-spa="true">
+						<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "media") { echo("active");} ?>">
+							<span class="btn-flex-inner">
+								
+								<span class="text">
+									<?php echo cl_translate("Media"); ?>
+								</span>
+							</span>
+						</button>
+						<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'media') {echo ('active');} ?>"></div>
+					</a>
+				</div>			
+				<!-- edited by Kevin -->
+				<div class="timeline-navbar__item">
+					<a href="<?php echo cl_link(cl_strf("%s/likes", $cl['prof_user']['raw_uname'])); ?>" data-spa="true">
+						<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "likes") { echo("active");} ?>">		
+							<span class="btn-flex-inner">
+								
+								<span class="text">
+									<?php echo cl_translate("Likes"); ?>
+								</span>
+							</span>
+						</button>
+						<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'likes') {echo ('active');} ?>"></div>
+					</a>
+				</div>
+			</div>
+		<?php endif; ?>
+		<?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])): ?>
 			<div class="timeline-posts-ls">
 				<?php echo cl_template('profile/includes/blocked_profile'); ?>
 			</div>
-		</div>
-	<?php else: ?>
-		<?php if (not_empty($cl["can_view"])): ?>
-			<?php if (in_array($cl['page_tab'], array('posts', 'media'))): ?>
-				<div class="timeline-posts-container">
+		<?php else: ?>
+			<?php if (not_empty($cl["can_view"])): ?>
+				<?php if (in_array($cl['page_tab'], array('posts', 'media'))): ?>
 					<div class="timeline-posts-ls" data-an="entry-list">
 						<?php $count = 0; ?>
 						<?php if (not_empty($cl["user_posts"])): ?>
@@ -613,9 +614,7 @@
 							<?php echo cl_template('profile/includes/no_posts'); ?>
 						<?php endif; ?>
 					</div>
-				</div>
-			<?php else: ?>
-				<div class="timeline-posts-container">
+				<?php else: ?>
 					<div class="timeline-posts-ls" data-an="entry-list">
 						<?php if (not_empty($cl["user_likes"])): ?>
 							<?php foreach ($cl["user_likes"] as $cl['li']): ?>
@@ -625,16 +624,14 @@
 							<?php echo cl_template('profile/includes/no_posts'); ?>
 						<?php endif; ?>
 					</div>
-				</div>
-			<?php endif; ?>
-		<?php else: ?>
-			<div class="timeline-posts-container">
+				<?php endif; ?>
+			<?php else: ?>
 				<div class="timeline-posts-ls">
 					<?php echo cl_template('profile/includes/private_profile'); ?>
 				</div>
-			</div>
+			<?php endif; ?>
 		<?php endif; ?>
-	<?php endif; ?>
+	</div>
 
 	<?php echo cl_template('profile/scripts/app_master_script'); ?>
 

@@ -1,25 +1,25 @@
 
 
-<div class="post-list-item-content" style="display: flex; border: 1px solid var(--smc-main-border-color); border-radius: 5px; padding: 10px; margin:10px;">
+<div class="post-list-item-content" style="display: flex; border: 1px solid var(--smc-main-border-color); border-radius: 5px; padding: 10px; margin:10px 0px;">
     <div class="publisher-avatar" style = "max-width: 35px; min-width:35px;">
         <?php if ($cl['li']['symbol_id'] == 0): ?>
             <a class="block-link" data-spa="true">
-                <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
-                    <img class="lozad" style="border-radius: 10em; width:45px;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+                <div style="width:22px; height:22px; " class="avatar-holder">
+                    <img class="lozad" style="border-radius: 10em; width:100%;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                 </div>
             </a>
         <?php else: ?>
             <?php if ($cl['li']['owner']['id'] == 1): ?>
                 <a class="block-link" data-spa="true">
-                    <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
-                        <img class="lozad" style="border-radius: 10em; width:45px;" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
+                    <div style="width:22px; height:22px; " class="avatar-holder">
+                        <img class="lozad" style="border-radius: 10em; width:100%;" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
                 <!-- For post page coauthor -->
                     <a class="block-link" data-spa="true">
-                        <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
-                            <img style="border-radius: 10em; width:45px;" class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+                        <div style="width:22px; height:22px; " class="avatar-holder">
+                            <img style="border-radius: 10em; width:100%;" class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                         </div>
                     </a>
             <?php endif; ?>
@@ -73,32 +73,36 @@
                     </script>
                     
                     <!-- Edited By Kevin. 9/20 -->
-                                    <div class="publication-text">
-										<p style="margin-left:-34px; margin-top:10px;" class="pub-text">
-											<?php
-											// Sample text from $cl['li']['text']
-											$text = $cl['li']['text'];
+                    <div class="publication-text">
+                        <p style="margin-left:-34px; margin-top:10px;" class="pub-text">
+                            <?php
+                            // Sample text from $cl['li']['text']
+                            $text = $cl['li']['text'];
 
-											// Regular expression to find <a> tags containing text starting with $ (like $abc)
-											$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+                            // Regular expression to find <a> tags containing text starting with $ (like $abc)
+                            $pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
 
-											// Use preg_replace_callback to replace matches with an image tag
-											$modified_text = preg_replace_callback($pattern, function($matches) {
-												// Extract the word inside the <a> tag without the $ sign
-												$symbol = strtolower($matches[2]);
+                            // Use preg_replace_callback to replace matches with an image tag
+                            $modified_text = preg_replace_callback($pattern, function($matches) {
+                                // Extract the word inside the <a> tag without the $ sign
+                                $symbol = strtolower($matches[2]);
 
-												// Create the image tag
-												$image_tag = '<img src="/themes/default/statics/img/symbol_imgs/' . $symbol . '.png" style="height: 16px; padding-right: 2px; display:inline; position:relative; bottom:2px;" alt="' . $symbol . '">';
+                                // Create the image tag
+                                global $db;
+                                $db        = $db->where('username', $symbol);
+                                $symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+                                $symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+                                $image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
 
-												// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
-												return $image_tag . $matches[1];
-											}, $text);
+                                // Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
+                                return $image_tag . $matches[1];
+                            }, $text);
 
-											// Output the modified text
-											echo $modified_text;
-											?>
-										</p>
-									</div>
+                            // Output the modified text
+                            echo $modified_text;
+                            ?>
+                        </p>
+                    </div>
                 <?php endif; ?>
 
                 <?php if ($cl['li']['type'] == 'image' && not_empty($cl['li']['media'])): ?>
@@ -861,7 +865,6 @@
   font-size: 14px;
   line-height: 20px;
   cursor: pointer;
-  line-height: 0;
   display: inline-block;
   white-space: nowrap;
   text-overflow: ellipsis;

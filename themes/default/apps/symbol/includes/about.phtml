@@ -24,6 +24,12 @@
 		<p style="padding: 0px 5px 15px 0px;">
 			<?php echo $cl['symbol']['about']; ?>The company was founded by Brian Armstrong in May 2012
 		</p>
+		<p>
+			<?php echo $cl['symbol']['symbol_fetch']; ?>
+		</p>
+		<?php foreach($cl['prof_user']['questions'] as $cl['question']): ?>
+			<p><?php echo $cl['question']['title']; ?> : <?php echo $cl['question']['answer']; ?></p>
+		<?php endforeach; ?>
 	</div>
 	<div style="padding-top: 20px;">
 		<p style="padding: 10px 5px 15px 0px; font-size: 20px;">
