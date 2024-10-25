@@ -2,15 +2,10 @@
 	<div class="welcome-page__inner">
 		<div class="welcome-page__content">
 			<div class="welcome-page__lp">
-				<div class="lp-h" style="background-image: url('<?php echo cl_link('themes/default/statics/img/welcomewp/back.jpg'); ?>');">
-					<div class="welcome-page__lp-inner">
-						<span class="icon-home">
-							<a href="<?php echo cl_link('/'); ?>">
-								<img src="<?php echo cl_get_media('themes/default/statics/img/welcomewp/logo.png'); ?>" alt="Logo">
-							</a>
-						</span>
+				<a href="<?php echo cl_link('/'); ?>">
+					<div class="lp-h" style="background-image: url('<?php echo cl_link('themes/default/statics/img/welcomewp/back.jpg'); ?>');">
 					</div>
-				</div>
+				</a>
 			</div>
 			<div class="welcome-page__rp">
 				<div class="welcome-page__rp-inner">
@@ -126,9 +121,10 @@
 	.modal-body h3.login-home {
 		display: none;
 	}
+
 	.modal-body h1.login-home {
 		font-size: 32px;
 	}
-	</style>
+</style>
 
 <?php echo cl_template('auth/scripts/app_master_script'); ?>
