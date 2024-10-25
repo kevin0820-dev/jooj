@@ -178,6 +178,18 @@ function cl_update_symbol_data($symbol_id = null,$data = array()) {
     $update = $db->update(T_SYMBOLS,$data);
     return ($update == true) ? true : false;
 }
+function cl_update_symbol_quiz($data = array()){
+    global $db;
+    if ((empty($data) || is_array($data) != true)) {
+        return false;
+    }
+    foreach($data as $quiz){
+        $db = $db->where('id', $quiz['id']);
+        $update = $db->update(T_SYMBOL_QUIZ,$data);
+        if ($update == false) return false;
+    }
+    return true;
+}
 function cl_uname_exists($uname = "") {
     global $db;
     return ($db->where('username', cl_text_secure($uname))->getValue(T_USERS, 'count(*)') > 0) ? true : false;
@@ -258,6 +270,7 @@ function cl_user_data($user_id = 0) {
 
     return $user_data;
 }
+
 function cl_symbol_data($symbol_id = 0) {
     global $db, $cl;
     if (!is_numeric($symbol_id) || $symbol_id <= 0) {
@@ -269,11 +282,10 @@ function cl_symbol_data($symbol_id = 0) {
     if (empty($symbol_data)) {
         return false;
     }
+    $db         = $db->where('symbol_id', $symbol_id);
+    $symbol_data['questions'] = $db->get(T_SYMBOL_QUIZ);
     $cl['symbol'] = $symbol_data;
-
     // Остальная часть функции остаётся неизменной
-
-
   
     $symbol_data['name']         = cl_strf("%s", $symbol_data['fname']);
     $symbol_data['name']         = cl_rn_strip($symbol_data['name']);  

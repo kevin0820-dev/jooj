@@ -24,5 +24,8 @@
 		<p>
 			<?php echo $cl['symbol']['symbol_fetch']; ?>
 		</p>
+		<?php foreach($cl['prof_user']['questions'] as $cl['question']): ?>
+			<p><?php echo $cl['question']['title']; ?> : <?php echo $cl['question']['answer']; ?></p>
+		<?php endforeach; ?>
 	</div>
 </div>
