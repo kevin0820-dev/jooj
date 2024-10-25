@@ -9,6 +9,28 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.question-holder{
+  display: flex;
+  flex-direction: column;
+}
+.question-holder textarea{
+  background-color: #73737321;
+  border-radius: 10px;
+  padding-left: 15px;
+  padding-top: 16px;
+  padding-bottom: 15px;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 40px;
+  max-height: 400px;
+  font-size: 15px;
+  color: var(--smc-main-text-color);
+  line-height: 20px;
+  border: none;
+  margin-top: 10px;
+  outline: 0;
+}
 .custom-lineheight textarea{
   align-content: center;
   height: 57px !important;
