@@ -1,25 +1,25 @@
 
 
-<div class="post-list-item-content" style="display: flex; border: 1px solid var(--smc-main-border-color); border-radius: 5px; padding: 10px; margin:10px;">
+<div class="post-list-item-content" style="display: flex; border: 1px solid var(--smc-main-border-color); border-radius: 5px; padding: 10px; margin:10px 0px;">
     <div class="publisher-avatar" style = "max-width: 35px; min-width:35px;">
         <?php if ($cl['li']['symbol_id'] == 0): ?>
             <a class="block-link" data-spa="true">
-                <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
-                    <img class="lozad" style="border-radius: 10em; width:45px;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+                <div style="width:22px; height:22px; " class="avatar-holder">
+                    <img class="lozad" style="border-radius: 10em; width:100%;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                 </div>
             </a>
         <?php else: ?>
             <?php if ($cl['li']['owner']['id'] == 1): ?>
                 <a class="block-link" data-spa="true">
-                    <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
-                        <img class="lozad" style="border-radius: 10em; width:45px;" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
+                    <div style="width:22px; height:22px; " class="avatar-holder">
+                        <img class="lozad" style="border-radius: 10em; width:100%;" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
                     </div>
                 </a>
             <?php else: ?>
                 <!-- For post page coauthor -->
                     <a class="block-link" data-spa="true">
-                        <div style="width:22px; height:22px; margin-top:-5px;" class="avatar-holder">
-                            <img style="border-radius: 10em; width:45px;" class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+                        <div style="width:22px; height:22px; " class="avatar-holder">
+                            <img style="border-radius: 10em; width:100%;" class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
                         </div>
                     </a>
             <?php endif; ?>
@@ -861,7 +861,7 @@
   font-size: 14px;
   line-height: 20px;
   cursor: pointer;
-  display: inline-flex;
+  display: inline-block;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

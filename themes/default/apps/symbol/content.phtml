@@ -166,12 +166,12 @@
 								<div class="w-5 h-5"><?php echo cl_ikon('pr-down'); ?></div>
 							</span>
 							<div class="dropdown-menu dropdown-icons">
-								<a class="dropdown-item" href="<?php echo (cl_strf('%s/followers', $cl['prof_user']['url'])); ?>" data-spa="true">
+								<a class="dropdown-item" href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>">
 									<span class="flex-item dropdown-item-icon">
 										<?php echo cl_ikon("people"); ?>
 									</span>
 									<span class="flex-item">
-										<?php echo cl_translate('Show followers'); ?>
+										<?php echo cl_translate('Show Watchers'); ?>
 									</span>
 								</a>
 								<a data-clipboard-text="<?php echo ($cl['prof_user']['url']); ?>"
@@ -258,12 +258,12 @@
 								<div class="w-5 h-5"> <?php echo cl_ikon('pr-down'); ?></div>
 							</span>
 							<div class="dropdown-menu dropdown-icons">
-								<a class="dropdown-item" href="<?php echo (cl_strf('%s/followers', $cl['prof_user']['url'])); ?>" data-spa="true">
+								<a class="dropdown-item" href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>">
 									<span class="flex-item dropdown-item-icon">
 										<?php echo cl_ikon("people"); ?>
 									</span>
 									<span class="flex-item">
-										<?php echo cl_translate('Show followers'); ?>
+										<?php echo cl_translate('Show Watchers'); ?>
 									</span>
 								</a>
 								<a data-clipboard-text="<?php echo ($cl['prof_user']['url']); ?>"
@@ -347,7 +347,6 @@
 					<div class="profile-activity-stats-info" style="justify-content: end; margin-bottom: 0px;">
 						<div class="stat-holder">
 							<?php if (not_empty($cl["can_view"])): ?>
-								<a href="<?php echo cl_link(cl_strf("symbol/%s/posts", $cl['prof_user']['raw_sname'])); ?>" data-spa="true"></a>
 								<a href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>"
 									class="stat-holder-inner">
 								<?php else: ?>
