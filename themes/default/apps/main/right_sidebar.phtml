@@ -221,7 +221,7 @@
 										$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
 										$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
 									?>
-									<img src="<?php echo strtolower($symbol_data['avatar']); ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
+									<img src="<?php echo $symbol_data['avatar']; ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
 									<b>$</b>
 									<strong><?php echo ($row['username']); ?></strong>
 									<span><?php echo ($row['posts']); ?> <?php echo cl_translate("Posts"); ?></span>
@@ -262,7 +262,7 @@
 										$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
 										$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
 									?>
-									<img src="<?php echo strtolower($symbol_data['avatar']); ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
+									<img src="<?php echo $symbol_data['avatar']; ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
 									<b>$</b>
 									<strong><?php echo ($row['symbol']); ?></strong>
 									<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
@@ -455,13 +455,8 @@ new Vue({
 									_app_.searching = true;
 								}
 							}).done(function(data) {
-								if (data.status == 200) {
-									_app_.search_result = true;
-									$(_app_.$el).find('[data-an="result"]').html($(data.html));
-								} else {
-									$(_app_.$el).find('[data-an="result"]').html(data.html);
-									_app_.search_result = true;
-								}
+								_app_.search_result = true;
+								$(_app_.$el).find('[data-an="result"]').html($(data.html));
 							}).always(function() {
 								_app_.searching = false;
 							});
@@ -539,13 +534,8 @@ new Vue({
 									_app_.searching = true;
 								}
 							}).done(function(data) {
-								if (data.status == 200) {
-									_app_.search_result = true;
-									$(_app_.$el).find('[data-an="result"]').html($(data.html));
-								} else {
-									$(_app_.$el).find('[data-an="result"]').html(data.html);
-									_app_.search_result = true;
-								}
+								_app_.search_result = true;
+								$(_app_.$el).find('[data-an="result"]').html($(data.html));
 							}).always(function() {
 								_app_.searching = false;
 							});

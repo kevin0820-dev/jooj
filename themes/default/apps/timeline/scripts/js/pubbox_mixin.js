@@ -8,7 +8,6 @@
 // @ Copyright (c) 2020 - 2023 JOOJ Talk. All rights reserved.               @
 // @*************************************************************************@
 */
-console.log("start");
 var pubbox_form_app_mixin = Object({
 	data: function() {
 		return {
@@ -233,7 +232,7 @@ var pubbox_form_app_mixin = Object({
 					else if(type == 1) break;
 				}
 			}
-			if(i < files.length) console.log("files not valid. please select same types");
+			if(i < files.length) cl_bs_notify("Files not valid. please select same types", 3000, "danger");
 			else{
 				if(type == 1) this.upload_images_drop(files);
 				else upload_video_drop(files[0]);
@@ -252,55 +251,59 @@ var pubbox_form_app_mixin = Object({
 				SMColibri.progress_bar("show");
 
 				if (images.length) {
-					for (var i = 0; i < images.length; i++) {
-						if (SMColibri.max_upload(images[i].size)) {
-							var form_data  = new FormData();
-							var break_loop = false;
-							form_data.append('delay', 1);
-							form_data.append('image', images[i]);
-							form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
-							
-							$.ajax({
-								url: '<?php echo cl_link("native_api/main/upload_post_image"); ?>',
-								type: 'POST',
-								dataType: 'json',
-								enctype: 'multipart/form-data',
-								data: form_data,
-								cache: false,
-						        contentType: false,
-						        processData: false,
-						        timeout: 600000,
-						        beforeSend: function() {
-						        	_app_.submitting = true;
-						        },
-								success: function(data) {
-									if (data.status == 200) {
-										_app_.images.push(data.img);
-									}
-									else if(data.err_code == "total_limit_exceeded") {
-										cl_bs_notify("<?php echo cl_translate('You cannot attach more than 4 images to this post.'); ?>", 1500, "danger");
-										break_loop = true;
-									}
-									else {
-										SMColibri.errorMSG();
-									}
-								},
-								complete: function() {
-									if (_app_.images.length && cl_empty(_app_.active_media)) {
-										_app_.active_media = "image";
-									}
+					if(_app_.images.length + images.length < 5){
+						for (var i = 0; i < images.length; i++) {
+							if (SMColibri.max_upload(images[i].size)) {
+								var form_data  = new FormData();
+								var break_loop = false;
+								form_data.append('delay', 1);
+								form_data.append('image', images[i]);
+								form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
+								
+								$.ajax({
+									url: '<?php echo cl_link("native_api/main/upload_page_image"); ?>',
+									type: 'POST',
+									dataType: 'json',
+									enctype: 'multipart/form-data',
+									data: form_data,
+									cache: false,
+									contentType: false,
+									processData: false,
+									timeout: 600000,
+									beforeSend: function() {
+										_app_.submitting = true;
+									},
+									success: function(data) {
+										if (data.status == 200) {
+											_app_.images.push(data.img);
+										}
+										else if(data.err_code == "total_limit_exceeded") {
+											cl_bs_notify("<?php echo cl_translate('You cannot attach more than 4 images to this post.'); ?>", 3000, "danger");
+											break_loop = true;
+										}
+										else {
+											SMColibri.errorMSG();
+										}
+									},
+									complete: function() {
+										if (_app_.images.length && cl_empty(_app_.active_media)) {
+											_app_.active_media = "image";
+										}
 
-									_app_.disable_ctrls();
+										_app_.disable_ctrls();
 
-									_app_.submitting = false;
-								}
-							});
+										_app_.submitting = false;
+									}
+								});
 
-							if (break_loop) {break;}
+								if (break_loop) {break;}
+							}
 						}
 					}
+					else {
+						cl_bs_notify("You can't upload over 4 images!", 3000, "danger");
+					}
 				}
-
 				setTimeout(function() {
 					SMColibri.progress_bar("end");
 
@@ -1103,54 +1106,57 @@ var pubbox_form_app_mixin = Object({
 				SMColibri.progress_bar("show");
 
 				if (images.length) {
-					for (var i = 0; i < images.length; i++) {
-						if (SMColibri.max_upload(images[i].size)) {
+					if(_app_.images.length + images.length < 5){
+						for (var i = 0; i < images.length; i++) {
+							if (SMColibri.max_upload(images[i].size)) {
+								var form_data  = new FormData();
+								var break_loop = false;
+								form_data.append('delay', 1);
+								form_data.append('image', images[i]);
+								form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
+								
+								$.ajax({
+									url: '<?php echo cl_link("native_api/main/upload_page_image"); ?>',
+									type: 'POST',
+									dataType: 'json',
+									enctype: 'multipart/form-data',
+									data: form_data,
+									cache: false,
+									contentType: false,
+									processData: false,
+									timeout: 600000,
+									beforeSend: function() {
+										_app_.submitting = true;
+									},
+									success: function(data) {
+										if (data.status == 200) {
+											_app_.images.push(data.img);
+										}
+										else if(data.err_code == "total_limit_exceeded") {
+											cl_bs_notify("<?php echo cl_translate('You cannot attach more than 4 images to this post.'); ?>", 3000, "danger");
+											break_loop = true;
+										}
+										else {
+											SMColibri.errorMSG();
+										}
+									},
+									complete: function() {
+										if (_app_.images.length && cl_empty(_app_.active_media)) {
+											_app_.active_media = "image";
+										}
 
+										_app_.disable_ctrls();
 
-							var form_data  = new FormData();
-							var break_loop = false;
-							form_data.append('delay', 1);
-							form_data.append('image', images[i]);
-							form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
-							
-							$.ajax({
-								url: '<?php echo cl_link("native_api/main/upload_post_image"); ?>',
-								type: 'POST',
-								dataType: 'json',
-								enctype: 'multipart/form-data',
-								data: form_data,
-								cache: false,
-						        contentType: false,
-						        processData: false,
-						        timeout: 600000,
-						        beforeSend: function() {
-						        	_app_.submitting = true;
-						        },
-								success: function(data) {
-									if (data.status == 200) {
-										_app_.images.push(data.img);
+										_app_.submitting = false;
 									}
-									else if(data.err_code == "total_limit_exceeded") {
-										cl_bs_notify("<?php echo cl_translate('You cannot attach more than 10 images to this post.'); ?>", 1500, "danger");
-										break_loop = true;
-									}
-									else {
-										SMColibri.errorMSG();
-									}
-								},
-								complete: function() {
-									if (_app_.images.length && cl_empty(_app_.active_media)) {
-										_app_.active_media = "image";
-									}
+								});
 
-									_app_.disable_ctrls();
-
-									_app_.submitting = false;
-								}
-							});
-
-							if (break_loop) {break;}
+								if (break_loop) {break;}
+							}
 						}
+					}
+					else {
+						cl_bs_notify("You can't upload over 4 images!", 3000, "danger");
 					}
 				}
 
@@ -1643,7 +1649,6 @@ var pubbox_form_app_mixin = Object({
 		}
 	},
 	mounted: function() {
-		console.log("mounted");
 		var _app_ = this;
 
 		_app_.$el.addEventListener('dragover', (event) => event.preventDefault());
@@ -1688,4 +1693,91 @@ var pubbox_form_app_mixin = Object({
 		_app_.text_ph = _app_.text_ph_orig;
 	}
 });
-console.log("end");
+
+var pubbox_form_app_mixin_question = Object({
+	data: function() {
+		return {
+			question: "",
+			answer: "",
+			submitting: false,
+		};
+	},
+	computed: {
+		valid_form: function() {
+			var _app_ = this;
+			if(_app_.answer.length > 0 && _app_.question.length > 0) return true;
+			else return false;
+		},
+	},
+	methods: {
+		text_input_trigger: function(e = false) {	
+			autosize($(e.target));
+		},
+		add: function(_self = null) {
+			_self.preventDefault();
+
+			var form  = $(_self.$el);
+			var _app_ = this;
+
+			$(_self.target).ajaxSubmit({
+				url: "<?php echo cl_link('native_api/main/add_new_question'); ?>",
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					title: _app_.question,
+					answer: _app_.answer
+				},
+				beforeSend: function() {
+					_app_.submitting = true;
+				},
+				success: function(data) {
+					console.log(data.status);
+					if (data.status == 200) {
+						var home_timeline = $('div[aria-labelledby="profile-tab"]');
+						var new_post      = $(data.html).addClass('animated fadeIn');
+
+						if (home_timeline.find('div[data-an="entry-list"]').length) {
+							home_timeline.find('div[data-an="entry-list"]').prepend(new_post).promise().done(function() {
+								setTimeout(function() {
+									home_timeline.find('div[data-an="entry-list"]').find('[data-list-item]').first().removeClass('animated fadeIn');
+								}, 1000);
+							});
+						}
+						else {
+							SMColibri.spa_reload();
+						}
+					}
+					else {
+						_app_.submitting = false;
+						console.log(data.err_code);
+						SMColibri.errorMSG();
+					}
+				},
+				complete: function() {
+					_app_.submitting = false;
+					_app_.reset_data();
+				}
+			});
+		},
+		reset_data: function() {
+			var _app_ = this;
+
+			if (_app_.active_media == "audio") {
+				_app_.record_audio_reset();
+			}
+
+			_app_.question = "",
+			_app_.answer = "",
+			_app_.submitting = false;
+		},
+	},
+	updated: function() {
+		var _app_ = this;
+	},
+	mounted: function() {
+		var _app_ = this;
+
+		_app_.$el.addEventListener('dragover', (event) => event.preventDefault());
+		_app_.$el.addEventListener('drop', this.handleDrop);
+	}
+});

@@ -68,7 +68,7 @@
 				</button>
 			</div>
 			<!-- End Post Privacy -->
-			<div class="input-holder">
+			<div class="input-holder" v-on:dragover.prevent v-on:drop.prevent="handleDrop">
 				<textarea ref="text_input"
 					v-on:input.trim="text_input_trigger"
 					v-on:blur="text_blur_trigger"
@@ -109,6 +109,33 @@
 										</span>
 										<span>
 											@{{i.username}}
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="input-autocomplete" v-if="mentions.pages.length">
+				<div class="input-autocomplete__usernames">
+					<div class="input-autocomplete__username-list">
+						<div v-for="i in mentions.pages" class="username-list-item"
+							v-on:click="page_autocomplete(i.username)">
+							<div class="d-flex flex-wn ov-h">
+								<div class="flex-item">
+									<div class="avatar">
+										<img v-bind:src="i.avatar" alt="IMG">
+									</div>
+								</div>
+								<div class="flex-item flex-grow-1 ov-h">
+									<div class="username">
+										<div class="user-name-holder"
+											v-bind:class="{'verified-badge': (i.verified == 1)}">
+											{{i.name}}
+										</div>
+										<span>
+											${{i.username}}
 										</span>
 									</div>
 								</div>
