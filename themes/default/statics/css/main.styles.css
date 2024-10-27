@@ -514,8 +514,8 @@ body
   background: rgba(255, 255, 255, 0.18);
   border-radius: 5px;
   box-shadow: none;
-  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -908,6 +908,7 @@ body
   padding-left: 16px;
   padding-right: 16px;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   font-weight: 700;
   align-self: center;
   line-height: 24px;
@@ -1003,14 +1004,19 @@ body
 .form-group.oauth-login-providers .flex-item {
   color: rgb(15, 20, 25);
   font-weight: 700;
-  -moz-box-align: center;
+  -webkit-box-align: center; /* Added for compatibility */
+  -moz-box-align: center; /* Can be kept for Firefox */
   align-items: center;
-  -moz-box-pack: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center; /* Can be kept for Firefox */
   justify-content: center;
-  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1; /* Can be kept for Firefox */
   flex-grow: 1;
-  -moz-box-direction: normal;
-  -moz-box-orient: horizontal;
+  -webkit-box-direction: normal; /* Added for compatibility */
+  -moz-box-direction: normal; /* Can be kept for Firefox */
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal; /* Can be kept for Firefox */
   flex-direction: row;
   font-size: 15px;
   line-height: 20px;
