@@ -30,7 +30,7 @@ if ($action == 'upload_post_image') {
             }
             
             if (not_empty($post_data) && $post_data["type"] == "image") {
-                if (empty($post_data['media']) || count($post_data['media']) < 10) {
+                if (empty($post_data['media']) || count($post_data['media']) < 5) {
                     $file_info      =  array(
                         'file'      => $_FILES['image']['tmp_name'],
                         'size'      => $_FILES['image']['size'],
@@ -100,7 +100,7 @@ if ($action == 'upload_page_image') {
             }
 
             if (not_empty($post_data) && $post_data["type"] == "image") {
-                if (empty($post_data['media']) || count($post_data['media']) < 4) {
+                if (empty($post_data['media']) || count($post_data['media']) < 5) {
                     $file_info      =  array(
                         'file'      => $_FILES['image']['tmp_name'],
                         'size'      => $_FILES['image']['size'],
