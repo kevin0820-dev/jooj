@@ -156,7 +156,7 @@
 									<?php echo cl_ikon('activity'); ?>
 								</span>
 								<span class="nav-item-holder">
-									<a href="<?php echo cl_link('trending'); ?>" data-spa="true">
+									<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
 										<?php echo cl_translate('actual'); ?>
 									</a>
 								</span>
@@ -172,7 +172,7 @@
 										<?php echo cl_ikon('activity'); ?>
 									</span>
 									<span class="nav-item-holder">
-										<a href="<?php echo cl_link('trending'); ?>" data-spa="true">
+										<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
 											<?php echo cl_translate('actual'); ?>
 										</a>
 									</span>
@@ -442,9 +442,6 @@
 					</button>
 				</div>
 			</div>
-			<!-- <div style="margin:15px 17px 3px 19px; background-color: var(--smc-main-text-color); border-radius: 10px; flex: 1;">
-				<p  style="color: var(--smc-main-text-color-2);" class="pl-4 pr-2.5 text-sm pt-2.5">Disclaimer: The data and information provided are sourced from a third party, and Cointweets is not responsible for their creation. For full terms, click <a href="/">here</a> .</p>
-			</div> -->
 		</div>
 		<div class="user-info h-mobile" style="margin-left: 16px; position: fixed; bottom: 15px; flex-direction: row; background-color: var(--smc-main-bg-color); border-radius: 10px; padding: 14px 0px 14px 14px;">
 			<div class="avatar">
