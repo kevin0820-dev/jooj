@@ -70,18 +70,9 @@
 											v-bind:class="{'verified-badge': (i.verified == 1)}">
 											{{i.name}}
 										</div>
-
-									<!-- Edited By Kevin.. Symbol Icon. 9/20 -->
-											<span style="display: flex; align-items: center;">
-												<img :src="'https://cointweets.com/themes/default/statics/img/symbol_imgs/' + i.username.toLowerCase() + '.png'" 
-													:style="{ height: '15px', paddingRight: '5px', display:'inline-block' }"  alt="">
-												<span>${{i.username}}</span>
-											</span>
-											<!-- <span>
-												${{i.username}}
-											</span> -->
-									<!-- Edited By Kevin 9/20-->
-
+										<span>
+											${{i.username}}
+										</span>
 									</div>
 								</div>
 							</div>
