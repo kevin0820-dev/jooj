@@ -9,6 +9,15 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.text-gray-900 svg{
+  stroke: var(--smc-main-text-color-2);
+  width: 23px !important;
+  height: 23px !important;
+}
+.text-gray-900{
+  color: var(--smc-main-text-color-2) !important;
+  stroke: var(--smc-main-text-color-2);
+}
 .question-holder{
   display: flex;
   flex-direction: column;

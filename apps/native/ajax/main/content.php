@@ -2872,3 +2872,20 @@ else if($action == "save_display_settings") {
         ));
     }
 }
+
+else if ($action == 'add_new_question') {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+
+    $title  = fetch_or_get($_POST['title'], 'no');
+    $answer = fetch_or_get($_POST['answer'], 'no');
+    $id     = fetch_or_get($_POST['symbol_id'], 'no');
+
+    if($title != "no" && $answer != "no"){
+        $data['status'] = 200;
+        cl_add_question($title, $answer, $id);
+    }
+    else{
+        $data['err_code'] = 500;
+    }
+}

@@ -1693,3 +1693,91 @@ var pubbox_form_app_mixin = Object({
 		_app_.text_ph = _app_.text_ph_orig;
 	}
 });
+
+var pubbox_form_app_mixin_question = Object({
+	data: function() {
+		return {
+			question: "",
+			answer: "",
+			submitting: false,
+		};
+	},
+	computed: {
+		valid_form: function() {
+			var _app_ = this;
+			if(_app_.answer.length > 0 && _app_.question.length > 0) return true;
+			else return false;
+		},
+	},
+	methods: {
+		text_input_trigger: function(e = false) {	
+			autosize($(e.target));
+		},
+		add: function(_self = null) {
+			_self.preventDefault();
+
+			var form  = $(_self.$el);
+			var _app_ = this;
+
+			$(_self.target).ajaxSubmit({
+				url: "<?php echo cl_link('native_api/main/add_new_question'); ?>",
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					title: _app_.question,
+					answer: _app_.answer
+				},
+				beforeSend: function() {
+					_app_.submitting = true;
+				},
+				success: function(data) {
+					console.log(data.status);
+					if (data.status == 200) {
+						var home_timeline = $('div[aria-labelledby="profile-tab"]');
+						var new_post      = $(data.html).addClass('animated fadeIn');
+
+						if (home_timeline.find('div[data-an="entry-list"]').length) {
+							home_timeline.find('div[data-an="entry-list"]').prepend(new_post).promise().done(function() {
+								setTimeout(function() {
+									home_timeline.find('div[data-an="entry-list"]').find('[data-list-item]').first().removeClass('animated fadeIn');
+								}, 1000);
+							});
+						}
+						else {
+							SMColibri.spa_reload();
+						}
+					}
+					else {
+						_app_.submitting = false;
+						console.log(data.err_code);
+						SMColibri.errorMSG();
+					}
+				},
+				complete: function() {
+					_app_.submitting = false;
+					_app_.reset_data();
+				}
+			});
+		},
+		reset_data: function() {
+			var _app_ = this;
+
+			if (_app_.active_media == "audio") {
+				_app_.record_audio_reset();
+			}
+
+			_app_.question = "",
+			_app_.answer = "",
+			_app_.submitting = false;
+		},
+	},
+	updated: function() {
+		var _app_ = this;
+	},
+	mounted: function() {
+		var _app_ = this;
+
+		_app_.$el.addEventListener('dragover', (event) => event.preventDefault());
+		_app_.$el.addEventListener('drop', this.handleDrop);
+	}
+});
