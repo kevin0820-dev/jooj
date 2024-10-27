@@ -34,12 +34,9 @@ $symbol_username = fetch_or_get($_GET["symbol_username"], false);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["symbol_id"])) {
         $symbol_id = $_POST["symbol_id"];
-
-     
         if (isset($_FILES['avatar']) && not_empty($_FILES['avatar']['tmp_name'])) {
-           
-        } else {
-            
+        } 
+        else {
             if (isset($_POST["name"]) && isset($_POST["raw_sname"]) && isset($_POST["email"]) && isset($_POST["about"]) && isset($_POST["country"]) && isset($_POST["website"]) && isset($_POST["city"])) {
                 $data = array(
                     "fname" => $_POST["name"],
@@ -51,24 +48,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "city" => $_POST["city"],
                     "symbol_fetch" => $_POST['symbol_fetch'],
                 );
-
-               
                 if (cl_update_symbol_data($symbol_id, $data)) {
                     echo "";
                 } else {
                     echo "<p class='text-red-600'>Произошла ошибка при обновлении данных символа.</p>";
                 }
-            } else {
-              
-
+            }
+            else {
             }
         }
-    } else {
-       
-
     }
 }
-
+if(isset($_POST["id"])){
+    $data = array(
+        "title" => $_POST["title"],
+        "answer" => $_POST["answer"],
+    );
+    cl_update_question_data($_POST["id"], $data);
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['avatar']) && not_empty($_FILES['avatar']['tmp_name'])) {
     if (isset($_POST["symbol_id"])) {
         $symbol_id = $_POST["symbol_id"];

@@ -2370,3 +2370,13 @@ function cl_money_recipients_search($username = false) {
 
     return false;
 }
+function cl_update_question_data($id = 0, $data = array()){
+    global $db;
+
+    if($id != 0){
+        $db = $db->where("id", $id);
+        $db->update(T_SYMBOL_QUIZ, $data);
+        return true;
+    }
+    else return false;
+}

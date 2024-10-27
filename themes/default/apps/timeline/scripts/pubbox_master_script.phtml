@@ -63,15 +63,9 @@ $(document).ready(function($) {
     if ($("form#vue-pubbox-app-question").length) {
         var pubbox_app__question = new Vue({
             el:"#vue-pubbox-app-question",
-            mixins: [pubbox_form_app_mixin]
+            mixins: [pubbox_form_app_mixin_question]
         });
-
         SMColibri.extend_vue('pubbox5', pubbox_app__question);
-
-        $(document).on('hidden.bs.modal', 'div#add_new_question', function () {  
-            pubbox_app__question.thread_id    = 0;
-            pubbox_app__question.post_privacy = "everyone";
-        });
     }
 });
 </script>
