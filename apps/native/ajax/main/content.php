@@ -2478,7 +2478,8 @@ else if($action == 'search') {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $search_query     = fetch_or_get($_GET['query'], false); 
-    $type             = fetch_or_get($_GET['type'], false); 
+    $type             = fetch_or_get($_GET['type'], false);
+    $data['html']   = cl_template('main/includes/search/no_result');
 
     if (not_empty($search_query) && len_between($search_query,3, 32) && in_array($type, array('users','htags','symbols'))) {
         require_once(cl_full_path("core/apps/explore/app_ctrl.php"));
@@ -2540,7 +2541,6 @@ else if($action == 'search') {
             }
         }
     }
-    else $data['html']   = cl_template('main/includes/search/no_result');
 }
 
 

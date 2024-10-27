@@ -530,13 +530,8 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 								_app_.searching = true;
 							}
 						}).done(function(data) {
-							if (data.status == 200) {
-								_app_.search_result = true;
-								$(_app_.$el).find('[data-an="result"]').html($(data.html));
-							} else {
-								$(_app_.$el).find('[data-an="result"]').empty('');
-								_app_.search_result = false;
-							}
+							_app_.search_result = true;
+							$(_app_.$el).find('[data-an="result"]').html($(data.html));
 						}).always(function() {
 							_app_.searching = false;
 						});
