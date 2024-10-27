@@ -134,7 +134,7 @@
 										</span>
 									</a>
 
-									<a data-clipboard-text="<?php echo ($cl['prof_user']['url']); ?>"
+									<a data-clipboard-text="<?php $currentDomain = (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST']; echo (cl_strf('%s/%s', $currentDomain, $cl['prof_user']['username'])); ?>"
 										class="dropdown-item clip-board-copy" href="javascript:void(0);">
 										<span class="flex-item dropdown-item-icon">
 											<svg viewBox="0 0 24 24" aria-hidden="true"
@@ -344,7 +344,7 @@
 									<?php echo cl_translate('Show followers'); ?>
 								</span>
 							</a>
-							<a data-clipboard-text="<?php echo ($cl['prof_user']['url']); ?>"
+							<a data-clipboard-text="<?php $currentDomain = (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST']; echo (cl_strf('%s/%s', $currentDomain, $cl['prof_user']['username'])); ?>"
 								class="dropdown-item clip-board-copy" href="javascript:void(0);">
 								<span class="flex-item dropdown-item-icon">
 									<?php echo cl_ikon("copy"); ?>

@@ -165,7 +165,13 @@ function cl_update_post_data($post_id = null, $data = array()) {
     $update = $db->update(T_PUBS,$data);
     return ($update == true) ? true : false;
 }
+function cl_add_question($title = "", $answer = "", $id = 0){
+	global $db;
 
+	if(not_empty($title) && not_empty($answer)){
+		$db -> insert(T_SYMBOL_QUIZ, array('title' => $title, 'answer' => $answer, 'symbol_id' => $id));
+	}
+}
 function cl_upsert_htags($text = "") {
 	global $db;
 

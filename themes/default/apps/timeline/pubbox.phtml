@@ -8,9 +8,7 @@
 	<div class="rp">
 
 		<form class="form" id="vue-pubbox-app-<?php echo ($cl['pb_id']); ?>" v-on:submit="publish($event)">
-			<div class="input-holder" 
-				v-on:dragover.prevent 
-				v-on:drop.prevent="handleDrop">
+			<div class="input-holder" v-on:dragover.prevent v-on:drop.prevent="handleDrop">
 				<textarea ref="text_input" v-on:input.trim="text_input_trigger" v-on:blur="text_blur_trigger"
 					class="autoresize" v-model="text" name="post_text" placeholder="What's on your mind? (use $ before coin ticker: eg $SYMBOL)"></textarea>		<!-- edited by kevin to show placeholder well -->
 			</div>
@@ -70,42 +68,6 @@
 											v-bind:class="{'verified-badge': (i.verified == 1)}">
 											{{i.name}}
 										</div>
-
-									<!-- Edited By Kevin.. Symbol Icon. 9/20 -->
-											<span style="display: flex; align-items: center;">
-												<img :src="'https://cointweets.com/themes/default/statics/img/symbol_imgs/' + i.username.toLowerCase() + '.png'" 
-													:style="{ height: '15px', paddingRight: '5px', display:'inline-block' }"  alt="">
-												<span>${{i.username}}</span>
-											</span>
-											<!-- <span>
-												${{i.username}}
-											</span> -->
-									<!-- Edited By Kevin 9/20-->
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- <div class="input-autocomplete" v-if="mentions.pages.length">
-				<div class="input-autocomplete__usernames">
-					<div class="nput-autocomplete__username-list">
-						<div v-for="i in mentions.pages" class="username-list-item"
-							v-on:click="page_autocomplete(i.username)">
-							<div class="d-flex flex-wn ov-h">
-								<div class="flex-item">
-									<div class="avatar">
-										<img v-bind:src="i.avatar" alt="IMG">
-									</div>
-								</div>
-								<div class="flex-item flex-grow-1 ov-h">
-									<div class="username">
-										<span class="user-name-holder"
-											v-bind:class="{'verified-badge': (i.verified == 1)}">
-											{{i.name}}
-										</span>
 										<span>
 											${{i.username}}
 										</span>
@@ -115,7 +77,7 @@
 						</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<div class="cl-emoticons" v-if="emoticons_picker.status">
 				<div class="emoticons-group-nav">
 					<span class="emoticons-group-nav-item"

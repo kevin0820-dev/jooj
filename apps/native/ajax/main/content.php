@@ -30,7 +30,7 @@ if ($action == 'upload_post_image') {
             }
             
             if (not_empty($post_data) && $post_data["type"] == "image") {
-                if (empty($post_data['media']) || count($post_data['media']) < 10) {
+                if (empty($post_data['media']) || count($post_data['media']) < 5) {
                     $file_info      =  array(
                         'file'      => $_FILES['image']['tmp_name'],
                         'size'      => $_FILES['image']['size'],
@@ -100,7 +100,7 @@ if ($action == 'upload_page_image') {
             }
 
             if (not_empty($post_data) && $post_data["type"] == "image") {
-                if (empty($post_data['media']) || count($post_data['media']) < 4) {
+                if (empty($post_data['media']) || count($post_data['media']) < 5) {
                     $file_info      =  array(
                         'file'      => $_FILES['image']['tmp_name'],
                         'size'      => $_FILES['image']['size'],
@@ -2478,7 +2478,8 @@ else if($action == 'search') {
     $data['err_code'] = 0;
     $data['status']   = 400;
     $search_query     = fetch_or_get($_GET['query'], false); 
-    $type             = fetch_or_get($_GET['type'], false); 
+    $type             = fetch_or_get($_GET['type'], false);
+    $data['html']   = cl_template('main/includes/search/no_result');
 
     if (not_empty($search_query) && len_between($search_query,3, 32) && in_array($type, array('users','htags','symbols'))) {
         require_once(cl_full_path("core/apps/explore/app_ctrl.php"));
@@ -2540,7 +2541,6 @@ else if($action == 'search') {
             }
         }
     }
-    else $data['html']   = cl_template('main/includes/search/no_result');
 }
 
 
@@ -2870,5 +2870,22 @@ else if($action == "save_display_settings") {
                 "background"   => cl_text_secure($bg_color)
             ), true)
         ));
+    }
+}
+
+else if ($action == 'add_new_question') {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+
+    $title  = fetch_or_get($_POST['title'], 'no');
+    $answer = fetch_or_get($_POST['answer'], 'no');
+    $id     = fetch_or_get($_POST['symbol_id'], 'no');
+
+    if($title != "no" && $answer != "no"){
+        $data['status'] = 200;
+        cl_add_question($title, $answer, $id);
+    }
+    else{
+        $data['err_code'] = 500;
     }
 }
