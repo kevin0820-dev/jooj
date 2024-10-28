@@ -214,7 +214,7 @@
 							$symbol = $row['username'];
 							$db        = $db->where('username', $symbol);
 							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
-							if (!empty($symbol_data)) { // Check if data is found
+							if (empty($symbol_data)) { // Check if data is found
 								continue;
 							}
 							$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
@@ -256,7 +256,7 @@
 							$symbol = $row['symbol'];
 							$db        = $db->where('username', $symbol);
 							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
-							if (!empty($symbol_data)) { // Check if data is found
+							if (empty($symbol_data)) { // Check if data is found
 								continue;
 							}
 							$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
