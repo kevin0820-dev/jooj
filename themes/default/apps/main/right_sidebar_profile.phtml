@@ -405,11 +405,13 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 							</div>
 						<?php endforeach; ?>
 					</div>
-					<div class="topical-posts__footer">
-						<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
-							<?php echo cl_translate("Show more"); ?>
-						</a>
-					</div>
+					<?php if(count($cl['hot_symbols']) > 5): ?>
+						<div class="topical-posts__footer">
+							<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
+								<?php echo cl_translate("Show more"); ?>
+							</a>
+						</div>
+					<?php endif ?>
 				<?php else: ?>
 					<div class="topical-posts__placeholder">
 						<?php echo cl_translate("Here will be a (symbols) list of the most relevant topics and events"); ?>
@@ -446,11 +448,13 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 							</div>
 						<?php endforeach; ?>
 					</div>
-					<div class="topical-posts__footer">
-						<a href="<?php echo cl_link("trending"); ?>" data-spa="true">
-							<?php echo cl_translate("Show more"); ?>
-						</a>
-					</div>
+					<?php if(count($cl['hot_topics']) > 5): ?>
+						<div class="topical-posts__footer">
+							<a href="<?php echo cl_link("trending"); ?>" data-spa="true">
+								<?php echo cl_translate("Show more"); ?>
+							</a>
+						</div>
+					<?php endif ?>
 				<?php else: ?>
 					<div class="topical-posts__placeholder">
 						<?php echo cl_translate("Here will be a (#hashtag) list of the most relevant topics and events"); ?>
