@@ -149,7 +149,7 @@
 							</span>
 						</li>
 						<?php if ($cl['config']['blue_account_system_status'] == 'off'): ?>
-							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
+							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'watchings') {	/* edited by kevin change into button with full width */
 								echo ('active');
 							} ?>">
 								<span class="icon">
@@ -157,7 +157,7 @@
 								</span>
 								<span class="nav-item-holder">
 									<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
-										Watching
+										Watchlist
 									</a>
 								</span>
 							</li>
@@ -165,7 +165,7 @@
 						<!-- Blue Account -->
 						<?php if ($cl['config']['blue_account_system_status'] == 'on'): ?>
 							<?php if ($me["is_blue"] == 1): ?>
-								<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
+								<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'watchings') {	/* edited by kevin change into button with full width */
 									echo ('active');
 								} ?>">
 									<span class="icon">
@@ -173,7 +173,7 @@
 									</span>
 									<span class="nav-item-holder">
 										<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
-											Watching
+											Watchlist
 										</a>
 									</span>
 								</li>
@@ -297,9 +297,7 @@
 												</span>
 											</a>
 										<?php else: ?>
-											<a class="dropdown-item" href="<?php echo cl_link('trending'); ?>" data-spa="true"
-												data-navitem="trending">
-
+											<a class="dropdown-item" href="<?php echo ($me['url']); ?>/watching" data-spa="true" data-navitem="watchings">
 												<span class="flex-item dropdown-item-icon">
 													<svg viewBox="0 0 24 24" aria-hidden="true"
 														class="r-1kihuf0 r-18jsvk2 r-4qtqp9 r-yyyyoo r-1q142lx r-1472mwg r-mbgqwd r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp"
@@ -312,9 +310,7 @@
 													</svg>
 												</span>
 												<span class="flex-item">
-
-													Watching
-
+													Watchlist
 												</span>
 											</a>
 										<?php endif; ?>
