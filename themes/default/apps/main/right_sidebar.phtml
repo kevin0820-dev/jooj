@@ -208,22 +208,20 @@
 						<?php
 						$count = 0;
 						$cl['watchers']	= cl_get_watchings($me['id'], 7, false);
+						global $db;
 						foreach ($cl['watchers'] as $row):
 							if ($count >= 5) break;
+							$symbol = $row['username'];
+							$db        = $db->where('username', $symbol);
+							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+							if (!empty($symbol_data)) { // Check if data is found
+								continue;
+							}
+							$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
 							$count++;
 						?>
 							<div class="topical-posts__item">
 								<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['username']))); ?>">
-									<?php
-										global $db;
-										$symbol = $row['username'];
-										$db        = $db->where('username', $symbol);
-										$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
-										if (!empty($symbol_data)) { // Check if data is found
-											continue;
-										}
-										$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
-									?>
 									<img src="<?php echo $symbol_data['avatar']; ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
 									<b>$</b>
 									<strong><?php echo ($row['username']); ?></strong>
@@ -252,22 +250,20 @@
 					<div class="topical-posts__body" id="topical-posts-body">
 						<?php
 						$count = 0;
+						global $db;
 						foreach ($cl['hot_symbols'] as $row):
 							if ($count >= 5) break;
+							$symbol = $row['symbol'];
+							$db        = $db->where('username', $symbol);
+							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+							if (!empty($symbol_data)) { // Check if data is found
+								continue;
+							}
+							$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
 							$count++;
 						?>
 							<div class="topical-posts__item">
 								<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>">
-									<?php
-										global $db;
-										$symbol = $row['symbol'];
-										$db        = $db->where('username', $symbol);
-										$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
-										if (!empty($symbol_data)) { // Check if data is found
-											continue;
-										}
-										$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
-									?>
 									<img src="<?php echo $symbol_data['avatar']; ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
 									<b>$</b>
 									<strong><?php echo ($row['symbol']); ?></strong>
