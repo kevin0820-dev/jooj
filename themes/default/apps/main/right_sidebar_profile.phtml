@@ -378,18 +378,18 @@ if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'
 				<?php if (not_empty($cl['hot_symbols'])): ?>
 					<div class="topical-posts__body">
 						<?php
-						$count = 0; // Initialize a counter
-						global $db;
-						foreach ($cl['hot_symbols'] as $row):
-							if ($count >= 5) break; // Stop after displaying 5 symbols
-							$symbol = $row['symbol'];
-							$db        = $db->where('username', $symbol);
-							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
-							if (empty($symbol_data)) { // Check if data is found
-								continue;
-							}
-							$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
-							$count++;
+							$count = 0; // Initialize a counter
+							global $db;
+							foreach ($cl['hot_symbols'] as $row):
+								if ($count >= 5) break; // Stop after displaying 5 symbols
+								$symbol = $row['symbol'];
+								$db        = $db->where('username', $symbol);
+								$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+								if (empty($symbol_data)) { // Check if data is found
+									continue;
+								}
+								$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+								$count++;
 						?>
 							<div class="topical-posts__item">
 								<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>">
