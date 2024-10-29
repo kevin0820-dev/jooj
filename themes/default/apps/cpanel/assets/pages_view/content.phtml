@@ -21,8 +21,197 @@
         }
     </style>
     <div class="d-block" id="vue-cpanel-users-app">
-
-
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                <?php echo cl_translate('Filter data'); ?>
+                            </h5>
+                        </div>
+                        <form class="form filter-data-form">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-2 input-group-solid">
+                                        <div class="filter-data-form-option">
+                                            <div>
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    <span>
+                                                        <?php echo cl_translate("Status"); ?>
+                                                    </span>
+                                                    <span>{{sorting.status.title}}</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a v-on:click="apply_status($event)" data-value="all" class="dropdown-item" href="javascript:void(0);">
+                                                        <?php echo cl_translate("All"); ?>
+                                                    </a>
+                                                    <a v-on:click="apply_status($event)" data-value="active" class="dropdown-item" href="javascript:void(0);">
+                                                        <?php echo cl_translate("Active"); ?>
+                                                    </a>
+                                                    <a v-on:click="apply_status($event)" data-value="blocked" class="dropdown-item" href="javascript:void(0);">
+                                                        <?php echo cl_translate("Blocked"); ?>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 input-group-solid">
+                                        <div class="filter-data-form-option">
+                                            <div>
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    <span>
+                                                        Type
+                                                    </span>
+                                                    <span>{{sorting.type.title}}</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a v-on:click="apply_type($event)" data-value="all" class="dropdown-item" href="javascript:void(0);">
+                                                        All
+                                                    </a>
+                                                    <a v-on:click="apply_type($event)" data-value="admin" class="dropdown-item" href="javascript:void(0);">
+                                                        Admin
+                                                    </a>
+                                                    <a v-on:click="apply_type($event)" data-value="user" class="dropdown-item" href="javascript:void(0);">
+                                                        User
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 input-group-solid">
+                                        <div class="filter-data-form-option">
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    <span>
+                                                        <?php echo cl_translate('Title'); ?>
+                                                    </span>
+                                                    <span>{{sorting.username.title}}</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-input">
+                                                    <table>
+                                                        <tr>
+                                                            <td class="label">
+                                                                <span><?php echo cl_translate('Username'); ?></span>
+                                                            </td>
+                                                            <td class="input">
+                                                                <input v-model="sorting.username.value" type="text" placeholder="<?php echo cl_translate('Search for users by name'); ?>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="apply-filter" colspan="2">
+                                                                <button v-on:click="apply_username" type="button">
+                                                                    <?php echo cl_translate('Apply'); ?>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 input-group-solid">
+                                        <div class="filter-data-form-option">
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary  dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    <span>
+                                                        <?php echo cl_translate('E-mail address'); ?>
+                                                    </span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-input">
+                                                    <table>
+                                                        <tr>
+                                                            <td class="label">
+                                                                <span>
+                                                                    <?php echo cl_translate('User e-mail'); ?>
+                                                                </span>
+                                                            </td>
+                                                            <td class="input">
+                                                                <input v-model="sorting.email.value" type="text" placeholder="<?php echo cl_translate('Search for users by email'); ?>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="apply-filter" colspan="2">
+                                                                <button v-on:click="apply_email" type="button">
+                                                                    <?php echo cl_translate('Apply'); ?>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 input-group-solid">
+                                        <div class="filter-data-form-option">
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    <span>
+                                                        Website
+                                                    </span>
+                                                    <span>{{sorting.ip.title}}</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-input">
+                                                    <table>
+                                                        <tr>
+                                                            <td class="label">
+                                                                <span>
+                                                                    IP
+                                                                </span>
+                                                            </td>
+                                                            <td class="input">
+                                                                <input v-model="sorting.ip.value" type="text" placeholder="<?php echo cl_translate('Search for users by IP'); ?>">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="apply-filter" colspan="2">
+                                                                <button v-on:click="apply_ip" type="button">
+                                                                    <?php echo cl_translate('Apply'); ?>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 input-group-solid">
+                                        <div class="filter-data-form-option">
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    <span>
+                                                        <?php echo cl_translate('Country'); ?>
+                                                    </span>
+                                                    <span>{{sorting.country.title}}</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-list">
+                                                    <a v-on:click="apply_country($event)" data-value="any" class="dropdown-item" href="javascript:void(0);">
+                                                        <?php echo cl_translate("Any"); ?>
+                                                    </a>
+                                                    <?php foreach ($cl['countries'] as $cid => $cname) : ?>
+                                                        <a v-on:click="apply_country($event)" data-value="<?php echo ($cid); ?>" class="dropdown-item" href="javascript:void(0);">
+                                                            <?php echo cl_translate($cname); ?>
+                                                        </a>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10">
+                                    </div>
+                                    <div class="col-sm-2 input-group-solid">
+                                        <div class="filter-data-form-option">
+                                            <button class="btn btn-danger" v-on:click="reset_form" type="button" v-bind:disabled="allow2reset != true">
+                                                <?php echo cl_translate("Reset filter"); ?>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">

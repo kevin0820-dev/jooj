@@ -166,7 +166,7 @@
                     var filter_data = _app_.get_filter_data();
 
                     $.ajax({
-                        url: '<?php echo cl_link("native_api/cpanel/get_users"); ?>',
+                        url: '<?php echo cl_link("native_api/cpanel/get_symbols"); ?>',
                         type: 'POST',
                         dataType: 'json',
                         data: {
@@ -208,7 +208,7 @@
                     var filter_data = _app_.get_filter_data();
 
                     $.ajax({
-                        url: '<?php echo cl_link("native_api/cpanel/search_users"); ?>',
+                        url: '<?php echo cl_link("native_api/cpanel/search_symbols"); ?>',
                         type: 'POST',
                         dataType: 'json',
                         data: {
