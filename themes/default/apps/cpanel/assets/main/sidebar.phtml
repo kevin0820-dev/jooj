@@ -164,6 +164,11 @@
                                                             } ?>" href="<?php echo cl_link('admin_panel/post_reports'); ?>"><i data-feather="bar-chart"></i><span> <?php echo cl_translate('Publication reports'); ?></span></a>
 
             </li>
+            <li class="sidebar-list"><a class="sidebar-link <?php if ($cl["cp_section"] == 'symbol_reports') {
+                                                              echo ('active');
+                                                            } ?>" href="<?php echo cl_link('admin_panel/symbol_reports'); ?>"><i data-feather="bar-chart"></i><span> <?php echo cl_translate('Coin reports'); ?></span></a>
+
+            </li>
             <!-- end section Reports -->
             <li class="sidebar-main-title">
               <div>
