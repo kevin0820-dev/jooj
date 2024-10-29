@@ -326,7 +326,49 @@ else if ($action == 'get_users') {
 		$data['html']   = implode('', $html_arr);
 	}
 }
+else if ($action == 'get_symbols') {
+	require_once(cl_full_path("core/apps/cpanel/pages_view/app_ctrl.php"));
 
+	$filter_data      = fetch_or_get($_POST['filter'], array());
+	$offset_to        = fetch_or_get($_POST['dir'], 'none');
+	$offset_lt        = ((is_posnum($_POST['offset_lt'])) ? intval($_POST['offset_lt']) : 0);
+	$offset_gt        = ((is_posnum($_POST['offset_gt'])) ? intval($_POST['offset_gt']) : 0);
+	$users            = array();
+	$data['status']   = 404;
+	$data['err_code'] = 0;
+	$html_arr         = array();
+
+	if ($offset_to == 'up' && $offset_lt) {
+		$users          = cl_admin_get_symbols(array(
+			'limit'     => 7,
+			'offset'    => $offset_lt,
+			'offset_to' => 'gt',
+			'order'     => 'ASC',
+			'filter'    => $filter_data
+		));
+
+		$users = array_reverse($users);
+	}
+
+	else if($offset_to == 'down' && $offset_gt) {
+		$users          = cl_admin_get_symbols(array(
+			'limit'     => 7,
+			'offset'    => $offset_gt,
+			'offset_to' => 'lt',
+			'order'     => 'DESC',
+			'filter'    => $filter_data
+		));
+	}
+
+	if (not_empty($users)) {
+		foreach ($users as $cl['li']) {
+			array_push($html_arr, cl_template('cpanel/assets/pages_view/includes/list_item'));
+		}
+
+		$data['status'] = 200;
+		$data['html']   = implode('', $html_arr);
+	}
+}
 else if ($action == 'search_users') {
 
 	require_once(cl_full_path("core/apps/cpanel/users/app_ctrl.php"));
@@ -350,6 +392,31 @@ else if ($action == 'search_users') {
 	else{
 		$data['status'] = 404;
 		$data['html']   = cl_template('cpanel/assets/users/includes/filter404');
+	}
+}
+else if ($action == 'search_symbols') {
+
+	require_once(cl_full_path("core/apps/cpanel/pages_view/app_ctrl.php"));
+
+	$filter_data      = fetch_or_get($_POST['filter'], array());
+	$data['err_code'] = 0;
+	$html_arr         = array();
+	$users            = cl_admin_get_symbols(array(
+		'limit'       => 7,
+		'filter'      => $filter_data
+	));
+
+	if (not_empty($users)) {
+		foreach ($users as $cl['li']) {
+			array_push($html_arr, cl_template('cpanel/assets/pages_view/includes/list_item'));
+		}
+
+		$data['status'] = 200;
+		$data['html']   = implode('', $html_arr);
+	}
+	else{
+		$data['status'] = 404;
+		$data['html']   = cl_template('cpanel/assets/pages_view/includes/filter404');
 	}
 }
 
