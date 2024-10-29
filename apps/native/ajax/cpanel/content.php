@@ -912,6 +912,47 @@ else if ($action == 'get_account_reports') {
 	}
 }
 
+else if ($action == 'get_symbol_reports') {
+
+	require_once(cl_full_path("core/apps/cpanel/symbol_reports/app_ctrl.php"));
+
+	$offset_to        = fetch_or_get($_GET['dir'], 'none');
+	$offset_lt        = ((is_posnum($_GET['offset_lt'])) ? intval($_GET['offset_lt']) : 0);
+	$offset_gt        = ((is_posnum($_GET['offset_gt'])) ? intval($_GET['offset_gt']) : 0);
+	$data['status']   = 404;
+	$data['err_code'] = 0;
+	$html_arr         = array();
+
+	if ($offset_to == 'up' && $offset_lt) {
+		$reports        = cl_admin_get_symbol_reports(array(
+			'limit'     => 7,
+			'offset'    => $offset_lt,
+			'offset_to' => 'gt',
+			'order'     => 'ASC'
+		));
+
+		$reports = array_reverse($reports);
+	}
+
+	else if($offset_to == 'down' && $offset_gt) {
+		$reports        = cl_admin_get_symbol_reports(array(
+			'limit'     => 7,
+			'offset'    => $offset_gt,
+			'offset_to' => 'lt',
+			'order'     => 'DESC'
+		));
+	}
+
+	if (not_empty($reports)) {
+		foreach ($reports as $cl['li']) {
+			array_push($html_arr, cl_template('cpanel/assets/symbol_reports/includes/list_item'));
+		}
+
+		$data['status'] = 200;
+		$data['html']   = implode('', $html_arr);
+	}
+}
+
 else if ($action == 'get_account_report_data') {
 
 	require_once(cl_full_path("core/apps/cpanel/account_reports/app_ctrl.php"));
@@ -927,7 +968,21 @@ else if ($action == 'get_account_report_data') {
 		$data['html']    = cl_template('cpanel/assets/account_reports/modals/popup_ticket');
 	}
 }
+else if ($action == 'get_symbol_report_data') {
 
+	require_once(cl_full_path("core/apps/cpanel/symbol_reports/app_ctrl.php"));
+
+	$report_id        = fetch_or_get($_GET['id'], 'none');
+	$data['status']   = 404;
+	$data['err_code'] = 0;
+	$cl['rep_data']   = cl_admin_get_symbol_report_data($report_id);
+
+	if (not_empty($cl['rep_data'])) {
+		$data['status']  = 200;
+		$data['is_seen'] = $cl['rep_data']['seen'];
+		$data['html']    = cl_template('cpanel/assets/symbol_reports/modals/popup_ticket');
+	}
+}
 else if($action == 'delete_account_report_data') {
 	$report_id        = fetch_or_get($_GET['id'], 'none');
 	$data['status']   = 404;

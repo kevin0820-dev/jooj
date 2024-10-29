@@ -56,7 +56,8 @@ function cl_admin_get_profile_reports($args = array()) {
 
 function cl_admin_get_total_profile_reports() {
 	global $db;
-
+    
+    $db = $db->where('symbol_id', 0);
 	$qr = $db->getValue(T_PROF_REPORTS, 'COUNT(*)');
 
 	if (is_posnum($qr)) {

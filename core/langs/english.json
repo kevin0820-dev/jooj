@@ -1542,6 +1542,7 @@
     "has_follower_you_know_home": "{@common_follows@} follower you know",
     "reports_description": "Manage Account, Publication  reports",
     "popup_report": "Account report details",
+    "popup_report_symbol": "Coin report details",
     "message_report": "Message from the applicant",
     "report_not_coments": "This user did not leave comments for this report",
     "verified": "Verified",
