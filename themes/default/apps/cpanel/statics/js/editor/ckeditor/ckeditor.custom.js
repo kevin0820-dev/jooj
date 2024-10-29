@@ -10,10 +10,18 @@ CKEDITOR.replace( 'editor1', {
                     contextEvent.cancel();
                 }
             }, null, null, 5 );
+        },
+        change: function(evt) {
+            // Get the current data from the editor
+            var data = evt.editor.getData();
+            // Update the original element's content
+            document.getElementById('editor1').innerHTML = data; // Replace 'editor1' with your original element's ID
         }
-    }
-} );
-
+    },
+});
+document.querySelector("form").addEventListener("submit", function() {
+    CKEDITOR.updateSourceElement();
+});
 // Inline ckeditor
 CKEDITOR.disableAutoInline = true;
 //init the area to be done
