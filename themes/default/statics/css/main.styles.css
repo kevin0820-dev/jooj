@@ -82,7 +82,7 @@ body[data-skin="default"] {
   border-bottom: none !important;
 }
 .svg-icon{
-  fill: var(--cl-primary-text-color) !important;
+  /* fill: var(--cl-primary-text-color) !important; */
 }
 .noBorder{
   border: none !important;
@@ -3536,7 +3536,7 @@ body
   /* padding: 0px 15px; */
   border-bottom: 0px solid var(--smc-main-border-color) !important;
   background: var(--smc-main-bg-color);
-  opacity: 0.97;
+  /* opacity: 0.97; */
   position: sticky;
   top: 0;
   z-index: 50;
@@ -7608,9 +7608,11 @@ body
   div.sidebar-v-nav-wrapper
   ul.sidebar-v-nav
   li.sidebar-v-nav-item:hover {
-  background: rgb(15, 20, 25, 0.1);
+  color:#dad6ff !important;
+  /* transform: scale(1.05); */
+  background: #eeecff;
   padding: 0;
-  margin: 0;
+  /* margin: 0; */
   padding-left: 5px;
   line-height: 0;
   border: none;
@@ -7671,13 +7673,26 @@ body
   div.sidebar-v-nav-wrapper
   ul.sidebar-v-nav
   li.sidebar-v-nav-item {
+  margin-top: 5px;
+  transition: all 0.4s ease;
   width: 90%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  height: 50px; /*Edited by Kevin left sidebar menu height*/
+  height: 46px;
   padding-left: 5px;
   align-items: center;
+  border-radius: 0.5em;
+}
+body
+  main.main-content-container
+  div.main-content-container-inner
+  div.left-sb-container
+  div.sidebar__inner
+  div.sidebar-v-nav-wrapper
+  ul.sidebar-v-nav
+  li.sidebar-v-nav-item.active{
+    background-color: #dad6ff;
 }
 
 body
@@ -7725,7 +7740,7 @@ body
   li.sidebar-v-nav-item
   span.icon.home
   svg {
-  stroke: var(--smc-main-text-color);
+  /* stroke: var(--smc-main-text-color); */
   stroke-width: 1.5px;
   width: 18.5px !important;
   height: 18.5px !important;
@@ -7742,6 +7757,7 @@ body
   li.sidebar-v-nav-item.active
   span.icon.home
   svg {
+  color:#7366ff;
   stroke-width: 2;
   /* fill: var(--smc-main-text-color); */
 }
@@ -7756,6 +7772,7 @@ body
   span.icon
   svg {
   stroke-width: 2;
+  color:#7366ff;
   /* fill: var(--smc-main-text-color); */
 }
 .topical-posts__item svg {
@@ -7963,8 +7980,8 @@ body
   li.sidebar-v-nav-item.active
   span.nav-item-holder
   > a {
-  color: var(--smc-main-text-color);
-  font-weight: 700;
+  color: #7366ff;
+  /* font-weight: 700; */
 }
 body
   main.main-content-container
