@@ -2,7 +2,6 @@
 CKEDITOR.replace( 'editor1', {
     on: {
         contentDom: function( evt ) {
-            // Allow custom context menu only with table elemnts.
             evt.editor.editable().on( 'contextmenu', function( contextEvent ) {
                 var path = evt.editor.elementPath();
 
@@ -12,10 +11,8 @@ CKEDITOR.replace( 'editor1', {
             }, null, null, 5 );
         },
         change: function(evt) {
-            // Get the current data from the editor
             var data = evt.editor.getData();
-            // Update the original element's content
-            document.getElementById('editor1').innerHTML = data; // Replace 'editor1' with your original element's ID
+            document.getElementById('editor1').innerHTML = data;
         }
     },
 });
