@@ -9,7 +9,7 @@
 # @ Copyright (c) 2020 - 2021 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
 
-function cl_admin_get_profile_reports($args = array()) {
+function cl_admin_get_symbol_reports($args = array()) {
 	global $db;
 
 	$args           = (is_array($args)) ? $args : array();
@@ -27,14 +27,16 @@ function cl_admin_get_profile_reports($args = array()) {
     $offset_to      = $args['offset_to'];
     $data           = array();
     $t_users        = T_USERS;
+    $t_symbols      = T_SYMBOLS;
     $t_reports      = T_PROF_REPORTS;
-    $sql            = cl_sqltepmlate('apps/cpanel/account_reports/sql/fetch_reports',array(
+    $sql            = cl_sqltepmlate('apps/cpanel/symbol_reports/sql/fetch_reports',array(
         'offset'    => $offset,
         't_users'   => $t_users,
         't_reports' => $t_reports,
         'limit'     => $limit,
         'offset_to' => $offset_to,
-        'order'     => $order
+        'order'     => $order,
+        't_symbols' => $t_symbols
     ));
 
     $data    = array();
@@ -54,10 +56,10 @@ function cl_admin_get_profile_reports($args = array()) {
     return $data;
 }
 
-function cl_admin_get_total_profile_reports() {
+function cl_admin_get_total_symbol_reports() {
 	global $db;
-    
-    $db = $db->where('symbol_id', 0);
+
+    $db = $db->where('profile_id', 0);
 	$qr = $db->getValue(T_PROF_REPORTS, 'COUNT(*)');
 
 	if (is_posnum($qr)) {
@@ -67,7 +69,7 @@ function cl_admin_get_total_profile_reports() {
 	return 0;
 }
 
-function cl_admin_get_account_report_data($report_id = false) {
+function cl_admin_get_symbol_report_data($report_id = false) {
 	global $db;
 
 	if (not_num($report_id)) {
@@ -76,9 +78,11 @@ function cl_admin_get_account_report_data($report_id = false) {
 
     $data         = array();
     $t_users      = T_USERS;
+    $t_symbols    = T_SYMBOLS;
     $t_reps       = T_PROF_REPORTS;
-    $sql          = cl_sqltepmlate('apps/cpanel/account_reports/sql/fetch_report_data',array(
+    $sql          = cl_sqltepmlate('apps/cpanel/symbol_reports/sql/fetch_report_data',array(
         't_users' => $t_users,
+        't_symbols'=>$t_symbols,
         't_reps'  => $t_reps,
         'rep_id'  => $report_id,
     ));

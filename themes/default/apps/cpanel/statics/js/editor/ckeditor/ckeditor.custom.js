@@ -2,7 +2,6 @@
 CKEDITOR.replace( 'editor1', {
     on: {
         contentDom: function( evt ) {
-            // Allow custom context menu only with table elemnts.
             evt.editor.editable().on( 'contextmenu', function( contextEvent ) {
                 var path = evt.editor.elementPath();
 
@@ -10,10 +9,16 @@ CKEDITOR.replace( 'editor1', {
                     contextEvent.cancel();
                 }
             }, null, null, 5 );
+        },
+        change: function(evt) {
+            var data = evt.editor.getData();
+            document.getElementById('editor1').innerHTML = data;
         }
-    }
-} );
-
+    },
+});
+document.querySelector("form").addEventListener("submit", function() {
+    CKEDITOR.updateSourceElement();
+});
 // Inline ckeditor
 CKEDITOR.disableAutoInline = true;
 //init the area to be done
