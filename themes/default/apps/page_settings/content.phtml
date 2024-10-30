@@ -29,53 +29,52 @@
     </div>
     <div class="container">
         <?php
-            $symbol_id = fetch_or_get($_GET["symbol_id"], false);
-            $symbol_username = fetch_or_get($_GET["symbol_username"], false);
+        $symbol_id = fetch_or_get($_GET["symbol_id"], false);
+        $symbol_username = fetch_or_get($_GET["symbol_username"], false);
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST["symbol_id"])) {
-                    $symbol_id = $_POST["symbol_id"];
-                    if (isset($_FILES['avatar']) && not_empty($_FILES['avatar']['tmp_name'])) {
-                        echo "<div class='px-4 bg-green-200 rounded-md py-2'><p class='text-green-600 px-2'>Avatar uploaded successfully</p></div>";
-                    }
-                    if (isset($_FILES['cover']) && not_empty($_FILES['cover']['tmp_name'])) {
-                        echo "<div class='px-4 bg-green-200 rounded-md py-2'><p class='text-green-600 px-2'>Cover uploaded successfully</p></div>";
-                    } else {
-                        if (isset($_POST["name"]) && isset($_POST["raw_sname"]) && isset($_POST["email"]) && isset($_POST["about"]) && isset($_POST["country"]) && isset($_POST["website"]) && isset($_POST["city"])) {
-                            $data = array(
-                                "fname" => $_POST["name"],
-                                "username" => $_POST["raw_sname"],
-                                "email" => $_POST["email"],
-                                "about" => $_POST["about"],
-                                "country_id" => $_POST["country"],
-                                "website" => $_POST["website"],
-                                "city" => $_POST["city"]
-                            );
-                            if (cl_update_symbol_data($symbol_id, $data)) {
-                                echo "<div class='px-4 bg-green-200 rounded-md py-2'><p class='text-green-600 px-2'>Page data has been successfully updated</p></div>";
-                            } else {
-                                echo "<p class='text-red-600'>An error occurred while updating page data.</p>";
-                            }
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["symbol_id"])) {
+                $symbol_id = $_POST["symbol_id"];
+                if (isset($_FILES['avatar']) && not_empty($_FILES['avatar']['tmp_name'])) {
+                    echo "<div class='px-4 bg-green-200 rounded-md py-2'><p class='text-green-600 px-2'>Avatar uploaded successfully</p></div>";
+                }
+                if (isset($_FILES['cover']) && not_empty($_FILES['cover']['tmp_name'])) {
+                    echo "<div class='px-4 bg-green-200 rounded-md py-2'><p class='text-green-600 px-2'>Cover uploaded successfully</p></div>";
+                } else {
+                    if (isset($_POST["name"]) && isset($_POST["raw_sname"]) && isset($_POST["email"]) && isset($_POST["about"]) && isset($_POST["country"]) && isset($_POST["website"]) && isset($_POST["city"])) {
+                        $data = array(
+                            "fname" => $_POST["name"],
+                            "username" => $_POST["raw_sname"],
+                            "email" => $_POST["email"],
+                            "about" => $_POST["about"],
+                            "country_id" => $_POST["country"],
+                            "website" => $_POST["website"],
+                            "city" => $_POST["city"]
+                        );
+                        if (cl_update_symbol_data($symbol_id, $data)) {
+                            echo "<div class='px-4 bg-green-200 rounded-md py-2'><p class='text-green-600 px-2'>Page data has been successfully updated</p></div>";
                         } else {
-                            echo "";
+                            echo "<p class='text-red-600'>An error occurred while updating page data.</p>";
                         }
-                    }
-                }
-                else {
-                    echo "";
-                }
-                if(isset($_POST["id"])){
-                    $data = array(
-                        "title" => $_POST["title"],
-                        "answer" => $_POST["answer"],
-                    );
-                    if(cl_update_question_data($_POST["id"], $data)){
-                        echo "<div class='px-4 bg-green-200 rounded-md py-2'><p class='text-green-600 px-2'>Question data has been successfully updated</p></div>";
                     } else {
-                        echo "<p class='text-red-600'>An error occurred while updating question data.</p>";
+                        echo "";
                     }
+                }
+            } else {
+                echo "";
+            }
+            if (isset($_POST["id"])) {
+                $data = array(
+                    "title" => $_POST["title"],
+                    "answer" => $_POST["answer"],
+                );
+                if (cl_update_question_data($_POST["id"], $data)) {
+                    echo "<div class='px-4 bg-green-200 rounded-md py-2'><p class='text-green-600 px-2'>Question data has been successfully updated</p></div>";
+                } else {
+                    echo "<p class='text-red-600'>An error occurred while updating question data.</p>";
                 }
             }
+        }
         ?>
         <form method="post" action="" class="px-3 py-3">
             <input type="hidden" name="symbol_id" value="<?php echo $cl['symbol']['id']; ?>">
@@ -154,31 +153,38 @@
         <div class="px-3">
             <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Add/Edit questions</label>
         </div>
-        <?php foreach($cl['symbol']['questions'] as $cl['question']): ?>
+        <?php 
+        $iteration = 1;
+        foreach ($cl['symbol']['questions'] as $cl['question']): ?>
             <form method="post" action="" class="px-3 py-3">
                 <input type="hidden" name="id" value="<?php echo $cl['question']['id']; ?>">
                 <div id="qa-container">
-                    <div class="qa-item mb-1">                        
-                        <input name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter your question" value="<?php echo $cl['question']['title']; ?>">
+                    <div class="qa-item mb-1">
+                        <div class="flex content-center flex-wrap">
+                         <p class="text-gray-900">Question <?php echo $iteration; ?></p> 
+                            <input name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Enter your question" value="<?php echo $cl['question']['title']; ?>">
+                        </div>
                     </div>
                     <div class="mb-2">
                         <textarea name="answer" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Enter your answer"><?php echo $cl['question']['answer']; ?></textarea>
+                            placeholder="Enter your answer"><?php echo $cl['question']['answer']; ?></textarea>
                     </div>
                 </div>
                 <div class="flex w-full justify-end text-gray-900">
                     <button type="submit"
-                            class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <?php echo cl_translate("save_changes"); ?>
                     </button>
                 </div>
             </form>
-        <?php endforeach ?>
-        <div class="flex w-full justify-end">
-            <button type="button" class="text-gray-900 flex items-center p-2" data-toggle="modal" data-target="#add_new_question">
+        <?php 
+        $iteration++;
+        endforeach ?>
+        <div class="flex w-full  justify-start">
+            <button type="button" class="ml-2 text-gray-900 flex items-center p-2" data-toggle="modal" data-target="#add_new_question">
                 <?php echo cl_ikon('plus'); ?>
-                <span class="ml-2">Add questions</span>
+                <span class="ml-2">Add more questions</span>
             </button>
         </div>
 
@@ -206,4 +212,3 @@
         </div>
     </div>
 </div>
-

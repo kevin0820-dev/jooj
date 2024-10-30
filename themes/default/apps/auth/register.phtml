@@ -1,3 +1,4 @@
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
 <form class="form" id="cl-signup-vue-app" v-on:submit="submit_form($event)" autocomplete="off">
 	<div class="form-title">
 		<h2>
@@ -58,7 +59,7 @@
 		</div>
 	</div>
 	
-	<?php if ($cl["pn"] == "guest" && $cl["auth_type"] == "signup"): ?>
+	<?php if ($cl["pn"] == "feed" || $cl["pn"] == "guest"): ?>
 		<?php if ($cl["config"]["google_recaptcha"] == "on"): ?>
 			<div class="form-group">
 				<div class="d-flex justify-content-center">
