@@ -345,7 +345,7 @@ use Aws\DynamoDb\NumberValue;
 							<?php else : echo "No Data"; ?>
 							<?php endif ?>
 						</div>
-						<div style="padding-left:10px; font-weight:bold; color: <?php echo (floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
+						<div style="padding-left:10px; font-weight:bold; color: <?php echo (isset($cl['coin_one']['change_pct_24h']) && floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
 							<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
 								<?php echo $cl['coin_one']['change_pct_24h']; ?>
 							<?php else : ?>
