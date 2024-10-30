@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<?php echo "<script>console.log('". $cl['pn'] ."')</script>"?>
 <div class="left-sb-container sidebar" data-app="left-sidebar">
 	<div class="sidebar__inner">
 		<div style="display: flex; flex-direction: column; height: 100%; gap: 20px">
@@ -149,7 +150,7 @@
 							</span>
 						</li>
 						<?php if ($cl['config']['blue_account_system_status'] == 'off'): ?>
-							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
+							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	/* edited by kevin change into button with full width */
 								echo ('active');
 							} ?>">
 								<span class="icon">
@@ -157,7 +158,7 @@
 								</span>
 								<span class="nav-item-holder">
 									<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
-										Watching
+										Watchlist
 									</a>
 								</span>
 							</li>
@@ -165,7 +166,7 @@
 						<!-- Blue Account -->
 						<?php if ($cl['config']['blue_account_system_status'] == 'on'): ?>
 							<?php if ($me["is_blue"] == 1): ?>
-								<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'trending') {	/* edited by kevin change into button with full width */
+								<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	/* edited by kevin change into button with full width */
 									echo ('active');
 								} ?>">
 									<span class="icon">
@@ -173,7 +174,7 @@
 									</span>
 									<span class="nav-item-holder">
 										<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
-											<?php echo cl_translate('actual'); ?>
+											Watchlist
 										</a>
 									</span>
 								</li>
@@ -254,7 +255,6 @@
 												</b>
 											</span>
 										</a>
-
 										<a class="dropdown-item" href="<?php echo cl_link("ads"); ?>" data-spa="true">
 											<span class="flex-item dropdown-item-icon">
 												<?php echo cl_ikon('feed'); ?>
@@ -279,7 +279,6 @@
 										<?php if ($me["is_blue"] == 1): ?>
 											<a class="dropdown-item" href="<?php echo cl_link("blue_features"); ?>"
 												data-navitem="blue_features">
-
 												<span class="flex-item dropdown-item-icon">
 													<svg viewBox="0 0 24 24" aria-hidden="true"
 														class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-lwhw9o r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-cnnz9e">
@@ -291,15 +290,11 @@
 													</svg>
 												</span>
 												<span class="flex-item">
-
 													<?php echo cl_translate('Blue features'); ?>
-
 												</span>
 											</a>
 										<?php else: ?>
-											<a class="dropdown-item" href="<?php echo cl_link('trending'); ?>" data-spa="true"
-												data-navitem="trending">
-
+											<a class="dropdown-item" href="<?php echo ($me['url']); ?>/watching" data-spa="true" data-navitem="watchings">
 												<span class="flex-item dropdown-item-icon">
 													<svg viewBox="0 0 24 24" aria-hidden="true"
 														class="r-1kihuf0 r-18jsvk2 r-4qtqp9 r-yyyyoo r-1q142lx r-1472mwg r-mbgqwd r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp"
@@ -312,9 +307,7 @@
 													</svg>
 												</span>
 												<span class="flex-item">
-
-													<?php echo cl_translate('actual'); ?>
-
+													Watchlist
 												</span>
 											</a>
 										<?php endif; ?>

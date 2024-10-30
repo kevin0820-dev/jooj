@@ -1,4 +1,4 @@
-<tr data-list-item="<?php echo($cl['li']['id']); ?>" data-user-id="<?php echo($cl['li']['profile_id']); ?>">
+<tr data-list-item="<?php echo($cl['li']['id']); ?>" data-user-id="<?php echo(isset($cl['li']['profile_id']) && $cl['li']['profile_id'] > 0 ? $cl['li']['profile_id'] : $cl['li']['symbol_id']); ?>">
     <td>
         <?php echo($cl['li']['id']); ?>
     </td>
@@ -21,7 +21,7 @@
     </td>
     <td>
         <span>
-            <?php echo $cl['profile_report_types'][$cl['li']['reason']]; ?>
+            <?php echo $cl['symbol_report_types'][$cl['li']['reason']]; ?>
         </span>
     </td>
     <td>
@@ -35,7 +35,7 @@
                         <?php echo($cl['li']['u2_name']); ?>
                     </span>
                 </b>
-                <a href="<?php echo($cl['li']['u2_url']); ?>">
+                <a href="<?php echo('/symbol'.$cl['li']['u2_url']); ?>">
                     <?php echo($cl['li']['u2_username']); ?>
                 </a>
             </div>
@@ -63,16 +63,16 @@
             <i class="material-icons">more_horiz</i>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="javascript:void(0);" class="dropdown-item" onclick="CSMAccountReports.show('<?php echo($cl['li']['id']); ?>');">
+                <a href="javascript:void(0);" class="dropdown-item" v-on:click="show('<?php echo($cl['li']['id']); ?>');">
                     <?php echo cl_translate('Show details'); ?>
                 </a>
-                <a href="<?php echo($cl['li']['u2_url']); ?>" class="dropdown-item">
-                    <?php echo cl_translate('Profile'); ?>
+                <a href="<?php echo('/symbol/'.$cl['li']['u2_url']); ?>" class="dropdown-item">
+                    <?php echo cl_translate('Coin'); ?>
                 </a>
-                <a href="javascript:void(0);" class="dropdown-item" onclick="SMC_CPanel.delete_user('<?php echo($cl['li']['profile_id']); ?>');">
+                <a href="javascript:void(0);" class="dropdown-item" onclick="SMC_CPanel.delete_user('<?php echo($cl['li']['symbol_id']); ?>');">
                     <?php echo cl_translate('Delete'); ?>
                 </a>
-                <a href="javascript:void(0);" class="dropdown-item" onclick="CSMAccountReports.ignore('<?php echo($cl['li']['id']); ?>');">
+                <a href="javascript:void(0);" class="dropdown-item" v-on:click="ignore('<?php echo($cl['li']['id']); ?>');">
                     <?php echo cl_translate('Ignore'); ?>
                 </a>
             </ul>

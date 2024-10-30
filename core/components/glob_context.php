@@ -73,6 +73,15 @@ $cl['profile_report_types'] = array(
     '6' => 'Other',
 );
 
+$cl['symbol_report_types'] = array(
+  '1' => 'This coin using this account for smap',
+  '2' => 'This coin pretended to be someone',
+  '3' => 'This coin posting inappropriate content',
+  '4' => 'This is a deleted coin',
+  '5' => 'This is a fraudulent coin',
+  '6' => 'Other',
+);
+
 $cl['post_report_types'] = array(
     '1' => 'This is spam',
     '2' => 'Misleading or fraudulent',

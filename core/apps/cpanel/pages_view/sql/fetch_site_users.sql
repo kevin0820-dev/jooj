@@ -42,11 +42,11 @@ SELECT `id`, `email`, `active`, `avatar`, `admin`, `active`, `verified`, `last_a
 		<?php endif; ?>
 
 		<?php if(not_empty($data['filter']['ip'])): ?>
-			AND `ip_address` = "<?php echo cl_text_secure($data['filter']['ip']); ?>"
+			AND `website` LIKE "%<?php echo cl_text_secure($data['filter']['ip']); ?>%"
 		<?php endif; ?>
 
 		<?php if(not_empty($data['filter']['email'])): ?>
-			AND `email` = "<?php echo cl_text_secure($data['filter']['email']); ?>"
+			AND `email` LIKE "%<?php echo cl_text_secure($data['filter']['email']); ?>%"
 		<?php endif; ?>
 
 		<?php if(not_empty($data['filter']['status'])): ?>

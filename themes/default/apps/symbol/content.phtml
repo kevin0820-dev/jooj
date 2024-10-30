@@ -342,14 +342,14 @@ use Aws\DynamoDb\NumberValue;
 					<div style="width: 75%; display:flex;">
 						<div style="padding-left: 14px; font-size:xx-large; color:var(--smc-main-text-color); font-weight:bold" id='price'>
 							<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : echo "$" . $cl['coin_one']['price']; ?>
-							<?php else : echo "Error" ?>
+							<?php else : echo "No Data"; ?>
 							<?php endif ?>
 						</div>
 						<div style="padding-left:10px; font-weight:bold; color: <?php echo (floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
 							<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
 								<?php echo $cl['coin_one']['change_pct_24h']; ?>
 							<?php else : ?>
-								<?php echo "Error"; ?>
+								<?php echo "No Data"; ?>
 							<?php endif; ?>
 							%(1d)
 						</div>
