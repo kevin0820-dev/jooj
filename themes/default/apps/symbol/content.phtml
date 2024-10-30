@@ -1,30 +1,35 @@
 <div class="timeline-container" data-app="symbol">
 	<?php
-		$coin_id = strtoupper($cl['prof_user']['username']);
-		$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
-		$response = curl_exec($ch);
-		if ($response === false) {
-			echo 'Curl error: ' . curl_error($ch);
-			curl_close($ch);
-			exit;
-		}
+
+use Aws\DynamoDb\NumberValue;
+
+	$coin_id = strtoupper($cl['prof_user']['username']);
+	$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
+	$response = curl_exec($ch);
+	if ($response === false) {
+		echo 'Curl error: ' . curl_error($ch);
 		curl_close($ch);
-		$data = json_decode($response, true);
-		if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
-			$cl['coin_one'] = [
-				'price' => number_format($data['RAW'][$coin_id]['USD']['PRICE'], 2),
-				'high_24h' => number_format($data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
-				'low_24h' => number_format($data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
-				'change_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
-				'change_pct_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
-			];
-		} else {
-			$cl['coin_one'] = [];
-		}
+		exit;
+	}
+	curl_close($ch);
+	$data = json_decode($response, true);
+	if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
+		$price = $data['RAW'][$coin_id]['USD']['PRICE'];
+		$decimal_places = ($price < 0.01) ? 7 : 2;
+		$cl['coin_one'] = [
+			'price' => number_format($data['RAW'][$coin_id]['USD']['PRICE'], $decimal_places),
+			'high_24h' => number_format($data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
+			'low_24h' => number_format($data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
+			'change_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
+			'change_pct_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
+		];
+	} else {
+		$cl['coin_one'] = [];
+	}
 	?>
 	<div class="h-laptop">
 		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
@@ -54,13 +59,13 @@
 			</div>
 			<div class="rp middle">
 				<div class="nav-link-holde">
-					<button class="go-options dropleft show bt-3" onclick = '$("#searchBar").slideToggle()'>
+					<button class="go-options dropleft show bt-3" onclick='$("#searchBar").slideToggle()'>
 						<?php echo cl_icon('search'); ?>
 					</button>
 				</div>
 			</div>
 		</div>
-		<div class="main-search-bar-container" id = "searchBar" style="display: none;">
+		<div class="main-search-bar-container" id="searchBar" style="display: none;">
 			<form class="form" id="vue-main-search-app" v-on:submit="search_onsubmit" autocomplete="off">
 				<div class="input-holder">
 					<input v-model="search_query" v-on:input="search" type="text" class="form-control"
@@ -101,14 +106,14 @@
 					</span>
 				<?php endif; ?>
 			</div>
-			<div style="display: none;" id = "priceHeader">
+			<div style="display: none;" id="priceHeader">
 				<div style="display:flex;">
 					<div style="padding-left: 14px; font-size:large; color:var(--smc-main-text-color); font-weight:bold">
 						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : echo "$" . $cl['coin_one']['price']; ?>
 						<?php else : echo "Error" ?>
 						<?php endif ?>
 					</div>
-					<div style="padding-left:10px; color:#06806b; font-weight:bold;">
+					<div style="padding-left:10px; font-weight:bold; color: <?php echo (floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
 						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
 							<?php echo $cl['coin_one']['change_pct_24h']; ?>%(1d)
 						<?php else : ?>
@@ -118,22 +123,26 @@
 				</div>
 			</div>
 		</div>
-		<div class="profile-activity-navbar noBorder" id = "selectionPane" style="display: none;">
+		<div class="profile-activity-navbar noBorder" id="selectionPane" style="display: none;">
 			<a>
-				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'posts') {echo ('active');} ?>" onclick='select("posts")'>
+				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'posts') {
+															echo ('active');
+														} ?>" onclick='select("posts")'>
 					<?php echo cl_translate("For You"); ?>
 				</button>
 				<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {
-											echo ('active');
-										} ?>"></div>
+												echo ('active');
+											} ?>"></div>
 			</a>
-			<a  style="margin-left: 15px;">
-				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'media') {echo ('active');} ?>"onclick='select("about")'>
+			<a style="margin-left: 15px;">
+				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'media') {
+															echo ('active');
+														} ?>" onclick='select("about")'>
 					<?php echo cl_translate("About"); ?>
 				</button>
 				<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'media') {
-											echo ('active');
-										} ?>"></div>
+												echo ('active');
+											} ?>"></div>
 			</a>
 		</div>
 	</div>
@@ -159,294 +168,304 @@
 						</div>
 					</div>
 					<div class="profile-page-ctrls" style="width: 50%;">
-					<?php if (empty($cl['is_admin'])): ?>
-						<button class="ctrl-item dropleft ">
-							<span class=" flex items-center justify-center border rounded-full h-9 w-9 -mt-1"
-								data-toggle="dropdown">
-								<div class="w-5 h-5"><?php echo cl_ikon('pr-down'); ?></div>
-							</span>
-							<div class="dropdown-menu dropdown-icons">
-								<a class="dropdown-item" href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>">
-									<span class="flex-item dropdown-item-icon">
-										<?php echo cl_ikon("people"); ?>
-									</span>
-									<span class="flex-item">
-										<?php echo cl_translate('Show Watchers'); ?>
-									</span>
-								</a>
-								<a data-clipboard-text="<?php $currentDomain = (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST']; echo (cl_strf('%s/symbol/%s', $currentDomain, $cl['prof_user']['username'])); ?>"
-									class="dropdown-item clip-board-copy" href="javascript:void(0);">
-									<span class="flex-item dropdown-item-icon">
-										<svg viewBox="0 0 24 24" aria-hidden="true"
-											class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-1q142lx r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr">
-											<g>
-												<path
-													d="M18.36 5.64c-1.95-1.96-5.11-1.96-7.07 0L9.88 7.05 8.46 5.64l1.42-1.42c2.73-2.73 7.16-2.73 9.9 0 2.73 2.74 2.73 7.17 0 9.9l-1.42 1.42-1.41-1.42 1.41-1.41c1.96-1.96 1.96-5.12 0-7.07zm-2.12 3.53l-7.07 7.07-1.41-1.41 7.07-7.07 1.41 1.41zm-12.02.71l1.42-1.42 1.41 1.42-1.41 1.41c-1.96 1.96-1.96 5.12 0 7.07 1.95 1.96 5.11 1.96 7.07 0l1.41-1.41 1.42 1.41-1.42 1.42c-2.73 2.73-7.16 2.73-9.9 0-2.73-2.74-2.73-7.17 0-9.9z">
-												</path>
-											</g>
-										</svg>
-									</span>
-									<span class="flex-item">
-										<?php echo cl_translate('Copy link to Coin page'); ?>
-									</span>
-								</a>
-								<a class="dropdown-item" onclick="SMColibri.PS.profile_report.open();"
-									href="javascript:void(0);">
-									<span class="flex-item dropdown-item-icon">
-										<?php echo cl_ikon("flag"); ?>
-									</span>
-									<span class="flex-item">
-										<?php echo cl_translate('Report'); ?> $
-										<?php echo ($cl['prof_user']['username']); ?>
-									</span>
-								</a>
-							</div>
-						</button>
-						<?php if (empty($cl['prof_user']['is_blocked'])): ?>
-							<?php if (empty($cl['prof_user']['me_blocked'])): ?>
-								<?php if ($cl['prof_user']['follow_privacy'] == 'approved'): ?>
-									<?php if (not_empty($cl['prof_user']['is_following'])): ?>
-										<div>
-											<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-inline md"
-												data-action="unfollow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
-												data-id="<?php echo ($cl['prof_user']['id']); ?>">
-												<?php echo cl_translate("Unfollow"); ?>
-											</button>
-										</div>
-									<?php elseif (not_empty($cl['prof_user']['follow_requested'])): ?>
-										<div>
-											<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-inline md"
-												data-action="cancel" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
-												data-id="<?php echo ($cl['prof_user']['id']); ?>">
-												<?php echo cl_translate("Pending"); ?>
-											</button>
-										</div>
-									<?php else: ?>
-										<div>
-											<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-outline md"
-												data-action="follow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
-												data-id="<?php echo ($cl['prof_user']['id']); ?>">
-												<?php echo cl_translate("watch"); ?>
-											</button>
-										</div>
-									<?php endif; ?>
-								<?php else: ?>
-									<?php if (not_empty($cl['prof_user']['is_following'])): ?>
-										<div>
-											<button onclick="SMColibri.watch(this);" class="btn btn-custom main-inline md"
-												data-action="unfollow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
-												data-id="<?php echo ($cl['prof_user']['id']); ?>">
-												<?php echo cl_translate("unwatch"); ?>
-											</button>
-										</div>
-									<?php else: ?>
-										<div>
-											<button onclick="SMColibri.watch(this);" class="btn btn-custom main-outline md" data-action="follow"
-												data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
-												data-id="<?php echo ($cl['prof_user']['id']); ?>">
-												<?php echo cl_translate("watch"); ?>
-											</button>
-										</div>
-									<?php endif; ?>
-								<?php endif; ?>
-							<?php endif ?>
-						<?php endif; ?>
-					<?php else : ?>
-						<button class="ctrl-item dropleft ">
-							<span class=" flex items-center justify-center border rounded-full h-9 w-9 -mt-1"
-								data-toggle="dropdown">
-								<div class="w-5 h-5"> <?php echo cl_ikon('pr-down'); ?></div>
-							</span>
-							<div class="dropdown-menu dropdown-icons">
-								<a class="dropdown-item" href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>">
-									<span class="flex-item dropdown-item-icon">
-										<?php echo cl_ikon("people"); ?>
-									</span>
-									<span class="flex-item">
-										<?php echo cl_translate('Show Watchers'); ?>
-									</span>
-								</a>
-								<a data-clipboard-text="<?php $currentDomain = (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST']; echo (cl_strf('%s/symbol/%s', $currentDomain, $cl['prof_user']['username'])); ?>"
-									class="dropdown-item clip-board-copy" href="javascript:void(0);">
-									<span class="flex-item dropdown-item-icon">
-										<?php echo cl_ikon("copy"); ?>
-									</span>
-									<span class="flex-item">
-										<?php echo cl_translate('Copy link to Coin page'); ?>
-									</span>
-								</a>
-								<?php if (not_empty($cl['is_logged'])): ?>
-									<?php if (not_empty($cl['is_admin'])): ?>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item"
-											onclick="SMColibri.delete_account(<?php echo ($cl['prof_user']['id']); ?>);"
-											href="javascript:void(0);">
-											<span class="flex-item dropdown-item-icon">
-												<?php echo cl_icon("delete"); ?>
-											</span>
-											<span class="flex-item">
-												<?php echo cl_translate('Delete'); ?> $
-												<?php echo ($cl['prof_user']['username']); ?>
-											</span>
-										</a>
-										<?php if ($cl['prof_user']['active'] == "2"): ?>
-											<a class="dropdown-item"
-												onclick="SMColibri.unsuspend_account(<?php echo ($cl['prof_user']['id']); ?>);"
-												href="javascript:void(0);">
-												<span class="flex-item dropdown-item-icon">
-													<?php echo cl_icon("person"); ?>
-												</span>
-												<span class="flex-item">
-													<?php echo cl_translate('Unsuspend'); ?> $
-													<?php echo ($cl['prof_user']['username']); ?>
-												</span>
-
-											</a>
+						<?php if (empty($cl['is_admin'])): ?>
+							<button class="ctrl-item dropleft ">
+								<span class=" flex items-center justify-center border rounded-full h-9 w-9 -mt-1"
+									data-toggle="dropdown">
+									<div class="w-5 h-5"><?php echo cl_ikon('pr-down'); ?></div>
+								</span>
+								<div class="dropdown-menu dropdown-icons">
+									<a class="dropdown-item" href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>">
+										<span class="flex-item dropdown-item-icon">
+											<?php echo cl_ikon("people"); ?>
+										</span>
+										<span class="flex-item">
+											<?php echo cl_translate('Show Watchers'); ?>
+										</span>
+									</a>
+									<a data-clipboard-text="<?php $currentDomain = (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST'];
+															echo (cl_strf('%s/symbol/%s', $currentDomain, $cl['prof_user']['username'])); ?>"
+										class="dropdown-item clip-board-copy" href="javascript:void(0);">
+										<span class="flex-item dropdown-item-icon">
+											<svg viewBox="0 0 24 24" aria-hidden="true"
+												class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-1q142lx r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr">
+												<g>
+													<path
+														d="M18.36 5.64c-1.95-1.96-5.11-1.96-7.07 0L9.88 7.05 8.46 5.64l1.42-1.42c2.73-2.73 7.16-2.73 9.9 0 2.73 2.74 2.73 7.17 0 9.9l-1.42 1.42-1.41-1.42 1.41-1.41c1.96-1.96 1.96-5.12 0-7.07zm-2.12 3.53l-7.07 7.07-1.41-1.41 7.07-7.07 1.41 1.41zm-12.02.71l1.42-1.42 1.41 1.42-1.41 1.41c-1.96 1.96-1.96 5.12 0 7.07 1.95 1.96 5.11 1.96 7.07 0l1.41-1.41 1.42 1.41-1.42 1.42c-2.73 2.73-7.16 2.73-9.9 0-2.73-2.74-2.73-7.17 0-9.9z">
+													</path>
+												</g>
+											</svg>
+										</span>
+										<span class="flex-item">
+											<?php echo cl_translate('Copy link to Coin page'); ?>
+										</span>
+									</a>
+									<a class="dropdown-item" onclick="SMColibri.PS.profile_report.open();"
+										href="javascript:void(0);">
+										<span class="flex-item dropdown-item-icon">
+											<?php echo cl_ikon("flag"); ?>
+										</span>
+										<span class="flex-item">
+											<?php echo cl_translate('Report'); ?> $
+											<?php echo ($cl['prof_user']['username']); ?>
+										</span>
+									</a>
+								</div>
+							</button>
+							<?php if (empty($cl['prof_user']['is_blocked'])): ?>
+								<?php if (empty($cl['prof_user']['me_blocked'])): ?>
+									<?php if ($cl['prof_user']['follow_privacy'] == 'approved'): ?>
+										<?php if (not_empty($cl['prof_user']['is_following'])): ?>
+											<div>
+												<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-inline md"
+													data-action="unfollow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
+													data-id="<?php echo ($cl['prof_user']['id']); ?>">
+													<?php echo cl_translate("Unfollow"); ?>
+												</button>
+											</div>
+										<?php elseif (not_empty($cl['prof_user']['follow_requested'])): ?>
+											<div>
+												<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-inline md"
+													data-action="cancel" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
+													data-id="<?php echo ($cl['prof_user']['id']); ?>">
+													<?php echo cl_translate("Pending"); ?>
+												</button>
+											</div>
 										<?php else: ?>
+											<div>
+												<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-outline md"
+													data-action="follow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
+													data-id="<?php echo ($cl['prof_user']['id']); ?>">
+													<?php echo cl_translate("watch"); ?>
+												</button>
+											</div>
+										<?php endif; ?>
+									<?php else: ?>
+										<?php if (not_empty($cl['prof_user']['is_following'])): ?>
+											<div>
+												<button onclick="SMColibri.watch(this);" class="btn btn-custom main-inline md"
+													data-action="unfollow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
+													data-id="<?php echo ($cl['prof_user']['id']); ?>">
+													<?php echo cl_translate("unwatch"); ?>
+												</button>
+											</div>
+										<?php else: ?>
+											<div>
+												<button onclick="SMColibri.watch(this);" class="btn btn-custom main-outline md" data-action="follow"
+													data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
+													data-id="<?php echo ($cl['prof_user']['id']); ?>">
+													<?php echo cl_translate("watch"); ?>
+												</button>
+											</div>
+										<?php endif; ?>
+									<?php endif; ?>
+								<?php endif ?>
+							<?php endif; ?>
+						<?php else : ?>
+							<button class="ctrl-item dropleft ">
+								<span class=" flex items-center justify-center border rounded-full h-9 w-9 -mt-1"
+									data-toggle="dropdown">
+									<div class="w-5 h-5"> <?php echo cl_ikon('pr-down'); ?></div>
+								</span>
+								<div class="dropdown-menu dropdown-icons">
+									<a class="dropdown-item" href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>">
+										<span class="flex-item dropdown-item-icon">
+											<?php echo cl_ikon("people"); ?>
+										</span>
+										<span class="flex-item">
+											<?php echo cl_translate('Show Watchers'); ?>
+										</span>
+									</a>
+									<a data-clipboard-text="<?php $currentDomain = (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST'];
+															echo (cl_strf('%s/symbol/%s', $currentDomain, $cl['prof_user']['username'])); ?>"
+										class="dropdown-item clip-board-copy" href="javascript:void(0);">
+										<span class="flex-item dropdown-item-icon">
+											<?php echo cl_ikon("copy"); ?>
+										</span>
+										<span class="flex-item">
+											<?php echo cl_translate('Copy link to Coin page'); ?>
+										</span>
+									</a>
+									<?php if (not_empty($cl['is_logged'])): ?>
+										<?php if (not_empty($cl['is_admin'])): ?>
+											<div class="dropdown-divider"></div>
 											<a class="dropdown-item"
-												onclick="SMColibri.suspend_account(<?php echo ($cl['prof_user']['id']); ?>);"
+												onclick="SMColibri.delete_account(<?php echo ($cl['prof_user']['id']); ?>);"
 												href="javascript:void(0);">
 												<span class="flex-item dropdown-item-icon">
-													<?php echo cl_icon("person_off"); ?>
+													<?php echo cl_icon("delete"); ?>
 												</span>
 												<span class="flex-item">
-													<?php echo cl_translate('Suspend'); ?> $
+													<?php echo cl_translate('Delete'); ?> $
 													<?php echo ($cl['prof_user']['username']); ?>
 												</span>
-
 											</a>
+											<?php if ($cl['prof_user']['active'] == "2"): ?>
+												<a class="dropdown-item"
+													onclick="SMColibri.unsuspend_account(<?php echo ($cl['prof_user']['id']); ?>);"
+													href="javascript:void(0);">
+													<span class="flex-item dropdown-item-icon">
+														<?php echo cl_icon("person"); ?>
+													</span>
+													<span class="flex-item">
+														<?php echo cl_translate('Unsuspend'); ?> $
+														<?php echo ($cl['prof_user']['username']); ?>
+													</span>
+
+												</a>
+											<?php else: ?>
+												<a class="dropdown-item"
+													onclick="SMColibri.suspend_account(<?php echo ($cl['prof_user']['id']); ?>);"
+													href="javascript:void(0);">
+													<span class="flex-item dropdown-item-icon">
+														<?php echo cl_icon("person_off"); ?>
+													</span>
+													<span class="flex-item">
+														<?php echo cl_translate('Suspend'); ?> $
+														<?php echo ($cl['prof_user']['username']); ?>
+													</span>
+
+												</a>
+											<?php endif; ?>
+											<div class="dropdown-divider"></div>
 										<?php endif; ?>
-										<div class="dropdown-divider"></div>
 									<?php endif; ?>
-								<?php endif; ?>
-							</div>
-						</button>
-						<button data-anchor="<?php echo $cl['settings_link']; ?>" class="btn btn-custom main-inline md">
-							<?php echo cl_translate("symbol_settings"); ?>
-						</button>
-					<?php endif ?>
-				</div>
-			</div>
-			<div style="display: flex; text-align:left; align-items:center; padding: 9px 0px">
-				<div style="width: 75%; display:flex;">
-					<div style="padding-left: 14px; font-size:xx-large; color:var(--smc-main-text-color); font-weight:bold" id='price'>
-						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : echo "$" . $cl['coin_one']['price']; ?>
-						<?php else : echo "Error" ?>
+								</div>
+							</button>
+							<button data-anchor="<?php echo $cl['settings_link']; ?>" class="btn btn-custom main-inline md">
+								<?php echo cl_translate("symbol_settings"); ?>
+							</button>
 						<?php endif ?>
 					</div>
-					<div style="padding-left:10px; color:#06806b; font-weight:bold;" id='percent'>
-						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
-							<?php echo $cl['coin_one']['change_pct_24h']; ?>
-						<?php else : ?>
-							<?php echo "Error"; ?>
-						<?php endif; ?>
-						%(1d)
-					</div>
 				</div>
-				<div style="width: 25%; display: flex; padding:10px;">
-					<div class="profile-activity-stats-info" style="justify-content: end; margin-bottom: 0px;">
-						<div class="stat-holder">
-							<?php if (not_empty($cl["can_view"])): ?>
-								<a href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>"
-									class="stat-holder-inner">
-								<?php else: ?>
-									<a href="javascript:void(0);" class="stat-holder-inner"
-										onclick="SMColibri.PS.profile.privacy_alert();">
-									<?php endif; ?>
-									<b>
-										<?php echo cl_number($cl['prof_user']['followers']); ?>
-									</b>
-									<span>
-										<?php echo cl_translate("watcher"); ?>
-									</span>
-									</a>
+				<div style="display: flex; text-align:left; align-items:center; padding: 9px 0px">
+					<div style="width: 75%; display:flex;">
+						<div style="padding-left: 14px; font-size:xx-large; color:var(--smc-main-text-color); font-weight:bold" id='price'>
+							<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : echo "$" . $cl['coin_one']['price']; ?>
+							<?php else : echo "Error" ?>
+							<?php endif ?>
+						</div>
+						<div style="padding-left:10px; font-weight:bold; color: <?php echo (floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
+							<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
+								<?php echo $cl['coin_one']['change_pct_24h']; ?>
+							<?php else : ?>
+								<?php echo "Error"; ?>
+							<?php endif; ?>
+							%(1d)
+						</div>
+					</div>
+					<div style="width: 25%; display: flex; padding:10px;">
+						<div class="profile-activity-stats-info" style="justify-content: end; margin-bottom: 0px;">
+							<div class="stat-holder">
+								<?php if (not_empty($cl["can_view"])): ?>
+									<a href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>"
+										class="stat-holder-inner">
+									<?php else: ?>
+										<a href="javascript:void(0);" class="stat-holder-inner"
+											onclick="SMColibri.PS.profile.privacy_alert();">
+										<?php endif; ?>
+										<b>
+											<?php echo cl_number($cl['prof_user']['followers']); ?>
+										</b>
+										<span>
+											<?php echo cl_translate("watcher"); ?>
+										</span>
+										</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<?php if (not_empty($cl["is_logged"])): ?>
-				<!-- Start Add Post  -->
-				<div class="flex flex-col  w-full ">
-					<div class="homepage">
-						<div class="main-timeline-pubbox-wrapper custom-lineheight px-3 pt-3 py-2">
-							<?php $cl['pb_id'] = 1;
-							echo cl_template('timeline/symbolbox'); ?>
-						</div>
-						<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
-							<div class="homepage__swifts hidden">
-								<div class="swifts-slider">
-									<div class="swiper" id="homepage-swifts-slider">
-										<div class="swiper-wrapper">
-											<div class="swiper-slide">
-												<div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
-													<div class="swift-item__body create-swift">
-														<div class="swift-item__avatar">
-															<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+				<?php if (not_empty($cl["is_logged"])): ?>
+					<!-- Start Add Post  -->
+					<div class="flex flex-col  w-full ">
+						<div class="homepage">
+							<div class="main-timeline-pubbox-wrapper custom-lineheight px-3 pt-3 py-2">
+								<?php $cl['pb_id'] = 1;
+								echo cl_template('timeline/symbolbox'); ?>
+							</div>
+							<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+								<div class="homepage__swifts hidden">
+									<div class="swifts-slider">
+										<div class="swiper" id="homepage-swifts-slider">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide">
+													<div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
+														<div class="swift-item__body create-swift">
+															<div class="swift-item__avatar">
+																<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+															</div>
+															<span class="add-ikon">
+																<?php echo cl_ikon("plus"); ?>
+															</span>
 														</div>
-														<span class="add-ikon">
-															<?php echo cl_ikon("plus"); ?>
-														</span>
-													</div>
-													<div class="swift-item__footer">
-														<?php echo cl_translate("Create new swift"); ?>
+														<div class="swift-item__footer">
+															<?php echo cl_translate("Create new swift"); ?>
+														</div>
 													</div>
 												</div>
-											</div>
-											<?php if (not_empty($cl["tl_swifts"]) && is_array($cl["tl_swifts"])): ?>
-												<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
-													<div class="swiper-slide">
-														<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
-																																			echo ('active');
-																																		} ?>" onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
-															<div class="swift-item__body">
-																<div class="swift-item__avatar">
-																	<img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
+												<?php if (not_empty($cl["tl_swifts"]) && is_array($cl["tl_swifts"])): ?>
+													<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
+														<div class="swiper-slide">
+															<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
+																																				echo ('active');
+																																			} ?>" onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
+																<div class="swift-item__body">
+																	<div class="swift-item__avatar">
+																		<img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
+																	</div>
+																</div>
+																<div class="swift-item__footer">
+																	<?php if (not_empty($swift_data["is_user"])): ?>
+																		<?php echo cl_translate("Your swifts"); ?>
+																	<?php else: ?>
+																		<?php echo ($swift_data['name']); ?>
+																	<?php endif; ?>
 																</div>
 															</div>
-															<div class="swift-item__footer">
-																<?php if (not_empty($swift_data["is_user"])): ?>
-																	<?php echo cl_translate("Your swifts"); ?>
-																<?php else: ?>
-																	<?php echo ($swift_data['name']); ?>
-																<?php endif; ?>
-															</div>
 														</div>
-													</div>
-												<?php endforeach; ?>
-											<?php endif; ?>
+													<?php endforeach; ?>
+												<?php endif; ?>
+											</div>
+										</div>
+										<div class="swifts-slider__footer">
+											<div class="swiper-scrollbar" id="homepage-swifts-scrollbar"></div>
 										</div>
 									</div>
-									<div class="swifts-slider__footer">
-										<div class="swiper-scrollbar" id="homepage-swifts-scrollbar"></div>
-									</div>
 								</div>
-							</div>
-						<?php endif; ?>
+							<?php endif; ?>
+						</div>
 					</div>
-				</div>
-			<?php else: ?>
-			<div></div>
-			<?php endif; ?>
+				<?php else: ?>
+					<div></div>
+				<?php endif; ?>
 				<?php if (not_empty($cl["can_view"])): ?>
 					<div class="profile-activity-navbar">
 						<a>
-							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {echo ('active');} ?>" onclick='select("posts")'>
+							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {
+																echo ('active');
+															} ?>" onclick='select("posts")'>
 								<?php echo cl_translate("For You"); ?>
 							</button>
-							<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {echo ('active');} ?>"></div>
+							<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {
+															echo ('active');
+														} ?>"></div>
 						</a>
-						<a  style="margin-left: 15px;">
-							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {echo ('active');} ?>" onclick='select("about")'>
+						<a style="margin-left: 15px;">
+							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {
+																echo ('active');
+															} ?>" onclick='select("about")'>
 								<?php echo cl_translate("About"); ?>
 							</button>
-							<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'media') {	echo ('active');} ?>"></div>
+							<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'media') {
+															echo ('active');
+														} ?>"></div>
 						</a>
 					</div>
 				<?php endif; ?>
 			</div>
 		</div>
 		<div class="tab-content">
-			<div class="tab-pane fade active show" id = "posts">
+			<div class="tab-pane fade active show" id="posts">
 				<?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])): ?>
 					<div class="timeline-posts-container">
 						<div class="timeline-posts-ls">
@@ -495,7 +514,7 @@
 					<?php endif; ?>
 				<?php endif; ?>
 			</div>
-			<div class="tab-pane fade" id = "about">
+			<div class="tab-pane fade" id="about">
 				<div class="timeline-posts-container">
 					<div class="timeline-posts-ls py-2">
 						<?php echo cl_template('symbol/includes/about'); ?>
@@ -526,9 +545,9 @@
 
 		var move = function() {
 			var y = window.scrollY;
-			if(y > 120) $("#priceHeader").slideDown();
+			if (y > 120) $("#priceHeader").slideDown();
 			else $("#priceHeader").slideUp();
-			if(y > 355) $("#selectionPane").slideDown();
+			if (y > 355) $("#selectionPane").slideDown();
 			else $("#selectionPane").slideUp();
 			var st = $(window).scrollTop();
 			if ($anchor.length === 0) {
@@ -568,9 +587,10 @@
 	});
 </script>
 <style>
-	body{
+	body {
 		font-family: "Roboto", sans-serif;
 	}
+
 	body div.popover1 div.popover-body {
 		box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
 		background-color: var(--smc-main-bg-color);
@@ -804,31 +824,33 @@
 		var posts = document.getElementById("posts");
 		var about = document.getElementById("about");
 		var selectionPane = document.getElementsByClassName("profile-activity-navbar");
-		if(pane === 'posts'){
-			if(state === 'posts') return;
+		if (pane === 'posts') {
+			if (state === 'posts') return;
 			$("#posts").toggleClass("show active");
 			$("#about").toggleClass("show active");
 			state = "posts";
-			for(var i = 0; i < 2; i++){
+			for (var i = 0; i < 2; i++) {
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[0].classList.add("active");
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[1].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.add("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
 			}
-		}
-		else{
-			if(state === 'about') return;
+		} else {
+			if (state === 'about') return;
 			$("#posts").toggleClass("show active");
 			$("#about").toggleClass("show active");
 			state = 'about';
-			for(var i = 0; i < 2; i++){
+			for (var i = 0; i < 2; i++) {
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[1].classList.add("active");
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[0].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.add("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
 			}
 			if (window.scrollY > 400) { // {{ edit_1 }}
-				about.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				about.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});
 				window.scrollTo(0, 400);
 			}
 		}

@@ -21,7 +21,7 @@
 </div>
 	<div class="main-profile-settings-container">
 		<div class="profile-settings-nav">
-			<div class="nav-list-itemset-title">
+			<div class="nav-list-itemset-title pb-3">
 				<h4>
 					<?php echo cl_translate("Notification settings"); ?>
 				</h4>
@@ -35,7 +35,7 @@
                             <div class="form-check">
                                 <input id="notify-liked-my-post" name="like" type="checkbox" class="form-check-input" <?php if(not_empty($me["settings"]["notifs"]["like"])) {echo("checked");} ?>>
                                 <label for="notify-liked-my-post" class="form-check-label">
-                                    <span>
+                                    <span  style="font-size: 15px;">
                                         <?php echo cl_translate("Liked my post"); ?>
                                     </span>
 
@@ -51,7 +51,7 @@
                             <div class="form-check">
                                 <input id="notify-followed-me" name="subscribe" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["notifs"]["subscribe"])) {echo("checked");} ?>>
                                 <label for="notify-followed-me" class="form-check-label">
-                                    <span>
+                                    <span style="font-size: 15px;">
                                         <?php echo cl_translate("Followed me"); ?>
                                     </span>
                                     <p class="form-info-label">
@@ -66,7 +66,7 @@
                             <div class="form-check">
                                 <input id="notify-follow-req" name="subscribe_request" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["notifs"]["subscribe_request"])) {echo("checked");} ?>>
                                 <label for="notify-follow-req" class="form-check-label">
-                                    <span>
+                                    <span style="font-size: 15px;">
                                         <?php echo cl_translate("Follow request"); ?>
                                     </span>
                                     <p class="form-info-label">
@@ -81,7 +81,7 @@
                             <div class="form-check">
                                 <input id="notify-subscription-acc" name="subscribe_accept" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["notifs"]["subscribe_accept"])) {echo("checked");} ?>>
                                 <label for="notify-subscription-acc" class="form-check-label">
-                                    <span>
+                                    <span style="font-size: 15px;">
                                         <?php echo cl_translate("Subscription acceptance"); ?>
                                     </span>
                                     <p class="form-info-label">
@@ -96,7 +96,7 @@
                             <div class="form-check">
                                 <input id="notify-replied-me" name="reply" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["notifs"]["reply"])) {echo("checked");} ?>>
                                 <label for="notify-replied-me" class="form-check-label">
-                                    <span>
+                                    <span style="font-size: 15px;">
                                         <?php echo cl_translate("Replied me"); ?>
                                     </span>
                                     <p class="form-info-label">
@@ -111,7 +111,7 @@
                             <div class="form-check">
                                 <input id="notify-pub-repost" name="repost" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["notifs"]["repost"])) {echo("checked");} ?>>
                                 <label for="notify-pub-repost" class="form-check-label">
-                                    <span>
+                                    <span style="font-size: 15px;">
                                         <?php echo cl_translate("Publication repost"); ?>
                                     </span>
                                     <p class="form-info-label">
@@ -126,7 +126,7 @@
                             <div class="form-check">
                                 <input id="notify-mentioned-me" name="mention" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["notifs"]["mention"])) {echo("checked");} ?>>
                                 <label for="notify-mentioned-me" class="form-check-label">
-                                    <span>
+                                    <span style="font-size: 15px;">
                                         <?php echo cl_translate("Mentioned me"); ?>
                                     </span>
                                     <p class="form-info-label">
@@ -141,7 +141,7 @@
                             <div class="form-check">
                                 <input id="notify-visited-me" name="visit" class="form-check-input" type="checkbox" <?php if(not_empty($me["settings"]["notifs"]["visit"])) {echo("checked");} ?>>
                                 <label for="notify-visited-me" class="form-check-label">
-                                    <span>
+                                    <span style="font-size: 15px;">
                                         <?php echo cl_translate("Visited me"); ?>
                                     </span>
                                     <p class="form-info-label">
@@ -232,7 +232,8 @@
 		margin-left: -25px;
 	}
 	body main.main-content-container div.main-content-container-inner div.timeline-container-wrapper div.timeline-container-inner div.timeline-container {
-		max-width: 550px;
+		max-width: 600px;
+        min-height: 968px;
 	}
 
 	.main-profile-settings-container {
