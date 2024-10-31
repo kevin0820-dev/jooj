@@ -2,25 +2,6 @@
 
 <div class="inner-content"  style="border: 1px solid #e4eaef; padding : 10px; border-radius: 10px; border: 1px solid var(--smc-main-border-color);" onclick="analyze_quote(event, <?php echo ($cl['li']['comment_on']['id']); ?>)"> <!-- edited by kevin to make the whole post clickable 9/23/2024 -->
     <div class="post-list-item-content">
-        <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
-            <a data-spa="true">
-                <div class="avatar-holder">
-                    <img class="lozad" style="width:24px; height:24px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
-                </div>
-            </a>
-        <?php else: ?>
-            <?php if ($cl['li']['comment_on']['owner']['id'] == 1): ?>
-                <a data-spa="true">
-                    <div class="avatar-holder">
-                        <img class="lozad" style="width:24px; height:24px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
-                    </div>
-                </a>
-            <?php else: ?>
-                <a data-spa="true">
-                    <img src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>" style="width:24px; height:24px; border-radius:10em;">
-                </a>
-            <?php endif; ?>
-        <?php endif; ?>
         <div class="publication-data">
             <?php if (not_empty($cl['li']['comment_on']['is_blocked'])): ?>
                 <div class="soft-hidden-post" data-softhidden-post="<?php echo ($cl['li']['comment_on']['id']); ?>">
@@ -58,6 +39,25 @@
 
             <div class="publication-data-inner">
                 <div class="publisher-info">
+                    <?php if ($cl['li']['comment_on']['symbol_id'] == 0): ?>
+                        <a data-spa="true">
+                            <div class="avatar-holder">
+                                <img class="lozad" style="width:24px; height:24px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>">
+                            </div>
+                        </a>
+                    <?php else: ?>
+                        <?php if ($cl['li']['comment_on']['owner']['id'] == 1): ?>
+                            <a data-spa="true">
+                                <div class="avatar-holder">
+                                    <img class="lozad" style="width:24px; height:24px; border-radius:10em;" data-src="<?php echo ($cl['li']['comment_on']['page']['avatar']); ?>">
+                                </div>
+                            </a>
+                        <?php else: ?>
+                            <a data-spa="true">
+                                <img src="<?php echo ($cl['li']['comment_on']['owner']['avatar']); ?>" style="width:24px; height:24px; border-radius:10em;">
+                            </a>
+                        <?php endif; ?>
+                    <?php endif; ?>
                     <?php if ($cl['li']['comment_on']['owner']['id'] == 1 && not_empty($cl['li']['comment_on']['page']['username'])): ?>
                         <!-- For admin -->
                         <div class="lp">
@@ -91,7 +91,7 @@
                         </div>
                     <?php else: ?>
                         <!-- For other authors -->
-                        <div class="lp">
+                        <div class="lp" style="margin-left: 10px; flex: 1;">
                             <a href="<?php echo $cl['li']['comment_on']['owner']['url']?>" data-uinfo-lbox="<?php echo $cl['li']['comment_on']['owner']['id']; ?>" data-toggle="popover"
                                 data-placement="bottom">
                                 <b>
@@ -191,7 +191,7 @@
                             })
                         </script>
                         <div class="publication-text">
-                            <p style="margin-left:-34px; margin-top:10px;" class="pub-text">
+                            <p style="margin-top:10px;" class="pub-text">
                                 <?php
                                 // Sample text from $cl['thread_data']['text']
                                 $text = $cl['li']['comment_on']['text'];
