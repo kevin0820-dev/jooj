@@ -9,6 +9,12 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.publisher-info{
+  display: flex;
+}
+.publication-data{
+  flex: 1;
+}
 .text-gray-900 svg{
   stroke: var(--smc-main-text-color-2);
   width: 23px !important;

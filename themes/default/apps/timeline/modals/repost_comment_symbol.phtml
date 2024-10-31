@@ -1,32 +1,32 @@
 
 
 <div class="post-list-item-content" style="display: flex; border: 1px solid var(--smc-main-border-color); border-radius: 5px; padding: 10px; margin:10px 0px;">
-    <div class="publisher-avatar" style = "max-width: 35px; min-width:35px;">
-        <?php if ($cl['li']['symbol_id'] == 0): ?>
-            <a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
-                <div style="width:22px; height:22px;" class="avatar-holder">
-                    <img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>" style="border-radius:10em;">
-                </div>
-            </a>
-        <?php else: ?>
-            <?php if ($cl['li']['owner']['id'] == 1): ?>
-                <a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
-                    <div style="width:22px; height:22px;" class="avatar-holder">
-                        <img class="lozad" data-src="<?php echo ($cl['li']['page']['avatar']); ?>" style="border-radius:10em;">
-                    </div>
-                </a>
-            <?php else: ?>
-                <a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
-                    <div style="width:22px; height:22px;" class="avatar-holder">
-                        <img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>" style="border-radius:10em;">
-                    </div>
-                </a>
-            <?php endif; ?>
-        <?php endif; ?>
-    </div>
     <div class="publication-data">
         <div class="publication-data-inner">
             <div class="publisher-info">
+                <div class="publisher-avatar" style = "max-width: 35px; min-width:35px;">
+                    <?php if ($cl['li']['symbol_id'] == 0): ?>
+                        <a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
+                            <div style="width:22px; height:22px;" class="avatar-holder">
+                                <img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>" style="border-radius:10em;">
+                            </div>
+                        </a>
+                    <?php else: ?>
+                        <?php if ($cl['li']['owner']['id'] == 1): ?>
+                            <a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
+                                <div style="width:22px; height:22px;" class="avatar-holder">
+                                    <img class="lozad" data-src="<?php echo ($cl['li']['page']['avatar']); ?>" style="border-radius:10em;">
+                                </div>
+                            </a>
+                        <?php else: ?>
+                            <a class="block-link" href="<?php echo ($cl['li']['owner']['url']); ?>" data-spa="true">
+                                <div style="width:22px; height:22px;" class="avatar-holder">
+                                    <img class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>" style="border-radius:10em;">
+                                </div>
+                            </a>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
                 <?php if ($cl['li']['owner']['id'] == 1 && not_empty($cl['li']['page']['username'])): ?>
                     <div class="lp">
                         <a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['page']['username'])); ?>"
@@ -100,7 +100,7 @@
                     </script>
                 
                     <div class="publication-text">
-                        <p style="margin-left:-34px; margin-top:10px;" class="pub-text">
+                        <p style="margin-top:10px;" class="pub-text">
                             <?php
                             // Sample text from $cl['li']['text']
                             $text = $cl['li']['text'];
