@@ -495,7 +495,6 @@ var pubbox_form_app_mixin = Object({
 			if (this.text === '') {
 				this.text = this.prefix + ' ';
 			}
-		
         },
         trigger_mentag_input: function(char = "@") {
             var _app_ = this;
