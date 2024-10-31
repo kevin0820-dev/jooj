@@ -2,8 +2,6 @@
 <div class="right-sb-container sidebar" data-app="right-sidebar">
 	<div class="sidebar__inner">
 		<div class="main-search-bar-container">
-			<?php if (in_array($cl["pn"], array("profile"))): ?>
-			<?php endif; ?>
 			<form class="form" id="vue-main-search-app1" v-on:submit="search_onsubmit" autocomplete="off">
 				<div class="input-holder">
 					<input v-model="search_query" v-on:input="search" type="text" class="form-control"
