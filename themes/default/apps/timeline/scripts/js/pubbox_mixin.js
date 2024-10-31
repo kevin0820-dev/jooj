@@ -213,7 +213,37 @@ var pubbox_form_app_mixin = Object({
 		}
 	},
 	methods: {
-		handleDrop: function(event) {
+		handlePaste: function(event = false) {
+			event.preventDefault();
+			event.stopPropagation();
+			const items = (event.clipboardData || window.clipboardData).items;
+			if (items.length > 0) {
+				if (items[0].kind === 'file') {
+					let files = [];
+					for (let i = 0; i < items.length; i++) {
+						const item = items[i];
+						if (item.kind === 'file') {
+							const file = item.getAsFile();
+							if (file) {
+								files.push(file);
+							} else {
+								cl_bs_notify('Failed to retrieve file from clipboard', 3000, "danger");
+							}
+						}
+					}
+					this.uploadFiles_drop(files);
+				} else {
+					items[0].getAsString((text) => {
+						const start = this.$refs.text_input.selectionStart;;
+						const end = start;
+						this.text = this.text.substring(0, start) + text + this.text.substring(end);
+					}, (error) => {
+						cl_bs_notify('Failed to get text from clipboard:', 3000, "danger");
+					});
+				}
+			}
+		},
+		handleDrop: function(event = false) {
 			event.preventDefault();
 			event.stopPropagation();
 			const files = event.dataTransfer.files;
@@ -221,21 +251,22 @@ var pubbox_form_app_mixin = Object({
 		},
 		uploadFiles_drop: function(files) {
 			let type = 0;
-			let i = 0;
-			for (i = 0; i < files.length; i++) {
+			let valid = true;
+			for (let i = 0; i < files.length; i++) {
 				const file = files[i];
 				if (file.type.startsWith('image/')) {
 					if(type == 0) type = 1;
-					else if(type == 2) break;
+					else if(type == 2) valid = false;
 				} else if (file.type.startsWith('video/')) {
 					if(type == 0) type = 2;
-					else if(type == 1) break;
+					else if(type == 1) valid = false;
 				}
+				else valid = false;
 			}
-			if(i < files.length) cl_bs_notify("Files not valid. please select same types", 3000, "danger");
+			if(!valid) cl_bs_notify("Files not valid. please select same types", 3000, "danger");
 			else{
 				if(type == 1) this.upload_images_drop(files);
-				else upload_video_drop(files[0]);
+				else this.upload_video_drop(files[0]);
 			}
 		},
 		upload_images_drop: function(images = null) {
@@ -261,7 +292,7 @@ var pubbox_form_app_mixin = Object({
 								form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
 								
 								$.ajax({
-									url: '<?php echo cl_link("native_api/main/upload_page_image"); ?>',
+									url: '<?php echo cl_link("native_api/main/upload_post_image"); ?>',
 									type: 'POST',
 									dataType: 'json',
 									enctype: 'multipart/form-data',
@@ -291,7 +322,6 @@ var pubbox_form_app_mixin = Object({
 										}
 
 										_app_.disable_ctrls();
-
 										_app_.submitting = false;
 									}
 								});
@@ -321,9 +351,14 @@ var pubbox_form_app_mixin = Object({
 
 			if (cl_empty(_app_.active_media)) {
 
-				if (video && SMColibri.max_upload(video.size)) {
+				if (SMColibri.curr_pn == 'thread') {
+					$('div[data-app="modal-pubbox"]').addClass('vis-hidden');
+				}
 
-				    SMColibri.progress_bar("show");
+				SMColibri.progress_bar("show");
+
+				if (video && SMColibri.max_upload(video.size)) {
+					console.log("video upload");
 
 					var form_data = new FormData();
 					form_data.append('video', video);
@@ -341,10 +376,7 @@ var pubbox_form_app_mixin = Object({
 				        processData: false,
 				        timeout: 600000,
 				        beforeSend: function() {
-
-				        	if (SMColibri.curr_pn == 'thread') {
-				        		$('div[data-app="modal-pubbox"]').addClass('vis-hidden');
-				        	}
+							_app_.submitting = true;				        	
 				        },
 						success: function(data) {
 							if (data.status == 200) {
@@ -368,6 +400,7 @@ var pubbox_form_app_mixin = Object({
 							}
 
 							_app_.disable_ctrls();
+							_app_.submitting = false;
 							app_el.find('input[data-an="video-input"]').val('');
 
 							setTimeout(function() {
@@ -1761,23 +1794,13 @@ var pubbox_form_app_mixin_question = Object({
 		},
 		reset_data: function() {
 			var _app_ = this;
-
-			if (_app_.active_media == "audio") {
-				_app_.record_audio_reset();
-			}
-
 			_app_.question = "",
 			_app_.answer = "",
 			_app_.submitting = false;
 		},
 	},
 	updated: function() {
-		var _app_ = this;
 	},
 	mounted: function() {
-		var _app_ = this;
-
-		_app_.$el.addEventListener('dragover', (event) => event.preventDefault());
-		_app_.$el.addEventListener('drop', this.handleDrop);
 	}
 });

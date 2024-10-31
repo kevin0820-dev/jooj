@@ -116,10 +116,6 @@ if (not_empty($cl['auth_status']['auth'])) {
 
         if ($symbol_row && isset($symbol_row['id'])) {
             $se['id'] = $symbol_row['id'];
-
-            error_log("Symbol ID: " . $se['id']);
-            echo "<script>console.log('Symbol ID: " . $se['id'] . "');</script>";
-
             $symbol_data_ = cl_symbol_data($se['id']);
             $se = $cl['se'] = ((empty($symbol_data_)) ? false : $symbol_data_);
 
