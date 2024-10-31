@@ -72,6 +72,7 @@
 				<textarea ref="text_input"
 					v-on:input.trim="text_input_trigger"
 					v-on:blur="text_blur_trigger"
+					v-on:focus="text_focus_trigger"
 					v-on:paste="handlePaste"
 					class="autoresize"
 					v-model="text"
