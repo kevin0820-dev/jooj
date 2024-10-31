@@ -22,9 +22,6 @@ if (empty($cl['prof_user'])) {
 	cl_redirect("404");
 }
 
-// Вывод в консоль значения symbol_id
-echo "<script>console.log('symbol_id: " . $cl['prof_user']['id'] . "');</script>";
-
 require_once(cl_full_path("core/apps/symbol/app_ctrl.php"));
 
 $cl["page_title"]  = cl_strf('%s %s%s%s', $cl['prof_user']['name'], '($', $cl['prof_user']['username'], ')');
