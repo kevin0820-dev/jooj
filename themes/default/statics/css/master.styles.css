@@ -20,7 +20,9 @@
     --cl-primary-username-size: 14px;
   }
 }
-
+.user-data__name a span{
+  display: flex;
+}
 body[data-skin="default"] {
   --cl-primary-color: #009eff;
   --plyr-color-main: #067aff;
@@ -6358,7 +6360,7 @@ body
   div.timeline-container-inner
   div.timeline-container
   div.timeline-navbar {
-    padding-bottom:8px;
+    /* padding-bottom:8px; */
     overflow: visible;
     display: flex;
     flex-direction: row;
@@ -6382,7 +6384,7 @@ body
       position: fixed;
       top: 52px;
     }
-  body
+  /* body
     main.main-content-container
     div.main-content-container-inner
     div.timeline-container-wrapper
@@ -6390,7 +6392,7 @@ body
     div.timeline-container
     div.timeline-searchbar {
       margin-top: 45px;
-    }
+    } */
 }
 
 body

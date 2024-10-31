@@ -889,7 +889,7 @@ body
 /* right sidebar login form */
 .sidebar_login {
   padding-top: 12px;
-  padding-bottom: 64px;
+  padding-bottom: 15px;
 }
 
 .social_login .social_button {
@@ -1583,9 +1583,9 @@ body.modal-open {
     a {
     font-size: 16px !important;
   }
-  .homepage__swifts {
+  /* .homepage__swifts {
     margin-top: 53px;
-  }
+  } */
   body
     main.main-content-container
     div.main-content-container-inner
@@ -1678,7 +1678,7 @@ body.modal-open {
     div.timeline-container-wrapper
     div.timeline-container-inner
     div.timeline-container {
-    padding-top: 53px !important;
+    padding-top: 80px !important;
   }
   body.cl-app-bookmarks
     main.main-content-container
