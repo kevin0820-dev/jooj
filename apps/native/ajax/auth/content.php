@@ -59,6 +59,56 @@ if ($action == "login") {
     }
 }
 
+if ($action == "g-login") {
+	$data['err_code']  = 0;
+	$user_data_fileds  = array(
+		'email'        => fetch_or_get($_POST['email'],null),
+		'password'     => fetch_or_get($_POST['password'],null),
+	);
+
+	foreach ($user_data_fileds as $field_name => $field_val) {
+		if ($field_name == 'email') {
+			if (empty($field_val) || len($field_val) > 55) {
+	            $data['err_code'] = $field_name; break;
+	        }
+		}
+
+		if ($field_name == 'password') {
+			if (empty($field_val) || len($field_val) > 20) {
+	            $data['err_field'] = $field_name; break;
+	        }
+		}
+	}
+
+	if (empty($data['err_code'])) {
+        $email    = cl_text_secure($user_data_fileds['email']);
+        $password = cl_text_secure($user_data_fileds['password']);
+        $db       = $db->where("username", $email);
+        $db       = $db->orWhere("email", $email);
+        $raw_user = $db->getOne(T_USERS, array("password", "id", "active"));
+
+        if (cl_queryset($raw_user) != true || $raw_user["active"] != "1") {
+        	$data['err_code'] = "invalid_creds";
+        } 
+
+        else if (password_verify($password, $raw_user["password"]) != true) {
+        	$data['err_code'] = "invalid_creds";
+        } 
+
+        if (empty($data["err_code"])) {   
+        	$user_ip        = cl_get_ip();
+        	$user_ip        = ((filter_var($user_ip, FILTER_VALIDATE_IP) == true) ? $user_ip : '0.0.0.0');
+	        $session_id     = cl_create_user_session($raw_user["id"], "web");
+            $data['status'] = 200;
+
+            cl_update_user_data($raw_user["id"],array(
+            	'ip_address'  => $user_ip,
+            	'last_active' => time(),
+            ));
+        }
+    }
+}
+
 else if ($action == 'signup') {
     $invite_code = fetch_or_get($_POST["invite_code"], false);
     $invite_link = (not_empty($invite_code)) ? cl_db_get_item(T_USER_INVITES, array("code" => $invite_code)) : false;

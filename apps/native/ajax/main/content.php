@@ -2522,14 +2522,14 @@ else if($action == 'search') {
             $html_arr    = array();
 
             if (not_empty($page_result)) {
-                $html_arr[] = '<h3 class="px-3 text-[14px] font-semibold pt-3">Symbols</h3>';
+                $html_arr[] = '<h3 class="px-3 text-[14px] font-semibold pt-3">Coins</h3>';
                 foreach ($page_result as $cl['li']) {
                     $html_arr[] = cl_template('main/includes/search/pages_li');
                 }
             }
 
             if (not_empty($user_result)) {
-                $html_arr[] = '<h3 class="px-3 text-[14px] font-semibold pt-3">Users</h3>';
+                $html_arr[] = '<h3 class="px-3 text-[14px] font-semibold pt-3" style="color: var(--cl-secondary-text-color);">Users</h3>'; 
                 foreach ($user_result as $cl['li']) {
                     $html_arr[] = cl_template('main/includes/search/users_li');
                 }
