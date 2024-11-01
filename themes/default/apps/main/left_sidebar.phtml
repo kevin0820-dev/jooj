@@ -38,7 +38,7 @@
 								<span class="user-name-holder">
 									<?php echo ($me['name']); ?>
 								</span>
-								<p class="<?php if ($cl['li']['owner']['verified'] == '1') {
+								<p class="<?php if (isset($cl['li']['owner']['verified']) && $cl['li']['owner']['verified'] == '1') {
 									echo ('verified-badge');
 								} ?>" style="display:inline-block;"></p>
 							</h5>

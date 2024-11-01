@@ -8,6 +8,17 @@
 # @ JOOJ Talk - The Ultimate Modern Social Media Sharing Platform           @
 # @ Copyright (c) 2020 - 2021 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
+function cl_title($title){
+    $result = '';
+    foreach($title as $heading){ // Fixed: added $ to heading
+        $result .= $result . "<a href='".cl_link($heading['key'])."'>".cl_translate($heading['val'])."</a>";
+    }
+    return $result;
+}
+
+function cl_header_bot_line($title = array()){
+    return cl_template('common/bot_line').cl_title($title).cl_template('common/bot_line2');
+}
 
 function cl_template($file_path = "") {
     global $config, $cl, $me, $se;

@@ -6256,7 +6256,7 @@ body
   div.timeline-container
   div.timeline-navbar
   div.timeline-navbar__item {
-  margin-right: 16px;
+  margin-right: 10px;
   margin-left: 20px;
   /* flex: 1; */
   overflow: hidden;
@@ -6369,21 +6369,9 @@ body
     opacity: 0.97;
     z-index: 500;
     position: sticky;
-    top: 58px;
+    top: 78px;
 }
 
-@media (max-width: 1199.98px) {
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.timeline-container-wrapper
-    div.timeline-container-inner
-    div.timeline-container
-    div.timeline-navbar {
-      width: 100%;
-      position: fixed;
-      top: 52px;
-    }
   /* body
     main.main-content-container
     div.main-content-container-inner
@@ -15683,7 +15671,7 @@ body.cl-app-confirm_reg div.confirm-registration form.form {
 /* ===================================================== */
 
 body.cl-app-conversation div.conversation {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 93px);
   display: flex;
   flex-direction: column;
 }

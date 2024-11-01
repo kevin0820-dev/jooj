@@ -9,6 +9,161 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.timeline-header-chat{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 53px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+    position: relative;
+    z-index: 50;
+    padding-left: 0px;
+}
+.timeline-header-chat .lp__avatar{
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.timeline-header-chat .lp__avatar .nav-link-avatar{
+  width: 35px;
+  flex-shrink: 0;
+  margin-right: 7px;
+}
+.timeline-header-chat .lp__avatar .nav-link-avatar a{
+  display: block;
+  text-decoration: none;
+}
+.timeline-header-chat .lp__avatar .nav-link-avatar a img{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+}
+div.main-search-bar-container form div.input-holder span.spinner-icon {
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  text-decoration: none;
+  line-height: 0px;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+}
+
+div.main-search-bar-container form div.input-holder a svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--smc-main-text-color-2);
+  opacity: 0.8;
+}
+
+div.main-search-bar-container form div.input-holder a {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  text-decoration: none;
+  line-height: 0px;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+}
+
+div.main-search-bar-container form div.input-holder input {
+  border: 1px solid var(--smc-main-border-color);
+  background: var(--smc-main-bg-color);
+  border-radius: 1em;
+  padding: 0 0 0px 50px;
+  height: 44px;
+  font-size: 13px;
+  color: var(--smc-main-text-color);
+}
+
+div.main-search-bar-container form div.input-holder {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  line-height: 0;
+  position: relative;
+}
+
+div.main-search-bar-container form {
+  display: block;
+  position: relative;
+  margin-bottom: 0px;
+}
+
+div.main-search-bar-container form div.search-result-holder {
+  width: 100%;
+  border-radius: var(--smc-main-border-rad1) !important;
+  box-shadow: var(--smc-main-box-shadow-eff);
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  right: 0;
+  z-index: 10;
+  background: var(--smc-main-bg-color);
+  overflow: hidden;
+}
+
+div.main-search-bar-container form div.search-result-holder div.search-result-body {
+  width: 100%;
+  display: block;
+  line-height: 0;
+}
+
+div.main-search-bar-container form div.search-result-holder div.search-result-body ul.result-list {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+div.search-result-footer {
+  width: 100%;
+  display: block;
+  text-align: center;
+  border-top: 1px solid var(--smc-main-border-color);
+  padding: 10px 20px;
+  background: var(--smc-main-uiel-color);
+}
+
+div.main-search-bar-container form div.search-result-holder div.search-result-footer a {
+  color: #fff;
+  font-size: 11px;
+  line-height: 11px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  font-size: 14px;
+  line-height: 11px;
+  text-transform: none;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+div.main-search-bar-container form div.input-holder span.clear-result {
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  text-decoration: none;
+  line-height: 0px;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+div.main-search-bar-container form div.input-holder span.clear-result svg {
+  width: 100%;
+  height: 100%;
+  stroke: #fff;
+  background: var(--smc-main-uiel-color);
+  border-radius: 50%;
+}
 .publisher-info{
   display: flex;
 }
@@ -88,7 +243,7 @@ body[data-skin="default"] {
   border-bottom: none !important;
 }
 .svg-icon{
-  /* fill: var(--cl-primary-text-color) !important; */
+  fill: var(--cl-primary-text-color) !important;
 }
 .noBorder{
   border: none !important;
@@ -118,7 +273,7 @@ body[data-skin="default"] {
 .symbol_header{
   height:auto !important;
   line-height:normal;
-  padding:12px;
+  padding:12px 12px 0px 12px;
   display: block !important;
 }
 .selectable{
@@ -3582,6 +3737,7 @@ body
   color: var(--smc-main-text-color);
   text-decoration: none;
   max-width: 200px;
+  /* min-width: 160px; */
   overflow: hidden;
   text-overflow: ellipsis;
 }

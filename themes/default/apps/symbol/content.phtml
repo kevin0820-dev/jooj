@@ -1,35 +1,35 @@
 <div class="timeline-container" data-app="symbol">
 	<?php
 
-use Aws\DynamoDb\NumberValue;
+		use Aws\DynamoDb\NumberValue;
 
-	$coin_id = strtoupper($cl['prof_user']['username']);
-	$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
-	$response = curl_exec($ch);
-	if ($response === false) {
-		echo 'Curl error: ' . curl_error($ch);
+		$coin_id = strtoupper($cl['prof_user']['username']);
+		$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
+		$response = curl_exec($ch);
+		if ($response === false) {
+			echo 'Curl error: ' . curl_error($ch);
+			curl_close($ch);
+			exit;
+		}
 		curl_close($ch);
-		exit;
-	}
-	curl_close($ch);
-	$data = json_decode($response, true);
-	if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
-		$price = $data['RAW'][$coin_id]['USD']['PRICE'];
-		$decimal_places = ($price < 0.01) ? 7 : 2;
-		$cl['coin_one'] = [
-			'price' => number_format($data['RAW'][$coin_id]['USD']['PRICE'], $decimal_places),
-			'high_24h' => number_format($data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
-			'low_24h' => number_format($data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
-			'change_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
-			'change_pct_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
-		];
-	} else {
-		$cl['coin_one'] = [];
-	}
+		$data = json_decode($response, true);
+		if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
+			$price = $data['RAW'][$coin_id]['USD']['PRICE'];
+			$decimal_places = ($price < 0.01) ? 7 : 2;
+			$cl['coin_one'] = [
+				'price' => number_format($data['RAW'][$coin_id]['USD']['PRICE'], $decimal_places),
+				'high_24h' => number_format($data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
+				'low_24h' => number_format($data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
+				'change_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
+				'change_pct_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
+			];
+		} else {
+			$cl['coin_one'] = [];
+		}
 	?>
 	<div class="h-laptop">
 		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
@@ -149,7 +149,7 @@ use Aws\DynamoDb\NumberValue;
 	<div style="background-color:var(--smc-main-bg-color); position:relative;">
 		<div class="timeline-prof-info-area">
 			<div class="profile-main-info-holder">
-				<div style="display: flex; align-items: center; padding: 15px 10px 10px 0px;">
+				<div style="display: flex; align-items: center;">
 					<div class="profile-name-holder" style="display: inline-flex; align-items: center; margin-bottom:0px; width:50%; vertical-align: middle;">
 						<div class="profile-avatar" style="max-width: 70px; max-height:70px;">
 							<a href="<?php echo ($cl['prof_user']['avatar']); ?>" class="image-wrapper fbox-media">
@@ -535,6 +535,85 @@ use Aws\DynamoDb\NumberValue;
 </div>
 <script src="https://cdn.tailwindcss.com"></script>
 <script type="text/javascript">
+	new Vue({
+		el: "#vue-main-search-app",
+		data: {
+			searching: false,
+			search_query: "",
+			advanced_search: false,
+			search_result: false
+		},
+		computed: {
+			search_page_url: function() {
+				if (this.search_query.length > 2) {
+					var search_htags_url = "<?php echo cl_link('search/htags?q={0}'); ?>";
+					var search_users_url = "<?php echo cl_link('search/people?q={0}'); ?>";
+					var search_symbols_url = "<?php echo cl_link('search/symbols?q={0}'); ?>";
+					this.advanced_search = true;
+
+							if (this.search_query.charAt(0) == '#') {
+								return search_htags_url.format(this.search_query.replace('#', ''));
+							} else if (this.search_query.charAt(0) == '$') {
+								return search_symbols_url.format(this.search_query.replace('$', ''));
+							} else {
+								return search_users_url.format(this.search_query);
+							}
+						} else {
+							this.advanced_search = false;
+							return "javascript:void(0);";
+						}
+					},
+					query_type: function() {
+						if (this.search_query.charAt(0) == '#') {
+							return 'htags';
+						} else if (this.search_query.charAt(0) == '$') {
+							return 'symbols';
+						} else {
+							return 'users';
+						}
+					}
+				},
+				methods: {
+					search_onsubmit: function(e = false) {
+						e.preventDefault();
+						this.search();
+					},
+					search: function() {
+						if (this.search_query.length > 1) {
+							var _app_ = this;
+							delay(function() {
+								$.ajax({
+									url: '<?php echo cl_link('native_api/main/search'); ?>',
+									type: 'GET',
+									dataType: 'json',
+									data: {
+										query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
+										type: _app_.query_type
+									},
+									beforeSend: function() {
+										_app_.searching = true;
+									}
+								}).done(function(data) {
+									_app_.search_result = true;
+									$(_app_.$el).find('[data-an="result"]').html($(data.html));
+								}).always(function() {
+									_app_.searching = false;
+								});
+							}, 800);
+						}
+						else this.search_result = false;
+					},
+					cancel: function() {
+						var _app_ = this;
+						_app_.searching = false;
+						_app_.search_query = "";
+						_app_.advanced_search = false;
+						_app_.search_result = false;
+
+				$(_app_.$el).find('[data-an="result"]').empty('');
+			}
+		}
+	});
 	$(function() {
 		moveScroller();
 	});
@@ -686,131 +765,6 @@ use Aws\DynamoDb\NumberValue;
 				padding-top: 83px !important;
 			}
 		}
-	}
-
-	div.main-search-bar-container form div.input-holder span.spinner-icon {
-		position: absolute;
-		right: 15px;
-		top: 7px;
-		text-decoration: none;
-		line-height: 0px;
-		z-index: 2;
-		width: 22px;
-		height: 22px;
-	}
-
-	div.main-search-bar-container form div.input-holder a svg {
-		width: 100%;
-		height: 100%;
-		stroke: var(--smc-main-text-color-2);
-		opacity: 0.8;
-	}
-
-	div.main-search-bar-container form div.input-holder a {
-		position: absolute;
-		left: 15px;
-		top: 12px;
-		text-decoration: none;
-		line-height: 0px;
-		z-index: 2;
-		width: 22px;
-		height: 22px;
-	}
-
-	div.main-search-bar-container form div.input-holder input {
-		border: 1px solid var(--smc-main-border-color);
-		background: var(--smc-main-bg-color);
-		border-radius: 1em;
-		padding: 0 0 0px 50px;
-		height: 44px;
-		font-size: 13px;
-		color: var(--smc-main-text-color);
-	}
-
-	div.main-search-bar-container form div.input-holder {
-		width: 100%;
-		overflow: hidden;
-		display: block;
-		line-height: 0;
-		position: relative;
-	}
-
-	div.main-search-bar-container form {
-		display: block;
-		position: relative;
-		margin-bottom: 0px;
-	}
-
-	div.main-search-bar-container form div.search-result-holder {
-		width: 100%;
-		border-radius: var(--smc-main-border-rad1) !important;
-		box-shadow: var(--smc-main-box-shadow-eff);
-		padding: 0;
-		position: absolute;
-		left: 0;
-		top: 40px;
-		right: 0;
-		z-index: 10;
-		background: var(--smc-main-bg-color);
-		overflow: hidden;
-	}
-
-	div.main-search-bar-container form div.search-result-holder div.search-result-body {
-		width: 100%;
-		display: block;
-		line-height: 0;
-	}
-
-	div.main-search-bar-container form div.search-result-holder div.search-result-body ul.result-list {
-		width: 100%;
-		padding: 0;
-		margin: 0;
-		overflow-x: hidden;
-		overflow-y: auto;
-		max-height: 250px;
-	}
-
-	div.search-result-footer {
-		width: 100%;
-		display: block;
-		text-align: center;
-		border-top: 1px solid var(--smc-main-border-color);
-		padding: 10px 20px;
-		background: var(--smc-main-uiel-color);
-	}
-
-	div.main-search-bar-container form div.search-result-holder div.search-result-footer a {
-		color: #fff;
-		font-size: 11px;
-		line-height: 11px;
-		text-transform: uppercase;
-		font-weight: 500;
-		color: #fff;
-		font-size: 14px;
-		line-height: 11px;
-		text-transform: none;
-		font-weight: 500;
-		text-decoration: none;
-	}
-
-	div.main-search-bar-container form div.input-holder span.clear-result {
-		position: absolute;
-		right: 15px;
-		top: 7px;
-		text-decoration: none;
-		line-height: 0px;
-		z-index: 2;
-		width: 22px;
-		height: 22px;
-		cursor: pointer;
-	}
-
-	div.main-search-bar-container form div.input-holder span.clear-result svg {
-		width: 100%;
-		height: 100%;
-		stroke: #fff;
-		background: var(--smc-main-uiel-color);
-		border-radius: 50%;
 	}
 </style>
 <script>
