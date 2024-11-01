@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-<?php echo "<script>console.log('". $cl['pn'] ."')</script>"?>
+
 <div class="left-sb-container sidebar" data-app="left-sidebar">
 	<div class="sidebar__inner">
 		<div style="display: flex; flex-direction: column; height: 100%; gap: 20px">
@@ -38,7 +38,7 @@
 								<span class="user-name-holder">
 									<?php echo ($me['name']); ?>
 								</span>
-								<p class="<?php if ($cl['li']['owner']['verified'] == '1') {
+								<p class="<?php if (isset($cl['li']['owner']['verified']) && $cl['li']['owner']['verified'] == '1') {
 									echo ('verified-badge');
 								} ?>" style="display:inline-block;"></p>
 							</h5>

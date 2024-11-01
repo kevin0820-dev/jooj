@@ -1,21 +1,26 @@
-<div class="timeline-container" data-app="confirm_registration">
-	<div class="timeline-header" data-el="tl-header">
-	<div class="timeline-header__botline">
-			<div class="lp">
-				<div class="nav-link-holder" style="display: flex;justify-content: center;align-items: center;">
-					<span class="go-back" onclick="SMColibri.go_back();">
-						<?php echo cl_ikon('arrow-left'); ?>
-					</span>
-					<a href="<?php echo cl_link("confirm_registration"); ?>" data-spa="true">
-						<?php echo cl_translate("Confirm registration"); ?>
-					</a>
+<?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true): ?>
+	<div class="h-laptop">
+		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
+			<div class="mobile-bottom-navbar-inner">
+				<div class="avatar-menu">
+					<a href="#" onclick="SMColibri.toggleSB();"> <?php echo cl_icon('hamburger'); ?></a>
 				</div>
+
 			</div>
-			<div class="cp">
-				
-			</div>
-			<div class="rp">
-				
+		</div>
+	</div>
+<?php endif; ?>
+<div class="timeline-container" data-app="confirm_registration">
+	<div class="timeline-header symbol_header" data-el="tl-header">
+		<?php echo cl_template('common/bot_line'); ?>
+		<div class="lp" style="display: inline-flex; align-items:center; padding-top:10px;">
+			<div class="nav-link-holder" style="display: flex;justify-content: center;align-items: center;">
+				<span class="go-back" onclick="SMColibri.go_back();">
+					<?php echo cl_ikon('arrow-left'); ?>
+				</span>
+				<a href="<?php echo cl_link("confirm_registration"); ?>" data-spa="true">
+					<?php echo cl_translate("Confirm registration"); ?>
+				</a>
 			</div>
 		</div>
 	</div>

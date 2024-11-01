@@ -1,61 +1,59 @@
 
 
 <div class="post-list-item-content" style="display: flex; border: 1px solid var(--smc-main-border-color); border-radius: 5px; padding: 10px; margin:10px 0px;">
-    <div class="publisher-avatar" style = "max-width: 35px; min-width:35px;">
-        <?php if ($cl['li']['symbol_id'] == 0): ?>
-            <a class="block-link" data-spa="true">
-                <div style="width:22px; height:22px; " class="avatar-holder">
-                    <img class="lozad" style="border-radius: 10em; width:100%;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
-                </div>
-            </a>
-        <?php else: ?>
-            <?php if ($cl['li']['owner']['id'] == 1): ?>
-                <a class="block-link" data-spa="true">
-                    <div style="width:22px; height:22px; " class="avatar-holder">
-                        <img class="lozad" style="border-radius: 10em; width:100%;" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
-                    </div>
-                </a>
-            <?php else: ?>
-                <!-- For post page coauthor -->
-                    <a class="block-link" data-spa="true">
-                        <div style="width:22px; height:22px; " class="avatar-holder">
-                            <img style="border-radius: 10em; width:100%;" class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
-                        </div>
-                    </a>
-            <?php endif; ?>
-        <?php endif; ?>
-    </div>
     <div class="publication-data">
         <div class="publication-data-inner">
             <div class="publisher-info">
-                <!-- For post -->
-                    <div class="lp">
-                        <a href="<?php echo $cl['li']['owner']['url']?>" data-spa="true" data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover" data-placement="bottom">
-                            <b>
-                                <span class="user-name-holder">
-                                    <?php echo $cl['li']['owner']['name']; ?>
-                                </span>
-                                <p class="<?php if ($cl['li']['owner']['verified'] == '1')
-                                                echo 'verified-badge'; ?>" style="display:inline-block;"></p>
-                            </b>
+                <div class="publisher-avatar" style = "max-width: 35px; min-width:35px;">
+                    <?php if ($cl['li']['symbol_id'] == 0): ?>
+                        <a class="block-link" data-spa="true">
+                            <div style="width:22px; height:22px; " class="avatar-holder">
+                                <img class="lozad" style="border-radius: 10em; width:100%;" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+                            </div>
                         </a>
-                        <span class="uname">
-                            @<?php echo $cl['li']['owner']['username']; ?>
-                        </span>
+                    <?php else: ?>
+                        <?php if ($cl['li']['owner']['id'] == 1): ?>
+                            <a class="block-link" data-spa="true">
+                                <div style="width:22px; height:22px; " class="avatar-holder">
+                                    <img class="lozad" style="border-radius: 10em; width:100%;" data-src="<?php echo ($cl['li']['page']['avatar']); ?>">
+                                </div>
+                            </a>
+                        <?php else: ?>
+                            <!-- For post page coauthor -->
+                                <a class="block-link" data-spa="true">
+                                    <div style="width:22px; height:22px; " class="avatar-holder">
+                                        <img style="border-radius: 10em; width:100%;" class="lozad" data-src="<?php echo ($cl['li']['owner']['avatar']); ?>">
+                                    </div>
+                                </a>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="lp">
+                    <a href="<?php echo $cl['li']['owner']['url']?>" data-spa="true" data-uinfo-lbox="<?php echo $cl['li']['owner']['id']; ?>" data-toggle="popover" data-placement="bottom">
+                        <b>
+                            <span class="user-name-holder">
+                                <?php echo $cl['li']['owner']['name']; ?>
+                            </span>
+                            <p class="<?php if ($cl['li']['owner']['verified'] == '1')
+                                            echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+                        </b>
+                    </a>
+                    <span class="uname">
+                        @<?php echo $cl['li']['owner']['username']; ?>
+                    </span>
 
-                        <span class="point">&#183;</span>
+                    <span class="point">&#183;</span>
 
-                        <span class="posted-time">
-                            <time><?php echo $cl['li']['time']; ?></time>
-                            <?php if (not_empty($cl['li']['edited'])): ?>
-                                <span
-                                    title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
-                                    &nbsp; (E)
-                                </span>
-                            <?php endif; ?>
-                        </span>
-                    </div>
-                
+                    <span class="posted-time">
+                        <time><?php echo $cl['li']['time']; ?></time>
+                        <?php if (not_empty($cl['li']['edited'])): ?>
+                            <span
+                                title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['edited']); ?>">
+                                &nbsp; (E)
+                            </span>
+                        <?php endif; ?>
+                    </span>
+                </div>
             </div>                                    
 
             <div class="publication-content">
@@ -73,7 +71,7 @@
                     
                     <!-- Edited By Kevin. 9/20 -->
                     <div class="publication-text">
-                        <p style="margin-left:-34px; margin-top:10px;" class="pub-text">
+                        <p style="margin-top:10px;" class="pub-text">
                             <?php
                             // Sample text from $cl['li']['text']
                             $text = $cl['li']['text'];

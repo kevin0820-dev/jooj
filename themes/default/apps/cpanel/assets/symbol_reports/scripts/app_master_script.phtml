@@ -3,7 +3,6 @@
 
 	jQuery(document).ready(function($) {
 		var _app = $('[data-app="symbol-reports"]');
-        console.log("<?php echo fetch_or_get($cl['total_reports'], 0); ?>");
         var CSMAccountReports = new Vue({
             el: "#vue-cpanel-symbol-reports-app",
             data: {
@@ -43,7 +42,6 @@
             },
             methods: {
                 paginate: function(dir = false) {
-                    console.log("pagination");
                     var _app_        = this;
                     var reports_list = _app.find('[data-an="reports-list"]');
                     var offset_lt    = reports_list.find('tr[data-list-item]').first().data('list-item');
@@ -96,7 +94,6 @@
                                 SMC_CPanel.waitme("show");
                             }
                         }).done(function(data) {
-                            console.log('fjklsfjklsdf');
                             if (data.status == 200) {
                                 $('[data-app="black-hole"]').html(data.html).find('div.modal').modal('show');
 
@@ -165,7 +162,6 @@
                 }
             }
         });
-        console.log(CSMAccountReports.data.total_reports);
         if (window.CSMAccountReports === undefined) {
             window.CSMAccountReports = CSMAccountReports;
         }

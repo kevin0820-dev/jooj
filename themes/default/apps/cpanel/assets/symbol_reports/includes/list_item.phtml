@@ -66,7 +66,7 @@
                 <a href="javascript:void(0);" class="dropdown-item" v-on:click="show('<?php echo($cl['li']['id']); ?>');">
                     <?php echo cl_translate('Show details'); ?>
                 </a>
-                <a href="<?php echo('/symbol/'.$cl['li']['u2_url']); ?>" class="dropdown-item">
+                <a href="<?php echo('/symbol/'.$cl['li']['u2_username']); ?>" class="dropdown-item">
                     <?php echo cl_translate('Coin'); ?>
                 </a>
                 <a href="javascript:void(0);" class="dropdown-item" onclick="SMC_CPanel.delete_user('<?php echo($cl['li']['symbol_id']); ?>');">

@@ -137,15 +137,12 @@
 			</div>
 		</div>
 	</div>
-	<style>
-	</style>
 	<div data-el="main-content-holder">
 		<main class="main-content-container <?php echo (($cl["is_logged"]) ? "" : "guest-mode"); ?>">
 			<div class="main-content-container-inner">
 				<?php if ($cl["pn"] == "guest"): ?>
 					<?php echo $cl["http_res"]; ?>
 				<?php else: ?>
-					<!-- Begin Left Sidebar -->
 					<?php if (not_empty($cl["sbl"])): ?>
 						<?php if (not_empty($cl["is_logged"])): ?>
 							<?php echo cl_template('main/left_sidebar'); ?>
@@ -153,14 +150,12 @@
 							<?php echo cl_template('main/left_sidebar_guest'); ?>
 						<?php endif; ?>
 					<?php endif; ?>
-					<!-- End Left Sidebar -->
-					<!-- Begin Main Content -->
 					<div data-el="timeline-container-wrapper" class="timeline-container-wrapper">
-						<div style="height: 30px;position: fixed; z-index:700; background: var(--smc-main-bg-color-2); display: block; top: 0px; max-width: 700px; width: 700px;"></div>
+						<div style = "height: 30px;position: fixed; z-index:700; background: var(--smc-main-bg-color-2); display: block; top: 0px; max-width: 700px; width: 700px;"></div>
 						<div data-el="timeline-content" class="timeline-container-inner">
 							<?php echo $cl["http_res"]; ?>
 						</div>
-
+						
 						<div data-el="spa-preloader" class="spa-preloader d-none">
 							<div class="spa-preloader-inner">
 								<span class="spinner-icon">
@@ -169,21 +164,12 @@
 							</div>
 						</div>
 					</div>
-					<!-- End Main Content -->
-					<!-- Begin Right Sidebar -->
-					<?php
-					$cl["right_sidebar_main"] = cl_template('main/right_sidebar');
-					?>
+					<?php $cl["right_sidebar_main"] = cl_template('main/right_sidebar');?>
 					<?php echo fetch_or_get($cl["right_sidebar"], $cl["right_sidebar_main"]); ?>
-					<!-- End Right Sidebar -->
-			</div>
-		<?php endif; ?>
+				</div>
+			<?php endif; ?>
 		</main>
-
-
-		<input id="csrf-token" type="hidden" class="hidden d-none"
-			value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>">
-
+		<input id="csrf-token" type="hidden" class="hidden d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>">
 		<?php if ($cl['is_logged']): ?>
 			<div class="modal fade modal-pubbox" data-app="modal-pubbox" id="add_new_post" tabindex="-1" role="dialog"
 				aria-hidden="true">
@@ -193,7 +179,6 @@
 							<div class="close">
 								<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 							</div>
-
 						</div>
 						<div class="modal-body">
 							<?php $cl['pb_id'] = 2;

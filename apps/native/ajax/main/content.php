@@ -97,10 +97,13 @@ if ($action == 'upload_page_image') {
                 cl_update_user_data($me['id'],array(
                     'last_post' => $post_id
                 ));
+                error_log("empty post data");
             }
 
             if (not_empty($post_data) && $post_data["type"] == "image") {
+                error_log("not empty post data");
                 if (empty($post_data['media']) || count($post_data['media']) < 5) {
+                    error_log("upload image");
                     $file_info      =  array(
                         'file'      => $_FILES['image']['tmp_name'],
                         'size'      => $_FILES['image']['size'],
@@ -136,9 +139,11 @@ if ($action == 'upload_page_image') {
                 else {
                     $data['err_code'] = "total_limit_exceeded";
                     $data['status']   = 400;
+                    error_log("total_limit_exceeded");
                 }
             }
             else {
+                error_log("other error");
                 cl_delete_orphan_posts($me['id']);
                 cl_update_user_data($me['id'],array(
                     'last_post' => 0
