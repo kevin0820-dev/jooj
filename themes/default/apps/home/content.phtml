@@ -1,23 +1,7 @@
 
 <div class="timeline-container" data-app="homepage">
 	<div class="timeline-header symbol_header" data-el="tl-header">
-		<div class="timeline-header__botline">
-			<div class="lp">
-				<div class="nav-link-holder h-mobile">
-					<a href="<?php echo cl_link("/"); ?>" data-spa="true">
-						<?php echo cl_translate("Home"); ?>
-					</a>
-				</div>
-			</div>
-			<div class="cp auto-x">
-				<a href="" class="h-laptop">
-					<img src="/themes/default/statics/img/logo.svg" alt="Logo" data-nsfw-filter-status="sfw" style="visibility: visible;">
-					<span class="logo-text">Cointweets</span>
-				</a>
-			</div>
-			<div class="rp">
-			</div>
-		</div>
+		<?php echo cl_template('common/bot_line'); ?>
 		<div>
 			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li  role="presentation">
@@ -254,16 +238,6 @@
 		height: 107px;
 		/* background-color: var(--smc-main-bg-color-3); header opacity background*/
 		backdrop-filter: blur(12px);
-	}
-
-	.timeline-header__botline {
-		border-bottom: 1px solid var(--smc-main-bg-color-2);
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		align-items: center;
-		padding-left: 16px;
-		padding-right: 16px;
 	}
 
 	.nav-fill .nav-item .nav-link,
