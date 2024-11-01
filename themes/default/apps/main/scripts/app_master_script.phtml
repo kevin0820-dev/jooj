@@ -364,9 +364,10 @@ _smc.userlbox.curr_el = false;
 			}
 
 			_smc.req_auth = function () {
-				var modal = "<div class='modal fadeIn info-popup-modal' tabindex='-1' data-onclose='remove' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'><div class='modal-dialog modal-md' role='document'><div class='modal-content'><div class='modal-body'><h4><?php echo cl_translate('This action requires authorization!'); ?></h4><p><?php echo cl_translate('Please log in to your account in order to perform this action, or register if you do not already have an account on -{@site_name@}', array('site_name' => cl_html_el('b', $cl['config']['name']))); ?></p></div><div class='modal-footer'><button data-dismiss='modal' type='button' class='btn btn-block btn-custom main-inline lg'><?php echo cl_translate('Okey!'); ?></button></div></div></div></div>";
+				// var modal = "<div class='modal fadeIn info-popup-modal' tabindex='-1' data-onclose='remove' role='dialog' aria-hidden='true' data-keyboard='false' data-backdrop='static'><div class='modal-dialog modal-md' role='document'><div class='modal-content'><div class='modal-body'><h4><?php echo cl_translate('This action requires authorization!'); ?></h4><p><?php echo cl_translate('Please log in to your account in order to perform this action, or register if you do not already have an account on -{@site_name@}', array('site_name' => cl_html_el('b', $cl['config']['name']))); ?></p></div><div class='modal-footer'><button data-dismiss='modal' type='button' class='btn btn-block btn-custom main-inline lg'><?php echo cl_translate('Okey!'); ?></button></div></div></div></div>";
 
-				$('div[data-app="black-hole"]').append($(modal)).find('div.info-popup-modal').modal('show');
+				// $('div[data-app="black-hole"]').append($(modal)).find('div.info-popup-modal').modal('show');
+				$('#loginModal').modal('show');
 			}
 
 			_smc.info = function (title = "", body = "") {

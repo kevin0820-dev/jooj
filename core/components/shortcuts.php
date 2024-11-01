@@ -55,7 +55,7 @@ function is_url($url = null) {
     return filter_var($url, FILTER_VALIDATE_URL);
 }
 
-function are_all($arr = array(), $type = none) {
+function are_all($arr = array(), $type = 'none') {
 
     if (empty($arr) || is_array($arr) != true) {
         return false;

@@ -73,10 +73,12 @@
 					v-on:input.trim="text_input_trigger"
 					v-on:blur="text_blur_trigger"
 					v-on:focus="text_focus_trigger"
+					v-on:paste="handlePaste"
 					class="autoresize"
 					v-model="text"
 					name="post_text"
-					placeholder="Share your thoughts on $<?php echo ($cl['prof_user']['username']); ?>"></textarea>
+					placeholder="Share your thoughts on $<?php echo ($cl['prof_user']['username']); ?>">
+				</textarea>
 			</div>
 			<div class="input-autocomplete" v-if="hashtags.tags.length">
 				<div class="input-autocomplete__hashtags">
