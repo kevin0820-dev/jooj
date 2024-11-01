@@ -49,6 +49,10 @@
 				</div>
 			</form>
 		</div>
+		<div class="main-timeline-pubbox-wrapper h-mobile custom-lineheight">
+			<?php $cl['pb_id'] = 1;
+			echo cl_template('timeline/pubbox'); ?>
+		</div>
 		<div>
 			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li  role="presentation">
@@ -74,10 +78,6 @@
 		</div>
 	</div>
 	<div class="homepage">
-		<div class="main-timeline-pubbox-wrapper h-mobile custom-lineheight">
-			<?php $cl['pb_id'] = 1;
-			echo cl_template('timeline/pubbox'); ?>
-		</div>
 		<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
 				<div class="homepage__swifts">
 					<div class="swifts-slider">
