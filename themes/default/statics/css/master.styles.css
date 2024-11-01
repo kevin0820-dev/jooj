@@ -6369,7 +6369,7 @@ body
     opacity: 0.97;
     z-index: 500;
     position: sticky;
-    top: 78px;
+    top: 65px;
 }
 
   /* body
@@ -6381,7 +6381,6 @@ body
     div.timeline-searchbar {
       margin-top: 45px;
     } */
-}
 
 body
   main.main-content-container
