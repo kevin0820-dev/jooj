@@ -1,7 +1,55 @@
 
 <div class="timeline-container" data-app="homepage">
 	<div class="timeline-header symbol_header" data-el="tl-header">
-		<?php echo cl_template('common/bot_line'); ?>
+		<div class="timeline-header__botline">
+			<div class="lp">
+				<div class="nav-link-holder h-mobile">
+					<a href="<?php echo cl_link("/"); ?>" data-spa="true">
+						<?php echo cl_translate("Home"); ?>
+					</a>
+				</div>
+			</div>
+			<div class="cp auto-x">
+				<a href="" class="h-laptop">
+					<img src="/themes/default/statics/img/logo.svg" alt="Logo" data-nsfw-filter-status="sfw" style="visibility: visible;">
+					<span class="logo-text">Cointweets</span>
+				</a>
+			</div>
+			<div class="rp middle">
+				<div class="nav-link-holde">
+					<button class="go-options dropleft show bt-3" onclick='$("#searchBar").slideToggle()'>
+						<?php echo cl_icon('search'); ?>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="main-search-bar-container" id="searchBar" style="display: none;">
+			<form class="form" id="vue-main-search-app" v-on:submit="search_onsubmit" autocomplete="off">
+				<div class="input-holder">
+					<input v-model="search_query" v-on:input="search" type="text" class="form-control"
+						placeholder="<?php echo cl_translate("Search for people, hashtags..", array('name' => $cl['config']['name'])); ?>">
+					<a href="#">
+						<?php echo cl_ikon('search'); ?>
+					</a>
+					<span class="spinner-icon" v-if="searching">
+						<?php echo cl_ikon('spinner-icon'); ?>
+					</span>
+					<span v-on:click="cancel" class="clear-result" v-else-if="search_result">
+						<?php echo cl_ikon('close'); ?>
+					</span>
+				</div>
+				<div class="search-result-holder" v-show="search_result">
+					<div class="search-result-body">
+						<ul class="result-list" data-an="result"></ul>
+					</div>
+					<div class="search-result-footer" v-bind:class="{'disabled': (advanced_search != true) }">
+						<a v-bind:href="search_page_url" data-spa="true">
+							<?php echo cl_translate('Advanced search'); ?>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
 		<div>
 			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li  role="presentation">
@@ -240,6 +288,16 @@
 		backdrop-filter: blur(12px);
 	}
 
+	.timeline-header__botline {
+		border-bottom: 1px solid var(--smc-main-bg-color-2);
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		align-items: center;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
 	.nav-fill .nav-item .nav-link,
 	.nav-justified .nav-item .nav-link {
 		width: auto;
@@ -348,5 +406,86 @@
 				}
 			});
 		});
+	});
+</script>
+<script>
+	new Vue({
+		el: "#vue-main-search-app",
+		data: {
+			searching: false,
+			search_query: "",
+			advanced_search: false,
+			search_result: false
+		},
+		computed: {
+			search_page_url: function() {
+				if (this.search_query.length > 2) {
+					var search_htags_url = "<?php echo cl_link('search/htags?q={0}'); ?>";
+					var search_users_url = "<?php echo cl_link('search/people?q={0}'); ?>";
+					var search_symbols_url = "<?php echo cl_link('search/symbols?q={0}'); ?>";
+					this.advanced_search = true;
+
+							if (this.search_query.charAt(0) == '#') {
+								return search_htags_url.format(this.search_query.replace('#', ''));
+							} else if (this.search_query.charAt(0) == '$') {
+								return search_symbols_url.format(this.search_query.replace('$', ''));
+							} else {
+								return search_users_url.format(this.search_query);
+							}
+						} else {
+							this.advanced_search = false;
+							return "javascript:void(0);";
+						}
+					},
+					query_type: function() {
+						if (this.search_query.charAt(0) == '#') {
+							return 'htags';
+						} else if (this.search_query.charAt(0) == '$') {
+							return 'symbols';
+						} else {
+							return 'users';
+						}
+					}
+				},
+				methods: {
+					search_onsubmit: function(e = false) {
+						e.preventDefault();
+						this.search();
+					},
+					search: function() {
+						if (this.search_query.length > 1) {
+							var _app_ = this;
+							delay(function() {
+								$.ajax({
+									url: '<?php echo cl_link('native_api/main/search'); ?>',
+									type: 'GET',
+									dataType: 'json',
+									data: {
+										query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
+										type: _app_.query_type
+									},
+									beforeSend: function() {
+										_app_.searching = true;
+									}
+								}).done(function(data) {
+									_app_.search_result = true;
+									$(_app_.$el).find('[data-an="result"]').html($(data.html));
+								}).always(function() {
+									_app_.searching = false;
+								});
+							}, 800);
+						}
+						else this.search_result = false;
+					},
+					cancel: function() {
+						var _app_ = this;
+						_app_.searching = false;
+						_app_.search_query = "";
+						_app_.advanced_search = false;
+						_app_.search_result = false;
+
+				$(_app_.$el).find('[data-an="result"]').empty('');
+			}
+		}
 	});
 </script>
