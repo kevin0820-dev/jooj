@@ -105,26 +105,26 @@
 	<style>
 		<?php echo (cl_get_custom_code("headercss")); ?>
 	</style>
-	
+
 </head>
 
 <body <?php if ($cl["curr_lang"]["lang_data"]["is_rtl"] == "Y") {
-	echo ('dir="rtl"');
-} else {
-	echo ('dir="ltr"');
-} ?>
+			echo ('dir="rtl"');
+		} else {
+			echo ('dir="ltr"');
+		} ?>
 	class="cl-app-<?php echo fetch_or_get($cl["pn"], "none"); ?>"
 	data-page-tab="<?php echo fetch_or_get($cl["page_tab"], "none"); ?>"
 	data-skin="<?php if ($cl["pn"] != "guest") {
-		echo ($cl["display_set"]["color_scheme"]);
-	} else {
-		echo ("default");
-	} ?>"
+					echo ($cl["display_set"]["color_scheme"]);
+				} else {
+					echo ("default");
+				} ?>"
 	data-bg="<?php if ($cl["pn"] != "guest") {
-		echo ($cl["display_set"]["background"]);
-	} else {
-		echo ("default");
-	} ?>">
+					echo ($cl["display_set"]["background"]);
+				} else {
+					echo ("default");
+				} ?>">
 	<div class="main-preloader-holder" id="main-preloader-holder">
 		<div class="main-preloader">
 			<div class="loading">
@@ -144,42 +144,42 @@
 			<div class="main-content-container-inner">
 				<?php if ($cl["pn"] == "guest"): ?>
 					<?php echo $cl["http_res"]; ?>
-					<?php else: ?>
-						<!-- Left Sidebar -->
-						<?php if (not_empty($cl["sbl"])): ?>
-							<?php if (not_empty($cl["is_logged"])): ?>
-								<?php echo cl_template('main/left_sidebar'); ?>
-								<?php else: ?>
-									<?php echo cl_template('main/left_sidebar_guest'); ?>
-									<?php endif; ?>
-									<?php endif; ?>
-									<!-- End Left Sidebar -->
-									<!-- Main Content -->
-									<div data-el="timeline-container-wrapper" class="timeline-container-wrapper">
-										<div style = "height: 30px;position: fixed; z-index:700; background: var(--smc-main-bg-color-2); display: block; top: 0px; max-width: 700px; width: 700px;"></div>
-										<div data-el="timeline-content" class="timeline-container-inner">
-											<?php echo $cl["http_res"]; ?>
-										</div>
-										
-										<div data-el="spa-preloader" class="spa-preloader d-none">
-											<div class="spa-preloader-inner">
-												<span class="spinner-icon">
-													<?php echo cl_icon("spinner-icon"); ?>
-												</span>
-											</div>
-										</div>
-									</div>
-									<!-- End Main Content -->
-									<!-- Right Sidebar -->
-									<?php
-									$cl["right_sidebar_main"] = cl_template('main/right_sidebar');
-									?>
-									<?php echo fetch_or_get($cl["right_sidebar"], $cl["right_sidebar_main"]); ?>
-									<!-- End Right Sidebar -->
-				</div>
-			<?php endif; ?>
+				<?php else: ?>
+					<!-- Begin Left Sidebar -->
+					<?php if (not_empty($cl["sbl"])): ?>
+						<?php if (not_empty($cl["is_logged"])): ?>
+							<?php echo cl_template('main/left_sidebar'); ?>
+						<?php else: ?>
+							<?php echo cl_template('main/left_sidebar_guest'); ?>
+						<?php endif; ?>
+					<?php endif; ?>
+					<!-- End Left Sidebar -->
+					<!-- Begin Main Content -->
+					<div data-el="timeline-container-wrapper" class="timeline-container-wrapper">
+						<div style="height: 30px;position: fixed; z-index:700; background: var(--smc-main-bg-color-2); display: block; top: 0px; max-width: 700px; width: 700px;"></div>
+						<div data-el="timeline-content" class="timeline-container-inner">
+							<?php echo $cl["http_res"]; ?>
+						</div>
+
+						<div data-el="spa-preloader" class="spa-preloader d-none">
+							<div class="spa-preloader-inner">
+								<span class="spinner-icon">
+									<?php echo cl_icon("spinner-icon"); ?>
+								</span>
+							</div>
+						</div>
+					</div>
+					<!-- End Main Content -->
+					<!-- Begin Right Sidebar -->
+					<?php
+					$cl["right_sidebar_main"] = cl_template('main/right_sidebar');
+					?>
+					<?php echo fetch_or_get($cl["right_sidebar"], $cl["right_sidebar_main"]); ?>
+					<!-- End Right Sidebar -->
+			</div>
+		<?php endif; ?>
 		</main>
-		
+
 
 		<input id="csrf-token" type="hidden" class="hidden d-none"
 			value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>">
@@ -234,7 +234,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal fade modal-pubbox" data-app="modal-pubbox-repost" id="add_new_post_repost" tabindex="-1" role="dialog" data-keyboard="true" data-backdrop="static" data-onclose="close" aria-hidden="true">		<!-- edited by kevin to show modal for repost (added) -->
+			<div class="modal fade modal-pubbox" data-app="modal-pubbox-repost" id="add_new_post_repost" tabindex="-1" role="dialog" data-keyboard="true" data-backdrop="static" data-onclose="close" aria-hidden="true"> <!-- edited by kevin to show modal for repost (added) -->
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header no-border-bottom">
@@ -244,12 +244,13 @@
 
 						</div>
 						<div class="modal-body">
-							<?php $cl['pb_id'] = "repost"; echo cl_template('timeline/pubbox_repost'); ?>
+							<?php $cl['pb_id'] = "repost";
+							echo cl_template('timeline/pubbox_repost'); ?>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="modal fade modal-pubbox" data-app="modal-pubbox-repost_symbol" id="add_new_post_repost_symbol" tabindex="-1" role="dialog" data-keyboard="true" data-backdrop="static" data-onclose="close" aria-hidden="true">		<!-- edited by kevin to show modal for repost_symbol (added) 9/20 -->
+			<div class="modal fade modal-pubbox" data-app="modal-pubbox-repost_symbol" id="add_new_post_repost_symbol" tabindex="-1" role="dialog" data-keyboard="true" data-backdrop="static" data-onclose="close" aria-hidden="true"> <!-- edited by kevin to show modal for repost_symbol (added) 9/20 -->
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header no-border-bottom">
@@ -258,7 +259,8 @@
 							</div>
 						</div>
 						<div class="modal-body">
-							<?php $cl['pb_id'] = "repost_symbol"; echo cl_template('timeline/pubbox_repost_symbol'); ?>
+							<?php $cl['pb_id'] = "repost_symbol";
+							echo cl_template('timeline/pubbox_repost_symbol'); ?>
 						</div>
 					</div>
 				</div>
@@ -295,52 +297,7 @@
 	<script>
 		<?php echo (cl_get_custom_code("footerjs")); ?>
 	</script>
-	<!-- <script>
-	jQuery(document).ready(function($) {
 
-		var currentScroll = $(this).scrollTop();
-		var height = $('.right-sb-container .sidebar__inner').height();
-		var viewHeight = $(window).height();
-		var mainContentHeight = $('.timeline-container-inner').height() + 30;
-
-		console.log(height, mainContentHeight);
-
-		if ($('.main-content-container-inner').length) {
-			if(mainContentHeight > viewHeight) {
-				$('.main-content-container-inner').css({
-					'min-height': (mainContentHeight + 10) + 'px'
-				});
-			}
-			if(height > viewHeight) {
-				$('.main-content-container-inner').css({
-					'min-height': (height + 10) + 'px'
-				});
-			}
-			if(height > mainContentHeight) {
-				console.log('111111');
-				$('.main-content-container-inner').css({
-					'min-height': (height + 10) + 'px'
-				});
-			} else {
-				console.log('111112');
-				$('.main-content-container-inner').css({
-					'min-height': (mainContentHeight + 10) + 'px'
-				});
-		}
-		if(viewHeight + 100 > mainContentHeight && height > mainContentHeight) {
-			// $('.timeline-container-inner').css({
-
-			// });
-		}
-		} else {
-			console.log("Element not found.");
-		}
-
-		});
-
-
-
-	</script> -->
 	<style>
 		#add_new_post .modal-dialog {
 			min-width: 390px;
@@ -349,21 +306,24 @@
 		#add_new_post .modal-header {
 			border: none;
 		}
+
 		.fancybox__container::-webkit-scrollbar {
 			width: 2px;
 		}
+
 		.fancybox__rightCol::-webkit-scrollbar {
 			width: 2px;
 		}
+
 		.fancybox__rightCol {
-		overflow: hidden!important;
+			overflow: hidden !important;
 		}
 	</style>
 	<style>
-	.dropdown-toggle:after {
-		display: none!important;
-	}
-</style>
+		.dropdown-toggle:after {
+			display: none !important;
+		}
+	</style>
 
 </body>
 

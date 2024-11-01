@@ -1,4 +1,3 @@
-
 <div class="timeline-container" data-app="homepage">
 	<div class="timeline-header symbol_header" data-el="tl-header">
 		<div class="timeline-header__botline">
@@ -18,36 +17,12 @@
 			<div class="rp">
 			</div>
 		</div>
-		<div>
-			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-				<li  role="presentation">
-					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
-						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
-							class="css-1dbjc4n"></div></a>
-				</li>
-				<li  role="presentation">
-					<a class="nav-link home_nav_btn" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile" aria-selected="false">
-						<?php echo cl_translate("Following"); ?>
-						<div class="css-1dbjc4n"></div>
-					</a>
-				</li>
-				<li  role="presentation">
-					<a class="nav-link home_nav_btn" id="page-tab" data-toggle="tab" href="#page" role="tab"
-						aria-controls="page" aria-selected="false">
-						<?php echo cl_translate("watchings"); ?>
-						<div class="css-1dbjc4n"></div>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="homepage">
-		<div class="main-timeline-pubbox-wrapper h-mobile custom-lineheight">
-			<?php $cl['pb_id'] = 1;
-			echo cl_template('timeline/pubbox'); ?>
-		</div>
-		<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+		<div class="homepage">
+			<div class="main-timeline-pubbox-wrapper h-mobile custom-lineheight">
+				<?php $cl['pb_id'] = 1;
+				echo cl_template('timeline/pubbox'); ?>
+			</div>
+			<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
 				<div class="homepage__swifts">
 					<div class="swifts-slider">
 						<div class="swiper" id="homepage-swifts-slider">
@@ -68,26 +43,26 @@
 									</div>
 								</div>
 								<?php if (not_empty($cl["tl_swifts"]) && is_array($cl["tl_swifts"])): ?>
-										<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
-												<div class="swiper-slide">
-													<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
-														   echo ('active');
-													   } ?>" onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
-														<div class="swift-item__body">
-															<div class="swift-item__avatar">
-																<img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
-															</div>
-														</div>
-														<div class="swift-item__footer">
-															<?php if (not_empty($swift_data["is_user"])): ?>
-																	<?php echo cl_translate("Your swifts"); ?>
-															<?php else: ?>
-																	<?php echo ($swift_data['name']); ?>
-															<?php endif; ?>
-														</div>
+									<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
+										<div class="swiper-slide">
+											<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
+																																echo ('active');
+																															} ?>" onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
+												<div class="swift-item__body">
+													<div class="swift-item__avatar">
+														<img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
 													</div>
 												</div>
-										<?php endforeach; ?>
+												<div class="swift-item__footer">
+													<?php if (not_empty($swift_data["is_user"])): ?>
+														<?php echo cl_translate("Your swifts"); ?>
+													<?php else: ?>
+														<?php echo ($swift_data['name']); ?>
+													<?php endif; ?>
+												</div>
+											</div>
+										</div>
+									<?php endforeach; ?>
 								<?php endif; ?>
 							</div>
 						</div>
@@ -96,47 +71,72 @@
 						</div>
 					</div>
 				</div>
-		<?php endif; ?>
+			<?php endif; ?>
+		</div>
+		<div>
+			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+				<li role="presentation">
+					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
+						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
+							class="css-1dbjc4n"></div></a>
+				</li>
+				<li role="presentation">
+					<a class="nav-link home_nav_btn" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile" aria-selected="false">
+						<?php echo cl_translate("Following"); ?>
+						<div class="css-1dbjc4n"></div>
+					</a>
+				</li>
+				<li role="presentation">
+					<a class="nav-link home_nav_btn" id="page-tab" data-toggle="tab" href="#page" role="tab"
+						aria-controls="page" aria-selected="false">
+						<?php echo cl_translate("watchings"); ?>
+						<div class="css-1dbjc4n"></div>
+					</a>
+				</li>
+			</ul>
+		</div>
 	</div>
+
 
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 			<?php $count = 0; ?>
 			<?php if (not_empty($cl["feed"]) && is_array($cl['feed'])): ?>
-					<div class="timeline-posts-container">
-						<div class="timeline-posts-ls" data-an="entry-list">
-							<?php foreach ($cl["feed"] as $cl['li']): ?>
-									<?php $count++; ?>
-									<?php echo cl_template('timeline/post'); ?>
-									<?php if ($count == 3) {
-										echo cl_template('home/follow');
-									} ?>
-							<?php endforeach; ?>
-						</div>
-						<?php if (count($cl["feed"]) == 30): ?>
-								<div class="timeline-data-loader">
-									<button class="btn btn-custom main-outline lg" data-an="load-more">
-										<?php echo cl_translate("Show more"); ?>
-									</button>
-								</div>
-						<?php endif; ?>
+				<div class="timeline-posts-container">
+					<div class="timeline-posts-ls" data-an="entry-list">
+						<?php foreach ($cl["feed"] as $cl['li']): ?>
+							<?php $count++; ?>
+							<?php echo cl_template('timeline/post'); ?>
+							<?php if ($count == 3) {
+								echo cl_template('home/follow');
+							} ?>
+						<?php endforeach; ?>
 					</div>
+					<?php if (count($cl["feed"]) == 30): ?>
+						<div class="timeline-data-loader">
+							<button class="btn btn-custom main-outline lg" data-an="load-more">
+								<?php echo cl_translate("Show more"); ?>
+							</button>
+						</div>
+					<?php endif; ?>
+				</div>
 			<?php else: ?>
-					<div class="timeline-placeholder">
-						<div class="icon">
-							<div class="icon__bg">
-								<?php echo cl_icon('feed'); ?>
-							</div>
-						</div>
-						<div class="pl-message">
-							<h4>
-								<?php echo cl_translate("No data to display yet!"); ?>
-							</h4>
-							<p>
-								<?php echo cl_translate("It looks like the site has no content to display yet. All featured posts will be displayed on this page"); ?>
-							</p>
+				<div class="timeline-placeholder">
+					<div class="icon">
+						<div class="icon__bg">
+							<?php echo cl_icon('feed'); ?>
 						</div>
 					</div>
+					<div class="pl-message">
+						<h4>
+							<?php echo cl_translate("No data to display yet!"); ?>
+						</h4>
+						<p>
+							<?php echo cl_translate("It looks like the site has no content to display yet. All featured posts will be displayed on this page"); ?>
+						</p>
+					</div>
+				</div>
 			<?php endif; ?>
 		</div>
 
@@ -144,25 +144,25 @@
 			<div class="timeline-posts-container" style="margin-top: 0px;">
 				<?php $count = 0; ?>
 				<?php if (not_empty($cl["tl_feed"])): ?>
-						<div class="timeline-posts-ls" data-an="entry-list">
-							<?php foreach ($cl["tl_feed"] as $cl["li"]): ?>
-									<?php $count++; ?>
-									<?php echo cl_template('timeline/post'); ?>
-									<?php if ($count == 3) {
-										echo cl_template('home/follow_feed');
-									} ?>
-							<?php endforeach; ?>
+					<div class="timeline-posts-ls" data-an="entry-list">
+						<?php foreach ($cl["tl_feed"] as $cl["li"]): ?>
+							<?php $count++; ?>
+							<?php echo cl_template('timeline/post'); ?>
+							<?php if ($count == 3) {
+								echo cl_template('home/follow_feed');
+							} ?>
+						<?php endforeach; ?>
+					</div>
+					<?php if (is_array($cl["tl_feed"]) && count($cl["tl_feed"]) == 30): ?>
+						<div class="timeline-data-loader">
+							<button class="btn btn-custom main-outline lg" data-an="load-more">
+								<?php echo cl_translate("Show more"); ?>
+							</button>
 						</div>
-						<?php if (is_array($cl["tl_feed"]) && count($cl["tl_feed"]) == 30): ?>
-								<div class="timeline-data-loader">
-									<button class="btn btn-custom main-outline lg" data-an="load-more">
-										<?php echo cl_translate("Show more"); ?>
-									</button>
-								</div>
-						<?php endif; ?>
+					<?php endif; ?>
 
-				
-			<?php else: ?>
+
+				<?php else: ?>
 					<div class="timeline-placeholder">
 						<div class="icon">
 							<div class="icon__bg">
@@ -178,32 +178,32 @@
 							</p>
 						</div>
 					</div>
-			<?php endif; ?>
+				<?php endif; ?>
 			</div>
 		</div>
 		<div class="tab-pane fade" id="page" role="tabpanel" aria-labelledby="page-tab">
 			<div class="timeline-posts-container" style="margin-top: 0px;">
 				<?php $count = 0; ?>
 				<?php if (not_empty($cl["sm_feed"])): ?>
-						<div class="timeline-posts-ls" data-an="entry-list">
-							<?php foreach ($cl["sm_feed"] as $cl["li"]): ?>
-									<?php $count++; ?>
-									<?php echo cl_template('timeline/post'); ?>
-									<?php if ($count == 3) {
-										echo cl_template('home/follow_feed2');			/* edited to make watching work (button to slide) 2024.9.15*/
-									} ?>
-							<?php endforeach; ?>
+					<div class="timeline-posts-ls" data-an="entry-list">
+						<?php foreach ($cl["sm_feed"] as $cl["li"]): ?>
+							<?php $count++; ?>
+							<?php echo cl_template('timeline/post'); ?>
+							<?php if ($count == 3) {
+								echo cl_template('home/follow_feed2');			/* edited to make watching work (button to slide) 2024.9.15*/
+							} ?>
+						<?php endforeach; ?>
+					</div>
+					<?php if (is_array($cl["sm_feed"]) && count($cl["sm_feed"]) == 30): ?>
+						<div class="timeline-data-loader">
+							<button class="btn btn-custom main-outline lg" data-an="load-more">
+								<?php echo cl_translate("Show more"); ?>
+							</button>
 						</div>
-						<?php if (is_array($cl["sm_feed"]) && count($cl["sm_feed"]) == 30): ?>
-								<div class="timeline-data-loader">
-									<button class="btn btn-custom main-outline lg" data-an="load-more">
-										<?php echo cl_translate("Show more"); ?>
-									</button>
-								</div>
-						<?php endif; ?>
+					<?php endif; ?>
 
-				
-			<?php else: ?>
+
+				<?php else: ?>
 					<div class="timeline-placeholder">
 						<div class="icon">
 							<div class="icon__bg">
@@ -219,7 +219,7 @@
 							</p>
 						</div>
 					</div>
-			<?php endif; ?>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
@@ -238,8 +238,8 @@
 	<?php endif; ?>
 
 	<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
-			<?php echo cl_template("home/modals/swift_lightbox"); ?>
-			<?php echo cl_template("home/modals/swift_pubbox"); ?>
+		<?php echo cl_template("home/modals/swift_lightbox"); ?>
+		<?php echo cl_template("home/modals/swift_pubbox"); ?>
 	<?php endif; ?>
 
 	<?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
@@ -275,9 +275,11 @@
 		font-weight: 500;
 		font-size: 18px;
 	}
+
 	.nav-tabs .nav-link {
 		color: var(--smc-main-text-color-2);
 	}
+
 	.nav-tabs .nav-item.show .nav-link,
 	.nav-tabs .nav-link.active {
 		color: var(--smc-main-text-color);
@@ -302,35 +304,41 @@
 		margin-top: 12px;
 		margin-bottom: -15px;
 	}
-	.left-push-nav{
+
+	.left-push-nav {
 		display: inline-flex;
 	}
+
 	.nav-tabs .nav-link:hover {
 		background-color: inherit;
 		border: 0px !important;
 		border-color: transparent !important;
 		transition: none !important;
 	}
-	.home_nav_btn{
+
+	.home_nav_btn {
 		color: var(--smc-main-text-color-2);
 		font-size: 18px !important;
 		text-transform: none !important;
 	}
+
 	.nav-tabs .nav-link {
-		padding:15px 34px 12px 4px !important;
+		padding: 15px 34px 12px 4px !important;
 	}
 </style>
 <script>
 	// Initialise Carousel
 	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
 		Dots: false,
-		itemtsToShow : 5,
+		itemtsToShow: 5,
 	})
 	const cardSlider2 = new Carousel(document.querySelector("#cardSlider2"), {
 		Dots: false,
-		itemtsToShow : 5,							/* edited by kevin to make watching work (button to slide) 2024.9.15*/
+		itemtsToShow: 5,
+		/* edited by kevin to make watching work (button to slide) 2024.9.15*/
 	})
-	const cardSlider3 = new Carousel(document.querySelector("#cardSlider3"), {		/* edited by kevin to make watching work (button to slide) 2024.9.15*/
+	const cardSlider3 = new Carousel(document.querySelector("#cardSlider3"), {
+		/* edited by kevin to make watching work (button to slide) 2024.9.15*/
 		Dots: false,
 	})
 </script>
@@ -340,11 +348,11 @@
 
 	var offset = 30;
 
-	jQuery(document).ready(function ($) {
+	jQuery(document).ready(function($) {
 		var _app = $('div[data-app="homepage"]');
 		var feed_ls = _app.find('[data-an="entry-list"]');
 
-		_app.find('button[data-an="load-more"]').on('click', function (event) {
+		_app.find('button[data-an="load-more"]').on('click', function(event) {
 			event.preventDefault();
 
 			var _self = $(this);
@@ -357,19 +365,17 @@
 				data: {
 					offset: offset,
 				},
-				beforeSend: function () {
+				beforeSend: function() {
 					_self.attr('disabled', 'true').text("<?php echo cl_translate("Please wait"); ?>");
 				}
-			}).done(function (data) {
+			}).done(function(data) {
 				if (data.status == 200) {
 					feed_ls.append(data.html);
 
 					_self.removeAttr('disabled').text("<?php echo cl_translate("Show more"); ?>");
 
 					offset += 30;
-				}
-
-				else {
+				} else {
 					_self.text("<?php echo cl_translate("That is all for now!"); ?>");
 				}
 			});

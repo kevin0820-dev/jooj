@@ -3,7 +3,7 @@
 		<div class="cp h-mobile" style="margin-bottom: 10px; margin-left:25px;">
 			<a href="<?php echo cl_link("/"); ?>">
 				<img src="{%config site_logo%}" alt="Logo">
-				<h1 class="ml11">
+				<h1 style="margin-bottom: 0px;" class="ml11">
 					<span class="text-wrapper">
 						<span class="line line1"></span>
 						<span class="letters">{%config name%}</span>
@@ -26,13 +26,13 @@
 					</span>
 				</li>
 				<li data-navitem="explore" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'explore') {
-																		echo ('active');
-																	} ?>">
+																			echo ('active');
+																		} ?>">
 					<span class="icon">
 						<?php echo cl_ikon('explore'); ?>
 					</span>
 					<span class="nav-item-holder">
-						<a href="<?php echo cl_link("explore"); ?>" >
+						<a href="<?php echo cl_link("explore"); ?>">
 							<?php echo cl_translate('Explore'); ?>
 						</a>
 					</span>
@@ -45,10 +45,16 @@
 	<div class="r-o96wvk"></div>
 	<div class="guest_login">
 		<div class="login_txt">
-			<h1><?php echo cl_translate("dont_miss"); ?></h1>
-			<h6><?php echo cl_translate("dont_miss_desc", array(
-						"site_name" => $cl["config"]["name"]
-					)); ?></h6>
+			<span style="display: flex; align-items: center;">
+				<img class="icon" src="{%config site_logo%}" alt="" height="50" width="60" style="margin-right:5px; display: block; height: auto;  border: 0;">
+				<span>
+					<h1><?php echo cl_translate("dont_miss"); ?></h1>
+					<h6><?php echo cl_translate("dont_miss_desc", array(
+							"site_name" => $cl["config"]["name"]
+						)); ?></h6>
+				</span>
+			</span>
+
 		</div>
 		<div class="login_btn">
 			<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal"><?php echo cl_translate("Log in"); ?></button>
@@ -125,6 +131,8 @@
 	</div>
 </div>
 <?php echo cl_template('auth/scripts/app_master_script'); ?>
-
-
-
+<style>
+	.letters{
+		font-family: sans-serif;
+	}
+</style>
