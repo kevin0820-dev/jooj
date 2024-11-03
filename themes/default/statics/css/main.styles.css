@@ -1521,6 +1521,7 @@ body.modal-open {
   }
   .guest_bottom {
     height: auto;
+    display: none;
   }
   body
     main.main-content-container
