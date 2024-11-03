@@ -243,7 +243,7 @@ body[data-skin="default"] {
   border-bottom: none !important;
 }
 .svg-icon{
-  /* fill: var(--cl-primary-text-color) !important; */
+  fill: var(--cl-primary-text-color) !important;
 }
 .noBorder{
   border: none !important;
@@ -7936,7 +7936,7 @@ body
   span.icon
   svg {
   stroke-width: 2;
-  color:#7366ff;
+  color:#7366ff !important;
   /* fill: var(--smc-main-text-color); */
 }
 .topical-posts__item svg {
