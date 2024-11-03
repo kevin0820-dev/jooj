@@ -140,7 +140,7 @@ function cl_get_page_feed($limit = false, $offset = false, $onset = false) {
 				if ($post_data['is_repost']) {
 					$post_data['attrs'][]  = cl_html_attrs(array('data-repost' => $row['offset_id']));
 					$reposter_data         = cl_user_data($row['user_id']);
-					$post_data['reposter'] = array(
+					if(isset($reposter_data['name'])) $post_data['reposter'] = array(
 						'name' => $reposter_data['name'],
 						'username' => $reposter_data['username'],
 						'url' => $reposter_data['url'],

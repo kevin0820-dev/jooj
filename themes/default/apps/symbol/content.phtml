@@ -123,7 +123,7 @@ if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
 						<?php else : echo "Error" ?>
 						<?php endif ?>
 					</div>
-					<div style="padding-left:10px; font-weight:bold; color: <?php echo (floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
+					<div style="padding-left:10px; font-weight:bold; color: <?php echo (floatval(isset($cl['coin_one']['change_pct_24h']) && $cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
 						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
 							<?php echo $cl['coin_one']['change_pct_24h']; ?>%(1d)
 						<?php else : ?>
