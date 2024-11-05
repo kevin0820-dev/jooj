@@ -1,35 +1,45 @@
 <div class="timeline-container" data-app="symbol">
 	<?php
 
-		use Aws\DynamoDb\NumberValue;
+	use Aws\DynamoDb\NumberValue;
 
-		$coin_id = strtoupper($cl['prof_user']['username']);
-		$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
-		$response = curl_exec($ch);
-		if ($response === false) {
-			echo 'Curl error: ' . curl_error($ch);
-			curl_close($ch);
-			exit;
-		}
+	$coin_id = strtoupper($cl['prof_user']['username']);
+	$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
+	$response = curl_exec($ch);
+	if ($response === false) {
+		echo 'Curl error: ' . curl_error($ch);
 		curl_close($ch);
-		$data = json_decode($response, true);
-		if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
-			$price = $data['RAW'][$coin_id]['USD']['PRICE'];
-			$decimal_places = ($price < 0.01) ? 7 : 2;
-			$cl['coin_one'] = [
-				'price' => number_format($data['RAW'][$coin_id]['USD']['PRICE'], $decimal_places),
-				'high_24h' => number_format($data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
-				'low_24h' => number_format($data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
-				'change_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
-				'change_pct_24h' => number_format($data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
-			];
-		} else {
-			$cl['coin_one'] = [];
-		}
+		exit;
+	}
+	curl_close($ch);
+	$data = json_decode($response, true);
+if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
+    $price = (float) $data['RAW'][$coin_id]['USD']['PRICE']; 
+
+    if ($price >= 1) {
+        $formatted_price = number_format($price, 2);
+    } else {
+        $significant_digits = 2;
+        $precision = $significant_digits - floor(log10(abs($price))) - 1;
+        $formatted_price = number_format(round($price, $precision), $precision, '.', '');
+    }
+
+    $cl['coin_one'] = [
+        'price' => $formatted_price,
+        'high_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
+        'low_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
+        'change_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
+        'change_pct_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
+    ];
+} else {
+    $cl['coin_one'] = [];
+}
+
+
 	?>
 	<div class="h-laptop">
 		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
@@ -53,7 +63,7 @@
 			</div>
 			<div class="cp auto-x">
 				<a href="" class="h-laptop">
-					<img src="/themes/default/statics/img/logo.svg" alt="Logo" data-nsfw-filter-status="sfw" style="visibility: visible;">
+					<img src="/themes/default/statics/img/logo.svg" alt="Logo" style="visibility: visible;">
 					<span class="logo-text">Cointweets</span>
 				</a>
 			</div>
@@ -113,7 +123,7 @@
 						<?php else : echo "Error" ?>
 						<?php endif ?>
 					</div>
-					<div style="padding-left:10px; font-weight:bold; color: <?php echo (floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
+					<div style="padding-left:10px; font-weight:bold; color: <?php echo (floatval(isset($cl['coin_one']['change_pct_24h']) && $cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
 						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
 							<?php echo $cl['coin_one']['change_pct_24h']; ?>%(1d)
 						<?php else : ?>

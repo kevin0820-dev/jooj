@@ -70,10 +70,12 @@ else {
     if ($provider) {
         try {
             $hybridauth    = new Hybridauth\Hybridauth($oauth_config);
+            echo json_encode($provider);
             $auth_provider = $hybridauth->authenticate($provider);
+            
             $tokens        = $auth_provider->getAccessToken();
             $user_profile  = $auth_provider->getUserProfile();
-
+            
             if ($user_profile && isset($user_profile->identifier)) {
                 $fname      = fetch_or_get($user_profile->firstName, time());
                 $prov_email = "mail.com";
@@ -115,6 +117,7 @@ else {
                     $prov_prefx = 'ig_';
                 }
 
+                
                 $user_name  = uniqid($prov_prefx);
                 $user_email = cl_strf('%s@%s', $user_name, $prov_email);
 
