@@ -550,7 +550,7 @@ h1.login-home {
   overflow-wrap: break-word;
   line-height: 84px !important;
   letter-spacing: -1.2px;
-  font-size: 64px;
+  font-size: 49px;
   font-weight: 700;
 }
 
@@ -1334,7 +1334,7 @@ body.modal-open {
 
   box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px,
     rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
-  background-color: rgb(29, 155, 240);
+  background-color: rgb(0, 0, 0);
   pointer-events: auto;
   z-index: 700;
   display: flex;
@@ -1521,6 +1521,7 @@ body.modal-open {
   }
   .guest_bottom {
     height: auto;
+    display: none;
   }
   body
     main.main-content-container
@@ -1910,6 +1911,7 @@ body.modal-open {
 
 .cp a {
   display: flex;
+  align-items: center;
 }
 
 .ml11 {
@@ -7935,7 +7937,7 @@ body
   span.icon
   svg {
   stroke-width: 2;
-  color:#7366ff;
+  color:#7366ff !important;
   /* fill: var(--smc-main-text-color); */
 }
 .topical-posts__item svg {
@@ -20592,8 +20594,8 @@ body.cl-app-guest
   div.welcome-page-form__header {
   display: block;
   height: 50px;
-  margin-top: 70px;
-  margin-bottom: 20px;
+  margin-top: 53px;
+  margin-bottom: 45px;
 }
 
 body.cl-app-guest
@@ -20702,7 +20704,8 @@ body.cl-app-guest
   div.autu-navbar
   div.autu-navbar__item.logo
   div.logo {
-  height: 100%;
+  height: 200%;
+  margin-left: -13px;
 }
 
 body.cl-app-guest

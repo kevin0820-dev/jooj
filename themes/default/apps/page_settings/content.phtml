@@ -1,7 +1,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-<?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true): ?>
-	<div class="h-laptop">
+<div class="h-laptop">
 		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
 			<div class="mobile-bottom-navbar-inner">
 				<div class="avatar-menu">
@@ -11,7 +10,6 @@
 			</div>
 		</div>
 	</div>
-<?php endif; ?>
 <div class="timeline-container">
     <div class="timeline-header symbol_header" data-el="tl-header">
         <?php echo cl_template('common/bot_line'); ?>

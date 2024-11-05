@@ -249,8 +249,8 @@ function cl_upsert_symbols($text = "") {
 							'time'  => time()
 						));
 					}
+					$text = preg_replace(cl_strf("/\\$%s\b/", $symbol), cl_strf("{@id:%s@}", $symbol_id), $text);
 				}
-                $text = preg_replace(cl_strf("/\\$%s\b/", $symbol), cl_strf("{@id:%s@}", $symbol_id), $text);
             }
         }
     }
@@ -364,7 +364,7 @@ function cl_tagify_htags($text = "", $htags = array()) {
 
 	if (not_empty($text) && not_empty($htags)) {
 		foreach ($htags as $htag) {
-			$text = str_replace(cl_strf("{#id:%d#}", $htag['id']), cl_strf("#%s", $htag['tag']), $text);
+			if($htag['id'] > 0) $text = str_replace(cl_strf("{#id:%d#}", $htag['id']), cl_strf("#%s", $htag['tag']), $text);
 		}
 	}
 
@@ -375,7 +375,7 @@ function cl_tagify_symbols($text = "", $symbols = array()) {
 
     if (not_empty($text) && not_empty($symbols)) {
         foreach ($symbols as $symbol) {
-            $text = str_replace(cl_strf("{@id:%d@}", $symbol['id']), cl_strf("$%s", $symbol['symbol']), $text);
+            if($symbol['id'] > 0) $text = str_replace(cl_strf("{@id:%d@}", $symbol['id']), cl_strf("$%s", $symbol['symbol']), $text);
         }
     }
 
@@ -407,7 +407,7 @@ function cl_linkify_symbol($text = "") {
                 'class' => 'inline-link'
             )) . " ");
         }
-		else return '$'.$symbol;
+		else return ' $'.$symbol;
 
     }, $text);
 
