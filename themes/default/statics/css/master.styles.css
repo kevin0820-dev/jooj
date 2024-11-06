@@ -6099,6 +6099,8 @@ body
   div.timeline-placeholder
   div.pl-message
   h4 {
+  justify-content: center;
+  display: flex;
   font-size: 31px;
   padding: 0;
   margin: 0 0 15px 0;
@@ -6382,6 +6384,7 @@ body
       margin-top: 45px;
     } */
 
+
 body
   main.main-content-container
   div.main-content-container-inner
@@ -6506,7 +6509,7 @@ body
   button.timeline-navbar__item-btn.active
   span.btn-flex-inner
   span.text {
-  margin-bottom:5px;
+  margin-bottom:9px;
   color: var(--cl-primary-text-color);
   cursor: pointer;
   font-weight: 700;
