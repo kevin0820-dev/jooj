@@ -1,4 +1,3 @@
-
 <div class="right-sb-container sidebar" data-app="right-sidebar">
 	<div class="sidebar__inner">
 		<div class="main-search-bar-container">
@@ -36,7 +35,7 @@
 					)); ?></h2>
 				<p><?php echo cl_translate("new_to_desc"); ?></p>
 				<div class="social_button">
-				
+
 					<?php if (in_array("on", array($cl["config"]["instagram_status"], $cl["config"]["vkontakte_status"], $cl["config"]["discord_status"], $cl["config"]["facebook_oauth"], $cl["config"]["linkedin_oauth"], $cl["config"]["google_oauth"], $cl["config"]["twitter_oauth"]))) : ?>
 
 						<div class="form-group oauth-login-providers">
@@ -149,18 +148,17 @@
 								<?php endif; ?>
 							</div>
 						</div>
-					
+
 					<?php else : ?>
 						<button type="button" class="btn btn-custom main-inline lg btn-block" data-toggle="modal" data-target="#loginModal"><?php echo cl_translate("Log in"); ?></button>
-		
-			<?php endif; ?>
+
+					<?php endif; ?>
 				</div>
 				<p><?php echo cl_translate("by_signing"); ?> <a href="<?php echo cl_link('terms_of_use'); ?>"> <?php echo cl_translate("Terms of Use"); ?> </a> <?php echo cl_translate("And"); ?> <a href="<?php echo cl_link('privacy_policy'); ?>"><?php echo cl_translate("Privacy policy"); ?></a>, <?php echo cl_translate("including"); ?> <a href="<?php echo cl_link('cookies_policy'); ?>"><?php echo cl_translate("cookies_policy"); ?> </a>.</p>
 			</div>
-			<?php echo cl_template('main/footer'); ?>
-			
+
 			<!-- Edited by Kevin -->
-			<?php 
+			<?php
 			/*
 			if (not_empty($cl["gads_vert"])) : ?>
 				<div class="cl-google-ads">
@@ -180,18 +178,18 @@
 			</div>
 			<div class="topical-posts__body" id="topical-posts-body">
 				<?php
-					$count = 0;
-					global $db;
-					foreach ($cl['hot_symbols'] as $row):
-						if ($count >= 5) break;
-						$symbol = $row['symbol'];
-						$db        = $db->where('username', $symbol);
-						$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
-						if (empty($symbol_data)) { // Check if data is found
-							continue;
-						}
-						$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
-						$count++;
+				$count = 0;
+				global $db;
+				foreach ($cl['hot_symbols'] as $row):
+					if ($count >= 5) break;
+					$symbol = $row['symbol'];
+					$db        = $db->where('username', $symbol);
+					$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+					if (empty($symbol_data)) { // Check if data is found
+						continue;
+					}
+					$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+					$count++;
 				?>
 					<div class="topical-posts__item">
 						<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['symbol']))); ?>">
@@ -206,7 +204,7 @@
 					</div>
 				<?php endforeach; ?>
 			</div>
-			<?php if(count($cl['hot_symbols']) > 5): ?>
+			<?php if (count($cl['hot_symbols']) > 5): ?>
 				<div class="topical-posts__footer">
 					<a href="<?php echo cl_link("symbols"); ?>" data-spa="true">
 						<?php echo cl_translate("Show more"); ?>
@@ -238,7 +236,7 @@
 						</div>
 					<?php endforeach; ?>
 				</div>
-				<?php if(count($cl['hot_topics']) > 5): ?>
+				<?php if (count($cl['hot_topics']) > 5): ?>
 					<div class="topical-posts__footer">
 						<a href="<?php echo cl_link("trending"); ?>" data-spa="true">
 							<?php echo cl_translate("Show more"); ?>
@@ -251,6 +249,8 @@
 				</div>
 			<?php endif; ?>
 		</div>
+		<div class="site_rule"><?php echo cl_template('main/footer'); ?></div>
+		
 	</div>
 </div>
 <script>
@@ -270,64 +270,63 @@
 					var search_symbols_url = "<?php echo cl_link('search/symbols?q={0}'); ?>";
 					this.advanced_search = true;
 
-							if (this.search_query.charAt(0) == '#') {
-								return search_htags_url.format(this.search_query.replace('#', ''));
-							} else if (this.search_query.charAt(0) == '$') {
-								return search_symbols_url.format(this.search_query.replace('$', ''));
-							} else {
-								return search_users_url.format(this.search_query);
-							}
-						} else {
-							this.advanced_search = false;
-							return "javascript:void(0);";
-						}
-					},
-					query_type: function() {
-						if (this.search_query.charAt(0) == '#') {
-							return 'htags';
-						} else if (this.search_query.charAt(0) == '$') {
-							return 'symbols';
-						} else {
-							return 'users';
-						}
+					if (this.search_query.charAt(0) == '#') {
+						return search_htags_url.format(this.search_query.replace('#', ''));
+					} else if (this.search_query.charAt(0) == '$') {
+						return search_symbols_url.format(this.search_query.replace('$', ''));
+					} else {
+						return search_users_url.format(this.search_query);
 					}
-				},
-				methods: {
-					search_onsubmit: function(e = false) {
-						e.preventDefault();
-						this.search();
-					},
-					search: function() {
-						if (this.search_query.length > 1) {
-							var _app_ = this;
-							delay(function() {
-								$.ajax({
-									url: '<?php echo cl_link('native_api/main/search'); ?>',
-									type: 'GET',
-									dataType: 'json',
-									data: {
-										query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
-										type: _app_.query_type
-									},
-									beforeSend: function() {
-										_app_.searching = true;
-									}
-								}).done(function(data) {
-									_app_.search_result = true;
-									$(_app_.$el).find('[data-an="result"]').html($(data.html));
-								}).always(function() {
-									_app_.searching = false;
-								});
-							}, 800);
-						}
-						else this.search_result = false;
-					},
-					cancel: function() {
-						var _app_ = this;
-						_app_.searching = false;
-						_app_.search_query = "";
-						_app_.advanced_search = false;
-						_app_.search_result = false;
+				} else {
+					this.advanced_search = false;
+					return "javascript:void(0);";
+				}
+			},
+			query_type: function() {
+				if (this.search_query.charAt(0) == '#') {
+					return 'htags';
+				} else if (this.search_query.charAt(0) == '$') {
+					return 'symbols';
+				} else {
+					return 'users';
+				}
+			}
+		},
+		methods: {
+			search_onsubmit: function(e = false) {
+				e.preventDefault();
+				this.search();
+			},
+			search: function() {
+				if (this.search_query.length > 1) {
+					var _app_ = this;
+					delay(function() {
+						$.ajax({
+							url: '<?php echo cl_link('native_api/main/search'); ?>',
+							type: 'GET',
+							dataType: 'json',
+							data: {
+								query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
+								type: _app_.query_type
+							},
+							beforeSend: function() {
+								_app_.searching = true;
+							}
+						}).done(function(data) {
+							_app_.search_result = true;
+							$(_app_.$el).find('[data-an="result"]').html($(data.html));
+						}).always(function() {
+							_app_.searching = false;
+						});
+					}, 800);
+				} else this.search_result = false;
+			},
+			cancel: function() {
+				var _app_ = this;
+				_app_.searching = false;
+				_app_.search_query = "";
+				_app_.advanced_search = false;
+				_app_.search_result = false;
 
 				$(_app_.$el).find('[data-an="result"]').empty('');
 			}

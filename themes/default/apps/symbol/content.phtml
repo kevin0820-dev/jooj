@@ -17,29 +17,27 @@
 	}
 	curl_close($ch);
 	$data = json_decode($response, true);
-if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
-    $price = (float) $data['RAW'][$coin_id]['USD']['PRICE']; 
+	if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
+		$price = (float) $data['RAW'][$coin_id]['USD']['PRICE'];
 
-    if ($price >= 1) {
-        $formatted_price = number_format($price, 2);
-    } else {
-        $significant_digits = 2;
-        $precision = $significant_digits - floor(log10(abs($price))) - 1;
-        $formatted_price = number_format(round($price, $precision), $precision, '.', '');
-    }
+		if ($price >= 1) {
+			$formatted_price = number_format($price, 2);
+		} else {
+			$significant_digits = 2;
+			$precision = $significant_digits - floor(log10(abs($price))) - 1;
+			$formatted_price = number_format($price, $precision, '.', '');
+		}
 
-    $cl['coin_one'] = [
-        'price' => $formatted_price,
-        'high_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
-        'low_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
-        'change_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
-        'change_pct_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
-    ];
-} else {
-    $cl['coin_one'] = [];
-}
-
-
+		$cl['coin_one'] = [
+			'price' => $formatted_price,
+			'high_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
+			'low_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
+			'change_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
+			'change_pct_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
+		];
+	} else {
+		$cl['coin_one'] = [];
+	}
 	?>
 	<div class="h-laptop">
 		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
@@ -140,7 +138,7 @@ if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
 														} ?>" onclick='select("posts")'>
 					<?php echo cl_translate("For You"); ?>
 				</button>
-				<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {
+				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'posts') {
 												echo ('active');
 											} ?>"></div>
 			</a>
@@ -150,7 +148,7 @@ if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
 														} ?>" onclick='select("about")'>
 					<?php echo cl_translate("About"); ?>
 				</button>
-				<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'media') {
+				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'media') {
 												echo ('active');
 											} ?>"></div>
 			</a>
@@ -456,7 +454,7 @@ if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
 															} ?>" onclick='select("posts")'>
 								<?php echo cl_translate("For You"); ?>
 							</button>
-							<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'posts') {
+							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'posts') {
 															echo ('active');
 														} ?>"></div>
 						</a>
@@ -466,7 +464,7 @@ if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
 															} ?>" onclick='select("about")'>
 								<?php echo cl_translate("About"); ?>
 							</button>
-							<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'media') {
+							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'media') {
 															echo ('active');
 														} ?>"></div>
 						</a>
@@ -561,64 +559,63 @@ if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
 					var search_symbols_url = "<?php echo cl_link('search/symbols?q={0}'); ?>";
 					this.advanced_search = true;
 
-							if (this.search_query.charAt(0) == '#') {
-								return search_htags_url.format(this.search_query.replace('#', ''));
-							} else if (this.search_query.charAt(0) == '$') {
-								return search_symbols_url.format(this.search_query.replace('$', ''));
-							} else {
-								return search_users_url.format(this.search_query);
-							}
-						} else {
-							this.advanced_search = false;
-							return "javascript:void(0);";
-						}
-					},
-					query_type: function() {
-						if (this.search_query.charAt(0) == '#') {
-							return 'htags';
-						} else if (this.search_query.charAt(0) == '$') {
-							return 'symbols';
-						} else {
-							return 'users';
-						}
+					if (this.search_query.charAt(0) == '#') {
+						return search_htags_url.format(this.search_query.replace('#', ''));
+					} else if (this.search_query.charAt(0) == '$') {
+						return search_symbols_url.format(this.search_query.replace('$', ''));
+					} else {
+						return search_users_url.format(this.search_query);
 					}
-				},
-				methods: {
-					search_onsubmit: function(e = false) {
-						e.preventDefault();
-						this.search();
-					},
-					search: function() {
-						if (this.search_query.length > 1) {
-							var _app_ = this;
-							delay(function() {
-								$.ajax({
-									url: '<?php echo cl_link('native_api/main/search'); ?>',
-									type: 'GET',
-									dataType: 'json',
-									data: {
-										query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
-										type: _app_.query_type
-									},
-									beforeSend: function() {
-										_app_.searching = true;
-									}
-								}).done(function(data) {
-									_app_.search_result = true;
-									$(_app_.$el).find('[data-an="result"]').html($(data.html));
-								}).always(function() {
-									_app_.searching = false;
-								});
-							}, 800);
-						}
-						else this.search_result = false;
-					},
-					cancel: function() {
-						var _app_ = this;
-						_app_.searching = false;
-						_app_.search_query = "";
-						_app_.advanced_search = false;
-						_app_.search_result = false;
+				} else {
+					this.advanced_search = false;
+					return "javascript:void(0);";
+				}
+			},
+			query_type: function() {
+				if (this.search_query.charAt(0) == '#') {
+					return 'htags';
+				} else if (this.search_query.charAt(0) == '$') {
+					return 'symbols';
+				} else {
+					return 'users';
+				}
+			}
+		},
+		methods: {
+			search_onsubmit: function(e = false) {
+				e.preventDefault();
+				this.search();
+			},
+			search: function() {
+				if (this.search_query.length > 1) {
+					var _app_ = this;
+					delay(function() {
+						$.ajax({
+							url: '<?php echo cl_link('native_api/main/search'); ?>',
+							type: 'GET',
+							dataType: 'json',
+							data: {
+								query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
+								type: _app_.query_type
+							},
+							beforeSend: function() {
+								_app_.searching = true;
+							}
+						}).done(function(data) {
+							_app_.search_result = true;
+							$(_app_.$el).find('[data-an="result"]').html($(data.html));
+						}).always(function() {
+							_app_.searching = false;
+						});
+					}, 800);
+				} else this.search_result = false;
+			},
+			cancel: function() {
+				var _app_ = this;
+				_app_.searching = false;
+				_app_.search_query = "";
+				_app_.advanced_search = false;
+				_app_.search_result = false;
 
 				$(_app_.$el).find('[data-an="result"]').empty('');
 			}
@@ -794,8 +791,8 @@ if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
 			$("#about").toggleClass("show active");
 			state = "posts";
 			for (var i = 0; i < 2; i++) {
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[0].classList.add("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[1].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.add("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
 			}
@@ -805,8 +802,8 @@ if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
 			$("#about").toggleClass("show active");
 			state = 'about';
 			for (var i = 0; i < 2; i++) {
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[1].classList.add("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc")[0].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.add("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
 			}
