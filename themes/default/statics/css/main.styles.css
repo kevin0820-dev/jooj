@@ -9,6 +9,16 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.nav-container-top{
+  display: none;
+}
+.nav-container{
+  padding: 0px 22px;
+  position: sticky;
+  top: 53px;
+  z-index: 500;
+  background: white;
+}
 .timeline-header-chat{
     display: flex;
     flex-direction: row;
@@ -1809,7 +1819,7 @@ body.modal-open {
   #vue-search-app {
     margin-top: 0px !important;
   }
-
+/* 
   body
     main.main-content-container
     div.main-content-container-inner
@@ -1817,7 +1827,7 @@ body.modal-open {
     div.timeline-container-inner
     div.timeline-container
     div.timeline-posts-container {
-  }
+  } */
   body
     main.main-content-container
     div.main-content-container-inner
@@ -1835,6 +1845,12 @@ body.modal-open {
     div.timeline-container-inner
     div.timeline-container {
     padding-top: 80px !important;
+  }
+  .nav-container-top{
+    display: block;
+  }
+  .nav-container-bottom{
+    display: none;
   }
   body.cl-app-bookmarks
     main.main-content-container
