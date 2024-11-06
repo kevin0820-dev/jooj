@@ -17,7 +17,7 @@
   position: sticky;
   top: 53px;
   z-index: 500;
-  background: white;
+  background: var(--smc-main-bg-color);
 }
 .timeline-header-chat{
     display: flex;
