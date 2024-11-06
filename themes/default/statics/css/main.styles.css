@@ -3721,12 +3721,13 @@ body
   div.timeline-container-wrapper
   div.timeline-container-inner
   div.timeline-container {
-  border-radius: 20px 20px 0px 0px;
+  border-radius: 20px;
   background-color: var(--smc-main-bg-color);
   display: block;
   width: 100%;
   padding-top: 0px;
   height: 100%;
+  /* overflow: hidden; */
 }
 
 body
@@ -3995,7 +3996,7 @@ body
   width: 100%;
   display: block;
   padding: 15px;
-  border-bottom: 1px solid var(--smc-main-border-color);
+  border-top: 1px solid var(--smc-main-border-color);
   transition: all 0.27s ease-in-out;
   padding-bottom: 5px !important;
   padding-top: 5px;
