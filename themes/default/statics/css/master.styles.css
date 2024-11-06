@@ -5110,7 +5110,7 @@ body
   div.timeline-posts-container
   div.timeline-posts-ls
   div.post-list-advert {
-  border-bottom: 1px solid var(--cl-primary-border-color);
+  border-top: 1px solid var(--cl-primary-border-color);
 }
 
 body
@@ -6573,13 +6573,12 @@ body
   div.timeline-users-container
   div.timeline-user-ls
   div.user-list-item {
-  border-bottom: 1px solid var(--cl-primary-border-color);
+  border-top: 1px solid var(--cl-primary-border-color);
   transition: all 0.27s ease-in-out;
   padding: var(--cl-primary-offset-size);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  border-bottom: 1px solid var(--cl-primary-border-color);
 }
 
 body
@@ -19324,13 +19323,12 @@ body.cl-app-notifications
   div.notifications
   div.notifications-list
   div.notifications-list__item {
-  border-bottom: 1px solid var(--cl-primary-border-color);
+  border-top: 1px solid var(--cl-primary-border-color);
   transition: all 0.27s ease-in-out;
   padding: var(--cl-primary-offset-size);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  border-bottom: 1px solid var(--cl-primary-border-color);
 }
 
 body.cl-app-notifications
