@@ -656,15 +656,19 @@ var pubbox_form_app_mixin = Object({
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-3') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_reply").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost_symbol') {				/* edited by kevin to show modal for repost (added) 9/20 */
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
 					}
@@ -740,15 +744,19 @@ var pubbox_form_app_mixin = Object({
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-3') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_reply").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost_symbol') {				/* edited by kevin to show modal for repost symbol (added) 9/20 */
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
 					}
@@ -803,15 +811,19 @@ var pubbox_form_app_mixin = Object({
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-3') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_reply").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost') {
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost").modal('hide');
 						}
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-repost_symbol') {				/* edited by kevin to show modal for repost symbol (added) 9/20 */
+							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
 					}
@@ -1636,7 +1648,41 @@ var pubbox_form_app_mixin = Object({
 
 			_app_.og_imported = false;
 			_app_.og_data     = Object({});
-		}
+		},
+		cancel_post: function(){
+			var _app_         = this;
+
+			if (_app_.images != null && _app_.images.length > 0) {
+				console.log(_app_.images.length);
+				while(_app_.images.length > 0) {
+					console.log(_app_.images[0]['id']);
+					if (_app_.images[0] != null && _app_.images[0]['id'] != null) {
+						_app_.delete_image(_app_.images[0]['id']);
+					}
+				}
+			}
+
+			if (_app_.audio != null && _app_.audio.length > 0) {
+				_app_.delete_audio_file();
+			}
+
+			if (_app_.document != null && _app_.document.length > 0) {
+				_app_.delete_document();
+			}
+
+			if (_app_.music != null && _app_.music.length > 0) {
+				_app_.delete_music();
+			}
+
+			if (_app_.record != null && _app_.record.length > 0) {
+				_app_.delete_record();
+			}
+
+			if (_app_.video != null && _app_.video.length > 0) {
+				_app_.delete_video();
+			}
+			_app_.reset_data();
+		},
 	},
 	updated: function() {
 		var _app_ = this;
@@ -1686,6 +1732,13 @@ var pubbox_form_app_mixin = Object({
 
 		_app_.$el.addEventListener('dragover', (event) => event.preventDefault());
 		_app_.$el.addEventListener('drop', this.handleDrop);
+
+		$("#add_new_post").on('hidden.bs.modal', this.cancel_post);
+		$("#add_new_post_reply").on('hidden.bs.modal', this.cancel_post);
+		$("#add_new_post_repost").on('hidden.bs.modal', this.cancel_post);
+		$("#add_new_post_repost_symbol").on('hidden.bs.modal', this.cancel_post);
+		
+		window.addEventListener('beforeunload', this.cancel_post);
 
 		if (not_empty($me['draft_post'])){
 			if ($(this.$el).attr('id') == 'vue-pubbox-app-1') {

@@ -1534,6 +1534,7 @@ body.modal-open {
   }
   .guest_bottom {
     height: auto;
+    display: none;
   }
   body
     main.main-content-container
@@ -7968,7 +7969,7 @@ body
   span.icon
   svg {
   stroke-width: 2;
-  color:#7366ff;
+  color:#7366ff !important;
   /* fill: var(--smc-main-text-color); */
 }
 .topical-posts__item svg {
