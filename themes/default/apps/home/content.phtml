@@ -14,7 +14,12 @@
 					<span class="logo-text">Cointweets</span>
 				</a>
 			</div>
-			<div class="rp">
+			<div class="rp middle">
+				<div class="nav-link-holde">
+					<button class="go-options dropleft show bt-3" onclick='$("#searchBar").slideToggle()'>
+						<?php echo cl_icon('search'); ?>
+					</button>
+				</div>
 			</div>
 		</div>
 		<div class="main-search-bar-container mt-1" id="searchBar" style="display: none;">
@@ -74,79 +79,60 @@
 	</div>
 	<div class="homepage">
 		<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
-			<div class="homepage__swifts">
-				<div class="swifts-slider">
-					<div class="swiper" id="homepage-swifts-slider">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
-									<div class="swift-item__body create-swift">
-										<div class="swift-item__avatar">
-											<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+				<div class="homepage__swifts">
+					<div class="swifts-slider">
+						<div class="swiper" id="homepage-swifts-slider">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
+										<div class="swift-item__body create-swift">
+											<div class="swift-item__avatar">
+												<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
+											</div>
+											<span class="add-ikon">
+												<?php echo cl_ikon("plus"); ?>
+											</span>
 										</div>
-										<span class="add-ikon">
-											<?php echo cl_ikon("plus"); ?>
-										</span>
-									</div>
-									<div class="swift-item__footer">
-										<?php echo cl_translate("Create new swift"); ?>
+										<div class="swift-item__footer">
+											<?php echo cl_translate("Create new swift"); ?>
+										</div>
 									</div>
 								</div>
-							</div>
-							<?php if (not_empty($cl["tl_swifts"]) && is_array($cl["tl_swifts"])): ?>
-								<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
-									<div class="swiper-slide">
-										<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
-																															echo ('active');
-																														} ?>" onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
-											<div class="swift-item__body">
-												<div class="swift-item__avatar">
-													<img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
+								<?php if (not_empty($cl["tl_swifts"]) && is_array($cl["tl_swifts"])): ?>
+									<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
+										<div class="swiper-slide">
+											<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
+																																echo ('active');
+																															} ?>" onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
+												<div class="swift-item__body">
+													<div class="swift-item__avatar">
+														<img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
+													</div>
+												</div>
+												<div class="swift-item__footer">
+													<?php if (not_empty($swift_data["is_user"])): ?>
+														<?php echo cl_translate("Your swifts"); ?>
+													<?php else: ?>
+														<?php echo ($swift_data['name']); ?>
+													<?php endif; ?>
 												</div>
 											</div>
-											<div class="swift-item__footer">
-												<?php if (not_empty($swift_data["is_user"])): ?>
-													<?php echo cl_translate("Your swifts"); ?>
-												<?php else: ?>
-													<?php echo ($swift_data['name']); ?>
-												<?php endif; ?>
-											</div>
 										</div>
-									</div>
-								<?php endforeach; ?>
-							<?php endif; ?>
+									<?php endforeach; ?>
+								<?php endif; ?>
+							</div>
+						</div>
+						<div class="swifts-slider__footer">
+							<div class="swiper-scrollbar" id="homepage-swifts-scrollbar"></div>
 						</div>
 					</div>
-					<div class="swifts-slider__footer">
-						<div class="swiper-scrollbar" id="homepage-swifts-scrollbar"></div>
-					</div>
 				</div>
-			</div>
-		<?php endif; ?>
-	</div>
-	<div class="pl-[12px] sticky top-[55px] z-[700] form-bg">
-		<ul class="nav nav-tabs nav-justified mb_sticky" id="myTab" role="tablist">
-			<li role="presentation">
-				<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
-					aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
-						class="css-1dbjc4n"></div></a>
-			</li>
-			<li role="presentation">
-				<a class="nav-link home_nav_btn" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-					aria-controls="profile" aria-selected="false">
-					<?php echo cl_translate("Following"); ?>
-					<div class="css-1dbjc4n"></div>
-				</a>
-			</li>
-			<li role="presentation">
-				<a class="nav-link home_nav_btn" id="page-tab" data-toggle="tab" href="#page" role="tab"
-					aria-controls="page" aria-selected="false">
-					<?php echo cl_translate("watchings"); ?>
-					<div class="css-1dbjc4n"></div>
-				</a>
-			</li>
-		</ul>
-	</div>
+			<?php endif; ?>
+		</div>
+		
+	
+
+
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 			<?php $count = 0; ?>
@@ -349,8 +335,8 @@
 		bottom: 0;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: 10px;
-		margin-bottom: -8px;
+		margin-top: 9px;
+		margin-bottom: -7px;
 	}
 
 	.left-push-nav {
@@ -372,9 +358,6 @@
 
 	.nav-tabs .nav-link {
 		padding: 15px 34px 12px 4px !important;
-	}
-	.form-bg{
-		background-color:var(--smc-main-bg-color);
 	}
 </style>
 <script>
@@ -431,5 +414,86 @@
 				}
 			});
 		});
+	});
+</script>
+<script>
+	new Vue({
+		el: "#vue-main-search-app",
+		data: {
+			searching: false,
+			search_query: "",
+			advanced_search: false,
+			search_result: false
+		},
+		computed: {
+			search_page_url: function() {
+				if (this.search_query.length > 2) {
+					var search_htags_url = "<?php echo cl_link('search/htags?q={0}'); ?>";
+					var search_users_url = "<?php echo cl_link('search/people?q={0}'); ?>";
+					var search_symbols_url = "<?php echo cl_link('search/symbols?q={0}'); ?>";
+					this.advanced_search = true;
+
+							if (this.search_query.charAt(0) == '#') {
+								return search_htags_url.format(this.search_query.replace('#', ''));
+							} else if (this.search_query.charAt(0) == '$') {
+								return search_symbols_url.format(this.search_query.replace('$', ''));
+							} else {
+								return search_users_url.format(this.search_query);
+							}
+						} else {
+							this.advanced_search = false;
+							return "javascript:void(0);";
+						}
+					},
+					query_type: function() {
+						if (this.search_query.charAt(0) == '#') {
+							return 'htags';
+						} else if (this.search_query.charAt(0) == '$') {
+							return 'symbols';
+						} else {
+							return 'users';
+						}
+					}
+				},
+				methods: {
+					search_onsubmit: function(e = false) {
+						e.preventDefault();
+						this.search();
+					},
+					search: function() {
+						if (this.search_query.length > 1) {
+							var _app_ = this;
+							delay(function() {
+								$.ajax({
+									url: '<?php echo cl_link('native_api/main/search'); ?>',
+									type: 'GET',
+									dataType: 'json',
+									data: {
+										query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
+										type: _app_.query_type
+									},
+									beforeSend: function() {
+										_app_.searching = true;
+									}
+								}).done(function(data) {
+									_app_.search_result = true;
+									$(_app_.$el).find('[data-an="result"]').html($(data.html));
+								}).always(function() {
+									_app_.searching = false;
+								});
+							}, 800);
+						}
+						else this.search_result = false;
+					},
+					cancel: function() {
+						var _app_ = this;
+						_app_.searching = false;
+						_app_.search_query = "";
+						_app_.advanced_search = false;
+						_app_.search_result = false;
+
+				$(_app_.$el).find('[data-an="result"]').empty('');
+			}
+		}
 	});
 </script>

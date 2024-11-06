@@ -247,7 +247,7 @@ body[data-skin="default"] {
   border-bottom: none !important;
 }
 .svg-icon{
-  /* fill: var(--cl-primary-text-color) !important; */
+  fill: var(--cl-primary-text-color) !important;
 }
 .noBorder{
   border: none !important;
