@@ -26,7 +26,7 @@ $(document).ready(function($) {
 
         SMColibri.extend_vue('pubbox2', pubbox_app_2);
 
-        $(document).on('hidden.bs.modal', 'div#add_new_post', function () {  
+        $(document).on('hidden.bs.modal', 'div#add_new_post_reply', function () {  
             pubbox_app_2.thread_id    = 0;
             pubbox_app_2.post_privacy = "everyone";
         });

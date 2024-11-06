@@ -10,21 +10,69 @@
 			</div>
 			<div class="cp auto-x">
 				<a href="" class="h-laptop">
-					<img src="/themes/default/statics/img/logo.svg" alt="Logo" data-nsfw-filter-status="sfw" style="visibility: visible;">
+					<img src="/themes/default/statics/img/logo.svg" alt="Logo" style="visibility: visible;">
 					<span class="logo-text">Cointweets</span>
 				</a>
 			</div>
 			<div class="rp">
 			</div>
 		</div>
-
-
-	</div>
-	<div class="homepage">
+		<div class="main-search-bar-container mt-1" id="searchBar" style="display: none;">
+			<form class="form" id="vue-main-search-app" v-on:submit="search_onsubmit" autocomplete="off">
+				<div class="input-holder">
+					<input v-model="search_query" v-on:input="search" type="text" class="form-control"
+						placeholder="<?php echo cl_translate("Search for people, hashtags..", array('name' => $cl['config']['name'])); ?>">
+					<a href="#">
+						<?php echo cl_ikon('search'); ?>
+					</a>
+					<span class="spinner-icon" v-if="searching">
+						<?php echo cl_ikon('spinner-icon'); ?>
+					</span>
+					<span v-on:click="cancel" class="clear-result" v-else-if="search_result">
+						<?php echo cl_ikon('close'); ?>
+					</span>
+				</div>
+				<div class="search-result-holder" v-show="search_result">
+					<div class="search-result-body">
+						<ul class="result-list" data-an="result"></ul>
+					</div>
+					<div class="search-result-footer" v-bind:class="{'disabled': (advanced_search != true) }">
+						<a v-bind:href="search_page_url" data-spa="true">
+							<?php echo cl_translate('Advanced search'); ?>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
 		<div class="main-timeline-pubbox-wrapper h-mobile custom-lineheight">
 			<?php $cl['pb_id'] = 1;
 			echo cl_template('timeline/pubbox'); ?>
 		</div>
+		<div>
+			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+				<li  role="presentation">
+					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
+						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
+							class="css-1dbjc4n"></div></a>
+				</li>
+				<li  role="presentation">
+					<a class="nav-link home_nav_btn" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile" aria-selected="false">
+						<?php echo cl_translate("Following"); ?>
+						<div class="css-1dbjc4n"></div>
+					</a>
+				</li>
+				<li  role="presentation">
+					<a class="nav-link home_nav_btn" id="page-tab" data-toggle="tab" href="#page" role="tab"
+						aria-controls="page" aria-selected="false">
+						<?php echo cl_translate("watchings"); ?>
+						<div class="css-1dbjc4n"></div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="homepage">
 		<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
 			<div class="homepage__swifts">
 				<div class="swifts-slider">

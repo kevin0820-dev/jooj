@@ -85,7 +85,7 @@
 	<div class="sidebar__inner">
 		<div class="right-sidebar">
 			<div class="main-search-bar-container">
-				<form class="form" id="vue-main-search-app" v-on:submit="search_onsubmit" autocomplete="off">
+				<form class="form" id="vue-main-search-app1" v-on:submit="search_onsubmit" autocomplete="off">
 					<div class="input-holder">
 						<input v-model="search_query" v-on:input="search" type="text" class="form-control"
 							placeholder="<?php echo cl_translate("Search for people, hashtags..", array('name' => $cl['config']['name'])); ?>">
@@ -474,7 +474,7 @@
 <!-- Search -->
 <script>
 	new Vue({
-		el: "#vue-main-search-app",
+		el: "#vue-main-search-app1",
 		data: {
 			searching: false,
 			search_query: "",
