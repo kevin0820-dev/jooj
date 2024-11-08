@@ -24,7 +24,7 @@
 		if ($price >= 1) {
 			$formatted_price = number_format($price, 2);
 		} else {
-			$significant_digits = 2;
+			$significant_digits = 4;
 			$precision = $significant_digits - floor(log10(abs($price))) - 1;
 			$formatted_price = number_format($price, $precision, '.', '');
 		}
