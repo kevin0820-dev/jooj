@@ -95,6 +95,13 @@
                     value="<?php echo $cl['symbol']['raw_sname']; ?>">
             </div>
             <div class="mb-6">
+                <label for="symbol_price"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol to fetch price from Trading View"); ?></label>
+                <input type="text" name="symbol_price" id="symbol_price"
+                    class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    value="<?php echo $cl['symbol']['symbol_price']; ?>">
+            </div>
+            <div class="mb-6">
                 <label for="email"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("email"); ?></label>
                 <input type="email" name="email" id="email"
@@ -103,13 +110,29 @@
                     placeholder="<?php echo cl_translate("Enter email"); ?>">
             </div>
             <div class="mb-6">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol Detail for data fetch from Trading View"); ?></label>
+                <select name="fetch_from" class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option <?php echo $cl['symbol']['fetch_from'] !== 'TV' && $cl['symbol']['fetch_from'] !== 'CG' ? 'selected' : ''; ?> value="none">Choose a source</option>
+                    <option <?php echo $cl['symbol']['fetch_from'] === 'TV' ? 'selected' : ''; ?> value="TV">Trading View</option>
+                    <option <?php echo $cl['symbol']['fetch_from'] === 'CG' ? 'selected' : ''; ?> value="CG">Coin Gecko</option>
+                </select>
+            </div>
+            <div class="mb-6">
                 <label for="symbol_fetch"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol Detail for Data Fetch"); ?></label>
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol Detail for data fetch from Trading View"); ?></label>
                 <input type="text" name="symbol_fetch" id="symbol_fetch"
                     class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value="<?php echo $cl['symbol']['symbol_fetch']; ?>"
                     pattern="^[^:]+:[^:]+$"
-                    placeholder="<?php echo cl_translate("Enter detailed symbol info for fetch!"); ?>">
+                    placeholder="<?php echo cl_translate("Enter detailed symbol info for fetch from Trading View!"); ?>">
+            </div>
+            <div class="mb-6">
+                <label for="symbol_fetch_gecko"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol Detail for data fetch from Coin Gecko"); ?></label>
+                <input type="text" name="symbol_fetch_gecko" id="symbol_fetch_gecko"
+                    class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    value="<?php echo $cl['symbol']['symbol_fetch_gecko']; ?>"
+                    placeholder="<?php echo cl_translate("Enter detailed symbol info for fetch from Coin Gecko!"); ?>">
             </div>
             <div class="mb-6">
                 <label for="website"

@@ -47,6 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     "website" => $_POST["website"],
                     "city" => $_POST["city"],
                     "symbol_fetch" => $_POST['symbol_fetch'],
+                    "fetch_from" => $_POST['fetch_from'],
+                    "symbol_fetch_gecko" => $_POST['symbol_fetch_gecko'],
+                    "symbol_price" => $_POST['symbol_price'],
                 );
                 if (cl_update_symbol_data($symbol_id, $data)) {
                     echo "";

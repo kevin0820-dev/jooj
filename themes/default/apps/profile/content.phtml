@@ -576,7 +576,6 @@
 					<a  href="<?php echo cl_link(cl_strf("%s/media", $cl['prof_user']['raw_uname'])); ?>" data-spa="true">
 						<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "media") { echo("active");} ?>">
 							<span class="btn-flex-inner">
-								
 								<span class="text">
 									<?php echo cl_translate("Media"); ?>
 								</span>
@@ -586,19 +585,6 @@
 					</a>
 				</div>			
 				<!-- edited by Kevin -->
-				<div class="timeline-navbar__item">
-					<a href="<?php echo cl_link(cl_strf("%s/likes", $cl['prof_user']['raw_uname'])); ?>" data-spa="true">
-						<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "likes") { echo("active");} ?>">		
-							<span class="btn-flex-inner">
-								
-								<span class="text">
-									<?php echo cl_translate("Likes"); ?>
-								</span>
-							</span>
-						</button>
-						<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'likes') {echo ('active');} ?>"></div>
-					</a>
-				</div>
 			</div>
 		<?php endif; ?>
 		<?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])): ?>
