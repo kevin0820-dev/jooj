@@ -1,52 +1,31 @@
 <div class="timeline-placeholder">
-	<div class="pl-message">
-		<h4>
-			$<?php echo strtoupper($cl['prof_user']['username']); ?>
-		</h4>
-		<p>
-			Country: <?php echo $cl['prof_user']['country_name']; ?>
-		</p>
-		<p>
-			Date Joined: <?php echo $cl['prof_user']['joined']; ?>
-		</p>
-		<p>
-			Email: <?php echo $cl['symbol']['email']; ?>
-		</p>
-		<p>
-			Website: <?php echo $cl['symbol']['website']; ?>
-		</p>
-
-	</div>
-	<p class="company-overview">
-		Company Overview
-	</p>
-	<div style="border-bottom: 1px solid var(--smc-main-border-color);">
-		<p class="about-title">
-			<?php echo $cl['symbol']['about']; ?>
-		</p>
-
-	</div>
-	<div class="faq-stl">
-		<p style="padding: 10px 5px 15px 0px; font-size: 25px;">
-			Frequently Asked Questions
-		</p>
-	</div>
-	<div class="faq-container">
-		<?php foreach ($cl['prof_user']['questions'] as $cl['question']): ?>
-			<div class="faq-item">
-				<div class="faq-title" onclick="toggleFaq(this)">
-					<?php echo $cl['question']['title']; ?>
-					<span class="arrow">▼</span>
+	<?php if (isset($cl['prof_user']['about']) && !empty($cl['prof_user']['about'])): ?>
+		<div style="border-bottom: 1px solid var(--smc-main-border-color);">
+			<p class="about-title">
+				<?php echo $cl['prof_user']['about']; ?>
+			</p>
+		</div>
+	<?php endif; ?>
+	<?php if (isset($cl['prof_user']['questions']) && !empty($cl['prof_user']['questions'])): ?>
+		<div class="faq-stl">
+			<p style="padding: 10px 5px 15px 0px; font-size: 25px;">
+				Frequently Asked Questions
+			</p>
+		</div>
+		<div class="faq-container">
+			<?php foreach ($cl['prof_user']['questions'] as $cl['question']): ?>
+				<div class="faq-item">
+					<div class="faq-title" onclick="toggleFaq(this)">
+						<?php echo $cl['question']['title']; ?>
+						<span class="arrow">▼</span>
+					</div>
+					<div class="faq-content">
+						<p><?php echo $cl['question']['answer']; ?></p>
+					</div>
 				</div>
-				<div class="faq-content">
-					<p><?php echo $cl['question']['answer']; ?></p>
-				</div>
-			</div>
-		<?php endforeach; ?>
-	</div>
-
-
-
+			<?php endforeach; ?>
+		</div>
+	<?php endif; ?>
 </div>
 
 
@@ -101,7 +80,7 @@
 	}
 
 	.timeline-placeholder {
-		padding: 25px 18px !important;
+		padding: 0px 25px 0px 25px !important;
 	}
 
 	.about-title {

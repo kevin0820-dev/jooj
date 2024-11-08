@@ -1,15 +1,44 @@
 <div class="left-sb-container sidebar" data-app="left-sidebar">
 	<div class="sidebar__inner">
 		<div class="cp h-mobile" style="margin-bottom: 10px; margin-left:25px;">
-			<a href="<?php echo cl_link("/"); ?>">
+			<a href="<?php echo cl_link("/"); ?>" style="align-items:center;">
 				<img src="{%config site_logo%}" alt="Logo">
-				<h1 style="margin-bottom: 0px;" class="ml11">
+				<span class="ml11">
 					<span class="text-wrapper">
-						<span class="line line1"></span>
-						<span class="letters">{%config name%}</span>
+						<span class="line line1"></span> 
+						<span style="font-family:sans-serif" class="letters">{%config name%}</span>
 					</span>
-				</h1>
+				</span>
 			</a>
+		</div>
+		<div class="user-info h-laptop">
+			<div class="left_account">
+				<h6>Account Info</h6>
+				<a href="#" onclick="SMColibri.toggleSB();" class="b_close">
+					<svg viewBox="0 0 24 24" aria-hidden="true" class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03">
+						<g>
+							<path
+								d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z">
+							</path>
+						</g>
+					</svg>
+				</a>
+			</div>
+			<div class="mobile_menu" style="display:flex;" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
+				<div class="avatar">
+					<img src="{%config site_logo%}" alt="Logo">
+				</div>
+				<div class="uname" data-toggle="modal">
+					<h5 style="margin-bottom: 0px;">
+						<span class="user-name-holder">
+							Your Profile
+						</span>
+					</h5>
+					<a data-spa="true" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
+						@account
+					</a>
+				</div>
+			</div>
 		</div>
 		<div class="sidebar-v-nav-wrapper">
 			<ul class="sidebar-v-nav">
