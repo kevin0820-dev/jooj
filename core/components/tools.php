@@ -372,51 +372,62 @@ function cl_cropimg($max_width, $max_height, $source_file, $dst_dir, $quality = 
     $width   = $imgsize[0];
     $height  = $imgsize[1];
     $mime    = $imgsize['mime'];
+    
     switch ($mime) {
         case 'image/gif':
             $image_create = "imagecreatefromgif";
-            $image        = "imagegif";
+            $image_output = "imagegif";
             break;
         case 'image/png':
             $image_create = "imagecreatefrompng";
-            $image        = "imagepng";
+            $image_output = "imagepng";
             break;
         case 'image/jpeg':
             $image_create = "imagecreatefromjpeg";
-            $image        = "imagejpeg";
+            $image_output = "imagejpeg";
             break;
         case 'image/webp':
             $image_create = "imagecreatefromwebp";
-            $image        = "imagewebp";
+            $image_output = "imagewebp";
             break;
         default:
             return false;
-            break;
     }
 
-    $dst_img    = @imagecreatetruecolor($max_width, $max_height);
-    $src_img    = $image_create($source_file);
+    $src_img = $image_create($source_file);
+    $dst_img = imagecreatetruecolor($max_width, $max_height);
+
+    // Preserve transparency for PNG images
+    if ($mime === 'image/png') {
+        imagealphablending($dst_img, false);
+        imagesavealpha($dst_img, true);
+        $transparent = imagecolorallocatealpha($dst_img, 0, 0, 0, 127);
+        imagefill($dst_img, 0, 0, $transparent);
+    }
+
     $width_new  = ($height * $max_width / $max_height);
     $height_new = ($width * $max_height / $max_width);
 
     if ($width_new > $width) {
-        $h_point = intval(($height - $height_new) /2);
-        @imagecopyresampled($dst_img, $src_img, 0, 0, 0, $h_point, intval($max_width), intval($max_height), intval($width), intval($height_new));
-    } 
-
-    else {
+        $h_point = intval(($height - $height_new) / 2);
+        imagecopyresampled($dst_img, $src_img, 0, 0, 0, $h_point, $max_width, $max_height, $width, $height_new);
+    } else {
         $w_point = intval(($width - $width_new) / 2);
-        @imagecopyresampled($dst_img, $src_img, 0, 0, $w_point, 0, intval($max_width), intval($max_height), intval($width), intval($height_new));
+        imagecopyresampled($dst_img, $src_img, 0, 0, $w_point, 0, $max_width, $max_height, $width_new, $height);
     }
 
-    @imagejpeg($dst_img, $dst_dir, $quality);
-    if ($dst_img) {
-        @imagedestroy($dst_img);
-    }     
-    if ($src_img) {
-        @imagedestroy($src_img);
-    }      
+    // Output the image
+    if ($mime === 'image/png') {
+        $image_output($dst_img, $dst_dir); // Quality parameter is ignored for PNG
+    } else {
+        $image_output($dst_img, $dst_dir, $quality);
+    }
+
+    // Free memory
+    imagedestroy($dst_img);
+    imagedestroy($src_img);
 }
+
 
 function cl_compress_img($source_url, $destination_url, $quality) {
     $info = getimagesize($source_url);
