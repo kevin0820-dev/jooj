@@ -3,7 +3,8 @@
 
 	use Aws\DynamoDb\NumberValue;
 
-	$coin_id = strtoupper($cl['prof_user']['username']);
+	$coin_id = strtoupper($cl['prof_user']['symbol_price']);
+	echo "<script>console.log('Coin ID: " . $coin_id . "');</script>";
 	$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
