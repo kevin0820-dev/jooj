@@ -17,7 +17,7 @@
   position: sticky;
   top: 53px;
   z-index: 500;
-  background: white;
+  background: var(--smc-main-bg-color);
 }
 .timeline-header-chat{
     display: flex;
@@ -61,7 +61,7 @@ div.main-search-bar-container form div.input-holder span.spinner-icon {
   height: 22px;
 }
 body div.timeline-pubbox-container > div.rp form div.input-holder textarea:focus{
-  min-height: 170px;
+  min-height: 120px;
   align-content: baseline;
 }
 
@@ -394,7 +394,7 @@ body[data-bg="default"] {
   /*==================================================*/
   /*BG-COLORS*/
   --smc-main-bg-color: #ffffff;
-  --smc-main-bg-color-2: #f7f9f9;
+  --smc-main-bg-color-2: #f8fafd;
   --smc-main-bg-color-3: rgba(255, 255, 255, 0.85);
   --smc-main-bg-color-4: #000;
   /*==================================================*/
@@ -14712,6 +14712,7 @@ body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
   color: var(--smc-main-text-color);
   line-height: 20px;
   border: none;
+  transition: min-height 0.3s ease;
   /* margin-top: 10px; */
   /* border-radius: 0px; */
   outline: 0;
