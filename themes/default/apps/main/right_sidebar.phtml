@@ -47,9 +47,11 @@
 						<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
 					</div>
 				</div>
-			<?php elseif($cl['symbol']['fetch_from'] === 'CG') : ?>
-				<script src="https://widgets.coingecko.com/gecko-coin-price-chart-widget.js"></script>
-				<gecko-coin-price-chart-widget locale="en" outlined="true" coin-id="<?php echo strtolower($cl['prof_user']['symbol_fetch_gecko'])?>" initial-currency="usd"></gecko-coin-price-chart-widget>
+			<?php elseif($cl['symbol']['fetch_from'] === 'CG') : ?>				
+				<div class="topical-posts trading_widget_style_p1">
+					<script src="https://widgets.coingecko.com/gecko-coin-price-chart-widget.js"></script>
+					<gecko-coin-price-chart-widget locale="en" transparent-background="true" coin-id="<?php echo strtolower($cl['prof_user']['symbol_fetch_gecko'])?>" initial-currency="usd"></gecko-coin-price-chart-widget>
+				</div>
 			<?php endif ?>
 		<?php endif ?>
 		<?php if (not_empty($cl["is_logged"])): ?>
@@ -567,7 +569,7 @@ new Vue({
 });
 </script>
 
-<?php if($cl['prof_user']['fetch_from'] === 'TV'): ?>
+<?php if($cl['pn'] === 'symbol' && $cl['prof_user']['fetch_from'] === 'TV'): ?>
 <!-- Script for trading view dark and white mode -->
 <script type="text/javascript">
 "use strict";
