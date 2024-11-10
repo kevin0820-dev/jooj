@@ -1,4 +1,5 @@
 <div class="timeline-placeholder">
+	<div class="username text-4xl py-2">$<?php echo $cl['prof_user']['username']; ?></div>
 	<?php if (isset($cl['prof_user']['about']) && !empty($cl['prof_user']['about'])): ?>
 		<div style="border-bottom: 1px solid var(--smc-main-border-color);">
 			<p class="about-title">
@@ -102,12 +103,16 @@
 	.pl-message h4 {
 		text-align: center !important;
 	}
-	.company-overview{
+
+	.company-overview {
 		border-top: 1px solid var(--smc-main-border-color);
 		padding-top: 25px;
 		color: var(--cl-primary-text-color);
-		font-size:25px; 
-		padding-bottom:20px; 
+		font-size: 25px;
+		padding-bottom: 20px;
+	}
+	.username{
+		color: var(--smc-main-text-color);
 	}
 </style>
 <script>

@@ -94,7 +94,14 @@
 							echo ('active');
 						} ?>">
 							<span class="icon home">
-								<?php echo cl_ikon('home'); ?>
+							<?php 
+										// Check if the current page is 'connections' to use the active icon
+										if ($cl['pn'] == 'home') {
+											echo cl_ikon('home_active'); 
+										} else {
+											echo cl_ikon('home');
+										}
+										?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link('./'); ?>">
@@ -106,7 +113,14 @@
 							echo ('active');
 						} ?>">
 							<span class="icon">
-								<?php echo cl_ikon('explore'); ?>
+							<?php 
+										// Check if the current page is 'connections' to use the active icon
+										if ($cl['pn'] == 'explore') {
+											echo cl_ikon('explore_active'); 
+										} else {
+											echo cl_ikon('explore');
+										}
+										?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link("explore"); ?>">
@@ -118,7 +132,14 @@
 							echo ('active');
 						} ?>">
 							<span class="icon">
-								<?php echo cl_ikon('bell-h'); ?>
+							<?php 
+										// Check if the current page is 'connections' to use the active icon
+										if ($cl['pn'] == 'notifications') {
+											echo cl_ikon('bell_h_active'); 
+										} else {
+											echo cl_ikon('bell_h');
+										}
+										?>
 							</span>
 
 							<span class="nav-item-holder">
@@ -135,8 +156,15 @@
 						<li data-navitem="chat" onclick="window.location.href='<?php echo cl_link('chats'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'chat') {	/* edited by kevin change into button with full width */
 							echo ('active');
 						} ?>">
-							<span class="icon">
-								<?php echo cl_ikon('envelope-h'); ?>
+							<span class="icon msg_icon">
+							<?php 
+										// Check if the current page is 'connections' to use the active icon
+										if ($cl['pn'] == 'chat') {
+											echo cl_ikon('envelope-h_active'); 
+										} else {
+											echo cl_ikon('envelope-h');
+										}
+										?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link("chats"); ?>">
@@ -153,8 +181,15 @@
 							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	/* edited by kevin change into button with full width */
 								echo ('active');
 							} ?>">
-								<span class="icon">
-									<svg style="width: 1.0009765625em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M858.3 80.5H387.8c-40.4-43.2-135.4-67-188.8-67-94.9 0-175.7 70.5-188.8 164.3-5.6 16-8.3 31.3-8.3 46.7V828c0 98.7 80.3 179.1 179.1 179.1h695.4c82 0 148.7-66.7 148.7-148.7v-611c0-92.1-74.8-166.9-166.8-166.9z m0 30.4c60 0 110.5 39.2 128.7 93.2H628.8l-183.4-93.2h412.9z m136.5 747.4c0 65.3-53.1 118.4-118.4 118.4H181C99 976.8 32.2 910 32.2 828V224.5c0-12.3 2.3-24.7 7-38l0.8-3.2c10.5-79.4 78.7-139.4 159-139.4 56.2 0 142.8 26.7 170 61.2l4.6 5.8h2.6l242.2 120.3h374.8c0.6 5.3 1.6 10.6 1.6 16.1v611z" fill=""></path><path d="M203 840h790.7v27.8H203zM110.2 840h30.3v30.3h-30.3zM368.1 580.1l-20.3 111.2c-1.9 10.7 2.3 21.3 11 27.8 8.8 6.5 20.1 7.4 29.8 2.5l98.7-51.6 99.5 53.6c4.3 2.3 8.9 3.4 13.5 3.4 5.7 0 11.5-1.8 16.4-5.3 8.8-6.3 13.3-16.8 11.6-27.6l-18.6-109.8 81.8-78c7.8-7.5 10.7-18.6 7.5-29-3.3-10.4-12-17.8-22.7-19.5l-110.2-16.3-49-101.9c-4.7-9.8-14.4-15.9-25.2-16.1-9.7-0.5-20.7 5.8-25.6 15.5l-49.6 99.7-112 15.1c-10.7 1.5-19.6 8.8-23.1 19.1s-0.8 21.4 6.9 29.1l79.6 78.1z m52.7-111.2c9.2-1.2 17.2-6.9 21.5-15.3l49.2-97.2 47.2 98.3c4.1 8.4 12 14.3 21.2 15.7l107.7 16.8-78.8 75.2c-6.7 6.4-9.9 15.7-8.4 25l18.5 108.3-97.2-52.4c-4.2-2.3-8.8-3.4-13.4-3.4-4.4 0-8.9 1-13 3.1l-97 49.7 19.6-107.3c1.7-9.2-1.3-18.6-7.9-25.1l-77.2-76.9 108-14.5z" fill=""></path></svg>
+								<span class="icon watchlist_icon">
+								<?php 
+										// Check if the current page is 'connections' to use the active icon
+										if ($cl['pn'] == 'connections') {
+											echo cl_ikon('watchlist_active'); 
+										} else {
+											echo cl_ikon('watchlist');
+										}
+										?>
 								</span>
 								<span class="nav-item-holder">
 									<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
@@ -204,8 +239,15 @@
 						<li data-navitem="bookmarks" onclick="window.location.href='<?php echo cl_link('bookmarks'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'bookmarks') {	/* edited by kevin change into button with full width */
 							echo ('active');
 						} ?>">
-							<span class="icon">
-								<svg style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M804.571 146.286H219.43V855.99L512 575.415l50.834 48.567L804.571 855.99V146.286z m6.876-73.143q13.166 0 25.161 5.12 18.87 7.46 29.989 23.406t11.117 35.4v736.55q0 19.455-11.117 35.4t-29.989 23.406q-10.825 4.535-25.161 4.535-27.429 0-47.397-18.286L512.073 676.352 260.096 918.674q-20.553 18.871-47.397 18.871-13.165 0-25.16-5.12-18.872-7.46-29.99-23.406t-11.117-35.4v-736.55q0-19.455 11.118-35.4t29.988-23.406q11.996-5.12 25.161-5.12H811.52z"></path></svg>
+							<span style="fill: var(--smc-main-text-color);" class="icon">
+							<?php 
+										// Check if the current page is 'connections' to use the active icon
+										if ($cl['pn'] == 'bookmarks') {
+											echo cl_ikon('bookmark_active'); 
+										} else {
+											echo cl_ikon('bookmark');
+										}
+										?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link("bookmarks"); ?>">
@@ -216,8 +258,15 @@
 						<li data-navitem="profile" onclick="window.location.href='<?php echo ($me['url']); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {	/* edited by kevin change into button with full width */
 							echo ('active');
 						} ?>">
-							<span class="icon">
-								<svg style="width: 1.021484375em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1046 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M520.550074 474.417258c-130.773611 0-237.208629-106.385599-237.208629-237.208629s106.397954-237.208629 237.208629-237.208629 237.208629 106.385599 237.208629 237.208629-106.385599 237.208629-237.208629 237.208629z m0-395.261233a158.139086 158.139086 0 1 0 158.139086 158.139086 158.274987 158.274987 0 0 0-158.139086-158.139086zM646.83896 580.580474h399.906568v79.069543H646.83896zM646.83896 756.473143h399.906568v79.069543H646.83896zM646.83896 932.365812h399.906568v79.069543H646.83896z"></path><path d="M79.070223 1023.987645H0.00068v-106.731528a514.446214 514.446214 0 0 1 41.054389-202.220356 525.182375 525.182375 0 0 1 277.262294-277.262294 514.532696 514.532696 0 0 1 202.232711-41.091454v79.069543C277.164137 475.751556 79.070223 673.783698 79.070223 917.219053z"></path></svg>
+							<span style="fill: var(--smc-main-text-color);" class="icon">
+							<?php 
+										// Check if the current page is 'connections' to use the active icon
+										if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {
+											echo cl_ikon('user_active'); 
+										} else {
+											echo cl_ikon('user');
+										}
+										?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo ($me["url"]); ?>">
@@ -418,14 +467,7 @@
 				<a href="#" data-toggle="modal" data-target="#add_new_post">
 					<div class="tweet h-laptop" style="position: fixed; float: right; right: 20px; bottom: 60px;"> <span
 							class="icon">
-							<svg viewBox="0 0 24 24" aria-hidden="true"
-								class="r-jwli3a r-4qtqp9 r-yyyyoo r-1472mwg r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp">
-								<g>
-									<path
-										d="M23 3c-6.62-.1-10.38 2.421-13.05 6.03C7.29 12.61 6 17.331 6 22h2c0-1.007.07-2.012.19-3H12c4.1 0 7.48-3.082 7.94-7.054C22.79 10.147 23.17 6.359 23 3zm-7 8h-1.5v2H16c.63-.016 1.2-.08 1.72-.188C16.95 15.24 14.68 17 12 17H8.55c.57-2.512 1.57-4.851 3-6.78 2.16-2.912 5.29-4.911 9.45-5.187C20.95 8.079 19.9 11 16 11zM4 9V6H1V4h3V1h2v3h3v2H6v3H4z">
-									</path>
-								</g>
-							</svg>
+							<img src="/themes/default/statics/img/new_post.png" alt="">
 						</span></div>
 				</a>
 				<div class="publish-post-btn">
