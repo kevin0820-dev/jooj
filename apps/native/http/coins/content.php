@@ -9,7 +9,6 @@
 # @ Copyright (c) 2020 - 2021 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
 
-echo "<script>alert('coins')</script>";
 
 if (empty($cl["is_logged"])) {
 	cl_redirect("guest");
@@ -24,6 +23,14 @@ else {
 	$cl["pn"]         = "coins";
 	$cl["sbr"]        = true;
 	$cl["sbl"]        = true;
-	$cl["chats"]      = cl_get_chats(array("user_id" => $me['id']));
-	$cl["http_res"]   = cl_template("coins/content");
+	$cl["search_query"] = fetch_or_get($_GET['q'], "");
+	$cl["query_result"] = array();
+
+	if (not_empty($cl["search_query"])) {
+		$cl["search_query"] = cl_text_secure($cl["search_query"]);
+		$cl["page_title"]   = $cl["search_query"];
+		$cl["search_query"] = cl_croptxt($cl["search_query"], 32);
+	}
+	$cl["query_result"] = cl_search_page($cl["search_query"], false, 30);
+	$cl["http_res"] = cl_template("coins/content");
 }

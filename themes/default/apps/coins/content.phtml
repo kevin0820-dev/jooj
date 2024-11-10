@@ -24,7 +24,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="d-block" id="vue-explore-app">
+	<div class="d-block" id="vue-coins-app">
 		<div class="timeline-searchbar">
 			<form data-an="search-form" class="form timeline-searchbar__form" v-on:submit="search_entries($event)" autocomplete="off">
 				<div class="keyword-input">
@@ -45,29 +45,11 @@
 			</form>
 		</div>
 
-		<div class="timeline-navbar">
-			<div class="timeline-navbar__item">
-				<a v-bind:href="search_symbols_url" data-spa="true">
-					<button class="timeline-navbar__item-btn <?php if($cl["page_tab"] == "symbols") { echo("active");} ?>">		
-						<span class="btn-flex-inner">
-							
-							<span class="text">
-								<?php echo cl_translate("Coins"); ?>
-							</span>
-						</span>
-					</button>
-					<div class="css-1dbjc4nc <?php if ($cl['page_tab'] == 'symbols') {
-													echo ('active');
-												} ?>"></div>
-				</a>
-			</div>
-		</div>
-
 		<?php if (empty($cl["query_result"]) && empty($cl["search_query"])): ?>
-			<?php echo cl_template('explore/includes/empty_list'); ?>
+			<?php echo cl_template('coins/includes/empty_list'); ?>
 		<?php else: ?>
-			<?php echo cl_template(cl_strf('explore/includes/%s', $cl["page_tab"])); ?>
-			<?php echo cl_template('explore/includes/empty_result'); ?>
+			<?php echo cl_template(cl_strf('coins/includes/symbols')); ?>
+			<?php echo cl_template('coins/includes/empty_result'); ?>
 		<?php endif; ?>
 
 		<div class="timeline-data-loader" v-if="show_loader">
@@ -83,7 +65,7 @@
 		</div>
 	</div>
 	<script src="https://cdn.tailwindcss.com"></script>
-	<?php echo cl_template('explore/scripts/app_master_script'); ?>
+	<?php echo cl_template('coins/scripts/app_master_script'); ?>
 </div>
 <style>
 	body{

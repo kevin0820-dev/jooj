@@ -3,14 +3,14 @@
 
 	$(document).ready(function($) {
 		var _app = new Vue({
-			el: "#vue-explore-app",
+			el: "#vue-coins-app",
 			data: {
 				loading_more: false,
 				load_more: true,
 				load_offset: 30,
 				searching: false,
 				search_query: "<?php echo($cl["search_query"]); ?>",
-				action: "<?php echo($cl["page_tab"]); ?>",
+				action: "symbols",
 				query_result: "<?php echo ((not_empty($cl["query_result"])) ? 1 : 0); ?>",
 				empty_list: "<?php echo ((empty($cl["query_result"]) && empty($cl["search_query"])) ? 1 : 0); ?>",
 				init_result: ""
@@ -23,22 +23,10 @@
 
 					return false;
 				},
-				search_htags_url: function() {
-					var url = '<?php echo cl_link("explore/htags?q={0}"); ?>';
-					return url.format(this.search_query);
-				},
 				search_symbols_url: function() {
-					var url = '<?php echo cl_link("explore/symbols?q={0}"); ?>';
+					var url = '<?php echo cl_link("coins/q={0}"); ?>';
 					return url.format(this.search_query);
 				},
-				search_people_url: function() {
-					var url = '<?php echo cl_link("explore/people?q={0}"); ?>';
-					return url.format(this.search_query);
-				},
-				search_posts_url: function() {
-					var url = '<?php echo cl_link("explore/posts?q={0}"); ?>';
-					return url.format(this.search_query);
-				}
 			},
 			methods: {
 				search_entries: function(e = false) {
@@ -52,7 +40,7 @@
 									type: 'GET',
 									dataType: 'json',
 									data: {
-										type: "<?php echo($cl["page_tab"]); ?>",
+										type: "symbols",
 										q: _app.search_query
 									},
 									beforeSend: function() {
@@ -102,7 +90,7 @@
 				load_entries: function(e = false) {
 					e.preventDefault();
 
-					var type = "<?php echo($cl["page_tab"]); ?>";
+					var type = "symbols";
 					
 					$.ajax({
 						url: "<?php echo cl_link("native_api/explore/load_more"); ?>",
