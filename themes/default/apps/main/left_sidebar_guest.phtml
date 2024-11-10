@@ -76,7 +76,7 @@
 						</a>
 					</span>
 				</li>
-				<li data-navitem="profile" onclick="" class="sidebar-v-nav-item" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
+				<li data-navitem="more" onclick="" class="sidebar-v-nav-item" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
 					<span class="icon">
 						<?php echo cl_ikon('more'); ?>
 					</span>
@@ -86,6 +86,13 @@
 						</a>
 					</span>
 				</li>
+				<li class="mt-8 w-40" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
+					<button class="btn btn-custom main-inline lg home btn-block" data-toggle="modal"
+						data-target="#add_new_post">
+						<?php echo cl_translate('New post'); ?>
+					</button>
+				</li>
+				
 			</ul>
 		</div>
 		<div class="mobile-sb-footer">
@@ -111,11 +118,12 @@
 		<div class="login_btn">
 			<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal"><?php echo cl_translate("Log in"); ?></button>
 			<button type="button" class="btn btn-light" data-toggle="modal" data-target="#signupModal"><?php echo cl_translate("Sign up"); ?></button>
-
-
 		</div>
 	</div>
 </div>
+
+<?php echo cl_template('main/bottom_navbar'); ?>
+
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
@@ -124,11 +132,11 @@
 				<div class="close">
 					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<img src="{%config site_logo%}" alt="Logo" class="logo_login">
-
+				
 			</div>
 			<div class="modal-body">
 				<div class="guest-welcome">
+					<img class="pb-4 w-24 mx-auto" src="{%config site_logo%}" alt="Logo" class="logo_login">
 					<div class="login-form">
 						<?php echo cl_template('auth/login'); ?>
 					</div>
@@ -146,11 +154,11 @@
 				<div class="close">
 					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<img src="{%config site_logo%}" alt="Logo" class="logo_login">
-
+				
 			</div>
 			<div class="modal-body">
 				<div class="guest-welcome">
+					<img class="pb-3 w-24 mx-auto" src="{%config site_logo%}" alt="Logo" class="logo_login">
 					<div class="login-form">
 						<?php echo cl_template('auth/register'); ?>
 					</div>
