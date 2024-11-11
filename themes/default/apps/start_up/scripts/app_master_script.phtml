@@ -11,6 +11,8 @@
 			start_up: new Vue({
 				el: "#vue-startup-app",
 				data: {
+					username: "",
+					password: "",
 					fe_state: {
 						submitting: false
 					},
@@ -23,7 +25,8 @@
 						fe_feedback: {
 							invalid_fname: "",
 							invalid_lname: "",
-							invalid_bio: ""
+							invalid_bio: "",
+							invalid_password: ""
 						},
 						user_data: {
 							fname: "<?php echo($me['fname']); ?>",
@@ -44,6 +47,26 @@
 					}
 				},
 				computed: {
+					is_valid_password: function() {
+						if (this.$v.password.required == true && this.$v.password.$error) {
+							this.info.fe_feedback.invalid_password = "<?php echo cl_translate("Please enter your password, which is longer than 6characters"); ?>";
+							return true;
+						}
+						else {
+							this.info.fe_feedback.invalid_password = "";
+							return false;
+						}
+					},
+					is_valid_username: function() {
+						if (this.$v.username.required == true && this.$v.username.$error) {
+							this.info.fe_feedback.invalid_username = "<?php echo cl_translate("Please enter your username, which is from 3 to 25 characters"); ?>";
+							return true;
+						}
+						else {
+							this.info.fe_feedback.invalid_username = "";
+							return false;
+						}
+					},
 					is_valid_fname: function() {
 						if (this.$v.info.user_data.fname.required == true && this.$v.info.user_data.fname.$error) {
 							this.info.fe_feedback.invalid_fname = "<?php echo cl_translate("Please enter your first name, which is from 3 to 25 characters"); ?>";
@@ -77,7 +100,10 @@
 					},
 					is_invalid_form: function() {
 						return (this.$v.info.user_data.$invalid == true);
-					}
+					},
+					is_invalid_password: function() {
+						return (this.$v.password.$invalid == true);
+					},
 				},
 				validations: {
 					info: {
@@ -93,8 +119,17 @@
 							},
 							bio: {
 								max_length: VueValids.maxLength(140)
-							}
+							},
 						}
+					},					
+					password: {
+						required: VueValids.required,
+						min_length: VueValids.minLength(6)
+					},
+					username: {
+						required: VueValids.required,
+						min_length: VueValids.minLength(3),
+						max_length: VueValids.maxLength(25)
 					}
 				},
 				methods: {
@@ -177,6 +212,33 @@
 							type: 'POST',
 							dataType: 'json',
 							data: _app_.info.user_data,
+							beforeSend: function() {
+								SMColibri.progress_bar("show");
+							}
+						}).done(function(data) {
+							if (data.status == 200) {
+								_app_.progstat = data.progstat;
+							}
+							else{
+								SMColibri.errorMSG();
+							}
+						}).always(function() {
+							setTimeout(function() {
+								SMColibri.progress_bar("end");
+							}, 500);
+						});
+					},
+					save_password: function() {
+						var _app_  = this;
+						
+						$.ajax({
+							url: '<?php echo cl_link("native_api/start_up/save_profile_password"); ?>',
+							type: 'POST',
+							dataType: 'json',
+							data: {
+								username: _app_.username,
+								password: _app_.password
+							},
 							beforeSend: function() {
 								SMColibri.progress_bar("show");
 							}
