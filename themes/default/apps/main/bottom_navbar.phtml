@@ -2,13 +2,19 @@
 <div class="mobile-bottom-navbar" data-app="mobile-navbar">
 	<div class="mobile-bottom-navbar-inner">
 
-		<button class="navbar-ctrl" data-anchor="<?php echo cl_link("home"); ?>">
+		<button class="navbar-ctrl" data-anchor="<?php echo cl_link("home"); ?>" >
 			<?php echo cl_ikon('home-m'); ?>
 		</button>
 		<button class="navbar-ctrl" data-anchor="<?php echo cl_link("search"); ?>">
 			<?php echo cl_ikon('search-m'); ?>
 		</button>
-		<button class="navbar-ctrl" data-anchor="<?php echo cl_link('notifications'); ?>">
+		<button class="navbar-ctrl"		
+			<?php if (not_empty($cl['is_logged'])): ?>
+				data-anchor="<?php echo cl_link('notifications'); ?>"
+			<?php else: ?>
+				data-toggle="modal" data-target="#loginModal"
+			<?php endif; ?> 
+		>
 			<svg viewBox="0 0 24 24" aria-hidden="true"
 				class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-lwhw9o r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-cnnz9e">
 				<g>
@@ -25,7 +31,13 @@
 				</span>
 			<?php }	?>													
 		</button>
-		<button class="navbar-ctrl" data-anchor="<?php echo cl_link("chats"); ?>">
+		<button class="navbar-ctrl" 				
+			<?php if (not_empty($cl['is_logged'])): ?>
+				data-anchor="<?php echo cl_link("chats"); ?>"
+			<?php else: ?>
+				data-toggle="modal" data-target="#loginModal"
+			<?php endif; ?> 
+		>
 			<?php echo cl_ikon('chat-m'); ?>			
 			<?php if(fetch_or_get($me['new_messages']) > 0) { ?>			
 				<span class="info-indicators" data-an="new-messages">

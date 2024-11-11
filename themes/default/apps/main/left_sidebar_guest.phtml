@@ -26,7 +26,8 @@
 			</div>
 			<div class="mobile_menu" style="display:flex;" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
 				<div class="avatar">
-					<img src="{%config site_logo%}" alt="Logo">
+					<!-- <img src="{%config site_logo%}" alt="Logo"> -->
+					 <img src="/themes/default/statics/img/avatar.png" alt="">
 				</div>
 				<div class="uname" data-toggle="modal">
 					<h5 style="margin-bottom: 0px;">
@@ -95,7 +96,7 @@
 				
 			</ul>
 		</div>
-		<div class="mobile-sb-footer">
+		<div class="mobile-sb-footer ">
 			<?php echo cl_template('main/footer'); ?>
 		</div>
 	</div>
@@ -194,5 +195,14 @@
 <style>
 	.letters {
 		font-family: sans-serif;
+	}
+</style>
+<style>
+	body main.main-content-container div.main-content-container-inner div.left-sb-container div.sidebar__inner div.mobile-sb-footer div.main-footer ul.footer-nav {
+		justify-content: center;
+		margin-top: 47px;
+	}
+	body button.btn-custom.lg.home {
+		margin-left: 0 !important;
 	}
 </style>
