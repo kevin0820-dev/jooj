@@ -178,11 +178,12 @@
 							</span>
 						</li>
 						<?php if ($cl['config']['blue_account_system_status'] == 'off'): ?>
-							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	
+							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	/* edited by kevin change into button with full width */
 								echo ('active');
 							} ?>">
 								<span class="icon watchlist_icon">
 								<?php 
+										// Check if the current page is 'connections' to use the active icon
 										if ($cl['pn'] == 'connections') {
 											echo cl_ikon('watchlist_active'); 
 										} else {

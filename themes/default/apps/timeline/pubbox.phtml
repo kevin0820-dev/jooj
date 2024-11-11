@@ -9,9 +9,7 @@
 
 		<form class="form" id="vue-pubbox-app-<?php echo ($cl['pb_id']); ?>" v-on:submit="publish($event)">
 			<div class="input-holder" v-on:dragover.prevent v-on:drop.prevent="handleDrop">
-				<!-- <label class="w_m_stl" for="whats_mind">What's on your mind?</label> -->
-				<textarea
-					id="whats_mind"
+				<textarea 
 					ref="text_input" 
 					v-on:input.trim="text_input_trigger" 
 					v-on:blur="text_blur_trigger"
@@ -19,7 +17,7 @@
 					class="autoresize" 
 					v-model="text"
 					name="post_text" 
-					placeholder="What's on your mind?&#10;(use $ before coin ticker: eg $SYMBOL)">
+					placeholder="What's on your mind?(use $ before coin ticker: eg $SYMBOL)">
 				</textarea>		<!-- edited by kevin to show placeholder well -->
 			</div>
 			<div class="input-autocomplete" v-if="hashtags.tags.length">
@@ -986,16 +984,7 @@
 </style>
 <style scoped>
 body div.timeline-pubbox-container > div.rp form div.input-holder textarea::placeholder {
-    font-size: 18px !important;
+    font-size: 20px !important;
 }
-</style>
-<style>
-	.w_m_stl{
-		position: absolute;
-		font-size: 20px;
-		color: black;
-		padding-left: 13px;
-		padding-top: 6px;
-	}
 </style>
 
