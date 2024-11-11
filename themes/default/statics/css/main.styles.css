@@ -234,8 +234,8 @@ div.main-search-bar-container form div.input-holder span.clear-result svg {
   outline: 0;
 }
 .custom-lineheight textarea{
-  align-content: center;
-  height: 57px !important;
+  /* align-content: center; */
+  /* height: 57px !important; */
 }
 .user-name-holder{
   display: inline-flex;
@@ -14770,7 +14770,7 @@ body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
   height: auto;
   min-height: 40px;
   max-height: 400px;
-  resize: none;
+  /* resize: none; */
   font-size: 15px;
   color: var(--smc-main-text-color);
   line-height: 20px;

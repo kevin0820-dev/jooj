@@ -90,7 +90,7 @@
 								} else {
 									echo ($cl['curr_lang']["lang_data"]['slug']);
 								} ?>",
-					langs: <?php echo cl_minify_js(json($cl["languages"], 1)); ?>
+					langs: <?php echo cl_minify_js(json($cl["languages"], 1)); ?>,
 				},
 				validations: {
 					language: {
@@ -150,6 +150,7 @@
 	}
 
 	.main-profile-settings-container {
+		min-height: 100vh;
 		margin-left: 16px;
 		margin-right: auto;
 		padding: 16px;
