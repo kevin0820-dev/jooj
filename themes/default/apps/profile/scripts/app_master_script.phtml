@@ -135,6 +135,10 @@
 						        contentType: false,
 						        processData: false,
 						        timeout: 600000,
+								beforeSend: function() {
+									app.submitting = true;
+									console.log('Uploading cover...');
+								},
 								success: function(data) {
 									if (data.status == 200) {
 										cl_bs_notify("<?php echo cl_translate("Your new profile cover has been successfully saved!"); ?>");

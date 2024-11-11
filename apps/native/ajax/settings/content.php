@@ -557,7 +557,7 @@ else if ($action == 'upload_profile_cover') {
             'allowed'        => 'jpg,png,jpeg,gif',
             'aws_uploadfile' => "N"
         );
-
+        
         $file_upload = cl_upload($file_info);
 
         if (not_empty($file_upload['filename'])) {

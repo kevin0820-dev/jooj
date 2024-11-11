@@ -128,7 +128,7 @@
 								</a>
 							</span>
 						</li>
-						<li data-navitem="coins" onclick="window.location.href='/explore/symbols?q='" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {	/* edited by kevin change into button with full width */
+						<li data-navitem="coins" onclick="window.location.href='<?php echo cl_link('coins'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {	/* edited by kevin change into button with full width */
 							echo ('active');
 						} ?>">
 							<span class="icon">
@@ -142,7 +142,7 @@
 										?>
 							</span>
 							<span class="nav-item-holder">
-								<a href="<?php echo cl_link("Coins"); ?>">
+								<a href="<?php echo cl_link("coins"); ?>">
 									<?php echo cl_translate('Coins'); ?>
 								</a>
 							</span>
