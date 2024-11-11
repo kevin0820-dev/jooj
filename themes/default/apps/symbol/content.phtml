@@ -544,6 +544,48 @@
 </div>
 <script src="https://cdn.tailwindcss.com"></script>
 <script type="text/javascript">
+	var state = "posts";
+	// Initialise Carousel
+	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
+		Dots: false,
+	});
+
+	select = (pane) => {
+		var posts = document.getElementById("posts");
+		var about = document.getElementById("about");
+		var selectionPane = document.getElementsByClassName("profile-activity-navbar");
+		if (pane === 'posts') {
+			if (state === 'posts') return;
+			$("#posts").toggleClass("show active");
+			$("#about").toggleClass("show active");
+			state = "posts";
+			for (var i = 0; i < 2; i++) {
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.add("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
+			}
+		} else {
+			if (state === 'about') return;
+			$("#posts").toggleClass("show active");
+			$("#about").toggleClass("show active");
+			state = 'about';
+			for (var i = 0; i < 2; i++) {
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.add("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
+			}
+			if (window.scrollY > 400) { // {{ edit_1 }}
+				about.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});
+				window.scrollTo(0, 400);
+			}
+		}
+	}
+
 	new Vue({
 		el: "#vue-main-search-app",
 		data: {
@@ -657,8 +699,7 @@
 		$(window).scroll(move);
 		move();
 	}
-</script>
-<script type="text/javascript">
+
 	$(document).ready(function() {
 		$("#verPopover").popover({
 			template: '<div class="popover1" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
@@ -775,49 +816,6 @@
 		}
 	}
 </style>
-<script>
-	var state = "posts";
-	// Initialise Carousel
-	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
-		Dots: false,
-	});
-
-	select = (pane) => {
-		var posts = document.getElementById("posts");
-		var about = document.getElementById("about");
-		var selectionPane = document.getElementsByClassName("profile-activity-navbar");
-		if (pane === 'posts') {
-			if (state === 'posts') return;
-			$("#posts").toggleClass("show active");
-			$("#about").toggleClass("show active");
-			state = "posts";
-			for (var i = 0; i < 2; i++) {
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.add("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.add("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
-			}
-		} else {
-			if (state === 'about') return;
-			$("#posts").toggleClass("show active");
-			$("#about").toggleClass("show active");
-			state = 'about';
-			for (var i = 0; i < 2; i++) {
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.add("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.add("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
-			}
-			if (window.scrollY > 400) { // {{ edit_1 }}
-				about.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start'
-				});
-				window.scrollTo(0, 400);
-			}
-		}
-	}
-</script>
 
 <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
 

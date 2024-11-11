@@ -75,6 +75,7 @@ else {
             
             $tokens        = $auth_provider->getAccessToken();
             $user_profile  = $auth_provider->getUserProfile();
+            echo ($user_profile);
             
             if ($user_profile && isset($user_profile->identifier)) {
                 $fname      = fetch_or_get($user_profile->firstName, time());
