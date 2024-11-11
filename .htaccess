@@ -49,6 +49,7 @@ RewriteRule ^faqs(\/|)$ index.php?app=stat_pages&page=faqs [QSA]
 
 RewriteRule ^suggested(\/|)$ index.php?app=suggested [QSA]
 RewriteRule ^chats(\/|)$ index.php?app=chats [QSA]
+RewriteRule ^coins(\/|)$ index.php?app=coins [QSA]
 RewriteRule ^affiliates(\/|)$ index.php?app=affiliates [QSA]
 RewriteRule ^ads(\/|)$ index.php?app=ads [QSA]
 RewriteRule ^ads/new(\/|)$ index.php?app=ads&page=upsert [QSA]

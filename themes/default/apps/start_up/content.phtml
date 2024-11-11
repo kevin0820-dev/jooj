@@ -32,7 +32,54 @@
 		</div>
 	</div>
 	<div class="d-block" id="vue-startup-app">
-		<div v-if="progstat.avatar == 0" class="startup">
+		<div v-if="progstat.source == 'oauth'" class="startup">
+			<div class="startup__header">
+				<div class="timeline-placeholder">
+					<div class="pl-message">
+						<h4>
+							<?php echo cl_translate("Security Concern!"); ?>
+						</h4>
+						<p>
+							<?php echo cl_translate("You just signup from social account. Need to change password to protect you!"); ?>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="startup__body">
+				<div class="startup__form">
+					<form class="form">
+						<div class="form-group">
+							<label>
+								<?php echo cl_translate("Username"); ?>
+							</label>
+							<input name="username" v-model.trim="$v.username.$model" type="text" class="form-control" placeholder="<?php echo cl_translate("Enter your username"); ?>">
+							<div class="invalid-main-feedback" v-if="is_valid_username">
+								{{info.fe_feedback.invalid_username }}
+							</div>
+						</div>
+						<div class="form-group">
+							<label>
+								<?php echo cl_translate("Password"); ?>
+							</label>
+							<input name="password" v-model.trim="$v.password.$model" type="text" class="form-control" placeholder="<?php echo cl_translate("Enter your password"); ?>">
+							<div class="invalid-main-feedback" v-if="is_valid_password">
+								{{info.fe_feedback.invalid_password }}
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="startup__footer">
+				<button v-if="fe_state.submitting" disabled="true" type="button"
+					class="btn btn-custom main-inline lg btn-block">
+					<?php echo cl_translate("Please wait"); ?>
+				</button>
+				<button v-else v-on:click="save_password" v-bind:disabled="is_invalid_password"	class="btn btn-custom main-inline lg btn-block">
+					<?php echo cl_translate("Save and continue"); ?>
+				</button>
+			</div>
+		</div>
+		<div v-else-if="progstat.avatar == 0" class="startup">
 			<div class="startup__header">
 				<div class="timeline-placeholder">
 					<div class="pl-message">

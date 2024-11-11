@@ -150,7 +150,7 @@ else {
     		            'last_active' => time(),
     		            'joined'      => time(),
                         'logged_in_with' => $provider_name,
-                        'start_up'    => json(array('source' => 'oauth', 'avatar' => 0, 'info' => 0, 'follow' => 0), true),
+                        'start_up'    => json(array('source' => 'oauth', 'password' => 0, 'avatar' => 0, 'info' => 0, 'follow' => 0), true),
     		            'ip_address'  => $user_ip,
     		            'language'    => $cl['config']['language'],
                         'country_id'  => $cl['config']['country_id'],

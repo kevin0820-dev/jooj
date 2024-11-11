@@ -111,7 +111,28 @@ else if ($action == 'save_profile_info') {
         ));
     }
 }
+else if ($action == 'save_profile_password') {
+    $data['err_code'] = 0;
+    $data['status']   = 400;
+    $username         = fetch_or_get($_POST['username'], null);
+    $password         = fetch_or_get($_POST['password'], null);
 
+    if (empty($password) || len_between($password,6, 250) != true || empty($username) || len_between($username,3, 25) != true) {
+        $data['err_code'] = "invalid_username_or_password";
+    }
+
+    if (empty($data['err_code'])) {
+        $me['start_up']['source']   = 'oauth-v';
+        $data['status']             = 200;
+        $data['progstat']           = $me["start_up"];
+
+        cl_update_user_data($me["id"], array(
+            'password'   => password_hash($password, PASSWORD_DEFAULT),
+            'username'   => cl_text_secure($username),
+            'start_up'   => json($me["start_up"], true)
+        ));
+    }
+}
 else if($action == 'finish_startup') {
     $data['err_code'] = 0;
     $data['status']   = 200;

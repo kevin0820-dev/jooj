@@ -1,0 +1,99 @@
+
+	<div class="h-laptop">
+		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
+			<div class="mobile-bottom-navbar-inner">
+				<div class="avatar-menu">
+					<a href="#" onclick="SMColibri.toggleSB();"> <?php echo cl_icon('hamburger'); ?></a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<div class="timeline-container" data-app="coins">
+	<div class="timeline-header symbol_header" data-el="tl-header">
+		<?php echo cl_template('common/bot_line'); ?>
+		<div class="lp" style="display: inline-flex; align-items:center; padding-top:10px;">
+			<span class="go-back" onclick="SMColibri.go_back();">
+				<?php echo cl_ikon('arrow-left'); ?>
+			</span>
+			<div class="nav-link-holder" style="display: flex;justify-content: center;align-items: center;">
+				<a href="<?php echo cl_link("Coins"); ?>" data-spa="true">
+					<?php echo cl_translate("Coins"); ?>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="d-block" id="vue-coins-app">
+		<div class="timeline-searchbar">
+			<form data-an="search-form" class="form timeline-searchbar__form" v-on:submit="search_entries($event)" autocomplete="off">
+				<div class="keyword-input">
+				<?php if (not_empty($cl["is_logged"])) : ?>
+					<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')" type="text" placeholder="<?php echo cl_translate("Type a query and press Enter. E.g. #hashtag, username, etc.."); ?>" autofocus="true">
+					<?php else : ?>
+						<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')"
+							type="text"  data-toggle="modal" data-target="#loginModal" placeholder="<?php echo cl_translate("search_form"); ?> {%config name%}"
+							autofocus="true">
+							<?php endif; ?>
+					<span class="keyword-input__left-icon">
+						<?php echo cl_icon('search'); ?>
+					</span>
+					<span class="keyword-input__right-spinner" v-if="searching">
+						<?php echo cl_icon('spinner-icon'); ?>
+					</span>
+				</div>
+			</form>
+		</div>
+
+		<?php if (empty($cl["query_result"]) && empty($cl["search_query"])): ?>
+			<?php echo cl_template('coins/includes/empty_list'); ?>
+		<?php else: ?>
+			<?php echo cl_template(cl_strf('coins/includes/symbols')); ?>
+			<?php echo cl_template('coins/includes/empty_result'); ?>
+		<?php endif; ?>
+
+		<div class="timeline-data-loader" v-if="show_loader">
+			<button v-if="loading_more" class="btn btn-custom main-outline lg" disabled="true">
+				<?php echo cl_translate("Please wait"); ?>
+			</button>
+			<button v-else-if="load_more" class="btn btn-custom main-outline lg" v-on:click="load_entries($event)">
+				<?php echo cl_translate("Show more"); ?>
+			</button>
+			<button v-else class="btn btn-custom main-outline lg" disabled="true">
+				<?php echo cl_translate("That is all for now!"); ?>
+			</button>
+		</div>
+	</div>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<?php echo cl_template('coins/scripts/app_master_script'); ?>
+</div>
+<style>
+	body{
+		font-family: "Roboto", sans-serif;
+	}
+	.publication-audio {
+		display: flex!important;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.audio-player {
+		display: none!important;
+	}
+	.cl-plyr-audio {
+		width: 100%;
+	}
+</style>
+<style>
+	@media (max-width: 1199.98px) {
+      body main.main-content-container div.main-content-container-inner div.timeline-container-wrapper div.timeline-container-inner div.timeline-container div.timeline-navbar {
+          width: 100%;
+          position: fixed;
+          top: 81px;
+      }
+}
+	@media (max-width: 1199.98px) {
+      body main.main-content-container div.main-content-container-inner div.timeline-container-wrapper div.timeline-container-inner div.timeline-container div.timeline-searchbar {
+          margin-top: 45px;
+      }
+}
+</style>

@@ -29,6 +29,7 @@ $applications       = array(
     "explore"       => true,
     "chats"         => true,
     "conversation"  => true,
+    "coins"         => true,
     "thread"        => true,
     "tmedia"        => true,
     "feed"          => true,

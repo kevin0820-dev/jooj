@@ -128,6 +128,25 @@
 								</a>
 							</span>
 						</li>
+						<li data-navitem="coins" onclick="window.location.href='<?php echo cl_link('coins'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {	/* edited by kevin change into button with full width */
+							echo ('active');
+						} ?>">
+							<span class="icon">
+							<?php 
+										// Check if the current page is 'connections' to use the active icon
+										if ($cl['pn'] == 'coins') {
+											echo cl_ikon('coins_active'); 
+										} else {
+											echo cl_ikon('coins');
+										}
+										?>
+							</span>
+							<span class="nav-item-holder">
+								<a href="<?php echo cl_link("coins"); ?>">
+									<?php echo cl_translate('Coins'); ?>
+								</a>
+							</span>
+						</li>
 						<li data-navitem="notifications" onclick="window.location.href='<?php echo cl_link('notifications'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'notifications') {	/* edited by kevin change into button with full width */
 							echo ('active');
 						} ?>">
@@ -178,11 +197,12 @@
 							</span>
 						</li>
 						<?php if ($cl['config']['blue_account_system_status'] == 'off'): ?>
-							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	
+							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	/* edited by kevin change into button with full width */
 								echo ('active');
 							} ?>">
 								<span class="icon watchlist_icon">
 								<?php 
+										// Check if the current page is 'connections' to use the active icon
 										if ($cl['pn'] == 'connections') {
 											echo cl_ikon('watchlist_active'); 
 										} else {
