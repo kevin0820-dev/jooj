@@ -132,6 +132,9 @@ else {
                     if($user_data['active'] == '1'){
                         cl_create_user_session($user_data['id'], 'web');
                     }
+                    else{
+                        echo 'error';
+                    }
                     cl_redirect('/');
                 } 
 
