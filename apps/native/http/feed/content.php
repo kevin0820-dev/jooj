@@ -25,8 +25,8 @@ else {
 	$cl["sbl"]        = true;
 	$cl["feed"]       = cl_get_guest_feed(false, 30);
 	$cl["search_query"] = fetch_or_get($_GET['q'], "");
-$cl["page_tab"]     = fetch_or_get($_GET['tab'], "posts");
-$cl["query_result"] = array();
+	$cl["page_tab"]     = fetch_or_get($_GET['tab'], "posts");
+	$cl["query_result"] = array();
 
 if (not_empty($cl["search_query"])) {
 	$cl["search_query"] = cl_text_secure($cl["search_query"]);
