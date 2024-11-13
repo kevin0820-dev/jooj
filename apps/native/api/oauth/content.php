@@ -151,77 +151,85 @@ else {
 
 
 	    	$raw_user = cl_db_get_item(T_USERS, array('email' => $user_data["email"]));
+			
+			if($raw_user['status'] == '1'){
 
-	    	cl_db_delete_item(T_SESSIONS, array(
-	    		"user_id" => $raw_user["id"],
-	    		"platform" => "mobile_android"
-	    	));
+				cl_db_delete_item(T_SESSIONS, array(
+					"user_id" => $raw_user["id"],
+					"platform" => "mobile_android"
+				));
 
-	    	cl_db_delete_item(T_SESSIONS, array(
-	    		"user_id" => $raw_user["id"],
-	    		"platform" => "mobile_ios"
-	    	));
+				cl_db_delete_item(T_SESSIONS, array(
+					"user_id" => $raw_user["id"],
+					"platform" => "mobile_ios"
+				));
 
-	    	$data_exp      = strtotime("+1 year");
-	        $session_id    = cl_create_user_session($raw_user["id"], cl_strf("mobile_%s", $device_type));
-	        $refresh_token = md5(rand(11111, 99999)) . time() . md5(microtime() . $raw_user["id"]);
+				$data_exp      = strtotime("+1 year");
+				$session_id    = cl_create_user_session($raw_user["id"], cl_strf("mobile_%s", $device_type));
+				$refresh_token = md5(rand(11111, 99999)) . time() . md5(microtime() . $raw_user["id"]);
 
-	        if (is_url($user_data["avatar"])) {
-            	$avatar         = cl_import_image(array(
-            		'url'       => $user_data["avatar"],
-            		'file_type' => 'thumbnail',
-		            'folder'    => 'avatars',
-		            'slug'      => 'avatar'
-            	));
+				if (is_url($user_data["avatar"])) {
+					$avatar         = cl_import_image(array(
+						'url'       => $user_data["avatar"],
+						'file_type' => 'thumbnail',
+						'folder'    => 'avatars',
+						'slug'      => 'avatar'
+					));
 
-            	if ($avatar) {
-            		cl_update_user_data($raw_user["id"], array(
-            			'avatar' => $avatar
-            		));
-            	}
-            }
+					if ($avatar) {
+						cl_update_user_data($raw_user["id"], array(
+							'avatar' => $avatar
+						));
+					}
+				}
 
-	        cl_update_user_data($raw_user["id"], array(
-	        	'ip_address'    => $user_ip_addr,
-	        	'last_active'   => time(),
-	            'refresh_token' => $refresh_token
-	        ));
+				cl_update_user_data($raw_user["id"], array(
+					'ip_address'    => $user_ip_addr,
+					'last_active'   => time(),
+					'refresh_token' => $refresh_token
+				));
 
-	        $data['code']    = 200;
-	        $data['message'] = "User logged in successfully";
-	        $data['data']    = array(
-	                'user'            => array(
-	                'user_id'         => $raw_user['id'],
-	                'first_name'      => $raw_user['fname'],
-	              
-	                'user_name'       => $raw_user['username'],
-	                'profile_picture' => cl_get_media($raw_user['avatar']),
-	                'cover_picture'   => cl_get_media($raw_user['cover']),
-	                'email'           => $raw_user['email'],
-	                'is_verified'     => (($raw_user['verified'] == '1') ? true : false),
-	                'website'         => $raw_user['website'],
-	                'about_you'       => $raw_user['about'],
-	                'gender'          => $raw_user['gender'],
-	                'country'         => $cl['countries'][$raw_user['country_id']],
-	                'post_count'      => $raw_user['posts'],
-	                'last_post'       => $raw_user['last_post'],
-	                'last_ad'         => $raw_user['last_ad'],
-	                'language'        => $raw_user['language'],
-	                'following_count' => $raw_user['following'],
-	                'follower_count'  => $raw_user['followers'],
-	                'wallet'          => $raw_user['wallet'],
-	                'ip_address'      => $raw_user['ip_address'],
-	                'last_active'     => $raw_user['last_active'],
-	                'member_since'    => date("M Y", $raw_user['joined']),
-	                'profile_privacy' => $raw_user['profile_privacy']
-	            )
-	        );
+				$data['code']    = 200;
+				$data['message'] = "User logged in successfully";
+				$data['data']    = array(
+						'user'            => array(
+						'user_id'         => $raw_user['id'],
+						'first_name'      => $raw_user['fname'],
+					
+						'user_name'       => $raw_user['username'],
+						'profile_picture' => cl_get_media($raw_user['avatar']),
+						'cover_picture'   => cl_get_media($raw_user['cover']),
+						'email'           => $raw_user['email'],
+						'is_verified'     => (($raw_user['verified'] == '1') ? true : false),
+						'website'         => $raw_user['website'],
+						'about_you'       => $raw_user['about'],
+						'gender'          => $raw_user['gender'],
+						'country'         => $cl['countries'][$raw_user['country_id']],
+						'post_count'      => $raw_user['posts'],
+						'last_post'       => $raw_user['last_post'],
+						'last_ad'         => $raw_user['last_ad'],
+						'language'        => $raw_user['language'],
+						'following_count' => $raw_user['following'],
+						'follower_count'  => $raw_user['followers'],
+						'wallet'          => $raw_user['wallet'],
+						'ip_address'      => $raw_user['ip_address'],
+						'last_active'     => $raw_user['last_active'],
+						'member_since'    => date("M Y", $raw_user['joined']),
+						'profile_privacy' => $raw_user['profile_privacy']
+					)
+				);
 
-	        $data["auth"]           = array(
-	        	"auth_token"        => $session_id,
-	            "refresh_token"     => $refresh_token,
-	        	"auth_token_expiry" => $data_exp
-	        );
+				$data["auth"]           = array(
+					"auth_token"        => $session_id,
+					"refresh_token"     => $refresh_token,
+					"auth_token_expiry" => $data_exp
+				);
+			}
+			else{
+				$data['code']    = 402;
+				$data['message'] = "Account disabled or inactive";
+				$data['data']    = array();
+			}
 		}
 	}
 }
