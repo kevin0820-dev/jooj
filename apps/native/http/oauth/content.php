@@ -129,9 +129,9 @@ else {
                 if (cl_email_exists($user_email)) {
                 	$db        = $db->where('email', $user_email);
                 	$user_data = $db->getOne(T_USERS);
-                    if($user_data['status'] == '1'){
+                    // if($user_data['status'] == '1'){
                         cl_create_user_session($user_data['id'], 'web');
-                    }
+                    // }
                     cl_redirect('/');
                 } 
 
