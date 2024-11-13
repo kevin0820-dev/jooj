@@ -152,7 +152,7 @@ else {
 
 	    	$raw_user = cl_db_get_item(T_USERS, array('email' => $user_data["email"]));
 			
-			if($raw_user['status'] == '1'){
+			if($raw_user['active'] == '1'){
 
 				cl_db_delete_item(T_SESSIONS, array(
 					"user_id" => $raw_user["id"],
