@@ -44,19 +44,14 @@
 	</div>
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
-			<?php $count = 0; ?>
-			<?php if (not_empty($cl["feed"]) && is_array($cl['feed'])): ?>
+			<?php if (not_empty($cl["feed_trending"])): ?>
 				<div class="timeline-posts-container">
 					<div class="timeline-posts-ls" data-an="entry-list">
-						<?php foreach ($cl["feed"] as $cl['li']): ?>
-								<?php $count++; ?>
+						<?php foreach ($cl["feed_trending"] as $cl['li']): ?>
 								<?php echo cl_template('timeline/post'); ?>
-								<?php if ($count == 3) {
-									echo cl_template('home/follow');
-								} ?>
 						<?php endforeach; ?>
 					</div>
-					<?php if (count($cl["feed"]) == 30): ?>
+					<?php if (count($cl["feed_trending"]) == 30): ?>
 							<div class="timeline-data-loader">
 								<button class="btn btn-custom main-outline lg" data-an="load-more">
 									<?php echo cl_translate("Show more"); ?>
@@ -84,18 +79,13 @@
 		</div>
 		<div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
 			<div class="timeline-posts-container" style="margin-top: 0px;">
-				<?php $count = 0; ?>
-				<?php if (not_empty($cl["tl_feed"])): ?>
+				<?php if (not_empty($cl["feed_latest"])): ?>
 					<div class="timeline-posts-ls" data-an="entry-list">
-						<?php foreach ($cl["tl_feed"] as $cl["li"]): ?>
-							<?php $count++; ?>
+						<?php foreach ($cl["feed_latest"] as $cl["li"]): ?>
 							<?php echo cl_template('timeline/post'); ?>
-							<?php if ($count == 3) {
-								echo cl_template('home/follow_feed');
-							} ?>
 						<?php endforeach; ?>
 					</div>
-					<?php if (is_array($cl["tl_feed"]) && count($cl["tl_feed"]) == 30): ?>
+					<?php if (is_array($cl["feed_latest"]) && count($cl["feed_latest"]) == 30): ?>
 						<div class="timeline-data-loader">
 							<button class="btn btn-custom main-outline lg" data-an="load-more">
 								<?php echo cl_translate("Show more"); ?>
