@@ -133,7 +133,7 @@ else {
                         cl_create_user_session($user_data['id'], 'web');
                     }
                     else{
-                        echo 'error';
+                        echo '<script>alert("An error occurred. Please try again.");</script>';
                     }
                     cl_redirect('/');
                 } 
