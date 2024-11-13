@@ -150,6 +150,7 @@ else {
     		            'password'    => $password_hashed,
     		            'email'       => $user_email,
     		            'active'      => '1',
+                        'verified'    => '1',
     		            'about'       => cl_croptxt($about, 130),
     		            'em_code'     => $email_code,
     		            'last_active' => time(),
