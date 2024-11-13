@@ -671,8 +671,10 @@ var pubbox_form_app_mixin = Object({
 							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
-					}
-
+					}				
+                    else if(data.status == 400){						
+                        cl_bs_notify(data.error, 3000, "danger");
+					} 
 					else {
 						_app_.submitting = false;
 						SMColibri.errorMSG();
@@ -760,7 +762,9 @@ var pubbox_form_app_mixin = Object({
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
 					}
-
+					else if(data.status == 400){						
+						cl_bs_notify(data.error, 3000, "danger");
+					} 
 					else {
 						_app_.submitting = false;
 						SMColibri.errorMSG();
@@ -827,7 +831,9 @@ var pubbox_form_app_mixin = Object({
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
 					}
-
+					else if(data.status == 400){						
+						cl_bs_notify(data.error, 3000, "danger");
+					} 
 					else {
 						_app_.submitting = false;
 						SMColibri.errorMSG();

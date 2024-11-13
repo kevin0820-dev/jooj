@@ -10,7 +10,7 @@
 @*************************************************************************@
  */
 
-SELECT `id`, `email`, `active`, `avatar`, `admin`, `active`, `verified`, `last_active`, `username`, `country_id`, `ip_address`, CONCAT(`fname`) as `name`
+SELECT `id`, `email`, `active`, `avatar`, `admin`, `active`, `verified`, `banned`, `last_active`, `username`, `country_id`, `ip_address`, CONCAT(`fname`) as `name`
 
 	FROM `<?php echo($data['t_users']); ?>`
 

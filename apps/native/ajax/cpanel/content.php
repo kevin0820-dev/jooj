@@ -505,6 +505,25 @@ else if($action == 'toggle_user_status') {
 		}
 	}
 }
+else if($action == 'toggle_user_banned') {
+	$data['status']   = 404;
+	$data['err_code'] = 0;
+	$user_id          = fetch_or_get($_POST['id'], 0);
+
+	if (is_posnum($user_id)) {
+		$udata = cl_raw_user_data($user_id);
+
+		if (not_empty($udata)) {
+			$data['status']  = 200;
+			$data['message'] = "Your changes has been successfully saved!";
+			$status          = (($udata['banned'] == '1') ? '0' : '1' );
+
+			cl_update_user_data($user_id, array(
+				'banned' => $status
+			));
+		}
+	}
+}
 else if($action == 'toggle_page_status') {
 	$data['status']   = 404;
 	$data['err_code'] = 0;
