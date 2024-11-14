@@ -172,13 +172,16 @@ function cl_add_question($title = "", $answer = "", $id = 0){
 		$db -> insert(T_SYMBOL_QUIZ, array('title' => $title, 'answer' => $answer, 'symbol_id' => $id));
 	}
 }
-function cl_is_spam($id = 0, $text = ""){
+function cl_is_spam($uid = 0, $pub_text = ""){
 	global $db;
-	$db = $db -> where('user_id', $id);
-	$db = $db -> where('text', $text);
-	$db = $db -> where('time', time() - 3600, '>=');
-	$db = $db -> getOne(T_POSTS);
-	return ($db) ? true : false;
+	if ((not_num($uid)) || (empty($pub_text) || is_string($pub_text) != true)) {
+        return false;
+    } 
+	$db = $db -> where('user_id', $uid);
+	$db = $db -> where('text', $pub_text);
+	$db = $db -> where('CAST(time AS UNSIGNED)', time() - 3600, '>=');
+	$res = $db -> getOne(T_PUBS);
+	return cl_queryset($res);
 }
 function cl_upsert_htags($text = "") {
 	global $db;

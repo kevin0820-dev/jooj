@@ -833,7 +833,7 @@ else if ($action == 'publish_new_post') {
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
 
-        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){
             $data['status'] = 400;
             $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
             return;
