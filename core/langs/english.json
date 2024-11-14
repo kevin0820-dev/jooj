@@ -1423,7 +1423,7 @@
     "your_website_at_help": " To use this function on your website You need to register your domain and get an API key from google to use reCAPTCHA. Without registering your domain, the captcha widget won’t load on your page.",
     "enable_google_re": "Enable google reCAPTCHA on your website to prevent spam.",
     "advertising_setting": "Advertising setting",
-    "post_seo_title": "{@user_name@} op {@site_name@}: ({@post_url@})",
+    "post_seo_title": "{@user_name@} on {@site_name@}: ({@post_url@})",
     "more": "More",
     "dark_theme": "Dark theme",
     "sorry_it_looks_like_the_site_owner_has_disabled_the_ads_feature_i": "Sorry, it looks like the site owner has disabled the ads feature. If you have questions or complaints, please contact our email address {@site_email@}",

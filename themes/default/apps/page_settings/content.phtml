@@ -81,7 +81,7 @@
             <input type="hidden" name="symbol_id" value="<?php echo $cl['symbol']['id']; ?>">
             <div class="mb-6">
                 <label for="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("title_page"); ?></label>
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("title_page"); ?> (ex: White Whale)</label>
                 <input type="text" name="name" id="name"
                     class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value="<?php echo $cl['symbol']['name']; ?>"
@@ -89,14 +89,14 @@
             </div>
             <div class="mb-6">
                 <label for="raw_sname"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("symbols"); ?></label>
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("symbols"); ?> (ex: WHALE)</label>
                 <input type="text" name="raw_sname" id="raw_sname"
                     class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value="<?php echo $cl['symbol']['raw_sname']; ?>">
             </div>
             <div class="mb-6">
                 <label for="symbol_price"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol to fetch price from Trading View"); ?></label>
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol to fetch price from Trading View (ex: whales)"); ?></label>
                 <input type="text" name="symbol_price" id="symbol_price"
                     class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value="<?php echo $cl['symbol']['symbol_price']; ?>">
@@ -119,7 +119,7 @@
             </div>
             <div class="mb-6">
                 <label for="symbol_fetch"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol Detail for data fetch from Trading View"); ?></label>
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol Detail for data fetch from Trading View (ex: OSMOSIS:WHALEUSD)"); ?></label>
                 <input type="text" name="symbol_fetch" id="symbol_fetch"
                     class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value="<?php echo $cl['symbol']['symbol_fetch']; ?>"
@@ -128,7 +128,7 @@
             </div>
             <div class="mb-6">
                 <label for="symbol_fetch_gecko"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol Detail for data fetch from Coin Gecko"); ?></label>
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo cl_translate("Symbol Detail for data fetch from Coin Gecko (ex: white-whale)"); ?></label>
                 <input type="text" name="symbol_fetch_gecko" id="symbol_fetch_gecko"
                     class="bg4input border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     value="<?php echo $cl['symbol']['symbol_fetch_gecko']; ?>"
