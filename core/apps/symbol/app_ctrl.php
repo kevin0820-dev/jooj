@@ -227,7 +227,7 @@ function cl_get_profile_posts_trending($symbol_id = false, $limit = 30, $offset 
     }
 
     // Fetch posts mentioning the symbol by name
-    $sql_mentions = cl_sqltepmlate("apps/symbol/sql/fetch_symbol_mentions", array(
+    $sql_mentions = cl_sqltepmlate("apps/symbol/sql/fetch_symbol_mentions_trending", array(
         "t_pubs" => T_PUBS,
         "t_posts" => T_POSTS,
         "symbol_name" => $symbol_name,
