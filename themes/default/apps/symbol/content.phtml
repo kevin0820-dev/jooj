@@ -67,8 +67,13 @@
 				</a>
 			</div>
 			<div class="rp middle">
-				<div class="nav-link-holde">
-					<button class="go-options dropleft show bt-3" onclick='$("#searchBar").slideToggle()'>
+				<div class="flex nav-link-holde">
+					<a href="javascript:void(0);" onclick="SMColibri.display_settings();">
+						<span class="dropdown-item-icon">
+							<img class="h-[18px] w-[18px] mr-2" src="/themes/default/statics/ikons/display.svg" alt="">
+						</span>
+					</a>
+					<button class="go-options dropleft show" onclick='$("#searchBar").slideToggle()'>
 						<?php echo cl_icon('search'); ?>
 					</button>
 				</div>
@@ -389,17 +394,17 @@
 								<?php if (not_empty($cl["can_view"])): ?>
 									<a href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>"
 										class="stat-holder-inner" style="display: flex;">
-								<?php else: ?>
-									<a href="javascript:void(0);" class="stat-holder-inner" style="display: flex;"
+									<?php else: ?>
+										<a href="javascript:void(0);" class="stat-holder-inner" style="display: flex;"
 											onclick="SMColibri.PS.profile.privacy_alert();">
-								<?php endif; ?>
-									<span style="width: 28px; fill: var(--smc-main-text-color); margin-right: 5px;">
-										<?php echo cl_ikon("people"); ?>
-									</span>
-									<b>
-										<?php echo cl_number($cl['prof_user']['followers']); ?>
-									</b>
-								</a>
+										<?php endif; ?>
+										<span style="width: 28px; fill: var(--smc-main-text-color); margin-right: 5px;">
+											<?php echo cl_ikon("people"); ?>
+										</span>
+										<b>
+											<?php echo cl_number($cl['prof_user']['followers']); ?>
+										</b>
+										</a>
 							</div>
 						</div>
 					</div>

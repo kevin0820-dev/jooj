@@ -10,7 +10,7 @@
 						<img src="{%config site_logo%}" alt="Logo">
 						<span class="ml11">
 							<span class="text-wrapper">
-								<span class="line line1"></span> 
+								<span class="line line1"></span>
 								<span style="font-family:sans-serif" class="letters">{%config name%}</span>
 							</span>
 						</span>
@@ -18,7 +18,7 @@
 				</div>
 				<div class="user-info h-laptop">
 					<div class="left_account">
-						
+
 						<h6>Account Info</h6>
 						<a href="#" onclick="SMColibri.toggleSB();" class="b_close"> <svg viewBox="0 0 24 24" aria-hidden="true"
 								class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03">
@@ -39,8 +39,8 @@
 									<?php echo ($me['name']); ?>
 								</span>
 								<p class="<?php if (isset($cl['li']['owner']['verified']) && $cl['li']['owner']['verified'] == '1') {
-									echo ('verified-badge');
-								} ?>" style="display:inline-block;"></p>
+												echo ('verified-badge');
+											} ?>" style="display:inline-block;"></p>
 							</h5>
 							<a href="<?php echo ($me['url']); ?>" data-spa="true">
 								@<?php echo ($me['username']); ?>
@@ -91,17 +91,17 @@
 				<div class="sidebar-v-nav-wrapper">
 					<ul class="sidebar-v-nav">
 						<li data-navitem="home" onclick="window.location.href='/./'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'home') {	/* edited by kevin change into button with full width */
-							echo ('active');
-						} ?>">
+																													echo ('active');
+																												} ?>">
 							<span class="icon home">
-							<?php 
-										// Check if the current page is 'connections' to use the active icon
-										if ($cl['pn'] == 'home') {
-											echo cl_ikon('home_active'); 
-										} else {
-											echo cl_ikon('home');
-										}
-										?>
+								<?php
+								// Check if the current page is 'connections' to use the active icon
+								if ($cl['pn'] == 'home') {
+									echo cl_ikon('home_active');
+								} else {
+									echo cl_ikon('home');
+								}
+								?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link('./'); ?>">
@@ -110,17 +110,17 @@
 							</span>
 						</li>
 						<li data-navitem="explore" onclick="window.location.href='<?php echo cl_link('explore'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'explore') {	/* edited by kevin change into button with full width */
-							echo ('active');
-						} ?>">
+																																					echo ('active');
+																																				} ?>">
 							<span class="icon">
-							<?php 
-										// Check if the current page is 'connections' to use the active icon
-										if ($cl['pn'] == 'explore') {
-											echo cl_ikon('explore_active'); 
-										} else {
-											echo cl_ikon('explore');
-										}
-										?>
+								<?php
+								// Check if the current page is 'connections' to use the active icon
+								if ($cl['pn'] == 'explore') {
+									echo cl_ikon('explore_active');
+								} else {
+									echo cl_ikon('explore');
+								}
+								?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link("explore"); ?>">
@@ -129,17 +129,17 @@
 							</span>
 						</li>
 						<li data-navitem="coins" onclick="window.location.href='<?php echo cl_link('coins'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {	/* edited by kevin change into button with full width */
-							echo ('active');
-						} ?>">
+																																				echo ('active');
+																																			} ?>">
 							<span class="icon">
-							<?php 
-										// Check if the current page is 'connections' to use the active icon
-										if ($cl['pn'] == 'coins') {
-											echo cl_ikon('coins_active'); 
-										} else {
-											echo cl_ikon('coins');
-										}
-										?>
+								<?php
+								// Check if the current page is 'connections' to use the active icon
+								if ($cl['pn'] == 'coins') {
+									echo cl_ikon('coins_active');
+								} else {
+									echo cl_ikon('coins');
+								}
+								?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link("coins"); ?>">
@@ -148,67 +148,67 @@
 							</span>
 						</li>
 						<li data-navitem="notifications" onclick="window.location.href='<?php echo cl_link('notifications'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'notifications') {	/* edited by kevin change into button with full width */
-							echo ('active');
-						} ?>">
+																																								echo ('active');
+																																							} ?>">
 							<span class="icon">
-							<?php 
-										// Check if the current page is 'connections' to use the active icon
-										if ($cl['pn'] == 'notifications') {
-											echo cl_ikon('bell_h_active'); 
-										} else {
-											echo cl_ikon('bell_h');
-										}
-										?>
+								<?php
+								// Check if the current page is 'connections' to use the active icon
+								if ($cl['pn'] == 'notifications') {
+									echo cl_ikon('bell_h_active');
+								} else {
+									echo cl_ikon('bell_h');
+								}
+								?>
 							</span>
 
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link("notifications"); ?>">
-									<?php if(fetch_or_get($me['new_notifs']) > 0) { ?>  			<!-- edited by kevin notification only valid -->
+									<?php if (fetch_or_get($me['new_notifs']) > 0) { ?> <!-- edited by kevin notification only valid -->
 										<span class="info-indicators" data-an="new-notifs">
 											<?php echo fetch_or_get($me['new_notifs']); ?>
 										</span>
-									<?php } ?>														<!-- edited by kevin notification only valid -->
-										<?php echo cl_translate('Notifications'); ?>
+									<?php } ?> <!-- edited by kevin notification only valid -->
+									<?php echo cl_translate('Notifications'); ?>
 								</a>
 							</span>
 						</li>
 						<li data-navitem="chat" onclick="window.location.href='<?php echo cl_link('chats'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'chat') {	/* edited by kevin change into button with full width */
-							echo ('active');
-						} ?>">
+																																				echo ('active');
+																																			} ?>">
 							<span class="icon msg_icon">
-							<?php 
-										// Check if the current page is 'connections' to use the active icon
-										if ($cl['pn'] == 'chat') {
-											echo cl_ikon('envelope-h_active'); 
-										} else {
-											echo cl_ikon('envelope-h');
-										}
-										?>
+								<?php
+								// Check if the current page is 'connections' to use the active icon
+								if ($cl['pn'] == 'chat') {
+									echo cl_ikon('envelope-h_active');
+								} else {
+									echo cl_ikon('envelope-h');
+								}
+								?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link("chats"); ?>">
-									<?php if(fetch_or_get($me['new_messages']) > 0) { ?>		<!-- edited by kevin notification only valid -->
+									<?php if (fetch_or_get($me['new_messages']) > 0) { ?> <!-- edited by kevin notification only valid -->
 										<span class="info-indicators" data-an="new-messages">
 											<?php echo fetch_or_get($me['new_messages']); ?>
 										</span>
-									<?php } ?>													<!-- edited by kevin notification only valid -->
+									<?php } ?> <!-- edited by kevin notification only valid -->
 									<?php echo cl_translate('Messages'); ?>
 								</a>
 							</span>
 						</li>
 						<?php if ($cl['config']['blue_account_system_status'] == 'off'): ?>
 							<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	/* edited by kevin change into button with full width */
-								echo ('active');
-							} ?>">
+																																							echo ('active');
+																																						} ?>">
 								<span class="icon watchlist_icon">
-								<?php 
-										// Check if the current page is 'connections' to use the active icon
-										if ($cl['pn'] == 'connections') {
-											echo cl_ikon('watchlist_active'); 
-										} else {
-											echo cl_ikon('watchlist');
-										}
-										?>
+									<?php
+									// Check if the current page is 'connections' to use the active icon
+									if ($cl['pn'] == 'connections') {
+										echo cl_ikon('watchlist_active');
+									} else {
+										echo cl_ikon('watchlist');
+									}
+									?>
 								</span>
 								<span class="nav-item-holder">
 									<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
@@ -221,10 +221,13 @@
 						<?php if ($cl['config']['blue_account_system_status'] == 'on'): ?>
 							<?php if ($me["is_blue"] == 1): ?>
 								<li data-navitem="trending" onclick="window.location.href='<?php echo ($me['url']); ?>/watching'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'connections') {	/* edited by kevin change into button with full width */
-									echo ('active');
-								} ?>">
+																																								echo ('active');
+																																							} ?>">
 									<span class="icon">
-										<svg style="width: 1.0009765625em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M858.3 80.5H387.8c-40.4-43.2-135.4-67-188.8-67-94.9 0-175.7 70.5-188.8 164.3-5.6 16-8.3 31.3-8.3 46.7V828c0 98.7 80.3 179.1 179.1 179.1h695.4c82 0 148.7-66.7 148.7-148.7v-611c0-92.1-74.8-166.9-166.8-166.9z m0 30.4c60 0 110.5 39.2 128.7 93.2H628.8l-183.4-93.2h412.9z m136.5 747.4c0 65.3-53.1 118.4-118.4 118.4H181C99 976.8 32.2 910 32.2 828V224.5c0-12.3 2.3-24.7 7-38l0.8-3.2c10.5-79.4 78.7-139.4 159-139.4 56.2 0 142.8 26.7 170 61.2l4.6 5.8h2.6l242.2 120.3h374.8c0.6 5.3 1.6 10.6 1.6 16.1v611z" fill=""></path><path d="M203 840h790.7v27.8H203zM110.2 840h30.3v30.3h-30.3zM368.1 580.1l-20.3 111.2c-1.9 10.7 2.3 21.3 11 27.8 8.8 6.5 20.1 7.4 29.8 2.5l98.7-51.6 99.5 53.6c4.3 2.3 8.9 3.4 13.5 3.4 5.7 0 11.5-1.8 16.4-5.3 8.8-6.3 13.3-16.8 11.6-27.6l-18.6-109.8 81.8-78c7.8-7.5 10.7-18.6 7.5-29-3.3-10.4-12-17.8-22.7-19.5l-110.2-16.3-49-101.9c-4.7-9.8-14.4-15.9-25.2-16.1-9.7-0.5-20.7 5.8-25.6 15.5l-49.6 99.7-112 15.1c-10.7 1.5-19.6 8.8-23.1 19.1s-0.8 21.4 6.9 29.1l79.6 78.1z m52.7-111.2c9.2-1.2 17.2-6.9 21.5-15.3l49.2-97.2 47.2 98.3c4.1 8.4 12 14.3 21.2 15.7l107.7 16.8-78.8 75.2c-6.7 6.4-9.9 15.7-8.4 25l18.5 108.3-97.2-52.4c-4.2-2.3-8.8-3.4-13.4-3.4-4.4 0-8.9 1-13 3.1l-97 49.7 19.6-107.3c1.7-9.2-1.3-18.6-7.9-25.1l-77.2-76.9 108-14.5z" fill=""></path></svg>
+										<svg style="width: 1.0009765625em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+											<path d="M858.3 80.5H387.8c-40.4-43.2-135.4-67-188.8-67-94.9 0-175.7 70.5-188.8 164.3-5.6 16-8.3 31.3-8.3 46.7V828c0 98.7 80.3 179.1 179.1 179.1h695.4c82 0 148.7-66.7 148.7-148.7v-611c0-92.1-74.8-166.9-166.8-166.9z m0 30.4c60 0 110.5 39.2 128.7 93.2H628.8l-183.4-93.2h412.9z m136.5 747.4c0 65.3-53.1 118.4-118.4 118.4H181C99 976.8 32.2 910 32.2 828V224.5c0-12.3 2.3-24.7 7-38l0.8-3.2c10.5-79.4 78.7-139.4 159-139.4 56.2 0 142.8 26.7 170 61.2l4.6 5.8h2.6l242.2 120.3h374.8c0.6 5.3 1.6 10.6 1.6 16.1v611z" fill=""></path>
+											<path d="M203 840h790.7v27.8H203zM110.2 840h30.3v30.3h-30.3zM368.1 580.1l-20.3 111.2c-1.9 10.7 2.3 21.3 11 27.8 8.8 6.5 20.1 7.4 29.8 2.5l98.7-51.6 99.5 53.6c4.3 2.3 8.9 3.4 13.5 3.4 5.7 0 11.5-1.8 16.4-5.3 8.8-6.3 13.3-16.8 11.6-27.6l-18.6-109.8 81.8-78c7.8-7.5 10.7-18.6 7.5-29-3.3-10.4-12-17.8-22.7-19.5l-110.2-16.3-49-101.9c-4.7-9.8-14.4-15.9-25.2-16.1-9.7-0.5-20.7 5.8-25.6 15.5l-49.6 99.7-112 15.1c-10.7 1.5-19.6 8.8-23.1 19.1s-0.8 21.4 6.9 29.1l79.6 78.1z m52.7-111.2c9.2-1.2 17.2-6.9 21.5-15.3l49.2-97.2 47.2 98.3c4.1 8.4 12 14.3 21.2 15.7l107.7 16.8-78.8 75.2c-6.7 6.4-9.9 15.7-8.4 25l18.5 108.3-97.2-52.4c-4.2-2.3-8.8-3.4-13.4-3.4-4.4 0-8.9 1-13 3.1l-97 49.7 19.6-107.3c1.7-9.2-1.3-18.6-7.9-25.1l-77.2-76.9 108-14.5z" fill=""></path>
+										</svg>
 									</span>
 									<span class="nav-item-holder">
 										<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
@@ -234,8 +237,8 @@
 								</li>
 							<?php else: ?>
 								<li data-navitem="blue_account" onclick="window.location.href='<?php echo cl_link('blue_account'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'blue_account') {	/* edited by kevin change into button with full width */
-									echo ('active');
-								} ?>">
+																																										echo ('active');
+																																									} ?>">
 
 									<span class="icon">
 										<svg viewBox="0 0 24 24" aria-hidden="true"
@@ -256,17 +259,17 @@
 							<?php endif; ?>
 						<?php endif; ?>
 						<li data-navitem="bookmarks" onclick="window.location.href='<?php echo cl_link('bookmarks'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'bookmarks') {	/* edited by kevin change into button with full width */
-							echo ('active');
-						} ?>">
+																																						echo ('active');
+																																					} ?>">
 							<span style="fill: var(--smc-main-text-color);" class="icon">
-							<?php 
-										// Check if the current page is 'connections' to use the active icon
-										if ($cl['pn'] == 'bookmarks') {
-											echo cl_ikon('bookmark_active'); 
-										} else {
-											echo cl_ikon('bookmark');
-										}
-										?>
+								<?php
+								// Check if the current page is 'connections' to use the active icon
+								if ($cl['pn'] == 'bookmarks') {
+									echo cl_ikon('bookmark_active');
+								} else {
+									echo cl_ikon('bookmark');
+								}
+								?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo cl_link("bookmarks"); ?>">
@@ -275,17 +278,17 @@
 							</span>
 						</li>
 						<li data-navitem="profile" onclick="window.location.href='<?php echo ($me['url']); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {	/* edited by kevin change into button with full width */
-							echo ('active');
-						} ?>">
+																																				echo ('active');
+																																			} ?>">
 							<span style="fill: var(--smc-main-text-color);" class="icon">
-							<?php 
-										// Check if the current page is 'connections' to use the active icon
-										if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {
-											echo cl_ikon('user_active'); 
-										} else {
-											echo cl_ikon('user');
-										}
-										?>
+								<?php
+								// Check if the current page is 'connections' to use the active icon
+								if ($cl['pn'] == 'profile' && ($cl['prof_user']['id'] == $me['id'])) {
+									echo cl_ikon('user_active');
+								} else {
+									echo cl_ikon('user');
+								}
+								?>
 							</span>
 							<span class="nav-item-holder">
 								<a href="<?php echo ($me["url"]); ?>">
@@ -507,8 +510,8 @@
 						<?php echo ($me['name']); ?>
 					</span>
 					<p class="<?php if ($me['verified'] == '1') {
-						echo ('verified-badge');
-					} ?>" style="display:inline-block;"></p>
+									echo ('verified-badge');
+								} ?>" style="display:inline-block;"></p>
 				</h5>
 				<a href="<?php echo ($me['url']); ?>" data-spa="true" style="opacity: 0.7;">
 					@<?php echo ($me['username']); ?>
@@ -520,8 +523,8 @@
 					<div class="dropdown-menu dropdown-icons profile">
 						<h5 style="text-align: center; margin-top: 20px; margin-bottom:0px;">
 							<span class="user-name-holder <?php if ($me['verified'] == '1') {
-								echo ('verified-badge');
-							} ?>">
+																echo ('verified-badge');
+															} ?>">
 								<?php echo ($me['name']); ?>
 							</span>
 						</h5>
@@ -663,48 +666,50 @@
 
 <style>
 	.topical-posts-custom {
-  color: var(--smc-main-text-color-2);
-  width: 260px;
-  overflow: hidden;
-  display: block;
-  margin-bottom: 5px;
-  border: 0px solid var(--smc-main-border-color);
-  background-color: var(--smc-main-bg-color-2);
-  padding-top: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 10px;
-  border-radius: 16px;
-}
-.test_content_break{
-	word-break: break-all;
-}
-.left-extra-square{
-  height: 80px;
-  color: var(--smc-main-text-color-2);
-  width: 260px;
-  overflow: hidden;
-  display: block;
-  margin-bottom: 5px;
-  border: 0px solid var(--smc-main-border-color);
-  background-color: var(--smc-main-bg-color-2);
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 10px;
-  border-radius: 16px;
-	
-}
-.nav-custom-style{
+		color: var(--smc-main-text-color-2);
+		width: 260px;
+		overflow: hidden;
+		display: block;
+		margin-bottom: 5px;
+		border: 0px solid var(--smc-main-border-color);
+		background-color: var(--smc-main-bg-color-2);
+		padding-top: 5px;
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-bottom: 10px;
+		border-radius: 16px;
+	}
 
-    padding: 13px 0px 11px 10px;
-    /* border: 1px solid; */
-    margin-left: -9px;
-    background-color: var(--smc-main-bg-color);
-    border-radius: 10px;
-    position: fixed;
-    bottom: 15px;
-    flex-direction: row;
+	.test_content_break {
+		word-break: break-all;
+	}
 
-}
+	.left-extra-square {
+		height: 80px;
+		color: var(--smc-main-text-color-2);
+		width: 260px;
+		overflow: hidden;
+		display: block;
+		margin-bottom: 5px;
+		border: 0px solid var(--smc-main-border-color);
+		background-color: var(--smc-main-bg-color-2);
+		padding-left: 15px;
+		padding-right: 15px;
+		padding-bottom: 10px;
+		border-radius: 16px;
 
+	}
+
+	.nav-custom-style {
+
+		padding: 13px 0px 11px 10px;
+		/* border: 1px solid; */
+		margin-left: -9px;
+		background-color: var(--smc-main-bg-color);
+		border-radius: 10px;
+		position: fixed;
+		bottom: 15px;
+		flex-direction: row;
+
+	}
 </style>

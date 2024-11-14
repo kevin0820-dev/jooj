@@ -14583,7 +14583,7 @@ body .user-data__ctrls button.btn-custom.main-outline:not([disabled]):focus {
 body button.btn-custom.lg.home {
   font-family: Roboto, sans-serif;
   color: white;
-  background: #007afc;
+  background: var(--smc-main-uiel-color);
   /* box-shadow: var(--smc-main-box-shadow-eff); */
   /* border: 1px solid var(--smc-main-border-color); */
   font-size: 16px;
@@ -41126,7 +41126,7 @@ body
   div.cp
   a
   img {
-  height: 30px;
+  height: 25px;
 }
 
 body
@@ -51845,7 +51845,7 @@ body .user-data__ctrls button.btn-custom.main-outline:not([disabled]):focus {
 body button.btn-custom.lg.home {
   font-family: Roboto, sans-serif;
   color: white;
-  background: #007afc;
+  background: var(--smc-main-uiel-color);
   /* box-shadow: var(--smc-main-box-shadow-eff); */
   /* border: 1px solid var(--smc-main-border-color); */
   font-size: 16px;
