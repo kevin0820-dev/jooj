@@ -193,45 +193,45 @@ else if ($action == 'upload_post_video') {
                     $post_id     = $post_data['id'];
 
                     if (not_empty($file_upload['filename'])) {
-                        try {
-                            require_once(cl_full_path("core/libs/ffmpeg-php/vendor/autoload.php"));
-                            require_once(cl_full_path("core/libs/getID3/getid3/getid3.php"));
+                        // try {
+                        //     require_once(cl_full_path("core/libs/ffmpeg-php/vendor/autoload.php"));
+                        //     require_once(cl_full_path("core/libs/getID3/getid3/getid3.php"));
 
-                            $ffmpeg_binary       = ($config['ffmpeg_binary'] == "/core/libs/ffmpeg/ffmpeg") ? cl_full_path($config['ffmpeg_binary']) : $config['ffmpeg_binary']; 
-                            $ffmpeg              = new FFmpeg($ffmpeg_binary);
-                            $getID3              = new getID3;
-                            $getID3_FAR          = $getID3->analyze($file_upload['filename']);
-                            $poster_frame_offset = 3;
-                            $thumb_path          = cl_gen_path(array(
-                                "folder"         => "images",
-                                "file_ext"       => "jpeg",
-                                "file_type"      => "image",
-                                "slug"           => "poster",
-                            ));
+                        //     $ffmpeg_binary       = ($config['ffmpeg_binary'] == "/core/libs/ffmpeg/ffmpeg") ? cl_full_path($config['ffmpeg_binary']) : $config['ffmpeg_binary']; 
+                        //     $ffmpeg              = new FFmpeg($ffmpeg_binary);
+                        //     $getID3              = new getID3;
+                        //     $getID3_FAR          = $getID3->analyze($file_upload['filename']);
+                        //     $poster_frame_offset = 3;
+                        //     $thumb_path          = cl_gen_path(array(
+                        //         "folder"         => "images",
+                        //         "file_ext"       => "jpeg",
+                        //         "file_type"      => "image",
+                        //         "slug"           => "poster",
+                        //     ));
 
-                            if (not_empty($getID3_FAR) && isset($getID3_FAR["playtime_seconds"])) {
-                                if ($getID3_FAR["playtime_seconds"] < 3) {
-                                    $poster_frame_offset = 1;
-                                }
-                            }
+                        //     if (not_empty($getID3_FAR) && isset($getID3_FAR["playtime_seconds"])) {
+                        //         if ($getID3_FAR["playtime_seconds"] < 3) {
+                        //             $poster_frame_offset = 1;
+                        //         }
+                        //     }
 
-                            $ffmpeg->input($file_upload['filename']);
-                            $ffmpeg->set('-ss', $poster_frame_offset);
-                            $ffmpeg->set('-vframes','1');
-                            $ffmpeg->set('-f','mjpeg');
-                            $ffmpeg->output($thumb_path)->ready();
-                        } 
+                        //     $ffmpeg->input($file_upload['filename']);
+                        //     $ffmpeg->set('-ss', $poster_frame_offset);
+                        //     $ffmpeg->set('-vframes','1');
+                        //     $ffmpeg->set('-f','mjpeg');
+                        //     $ffmpeg->output($thumb_path)->ready();
+                        // } 
 
-                        catch (Exception $e) {
-                            $data["error"] = $e->getMessage();
-                            $upload_fail   = true;
-                        }
+                        // catch (Exception $e) {
+                        //     $data["error"] = $e->getMessage();
+                        //     $upload_fail   = true;
+                        // }
 
-                        if (empty($upload_fail)) {
+                        // if (empty($upload_fail)) {
 
-                            if (file_exists($thumb_path) != true) {
+                            // if (file_exists($thumb_path) != true) {
                                 $thumb_path = "upload/default/video.png";
-                            }
+                            // }
 
                             $img_id      = $db->insert(T_PUBMEDIA, array(
                                 "pub_id" => $post_id,
@@ -257,7 +257,7 @@ else if ($action == 'upload_post_video') {
                                     cl_upload2s3($thumb_path);
                                 }
                             }
-                        }
+                        // }
                     }
                     else if(not_empty($file_upload['error'])) {
                         $data["error"] = $file_upload['error'];
@@ -278,6 +278,7 @@ else if ($action == 'upload_post_video') {
     }
 }
 else if ($action == 'upload_page_video') {
+    file_put_contents('path/to/log.txt', "function upload_page_video\n", FILE_APPEND);
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';
@@ -313,49 +314,50 @@ else if ($action == 'upload_page_video') {
                     );
 
                     $file_upload = cl_upload($file_info);
+                    file_put_contents('path/to/log.txt', "uploaded\n", FILE_APPEND);
                     $upload_fail = false;
                     $post_id     = $post_data['id'];
 
                     if (not_empty($file_upload['filename'])) {
-                        try {
-                            require_once(cl_full_path("core/libs/ffmpeg-php/vendor/autoload.php"));
-                            require_once(cl_full_path("core/libs/getID3/getid3/getid3.php"));
+                        // try {
+                        //     require_once(cl_full_path("core/libs/ffmpeg-php/vendor/autoload.php"));
+                        //     require_once(cl_full_path("core/libs/getID3/getid3/getid3.php"));
 
-                            $ffmpeg_binary       = ($config['ffmpeg_binary'] == "/core/libs/ffmpeg/ffmpeg") ? cl_full_path($config['ffmpeg_binary']) : $config['ffmpeg_binary']; 
-                            $ffmpeg              = new FFmpeg($ffmpeg_binary);
-                            $getID3              = new getID3;
-                            $getID3_FAR          = $getID3->analyze($file_upload['filename']);
-                            $poster_frame_offset = 3;
-                            $thumb_path          = cl_gen_path(array(
-                                "folder"         => "images",
-                                "file_ext"       => "jpeg",
-                                "file_type"      => "image",
-                                "slug"           => "poster",
-                            ));
+                        //     $ffmpeg_binary       = ($config['ffmpeg_binary'] == "/core/libs/ffmpeg/ffmpeg") ? cl_full_path($config['ffmpeg_binary']) : $config['ffmpeg_binary']; 
+                        //     $ffmpeg              = new FFmpeg($ffmpeg_binary);
+                        //     $getID3              = new getID3;
+                        //     $getID3_FAR          = $getID3->analyze($file_upload['filename']);
+                        //     $poster_frame_offset = 3;
+                        //     $thumb_path          = cl_gen_path(array(
+                        //         "folder"         => "images",
+                        //         "file_ext"       => "jpeg",
+                        //         "file_type"      => "image",
+                        //         "slug"           => "poster",
+                        //     ));
 
-                            if (not_empty($getID3_FAR) && isset($getID3_FAR["playtime_seconds"])) {
-                                if ($getID3_FAR["playtime_seconds"] < 3) {
-                                    $poster_frame_offset = 1;
-                                }
-                            }
+                        //     if (not_empty($getID3_FAR) && isset($getID3_FAR["playtime_seconds"])) {
+                        //         if ($getID3_FAR["playtime_seconds"] < 3) {
+                        //             $poster_frame_offset = 1;
+                        //         }
+                        //     }
 
-                            $ffmpeg->input($file_upload['filename']);
-                            $ffmpeg->set('-ss', $poster_frame_offset);
-                            $ffmpeg->set('-vframes','1');
-                            $ffmpeg->set('-f','mjpeg');
-                            $ffmpeg->output($thumb_path)->ready();
-                        } 
+                        //     $ffmpeg->input($file_upload['filename']);
+                        //     $ffmpeg->set('-ss', $poster_frame_offset);
+                        //     $ffmpeg->set('-vframes','1');
+                        //     $ffmpeg->set('-f','mjpeg');
+                        //     $ffmpeg->output($thumb_path)->ready();
+                        // } 
 
-                        catch (Exception $e) {
-                            $data["error"] = $e->getMessage();
-                            $upload_fail   = true;
-                        }
+                        // catch (Exception $e) {
+                        //     $data["error"] = $e->getMessage();
+                        //     $upload_fail   = true;
+                        // }
+                        file_put_contents('path/to/log.txt', "uploaded\n", FILE_APPEND);
+                        // if (empty($upload_fail)) {
 
-                        if (empty($upload_fail)) {
-
-                            if (file_exists($thumb_path) != true) {
+                            // if (file_exists($thumb_path) != true) {
                                 $thumb_path = "upload/default/video.png";
-                            }
+                            // }
 
                             $img_id      = $db->insert(T_PUBMEDIA, array(
                                 "pub_id" => $post_id,
@@ -381,7 +383,7 @@ else if ($action == 'upload_page_video') {
                                     cl_upload2s3($thumb_path);
                                 }
                             }
-                        }
+                        // }
                     }
                     else if(not_empty($file_upload['error'])) {
                         $data["error"] = $file_upload['error'];
