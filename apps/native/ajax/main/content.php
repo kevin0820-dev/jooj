@@ -833,6 +833,12 @@ else if ($action == 'publish_new_post') {
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
 
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+            $data['status'] = 400;
+            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            return;
+        }
+
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
             $post_privacy = "everyone";
@@ -1061,6 +1067,11 @@ else if ($action == 'publish_new_repost') {
         $thread_data      = array();
         $comment_id       = fetch_or_get($_POST['selected_repost_id'], 0);
 
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+            $data['status'] = 400;
+            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            return;
+        }
         
         if ($curr_pn == 'profile') {
             $prof = cl_raw_post_data($comment_id);
@@ -1327,6 +1338,12 @@ else if ($action == 'publish_new_post_symbol') {
         $post_text = cl_croptxt($post_text, $max_post_length);
         $thread_data = array();
 
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+            $data['status'] = 400;
+            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            return;
+        }
+
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
             $post_privacy = "everyone";
@@ -1567,6 +1584,12 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
         $thread_data = array();
         $comment_id       = fetch_or_get($_POST['selected_repost_id_symbol'], 0);
 
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+            $data['status'] = 400;
+            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            return;
+        }
+        
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
             $post_privacy = "everyone";

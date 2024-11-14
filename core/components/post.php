@@ -172,6 +172,14 @@ function cl_add_question($title = "", $answer = "", $id = 0){
 		$db -> insert(T_SYMBOL_QUIZ, array('title' => $title, 'answer' => $answer, 'symbol_id' => $id));
 	}
 }
+function cl_is_spam($id = 0, $text = ""){
+	global $db;
+	$db = $db -> where('user_id', $id);
+	$db = $db -> where('text', $text);
+	$db = $db -> where('time', time() - 3600, '>=');
+	$db = $db -> getOne(T_POSTS);
+	return ($db) ? true : false;
+}
 function cl_upsert_htags($text = "") {
 	global $db;
 
