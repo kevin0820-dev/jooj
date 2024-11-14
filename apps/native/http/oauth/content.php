@@ -75,6 +75,7 @@ else {
             
             $tokens        = $auth_provider->getAccessToken();
             $user_profile  = $auth_provider->getUserProfile();
+            echo json_encode($user_profile);
             
             if ($user_profile && isset($user_profile->identifier)) {
                 $fname      = fetch_or_get($user_profile->firstName, time());
@@ -128,8 +129,12 @@ else {
                 if (cl_email_exists($user_email)) {
                 	$db        = $db->where('email', $user_email);
                 	$user_data = $db->getOne(T_USERS);
-
-                    cl_create_user_session($user_data['id'], 'web');
+                    if($user_data['active'] == '1'){
+                        cl_create_user_session($user_data['id'], 'web');
+                    }
+                    else{
+                        $cl['error'] = 'Account disabled or inactive';
+                    }
                     cl_redirect('/');
                 } 
 
@@ -145,6 +150,7 @@ else {
     		            'password'    => $password_hashed,
     		            'email'       => $user_email,
     		            'active'      => '1',
+                        'verified'    => '1',
     		            'about'       => cl_croptxt($about, 130),
     		            'em_code'     => $email_code,
     		            'last_active' => time(),

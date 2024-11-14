@@ -1,14 +1,13 @@
 
-	<div class="h-laptop">
-		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
-			<div class="mobile-bottom-navbar-inner">
-				<div class="avatar-menu">
-					<a href="#" onclick="SMColibri.toggleSB();"> <?php echo cl_icon('hamburger'); ?></a>
-				</div>
-
+<div class="h-laptop">
+	<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
+		<div class="mobile-bottom-navbar-inner">
+			<div class="avatar-menu">
+				<a href="#" onclick="SMColibri.toggleSB();"> <?php echo cl_icon('hamburger'); ?></a>
 			</div>
 		</div>
 	</div>
+</div>
 
 <div class="timeline-container" data-app="homepage">
 	<div class="timeline-header symbol_header" data-el="tl-header">
@@ -16,19 +15,26 @@
 		<div>
 			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li  role="presentation">
-					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
-						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
-							class="css-1dbjc4n"></div></a>
+					<a class="nav-link active home_nav_btn" id="trending-tab" data-toggle="tab" href="#trending" role="tab"	aria-controls="trending" aria-selected="true">
+						<?php echo cl_translate("Trending"); ?>
+						<div class="css-1dbjc4n"></div>
+					</a>
 				</li>
-				<li  role="presentation" data-toggle="modal" data-target="#loginModal">
-					<a class="nav-link home_nav_btn" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+				<li  role="presentation">
+					<a class="nav-link home_nav_btn" id="latest-tab" data-toggle="tab" href="#latest" role="tab"	aria-controls="latest" aria-selected="true">
+						<?php echo cl_translate("Latest"); ?>
+						<div class="css-1dbjc4n"></div>
+					</a>
+				</li>
+				<li  role="presentation">
+					<a class="nav-link home_nav_btn" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="true">
 						<?php echo cl_translate("Following"); ?>
 						<div class="css-1dbjc4n"></div>
 					</a>
 				</li>
-				<li  role="presentation" data-toggle="modal" data-target="#loginModal">
-					<a class="nav-link home_nav_btn" id="page-tab" data-toggle="tab" href="#page" role="tab" aria-controls="page" aria-selected="false">
-						<?php echo cl_translate("watchings"); ?>
+				<li  role="presentation">
+					<a class="nav-link home_nav_btn" id="watching-tab" data-toggle="tab" href="#watching" role="tab" aria-controls="watching" aria-selected="true">
+						<?php echo cl_translate("Watching"); ?>
 						<div class="css-1dbjc4n"></div>
 					</a>
 				</li>
@@ -36,20 +42,15 @@
 		</div>
 	</div>
 	<div class="tab-content" id="myTabContent">
-		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-			<?php $count = 0; ?>
-			<?php if (not_empty($cl["feed"]) && is_array($cl['feed'])): ?>
+		<div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+			<?php if (not_empty($cl["feed_trending"])): ?>
 				<div class="timeline-posts-container">
 					<div class="timeline-posts-ls" data-an="entry-list">
-						<?php foreach ($cl["feed"] as $cl['li']): ?>
-								<?php $count++; ?>
+						<?php foreach ($cl["feed_trending"] as $cl['li']): ?>
 								<?php echo cl_template('timeline/post'); ?>
-								<?php if ($count == 3) {
-									echo cl_template('home/follow');
-								} ?>
 						<?php endforeach; ?>
 					</div>
-					<?php if (count($cl["feed"]) == 30): ?>
+					<?php if (count($cl["feed_trending"]) == 30): ?>
 							<div class="timeline-data-loader">
 								<button class="btn btn-custom main-outline lg" data-an="load-more">
 									<?php echo cl_translate("Show more"); ?>
@@ -74,6 +75,78 @@
 					</div>
 				</div>
 			<?php endif; ?>
+		</div>
+		<div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
+			<div class="timeline-posts-container" style="margin-top: 0px;">
+				<?php if (not_empty($cl["feed_latest"])): ?>
+					<div class="timeline-posts-ls" data-an="entry-list">
+						<?php foreach ($cl["feed_latest"] as $cl["li"]): ?>
+							<?php echo cl_template('timeline/post'); ?>
+						<?php endforeach; ?>
+					</div>
+					<?php if (is_array($cl["feed_latest"]) && count($cl["feed_latest"]) == 30): ?>
+						<div class="timeline-data-loader">
+							<button class="btn btn-custom main-outline lg" data-an="load-more">
+								<?php echo cl_translate("Show more"); ?>
+							</button>
+						</div>
+					<?php endif; ?>
+				<?php else: ?>
+					<div class="timeline-placeholder">
+						<div class="icon">
+							<div class="icon__bg">
+								<?php echo cl_icon('feed'); ?>
+							</div>
+						</div>
+						<div class="pl-message">
+							<h4>
+								<?php echo cl_translate("No data to display yet!"); ?>
+							</h4>
+							<p>
+								<?php echo cl_translate("It looks like the site has no content to display yet. All featured posts will be displayed on this page"); ?>
+							</p>
+						</div>
+					</div>
+				<?php endif; ?>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
+			<div class="timeline-placeholder">
+				<div class="icon">
+					<div class="icon__bg">
+						<?php echo cl_icon('feed'); ?>
+					</div>
+				</div>
+				<div class="pl-message">
+					<h4>
+						<?php echo cl_translate("Follow users on Cointweets to see their posts here"); ?>
+					</h4>
+					<p>
+						<button class="btn btn-custom main-outline lg" data-toggle="modal" data-target="#loginModal">
+							<?php echo cl_translate("Add users"); ?>
+						</button>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="watching" role="tabpanel" aria-labelledby="watching-tab">
+			<div class="timeline-placeholder">
+				<div class="icon">
+					<div class="icon__bg">
+						<?php echo cl_icon('feed'); ?>
+					</div>
+				</div>
+				<div class="pl-message">					
+					<h4>
+						<?php echo cl_translate("Add more coins to your watchlist to see popular posts about them here"); ?>
+					</h4>
+					<p>
+						<button class="btn btn-custom main-outline lg" data-toggle="modal" data-target="#loginModal">
+							<?php echo cl_translate("Add coins"); ?>
+						</button>
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 	<?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true): ?>
@@ -164,7 +237,7 @@
 		text-transform: none !important;
 	}
 	.nav-tabs .nav-link {
-		padding:15px 34px 12px 4px !important;
+		padding:10px 10px 12px 4px !important;
 	}
 </style>
 <script>

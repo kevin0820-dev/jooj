@@ -89,10 +89,10 @@ if (not_empty($cl["is_logged"])) {
 }
 
 if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked']) && $cl['prof_user']['active'] == "1") {
-    if (in_array($cl['page_tab'], array('posts', 'media'))) {
+    if (in_array($cl['page_tab'], array('posts', 'trending'))) {
         if (not_empty($cl["can_view"])) {
-            $media_type = (($cl['page_tab'] == 'media') ? true : false);
-            $cl["user_posts"] = cl_get_profile_posts($cl['prof_user']['id'], 30, $media_type);
+            $cl["user_posts"] = cl_get_profile_posts($cl['prof_user']['id'], 30);
+            $cl["user_posts_trending"] = cl_get_profile_posts_trending($cl['prof_user']['id'], 30);
         }
     } else {
         if (not_empty($cl["can_view"])) {

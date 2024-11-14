@@ -23,27 +23,26 @@ else {
 	$cl["pn"]         = "feed";
 	$cl["sbr"]        = true;
 	$cl["sbl"]        = true;
-	$cl["feed"]       = cl_get_guest_feed(false, 30);
-	$cl["search_query"] = fetch_or_get($_GET['q'], "");
-$cl["page_tab"]     = fetch_or_get($_GET['tab'], "posts");
-$cl["query_result"] = array();
+	$cl["feed_trending"] = cl_get_guest_trending(false, 30);
+	$cl["feed_latest"]  = cl_get_guest_latest(false, 30);
 
-if (not_empty($cl["search_query"])) {
-	$cl["search_query"] = cl_text_secure($cl["search_query"]);
-	$cl["page_title"]   = $cl["search_query"];
-	$cl["search_query"] = cl_croptxt($cl["search_query"], 32);
-}
+	if (not_empty($cl["search_query"])) {
+		$cl["search_query"] = cl_text_secure($cl["search_query"]);
+		$cl["page_title"]   = $cl["search_query"];
+		$cl["search_query"] = cl_croptxt($cl["search_query"], 32);
+	}
 
-if ($cl["page_tab"] == 'htags') {
-	$cl["query_result"] = cl_search_hashtags($cl["search_query"], false, 30);
-}
+	// if ($cl["page_tab"] == 'htags') {
+	// 	$cl["query_result"] = cl_search_hashtags($cl["search_query"], false, 30);
+	// }
 
-else if($cl["page_tab"] == 'people') {
-	$cl["query_result"] = cl_search_people($cl["search_query"], false, 30);
-}
+	// else if($cl["page_tab"] == 'people') {
+	// 	$cl["query_result"] = cl_search_people($cl["search_query"], false, 30);
+	// }
 
-else {
-	$cl["query_result"] = cl_search_posts($cl["search_query"], false, 30);
-}
+	// else {
+	// 	$cl["query_result"] = cl_search_posts($cl["search_query"], false, 30);
+	// }
+
 	$cl["http_res"]   = cl_template("feed/content");
 }

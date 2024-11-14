@@ -683,7 +683,10 @@ var pubbox_form_app_mixin = Object({
                         }
 
                     }
-                    else {
+                    else if(data.status == 400){						
+                        cl_bs_notify(data.error, 3000, "danger");
+					} 
+					else{
                         _app_.submitting = false;
                         SMColibri.errorMSG();
                     }

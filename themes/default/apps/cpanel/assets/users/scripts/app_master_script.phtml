@@ -307,6 +307,20 @@
                         });
                     }
                 },
+                toggle_banned: function(id = false) {
+                    if ($.isNumeric(id) && id) {
+                        $.ajax({
+                            url: '<?php echo cl_link("native_api/cpanel/toggle_user_banned"); ?>',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {id: id},
+                        }).done(function(data) {
+                            if (data.message) {
+                                cl_bs_notify(data.message);
+                            }
+                        });
+                    }
+                },
                 toggle_type: function(id = false) {
                     if ($.isNumeric(id) && id) {
                         $.ajax({

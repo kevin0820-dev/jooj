@@ -142,19 +142,39 @@
 				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'posts') {
 															echo ('active');
 														} ?>" onclick='select("posts")'>
-					<?php echo cl_translate("For You"); ?>
+					<?php echo cl_translate("Latest"); ?>
 				</button>
 				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'posts') {
 												echo ('active');
 											} ?>"></div>
 			</a>
 			<a style="margin-left: 15px;">
-				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'media') {
+				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'trending') {
+															echo ('active');
+														} ?>" onclick='select("trending")'>
+					<?php echo cl_translate("Trending"); ?>
+				</button>
+				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'trending') {
+												echo ('active');
+											} ?>"></div>
+			</a>
+			<a style="margin-left: 15px;">
+				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'news') {
+															echo ('active');
+														} ?>" onclick='select("news")'>
+					<?php echo cl_translate("News"); ?>
+				</button>
+				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'news') {
+												echo ('active');
+											} ?>"></div>
+			</a>
+			<a style="margin-left: 15px;">
+				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'about') {
 															echo ('active');
 														} ?>" onclick='select("about")'>
 					<?php echo cl_translate("About"); ?>
 				</button>
-				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'media') {
+				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'about') {
 												echo ('active');
 											} ?>"></div>
 			</a>
@@ -455,19 +475,39 @@
 				<?php if (not_empty($cl["can_view"])): ?>
 					<div class="profile-activity-navbar">
 						<a>
-							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'posts') {
-																echo ('active');
-															} ?>" onclick='select("posts")'>
-								<?php echo cl_translate("For You"); ?>
+							<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'posts') {
+																		echo ('active');
+																	} ?>" onclick='select("posts")'>
+								<?php echo cl_translate("Latest"); ?>
 							</button>
 							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'posts') {
 															echo ('active');
 														} ?>"></div>
 						</a>
 						<a style="margin-left: 15px;">
-							<button class="navbar-item-btn <?php if ($cl['page_tab'] == 'media') {
-																echo ('active');
-															} ?>" onclick='select("about")'>
+							<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'trending') {
+																		echo ('active');
+																	} ?>" onclick='select("trending")'>
+								<?php echo cl_translate("Trending"); ?>
+							</button>
+							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'trending') {
+															echo ('active');
+														} ?>"></div>
+						</a>
+						<a style="margin-left: 15px;">
+							<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'news') {
+																		echo ('active');
+																	} ?>" onclick='select("news")'>
+								<?php echo cl_translate("News"); ?>
+							</button>
+							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'news') {
+															echo ('active');
+														} ?>"></div>
+						</a>
+						<a style="margin-left: 15px;">
+							<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'media') {
+																		echo ('active');
+																	} ?>" onclick='select("about")'>
 								<?php echo cl_translate("About"); ?>
 							</button>
 							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'media') {
@@ -488,37 +528,90 @@
 					</div>
 				<?php else: ?>
 					<?php if (not_empty($cl["can_view"])): ?>
-						<?php if (in_array($cl['page_tab'], array('posts', 'media'))): ?>
-							<div class="timeline-posts-container py-2">
-								<?php $count = 0; ?>
-								<?php if (not_empty($cl["user_posts"]) && is_array($cl["user_posts"])): ?>
-									<div class="timeline-posts-ls" data-an="entry-list">
-										<?php foreach ($cl["user_posts"] as $cl['li']): ?>
-											<?php $count++; ?>
-											<?php echo cl_template('timeline/post_symbol'); ?>
-											<?php if ($count == 3) {
-												echo cl_template('home/follow');
-											} ?>
-										<?php endforeach; ?>
-									</div>
-								<?php else: ?>
-									<?php echo cl_template('symbol/includes/no_posts'); ?>
-								<?php endif; ?>
-							</div>
-						<?php else: ?>
-							<div class="timeline-posts-container">
-								<div class="timeline-posts-ls py-2" data-an="entry-list">
-									<?php if (not_empty($cl["user_likes"]) && is_array($cl["user_likes"])): ?>
-										<?php foreach ($cl["user_likes"] as $cl['li']): ?>
-											<?php echo cl_template('timeline/post_symbol'); ?>
-											<?php echo cl_template('timeline/post_symbol'); ?>
-										<?php endforeach; ?>
-									<?php else: ?>
-										<?php echo cl_template('symbol/includes/no_posts'); ?>
-									<?php endif; ?>
+						<div class="timeline-posts-container py-2">
+							<?php $count = 0; ?>
+							<?php if (not_empty($cl["user_posts"]) && is_array($cl["user_posts"])): ?>
+								<div class="timeline-posts-ls" data-an="entry-list">
+									<?php foreach ($cl["user_posts"] as $cl['li']): ?>
+										<?php $count++; ?>
+										<?php echo cl_template('timeline/post_symbol'); ?>
+										<?php if ($count == 3) {
+											echo cl_template('home/follow');
+										} ?>
+									<?php endforeach; ?>
 								</div>
+							<?php else: ?>
+								<?php echo cl_template('symbol/includes/no_posts'); ?>
+							<?php endif; ?>
+						</div>
+					<?php else: ?>
+						<div class="timeline-posts-container">
+							<div class="timeline-posts-ls">
+								<?php echo cl_template('symbol/includes/private_profile'); ?>
 							</div>
-						<?php endif; ?>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
+			</div>
+			<div class="tab-pane fade active show" id="trending">
+				<?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])): ?>
+					<div class="timeline-posts-container">
+						<div class="timeline-posts-ls">
+							<?php echo cl_template('symbol/includes/blocked_profile'); ?>
+						</div>
+					</div>
+				<?php else: ?>
+					<?php if (not_empty($cl["can_view"])): ?>
+						<div class="timeline-posts-container py-2">
+							<?php $count = 0; ?>
+							<?php if (not_empty($cl["user_posts_trending"]) && is_array($cl["user_posts_trending"])): ?>
+								<div class="timeline-posts-ls" data-an="entry-list">
+									<?php foreach ($cl["user_posts_trending"] as $cl['li']): ?>
+										<?php $count++; ?>
+										<?php echo cl_template('timeline/post_symbol'); ?>
+										<?php if ($count == 3) {
+											echo cl_template('home/follow');
+										} ?>
+									<?php endforeach; ?>
+								</div>
+							<?php else: ?>
+								<?php echo cl_template('symbol/includes/no_posts'); ?>
+							<?php endif; ?>
+						</div>
+					<?php else: ?>
+						<div class="timeline-posts-container">
+							<div class="timeline-posts-ls">
+								<?php echo cl_template('symbol/includes/private_profile'); ?>
+							</div>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
+			</div>
+			<div class="tab-pane fade active show" id="news">
+				<?php if (not_empty($cl['prof_user']['is_blocked']) || not_empty($cl['prof_user']['me_blocked'])): ?>
+					<div class="timeline-posts-container">
+						<div class="timeline-posts-ls">
+							<?php echo cl_template('symbol/includes/blocked_profile'); ?>
+						</div>
+					</div>
+				<?php else: ?>
+					<?php if (not_empty($cl["can_view"])): ?>
+						<div class="timeline-posts-container py-2">
+							<?php $count = 0; ?>
+							<?php if (not_empty($cl["user_posts_news"]) && is_array($cl["user_posts_news"])): ?>
+								<div class="timeline-posts-ls" data-an="entry-list">
+									<?php foreach ($cl["user_posts_news"] as $cl['li']): ?>
+										<?php $count++; ?>
+										<?php echo cl_template('timeline/post_symbol'); ?>
+										<?php if ($count == 3) {
+											echo cl_template('home/follow');
+										} ?>
+									<?php endforeach; ?>
+								</div>
+							<?php else: ?>
+								<?php echo cl_template('symbol/includes/no_posts'); ?>
+							<?php endif; ?>
+						</div>
 					<?php else: ?>
 						<div class="timeline-posts-container">
 							<div class="timeline-posts-ls">
@@ -549,6 +642,107 @@
 </div>
 <script src="https://cdn.tailwindcss.com"></script>
 <script type="text/javascript">
+	var state = "posts";
+	// Initialise Carousel
+	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
+		Dots: false,
+	});
+
+	select = (pane) => {
+		var selectionPane = document.getElementsByClassName("profile-activity-navbar");
+		if (pane === 'posts') {
+			if (state === 'posts') return;
+			$("#posts").addClass("show active");
+			if ($("#trending").removeClass("show active"));
+			if ($("#news").removeClass("show active"));
+			if ($("#about").removeClass("show active"));
+			state = "posts";
+			for (var i = 0; i < 4; i++) {
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.add("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
+			}
+		}
+		else if (pane === 'trending') {
+			if (state === 'trending') return;
+			$("#trending").addClass("show active");
+			if ($("#posts").removeClass("show active"));
+			if ($("#news").removeClass("show active"));
+			if ($("#about").removeClass("show active"));
+			state = 'trending';
+			for (var i = 0; i < 4; i++) {
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.add("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
+			}
+			if (window.scrollY > 400) {
+				about.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});
+				window.scrollTo(0, 400);
+			}
+		}
+		else if (pane === 'news') {
+			if (state === 'news') return;
+			$("#news").addClass("show active");
+			if ($("#posts").removeClass("show active"));
+			if ($("#trending").removeClass("show active"));
+			if ($("#about").removeClass("show active"));
+			state = 'news';
+			for (var i = 0; i < 4; i++) {
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.add("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
+			}
+			if (window.scrollY > 400) {
+				trending.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});
+			}
+		}
+		else if (pane === 'about') {
+			if (state === 'about') return;
+			$("#about").addClass("show active");
+			if ($("#posts").removeClass("show active"));
+			if ($("#trending").removeClass("show active"));
+			if ($("#news").removeClass("show active"));
+			state = 'about';
+			for (var i = 0; i < 4; i++) {
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.add("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
+				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.add("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
+				selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.remove("active");
+			}
+			if (window.scrollY > 400) {
+				news.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});
+			}
+		}
+	}
+
 	new Vue({
 		el: "#vue-main-search-app",
 		data: {
@@ -662,8 +856,7 @@
 		$(window).scroll(move);
 		move();
 	}
-</script>
-<script type="text/javascript">
+
 	$(document).ready(function() {
 		$("#verPopover").popover({
 			template: '<div class="popover1" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
@@ -780,49 +973,6 @@
 		}
 	}
 </style>
-<script>
-	var state = "posts";
-	// Initialise Carousel
-	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
-		Dots: false,
-	});
-
-	select = (pane) => {
-		var posts = document.getElementById("posts");
-		var about = document.getElementById("about");
-		var selectionPane = document.getElementsByClassName("profile-activity-navbar");
-		if (pane === 'posts') {
-			if (state === 'posts') return;
-			$("#posts").toggleClass("show active");
-			$("#about").toggleClass("show active");
-			state = "posts";
-			for (var i = 0; i < 2; i++) {
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.add("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.add("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
-			}
-		} else {
-			if (state === 'about') return;
-			$("#posts").toggleClass("show active");
-			$("#about").toggleClass("show active");
-			state = 'about';
-			for (var i = 0; i < 2; i++) {
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.add("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.add("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
-			}
-			if (window.scrollY > 400) { // {{ edit_1 }}
-				about.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start'
-				});
-				window.scrollTo(0, 400);
-			}
-		}
-	}
-</script>
 
 <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
 

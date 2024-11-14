@@ -59305,7 +59305,7 @@ body.cl-app-guest
     min-width: 340px !important;
   }
   #myTab.nav-tabs .nav-link {
-    min-width: 100px !important;
+    min-width: 60px !important;
   }
   .fancybox__rightCol {
     display: none !important;

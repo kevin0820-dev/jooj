@@ -326,6 +326,11 @@ if ($cl["config"]["swift_system_status"] == "on") {
             $data['status'] = 400;
             $data['error']  = 'Invalid access token';
         }
+        if($me['banned'] == '1') {
+            $data['status'] = 400;
+            $data['error']  = 'You are banned from this app';
+            return;
+        }
         else {
             $data['err_code'] = 0;
             $data['status']   = 400;

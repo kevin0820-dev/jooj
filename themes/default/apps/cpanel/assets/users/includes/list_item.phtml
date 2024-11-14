@@ -50,6 +50,14 @@
             </select>
         </div>
     </td>
+    <td class="switch" style="margin-top: 30px;">
+        <label>
+            <input onchange="SMC_CPanel.PS.toggle_status(<?php echo ($cl['li']['id']); ?>);" type="checkbox" <?php if ($cl['li']['active'] == '1') {
+                                                                                                                echo ('checked');
+                                                                                                            } ?>>
+            <span class="lever switch-col-blue"></span>
+        </label>
+    </td>
     <td>
         <div class="select-box">
             <select onchange="SMC_CPanel.PS.verify_user(<?php echo ($cl['li']['id']); ?>);">
@@ -64,7 +72,7 @@
     </td>
     <td class="switch" style="margin-top: 30px;">
         <label>
-            <input onchange="SMC_CPanel.PS.toggle_status(<?php echo ($cl['li']['id']); ?>);" type="checkbox" <?php if ($cl['li']['active'] == '1') {
+            <input onchange="SMC_CPanel.PS.toggle_banned(<?php echo ($cl['li']['id']); ?>);" type="checkbox" <?php if ($cl['li']['banned'] == '1') {
                                                                                                                 echo ('checked');
                                                                                                             } ?>>
             <span class="lever switch-col-blue"></span>

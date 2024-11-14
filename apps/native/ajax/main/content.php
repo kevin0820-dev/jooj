@@ -811,6 +811,12 @@ else if ($action == 'publish_new_post') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';
+        return;
+    }
+    if($me['banned'] == '1') {
+        $data['status'] = 400;
+        $data['error']  = 'You are banned from this app';
+        return;
     }
     else {
         $data['err_code'] = 0;
@@ -826,6 +832,12 @@ else if ($action == 'publish_new_post') {
         $post_privacy     = fetch_or_get($_POST['privacy'], "everyone");
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
+
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){
+            $data['status'] = 400;
+            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            return;
+        }
 
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
@@ -1028,11 +1040,16 @@ else if ($action == 'publish_new_post') {
     }
 }
 
-else if ($action == 'publish_new_repost') {             /* edited by kevin to show modal for repost */
-
+else if ($action == 'publish_new_repost') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';
+        return;
+    }
+    if($me['banned'] == '1') {
+        $data['status'] = 400;
+        $data['error']  = 'You are banned from this app';
+        return;
     }
     else {
         $data['err_code'] = 0;
@@ -1050,6 +1067,11 @@ else if ($action == 'publish_new_repost') {             /* edited by kevin to sh
         $thread_data      = array();
         $comment_id       = fetch_or_get($_POST['selected_repost_id'], 0);
 
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+            $data['status'] = 400;
+            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            return;
+        }
         
         if ($curr_pn == 'profile') {
             $prof = cl_raw_post_data($comment_id);
@@ -1123,9 +1145,9 @@ else if ($action == 'publish_new_repost') {             /* edited by kevin to sh
             if (in_array($curr_pn, array('home','thread', 'profile'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
-                $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
-                $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];    #edited by kevin to make quote arise in timeline when publish it
-                $data['html'] = cl_template('timeline/post');            #edited by kevin to make quote arise in timeline when publish it
+                $cl['li']['is_quote'] = true;
+                $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];
+                $data['html'] = cl_template('timeline/post');
             }
 
             if (not_empty($mentions)) {
@@ -1247,9 +1269,9 @@ else if ($action == 'publish_new_repost') {             /* edited by kevin to sh
                     if (in_array($curr_pn, array('home', 'thread', 'profile'))) {
                         $post_data    = cl_raw_post_data($post_id);
                         $cl['li']     = cl_post_data($post_data);
-                        $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
-                        $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];    #edited by kevin to make quote arise in timeline when publish it
-                        $data['html'] = cl_template('timeline/post');            #edited by kevin to make quote arise in timeline when publish it
+                        $cl['li']['is_quote'] = true;
+                        $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];
+                        $data['html'] = cl_template('timeline/post');
                     }
 
                     if (not_empty($mentions)) {
@@ -1293,6 +1315,12 @@ else if ($action == 'publish_new_post_symbol') {
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error'] = 'Invalid access token';
+        return;
+    }
+    if($me['banned'] == '1') {
+        $data['status'] = 400;
+        $data['error']  = 'You are banned from this app';
+        return;
     }
     else {
         $data['err_code'] = 0;
@@ -1309,6 +1337,12 @@ else if ($action == 'publish_new_post_symbol') {
         $post_privacy = fetch_or_get($_POST['privacy'], "everyone");
         $post_text = cl_croptxt($post_text, $max_post_length);
         $thread_data = array();
+
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+            $data['status'] = 400;
+            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            return;
+        }
 
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
@@ -1526,6 +1560,12 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
     if (empty($cl["is_logged"])) {
         $data['status'] = 400;
         $data['error']  = 'Invalid access token';
+        return;
+    }
+    if($me['banned'] == '1') {
+        $data['status'] = 400;
+        $data['error']  = 'You are banned from this app';
+        return;
     }
     else {
         $data['err_code'] = 0;
@@ -1544,6 +1584,12 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
         $thread_data = array();
         $comment_id       = fetch_or_get($_POST['selected_repost_id_symbol'], 0);
 
+        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+            $data['status'] = 400;
+            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            return;
+        }
+        
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
             $post_privacy = "everyone";
@@ -1619,9 +1665,9 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
             if (in_array($curr_pn, array('home','thread', 'symbol', 'profile', 'symbol'))) {
                 $post_data    = cl_raw_post_data($post_id);
                 $cl['li']     = cl_post_data($post_data);
-                $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
-                $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];    #edited by kevin to make quote arise in timeline when publish it
-                $data['html'] = cl_template('timeline/post_symbol');            #edited by kevin to make quote arise in timeline when publish it
+                $cl['li']['is_quote'] = true;
+                $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];
+                $data['html'] = cl_template('timeline/post_symbol');
             }
 
             if (not_empty($mentions)) {
@@ -1751,9 +1797,9 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
                     if (in_array($curr_pn, array('home', 'thread', 'symbol', 'profile'))) {
                         $post_data    = cl_raw_post_data($post_id);
                         $cl['li']     = cl_post_data($post_data);
-                        $cl['li']['is_quote'] = true;                                       #edited by kevin to make quote arise in timeline when publish it
-                        $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];    #edited by kevin to make quote arise in timeline when publish it
-                        $data['html'] = cl_template('timeline/post_symbol');            #edited by kevin to make quote arise in timeline when publish it
+                        $cl['li']['is_quote'] = true;
+                        $cl['li']['comment_on'] = cl_get_guest_feed_one($comment_id)[0];
+                        $data['html'] = cl_template('timeline/post_symbol');
                     }
 
                     if (not_empty($mentions)) {
