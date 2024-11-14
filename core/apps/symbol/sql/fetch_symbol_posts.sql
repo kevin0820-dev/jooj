@@ -15,10 +15,6 @@ FROM `<?php echo($data['t_posts']); ?>` posts
 INNER JOIN `<?php echo($data['t_pubs']); ?>` pubs ON posts.`publication_id` = pubs.`id`
 WHERE posts.`symbol_id` = <?php echo($data['symbol_id']); ?>
 
-<?php if($data['media']): ?>
-    AND pubs.`type` IN ('video','image','gif', 'audio')
-<?php endif; ?>
-
 <?php if($data['offset']): ?>
     AND posts.`id` < <?php echo($data['offset']); ?>
 <?php endif; ?>

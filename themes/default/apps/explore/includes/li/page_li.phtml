@@ -39,18 +39,11 @@
 								</span>
 								<span><?php echo cl_translate("watcher"); ?></span>	
 							</div>
-							<!-- <div class="stats-item">
-								<span>
-									<?php echo cl_number($cl['li']['following']); ?>
-								</span>
-								<span><?php echo cl_translate("Following"); ?></span>	
-							</div> -->
 						</div>
 					</div>
 					<div class="flex-item-right">
 						<div class="user-data__ctrls">
 							<?php if (empty($cl['li']['is_user'])): ?>
-								<?php if ($cl['li']['follow_privacy'] == "approved"): ?>
 									<?php if (not_empty($cl['li']['is_following'])): ?>
 										<button onclick="SMColibri.req_follow(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="btn btn-custom md main-inline" data-action="unfollow" data-id="<?php echo($cl['li']['id']); ?>">
 											<?php echo cl_translate("unwatch"); ?>
@@ -61,20 +54,9 @@
 										</button>
 									<?php else: ?>
 										<button onclick="SMColibri.req_follow(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="btn btn-custom main-outline md" data-action="follow" data-id="<?php echo($cl['li']['id']); ?>">
-											<?php echo cl_translate("watchings"); ?>
+											<?php echo cl_translate("watch"); ?>
 										</button>
 									<?php endif; ?>
-								<?php else: ?>
-									<?php if (empty($cl['li']['is_following'])): ?>
-										<button onclick="SMColibri.follow(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="btn btn-custom md main-outline" data-action="follow" data-id="<?php echo($cl['li']['id']); ?>">
-											<?php echo cl_translate("watchings"); ?>
-										</button>
-									<?php else: ?>
-										<button onclick="SMColibri.follow(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="btn btn-custom md main-inline" data-action="unfollow" data-id="<?php echo($cl['li']['id']); ?>">
-											<?php echo cl_translate("unwatch"); ?>
-										</button>
-									<?php endif; ?>
-								<?php endif; ?>
 							<?php endif; ?>
 						</div>
 					</div>

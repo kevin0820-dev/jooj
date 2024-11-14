@@ -1095,91 +1095,91 @@ _smc.userlbox.curr_el = false;
 				}
 			}
 			_smc.watch = function (event = false) {
-    if (event) {
-        if (_smc.is_logged()) {
-            var target = $(event);
+				if (event) {
+					if (_smc.is_logged()) {
+						var target = $(event);
 
-            if (target.data('action') == 'unfollow') {
-                var promise = SMColibri.confirm_action({
-                    btn_1: "<?php echo cl_translate("Cancel"); ?>",
-                    btn_2: "<?php echo cl_translate("Unfollow"); ?>",
-                    title: "<?php echo cl_translate("Please confirm your actions!"); ?>",
-                    message: "<?php echo cl_translate("Please note that, if you unsubscribe then this user's posts will no longer appear in the feed on your main page."); ?>",
-                });
+						if (target.data('action') == 'unfollow') {
+							var promise = SMColibri.confirm_action({
+								btn_1: "<?php echo cl_translate("Cancel"); ?>",
+								btn_2: "<?php echo cl_translate("Unfollow"); ?>",
+								title: "<?php echo cl_translate("Please confirm your actions!"); ?>",
+								message: "<?php echo cl_translate("Please note that, if you unsubscribe then this user's posts will no longer appear in the feed on your main page."); ?>",
+							});
 
-                promise.done(function () {
-                    target.data('action', 'follow');
-                    target.text("<?php echo cl_translate("watch"); ?>");
-                    target.replaceClass('main-inline', 'main-outline');
+							promise.done(function () {
+								target.data('action', 'follow');
+								target.text("<?php echo cl_translate("watch"); ?>");
+								target.replaceClass('main-inline', 'main-outline');
 
-                    console.log("Unfollowing ID:", target.data('id')); // ??????? ID
+								console.log("Unfollowing ID:", target.data('id')); // ??????? ID
 
-                    $.ajax({
-                        url: '<?php echo cl_link("native_api/main/watch"); ?>',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: { id: target.data('id') },
-                    }).done(function (data) {
-                        console.log("Response data:", data); // ?????????? ?????
-                        if (data.status != 200) {
-                            _smc.errorMSG();
-                        }
-                        else {
-                            if (_smc.curr_pn == "symbol") {
-                                if (data.refresh != undefined) {
-                                    $(window).reloadPage(1000);
-                                }
-                            }
-                        }
-                    }).always(function () {
-                        $("div.confirm-actions-modal").modal("hide");
-                    });
+								$.ajax({
+									url: '<?php echo cl_link("native_api/main/watch"); ?>',
+									type: 'POST',
+									dataType: 'json',
+									data: { id: target.data('id') },
+								}).done(function (data) {
+									console.log("Response data:", data); // ?????????? ?????
+									if (data.status != 200) {
+										_smc.errorMSG();
+									}
+									else {
+										if (_smc.curr_pn == "symbol") {
+											if (data.refresh != undefined) {
+												$(window).reloadPage(1000);
+											}
+										}
+									}
+								}).always(function () {
+									$("div.confirm-actions-modal").modal("hide");
+								});
 
-                    cl_bs_notify("<?php echo cl_translate("You unfollowed <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
-                });
+								cl_bs_notify("<?php echo cl_translate("You unfollowed <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
+							});
 
-                promise.fail(function () {
-                    $("div.confirm-actions-modal").modal("hide");
-                });
-            }
-            else {
-                target.data('action', 'unfollow');
-                target.text("<?php echo cl_translate("Following"); ?>");
-                target.replaceClass('main-outline', 'main-inline');
+							promise.fail(function () {
+								$("div.confirm-actions-modal").modal("hide");
+							});
+						}
+						else {
+							target.data('action', 'unfollow');
+							target.text("<?php echo cl_translate("Following"); ?>");
+							target.replaceClass('main-outline', 'main-inline');
 
-                delay(function () {
-                    target.text("<?php echo cl_translate("unwatch"); ?>");
-                }, 1500);
+							delay(function () {
+								target.text("<?php echo cl_translate("unwatch"); ?>");
+							}, 1500);
 
-                console.log("Following ID:", target.data('id')); // ??????? ID
+							console.log("Following ID:", target.data('id')); // ??????? ID
 
-                $.ajax({
-                    url: '<?php echo cl_link("native_api/main/watch"); ?>',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: { id: target.data('id') },
-                }).done(function (data) {
-                    console.log("Response data:", data); // ?????????? ?????
-                    if (data.status != 200) {
-                        _smc.errorMSG();
-                    }
-                    else {
-                        if (_smc.curr_pn == "symbol") {
-                            if (data.refresh != undefined) {
-                                $(window).reloadPage(1000);
-                            }
-                        }
-                    }
-                });
+							$.ajax({
+								url: '<?php echo cl_link("native_api/main/watch"); ?>',
+								type: 'POST',
+								dataType: 'json',
+								data: { id: target.data('id') },
+							}).done(function (data) {
+								console.log("Response data:", data); // ?????????? ?????
+								if (data.status != 200) {
+									_smc.errorMSG();
+								}
+								else {
+									if (_smc.curr_pn == "symbol") {
+										if (data.refresh != undefined) {
+											$(window).reloadPage(1000);
+										}
+									}
+								}
+							});
 
-                cl_bs_notify("<?php echo cl_translate("You followed <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
-            }
-        }
-        else {
-            _smc.req_auth();
-        }
-    }
-}
+							cl_bs_notify("<?php echo cl_translate("You followed <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
+						}
+					}
+					else {
+						_smc.req_auth();
+					}
+				}
+			}
 
 			_smc.follow = function (event = false) {
 				if (event) {
