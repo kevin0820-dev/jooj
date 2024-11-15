@@ -136,7 +136,9 @@
 						        processData: false,
 						        timeout: 600000,
 								success: function(data) {
+									console.log("cover upload ended");
 									if (data.status == 200) {
+										console.log("success");
 										cl_bs_notify("<?php echo cl_translate("Your new profile cover has been successfully saved!"); ?>");
 
 										setTimeout(function() {
@@ -144,6 +146,7 @@
 										}, 1200);
 									}
 									else {
+										console.log("error");
 										app.submitting = false;
 
 										SMColibri.errorMSG();

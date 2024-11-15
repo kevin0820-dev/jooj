@@ -1094,7 +1094,8 @@ _smc.userlbox.curr_el = false;
 					}
 				}
 			}
-			_smc.watch = function (event = false) {
+			_smc.req_watch = function (event = false) {
+				console.log("fasaga");
 				if (event) {
 					if (_smc.is_logged()) {
 						var target = $(event);
@@ -1102,9 +1103,9 @@ _smc.userlbox.curr_el = false;
 						if (target.data('action') == 'unfollow') {
 							var promise = SMColibri.confirm_action({
 								btn_1: "<?php echo cl_translate("Cancel"); ?>",
-								btn_2: "<?php echo cl_translate("Unfollow"); ?>",
+								btn_2: "<?php echo cl_translate("Unwatch"); ?>",
 								title: "<?php echo cl_translate("Please confirm your actions!"); ?>",
-								message: "<?php echo cl_translate("Please note that, if you unsubscribe then this user's posts will no longer appear in the feed on your main page."); ?>",
+								message: "<?php echo cl_translate("Please note that, if you unsubscribe then posts regarding this coin will no longer appear in the feed on your main page."); ?>",
 							});
 
 							promise.done(function () {
@@ -1135,7 +1136,7 @@ _smc.userlbox.curr_el = false;
 									$("div.confirm-actions-modal").modal("hide");
 								});
 
-								cl_bs_notify("<?php echo cl_translate("You unfollowed <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
+								cl_bs_notify("<?php echo cl_translate("You unwatched <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
 							});
 
 							promise.fail(function () {
@@ -1144,7 +1145,7 @@ _smc.userlbox.curr_el = false;
 						}
 						else {
 							target.data('action', 'unfollow');
-							target.text("<?php echo cl_translate("Following"); ?>");
+							target.text("<?php echo cl_translate("watching"); ?>");
 							target.replaceClass('main-outline', 'main-inline');
 
 							delay(function () {
@@ -1172,7 +1173,7 @@ _smc.userlbox.curr_el = false;
 								}
 							});
 
-							cl_bs_notify("<?php echo cl_translate("You followed <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
+							cl_bs_notify("<?php echo cl_translate("You watched <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
 						}
 					}
 					else {
