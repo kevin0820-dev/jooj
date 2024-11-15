@@ -9,6 +9,10 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.topical-posts__item{
+  display: flex;
+  justify-content: space-between;
+}
 .nav-container-top{
   display: none;
 }

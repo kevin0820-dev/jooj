@@ -69,13 +69,14 @@
 						global $db;
 						foreach ($cl['watchers'] as $row):
 							if ($count >= 5) break;
-							$symbol = $row['username'];
-							$db        = $db->where('username', $symbol);
-							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+							$db        = $db->where('id', $row['id']);
+							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar, id');
 							if (empty($symbol_data)) { // Check if data is found
 								continue;
 							}
 							$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+							$symbol_data['is_following'] = cl_is_watching($me['id'], $symbol_data['id']);
+							$symbol_data['follow_requested'] = cl_watch_requested($me['id'], $symbol_data['id']);
 							$count++;
 					?>
 						<div class="topical-posts__item">
@@ -85,9 +86,19 @@
 								<strong><?php echo ($row['username']); ?></strong>
 								<span><?php echo ($row['posts']); ?> <?php echo cl_translate("Posts"); ?></span>
 							</a>
-							<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
-									<?php echo cl_ikon('pub-more'); ?>
-								</a></span>
+							<?php if ($symbol_data['is_following']): ?>
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="btn btn-custom md main-inline" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
+									<?php echo cl_translate("unwatch"); ?>
+								</button>
+							<?php elseif ($symbol_data['follow_requested']): ?>
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="btn btn-custom main-inline md" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
+									<?php echo cl_translate("Pending"); ?>
+								</button>
+							<?php else: ?>
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="btn btn-custom main-outline md" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
+									<?php echo cl_translate("watch"); ?>
+								</button>
+							<?php endif; ?>
 						</div>
 					<?php endforeach; ?>
 				</div>
@@ -114,11 +125,13 @@
 							if ($count >= 5) break;
 							$symbol = $row['symbol'];
 							$db        = $db->where('username', $symbol);
-							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar, id');
 							if (empty($symbol_data)) { // Check if data is found
 								continue;
 							}
 							$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+							$symbol_data['is_following'] = cl_is_watching($me['id'], $symbol_data['id']);
+							$symbol_data['follow_requested'] = cl_watch_requested($me['id'], $symbol_data['id']);
 							$count++;
 					?>
 						<div class="topical-posts__item">
@@ -128,9 +141,19 @@
 								<strong><?php echo ($row['symbol']); ?></strong>
 								<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
 							</a>
-							<span> <a href="<?php echo ($row['url']); ?>" class="icon" data-spa="true">
-									<?php echo cl_ikon('pub-more'); ?>
-								</a></span>
+							<?php if ($symbol_data['is_following']): ?>
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="btn btn-custom md main-inline" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
+									<?php echo cl_translate("unwatch"); ?>
+								</button>
+							<?php elseif ($symbol_data['follow_requested']): ?>
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="btn btn-custom main-inline md" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
+									<?php echo cl_translate("Pending"); ?>
+								</button>
+							<?php else: ?>
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="btn btn-custom main-outline md" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
+									<?php echo cl_translate("watch"); ?>
+								</button>
+							<?php endif; ?>
 						</div>
 					<?php endforeach; ?>
 				</div>
