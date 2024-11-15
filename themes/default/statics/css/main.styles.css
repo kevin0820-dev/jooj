@@ -9,6 +9,9 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.result-list h3{
+  color: var(--cl-primary-text-color);
+}
 .topical-posts__item{
   display: flex;
   justify-content: space-between;
