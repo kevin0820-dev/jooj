@@ -1195,7 +1195,7 @@ body
   main.main-content-container
   div.main-content-container-inner
   div.timeline-container-wrapper {
-  margin-top: 13px;
+  /* margin-top: 13px; */
   flex: 2;
   max-width: 700px;
   min-width: 700px;
@@ -1257,7 +1257,7 @@ body
   div.timeline-container
   div.timeline-header {
   position: sticky;
-  top: 13px;
+  /* top: 13px; */
   z-index: 700;
   background: var(--cl-primary-bg-color);
   border-bottom: 0px solid var(--cl-primary-border-color);
@@ -6371,7 +6371,7 @@ body
     opacity: 0.97;
     z-index: 500;
     position: sticky;
-    top: 65px;
+    top: 52px;
 }
 
   /* body

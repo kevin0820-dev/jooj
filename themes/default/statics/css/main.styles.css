@@ -3747,7 +3747,7 @@ body
   div.timeline-container-inner
   div.timeline-container
   div.timeline-header {
-  border-radius: 20px 20px 0px 0px;
+  /* border-radius: 20px 20px 0px 0px; */
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -37274,7 +37274,7 @@ body.cl-app-wallet
 .nav-container{
   padding: 0px 22px;
   position: sticky;
-  top: 53px;
+  top: 43px;
   z-index: 500;
   background: var(--smc-main-bg-color);
 }
@@ -41012,7 +41012,7 @@ body
   div.timeline-container-inner
   div.timeline-container
   div.timeline-header {
-  border-radius: 20px 20px 0px 0px;
+  /* border-radius: 20px 20px 0px 0px; */
   width: 100%;
   display: flex;
   flex-direction: row;
