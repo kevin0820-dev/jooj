@@ -837,7 +837,7 @@ else if ($action == 'publish_new_post') {
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){
             $data['status'] = 400;
-            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            $data['error']  = 'You can not post the same message in one hour!';
             return;
         }
 
@@ -1071,7 +1071,7 @@ else if ($action == 'publish_new_repost') {
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
             $data['status'] = 400;
-            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            $data['error']  = 'You can not post the same message in one hour!';
             return;
         }
         
@@ -1342,7 +1342,7 @@ else if ($action == 'publish_new_post_symbol') {
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
             $data['status'] = 400;
-            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            $data['error']  = 'You can not post the same message in one hour!';
             return;
         }
 
@@ -1588,7 +1588,7 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
             $data['status'] = 400;
-            $data['error']  = 'You are not allowed to post spam posts. If you have a problem with your posting, please contact with support team!';
+            $data['error']  = 'You can not post the same message in one hour!';
             return;
         }
         

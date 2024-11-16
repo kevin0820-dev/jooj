@@ -6,6 +6,12 @@
 				<?php echo $cl['prof_user']['about']; ?>
 			</p>
 		</div>
+	<?php else: ?>
+		<div style="border-bottom: 1px solid var(--smc-main-border-color);">
+			<p class="about-title">
+				<?php echo cl_translate("No information is available for this coin"); ?>
+			</p>
+		</div>
 	<?php endif; ?>
 	<?php if (isset($cl['prof_user']['questions']) && !empty($cl['prof_user']['questions'])): ?>
 		<div class="faq-stl">
