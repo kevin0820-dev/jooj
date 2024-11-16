@@ -19,7 +19,7 @@
 					class="autoresize" 
 					v-model="text"
 					name="post_text" 
-					placeholder="What's on your mind? &#10; (use $ before coin ticker: eg $SYMBOL)">
+					placeholder="What's on your mind? (use $ before coin ticker: eg $SYMBOL)">
 				</textarea>		<!-- edited by kevin to show placeholder well -->
 			</div>
 			<div class="input-autocomplete" v-if="hashtags.tags.length">
@@ -986,10 +986,11 @@
 </style>
 <style scoped>
 body div.timeline-pubbox-container > div.rp form div.input-holder textarea::placeholder {
-	color: var(--smc-main-text-color-2);
-    font-size: 15px !important;
+    font-size: 20px !important;
+	/* color: var(--smc-main-text-color-2); */
 }
 </style>
+
 <style>
 	.w_m_stl{
 		position: absolute;
