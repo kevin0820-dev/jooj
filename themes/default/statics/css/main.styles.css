@@ -60,11 +60,6 @@ div.main-search-bar-container form div.input-holder span.spinner-icon {
   width: 22px;
   height: 22px;
 }
-body div.timeline-pubbox-container > div.rp form div.input-holder textarea:focus{
-  min-height: 120px;
-  align-content: baseline;
-}
-
 div.main-search-bar-container form div.input-holder a svg {
   width: 100%;
   height: 100%;
@@ -14760,33 +14755,6 @@ body div.timeline-pubbox-container > div.rp form div.input-holder {
   margin-bottom: 10px;
   max-width: 100%;
   height: auto;
-}
-
-body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
-  background-color: #73737321;
-  border-radius: 10px;
-  padding-left: 15px;
-  padding-top: 16px;
-  padding-bottom: 15px;
-  display: block;
-  width: 100%;
-  height: auto;
-  min-height: 40px;
-  max-height: 400px;
-  /* resize: none; */
-  font-size: 15px;
-  color: var(--smc-main-text-color);
-  line-height: 20px;
-  border: none;
-  transition: min-height 0.3s ease;
-  /* margin-top: 10px; */
-  /* border-radius: 0px; */
-  outline: 0;
-  /* background: transparent; */
-}
-
-body div.timeline-pubbox-container > div.rp form div.input-holder textarea::placeholder {
-  font-size: 15px !important;
 }
 
 body
@@ -52041,16 +52009,8 @@ body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
   line-height: 20px;
   border: none;
   transition: min-height 0.3s ease;
-  /* margin-top: 10px; */
-  /* border-radius: 0px; */
   outline: 0;
-  /* background: transparent; */
 }
-
-body div.timeline-pubbox-container > div.rp form div.input-holder textarea::placeholder {
-  font-size: 15px !important;
-}
-
 body
   div.timeline-pubbox-container
   > div.rp

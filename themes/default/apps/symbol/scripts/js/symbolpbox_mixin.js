@@ -362,7 +362,7 @@ var pubbox_form_app_mixin = Object({
 					form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
 
 					$.ajax({
-						url: '<?php echo cl_link("native_api/main/upload_page_video"); ?>',
+						url: '<?php echo cl_link("native_api/main/upload_post_video"); ?>',
 						type: 'POST',
 						dataType: 'json',
 						enctype: 'multipart/form-data',
@@ -384,6 +384,9 @@ var pubbox_form_app_mixin = Object({
 							}
 							else if(data.err_code == "total_limit_exceeded") {
 								cl_bs_notify("<?php echo cl_translate('You cannot attach more than 1 video to this post.'); ?>", 1500, "danger");
+							}
+							else if(data.err_code == "test") {
+								cl_bs_notify("<?php echo cl_translate('test error.'); ?>", 1500, "danger");
 							}
 							else {
 								if (data.error) {
@@ -1096,7 +1099,7 @@ var pubbox_form_app_mixin = Object({
 					form_data.append('hash', "<?php echo fetch_or_get($cl['csrf_token'],'none'); ?>");
 					form_data.append('symbol_id', "<?php echo json_encode($cl['symbol_id']); ?>"); 
 					$.ajax({
-						url: '<?php echo cl_link("native_api/main/upload_page_video"); ?>',
+						url: '<?php echo cl_link("native_api/main/upload_post_video"); ?>',
 						type: 'POST',
 						dataType: 'json',
 						enctype: 'multipart/form-data',
