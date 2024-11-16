@@ -10416,9 +10416,10 @@ div.mobile-bottom-navbar2 div.mobile-bottom-navbar-inner {
 
 .avatar-menu svg {
   width: 25px;
-  height: 25px;
+  height: 15px;
   border-radius: 9999px;
   margin-left: 12px;
+  fill: var(--smc-main-text-color);
 }
 
 div.mobile-bottom-navbar2 div.mobile-bottom-navbar-inner button.navbar-ctrl {
@@ -46536,20 +46537,6 @@ div.mobile-bottom-navbar2 div.mobile-bottom-navbar-inner {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-}
-
-.avatar-menu img {
-  width: 32px;
-  height: 32px;
-  border-radius: 9999px;
-  margin-left: 10px;
-}
-
-.avatar-menu svg {
-  width: 25px;
-  height: 25px;
-  border-radius: 9999px;
-  margin-left: 12px;
 }
 
 div.mobile-bottom-navbar2 div.mobile-bottom-navbar-inner button.navbar-ctrl {
