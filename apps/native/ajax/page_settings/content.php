@@ -391,10 +391,10 @@ else if ($action == 'delete_account') {
         $data['status'] = 200;
 
         unset($_COOKIE['user_id']);
-        setcookie('user_id', null, -1);
+        setcookie('user_id', '', -1);
 
         unset($_COOKIE['dark_mode']);
-        setcookie('dark_mode', null, -1);
+        setcookie('dark_mode', '', -1);
 
         cl_delete_user_data($me['id']);
     }
@@ -426,76 +426,6 @@ else if ($action == 'upload_profile_avatar') {
             cl_update_user_data($me['id'], array(
                 'avatar' => $file_upload['cropped']
             ));
-        } 
-
-        else{
-            $data['err_code'] = "invalid_req_data";
-            $data['status']   = 400;
-        }
-    }
-}
-
-else if ($action == 'upload_profile_cover') {
-    if (not_empty($_FILES['cover']) && not_empty($_FILES['cover']['tmp_name'])) {
-        $file_info           = array(
-            'file'           => $_FILES['cover']['tmp_name'],
-            'size'           => $_FILES['cover']['size'],
-            'name'           => $_FILES['cover']['name'],
-            'type'           => $_FILES['cover']['type'],
-            'file_type'      => 'image',
-            'folder'         => 'covers',
-            'slug'           => 'cover',
-            'allowed'        => 'jpg,png,jpeg,gif',
-            'aws_uploadfile' => "N"
-        );
-
-        $file_upload = cl_upload($file_info);
-
-        if (not_empty($file_upload['filename'])) {
-            try {
-                require_once(cl_full_path("core/libs/PHPgumlet/ImageResize.php"));
-                require_once(cl_full_path("core/libs/PHPgumlet/ImageResizeException.php"));
-
-                $prof_cover = new \Gumlet\ImageResize(cl_full_path($file_upload['filename']));
-                $sw         = $prof_cover->getSourceWidth();
-                $sh         = $prof_cover->getSourceHeight();
-                $data['sw'] = $sw;
-                $data['sh'] = $sh;
-
-                $path_info      = explode(".", $file_upload['filename']);
-                $filepath       = fetch_or_get($path_info[0],"");
-                $file_ext       = fetch_or_get($path_info[1],"");
-                $cropped_cover  = cl_strf("%s_600x200.%s", $filepath, $file_ext);
-                $data['status'] = 200;
-
-                $prof_cover->crop(600, 200, true);
-                $prof_cover->save(cl_full_path($cropped_cover));
-
-                cl_delete_media($me['raw_cover']);
-                cl_delete_media($me['cover_orig']);
-
-                cl_update_user_data($me['id'], array(
-                    'cover' => $cropped_cover,
-                    'cover_orig' => $file_upload['filename']
-                ));
-
-                if ($sw != 600) {
-                    $prof_cover = new \Gumlet\ImageResize(cl_full_path($file_upload['filename']));
-                    $prof_cover->resize(600,(($sh * 600) / $sw), true);
-                    $prof_cover->save(cl_full_path($file_upload['filename']));
-                }
-
-                if ($cl['config']['as3_storage'] == 'on') {
-                    cl_upload2s3($cropped_cover);
-                    cl_upload2s3($file_upload['filename']);
-                }
-            } 
-
-            catch (Exception $e) {
-                $data['err_code']    = "invalid_req_data";
-                $data['err_message'] = $e->getMessage();
-                $data['status']      = 400;
-            }
         } 
 
         else{

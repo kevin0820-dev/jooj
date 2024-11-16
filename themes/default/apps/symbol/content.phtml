@@ -251,7 +251,7 @@
 									<?php if ($cl['prof_user']['follow_privacy'] == 'approved'): ?>
 										<?php if (not_empty($cl['prof_user']['is_following'])): ?>
 											<div>
-												<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-inline md"
+												<button onclick="SMColibri.req_watch(this);" class="btn btn-custom main-inline md"
 													data-action="unfollow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 													data-id="<?php echo ($cl['prof_user']['id']); ?>">
 													<?php echo cl_translate("Unfollow"); ?>
@@ -259,7 +259,7 @@
 											</div>
 										<?php elseif (not_empty($cl['prof_user']['follow_requested'])): ?>
 											<div>
-												<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-inline md"
+												<button onclick="SMColibri.req_watch(this);" class="btn btn-custom main-inline md"
 													data-action="cancel" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 													data-id="<?php echo ($cl['prof_user']['id']); ?>">
 													<?php echo cl_translate("Pending"); ?>
@@ -267,7 +267,7 @@
 											</div>
 										<?php else: ?>
 											<div>
-												<button onclick="SMColibri.req_follow(this);" class="btn btn-custom main-outline md"
+												<button onclick="SMColibri.req_watch(this);" class="btn btn-custom main-outline md"
 													data-action="follow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 													data-id="<?php echo ($cl['prof_user']['id']); ?>">
 													<?php echo cl_translate("watch"); ?>
@@ -277,7 +277,7 @@
 									<?php else: ?>
 										<?php if (not_empty($cl['prof_user']['is_following'])): ?>
 											<div>
-												<button onclick="SMColibri.watch(this);" class="btn btn-custom main-inline md"
+												<button onclick="SMColibri.req_watch(this);" class="btn btn-custom main-inline md"
 													data-action="unfollow" data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 													data-id="<?php echo ($cl['prof_user']['id']); ?>">
 													<?php echo cl_translate("unwatch"); ?>
@@ -285,7 +285,7 @@
 											</div>
 										<?php else: ?>
 											<div>
-												<button onclick="SMColibri.watch(this);" class="btn btn-custom main-outline md" data-action="follow"
+												<button onclick="SMColibri.req_watch(this);" class="btn btn-custom main-outline md" data-action="follow"
 													data-user-name="<?php echo ($cl['prof_user']['name']); ?>"
 													data-id="<?php echo ($cl['prof_user']['id']); ?>">
 													<?php echo cl_translate("watch"); ?>
