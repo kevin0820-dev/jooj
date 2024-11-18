@@ -481,6 +481,9 @@ var pubbox_form_app_mixin = Object({
 				}
 			}
 		},
+		text_focus_trigger: function(e = false) {	
+			e.target.style.minHeight = "120px";
+		},
 		text_blur_trigger: function(e = false) {
 			var _app_ = this;
 	

@@ -36205,10 +36205,6 @@ div.main-search-bar-container form div.input-holder span.spinner-icon {
   width: 22px;
   height: 22px;
 }
-body div.timeline-pubbox-container > div.rp form div.input-holder textarea:focus{
-  min-height: 120px;
-  align-content: baseline;
-}
 
 div.main-search-bar-container form div.input-holder a svg {
   width: 100%;

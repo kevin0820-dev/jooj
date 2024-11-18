@@ -50,7 +50,7 @@
 			<?php elseif($cl['symbol']['fetch_from'] === 'CG') : ?>				
 				<div class="topical-posts trading_widget_style_p1">
 					<script src="https://widgets.coingecko.com/gecko-coin-price-chart-widget.js"></script>
-					<gecko-coin-price-chart-widget locale="en" transparent-background="true" coin-id="<?php echo strtolower($cl['prof_user']['symbol_fetch_gecko'])?>" initial-currency="usd"></gecko-coin-price-chart-widget>
+					<gecko-coin-price-chart-widget locale="en" transparent-background="true" <?php if($cl['display_set']['background'] != 'default') echo 'dark-mode="true"'; ?> coin-id="<?php echo strtolower($cl['prof_user']['symbol_fetch_gecko'])?>" initial-currency="usd"></gecko-coin-price-chart-widget>
 				</div>
 			<?php endif ?>
 		<?php endif ?>
@@ -497,7 +497,7 @@ new Vue({
 });
 </script>
 
-<!-- script for background theme -->
+<!-- script for background theme
 
 <script>
 "use strict";
@@ -586,182 +586,182 @@ new Vue({
 		vueInstance.change_bg(nextBackground); // Change the background using Vue.js method
 	};
 });
-</script>
+</script> -->
 
 <?php if($cl['pn'] === 'symbol' && $cl['prof_user']['fetch_from'] === 'TV'): ?>
-<!-- Script for trading view dark and white mode -->
-<script type="text/javascript">
-"use strict";
+	<!-- Script for trading view dark and white mode -->
+	<script type="text/javascript">
+	"use strict";
 
-jQuery(document).ready(function($) {
-	var vueInstance = new Vue({
-		el: "#cl-display-settings-main",
-		data: {
-			active_bg: localStorage.getItem('active_bg') || "<?php echo ($cl['display_set']['background']) ?>", // Retrieve saved background from localStorage or use default
-			active_color: "<?php echo ($cl['display_set']['color_scheme']) ?>", // Current color scheme
-			submitting: false,
-			color_schemes: <?php echo cl_minify_js(json($cl["color_schemes"], true)); ?>
-		},
-		mounted() {
-			// Set the initial icon and widget theme when the component is mounted
-			this.updateIcon(this.active_bg);
-			this.createTradingViewWidget(this.getWidgetTheme(this.active_bg));
-		},
-		methods: {
-			// Change the background and update the widget theme
-			change_bg: function(bg) {
-				var _app_ = this;
-
-				_app_.active_bg = bg;
-				$("body").attr("data-bg", bg);
-
-				// Update the button icon
-				this.updateIcon(bg);
-
-				// Update the TradingView widget theme
-				this.createTradingViewWidget(this.getWidgetTheme(bg));
-
-				// Save the changes to server and localStorage
-				this.save_changes();
+	jQuery(document).ready(function($) {
+		var vueInstance = new Vue({
+			el: "#cl-display-settings-main",
+			data: {
+				active_bg: localStorage.getItem('active_bg') || "<?php echo ($cl['display_set']['background']) ?>", // Retrieve saved background from localStorage or use default
+				active_color: "<?php echo ($cl['display_set']['color_scheme']) ?>", // Current color scheme
+				submitting: false,
+				color_schemes: <?php echo cl_minify_js(json($cl["color_schemes"], true)); ?>
 			},
-
-			// Determine the widget theme (light/dark) based on the background
-			getWidgetTheme: function(bg) {
-				return bg === 'default' ? 'light' : 'dark'; // Return 'light' for default, 'dark' for dark and black
+			mounted() {
+				// Set the initial icon and widget theme when the component is mounted
+				this.updateIcon(this.active_bg);
+				this.createTradingViewWidget(this.getWidgetTheme(this.active_bg));
 			},
+			methods: {
+				// Change the background and update the widget theme
+				change_bg: function(bg) {
+					var _app_ = this;
 
-			// Create or update the TradingView widget with the specified theme
-			createTradingViewWidget: function(theme) {
+					_app_.active_bg = bg;
+					$("body").attr("data-bg", bg);
+
+					// Update the button icon
+					this.updateIcon(bg);
+
+					// Update the TradingView widget theme
+					this.createTradingViewWidget(this.getWidgetTheme(bg));
+
+					// Save the changes to server and localStorage
+					this.save_changes();
+				},
+
+				// Determine the widget theme (light/dark) based on the background
+				getWidgetTheme: function(bg) {
+					return bg === 'default' ? 'light' : 'dark'; // Return 'light' for default, 'dark' for dark and black
+				},
+
+				// Create or update the TradingView widget with the specified theme
+				createTradingViewWidget: function(theme) {
 
 
 
-				// Remove the existing widget script and content to avoid duplication
-				document.getElementById('tradingview-widget').innerHTML = '';
+					// Remove the existing widget script and content to avoid duplication
+					document.getElementById('tradingview-widget').innerHTML = '';
 
-				// Create a new script element for the TradingView widget
-				const script = document.createElement('script');
-				script.type = 'text/javascript';
-				script.async = true;
-				script.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+					// Create a new script element for the TradingView widget
+					const script = document.createElement('script');
+					script.type = 'text/javascript';
+					script.async = true;
+					script.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
 
-				// Set up the widget configuration with the dynamic theme
-				script.innerHTML = JSON.stringify({
-					"symbol": <?php echo json_encode(strtoupper(isset($cl['prof_user']['symbol_fetch']) && $cl['prof_user']['symbol_fetch'] != "" ? $cl['prof_user']['symbol_fetch'] : 'BITSTAMP:'.(isset($cl['prof_user']['username']) ? $cl['prof_user']['username'] : 'BTC') . 'USD')); ?>,
-					"width": 350,
-					"height": 220,
-					"locale": "en",
-					"dateRange": "12M",
-					"colorTheme": theme, // Set the widget theme dynamically based on the background
-					"isTransparent": true,
-					"autosize": false,
-					"largeChartUrl": "",
-					"noTimeScale": false
-				});
+					// Set up the widget configuration with the dynamic theme
+					script.innerHTML = JSON.stringify({
+						"symbol": <?php echo json_encode(strtoupper(isset($cl['prof_user']['symbol_fetch']) && $cl['prof_user']['symbol_fetch'] != "" ? $cl['prof_user']['symbol_fetch'] : 'BITSTAMP:'.(isset($cl['prof_user']['username']) ? $cl['prof_user']['username'] : 'BTC') . 'USD')); ?>,
+						"width": 350,
+						"height": 220,
+						"locale": "en",
+						"dateRange": "12M",
+						"colorTheme": "<?php echo ($cl['display_set']['background']) ?>", // Set the widget theme dynamically based on the background
+						"isTransparent": true,
+						"autosize": false,
+						"largeChartUrl": "",
+						"noTimeScale": false,
+					});
 
-				// Append the script to the widget container to render the updated widget
-				document.getElementById('tradingview-widget').appendChild(script);
-			},
+					// Append the script to the widget container to render the updated widget
+					document.getElementById('tradingview-widget').appendChild(script);
+				},
 
-			// Update the button icon based on the active background
-			updateIcon: function(bg) {
-				let icon;
-				switch (bg) {
-					case 'dark':
-						icon = "/themes/default/statics/img/dark_mode_square.png";
-						break;
-					case 'black':
-						icon = "/themes/default/statics/img/white_mode_square.png";
-						break;
-					default:
-						icon = "/themes/default/statics/img/black_mode_square.png";
+				// Update the button icon based on the active background
+				updateIcon: function(bg) {
+					let icon;
+					switch (bg) {
+						case 'dark':
+							icon = "/themes/default/statics/img/dark_mode_square.png";
+							break;
+						case 'black':
+							icon = "/themes/default/statics/img/white_mode_square.png";
+							break;
+						default:
+							icon = "/themes/default/statics/img/black_mode_square.png";
+					}
+					document.getElementById("mode-icon").src = icon; // Update the button icon
+
+					// Save the current background and icon in localStorage for persistence
+					localStorage.setItem('active_bg', bg);
+					localStorage.setItem('icon', icon);
+				},
+
+				// Save the changes to the server
+				save_changes: function() {
+					var _app_ = this;
+
+					$.ajax({
+						url: '<?php echo cl_link("native_api/main/save_display_settings"); ?>',
+						type: 'POST',
+						dataType: 'json',
+						data: {
+							color: _app_.active_color,
+							bg: _app_.active_bg
+						},
+						beforeSend: function() {
+							_app_.submitting = true;
+						}
+					}).done(function(data) {
+						if (data.status != 200) {
+							SMColibri.errorMSG();
+						} else {
+							SMColibri.display_settings("hide");
+						}
+					}).always(function() {
+						_app_.submitting = false;
+					});
 				}
-				document.getElementById("mode-icon").src = icon; // Update the button icon
-
-				// Save the current background and icon in localStorage for persistence
-				localStorage.setItem('active_bg', bg);
-				localStorage.setItem('icon', icon);
-			},
-
-			// Save the changes to the server
-			save_changes: function() {
-				var _app_ = this;
-
-				$.ajax({
-					url: '<?php echo cl_link("native_api/main/save_display_settings"); ?>',
-					type: 'POST',
-					dataType: 'json',
-					data: {
-						color: _app_.active_color,
-						bg: _app_.active_bg
-					},
-					beforeSend: function() {
-						_app_.submitting = true;
-					}
-				}).done(function(data) {
-					if (data.status != 200) {
-						SMColibri.errorMSG();
-					} else {
-						SMColibri.display_settings("hide");
-					}
-				}).always(function() {
-					_app_.submitting = false;
-				});
 			}
-		}
+		});
+
+		// Function to toggle between default, dark, and black backgrounds
+		window.toggleBackground = function() {
+			const backgrounds = ['default', 'dark', 'black'];
+			const currentIndex = backgrounds.indexOf(vueInstance.active_bg);
+			const nextIndex = (currentIndex + 1) % backgrounds.length;
+			const nextBackground = backgrounds[nextIndex];
+			vueInstance.change_bg(nextBackground); // Update the background using Vue.js method
+		};
+
+		var lastScrollTop = 0; // Store the last scroll position
+
+		var changePoint = 0;
+
+		var fixedHeight = 220;
+
+		// $('.inner-wrapper-sticky').css({
+		// 	'height': '100vh',
+		// 	'overflow-y': 'scroll'
+		// });
+
+		// $(window).scroll(function() {
+
+		// 	var currentScroll = $(this).scrollTop(); // Get current scroll position
+
+		// 	var height = $('.right-sb-container .sidebar__inner').height();
+		// 	var viewPortHeight = $(window).height();
+
+		// 	const deltaHeight = height - viewPortHeight + 10;
+
+		// 	$('.left-sb-container .inner-wrapper-sticky').css({
+		// 		'transform': 'translate3d(0px, 0px, 0px)'
+		// 	});
+
+		// 	$('.right-sb-container .sidebar__inner').css({
+		// 		'transform': currentScroll > deltaHeight ? `translate(0px, ${-deltaHeight}px)` : `translate(0px, ${-currentScroll}px)`
+		// 	});
+
+		// 	if (currentScroll < lastScrollTop) {
+
+		// 		// // User is scrolling up
+		// 		// $('.inner-wrapper-sticky').css({
+		// 		// 	'position': 'fixed !important',
+		// 		// 	'top': '10px'
+		// 		// }); // Set the attribute when scrolling up
+
+		// 	} else {
+
+		// 	}
+
+		// 	lastScrollTop = currentScroll; // Update the last scroll position
+		// });
 	});
-
-	// Function to toggle between default, dark, and black backgrounds
-	window.toggleBackground = function() {
-		const backgrounds = ['default', 'dark', 'black'];
-		const currentIndex = backgrounds.indexOf(vueInstance.active_bg);
-		const nextIndex = (currentIndex + 1) % backgrounds.length;
-		const nextBackground = backgrounds[nextIndex];
-		vueInstance.change_bg(nextBackground); // Update the background using Vue.js method
-	};
-
-	var lastScrollTop = 0; // Store the last scroll position
-
-	var changePoint = 0;
-
-	var fixedHeight = 220;
-
-	// $('.inner-wrapper-sticky').css({
-	// 	'height': '100vh',
-	// 	'overflow-y': 'scroll'
-	// });
-
-	// $(window).scroll(function() {
-
-	// 	var currentScroll = $(this).scrollTop(); // Get current scroll position
-
-	// 	var height = $('.right-sb-container .sidebar__inner').height();
-	// 	var viewPortHeight = $(window).height();
-
-	// 	const deltaHeight = height - viewPortHeight + 10;
-
-	// 	$('.left-sb-container .inner-wrapper-sticky').css({
-	// 		'transform': 'translate3d(0px, 0px, 0px)'
-	// 	});
-
-	// 	$('.right-sb-container .sidebar__inner').css({
-	// 		'transform': currentScroll > deltaHeight ? `translate(0px, ${-deltaHeight}px)` : `translate(0px, ${-currentScroll}px)`
-	// 	});
-
-	// 	if (currentScroll < lastScrollTop) {
-
-	// 		// // User is scrolling up
-	// 		// $('.inner-wrapper-sticky').css({
-	// 		// 	'position': 'fixed !important',
-	// 		// 	'top': '10px'
-	// 		// }); // Set the attribute when scrolling up
-
-	// 	} else {
-
-	// 	}
-
-	// 	lastScrollTop = currentScroll; // Update the last scroll position
-	// });
-});
 </script>
 <?php endif ?>
 

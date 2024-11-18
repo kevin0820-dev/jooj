@@ -495,6 +495,7 @@ var pubbox_form_app_mixin = Object({
             }, 1500);
         },
         text_focus_trigger: function(e = false) {
+			e.target.style.minHeight = "120px";
 			if (this.text === '') {
 				this.text = this.prefix + ' ';
 			}
