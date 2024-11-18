@@ -9,6 +9,12 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.tv-ticker-item-last__short-name{
+  color: var(--smc-main-text-color) !important;
+}
+.tv-ticker-item-last__last js-symbol-last apply-overflow-tooltip{  
+  color: var(--smc-main-text-color) !important;
+}
 .result-list h3{
   color: var(--cl-primary-text-color);
 }

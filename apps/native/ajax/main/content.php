@@ -817,7 +817,7 @@ else if ($action == 'publish_new_post') {
     }
     if($me['banned'] == '1') {
         $data['status'] = 400;
-        $data['error']  = 'You are banned from this app';
+        $data['error']  = 'You are temporarily restricted from publishing new posts due to a violation of the CoinTweets policy. Please contact the admin to resolve the issue.';
         return;
     }
     else {
@@ -837,7 +837,7 @@ else if ($action == 'publish_new_post') {
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){
             $data['status'] = 400;
-            $data['error']  = 'You can not post the same message in one hour!';
+            $data['error']  = 'Your post was not submitted because you recently published the same content. Please try again later.';
             return;
         }
 
@@ -1050,7 +1050,7 @@ else if ($action == 'publish_new_repost') {
     }
     if($me['banned'] == '1') {
         $data['status'] = 400;
-        $data['error']  = 'You are banned from this app';
+        $data['error']  = 'You are temporarily restricted from publishing new posts due to a violation of the CoinTweets policy. Please contact the admin to resolve the issue.';
         return;
     }
     else {
@@ -1071,7 +1071,7 @@ else if ($action == 'publish_new_repost') {
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
             $data['status'] = 400;
-            $data['error']  = 'You can not post the same message in one hour!';
+            $data['error']  = 'Your post was not submitted because you recently published the same content. Please try again later.';
             return;
         }
         
@@ -1321,7 +1321,7 @@ else if ($action == 'publish_new_post_symbol') {
     }
     if($me['banned'] == '1') {
         $data['status'] = 400;
-        $data['error']  = 'You are banned from this app';
+        $data['error']  = 'You are temporarily restricted from publishing new posts due to a violation of the CoinTweets policy. Please contact the admin to resolve the issue.';
         return;
     }
     else {
@@ -1342,7 +1342,7 @@ else if ($action == 'publish_new_post_symbol') {
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
             $data['status'] = 400;
-            $data['error']  = 'You can not post the same message in one hour!';
+            $data['error']  = 'Your post was not submitted because you recently published the same content. Please try again later.';
             return;
         }
 
@@ -1566,7 +1566,7 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
     }
     if($me['banned'] == '1') {
         $data['status'] = 400;
-        $data['error']  = 'You are banned from this app';
+        $data['error']  = 'You are temporarily restricted from publishing new posts due to a violation of the CoinTweets policy. Please contact the admin to resolve the issue.';
         return;
     }
     else {
@@ -1588,7 +1588,7 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
             $data['status'] = 400;
-            $data['error']  = 'You can not post the same message in one hour!';
+            $data['error']  = 'Your post was not submitted because you recently published the same content. Please try again later.';
             return;
         }
         

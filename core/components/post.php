@@ -179,7 +179,7 @@ function cl_is_spam($uid = 0, $pub_text = ""){
     } 
 	$db = $db -> where('user_id', $uid);
 	$db = $db -> where('text', $pub_text);
-	$db = $db -> where('CAST(time AS UNSIGNED)', time() - 3600, '>=');
+	$db = $db -> where('CAST(time AS UNSIGNED)', time() - 60, '>=');
 	$res = $db -> getOne(T_PUBS);
 	return cl_queryset($res);
 }
