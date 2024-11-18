@@ -24,7 +24,9 @@ INNER JOIN (SELECT `type`, comment_on, publication_id from `<?php echo($data['t_
 
     AND CAST(`time` AS UNSIGNED) >= UNIX_TIMESTAMP(NOW() - INTERVAL 7 DAY)
 
-	ORDER BY `likes_count` DESC, `replys_count` DESC, `reposts_count` DESC, `id` DESC
+	AND `likes_count` > 0
+
+	ORDER BY `likes_count` DESC, `replys_count` DESC, `reposts_count` DESC
 
 <?php if(is_posnum($data['limit'])): ?>
 	LIMIT <?php echo($data['limit']); ?>
