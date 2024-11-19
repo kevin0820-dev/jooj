@@ -4799,7 +4799,7 @@ body
   div.publication-data-inner
   div.publication-content
   div.publication-image {
-  width: 100%;
+  width: fit-content;
   border: 1px solid var(--smc-main-border-color);
   display: block;
   border-radius: var(--smc-main-border-rad1);
@@ -4825,8 +4825,9 @@ body
   div.publication-content
   div.publication-image
   img.lozad {
-  width: 100%;
+  max-width: 100%;
   object-fit: cover;
+  max-height: 500px;
 }
 
 body
@@ -32571,7 +32572,7 @@ body.cl-app-thread
   div.publication-data-inner
   div.publication-content
   div.publication-image {
-  width: 100%;
+  width: fit-content;
   border: 1px solid var(--smc-main-border-color);
   display: block;
   border-radius: var(--smc-main-border-rad1);
@@ -40918,7 +40919,7 @@ body
   div.publication-data-inner
   div.publication-content
   div.publication-image {
-  width: 100%;
+  width: fit-content;
   border: 1px solid var(--smc-main-border-color);
   display: block;
   border-radius: var(--smc-main-border-rad1);
@@ -40927,43 +40928,6 @@ body
   position: relative;
   position: static;
   margin-top: 6px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
-  div.publication-content
-  div.publication-image
-  img.lozad {
-  width: 100%;
-  object-fit: cover;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
-  div.publication-content
-  div.publication-image
-  img.lozad:not([data-loaded]) {
-  visibility: hidden;
 }
 
 body
@@ -68667,7 +68631,7 @@ body.cl-app-thread
   div.publication-data-inner
   div.publication-content
   div.publication-image {
-  width: 100%;
+  width: fit-content;
   border: 1px solid var(--smc-main-border-color);
   display: block;
   border-radius: var(--smc-main-border-rad1);
@@ -68686,8 +68650,9 @@ body.cl-app-thread
   div.publication-content
   div.publication-image
   img {
-  width: 100%;
+  max-width: 100%;
   object-fit: cover;
+  max-height: 500px;
 }
 
 body.cl-app-thread
@@ -69766,7 +69731,7 @@ div.publication-data
 div.publication-data-inner
 div.publication-content
 div.publication-image {
-width: 100%;
+width: fit-content;
 border: 1px solid var(--smc-main-border-color);
 display: block;
 border-radius: var(--smc-main-border-rad1);

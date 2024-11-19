@@ -391,7 +391,7 @@
   div.publication-data-inner
   div.publication-content
   div.publication-image {
-  width: 100%;
+  width: fit-content;
   border: 1px solid var(--smc-main-border-color);
   display: block;
   border-radius: var(--smc-main-border-rad1);
@@ -409,8 +409,9 @@
   div.publication-content
   div.publication-image
   img.lozad {
-  width: 100%;
+  max-width: 100%;
   object-fit: cover;
+  max-height: 500px;
 }
 
 

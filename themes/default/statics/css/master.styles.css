@@ -3085,7 +3085,8 @@ body
   div.post-data-layout__content
   div.publication-image
   img.lozad {
-  width: 100%;
+  max-width: 100%;
+  max-height: 500px;
 }
 
 body
