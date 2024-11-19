@@ -121,6 +121,10 @@ else if ($action == 'save_profile_password') {
         $data['err_code'] = "invalid_username_or_password";
     }
 
+    if(check_username($username)) {
+        $data['err_code'] = "The username is already taken.";
+    }
+
     if (empty($data['err_code'])) {
         $me['start_up']['source']   = 'oauth-v';
         $data['status']             = 200;

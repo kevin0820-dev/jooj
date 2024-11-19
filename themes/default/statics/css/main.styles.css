@@ -1739,6 +1739,7 @@ body.modal-open {
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
+    color: var(--smc-main-text-color);
   }
   body .mobile_menu .uname h5 {
     font-size: 17px;
@@ -36963,25 +36964,6 @@ body.cl-app-wallet_send
   div.recipients-list
   div.recipients-list__item
   div.recipients-list__item-username
-  span.user-name-holder {
-  max-width: calc(100% - 20px);
-  font-weight: 600;
-  color: var(--cl-primary-text-color);
-  font-size: var(--cl-primary-name-size);
-  line-height: 1.2;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-body.cl-app-wallet_send
-  div.wallet-send
-  div.wallet-send__form
-  form.form
-  div.recipients-list
-  div.recipients-list__body
-  div.recipients-list
-  div.recipients-list__item
-  div.recipients-list__item-username
   span.username {
   color: var(--cl-secondary-text-color);
   font-size: var(--cl-primary-name-size);
@@ -37752,24 +37734,6 @@ body.modal-open {
   }
   .carousel__slide {
     width: var(--carousel-slide-width, 45%) !important;
-  }
-  body span.user-name-holder {
-    overflow-wrap: break-word;
-    min-width: 0px;
-    max-width: 95px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: inline-block;
-  }
-  body .mobile_menu span.user-name-holder {
-    overflow-wrap: break-word;
-    min-width: 0px;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: inline-block;
   }
   body .mobile_menu .uname h5 {
     font-size: 17px;
@@ -43665,21 +43629,6 @@ body
   height: 100%;
   border-radius: 10em;
   object-fit: cover;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
-  div.user-info
-  div.uname {
-  color: var(--smc-main-text-color-2);
-  flex-basis: 100%;
-  width: 170px;
-  line-height: 0px;
-  margin-left: 15px;
-  max-width: 200px;
 }
 
 body

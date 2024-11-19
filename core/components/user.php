@@ -158,7 +158,10 @@ function cl_get_userfromsession_id($session_id, $platform = 'web') {
 
     return false;
 }
-
+function check_username($username) {
+    global $db;
+    return ($db->where('username', cl_text_secure($username))->getValue(T_USERS, 'count(*)') > 0) ? true : false;
+}
 function cl_update_user_data($user_id = null,$data = array()) {
     global $db;
     if ((not_num($user_id)) || (empty($data) || is_array($data) != true)) {

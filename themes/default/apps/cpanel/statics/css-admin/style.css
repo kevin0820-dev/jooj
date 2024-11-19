@@ -10,7 +10,7 @@
 .dropright div.dropdown-menu a.dropdown-item,
 .dropup div.dropdown-menu a.dropdown-item {
     font-size: 13px;
-    line-height: 32px;
+    line-height: 20px;
     color: #14171a;
     padding: 5px 20px;
     display: block;
@@ -4867,18 +4867,6 @@ table.table thead tr th {
     background-color: rgba(0, 0, 0, 0.12);
 }
 
-.dropdown div.dropdown-menu a.dropdown-item,
-.dropleft div.dropdown-menu a.dropdown-item,
-.dropright div.dropdown-menu a.dropdown-item,
-.dropup div.dropdown-menu a.dropdown-item {
-    font-size: 13px;
-    line-height: 32px;
-    color: #14171a;
-    padding: 5px 20px;
-    display: block;
-    text-decoration: none;
-}
-
 .dropdown div.dropdown-menu a.dropdown-item:hover,
 .dropdown div.dropdown-menu a.dropdown-item:active,
 .dropleft div.dropdown-menu a.dropdown-item:hover,
@@ -6171,18 +6159,6 @@ div.regular-table div.table-pagination a.pagination-ctrls:last-child {
     box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
     padding: 0px;
     position: absolute;
-}
-
-.dropdown div.dropdown-menu a.dropdown-item,
-.dropleft div.dropdown-menu a.dropdown-item,
-.dropright div.dropdown-menu a.dropdown-item,
-.dropup div.dropdown-menu a.dropdown-item {
-    font-size: 13px;
-    line-height: 32px;
-    color: #14171a;
-    padding: 5px 20px;
-    display: block;
-    text-decoration: none;
 }
 
 .dropdown div.dropdown-menu a.dropdown-item:hover,

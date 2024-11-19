@@ -102,7 +102,7 @@
 						return (this.$v.info.user_data.$invalid == true);
 					},
 					is_invalid_password: function() {
-						return (this.$v.password.$invalid == true);
+						return (this.$v.password.$invalid == true || this.$v.username.$invalid == true);
 					},
 				},
 				validations: {
@@ -247,7 +247,7 @@
 								_app_.progstat = data.progstat;
 							}
 							else{
-								SMColibri.errorMSG();
+								cl_bs_notify(data.err_code, 3000, "danger");
 							}
 						}).always(function() {
 							setTimeout(function() {

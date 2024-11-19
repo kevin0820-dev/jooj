@@ -63,6 +63,9 @@
             <i class="material-icons">more_horiz</i>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
+                <a href="javascript:void(0);" class="dropdown-item" v-on:click="ignore('<?php echo($cl['li']['id']); ?>');">
+                    <?php echo cl_translate('Delete report'); ?>
+                </a>
                 <a href="javascript:void(0);" class="dropdown-item" v-on:click="show('<?php echo($cl['li']['id']); ?>');">
                     <?php echo cl_translate('Show details'); ?>
                 </a>
@@ -70,10 +73,7 @@
                     <?php echo cl_translate('Coin'); ?>
                 </a>
                 <a href="javascript:void(0);" class="dropdown-item" onclick="SMC_CPanel.delete_symbol('<?php echo($cl['li']['symbol_id']); ?>');">
-                    <?php echo cl_translate('Delete'); ?>
-                </a>
-                <a href="javascript:void(0);" class="dropdown-item" v-on:click="ignore('<?php echo($cl['li']['id']); ?>');">
-                    <?php echo cl_translate('Ignore'); ?>
+                    <?php echo cl_translate('Delete coin'); ?>
                 </a>
             </ul>
         </div>
