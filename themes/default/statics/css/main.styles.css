@@ -1313,7 +1313,7 @@ body
 #forgotModal .modal-body,
 #signupModal .modal-body,
 #loginModal .modal-body {
-  padding-bottom:120px;
+  padding-bottom:20px;
   max-width: 380px;
   justify-content: center;
   align-items: center;
@@ -37443,18 +37443,6 @@ body
 #signupModal .modal-header,
 #loginModal .modal-header {
   border-bottom: none;
-}
-#forgotModal .modal-body,
-#signupModal .modal-body,
-#loginModal .modal-body {
-  padding-bottom:120px;
-  max-width: 380px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 15px;
 }
 .follow-suggestion__placeholder {
   line-height: 20px;
