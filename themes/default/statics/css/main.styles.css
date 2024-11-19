@@ -1678,6 +1678,7 @@ body.modal-open {
     padding-right: 16px;
     padding-top: 5px;
     padding-bottom: 10px;
+    color: var(--smc-main-text-color);
   }
   .left_account .b_close {
     min-height: 36px;
@@ -37637,12 +37638,6 @@ body.modal-open {
     width: auto;
     height: 32px;
   }
-  div.timeline-pubbox__images
-    div.pubbox-images
-    div.pubbox-images__list
-    div.pubbox-images__list-item {
-    max-width: 300px!important;
-  }
   #add_new_post .post-privacy-holder .flex-item.ml-auto {
     position: fixed;
     top: 0;
@@ -37781,39 +37776,6 @@ body.modal-open {
   }
   .common-follows__item.common-follows__item_total span {
     margin-top:3px;
-  }
-  .left_account {
-    display: flex;
-    width: 100%;
-    -moz-box-pack: center;
-    justify-content: space-between;
-    -moz-box-direction: normal;
-    -moz-box-orient: horizontal;
-    flex-direction: row;
-    -moz-box-align: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 5px;
-    padding-right: 16px;
-    padding-top: 5px;
-    padding-bottom: 10px;
-  }
-  .left_account .b_close {
-    min-height: 36px;
-    min-width: 36px;
-  }
-  .left_account h6 {
-    font-size: 15px;
-    line-height: 20px;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    font-weight: 700;
-  }
-  .left_account svg {
-    width: 20px;
-    height: 20px;
-    fill: var(--smc-main-text-color);
   }
   body
     main.main-content-container
