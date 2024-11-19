@@ -41,7 +41,7 @@
 						<div class="form-group oauth-login-providers">
 							<?php if ($cl["config"]["google_oauth"] == "on") : ?>
 								<a href="<?php echo cl_link('oauth/google'); ?>" class="social-login-btn google">
-									<button class="btn btn-custom main-inline lg btn-block" type="button" style="background-color: #f7faff !important;border-color: #d2e3fc!important;">
+									<button class="btn btn-custom main-inline lg btn-block" type="button">
 										<span class="d-inline-flex flex-wn align-items-center">
 											<span class="flex-item btn-icon">
 												<?php echo cl_icon('logos/google-logo-2'); ?>
@@ -84,7 +84,7 @@
 							<div class="form-cta-link forgot">
 								<a data-toggle="collapse" data-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
 									<span class="btn-outline">
-										<?php echo cl_icon('more_horiz'); ?>
+										<?php echo cl_ikon('pub-more'); ?>
 										<?php echo cl_translate("More Social Login"); ?>
 									</span>
 								</a>

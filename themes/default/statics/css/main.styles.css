@@ -9,6 +9,12 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.form-title, .login-or-signup, .form-cta-link {
+  color: var(--smc-main-text-color);
+}
+.btn-outline svg{
+  width: 18px;
+}
 .tv-ticker-item-last__short-name{
   color: var(--smc-main-text-color) !important;
 }
@@ -1209,7 +1215,7 @@ body
 }
 
 .form-group.oauth-login-providers .flex-item {
-  color: rgb(15, 20, 25);
+  color: var(--smc-main-text-color);
   font-weight: 700;
   -webkit-box-align: center; /* Added for compatibility */
   -moz-box-align: center; /* Can be kept for Firefox */
@@ -1231,6 +1237,7 @@ body
   text-align: center;
   display: flex;
   height: 40px !important;
+  fill: var(--smc-main-text-color);
 }
 
 .form-group.oauth-login-providers .flex-item svg {
@@ -1258,7 +1265,8 @@ body
 }
 
 .form-cta-link .btn-outline {
-  color: rgb(15, 20, 25);
+  color: var(--smc-main-text-color);
+  fill: var(--smc-main-text-color-2);
   font-weight: 700;
   -moz-box-align: center;
   align-items: center;
@@ -37344,37 +37352,6 @@ body
   background-color: rgba(15, 20, 25, 0.1) !important;
 }
 
-.form-group.oauth-login-providers .flex-item {
-  color: rgb(15, 20, 25);
-  font-weight: 700;
-  -webkit-box-align: center; /* Added for compatibility */
-  -moz-box-align: center; /* Can be kept for Firefox */
-  align-items: center;
-  -webkit-box-pack: center;
-  -moz-box-pack: center; /* Can be kept for Firefox */
-  justify-content: center;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1; /* Can be kept for Firefox */
-  flex-grow: 1;
-  -webkit-box-direction: normal; /* Added for compatibility */
-  -moz-box-direction: normal; /* Can be kept for Firefox */
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal; /* Can be kept for Firefox */
-  flex-direction: row;
-  font-size: 15px;
-  line-height: 20px;
-  overflow-wrap: break-word;
-  text-align: center;
-  display: flex;
-  height: 40px !important;
-}
-
-.form-group.oauth-login-providers .flex-item svg {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-}
-
 .form-cta-link.forgot {
   background-color: rgba(0, 0, 0, 0);
   outline-style: none;
@@ -37393,25 +37370,6 @@ body
   cursor: pointer;
 }
 
-.form-cta-link .btn-outline {
-  color: rgb(15, 20, 25);
-  font-weight: 700;
-  -moz-box-align: center;
-  align-items: center;
-  -moz-box-pack: center;
-  justify-content: center;
-  -moz-box-flex: 1;
-  flex-grow: 1;
-  -moz-box-direction: normal;
-  -moz-box-orient: horizontal;
-  flex-direction: row;
-  font-size: 15px;
-  line-height: 20px;
-  overflow-wrap: break-word;
-  text-align: center;
-  display: flex;
-  height: 36px;
-}
 #forgotModal .close:hover,
 #signupModal .close:hover,
 #loginModal .close:hover {
@@ -48933,29 +48891,6 @@ body
   .dropdown
   div.dropdown-menu.dropdown-icons
   a.dropdown-item.col-red
-  span.flex-item,
-body
-  .dropleft
-  div.dropdown-menu.dropdown-icons
-  a.dropdown-item.col-red
-  span.flex-item,
-body
-  .dropright
-  div.dropdown-menu.dropdown-icons
-  a.dropdown-item.col-red
-  span.flex-item,
-body
-  .dropup
-  div.dropdown-menu.dropdown-icons
-  a.dropdown-item.col-red
-  span.flex-item {
-  color: var(--smc-main-red-color2);
-}
-
-body
-  .dropdown
-  div.dropdown-menu.dropdown-icons
-  a.dropdown-item.col-red
   span.flex-item.dropdown-item-icon
   svg,
 body
@@ -50551,21 +50486,6 @@ body button.btn-custom.main-inline {
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 9999px;
-}
-
-.flex-item button.btn-custom.main-inline {
-  background-color: rgb(15, 20, 25);
-  min-width: 36px;
-  min-height: 36px !important;
-  transition-property: background-color, box-shadow;
-  box-shadow: none;
-  border-color: var(--smc-main-border-color-darken-5);
-  color: #fff;
-  font-size: 14px !important;
-  line-height: 20px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 10px;
 }
 
 body button.btn-custom.main-inline:not([disabled]):hover,
