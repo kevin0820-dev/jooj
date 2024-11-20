@@ -2,7 +2,7 @@
 	<?php echo cl_template('timeline/ad'); ?>
 <?php else: ?>
 	<?php if (empty($cl['li']['is_blocked']) && (not_empty($cl['li']['can_see'])) && empty($cl['li']['me_blocked'])): ?> <!-- edited by kevin, New Update. Resolve blocked and unfollowed users -->
-		<div class="post-list-item" data-list-item="<?php echo ($cl['li']['id']); ?>" id="<?php echo ($cl['li']['id']); ?>"
+		<div class="post-list-item" data-list-item="<?php echo ($cl['li']['id']); ?>"
 			data-post-offset="<?php echo ($cl['li']['offset_id']); ?>" <?php echo fetch_or_get($cl['li']['attrs'], ''); ?>
 			onclick="analyze(event, <?php echo ($cl['li']['id']); ?>)"
 			style="cursor:pointer">
@@ -516,7 +516,7 @@
 														$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
 														return $image_tag . $matches[1];
 													}, $extendedText);
-													echo "<a class = 'readAll' href='javascript:void(0);' onclick='document.getElementById(\"" . $cl['li']['id'] . "\").querySelector(\".pub-text\").innerHTML = \"" . addslashes($modified_text) . "\";'>Read all</a>";
+													echo "<a class='readAll' href='javascript:void(0);' onclick='this.parentElement.innerHTML = \"" . addslashes($modified_text) . "\";'>Read all</a>";
 												}
 											?>
 										</p>
