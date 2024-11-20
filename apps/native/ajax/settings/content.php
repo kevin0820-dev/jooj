@@ -612,7 +612,9 @@ else if ($action == 'upload_profile_cover') {
             imagedestroy($resizedImage);
             imagedestroy($newImage);
 
-            $data['status'] = 200;
+            cl_delete_media($me['raw_cover']);
+            cl_delete_media($me['cover_orig']);
+
             cl_update_user_data($me['id'], array(
                 'cover' => $cropped_cover,
                 'cover_orig' => $file_upload['filename']
@@ -621,6 +623,8 @@ else if ($action == 'upload_profile_cover') {
                 cl_upload2s3($cropped_cover);
                 cl_upload2s3($file_upload['filename']);
             }
+            
+            $data['status'] = 200;
 
         } else {
             $data['err_code'] = "invalid_req_data";
