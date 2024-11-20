@@ -9,6 +9,13 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.pub-text .readAll{
+  position: absolute;
+  right: 30px;
+}
+.user-data__body {
+  color: var(--smc-main-text-color-2);
+}
 .form-title, .login-or-signup, .form-cta-link {
   color: var(--smc-main-text-color);
 }
