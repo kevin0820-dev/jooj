@@ -396,30 +396,38 @@
 								<div class="publication-text">
 									<p class="pub-text">
 										<?php
-										// Sample text from $cl['li']['text']
-										$text = $cl['li']['text'];
-
-										// Regular expression to find <a> tags containing text starting with $ (like $abc)
-										$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
-
-										// Use preg_replace_callback to replace matches with an image tag
-										$modified_text = preg_replace_callback($pattern, function($matches) {
-											// Extract the word inside the <a> tag without the $ sign
-											$symbol = strtolower($matches[2]);
-
-											// Create the image tag
-											global $db;
+											$text = $cl['li']['text'];
+											$extendable = false;
+											$extendedText = "";
+											$word_count = str_word_count($text);
+											if ($word_count > 60) {
+												$extendable = true;
+												$extendedText = $text;
+												$text = implode(' ', array_slice(explode(' ', $text), 0, 60)) . '...';
+											}
+											$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+											$modified_text = preg_replace_callback($pattern, function($matches) {
+												$symbol = strtolower($matches[2]);
+												global $db;
 												$db        = $db->where('username', $symbol);
 												$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
 												$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
 												$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
-
-											// Return the image tag followed by the original <a> tag (e.g., (LLAP.png)<a>$LLAP</a>)
-											return $image_tag . $matches[1];
-										}, $text);
-
-										// Output the modified text
-										echo $modified_text;
+												return $image_tag . $matches[1];
+											}, $text);
+											echo $modified_text;
+											if($extendable){
+												$modified_text = preg_replace_callback($pattern, function($matches) {
+													$symbol = strtolower($matches[2]);
+													global $db;
+													$db        = $db->where('username', $symbol);
+													$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+													$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+													$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
+													return $image_tag . $matches[1];
+												}, $extendedText);
+												echo "<a class='readAll' href='javascript:void(0);' onclick='this.parentElement.innerHTML = \"" . addslashes($modified_text) . "\";'>Read all</a>";
+											}
 										?>
 									</p>
 								</div>
