@@ -546,7 +546,7 @@ else if ($action == 'upload_page_cover') {
 }
 else if ($action == 'upload_profile_cover') {
     if (not_empty($_FILES['cover']) && not_empty($_FILES['cover']['tmp_name'])) {
-        $file_info           = array(
+        $file_info = array(
             'file'           => $_FILES['cover']['tmp_name'],
             'size'           => $_FILES['cover']['size'],
             'name'           => $_FILES['cover']['name'],
@@ -557,59 +557,74 @@ else if ($action == 'upload_profile_cover') {
             'allowed'        => 'jpg,png,jpeg,gif',
             'aws_uploadfile' => "N"
         );
-        
+
         $file_upload = cl_upload($file_info);
 
         if (not_empty($file_upload['filename'])) {
-            try {
-                require_once(cl_full_path("core/libs/PHPgumlet/ImageResize.php"));
-                require_once(cl_full_path("core/libs/PHPgumlet/ImageResizeException.php"));
+            $path_info = pathinfo($file_upload['filename']);
+            $cropped_cover = cl_strf("%s/%s_600x200.%s", $path_info['dirname'], $path_info['filename'], $path_info['extension']);
+            list($width, $height, $type) = getimagesize($file_upload['filename']);
 
-                $prof_cover = new \Gumlet\ImageResize(cl_full_path($file_upload['filename']));
-                $sw         = $prof_cover->getSourceWidth();
-                $sh         = $prof_cover->getSourceHeight();
-                $data['sw'] = $sw;
-                $data['sh'] = $sh;
+            // Calculate new height based on the target width of 600 pixels
+            $targetWidth = 600;
+            $aspectRatio = $width / $height;
+            $newHeight = intval($targetWidth / $aspectRatio) + 10;
+            if($newHeight < 200) $newHeight = 200;
 
-                $path_info      = explode(".", $file_upload['filename']);
-                $filepath       = fetch_or_get($path_info[0],"");
-                $file_ext       = fetch_or_get($path_info[1],"");
-                $cropped_cover  = cl_strf("%s_600x200.%s", $filepath, $file_ext);
-                $data['status'] = 200;
+            $resizedImage = imagecreatetruecolor($targetWidth, $newHeight);
 
-                $prof_cover->crop(600, 200, true);
-                $prof_cover->save(cl_full_path($cropped_cover));
-
-                cl_delete_media($me['raw_cover']);
-                cl_delete_media($me['cover_orig']);
-
-                cl_update_user_data($me['id'], array(
-                    'cover' => $cropped_cover,
-                    'cover_orig' => $file_upload['filename']
-                ));
-
-                if ($sw != 600) {
-                    $prof_cover = new \Gumlet\ImageResize(cl_full_path($file_upload['filename']));
-                    $prof_cover->resize(600,(($sh * 600) / $sw), true);
-                    $prof_cover->save(cl_full_path($file_upload['filename']));
-                }
-
-                if ($cl['config']['as3_storage'] == 'on') {
-                    cl_upload2s3($cropped_cover);
-                    cl_upload2s3($file_upload['filename']);
-                }
-            } 
-
-            catch (Exception $e) {
-                $data['err_code']    = "invalid_req_data";
-                $data['err_message'] = $e->getMessage();
-                $data['status']      = 400;
+            switch ($type) {
+                case IMAGETYPE_JPEG:
+                    $sourceImage = imagecreatefromjpeg($file_upload['filename']);
+                    break;
+                case IMAGETYPE_PNG:
+                    $sourceImage = imagecreatefrompng($file_upload['filename']);
+                    break;
+                case IMAGETYPE_GIF:
+                    $sourceImage = imagecreatefromgif($file_upload['filename']);
+                    break;
+                default:
+                    throw new Exception('Unsupported image type');
             }
-        } 
 
-        else{
+            imagecopyresampled($resizedImage, $sourceImage, 0, 0, 0, 0, $targetWidth, $newHeight, $width, $height);
+
+            $newImage = imagecreatetruecolor(600, 200);
+
+            $cropX = intval(($targetWidth > 600) ? ($targetWidth - 600) / 2 : 0);
+            $cropY = intval(($newHeight > 200) ? ($newHeight - 200) / 2 : 0);
+
+            imagecopyresampled($newImage, $resizedImage, 0, 0, $cropX, $cropY, 600, 200, 600, 200);
+
+            switch ($type) {
+                case IMAGETYPE_JPEG:
+                    imagejpeg($newImage, $cropped_cover);
+                    break;
+                case IMAGETYPE_PNG:
+                    imagepng($newImage, $cropped_cover);
+                    break;
+                case IMAGETYPE_GIF:
+                    imagegif($newImage, $cropped_cover);
+                    break;
+            }
+
+            imagedestroy($sourceImage);
+            imagedestroy($resizedImage);
+            imagedestroy($newImage);
+
+            $data['status'] = 200;
+            cl_update_user_data($me['id'], array(
+                'cover' => $cropped_cover,
+                'cover_orig' => $file_upload['filename']
+            ));
+            if ($cl['config']['as3_storage'] == 'on') {
+                cl_upload2s3($cropped_cover);
+                cl_upload2s3($file_upload['filename']);
+            }
+
+        } else {
             $data['err_code'] = "invalid_req_data";
-            $data['status']   = 400;
+            $data['status'] = 400;
         }
     }
 }

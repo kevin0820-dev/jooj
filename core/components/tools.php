@@ -524,6 +524,43 @@ function cl_gen_path($data = array()) {
     return $filename;
 }
 
+function processImage($filename, $userId) {
+    require_once(cl_full_path("core/libs/PHPgumlet/ImageResize.php"));
+    require_once(cl_full_path("core/libs/PHPgumlet/ImageResizeException.php"));
+
+    $prof_cover = new \Gumlet\ImageResize(cl_full_path($filename));
+    $sw = $prof_cover->getSourceWidth();
+    $sh = $prof_cover->getSourceHeight();
+
+    $path_info = pathinfo($filename);
+    $cropped_cover = cl_strf("%s/%s_600x200.%s", $path_info['dirname'], $path_info['filename'], $path_info['extension']);
+
+    // Crop the image to 600x200
+    $prof_cover->crop(600, 200, true);
+    $prof_cover->save(cl_full_path($cropped_cover));
+
+    // Delete old cover images
+    cl_delete_media($me['raw_cover']);
+    cl_delete_media($me['cover_orig']);
+
+    // Update user data
+    cl_update_user_data($userId, array(
+        'cover' => $cropped_cover,
+        'cover_orig' => $filename
+    ));
+
+    // Resize if necessary
+    if ($sw != 600) {
+        $prof_cover->resize(600, intval(($sh * 600) / $sw), true);
+        $prof_cover->save(cl_full_path($filename));
+    }
+
+    // Upload to S3 if configured
+    if ($cl['config']['as3_storage'] == 'on') {
+        cl_upload2s3($cropped_cover);
+        cl_upload2s3($filename);
+    }
+}
 function cl_upload($data = array()) {
     global $cl;
 

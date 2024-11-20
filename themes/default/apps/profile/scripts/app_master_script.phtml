@@ -146,10 +146,11 @@
 										}, 1200);
 									}
 									else {
-										console.log("error");
+										console.log(data.status, "error");
 										app.submitting = false;
 
-										SMColibri.errorMSG();
+										cl_bs_notify(data.err_code ? data.err_code : data.err_message);
+										// SMColibri.errorMSG();
 									}
 								},
 								complete: function() {
