@@ -1340,12 +1340,6 @@ else if ($action == 'publish_new_post_symbol') {
         $post_text = cl_croptxt($post_text, $max_post_length);
         $thread_data = array();
 
-        if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
-            $data['status'] = 400;
-            $data['error']  = 'Your post was not submitted because you recently published the same content. Please try again later.';
-            return;
-        }
-
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
             $post_privacy = "everyone";
@@ -1430,6 +1424,11 @@ else if ($action == 'publish_new_post_symbol') {
                 $thread_id      = ((is_posnum($thread_id)) ? $thread_id : 0);
                 $post_text      = cl_upsert_htags($post_text);
                 $post_text      = cl_upsert_symbols($post_text);
+                if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
+                    $data['status'] = 400;
+                    $data['error']  = 'Your post was not submitted because you recently published the same content. Please try again later.';
+                    return;
+                }
                 $mentions       = cl_get_user_mentions($post_text);
                 $insert_data    = array(
                     "user_id"   => $me['id'],
