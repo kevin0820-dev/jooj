@@ -10,7 +10,7 @@
 @*************************************************************************@
  */
 
-SELECT posts.`id` as offset_id, posts.`publication_id`, posts.`type`, posts.`symbol_id`, posts.`comment_on`, posts.`time`
+SELECT posts.`id` as offset_id, posts.`publication_id`, posts.`type`, posts.`symbol_id`, posts.`comment_on`
 
 FROM `<?php echo($data['t_posts']); ?>` posts
 
@@ -18,11 +18,11 @@ INNER JOIN `<?php echo($data['t_pubs']); ?>` pubs ON posts.`publication_id` = pu
 
 WHERE posts.`symbol_id` = <?php echo($data['symbol_id']); ?>
 
-AND CAST(posts.`time` AS UNSIGNED) >= UNIX_TIMESTAMP(NOW() - INTERVAL 7 DAY)
+AND CAST(pubs.`time` AS UNSIGNED) >= UNIX_TIMESTAMP(NOW() - INTERVAL 7 DAY)
 
 AND pubs.`likes_count` > 0
 
-ORDER BY pubs.`likes_count` DESC, pubs.`replys_count` DESC, pubs.`reposts_count` DESC
+ORDER BY pubs.`likes_count` DESC, pubs.`replys_count` DESC, pubs.`reposts_count` DESC, pubs.`time` DESC
 
 <?php if(is_posnum($data['limit'])): ?>
 	LIMIT <?php echo($data['limit']); ?>
