@@ -4308,7 +4308,7 @@ body
   div.publication-data {
   flex: 1;
   padding-left: 15px;
-   /* overflow: hidden;  */
+   overflow: hidden; 
 }
 
 body
@@ -40299,22 +40299,6 @@ body
   div.timeline-posts-ls
   div.post-list-item
   div.post-list-item-content
-  div.publication-data {
-  flex: 1;
-  padding-left: 15px;
-   /* overflow: hidden;  */
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item
-  div.post-list-item-content
   div.publication-data
   div.publication-data-inner {
   width: 100%;
@@ -67822,17 +67806,6 @@ body.cl-app-thread
   div.publication--thread-container-inner
   div.publication--thread-data-holder.media {
   padding: 5px;
-}
-body.cl-app-thread
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.publication--thread-container
-  div.publication--thread-container-inner
-  div.publication--thread-data-holder
-  div.publication-data {
-  display: block;
-  width: 100%;
 }
 
 body.cl-app-thread
