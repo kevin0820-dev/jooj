@@ -2807,7 +2807,7 @@ body
   div.post-username
   a
   span.user-name-slug {
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
   color: var(--cl-secondary-text-color);
   font-weight: normal;
 }
@@ -6771,7 +6771,7 @@ body
   div.user-data__name
   a
   span:last-child {
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
   color: var(--cl-primary-text-color);
   font-weight: 500;
 }
@@ -11265,7 +11265,7 @@ body
   div.user-data__name
   a
   span:last-child {
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
   color: var(--cl-secondary-text-color);
   font-weight: normal;
 }
@@ -18137,7 +18137,7 @@ body.cl-app-home
   div.userdata
   div.username__name
   span:last-child {
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
   color: var(--cl-secondary-text-color);
   font-weight: normal;
   margin-top: 5px;
@@ -19152,7 +19152,7 @@ body.cl-app-chat
   div.contact-data__body-topline
   div.flex-item-left
   span:last-child {
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
   color: var(--cl-primary-text-color);
   font-weight: 500;
 }

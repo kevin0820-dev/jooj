@@ -4569,7 +4569,7 @@ body
   line-height: 14px;
   font-weight: 5400;
   color: var(--smc-main-text-color-2);
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 
 body
@@ -9945,7 +9945,7 @@ body
   color: var(--smc-main-text-color-2);
   line-height: 23px;
   margin-left: 0px;
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
   position: absolute;
   margin-top: 30px;
 }
@@ -14040,7 +14040,7 @@ font-size: 14px;
 line-height: 20px;
 color: var(--smc-main-text-color-2);
 margin-left: 3px;
-text-transform: lowercase;
+/* text-transform: lowercase; */
 }
 
 body.cl-app-symbol
@@ -28910,7 +28910,7 @@ body.cl-app-profile
   line-height: 20px;
   color: var(--smc-main-text-color-2);
   margin-left: 3px;
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 
 body.cl-app-profile
@@ -32310,7 +32310,7 @@ body.cl-app-thread
   line-height: 18px;
   width: 100%;
   color: var(--smc-main-text-color-2);
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 
 body.cl-app-thread
@@ -40558,29 +40558,6 @@ body
   div.publisher-info
   div.lp
   a
-  span {
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 5400;
-  color: var(--smc-main-text-color-2);
-  text-transform: lowercase;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
-  div.publisher-info
-  div.lp
-  a
   b
   span:hover,
 body
@@ -45868,26 +45845,6 @@ body
   white-space: nowrap;
   pointer-events: auto;
 }
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.topical-posts
-  div.topical-posts__body
-  div.topical-posts__item
-  a.htag
-  span {
-  font-size: 13px;
-  color: var(--smc-main-text-color-2);
-  line-height: 23px;
-  margin-left: 0px;
-  text-transform: lowercase;
-  position: absolute;
-  margin-top: 30px;
-}
-
 body
   main.main-content-container
   div.main-content-container-inner
@@ -49914,33 +49871,6 @@ div.stat-holder
 a.stat-holder-inner
 b {
 width: 100%;
-}
-
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-activity-stats-info
-div.stat-holder
-span.stat-holder-inner
-span,
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-activity-stats-info
-div.stat-holder
-a.stat-holder-inner
-span {
-font-size: 14px;
-line-height: 20px;
-color: var(--smc-main-text-color-2);
-margin-left: 3px;
-text-transform: lowercase;
 }
 
 body.cl-app-symbol
@@ -64796,33 +64726,6 @@ body.cl-app-profile
   div.profile-activity-stats-info
   div.stat-holder
   span.stat-holder-inner
-  span,
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-activity-stats-info
-  div.stat-holder
-  a.stat-holder-inner
-  span {
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--smc-main-text-color-2);
-  margin-left: 3px;
-  text-transform: lowercase;
-}
-
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-activity-stats-info
-  div.stat-holder
-  span.stat-holder-inner
   b,
 body.cl-app-profile
   main.main-content-container
@@ -68190,28 +68093,6 @@ body.cl-app-thread
   text-transform: capitalize;
   color: var(--smc-main-text-color);
   font-size: 15px;
-}
-
-body.cl-app-thread
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.publication--thread-container
-  div.publication--thread-container-inner
-  div.publication--thread-data-holder
-  div.publication-data
-  div.publication-data-inner
-  div.publisher-info
-  div.rp
-  div.flex-row
-  a.uname
-  span {
-  display: inline-block;
-  font-size: 13px;
-  line-height: 18px;
-  width: 100%;
-  color: var(--smc-main-text-color-2);
-  text-transform: lowercase;
 }
 
 body.cl-app-thread
