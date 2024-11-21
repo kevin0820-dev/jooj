@@ -1095,7 +1095,6 @@ _smc.userlbox.curr_el = false;
 				}
 			}
 			_smc.req_watch = function (event = false) {
-				console.log("fasaga");
 				if (event) {
 					if (_smc.is_logged()) {
 						var target = $(event);
@@ -1145,7 +1144,7 @@ _smc.userlbox.curr_el = false;
 						}
 						else {
 							target.data('action', 'unfollow');
-							target.text("<?php echo cl_translate("watching"); ?>");
+							target.text("Watching");
 							target.replaceClass('main-outline', 'main-inline');
 
 							delay(function () {
