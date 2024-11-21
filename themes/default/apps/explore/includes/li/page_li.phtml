@@ -17,12 +17,14 @@
 									<span class="user-name-holder__name">
 										<?php echo $cl['li']['name']; ?>
 									</span>
-
 									<?php if ($cl['li']['verified'] == '1'): ?>
 										<span class="user-name-holder__badge">
 											<?php echo cl_icon("verified_user_badge"); ?>
 										</span>
 									<?php endif; ?>
+									<span class="user-name-holder__name">
+										<?php echo $cl['li']['username']; ?>
+									</span>
 								</span>
 							</a>
 						</div>
