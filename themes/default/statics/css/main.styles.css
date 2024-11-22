@@ -28460,7 +28460,7 @@ body.cl-app-profile
   svg {
   width: 20px;
   height: 20px;
-  /* fill: var(--smc-main-text-color); */
+  fill: var(--smc-main-text-color);
 }
 
 body.cl-app-profile
@@ -47028,34 +47028,6 @@ body
   padding: 10px 15px;
 }
 
-main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  span.ctrl-inner.dropdown-toggle {
-  min-height: 36px;
-  border-color: var(--smc-main-border-color-darken-5);
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 9999px;
-  min-width: 36px;
-  margin-top: -5px;
-}
-
-main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  span.ctrl-inner.dropdown-toggle:hover {
-  background-color: var(--smc-main-border-color);
-}
-
 body
   div.modal
   div.post-likes-container
@@ -49272,31 +49244,6 @@ padding: 0px;
 box-shadow: none;
 }
 
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-a.ctrl-inner,
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-span.ctrl-inner {
-width: 100%;
-height: 100%;
-position: relative;
-display: inline-block;
-line-height: 30px;
-outline: 0;
-}
 
 body.cl-app-symbol
 main.main-content-container
@@ -49317,19 +49264,6 @@ min-width: 36px;
 margin-top: -5px;
 }
 
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-span.ctrl-inner
-svg.r-18jsvk2 {
-fill: var(--smc-main-text-color);
-stroke: none;
-}
 
 body.cl-app-symbol
 main.main-content-container
@@ -49341,70 +49275,6 @@ div.profile-page-ctrls
 button.ctrl-item
 a.ctrl-inner:hover {
 background-color: var(--smc-main-border-color);
-}
-
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-a.ctrl-inner
-svg,
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-span.ctrl-inner
-svg {
-width: 20px;
-height: 20px;
-fill: var(--smc-main-text-color);
-}
-
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-a.ctrl-inner:after,
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-a.ctrl-inner:before,
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-span.ctrl-inner:after,
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item
-span.ctrl-inner:before {
-display: none;
 }
 
 body.cl-app-symbol
@@ -63913,32 +63783,6 @@ body.cl-app-profile
   div.profile-main-info-holder
   div.profile-page-ctrls
   button.ctrl-item
-  a.ctrl-inner,
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  span.ctrl-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  /* display: inline-block; */
-  line-height: 30px;
-  outline: 0;
-}
-
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
   a.ctrl-inner {
   line-height: 30px;
   min-height: 36px;
@@ -63958,86 +63802,8 @@ body.cl-app-profile
   div.profile-main-info-holder
   div.profile-page-ctrls
   button.ctrl-item
-  span.ctrl-inner
-  svg.r-18jsvk2 {
-  fill: var(--smc-main-text-color);
-  stroke: none;
-}
-
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
   a.ctrl-inner:hover {
   background-color: var(--smc-main-border-color);
-}
-
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  a.ctrl-inner
-  svg,
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  span.ctrl-inner
-  svg {
-  width: 20px;
-  height: 20px;
-  /* fill: var(--smc-main-text-color); */
-}
-
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  a.ctrl-inner:after,
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  a.ctrl-inner:before,
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  span.ctrl-inner:after,
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item
-  span.ctrl-inner:before {
-  display: none;
 }
 
 body.cl-app-profile

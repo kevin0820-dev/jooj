@@ -259,7 +259,7 @@
 					<?php if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked'])): ?>
 						<?php if (not_empty($cl['is_logged'])): ?>
 							<button class="ctrl-item">
-								<a href="<?php echo ($cl['prof_user']['chaturl']); ?>" class="ctrl-inner" data-spa="true">
+								<a href="<?php echo ($cl['prof_user']['chaturl']); ?>" class="ctrl-inner dropdown-toggle flex justify-center items-center" data-spa="true">
 									<?php echo cl_ikon('envelope-h'); ?>
 								</a>
 							</button>
