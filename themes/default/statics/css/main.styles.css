@@ -43930,29 +43930,6 @@ body
   fill: var(--smc-main-text-color);
 }
 
-body main.main-content-container
- div.main-content-container-inner
-  div.left-sb-container 
-  div.sidebar__inner 
-  div.sidebar-v-nav-wrapper 
-  ul.sidebar-v-nav 
-  li.sidebar-v-nav-item.active 
-  span.icon svg * {
-  stroke-width: 0;
-  fill: var(--smc-main-text-color);
-}
-body main.main-content-container
- div.main-content-container-inner
-  div.left-sb-container 
-  div.sidebar__inner 
-  div.sidebar-v-nav-wrapper 
-  ul.sidebar-v-nav 
-  li.sidebar-v-nav-item 
-  span.icon svg * {
-  stroke-width: 0;
-  fill: var(--cl-secondary-text-color);
-}
-
 body
   main.main-content-container
   div.main-content-container-inner
