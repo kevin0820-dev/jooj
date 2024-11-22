@@ -8216,7 +8216,21 @@ body
   /* line-height: 18px; */
   max-height: 32px;
 }
-
+.right-sidebar-flex-button {
+  background-color: var(--smc-main-bg-color-4);
+  min-height: 32px;
+  min-width: 32px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 1px;
+  border-radius: 9999px;
+  color: var(--smc-main-bg-color);
+  font-weight: 700;
+  font-size: 15px;
+  /* line-height: 18px; */
+  max-height: 32px;
+}
 body
   main.main-content-container
   div.main-content-container-inner

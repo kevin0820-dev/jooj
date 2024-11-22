@@ -87,15 +87,15 @@
 								<span><?php echo ($row['posts']); ?> <?php echo cl_translate("Posts"); ?></span>
 							</a>
 							<?php if ($symbol_data['is_following']): ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="btn btn-custom md main-inline" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
 									<?php echo cl_translate("unwatch"); ?>
 								</button>
 							<?php elseif ($symbol_data['follow_requested']): ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="btn btn-custom main-inline md" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
 									<?php echo cl_translate("Pending"); ?>
 								</button>
 							<?php else: ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="btn btn-custom main-outline md" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
 									<?php echo cl_translate("watch"); ?>
 								</button>
 							<?php endif; ?>
@@ -142,15 +142,15 @@
 								<span><?php echo ($row['total']); ?> <?php echo cl_translate("Posts"); ?></span>
 							</a>
 							<?php if ($symbol_data['is_following']): ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="btn btn-custom md main-inline" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="right-sidebar-flex-button" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
 									<?php echo cl_translate("unwatch"); ?>
 								</button>
 							<?php elseif ($symbol_data['follow_requested']): ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="btn btn-custom main-inline md" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="right-sidebar-flex-button" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
 									<?php echo cl_translate("Pending"); ?>
 								</button>
 							<?php else: ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="btn btn-custom main-outline md" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
+								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['symbol']); ?>" class="right-sidebar-flex-button" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
 									<?php echo cl_translate("watch"); ?>
 								</button>
 							<?php endif; ?>
