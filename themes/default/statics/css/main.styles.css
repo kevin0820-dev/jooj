@@ -11505,7 +11505,7 @@ body div.modal.vh-center.show div.modal-dialog {
 }
 
 body div.modal div.modal-content {
-  background: var(--smc-main-bg-color);
+  background: #2C3A4A;
   border: none;
   box-shadow: var(--smc-main-box-shadow-eff);
   border-radius: var(--smc-main-border-rad1);
@@ -47325,7 +47325,7 @@ body div.modal.vh-center.show div.modal-dialog {
 }
 
 body div.modal div.modal-content {
-  background: var(--smc-main-bg-color);
+  background: #2C3A4A;
   border: none;
   box-shadow: var(--smc-main-box-shadow-eff);
   border-radius: var(--smc-main-border-rad1);

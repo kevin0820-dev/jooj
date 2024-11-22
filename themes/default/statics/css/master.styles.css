@@ -10975,7 +10975,7 @@ body div.modal.vh-center.show div.modal-dialog {
 }
 
 body div.modal div.modal-content {
-  background: var(--cl-primary-bg-color);
+  background:  #2C3A4A;
   border: none;
   box-shadow: var(--cl-primary-box-shadow);
   border-radius: 16px;
