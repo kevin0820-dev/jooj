@@ -1,68 +1,3 @@
-<?php
-// Включаем глобальные переменные и необходимые функции
-global $db, $cl;
-
-// Функция для добавления новой записи в таблицу T_SYMBOLS
-function cl_add_new_symbol($data = array()) {
-    global $db;
-    
-    if (empty($data) || !is_array($data)) {
-        return false;
-    }
-    $data['active'] = '1';
-    $data['verified'] = '1';
-    $data['user_id'] = '1';
-    $insert = $db->insert(T_SYMBOLS, $data);
-    return ($insert) ? true : false;
-}
-
-// Проверка отправки формы
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Получение данных из формы
-    $fname          = $_POST['fname'];
-    $about          = $_POST['about'];
-    $username       = $_POST['username'];
-    $email         = $_POST['email'];
-    $website          = $_POST['website'];
-    // $country_id     = $_POST['country_id'];
-    // $settings       = $_POST['settings'];
-    // $premium_settings = $_POST['premium_settings'];
-    // $blue_settings  = $_POST['blue_settings'];
-    // $swift          = $_POST['swift'];
-    // $csrf_token     = $_POST['csrf_token'];
-
-    // // Проверка CSRF токена
-    // if ($csrf_token !== fetch_or_get($cl['csrf_token'], 'none')) {
-    //     die("Invalid CSRF token");
-    // }
-
-    // Подготовка данных для вставки
-    $data = [
-        'fname'            => $fname,
-        'about'            => $about,
-        'username'         => $username,
-        'email'           => $email,
-        'website'            => $website,
-        
-        // 'country_id'       => $country_id,
-        // 'settings'         => json($settings),
-        // 'premium_settings' => json($premium_settings),
-        // 'blue_settings'    => json($blue_settings),
-        // 'swift'            => json($swift),
-        'joined'           => time(),
-        'last_active'      => time()
-    ];
-
-    // Вставка данных в базу данных
-    $insert = cl_add_new_symbol($data);
-
-    if ($insert) {
-        echo "Page created successfully!";
-    } else {
-        echo "Error creating page!";
-    }
-}
-?>
 
 <div class="cp-app-container" data-app="users">
     <div class="container-fluid">
@@ -159,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row">
                             <div class="col-sm-12 no-mb">
                                 <button data-an="submit-ctrl" type="submit" class="btn btn-primary">
-                                <?php echo cl_translate("Save changes"); ?>
+                                <?php echo cl_translate("Create"); ?>
                                 </button>
                             </div>
                         </div>
@@ -175,3 +110,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </div>
+<?php echo cl_template('cpanel/assets/pages_create/scripts/app_master_script'); ?>

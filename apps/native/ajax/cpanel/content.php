@@ -1664,3 +1664,40 @@ else if ($action == 'save_customcode') {
 		$data['status'] = 200;
 	}
 }
+
+else if ($action == 'create_symbol') {
+    $data['status']   = 404;
+	$data['err_code'] = 0;
+
+	$fname          = $_POST['fname'];
+    $about          = $_POST['about'];
+    $username       = $_POST['username'];
+    $email         = $_POST['email'];
+    $website          = $_POST['website'];
+	$data = [
+        'fname'            => $fname,
+        'about'            => $about,
+        'username'         => $username,
+        'email'           => $email,
+        'website'            => $website,
+        'joined'           => time(),
+        'last_active'      => time()
+    ];
+
+    $db->where('username', $data['username']);
+
+    $check = $db->getOne(T_SYMBOLS);
+    if (!empty($check)) {
+        return false;
+    }
+    if (empty($data) || !is_array($data)) {
+        return false;
+    }
+    $data['active'] = '1';
+    $data['verified'] = '1';
+    $data['user_id'] = '1';
+    $insert = $db->insert(T_SYMBOLS, $data);
+    if($insert){
+		$data['status'] = 200;
+	}
+}
