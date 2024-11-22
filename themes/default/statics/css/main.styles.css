@@ -9947,7 +9947,7 @@ body
   margin-left: 0px;
   /* text-transform: lowercase; */
   position: absolute;
-  margin-top: 30px;
+  margin-top: 45px;
 }
 
 body
@@ -11617,9 +11617,9 @@ body div.modal.confirm-actions-modal div.modal-dialog div.modal-body p {
 }
 
 body div.modal.confirm-actions-modal div.modal-dialog div.modal-footer {
-  justify-content: center;
   border-top: none !important;
   padding: 0px 20px 20px 20px !important;
+  justify-content: space-evenly;
 }
 
 body div.modal.info-popup-modal div.modal-body {
@@ -11646,9 +11646,9 @@ body div.modal.info-popup-modal div.modal-body p {
 }
 
 body div.modal.info-popup-modal div.modal-footer {
-  justify-content: center;
   border-top: none !important;
   padding: 0px 20px 20px 20px !important;
+  justify-content: space-evenly;
 }
 
 body div.modal.share-post-modal div.social-media-links {
@@ -47395,10 +47395,6 @@ body div.modal div.modal-content div.modal-body div.popup-modal-form {
   display: block;
 }
 
-body div.modal div.modal-content div.modal-footer {
-  border-top: 1px solid var(--smc-main-border-color);
-  padding: 15px;
-}
 
 body div.modal div.modal-content div.modal-footer button:first-child {
   margin: 0px;
@@ -47436,11 +47432,6 @@ body div.modal.confirm-actions-modal div.modal-dialog div.modal-body p {
   text-align: center;
 }
 
-body div.modal.confirm-actions-modal div.modal-dialog div.modal-footer {
-  justify-content: center;
-  border-top: none !important;
-  padding: 0px 20px 20px 20px !important;
-}
 
 body div.modal.info-popup-modal div.modal-body {
   padding: 20px !important;
@@ -47465,11 +47456,6 @@ body div.modal.info-popup-modal div.modal-body p {
   text-align: center;
 }
 
-body div.modal.info-popup-modal div.modal-footer {
-  justify-content: center;
-  border-top: none !important;
-  padding: 0px 20px 20px 20px !important;
-}
 
 body div.modal.share-post-modal div.social-media-links {
   display: flex;
@@ -47879,10 +47865,6 @@ body div.modal.cookie-alert-modal div.modal-content div.modal-body p {
 
 body div.modal.cookie-alert-modal div.modal-content div.modal-body p a {
   color: var(--smc-main-link-color);
-}
-
-body div.modal.cookie-alert-modal div.modal-content div.modal-footer {
-  border-top: none;
 }
 
 body div.modal.cookie-alert-modal div.modal-content div.modal-footer button {
