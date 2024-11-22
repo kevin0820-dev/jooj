@@ -1046,12 +1046,12 @@ _smc.userlbox.curr_el = false;
 						}).done(function (data) {
 							if (data.status == 200) {
 								if (data.status_code == '1') {
-									cl_bs_notify("<?php echo cl_translate("Post has been bookmarked!"); ?>", 500);
+									cl_bs_notify("<?php echo cl_translate("Post has been bookmarked!"); ?>", 3000);
 
 									$(_self).text("<?php echo cl_translate('Unbookmark'); ?>");
 								}
 								else {
-									cl_bs_notify("<?php echo cl_translate("Post has been deleted from bookmarks!"); ?>", 500);
+									cl_bs_notify("<?php echo cl_translate("Post has been deleted from bookmarks!"); ?>", 3000);
 									$(_self).text("<?php echo cl_translate('Bookmark'); ?>");
 								}
 							}
@@ -1754,7 +1754,7 @@ _smc.userlbox.curr_el = false;
 		var page_height = $(document).height();
 
 		clipboard.on('success', function (event) {
-			cl_bs_notify("<?php echo cl_translate("Copied to your clipboard!"); ?>", 500);
+			cl_bs_notify("<?php echo cl_translate("Copied to your clipboard!"); ?>", 1500);
 		});
 
 		clipboard.on('error', function (event) {

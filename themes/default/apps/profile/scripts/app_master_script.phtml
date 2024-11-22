@@ -139,7 +139,7 @@
 									console.log("cover upload ended");
 									if (data.status == 200) {
 										console.log("success");
-										cl_bs_notify("<?php echo cl_translate("Your new profile cover has been successfully saved!"); ?>");
+										cl_bs_notify("<?php echo cl_translate("Your new profile cover has been successfully saved!"); ?>", 3000);
 
 										setTimeout(function() {
 											SMColibri.spa_reload();
@@ -149,7 +149,7 @@
 										console.log(data.status, "error");
 										app.submitting = false;
 
-										cl_bs_notify(data.err_code ? data.err_code : data.err_message);
+										cl_bs_notify(data.err_code ? data.err_code : data.err_message, 3000);
 										// SMColibri.errorMSG();
 									}
 								},
@@ -184,7 +184,7 @@
 						        timeout: 600000,
 								success: function(data) {
 									if (data.status == 200) {
-										cl_bs_notify("<?php echo cl_translate("Your new avatar has been successfully saved!"); ?>");
+										cl_bs_notify("<?php echo cl_translate("Your new avatar has been successfully saved!"); ?>", 3000);
 										console.log('Avatar upload successful:', data);
 										setTimeout(function() {
 											SMColibri.spa_reload();
@@ -220,7 +220,7 @@
 								data: {position: _self.rep_position},
 							}).done(function(data) {
 								if (data.status == 200) {
-									cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>");
+									cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>", 3000);
 
 									setTimeout(function() {
 										SMColibri.spa_reload();

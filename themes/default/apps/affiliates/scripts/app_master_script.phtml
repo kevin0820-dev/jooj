@@ -85,7 +85,7 @@
 							if (data.status == 200) {
 								_app_.cancel_req();
 
-								cl_bs_notify("<?php echo cl_translate('Your withdrawal request has been successfully sent!'); ?>", 1000);
+								cl_bs_notify("<?php echo cl_translate('Your withdrawal request has been successfully sent!'); ?>", 3000);
 
 								setTimeout(function() {
 									SMColibri.spa_reload();
@@ -115,7 +115,7 @@
 							_self.attr("disabled", "true").text("<?php echo cl_translate('Please wait'); ?> ...");
 						}
 					}).done(function(data) {
-						cl_bs_notify("<?php echo cl_translate('Your withdrawal request has been successfully canceled!'); ?>", 1000);
+						cl_bs_notify("<?php echo cl_translate('Your withdrawal request has been successfully canceled!'); ?>", 3000);
 
 						setTimeout(function() {
 							SMColibri.spa_reload();
@@ -143,7 +143,7 @@
 								_self.attr("disabled", "true").text("<?php echo cl_translate('Please wait'); ?> ...");
 							}
 						}).done(function(data) {
-							cl_bs_notify("<?php echo cl_translate('Your withdrawal request has been successfully canceled!'); ?>", 1000);
+							cl_bs_notify("<?php echo cl_translate('Your withdrawal request has been successfully canceled!'); ?>", 3000);
 
 							setTimeout(function() {
 								cl_redirect("<?php echo cl_link("wallet"); ?>");

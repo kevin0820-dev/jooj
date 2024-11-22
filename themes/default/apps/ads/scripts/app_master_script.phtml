@@ -231,9 +231,9 @@
 								if (data.status == 200) {
 
 									<?php if ($cl['ad_data']['status'] == 'orphan'): ?>
-										cl_bs_notify("<?php echo cl_translate('Your new ad has been successfully created. Please wait..'); ?>");
+										cl_bs_notify("<?php echo cl_translate('Your new ad has been successfully created. Please wait..'); ?>", 3000);
 									<?php else: ?>
-										cl_bs_notify("<?php echo cl_translate('Your changes have been saved successfully!'); ?>");
+										cl_bs_notify("<?php echo cl_translate('Your changes have been saved successfully!'); ?>", 3000);
 									<?php endif; ?>
 
 									if (form_data.status == 'active') {
@@ -297,7 +297,7 @@
 									SMColibri.errorMSG();
 								}
 								else {
-									cl_bs_notify("<?php echo cl_translate("Your ad has been successfully deleted! Please wait..."); ?>", 1500);
+									cl_bs_notify("<?php echo cl_translate("Your ad has been successfully deleted! Please wait..."); ?>", 3000);
 									
 									setTimeout(function() {
 										SMColibri.spa_reload();

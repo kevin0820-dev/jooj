@@ -60,7 +60,7 @@
 						},
 						success: function(data) {
 							if (data.status == 200) {
-								cl_bs_notify("Thanks for the payment. Your receipt has been successfully received and is under review, which will take no more than 3 business days", 5000, "primary");
+								cl_bs_notify("Thanks for the payment. Your receipt has been successfully received and is under review, which will take no more than 3 business days", 7000, "primary");
 
 								setTimeout(function() {
 									SMColibri.spa_load("<?php echo cl_link("wallet"); ?>", false);

@@ -68,7 +68,7 @@
 							if (data.status == 200) {
 								_app_.done = true;
 
-								cl_bs_notify("<?php echo cl_translate("Your new email address has been successfully confirmed"); ?>", 1500);
+								cl_bs_notify("<?php echo cl_translate("Your new email address has been successfully confirmed"); ?>", 3000);
 
 								delay(function() {
 									cl_redirect("<?php echo cl_link("settings"); ?>");

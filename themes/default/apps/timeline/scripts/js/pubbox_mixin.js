@@ -383,11 +383,11 @@ var pubbox_form_app_mixin = Object({
 								_app_.video = data.video;
 							}
 							else if(data.err_code == "total_limit_exceeded") {
-								cl_bs_notify("<?php echo cl_translate('You cannot attach more than 1 video to this post.'); ?>", 1500, "danger");
+								cl_bs_notify("<?php echo cl_translate('You cannot attach more than 1 video to this post.'); ?>", 3000, "danger");
 							}
 							else {
 								if (data.error) {
-									cl_bs_notify(data.error, "danger");
+									cl_bs_notify(data.error, 3000, "danger");
 								}
 								else{
 									SMColibri.errorMSG();
@@ -655,7 +655,7 @@ var pubbox_form_app_mixin = Object({
 							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
 						}
 						else {
-							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 1200);
+							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 3000);
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
@@ -745,7 +745,7 @@ var pubbox_form_app_mixin = Object({
 							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
 						}
 						else {
-							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 1200);
+							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 3000);
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
@@ -814,7 +814,7 @@ var pubbox_form_app_mixin = Object({
 						}
 						else {
 							SMColibri.spa_reload();
-							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 1200);
+							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 3000);
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
@@ -1262,11 +1262,11 @@ var pubbox_form_app_mixin = Object({
 								_app_.video = data.video;
 							}
 							else if(data.err_code == "total_limit_exceeded") {
-								cl_bs_notify("<?php echo cl_translate('You cannot attach more than 1 video to this post.'); ?>", 1500, "danger");
+								cl_bs_notify("<?php echo cl_translate('You cannot attach more than 1 video to this post.'); ?>", 3000, "danger");
 							}
 							else {
 								if (data.error) {
-									cl_bs_notify(data.error, "danger");
+									cl_bs_notify(data.error, 3000, "danger");
 								}
 								else{
 									SMColibri.errorMSG();
@@ -1333,7 +1333,7 @@ var pubbox_form_app_mixin = Object({
 							}
 							else {
 								if (data.error) {
-									cl_bs_notify(data.error, "danger");
+									cl_bs_notify(data.error, 3000, "danger");
 								}
 								else{
 									SMColibri.errorMSG();

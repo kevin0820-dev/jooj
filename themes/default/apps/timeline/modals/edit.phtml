@@ -74,7 +74,7 @@
                                         success: function(data) {
                                             if (data.status == 200) {
                                                 $('div[data-app="post-text-edit"]').modal('hide');
-                                                cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>");
+                                                cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>", 3000);
 
                                                 if(SMColibri.curr_pn == "thread") {
                                                     setTimeout(function() {

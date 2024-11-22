@@ -190,7 +190,7 @@
 								},
 								success: function (data) {
 									if (data.status == 200) {
-										cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>");
+										cl_bs_notify("<?php echo cl_translate("Your changes has been successfully saved!"); ?>", 3000);
 									}
 
 									else if (data.err_code && data.err_code == 'doubling_uname') {
