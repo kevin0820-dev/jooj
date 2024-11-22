@@ -9,12 +9,6 @@
 # @ Copyright (c) 2020 - 2021 JOOJ Talk. All rights reserved.               @
 # @*************************************************************************@
 
-
-if (empty($cl["is_logged"])) {
-	cl_redirect("guest");
-}
-
-else {
 	require_once(cl_full_path("core/apps/coins/app_ctrl.php"));
 
 	$cl["page_title"] = cl_translate("Coins");
@@ -33,4 +27,3 @@ else {
 	}
 	$cl["query_result"] = cl_search_page($cl["search_query"], false, 30);
 	$cl["http_res"] = cl_template("coins/content");
-}

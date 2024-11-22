@@ -47,7 +47,13 @@
 																											echo ('active');
 																										} ?>" style="cursor: pointer;">
 					<span class="icon home">
-						<?php echo cl_ikon('home'); ?>
+						<?php
+							if ($cl['pn'] == 'feed') {
+								echo cl_ikon('home_active');
+							} else {
+								echo cl_ikon('home');
+							}
+						?>
 					</span>
 					<span class="nav-item-holder">
 						<a href="<?php echo cl_link('./'); ?>">
@@ -59,11 +65,35 @@
 																																			echo ('active');
 																																		} ?>" style="cursor: pointer;">
 					<span class="icon">
-						<?php echo cl_ikon('explore'); ?>
+						<?php
+							if ($cl['pn'] == 'explore') {
+								echo cl_ikon('explore_active');
+							} else {
+								echo cl_ikon('explore');
+							}
+						?>
 					</span>
 					<span class="nav-item-holder">
 						<a href="<?php echo cl_link("explore"); ?>">
 							<?php echo cl_translate('Explore'); ?>
+						</a>
+					</span>
+				</li>
+				<li data-navitem="coins" onclick="window.location.href='<?php echo cl_link('coins'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {	/* edited by kevin change into button with full width */
+																																				echo ('active');
+																																			} ?>">
+					<span class="icon">
+						<?php
+							if ($cl['pn'] == 'coins') {
+								echo cl_ikon('coins_active');
+							} else {
+								echo cl_ikon('coins');
+							}
+						?>
+					</span>
+					<span class="nav-item-holder">
+						<a href="<?php echo cl_link("coins"); ?>">
+							<?php echo cl_translate('Coins'); ?>
 						</a>
 					</span>
 				</li>
