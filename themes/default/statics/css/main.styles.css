@@ -20631,7 +20631,7 @@ body.cl-app-guest
   font-size: 18px;
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 839.9px) {
   body.cl-app-guest
     main.main-content-container
     div.main-content-container-inner
@@ -20827,7 +20827,7 @@ body.cl-app-guest
   div.autu-navbar
   div.autu-navbar__item.logo
   div.logo {
-  height: 200%;
+  height: 100%;
   margin-left: -13px;
 }
 
@@ -21978,6 +21978,87 @@ body.cl-app-guest
   margin-right: 0px;
 }
 
+@media (max-width: 839.9px) {
+  h3.login-home {
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+    margin-left: -15px;
+  }
+  
+  h1.login-home {
+    font-size: 34px;
+    text-align: center;
+    line-height: 34px !important;
+    width: 100%;
+    margin-left: -15px;
+  }
+  body.cl-app-guest
+  main.main-content-container
+  div.main-content-container-inner
+  div.welcome-page-container
+  div.welcome-page__inner
+  div.welcome-page__content
+  div.welcome-page__rp
+  div.welcome-page__rp-inner
+  div.welcome-page-form
+  div.welcome-page-form__body
+  div.auth-form
+  div.auth-form-holder
+  form.form
+  div.form-title {
+    width: 100%;
+  }
+  body.cl-app-guest
+  main.main-content-container
+  div.main-content-container-inner
+  div.welcome-page-container
+  div.welcome-page__inner
+  div.welcome-page__content
+  div.welcome-page__rp
+  div.welcome-page__rp-inner
+  div.welcome-page-form
+  div.welcome-page-form__body {
+    justify-content: center;
+    margin-bottom: 70px;
+    flex: 1;
+  }
+  body.cl-app-guest
+  main.main-content-container
+  div.main-content-container-inner
+  div.welcome-page-container
+  div.welcome-page__inner
+  div.welcome-page__content
+  div.welcome-page__rp
+  div.welcome-page__rp-inner
+  div.welcome-page-form
+  div.welcome-page-form__header
+  div.autu-navbar {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  body.cl-app-guest
+  main.main-content-container
+  div.main-content-container-inner
+  div.welcome-page-container
+  div.welcome-page__inner
+  div.welcome-page__content
+  div.welcome-page__rp
+  div.welcome-page__rp-inner
+  div.welcome-page-form
+  div.welcome-page-form__header
+  div.autu-navbar
+  div.autu-navbar__item.logo {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    height: 45px;
+    width: 45px;
+    text-align: center;
+  }
+}
 @media (max-width: 767.98px) {
   body.cl-app-guest
     main.main-content-container
@@ -22128,50 +22209,8 @@ body.cl-app-guest
     div.nav-link-holder
     a {
     line-height: 0px !important;
-  }
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__rp
-    div.welcome-page__rp-inner
-    div.welcome-page-form
-    div.welcome-page-form__body {
-    justify-content: center;
-    margin-bottom: 70px;
-    flex: 1;
-  }
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__rp
-    div.welcome-page__rp-inner
-    div.welcome-page-form
-    div.welcome-page-form__body
-    div.auth-form
-    div.auth-form-holder
-    form.form
-    div.form-title {
-    width: 100vw;
-  }
-  h1.login-home {
-    font-size: 34px;
-    text-align: center;
-    line-height: 34px !important;
-    width: 100%;
-    margin-left: -15px;
-  }
-  h3.login-home {
-    font-size: 24px;
-    text-align: center;
-    width: 100%;
-    margin-left: -15px;
-  }
+    }
+
   body.cl-app-guest
     main.main-content-container
     div.main-content-container-inner
@@ -22243,27 +22282,6 @@ body.cl-app-guest
     div.welcome-page-form__header {
     margin-bottom: 0px;
   }
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__rp
-    div.welcome-page__rp-inner
-    div.welcome-page-form
-    div.welcome-page-form__header
-    div.autu-navbar
-    div.autu-navbar__item.logo {
-    position: relative;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
-    height: 45px;
-    width: 45px;
-    text-align: center;
-  }
   .cp .rate {
     left: 50px !important;
   }
@@ -22310,20 +22328,7 @@ body.cl-app-guest
     input {
     padding: 0 0 0px 50px !important;
   }
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__rp
-    div.welcome-page__rp-inner
-    div.welcome-page-form
-    div.welcome-page-form__header
-    div.autu-navbar {
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+
   body
     main.main-content-container
     div.main-content-container-inner
@@ -36732,22 +36737,6 @@ div.publication--thread-container-inner div.publication--thread-data-holder {
   outline: 0px;
 }
 
-
-h1.login-home {
-  overflow-wrap: break-word;
-  line-height: 84px !important;
-  letter-spacing: -1.2px;
-  font-size: 49px;
-  font-weight: 700;
-}
-
-h3.login-home {
-  line-height: 36px;
-  font-size: 31px;
-  overflow-wrap: break-word;
-  font-weight: 700;
-  color: rgb(15, 20, 25);
-}
 .lp .go-back {
   width: 30px;
   height: 30px;
@@ -43308,16 +43297,6 @@ body
   padding: 20px;
   border: 1px solid var(--smc-main-border-color);
   border-radius: var(--smc-main-border-rad1);
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
-  div.guest-welcome
-  div.form-title {
-  display: none;
 }
 
 body
@@ -56038,37 +56017,6 @@ body.cl-app-guest
   div.welcome-page-container
   div.welcome-page__inner
   div.welcome-page__content
-  div.welcome-page__lp {
-  height: 100vh;
-  width: 45vw;
-  min-width: 440px;
-  background: transparent;
-  overflow: hidden;
-  position: relative;
-  border-right: 1px solid var(--smc-main-border-color);
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
-  div.welcome-page-container
-  div.welcome-page__inner
-  div.welcome-page__content
-  div.welcome-page__lp {
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
-  div.welcome-page-container
-  div.welcome-page__inner
-  div.welcome-page__content
   div.welcome-page__lp::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
@@ -56449,18 +56397,6 @@ body.cl-app-guest
   font-size: 18px;
 }
 
-@media (max-width: 1199.98px) {
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__lp {
-    display: none;
-  }
-}
-
 body.cl-app-guest
   main.main-content-container
   div.welcome-page-container
@@ -56549,24 +56485,6 @@ body.cl-app-guest
   div.welcome-page__rp-inner
   div.welcome-page-form
   div.welcome-page-form__header
-  div.autu-navbar {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  position: relative;
-  height: 100%;
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
-  div.welcome-page-container
-  div.welcome-page__inner
-  div.welcome-page__content
-  div.welcome-page__rp
-  div.welcome-page__rp-inner
-  div.welcome-page-form
-  div.welcome-page-form__header
   div.autu-navbar
   div.autu-navbar__item {
   margin-right: 20px;
@@ -56609,44 +56527,6 @@ body.cl-app-guest
   a {
   border-bottom-color: var(--smc-main-uiel-color);
   color: var(--smc-main-text-color);
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
-  div.welcome-page-container
-  div.welcome-page__inner
-  div.welcome-page__content
-  div.welcome-page__rp
-  div.welcome-page__rp-inner
-  div.welcome-page-form
-  div.welcome-page-form__header
-  div.autu-navbar
-  div.autu-navbar__item.logo {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  top: 0px;
-  height: 45px;
-  width: 45px;
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
-  div.welcome-page-container
-  div.welcome-page__inner
-  div.welcome-page__content
-  div.welcome-page__rp
-  div.welcome-page__rp-inner
-  div.welcome-page-form
-  div.welcome-page-form__header
-  div.autu-navbar
-  div.autu-navbar__item.logo
-  div.logo {
-  height: 200%;
-  margin-left: -13px;
 }
 
 body.cl-app-guest
@@ -56708,45 +56588,10 @@ body.cl-app-guest
   div.welcome-page__rp
   div.welcome-page__rp-inner
   div.welcome-page-form
-  div.welcome-page-form__body {
-  display: flex;
-  justify-content: left;
-  margin-bottom: 70px;
-  flex: 1;
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
-  div.welcome-page-container
-  div.welcome-page__inner
-  div.welcome-page__content
-  div.welcome-page__rp
-  div.welcome-page__rp-inner
-  div.welcome-page-form
   div.welcome-page-form__body
   div.auth-form {
   max-width: 400px;
   min-width: 370px;
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
-  div.welcome-page-container
-  div.welcome-page__inner
-  div.welcome-page__content
-  div.welcome-page__rp
-  div.welcome-page__rp-inner
-  div.welcome-page-form
-  div.welcome-page-form__body
-  div.auth-form
-  div.auth-form-holder
-  form.form
-  div.form-title {
-  display: block;
-  width: 45vw;
-  margin-bottom: 30px;
 }
 
 body.cl-app-guest
@@ -57944,49 +57789,7 @@ body.cl-app-guest
     a {
     line-height: 0px !important;
   }
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__rp
-    div.welcome-page__rp-inner
-    div.welcome-page-form
-    div.welcome-page-form__body {
-    justify-content: center;
-    margin-bottom: 70px;
-    flex: 1;
-  }
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__rp
-    div.welcome-page__rp-inner
-    div.welcome-page-form
-    div.welcome-page-form__body
-    div.auth-form
-    div.auth-form-holder
-    form.form
-    div.form-title {
-    width: 100vw;
-  }
-  h1.login-home {
-    font-size: 34px;
-    text-align: center;
-    line-height: 34px !important;
-    width: 100%;
-    margin-left: -15px;
-  }
-  h3.login-home {
-    font-size: 24px;
-    text-align: center;
-    width: 100%;
-    margin-left: -15px;
-  }
+
   body.cl-app-guest
     main.main-content-container
     div.main-content-container-inner
@@ -58058,27 +57861,6 @@ body.cl-app-guest
     div.welcome-page-form__header {
     margin-bottom: 0px;
   }
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__rp
-    div.welcome-page__rp-inner
-    div.welcome-page-form
-    div.welcome-page-form__header
-    div.autu-navbar
-    div.autu-navbar__item.logo {
-    position: relative;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
-    height: 45px;
-    width: 45px;
-    text-align: center;
-  }
   .cp .rate {
     left: 50px !important;
   }
@@ -58125,20 +57907,7 @@ body.cl-app-guest
     input {
     padding: 0 0 0px 50px !important;
   }
-  body.cl-app-guest
-    main.main-content-container
-    div.main-content-container-inner
-    div.welcome-page-container
-    div.welcome-page__inner
-    div.welcome-page__content
-    div.welcome-page__rp
-    div.welcome-page__rp-inner
-    div.welcome-page-form
-    div.welcome-page-form__header
-    div.autu-navbar {
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+
   body
     main.main-content-container
     div.main-content-container-inner
