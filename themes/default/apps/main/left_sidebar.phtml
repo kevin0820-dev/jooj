@@ -658,12 +658,12 @@
 				</span>
 			</div>
 		</div>
-
 	</div>
-	<?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true): ?>
-		<?php echo cl_template('main/bottom_navbar'); ?>
-	<?php endif; ?>
 </div>
+
+<?php if (not_empty($cl["is_logged"]) && in_array($cl["pn"], array("conversation")) != true): ?>
+	<?php echo cl_template('main/bottom_navbar'); ?>
+<?php endif; ?>
 
 <style>
 	.topical-posts-custom {
