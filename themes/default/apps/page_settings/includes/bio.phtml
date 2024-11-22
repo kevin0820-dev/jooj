@@ -36,7 +36,7 @@
 
 							<small class="col-grey">({{bio.length}})</small>
 						</label>
-						<textarea v-model.trim="$v.bio.$model" name="bio" style=" " class="form-control"
+						<textarea v-model.trim="$v.bio.$model" name="bio" class="form-control"
 							placeholder="<?php echo cl_translate("Please enter here about yourself"); ?>"
 							rows="3">{{bio}}</textarea>
 						<div class="invalid-main-feedback" v-if="is_valid_bio">
