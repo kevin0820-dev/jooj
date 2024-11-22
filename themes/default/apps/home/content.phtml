@@ -218,9 +218,6 @@
 							<?php foreach ($cl["trending"] as $cl['li']): ?>
 								<?php $count++; ?>
 								<?php echo cl_template('timeline/post'); ?>
-								<?php if ($count == 3) {
-									echo cl_template('home/follow');
-								} ?>
 							<?php endforeach; ?>
 						</div>
 						<?php if (count($cl["trending"]) == 30): ?>
