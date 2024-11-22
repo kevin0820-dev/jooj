@@ -62,6 +62,13 @@
 							class="css-1dbjc4n"></div></a>
 				</li>
 				<li role="presentation">
+					<a class="nav-link home_nav_btn" id="trending-tab" data-toggle="tab" href="#trending" role="tab"
+						aria-controls="trending" aria-selected="false">
+						<?php echo cl_translate("Trending"); ?>
+						<div class="css-1dbjc4n"></div>
+					</a>
+				</li>
+				<li role="presentation">
 					<a class="nav-link home_nav_btn" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile" aria-selected="false">
 						<?php echo cl_translate("Following"); ?>
@@ -89,6 +96,13 @@
 					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
 						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
 							class="css-1dbjc4n"></div></a>
+				</li>
+				<li role="presentation">
+					<a class="nav-link home_nav_btn" id="trending-tab" data-toggle="tab" href="#trending" role="tab"
+						aria-controls="trending" aria-selected="false">
+						<?php echo cl_translate("Trending"); ?>
+						<div class="css-1dbjc4n"></div>
+					</a>
 				</li>
 				<li role="presentation">
 					<a class="nav-link home_nav_btn" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
@@ -196,7 +210,45 @@
 					</div>
 				<?php endif; ?>
 			</div>
-
+			<div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+				<?php $count = 0; ?>
+				<?php if (not_empty($cl["trending"]) && is_array($cl['trending'])): ?>
+					<div class="timeline-posts-container">
+						<div class="timeline-posts-ls" data-an="entry-list">
+							<?php foreach ($cl["trending"] as $cl['li']): ?>
+								<?php $count++; ?>
+								<?php echo cl_template('timeline/post'); ?>
+								<?php if ($count == 3) {
+									echo cl_template('home/follow');
+								} ?>
+							<?php endforeach; ?>
+						</div>
+						<?php if (count($cl["trending"]) == 30): ?>
+							<div class="timeline-data-loader">
+								<button class="btn btn-custom main-outline lg" data-an="load-more">
+									<?php echo cl_translate("Show more"); ?>
+								</button>
+							</div>
+						<?php endif; ?>
+					</div>
+				<?php else: ?>
+					<div class="timeline-placeholder">
+						<div class="icon">
+							<div class="icon__bg">
+								<?php echo cl_icon('feed'); ?>
+							</div>
+						</div>
+						<div class="pl-message">
+							<h4>
+								<?php echo cl_translate("No data to display yet!"); ?>
+							</h4>
+							<p>
+								<?php echo cl_translate("It looks like the site has no content to display yet. All featured posts will be displayed on this page"); ?>
+							</p>
+						</div>
+					</div>
+				<?php endif; ?>
+			</div>
 			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 				<div class="timeline-posts-container" style="margin-top: 0px;">
 					<?php $count = 0; ?>

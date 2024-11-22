@@ -16,17 +16,17 @@ INNER JOIN (SELECT `type`, comment_on, publication_id from `<?php echo($data['t_
 				union all 
 				SELECT `type`, comment_on, publication_id from cl_posts_symbol)  AS merged_data on pub.id = merged_data.publication_id
 
-	WHERE `status` = "active"
+	WHERE pub.`status` = "active"
 
-	AND `target` = "publication"
+	AND pub.`target` = "publication"
 
-	AND `priv_wcs` = "everyone"
+	AND pub.`priv_wcs` = "everyone"
 
-    AND CAST(`time` AS UNSIGNED) >= UNIX_TIMESTAMP(NOW() - INTERVAL 7 DAY)
+    AND CAST(pub.`time` AS UNSIGNED) >= UNIX_TIMESTAMP(NOW() - INTERVAL 7 DAY)
 
-	AND `likes_count` > 0
+	AND pub.`likes_count` > 0
 
-	ORDER BY `likes_count` DESC, `replys_count` DESC, `reposts_count` DESC
+	ORDER BY pub.`likes_count` DESC, pub.`replys_count` DESC, pub.`reposts_count` DESC
 
 <?php if(is_posnum($data['limit'])): ?>
 	LIMIT <?php echo($data['limit']); ?>
