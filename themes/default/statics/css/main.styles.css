@@ -9,9 +9,11 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.unvisible{
+  visibility: collapse;
+}
 .pub-text .readAll{
-  position: absolute;
-  right: 30px;
+  color: var(--smc-main-link-color);
 }
 .user-data__body {
   color: var(--smc-main-text-color-2);
@@ -1331,7 +1333,7 @@ body
   padding-bottom:20px;
   max-width: 380px;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   display: flex;
   margin-left: auto;
   margin-right: auto;
