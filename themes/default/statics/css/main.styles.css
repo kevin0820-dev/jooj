@@ -1342,14 +1342,6 @@ body
 .follow-suggestion__placeholder {
   line-height: 20px;
 }
-body
-  main.main-content-container.guest-mode
-  div.main-content-container-inner
-  div.left-sb-container {
-  width: 320px;
-  min-width: 320px;
-  max-width: 320px;
-}
 
 body .login-form button.btn-custom.lg {
   padding: 0px 15px;
@@ -10365,14 +10357,6 @@ body
   div.main-content-container-inner
   div.left-sb-container {
   flex: 1;
-}
-
-body
-  main.main-content-container.guest-mode
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner {
-  padding-left: 30px !important;
 }
 
 body div.mobile-bottom-navbar {
@@ -37401,14 +37385,6 @@ body
 .follow-suggestion__placeholder {
   line-height: 20px;
 }
-body
-  main.main-content-container.guest-mode
-  div.main-content-container-inner
-  div.left-sb-container {
-  width: 320px;
-  min-width: 320px;
-  max-width: 320px;
-}
 
 body .login-form button.btn-custom.lg {
   padding: 0px 15px;
@@ -46193,21 +46169,6 @@ body
     padding-bottom: 50px;
     max-width: 100% !important;
   }
-}
-
-body
-  main.main-content-container.guest-mode
-  div.main-content-container-inner
-  div.left-sb-container {
-  flex: 1;
-}
-
-body
-  main.main-content-container.guest-mode
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner {
-  padding-left: 30px !important;
 }
 
 body div.mobile-bottom-navbar {
