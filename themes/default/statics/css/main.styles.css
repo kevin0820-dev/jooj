@@ -9,6 +9,14 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.disclaimer {
+  /* border: 1px solid white; */
+  padding: 5px;
+  border-radius: 10px;
+  color: var(--smc-main-text-color-2);
+  line-height: 1.5;
+  font-size: 13px;
+}
 .form-cta-link{
   text-align: center;
 }
@@ -19,7 +27,7 @@
   color: var(--smc-main-link-color);
 }
 .user-data__body {
-  color: var(--smc-main-text-color-2);
+  color: var(--smc-main-text-color);
 }
 .form-title, .login-or-signup, .form-cta-link {
   color: var(--smc-main-text-color);
@@ -8383,7 +8391,7 @@ body
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 5px;
   margin: 0;
   line-height: 0px;
   list-style-type: none;
@@ -10063,7 +10071,7 @@ body
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 5px;
   margin: 0;
   line-height: 0px;
   list-style-type: none;
@@ -21642,7 +21650,7 @@ body.cl-app-guest
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 5px;
   margin: 0;
   line-height: 0px;
   list-style-type: none;
@@ -44202,24 +44210,6 @@ body
   div.sidebar__inner
   div.mobile-sb-footer
   div.main-footer
-  ul.footer-nav {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-  line-height: 0px;
-  list-style-type: none;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
-  div.mobile-sb-footer
-  div.main-footer
   ul.footer-nav
   li.footer-nav-item {
   line-height: 0px;
@@ -45854,23 +45844,6 @@ body
   width: 100%;
   display: block;
   margin-bottom: 0px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-footer
-  ul.footer-nav {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-  line-height: 0px;
-  list-style-type: none;
 }
 
 body
@@ -57076,29 +57049,6 @@ body.cl-app-guest
   div.main-footer {
   display: flex;
   align-items: center;
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
-  div.welcome-page-container
-  div.welcome-page__inner
-  div.welcome-page__content
-  div.welcome-page__rp
-  div.welcome-page__rp-inner
-  div.welcome-page-form
-  div.welcome-page-form__footer
-  div.welcome-footer
-  div.main-footer
-  ul.footer-nav {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-  line-height: 0px;
-  list-style-type: none;
 }
 
 body.cl-app-guest
