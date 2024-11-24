@@ -1687,7 +1687,7 @@ body.modal-open {
     display: block;
   }
   .common-follows__item.common-follows__item_total span {
-    margin-top:3px;
+    margin-top:-3px;
   }
   .left_account {
     display: flex;
@@ -10368,13 +10368,6 @@ body
     padding-bottom: 50px;
     max-width: 100% !important;
   }
-}
-
-body
-  main.main-content-container.guest-mode
-  div.main-content-container-inner
-  div.left-sb-container {
-  flex: 1;
 }
 
 body div.mobile-bottom-navbar {
@@ -36667,12 +36660,6 @@ body
 .terms {
   color: var(--smc-main-text-color-2) !important;
 }
-.common-follows__item.common-follows__item_total span {
-  font-size: 12px;
-margin-top: -1px;
-margin-right: 5px;
-position: absolute;
-}
 .btn-close
 /* , .sidebar__inner .cp img */
  {
@@ -37720,9 +37707,6 @@ body.modal-open {
     width: 24px;
     height: 24px;
     display: block;
-  }
-  .common-follows__item.common-follows__item_total span {
-    margin-top:3px;
   }
   body
     main.main-content-container
