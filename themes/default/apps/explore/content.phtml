@@ -29,13 +29,7 @@
 			
 			<form data-an="search-form" class="form timeline-searchbar__form" v-on:submit="search_entries($event)" autocomplete="off">
 				<div class="keyword-input">
-				<?php if (not_empty($cl["is_logged"])) : ?>
 					<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')" type="text" placeholder="<?php echo cl_translate("Type a query and press Enter. E.g. #hashtag, username, etc.."); ?>" autofocus="true">
-					<?php else : ?>
-						<input v-on:input="search_entries" v-model="search_query" v-bind:disabled="(empty_list == '1')"
-							type="text"  data-toggle="modal" data-target="#loginModal" placeholder="<?php echo cl_translate("search_form"); ?> {%config name%}"
-							autofocus="true">
-							<?php endif; ?>
 					<span class="keyword-input__left-icon">
 						<?php echo cl_icon('search'); ?>
 					</span>
