@@ -4293,21 +4293,6 @@ body
     max-width: 30px;
     min-width: 30px;
   }
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.timeline-container-wrapper
-    div.timeline-container-inner
-    div.timeline-container
-    div.timeline-posts-container
-    div.timeline-posts-ls
-    div.post-list-item
-    div.post-list-item-content
-    div.publisher-avatar
-    div.avatar-holder {
-    width: 30px;
-    height: 30px;
-  }
 }
 
 body
@@ -32166,8 +32151,8 @@ body.cl-app-thread
     div.publisher-info
     div.lp
     div.avatar-holder {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -40271,8 +40256,8 @@ body
     div.post-list-item-content
     div.publisher-avatar
     div.avatar-holder {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -67366,37 +67351,6 @@ body.cl-app-thread
 }
 
 @media (max-width: 1199.98px) {
-  body.cl-app-thread
-    main.main-content-container
-    div.main-content-container-inner
-    div.timeline-container
-    div.publication--thread-container
-    div.publication--thread-container-inner
-    div.publication--thread-data-holder
-    div.publication-data
-    div.publication-data-inner
-    div.publisher-info
-    div.lp {
-    min-width: 30px;
-    max-width: 30px;
-    flex-basis: 30px;
-  }
-  body.cl-app-thread
-    main.main-content-container
-    div.main-content-container-inner
-    div.timeline-container
-    div.publication--thread-container
-    div.publication--thread-container-inner
-    div.publication--thread-data-holder
-    div.publication-data
-    div.publication-data-inner
-    div.publisher-info
-    div.lp
-    div.avatar-holder {
-    width: 30px;
-    height: 30px;
-  }
-}
 
 body.cl-app-thread
   main.main-content-container
