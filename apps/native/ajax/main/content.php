@@ -2581,7 +2581,7 @@ else if($action == 'search') {
             }
 
             if (not_empty($user_result)) {
-                $html_arr[] = '<h3 class="px-3 text-[14px] font-semibold pt-3" style="color: var(--cl-secondary-text-color);">Users</h3>'; 
+                $html_arr[] = '<h3 class="px-3 text-[14px] font-semibold pt-3">Users</h3>'; 
                 foreach ($user_result as $cl['li']) {
                     $html_arr[] = cl_template('main/includes/search/users_li');
                 }
