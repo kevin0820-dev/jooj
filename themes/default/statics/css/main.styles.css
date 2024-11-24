@@ -9,6 +9,9 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.form-cta-link{
+  text-align: center;
+}
 .unvisible{
   visibility: collapse;
 }
