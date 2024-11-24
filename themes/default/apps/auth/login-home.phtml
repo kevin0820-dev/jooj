@@ -176,11 +176,10 @@
 					</a>
 				<?php endif; ?>
 			</div>
-
-		<?php endif; ?>
 		</div>
-		<div class="form-group no-mb">
-			<div class="form-cta-link">
+	<?php endif; ?>
+	<div class="form-group no-mb">
+		<div class="form-cta-link">
 				<span>
 					<?php echo cl_translate("Don't have an account?"); ?>
 				</span>
@@ -188,6 +187,6 @@
 					<?php echo cl_translate("Sign up"); ?>
 				</a>
 			</div>
-		</div>
-		<input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
+	</div>
+	<input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
 </form>
