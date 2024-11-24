@@ -1509,6 +1509,24 @@ body.modal-open {
 ::-webkit-scrollbar {
   width: 1em;
 }
+@media (min-width: 840px) {
+  body.cl-app-guest
+  main.main-content-container
+  div.main-content-container-inner
+  div.welcome-page-container
+  div.welcome-page__inner
+  div.welcome-page__content
+  div.welcome-page__rp
+  div.welcome-page__rp-inner
+  div.welcome-page-form
+  div.welcome-page-form__header
+  div.autu-navbar
+  div.autu-navbar__item.logo
+  div.logo
+  img {
+    visibility: collapse !important;
+  }
+}
 @media (min-width: 1024px) {
   .h-laptop {
     display: none !important;
@@ -4302,7 +4320,7 @@ body
   div.publication-data {
   flex: 1;
   padding-left: 15px;
-   overflow: hidden; 
+   overflow: hidden;
 }
 
 body
@@ -11491,10 +11509,11 @@ body div.modal.vh-center.show div.modal-dialog {
 }
 
 body div.modal div.modal-content {
-  background: #2C3A4A;
+  background: var(--smc-main-bg-color);
   border: none;
   box-shadow: var(--smc-main-box-shadow-eff);
   border-radius: var(--smc-main-border-rad1);
+  border: 1px solid white;
 }
 
 body div.modal div.modal-content div.modal-header {
@@ -47257,13 +47276,6 @@ body div.modal.vh-center.show {
 
 body div.modal.vh-center.show div.modal-dialog {
   flex: 1;
-}
-
-body div.modal div.modal-content {
-  background: #2C3A4A;
-  border: none;
-  box-shadow: var(--smc-main-box-shadow-eff);
-  border-radius: var(--smc-main-border-rad1);
 }
 
 body div.modal div.modal-content div.modal-header {
