@@ -9,6 +9,9 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.timeline-container-inner {
+  height: 100%;
+}
 .transparent {
   background: transparent !important;
 }
@@ -3856,7 +3859,7 @@ body
   font-weight: 700;
   color: var(--smc-main-text-color);
   text-decoration: none;
-  max-width: 200px;
+  max-width: 250px;
   /* min-width: 160px; */
   overflow: hidden;
   text-overflow: ellipsis;
@@ -39789,29 +39792,6 @@ body
   display: block;
   padding: 0;
   margin: 0;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-header
-  div.lp
-  div.nav-link-holder
-  a {
-  padding: 0;
-  margin: 0;
-  font-size: 20px;
-  line-height: 30px;
-  font-weight: 700;
-  color: var(--smc-main-text-color);
-  text-decoration: none;
-  max-width: 200px;
-  /* min-width: 160px; */
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 body
