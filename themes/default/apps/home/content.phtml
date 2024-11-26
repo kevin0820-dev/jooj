@@ -57,7 +57,7 @@
 		<div class="nav-container-top">
 			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li role="presentation">
-					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
+					<a class="nav-link home_nav_btn active" id="home-tab" data-toggle="tab" href="#home" role="tab"
 						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
 							class="css-1dbjc4n"></div></a>
 				</li>
@@ -93,7 +93,7 @@
 		<div class="nav-container nav-container-bottom">
 			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li role="presentation">
-					<a class="nav-link active home_nav_btn" id="home-tab" data-toggle="tab" href="#home" role="tab"
+					<a class="nav-link home_nav_btn active" id="home-tab" data-toggle="tab" href="#home" role="tab"
 						aria-controls="home" aria-selected="true"><?php echo cl_translate("For You"); ?> <div
 							class="css-1dbjc4n"></div></a>
 				</li>
@@ -210,7 +210,7 @@
 					</div>
 				<?php endif; ?>
 			</div>
-			<div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+			<div class="tab-pane fade" id="trending" role="tabpanel" aria-labelledby="trending-tab">
 				<?php $count = 0; ?>
 				<?php if (not_empty($cl["trending"]) && is_array($cl['trending'])): ?>
 					<div class="timeline-posts-container">
