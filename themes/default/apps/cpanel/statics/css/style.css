@@ -2944,7 +2944,7 @@ fieldset .input-group-lg .touchspin {
 
 .alert [data-notify='icon'] {
     margin-right: 10px;
-    line-height: 20px;
+    line-height: 30px;
     position: absolute
 }
 
@@ -4786,7 +4786,7 @@ strong~p {
     margin: 0 5px;
     cursor: pointer;
     color: #2c323f;
-    line-height: 20px
+    line-height: 30px
 }
 
 .card .card-header .card-header-right i.icofont-refresh {
@@ -7763,7 +7763,7 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
     height: 48px;
     background: var(--theme-deafult);
     font-size: 22px;
-    line-height: 20px
+    line-height: 30px
 }
 
 .f1 .f1-steps .f1-step.active p {
@@ -7781,7 +7781,7 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
     background: #898989;
     font-size: 16px;
     color: #fff;
-    line-height: 20px;
+    line-height: 30px;
     border-radius: 50%
 }
 
@@ -15373,7 +15373,7 @@ p.data-attributes svg {
     font-size: 16px;
     font-weight: 600;
     color: #333333;
-    line-height: 20px;
+    line-height: 30px;
     margin-bottom: 20px;
     width: 100%
 }
@@ -15381,7 +15381,7 @@ p.data-attributes svg {
 .order-box .sub-total li .count {
     position: relative;
     font-size: 18px;
-    line-height: 20px;
+    line-height: 30px;
     font-weight: 400;
     width: 35%;
     float: right;
@@ -15396,7 +15396,7 @@ p.data-attributes svg {
     margin-top: -4px;
     position: relative;
     font-size: 18px;
-    line-height: 20px;
+    line-height: 30px;
     color: var(--theme-deafult);
     font-weight: 400;
     width: 35%;
@@ -15414,7 +15414,7 @@ p.data-attributes svg {
     display: block;
     font-weight: 400;
     color: #333333;
-    line-height: 20px;
+    line-height: 30px;
     font-size: 18px
 }
 
@@ -15429,14 +15429,14 @@ p.data-attributes svg {
     display: block;
     font-size: 15px;
     color: #444444;
-    line-height: 20px;
+    line-height: 30px;
     margin-bottom: 20px
 }
 
 .order-box .qty li span {
     float: right;
     font-size: 18px;
-    line-height: 20px;
+    line-height: 30px;
     color: #232323;
     font-weight: 400;
     width: 35%;
@@ -26604,7 +26604,7 @@ footer {
 .user-profile .hovercard .info .desc {
     overflow: hidden;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 30px;
     color: #59667a;
     text-overflow: ellipsis;
     text-transform: uppercase
