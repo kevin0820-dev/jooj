@@ -680,6 +680,8 @@ function cl_upload2s3($filename = null, $del_localfile = "Y") {
             try {
 
                 include_once(cl_full_path("core/libs/s3/vendor/autoload.php"));
+                
+                return false;
 
                 $amazon_s3        = new \Aws\S3\S3Client(array(
                     'version'     => 'latest',
