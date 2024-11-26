@@ -13487,7 +13487,7 @@ height: 25px;
 cursor: pointer;
 background: transparent;
 border: none;
-margin-left: 20px;
+/* margin-left: 20px; */
 outline: 0;
 padding: 0px;
 box-shadow: none;
@@ -49129,25 +49129,6 @@ padding: 0px 15px;
 margin-bottom: 10px;
 }
 
-body.cl-app-symbol
-main.main-content-container
-div.main-content-container-inner
-div.timeline-container
-div.timeline-prof-info-area
-div.profile-main-info-holder
-div.profile-page-ctrls
-button.ctrl-item {
-width: 25px;
-height: 25px;
-cursor: pointer;
-background: transparent;
-border: none;
-margin-left: 20px;
-outline: 0;
-padding: 0px;
-box-shadow: none;
-}
-
 
 body.cl-app-symbol
 main.main-content-container
@@ -59211,27 +59192,6 @@ body.cl-app-symbol
   div.modal-body
   form
   div.swift-ctrls-holder
-  button.ctrl-item {
-  background: transparent;
-  border: none;
-  outline: none;
-  padding: 0px;
-  margin: 0 15px 0 0;
-  box-shadow: none;
-  line-height: 0px;
-  width: 20px;
-  height: 35px;
-  border-radius: 10em;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-}
-
-body.cl-app-symbol
-  div.modal.modal-swift-pubbox
-  div.modal-body
-  form
-  div.swift-ctrls-holder
   button.ctrl-item
   svg {
   width: 22px;
@@ -60971,27 +60931,6 @@ body.cl-app-home
   flex-wrap: nowrap;
   align-items: center;
   margin-bottom: 10px;
-}
-
-body.cl-app-home
-  div.modal.modal-swift-pubbox
-  div.modal-body
-  form
-  div.swift-ctrls-holder
-  button.ctrl-item {
-  background: transparent;
-  border: none;
-  outline: none;
-  padding: 0px;
-  margin: 0 15px 0 0;
-  box-shadow: none;
-  line-height: 0px;
-  width: 20px;
-  height: 35px;
-  border-radius: 10em;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
 }
 
 body.cl-app-home
@@ -63628,25 +63567,6 @@ body.cl-app-profile
   align-items: center;
   padding: 0px 15px;
   margin-bottom: 10px;
-}
-
-body.cl-app-profile
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-prof-info-area
-  div.profile-main-info-holder
-  div.profile-page-ctrls
-  button.ctrl-item {
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  margin-left: 20px;
-  outline: 0;
-  padding: 0px;
-  box-shadow: none;
 }
 
 body.cl-app-profile
