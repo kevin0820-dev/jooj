@@ -2,9 +2,14 @@
 	"use strict";
 
 	$(document).ready(function($) {
-		<?php echo cl_js_template('apps/symbol/scripts/js/symbolpbox_mixin'); ?>
 
 		var _app     = $('[data-app="symbol"]');
+		var count = 0;
+		var login = <?php echo $cl['is_logged'] ? 1 : 0; ?>;
+
+		<?php if($cl['is_logged']): ?>
+			<?php echo cl_js_template('apps/symbol/scripts/js/symbolpbox_mixin'); ?>
+		<?php endif; ?>
 
 		SMColibri.PS = Object({
 			app: $('[data-app="symbol"]'),
@@ -13,7 +18,7 @@
 			init_app: function() {
 				var _self_ = this;
 
-				if ($("form#vue-pubbox-app-1").length) {
+				if ($("form#vue-pubbox-app-1").length && login) {
 					new Vue({
 						el:"#vue-pubbox-app-1",
 						mixins: [pubbox_form_app_mixin]
@@ -21,12 +26,24 @@
 				}
 				
 				$(window).on('scroll', function() {
+
+					var y = window.scrollY;
+					if (y > 120) $("#priceHeader").slideDown();
+					else $("#priceHeader").slideUp();
+					if (y > 355) $("#selectionPane").slideDown();
+					else $("#selectionPane").slideUp();
+
 					var navbarItem = document.getElementsByClassName("navbar-item-btn btn-top active");
-					if (navbarItem && navbarItem[0].innerHTML.includes("Latest")){
+					if (navbarItem && navbarItem[1].innerHTML.includes("Latest")){
 						if (SMColibri.curr_pn == "symbol") {
 							if(($(window).scrollTop() + $(window).height()) > ($(document).height() - 100)) {
-								if (cl_empty(_self_.timeline.loading) && _self_.timeline.loadmore) {
+								if (_self_.timeline.loadmore) {
+									if(!login && count >= 1){
+										$('#loginModal').modal('show');
+										return;
+									}
 									_self_.timeline.load_old();
+									count++;
 								}
 							}
 						}
@@ -99,7 +116,7 @@
 			}
 		});
 
-		<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+		<?php if ($cl["config"]["swift_system_status"] == "on" && $cl['is_logged']): ?>
 
 			new Swiper("div#homepage-swifts-slider", {
 				slidesPerView: "auto",
@@ -679,62 +696,7 @@
 			});
 		<?php endif; ?>
 
-		<?php if (empty($cl['prof_user']['is_blocked']) && not_empty($cl["can_view"])): ?>
-			SMColibri.PS.timeline = Object({
-				loading: false,
-				loadmore: true,
-				load: function() {
-					var post_ls = SMColibri.PS.app.find('[data-an="entry-list"]');
-		            var offset  = 0;
-		            var _self_  = this;
-		 
-		            if (post_ls.find('div[data-post-offset]').length) {
-		            	offset = post_ls.find('div[data-post-offset]').last().data('post-offset');
-		            }
-
-		            if ($.isNumeric(offset) && offset) {
-						$.ajax({
-							url: '<?php echo cl_link("native_api/symbol/load_more"); ?>',
-							type: 'GET',
-							dataType: 'json',
-							data: {
-								offset: offset, 
-								type: SMColibri.PS.page_tab,
-								prof_id: SMColibri.PS.prof_user
-							},
-							beforeSend: function() {
-								_self_.loading = true;
-							}
-						}).done(function(data) {
-							if (data.status == 200) {
-								post_ls.append($(data.html));
-							}
-							else{
-								_self_.loadmore = false;
-							}
-						}).always(function() {
-							_self_.loading = false;
-
-							delay(function() {
-								SMColibri.fix_sidebars();
-							}, 50);
-						});
-					}
-				}
-			});
-
-			$(window).on('scroll', function() {
-				if (SMColibri.curr_pn == "symbol") {
-					if(($(window).scrollTop() + $(window).height()) > ($(document).height() - 100)) {
-				    	if (cl_empty(SMColibri.PS.timeline.loading) && SMColibri.PS.timeline.loadmore) {
-			                SMColibri.PS.timeline.load();
-			       		}
-				    }
-				}
-			});
-		<?php endif; ?>
-		
-		<?php if (not_empty($cl['prof_user']['owner'])): ?>
+		<?php if (not_empty($cl['prof_user']['owner']) && $cl['is_logged']): ?>
 			SMColibri.PS.profile_report = new Vue({
 				el: "#cl-report-symbol-vue-app",
 				data: {

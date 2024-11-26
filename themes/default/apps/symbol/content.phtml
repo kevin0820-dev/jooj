@@ -1,45 +1,46 @@
 <div class="timeline-container" data-app="symbol">
 	<?php
 
-	use Aws\DynamoDb\NumberValue;
+		use Aws\DynamoDb\NumberValue;
 
-	$coin_id = strtoupper($cl['prof_user']['symbol_price']);
-	echo "<script>console.log('Coin ID: " . $coin_id . "');</script>";
-	$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
-	$response = curl_exec($ch);
-	if ($response === false) {
-		echo 'Curl error: ' . curl_error($ch);
-		curl_close($ch);
-		exit;
-	}
-	curl_close($ch);
-	$data = json_decode($response, true);
-	if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
-		$price = (float) $data['RAW'][$coin_id]['USD']['PRICE'];
-
-		if ($price >= 1) {
-			$formatted_price = number_format($price, 2);
-		} else {
-			$significant_digits = 4;
-			$precision = $significant_digits - floor(log10(abs($price))) - 1;
-			$formatted_price = number_format($price, $precision, '.', '');
+		$coin_id = strtoupper($cl['prof_user']['symbol_price']);
+		echo "<script>console.log('Coin ID: " . $coin_id . "');</script>";
+		$url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
+		$response = curl_exec($ch);
+		if ($response === false) {
+			echo 'Curl error: ' . curl_error($ch);
+			curl_close($ch);
+			exit;
 		}
+		curl_close($ch);
+		$data = json_decode($response, true);
+		if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
+			$price = (float) $data['RAW'][$coin_id]['USD']['PRICE'];
 
-		$cl['coin_one'] = [
-			'price' => $formatted_price,
-			'high_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
-			'low_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
-			'change_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
-			'change_pct_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
-		];
-	} else {
-		$cl['coin_one'] = [];
-	}
+			if ($price >= 1) {
+				$formatted_price = number_format($price, 2);
+			} else {
+				$significant_digits = 4;
+				$precision = $significant_digits - floor(log10(abs($price))) - 1;
+				$formatted_price = number_format($price, $precision, '.', '');
+			}
+
+			$cl['coin_one'] = [
+				'price' => $formatted_price,
+				'high_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['HIGH24HOUR'], 2),
+				'low_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['LOW24HOUR'], 2),
+				'change_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGE24HOUR'], 2),
+				'change_pct_24h' => number_format((float)$data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2)
+			];
+		} else {
+			$cl['coin_one'] = [];
+		}
 	?>
+
 	<div class="h-laptop">
 		<div class="mobile-bottom-navbar2" data-app="mobile-navbar">
 			<div class="mobile-bottom-navbar-inner">
@@ -393,84 +394,80 @@
 								<?php if (not_empty($cl["can_view"])): ?>
 									<a href="<?php echo cl_link(cl_strf('symbol/%s/watchers', $cl['prof_user']['raw_sname'])); ?>"
 										class="stat-holder-inner" style="display: flex;">
-									<?php else: ?>
-										<a href="javascript:void(0);" class="stat-holder-inner" style="display: flex;"
+								<?php else: ?>
+									<a href="javascript:void(0);" class="stat-holder-inner" style="display: flex;"
 											onclick="SMColibri.PS.profile.privacy_alert();">
-										<?php endif; ?>
+								<?php endif; ?>
 										<span style="width: 28px; fill: var(--smc-main-text-color); margin-right: 5px;">
 											<?php echo cl_ikon("people"); ?>
 										</span>
 										<b>
 											<?php echo cl_number($cl['prof_user']['followers']); ?>
 										</b>
-										</a>
+									</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<?php if (not_empty($cl["is_logged"])): ?>
 					<!-- Start Add Post  -->
-					<div class="flex flex-col  w-full ">
-						<div class="homepage">
-							<div class="main-timeline-pubbox-wrapper custom-lineheight px-3 pt-3 py-2">
-								<?php $cl['pb_id'] = 1;
-								echo cl_template('timeline/symbolbox'); ?>
-							</div>
-							<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
-								<div class="homepage__swifts hidden">
-									<div class="swifts-slider">
-										<div class="swiper" id="homepage-swifts-slider">
-											<div class="swiper-wrapper">
-												<div class="swiper-slide">
-													<div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
-														<div class="swift-item__body create-swift">
-															<div class="swift-item__avatar">
-																<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
-															</div>
-															<span class="add-ikon">
-																<?php echo cl_ikon("plus"); ?>
-															</span>
+				<div class="flex flex-col  w-full <?php if (empty($cl["is_logged"])): ?>hidden<?php endif; ?>">
+					<div class="homepage">
+						<div class="main-timeline-pubbox-wrapper custom-lineheight px-3 pt-3 py-2">
+							<?php $cl['pb_id'] = 1;
+							echo cl_template('timeline/symbolbox'); ?>
+						</div>
+						<?php if ($cl["config"]["swift_system_status"] == "on"): ?>
+							<div class="homepage__swifts hidden">
+								<div class="swifts-slider">
+									<div class="swiper" id="homepage-swifts-slider">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												<div class="swift-item" onclick="SMColibri.PS.new_swift.add_swift();">
+													<div class="swift-item__body create-swift">
+														<div class="swift-item__avatar">
+															<img src="<?php echo ($me['avatar']); ?>" alt="Avatar">
 														</div>
-														<div class="swift-item__footer">
-															<?php echo cl_translate("Create new swift"); ?>
-														</div>
+														<span class="add-ikon">
+															<?php echo cl_ikon("plus"); ?>
+														</span>
+													</div>
+													<div class="swift-item__footer">
+														<?php echo cl_translate("Create new swift"); ?>
 													</div>
 												</div>
-												<?php if (not_empty($cl["tl_swifts"]) && is_array($cl["tl_swifts"])): ?>
-													<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
-														<div class="swiper-slide">
-															<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
-																																				echo ('active');
-																																			} ?>" onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
-																<div class="swift-item__body">
-																	<div class="swift-item__avatar">
-																		<img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
-																	</div>
-																</div>
-																<div class="swift-item__footer">
-																	<?php if (not_empty($swift_data["is_user"])): ?>
-																		<?php echo cl_translate("Your swifts"); ?>
-																	<?php else: ?>
-																		<?php echo ($swift_data['name']); ?>
-																	<?php endif; ?>
+											</div>
+											<?php if (not_empty($cl["tl_swifts"]) && is_array($cl["tl_swifts"])): ?>
+												<?php foreach ($cl["tl_swifts"] as $swift_id => $swift_data): ?>
+													<div class="swiper-slide">
+														<div data-an="swift-item-<?php echo ($swift_data['id']); ?>" class="swift-item <?php if (not_empty($swift_data['has_unseen'])) {
+																																			echo ('active');
+																																		} ?>" onclick="SMColibri.PS.play_swift.show('<?php echo ($swift_id); ?>');">
+															<div class="swift-item__body">
+																<div class="swift-item__avatar">
+																	<img src="<?php echo ($swift_data['avatar']); ?>" alt="Avatar">
 																</div>
 															</div>
+															<div class="swift-item__footer">
+																<?php if (not_empty($swift_data["is_user"])): ?>
+																	<?php echo cl_translate("Your swifts"); ?>
+																<?php else: ?>
+																	<?php echo ($swift_data['name']); ?>
+																<?php endif; ?>
+															</div>
 														</div>
-													<?php endforeach; ?>
-												<?php endif; ?>
-											</div>
-										</div>
-										<div class="swifts-slider__footer">
-											<div class="swiper-scrollbar" id="homepage-swifts-scrollbar"></div>
+													</div>
+												<?php endforeach; ?>
+											<?php endif; ?>
 										</div>
 									</div>
+									<div class="swifts-slider__footer">
+										<div class="swiper-scrollbar" id="homepage-swifts-scrollbar"></div>
+									</div>
 								</div>
-							<?php endif; ?>
-						</div>
+							</div>
+						<?php endif; ?>
 					</div>
-				<?php else: ?>
-					<div></div>
-				<?php endif; ?>
+				</div>
 				<?php if (not_empty($cl["can_view"])): ?>
 					<div class="profile-activity-navbar">
 						<a>
@@ -629,8 +626,6 @@
 			</div>
 		</div>
 	</div>
-
-	<?php echo cl_template('symbol/scripts/app_master_script'); ?>
 
 	<?php if (empty($cl['is_admin'])): ?>
 		<?php echo cl_template('symbol/modals/report_profile'); ?>
@@ -818,41 +813,6 @@
 			}
 		}
 	});
-	$(function() {
-		moveScroller();
-	});
-
-	function moveScroller() {
-		var $anchor = $("#scroller-anchor");
-		var $scroller = $('#scroller');
-
-		var move = function() {
-			var y = window.scrollY;
-			if (y > 120) $("#priceHeader").slideDown();
-			else $("#priceHeader").slideUp();
-			if (y > 355) $("#selectionPane").slideDown();
-			else $("#selectionPane").slideUp();
-			var st = $(window).scrollTop();
-			if ($anchor.length === 0) {
-				console.error("Anchor element not found");
-				return; // Exit the function if the anchor is not found
-			}
-			var ot = $anchor.offset().top;
-			if (st > ot) {
-				$scroller.css({
-					position: "fixed",
-					top: "7px"
-				});
-			} else {
-				$scroller.css({
-					position: "relative",
-					top: ""
-				});
-			}
-		};
-		$(window).scroll(move);
-		move();
-	}
 
 	$(document).ready(function() {
 		$("#verPopover").popover({
@@ -980,4 +940,4 @@
 
 <?php echo cl_template("main/includes/inline_statics/app_statics"); ?>
 
-<?php echo cl_template('feed/scripts/app_master_script'); ?>
+<?php echo cl_template('symbol/scripts/app_master_script'); ?>

@@ -18,8 +18,8 @@
 				}
 				
 				$(window).on('scroll', function() {
-					var navbarItem = document.getElementsByClassName("navbar-item-btn btn-top active");
-					if (navbarItem && navbarItem[0].innerHTML.includes("For You")){
+					var navbarItem = document.getElementsByClassName("nav-link home_nav_btn active");
+					if (navbarItem && navbarItem[1].innerText.includes("For You")){
 						if (SMColibri.curr_pn == "home") {
 							if(($(window).scrollTop() + $(window).height()) > ($(document).height() - 100)) {
 								if (cl_empty(_self_.timeline.loading) && _self_.timeline.loadmore) {
