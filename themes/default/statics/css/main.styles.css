@@ -14596,7 +14596,7 @@ body button.btn-custom.main-outline {
 }
 
 .user-name-holder__badge svg {
-  margin-left: 2px;
+  margin-right: 5px;
   max-width: 19px;
   max-height: 19px;
   fill: var(--cl-primary-color);
@@ -50126,13 +50126,6 @@ body button.btn-custom.main-outline {
   box-shadow: none;
   border: 1px solid var(--smc-main-uiel-color);
   outline: 0;
-}
-
-.user-name-holder__badge svg {
-  margin-left: 2px;
-  max-width: 19px;
-  max-height: 19px;
-  fill: var(--cl-primary-color);
 }
 
 body .user-data__ctrls button.btn-custom.main-outline {
