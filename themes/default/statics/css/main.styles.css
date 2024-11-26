@@ -9,6 +9,9 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.transparent {
+  background: transparent !important;
+}
 .disclaimer {
   /* border: 1px solid white; */
   padding: 5px;
