@@ -3859,7 +3859,7 @@ body
   font-weight: 700;
   color: var(--smc-main-text-color);
   text-decoration: none;
-  max-width: 250px;
+  max-width: 260px;
   /* min-width: 160px; */
   overflow: hidden;
   text-overflow: ellipsis;
