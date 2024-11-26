@@ -32610,6 +32610,7 @@ body.cl-app-thread
   display: block;
   border-radius: var(--smc-main-border-rad1);
   overflow: hidden;
+  max-width: 500px;
 }
 
 body.cl-app-thread 
@@ -67678,24 +67679,6 @@ body.cl-app-thread
   display: block;
   line-height: 0px;
   margin-bottom: 10px;
-}
-
-body.cl-app-thread
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.publication--thread-container
-  div.publication--thread-container-inner
-  div.publication--thread-data-holder
-  div.publication-data
-  div.publication-data-inner
-  div.publication-content
-  div.publication-image {
-  width: fit-content;
-  border: 1px solid var(--smc-main-border-color);
-  display: block;
-  border-radius: var(--smc-main-border-rad1);
-  overflow: hidden;
 }
 
 body.cl-app-thread
