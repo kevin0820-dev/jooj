@@ -63,6 +63,9 @@ if ($action == 'upload_post_image') {
                             $data['status']  = 200;
                         }
                     }
+                    else {
+                        $data['err_code'] = $file_upload['error'];
+                    }
                 }
                 else {
                     $data['err_code'] = "total_limit_exceeded";

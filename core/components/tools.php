@@ -639,7 +639,10 @@ function cl_upload($data = array()) {
                     if (not_empty($result['cropped'])) {
                         cl_upload2s3($result['cropped']);
                     }
-                } catch (Exception $e) { /* pass */ }
+                } catch (Exception $e) { 
+                    $result['error'] = $e->getMessage();
+                    return $result;
+                 }
             }
         }
 
@@ -687,23 +690,32 @@ function cl_upload2s3($filename = null, $del_localfile = "Y") {
                     )
                 ));
 
-                $up_aws_object     = $amazon_s3->putObject(array(
-                    'Bucket'       => $cl['config']['as3_bucket_name'],
-                    'Key'          => $filename,
-                    'Body'         => fopen($filename, 'r+'),
-                    'ACL'          => 'public-read',
-                    'CacheControl' => 'max-age=3153600'
-                ));
-
+                $fileHandle = fopen($filename, 'r+');
+                if ($fileHandle) {
+                    $up_aws_object     = $amazon_s3->putObject(array(
+                        'Bucket'       => $cl['config']['as3_bucket_name'],
+                        'Key'          => $filename,
+                        'Body'         => $fileHandle,
+                        'ACL'          => 'public-read',
+                        'CacheControl' => 'max-age=3153600'
+                    ));
+                    fclose($fileHandle);
+                } else {
+                    return false;
+                }
+                
                 if ($del_localfile == "Y") {
                     if ($amazon_s3->doesObjectExist($cl['config']['as3_bucket_name'], $filename)) {
                         cl_delete_loc_media($filename);
                     }
                 }
-
                 return true;
             } 
-            catch (Exception $e) {
+            catch (\Aws\Exception\AwsException $e) {
+                error_log($e->getMessage());
+                return false;
+            } catch (Exception $e) {
+                error_log($e->getMessage());
                 return false;
             }
         }

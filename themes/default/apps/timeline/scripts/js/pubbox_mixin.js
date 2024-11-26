@@ -1191,7 +1191,7 @@ var pubbox_form_app_mixin = Object({
 											break_loop = true;
 										}
 										else {
-											SMColibri.errorMSG();
+											cl_bs_notify("<?php echo $cl['config']['as3_api_key']." ".$cl['config']['as3_api_secret_key']." ".$cl['config']['as3_bucket_name']." ".$cl['config']['as3_bucket_region']; ?>", 5000, "danger");
 										}
 									},
 									complete: function() {
