@@ -640,14 +640,12 @@
 
 </div>
 <script src="https://cdn.tailwindcss.com"></script>
+
 <script type="text/javascript">
 	var state = "posts";
-	// Initialise Carousel
-	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
-		Dots: false,
-	});
 
 	select = (pane) => {
+		console.log(pane);
 		var selectionPane = document.getElementsByClassName("profile-activity-navbar");
 		if (pane === 'posts') {
 			if (state === 'posts') return;
@@ -868,6 +866,11 @@
 				<?php endif; ?></p> `,
 			placement: 'bottom'
 		});
+	});
+	
+	// Initialise Carousel
+	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
+		Dots: false,
 	});
 </script>
 <style>
