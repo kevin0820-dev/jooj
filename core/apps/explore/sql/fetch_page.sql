@@ -10,7 +10,7 @@
 @*************************************************************************@
  */
 
-SELECT `id`, `about`, `followers`, `following`, `posts`, `website`, `country_id`, `avatar`, `last_active`, `username`, `fname`, `email`, `verified`, `follow_privacy` FROM `<?php echo($data['t_users']); ?>`
+SELECT `id`, `about`, `followers`, `following`, `posts`, `website`, `country_id`, `avatar`, `last_active`, `username`, `symbol_price`, `fname`, `email`, `verified`, `follow_privacy` FROM `<?php echo($data['t_users']); ?>`
 	
 	WHERE `active` = '1'
 
