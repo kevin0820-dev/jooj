@@ -10,7 +10,7 @@
 .dropright div.dropdown-menu a.dropdown-item,
 .dropup div.dropdown-menu a.dropdown-item {
     font-size: 13px;
-    line-height: 20px;
+    line-height: 30px;
     color: #14171a;
     padding: 5px 20px;
     display: block;
@@ -3373,7 +3373,7 @@ span.badge {
 
 .modal.confirm-actions-modal div.modal-body p {
     font-size: 13px;
-    line-height: 20px;
+    line-height: 30px;
     color: #657786;
     padding: 0;
     margin: 0;
@@ -4293,7 +4293,7 @@ table.table thead tr th {
 
 .modal.confirm-actions-modal div.modal-body p {
     font-size: 13px;
-    line-height: 20px;
+    line-height: 30px;
     color: #657786;
     padding: 0;
     margin: 0;

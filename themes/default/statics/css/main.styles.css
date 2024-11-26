@@ -247,7 +247,7 @@ div.main-search-bar-container form div.input-holder span.clear-result svg {
   max-height: 400px;
   font-size: 15px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   margin-top: 10px;
   outline: 0;
@@ -265,7 +265,7 @@ div.main-search-bar-container form div.input-holder span.clear-result svg {
   max-height: 400px;
   font-size: 15px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   margin-top: 10px;
   outline: 0;
@@ -640,7 +640,7 @@ h3.login-home {
   -moz-box-direction: normal; /* For Firefox */
   flex-direction: row;
   display: flex;
-  line-height: 20px;
+  line-height: 30px;
   margin-right: 20px;
   /* margin-left: 10px; */
 }
@@ -654,7 +654,7 @@ h3.login-home {
   color: rgb(15, 20, 25);
   -webkit-user-select: none;
   user-select: none;
-  line-height: 20px;
+  line-height: 30px;
   position: relative;
   fill: var(--smc-main-text-color);
 }
@@ -932,7 +932,7 @@ body.cl-app-wallet_send
   font-weight: 700;
   justify-content: start;
   align-items: start;
-  line-height: 20px;
+  line-height: 30px;
   margin-left: 20px;
   margin-bottom: 20px;
 }
@@ -1252,7 +1252,7 @@ body
   -moz-box-orient: horizontal; /* Can be kept for Firefox */
   flex-direction: row;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow-wrap: break-word;
   text-align: center;
   display: flex;
@@ -1298,7 +1298,7 @@ body
   -moz-box-orient: horizontal;
   flex-direction: row;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow-wrap: break-word;
   text-align: center;
   display: flex;
@@ -1351,13 +1351,13 @@ body
   margin-bottom: 15px;
 }
 .follow-suggestion__placeholder {
-  line-height: 20px;
+  line-height: 30px;
 }
 
 body .login-form button.btn-custom.lg {
   padding: 0px 15px;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 500;
   min-height: 34.4px;
   cursor: pointer;
@@ -1375,7 +1375,7 @@ body .login-form button.btn-custom.lg {
   margin-right: 16px;
   transition-property: background-color, box-shadow;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
 }
 
 .login_btn button.btn-light {
@@ -1439,7 +1439,7 @@ body.modal-open {
   color: rgb(255, 255, 255);
   font-weight: 400;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow-wrap: break-word;
   margin: 0px;
   padding: 0px;
@@ -1724,7 +1724,7 @@ body.modal-open {
   }
   .left_account h6 {
     font-size: 15px;
-    line-height: 20px;
+    line-height: 30px;
     padding-bottom: 2px;
     padding-top: 2px;
     font-weight: 700;
@@ -1774,7 +1774,7 @@ body.modal-open {
   body .mobile_menu .uname h5 {
     font-size: 17px;
     font-weight: 700;
-    line-height: 20px;
+    line-height: 30px;
   }
   body .mobile_menu .uname a {
     font-weight: 400 !important;
@@ -1791,7 +1791,7 @@ body.modal-open {
     white-space: nowrap;
     display: inline-block;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 30px;
   }
   body span.user-name-holder p {
     display: inline-block;
@@ -1808,12 +1808,12 @@ body.modal-open {
     white-space: nowrap;
     display: inline-block !important;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 30px;
   }
   body p.verified-badge {
     position: relative !important;
     margin-bottom: 0px;
-    line-height: 20px !important;
+    line-height: 30px !important;
     vertical-align: top;
   }
   body
@@ -2078,7 +2078,7 @@ iframe.reply_frame {
   color: rgb(83, 100, 113);
   font-weight: 400;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow-wrap: break-word;
   margin-bottom: 16px;
   margin-top: 16px;
@@ -2636,7 +2636,7 @@ body.cl-app-ads
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -2759,7 +2759,7 @@ body.cl-app-ads
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -2773,7 +2773,7 @@ body.cl-app-ads
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -2923,7 +2923,7 @@ body.cl-app-affiliates
   padding: 0;
   margin: 0;
   font-size: 18px;
-  line-height: 20px;
+  line-height: 30px;
   margin-bottom: 20px;
   color: var(--smc-main-text-color);
 }
@@ -3296,7 +3296,7 @@ body.cl-app-affiliates
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -3412,7 +3412,7 @@ body.cl-app-affiliates
   padding: 0 15px;
   font-size: 13px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 300;
   text-align: center;
 }
@@ -3648,7 +3648,7 @@ body.cl-app-bookmarks
   div.pl-message
   p {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -3830,7 +3830,7 @@ body
   div.timeline-header
   div.lp
   div.nav-link-holder {
-  line-height: 20px;
+  line-height: 30px;
   display: block;
   padding: 0;
   margin: 0;
@@ -4371,7 +4371,7 @@ body
   div.post-reply {
   width: 100%;
   display: block;
-  line-height: 20px;
+  line-height: 30px;
   margin-bottom: 5px;
   margin-top: 5px;
 }
@@ -4394,7 +4394,7 @@ body
   color: var(--smc-main-text-color-2);
   font-weight: 400;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
 }
 
 body
@@ -4552,7 +4552,7 @@ body
   span {
   color: inherit;
   text-transform: none;
-  line-height: 20px;
+  line-height: 30px;
   font-size: 15px;
   font-weight: 700;
 }
@@ -4759,7 +4759,7 @@ body
   div.publication-text
   p.pub-text {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 400;
   padding: 0;
   margin: 0;
@@ -5558,7 +5558,7 @@ body
   color: var(--smc-main-text-color-2);
   font-weight: 400;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 30px;
   cursor: pointer;
   display: inline-flex;
   white-space: nowrap;
@@ -9470,7 +9470,7 @@ body
 
 div.lp span.posted-time {
   display: inline-flex;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   margin-left: 0px;
@@ -9486,7 +9486,7 @@ div.lp span.point {
   flex-shrink: 0;
   font-weight: 600;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow-wrap: break-word;
   padding-left: 4px;
   padding-right: 0px;
@@ -9719,7 +9719,7 @@ body
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -9925,7 +9925,7 @@ body
   b {
   color: var(--smc-main-text-color);
   font-size: 16px;
-  line-height: 20px;
+  line-height: 30px;
   margin-right: 2px;
   font-weight: 700;
 }
@@ -10234,7 +10234,7 @@ body
   vertical-align: middle;
   width: calc(24px);
   height: calc(24px);
-  line-height: 20px;
+  line-height: 30px;
   text-align: center;
   margin: 15px;
   fill: rgb(255, 255, 255);
@@ -11302,7 +11302,7 @@ body
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -11617,7 +11617,7 @@ body div.modal.confirm-actions-modal div.modal-dialog div.modal-body h4 {
 
 body div.modal.confirm-actions-modal div.modal-dialog div.modal-body p {
   font-size: 14px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   padding: 0;
   margin: 0;
@@ -11646,7 +11646,7 @@ body div.modal.info-popup-modal div.modal-body h4 {
 
 body div.modal.info-popup-modal div.modal-body p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   padding: 0;
   margin: 0;
@@ -12680,7 +12680,7 @@ body .dropdown div.dropdown-menu a.dropdown-item,
 body .dropright div.dropdown-menu a.dropdown-item,
 body .dropup div.dropdown-menu a.dropdown-item {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 500;
   padding: 5px 20px;
@@ -12690,7 +12690,7 @@ body .dropup div.dropdown-menu a.dropdown-item {
 }
 body .dropleft div.dropdown-menu a.dropdown-item {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 500;
   overflow: hidden;
@@ -13124,7 +13124,7 @@ box-shadow: none;
 border-color: var(--smc-main-border-color-darken-5);
 color: var(--smc-main-text-color);
 font-size: 12px;
-line-height: 20px;
+line-height: 30px;
 padding-left: 6px;
 padding-right: 6px;
 border-radius: 9999px;
@@ -13654,7 +13654,7 @@ border-radius: 9999px;
 color: var(--smc-main-bg-color);
 font-weight: 700;
 font-size: 15px;
-line-height: 20px;
+line-height: 30px;
 padding: 1px 16px;
 min-height: 36px;
 }
@@ -14045,7 +14045,7 @@ div.stat-holder
 a.stat-holder-inner
 span {
 font-size: 14px;
-line-height: 20px;
+line-height: 30px;
 color: var(--smc-main-text-color-2);
 margin-left: 3px;
 /* text-transform: lowercase; */
@@ -14353,7 +14353,7 @@ h4 {
 font-size: 20px;
 padding: 0;
 margin: 0 0 10px 0;
-line-height: 20px;
+line-height: 30px;
 color: var(--smc-main-text-color);
 font-weight: 700;
 text-align: center;
@@ -14369,7 +14369,7 @@ div.empty-profile-placeholder
 div.pl-message
 p {
 font-size: 13px;
-line-height: 20px;
+line-height: 30px;
 padding: 0;
 margin: 0;
 color: var(--smc-main-text-color-2);
@@ -14546,7 +14546,7 @@ body button.btn-custom.main-inline {
   border-color: var(--smc-main-border-color-darken-5);
   color: #fff;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 9999px;
@@ -14561,7 +14561,7 @@ body button.btn-custom.main-inline {
   border-color: var(--smc-main-border-color-darken-5);
   color: #fff;
   font-size: 14px !important;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 10px;
@@ -14611,7 +14611,7 @@ body .user-data__ctrls button.btn-custom.main-outline {
   color: var(--smc-main-bg-color);
   /* font-weight: 700; */
   font-size: 12px; /*Edited By Kevin.. Watching, Unwatching style. 9/14/2024*/
-  line-height: 20px;
+  line-height: 30px;
   max-height: 32px;
   padding-top: 6px;
   margin-top: 1px;
@@ -14630,7 +14630,7 @@ body button.btn-custom.lg.home {
   /* box-shadow: var(--smc-main-box-shadow-eff); */
   /* border: 1px solid var(--smc-main-border-color); */
   font-size: 16px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 400;
   box-shadow: rgba(0, 0, 0, 0) 0px 8px 28px;
   min-height: 35px;
@@ -14659,7 +14659,7 @@ body.cl-app-profile
   border-color: var(--smc-main-border-color-darken-5);
   color: var(--smc-main-text-color);
   font-size: 12px;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 6px;
   padding-right: 6px;
   border-radius: 9999px;
@@ -14668,7 +14668,7 @@ body.cl-app-profile
 body button.btn-custom.lg {
   padding: 0px 15px;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 500;
   height: 36px;
   cursor: pointer;
@@ -14813,7 +14813,7 @@ body
   textarea::placeholder {
   color: var(--smc-main-text-color);
   font-size: 20px;
-  line-height: 20px;
+  line-height: 30px;
   margin-top: 10px;
   font-weight: 400;
 }
@@ -14974,7 +14974,7 @@ body
   div.emoticons-group {
   width: 100%;
   display: block;
-  line-height: 20px;
+  line-height: 30px;
   border-bottom: 1px solid var(--smc-main-border-color);
   padding: 15px;
 }
@@ -15410,7 +15410,7 @@ body
   padding: 0;
   margin: 0 0 5px 0;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   word-wrap: break-word;
 }
@@ -17299,7 +17299,7 @@ body
   border-color: var(--smc-main-border-color);
   color: var(--smc-main-text-color);
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 9999px;
@@ -17671,7 +17671,7 @@ body.cl-app-confirm_email
   div.form-header
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-uiel-color);
   text-align: center;
   margin-bottom: 50px;
@@ -17748,7 +17748,7 @@ body.cl-app-confirm_reg
   div.form-header
   p {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-uiel-color);
   text-align: center;
   margin-bottom: 50px;
@@ -18517,7 +18517,7 @@ body.cl-app-conversation
   p.message-text {
   padding: 10px;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 400;
   margin: 0;
@@ -19459,7 +19459,7 @@ body.cl-app-err404
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -19473,7 +19473,7 @@ body.cl-app-err404
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -19579,7 +19579,7 @@ body.cl-app-err500
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -19593,7 +19593,7 @@ body.cl-app-err500
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -19891,7 +19891,7 @@ body.cl-app-connections
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -20123,7 +20123,7 @@ body.cl-app-connections
   font-size: 20px;
   padding: 0;
   margin: 0 0 10px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -20137,7 +20137,7 @@ body.cl-app-connections
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -20461,7 +20461,7 @@ body.cl-app-guest
   padding: 0px;
   margin: 0px 0px 5px 0px;
   color: rgba(255, 255, 255, 0.9);
-  line-height: 20px;
+  line-height: 30px;
 }
 
 body.cl-app-guest
@@ -21692,7 +21692,7 @@ body.cl-app-guest
   > a {
   font-size: 13px;
   color: var(--smc-main-text-color-2);
-  line-height: 20px;
+  line-height: 30px;
   text-decoration: none;
 }
 
@@ -22649,7 +22649,7 @@ body.cl-app-symbol
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -22663,7 +22663,7 @@ body.cl-app-symbol
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -23498,7 +23498,7 @@ body.cl-app-symbol
   resize: none;
   font-size: 16px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   border-radius: 0px;
   outline: 0;
@@ -23667,7 +23667,7 @@ body.cl-app-symbol
   div.emoticons-group {
   width: 100%;
   display: block;
-  line-height: 20px;
+  line-height: 30px;
   border-bottom: 1px solid var(--smc-main-border-color);
   padding: 15px;
 }
@@ -24416,7 +24416,7 @@ body.cl-app-home
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -24430,7 +24430,7 @@ body.cl-app-home
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -25265,7 +25265,7 @@ body.cl-app-home
   resize: none;
   font-size: 16px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   border-radius: 0px;
   outline: 0;
@@ -25434,7 +25434,7 @@ body.cl-app-home
   div.emoticons-group {
   width: 100%;
   display: block;
-  line-height: 20px;
+  line-height: 30px;
   border-bottom: 1px solid var(--smc-main-border-color);
   padding: 15px;
 }
@@ -26386,7 +26386,7 @@ body.cl-app-chat
   div.rp-inner-content-header
   b.name {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
 }
@@ -26407,7 +26407,7 @@ body.cl-app-chat
   div.rp-inner-content-header
   span.uname {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   font-weight: 400;
   margin-left: 5px;
@@ -26471,7 +26471,7 @@ body.cl-app-chat
   span.time
   time {
   font-size: 11px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
 }
 
@@ -26671,7 +26671,7 @@ body.cl-app-chat
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -26689,7 +26689,7 @@ body.cl-app-chat
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -26813,7 +26813,7 @@ body.cl-app-chat
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -26831,7 +26831,7 @@ body.cl-app-chat
   div.pl-message
   p {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -27817,7 +27817,7 @@ body.cl-app-notifications
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -27836,7 +27836,7 @@ body.cl-app-notifications
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -28528,7 +28528,7 @@ body.cl-app-profile
   color: var(--smc-main-bg-color);
   font-weight: 700;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 1px 16px;
   min-height: 36px;
 }
@@ -28560,7 +28560,7 @@ body.cl-app-profile
   border-color: var(--smc-main-border-color-darken-5);
   color: var(--smc-main-text-color);
   font-size: 12px;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 6px;
   padding-right: 6px;
   border-radius: 9999px;
@@ -28920,7 +28920,7 @@ body.cl-app-profile
   a.stat-holder-inner
   span {
   font-size: 14px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   margin-left: 3px;
   /* text-transform: lowercase; */
@@ -29220,7 +29220,7 @@ body.cl-app-profile
   font-size: 20px;
   padding: 0;
   margin: 0 0 10px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -29236,7 +29236,7 @@ body.cl-app-profile
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -29984,7 +29984,7 @@ body.cl-app-search
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -30123,7 +30123,7 @@ body.cl-app-search
   font-size: 20px;
   padding: 0;
   margin: 0 0 10px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -30140,7 +30140,7 @@ body.cl-app-search
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -30666,7 +30666,7 @@ body.cl-app-page_settings
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -31120,7 +31120,7 @@ body.cl-app-settings
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -31258,7 +31258,7 @@ body.cl-app-start_up
   div.startup-body-title
   p {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   text-align: center;
 }
@@ -31610,7 +31610,7 @@ body.cl-app-start_up
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -31704,7 +31704,7 @@ body.cl-app-start_up
   padding: 0;
   margin: 0 0 20px 0;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   text-transform: uppercase;
   text-align: center;
@@ -31904,7 +31904,7 @@ body.cl-app-suggested
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -32501,7 +32501,7 @@ body.cl-app-thread
   div.post-reply{
     width: 100%;
     display: block;
-    line-height: 20px;
+    line-height: 30px;
     margin-bottom: 5px;
     margin-top: 5px;
   }
@@ -32519,7 +32519,7 @@ body.cl-app-thread
     color: var(--smc-main-text-color-2);
     font-weight: 400;
     font-size: 15px;
-    line-height: 20px;
+    line-height: 30px;
   }
 body.cl-app-thread
   main.main-content-container
@@ -33429,7 +33429,7 @@ overflow-wrap: break-word;
 color: var(--smc-main-text-color-2);
 font-weight: 400;
 font-size: 14px;
-line-height: 20px;
+line-height: 30px;
 cursor: pointer;
 display: inline-flex;
 white-space: nowrap;
@@ -34737,7 +34737,7 @@ body.cl-app-thread
   padding: 0;
   margin: 0;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   margin-left: 15px;
 }
@@ -35728,7 +35728,7 @@ body.cl-app-trending
   font-size: 20px;
   padding: 0;
   margin: 0 0 10px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -35743,7 +35743,7 @@ body.cl-app-trending
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -36162,7 +36162,7 @@ body.cl-app-wallet
   padding: 0;
   margin: 0;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
 }
 
@@ -36382,7 +36382,7 @@ div.main-search-bar-container form div.input-holder span.clear-result svg {
   max-height: 400px;
   font-size: 15px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   margin-top: 10px;
   outline: 0;
@@ -36400,7 +36400,7 @@ div.main-search-bar-container form div.input-holder span.clear-result svg {
   max-height: 400px;
   font-size: 15px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   margin-top: 10px;
   outline: 0;
@@ -36756,7 +36756,7 @@ div.publication--thread-container-inner div.publication--thread-data-holder {
   -moz-box-direction: normal; /* For Firefox */
   flex-direction: row;
   display: flex;
-  line-height: 20px;
+  line-height: 30px;
   margin-right: 20px;
   /* margin-left: 10px; */
 }
@@ -36770,7 +36770,7 @@ div.publication--thread-container-inner div.publication--thread-data-holder {
   color: rgb(15, 20, 25);
   -webkit-user-select: none;
   user-select: none;
-  line-height: 20px;
+  line-height: 30px;
   position: relative;
   fill: var(--smc-main-text-color);
 }
@@ -37029,7 +37029,7 @@ body.cl-app-wallet_send
   font-weight: 700;
   justify-content: start;
   align-items: start;
-  line-height: 20px;
+  line-height: 30px;
   margin-left: 20px;
   margin-bottom: 20px;
 }
@@ -37385,13 +37385,13 @@ body
   border-bottom: none;
 }
 .follow-suggestion__placeholder {
-  line-height: 20px;
+  line-height: 30px;
 }
 
 body .login-form button.btn-custom.lg {
   padding: 0px 15px;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 500;
   min-height: 34.4px;
   cursor: pointer;
@@ -37409,7 +37409,7 @@ body .login-form button.btn-custom.lg {
   margin-right: 16px;
   transition-property: background-color, box-shadow;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
 }
 
 .login_btn button.btn-light {
@@ -37473,7 +37473,7 @@ body.modal-open {
   color: rgb(255, 255, 255);
   font-weight: 400;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow-wrap: break-word;
   margin: 0px;
   padding: 0px;
@@ -37725,7 +37725,7 @@ body.modal-open {
   body .mobile_menu .uname h5 {
     font-size: 17px;
     font-weight: 700;
-    line-height: 20px;
+    line-height: 30px;
   }
   body .mobile_menu .uname a {
     font-weight: 400 !important;
@@ -37742,7 +37742,7 @@ body.modal-open {
     white-space: nowrap;
     display: inline-block;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 30px;
   }
   body span.user-name-holder p {
     display: inline-block;
@@ -37759,12 +37759,12 @@ body.modal-open {
     white-space: nowrap;
     display: inline-block !important;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 30px;
   }
   body p.verified-badge {
     position: relative !important;
     margin-bottom: 0px;
-    line-height: 20px !important;
+    line-height: 30px !important;
     vertical-align: top;
   }
   body
@@ -38029,7 +38029,7 @@ iframe.reply_frame {
   color: rgb(83, 100, 113);
   font-weight: 400;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow-wrap: break-word;
   margin-bottom: 16px;
   margin-top: 16px;
@@ -38587,7 +38587,7 @@ body.cl-app-ads
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -38710,7 +38710,7 @@ body.cl-app-ads
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -38724,7 +38724,7 @@ body.cl-app-ads
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -38874,7 +38874,7 @@ body.cl-app-affiliates
   padding: 0;
   margin: 0;
   font-size: 18px;
-  line-height: 20px;
+  line-height: 30px;
   margin-bottom: 20px;
   color: var(--smc-main-text-color);
 }
@@ -39247,7 +39247,7 @@ body.cl-app-affiliates
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -39363,7 +39363,7 @@ body.cl-app-affiliates
   padding: 0 15px;
   font-size: 13px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 300;
   text-align: center;
 }
@@ -39599,7 +39599,7 @@ body.cl-app-bookmarks
   div.pl-message
   p {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -39781,7 +39781,7 @@ body
   div.timeline-header
   div.lp
   div.nav-link-holder {
-  line-height: 20px;
+  line-height: 30px;
   display: block;
   padding: 0;
   margin: 0;
@@ -40321,7 +40321,7 @@ body
   div.post-reply {
   width: 100%;
   display: block;
-  line-height: 20px;
+  line-height: 30px;
   margin-bottom: 5px;
   margin-top: 5px;
 }
@@ -40344,7 +40344,7 @@ body
   color: var(--smc-main-text-color-2);
   font-weight: 400;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
 }
 
 body
@@ -40502,7 +40502,7 @@ body
   span {
   color: inherit;
   text-transform: none;
-  line-height: 20px;
+  line-height: 30px;
   font-size: 15px;
   font-weight: 700;
 }
@@ -40686,7 +40686,7 @@ body
   div.publication-text
   p.pub-text {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 400;
   padding: 0;
   margin: 0;
@@ -41447,7 +41447,7 @@ body
   color: var(--smc-main-text-color-2);
   font-weight: 400;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 30px;
   cursor: pointer;
   display: inline-flex;
   white-space: nowrap;
@@ -45276,7 +45276,7 @@ body
 
 div.lp span.posted-time {
   display: inline-flex;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   margin-left: 0px;
@@ -45292,7 +45292,7 @@ div.lp span.point {
   flex-shrink: 0;
   font-weight: 600;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow-wrap: break-word;
   padding-left: 4px;
   padding-right: 0px;
@@ -45525,7 +45525,7 @@ body
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -45731,7 +45731,7 @@ body
   b {
   color: var(--smc-main-text-color);
   font-size: 16px;
-  line-height: 20px;
+  line-height: 30px;
   margin-right: 2px;
   font-weight: 700;
 }
@@ -46003,7 +46003,7 @@ body
   vertical-align: middle;
   width: calc(24px);
   height: calc(24px);
-  line-height: 20px;
+  line-height: 30px;
   text-align: center;
   margin: 15px;
   fill: rgb(255, 255, 255);
@@ -47028,7 +47028,7 @@ body
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -47331,7 +47331,7 @@ body div.modal.confirm-actions-modal div.modal-dialog div.modal-body h4 {
 
 body div.modal.confirm-actions-modal div.modal-dialog div.modal-body p {
   font-size: 14px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   padding: 0;
   margin: 0;
@@ -47355,7 +47355,7 @@ body div.modal.info-popup-modal div.modal-body h4 {
 
 body div.modal.info-popup-modal div.modal-body p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   padding: 0;
   margin: 0;
@@ -48380,7 +48380,7 @@ body .dropdown div.dropdown-menu a.dropdown-item,
 body .dropright div.dropdown-menu a.dropdown-item,
 body .dropup div.dropdown-menu a.dropdown-item {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 500;
   padding: 5px 20px;
@@ -48390,7 +48390,7 @@ body .dropup div.dropdown-menu a.dropdown-item {
 }
 body .dropleft div.dropdown-menu a.dropdown-item {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 500;
   overflow: hidden;
@@ -48801,7 +48801,7 @@ box-shadow: none;
 border-color: var(--smc-main-border-color-darken-5);
 color: var(--smc-main-text-color);
 font-size: 12px;
-line-height: 20px;
+line-height: 30px;
 padding-left: 6px;
 padding-right: 6px;
 border-radius: 9999px;
@@ -49229,7 +49229,7 @@ border-radius: 9999px;
 color: var(--smc-main-bg-color);
 font-weight: 700;
 font-size: 15px;
-line-height: 20px;
+line-height: 30px;
 padding: 1px 16px;
 min-height: 36px;
 }
@@ -49901,7 +49901,7 @@ h4 {
 font-size: 20px;
 padding: 0;
 margin: 0 0 10px 0;
-line-height: 20px;
+line-height: 30px;
 color: var(--smc-main-text-color);
 font-weight: 700;
 text-align: center;
@@ -49917,7 +49917,7 @@ div.empty-profile-placeholder
 div.pl-message
 p {
 font-size: 13px;
-line-height: 20px;
+line-height: 30px;
 padding: 0;
 margin: 0;
 color: var(--smc-main-text-color-2);
@@ -50094,7 +50094,7 @@ body button.btn-custom.main-inline {
   border-color: var(--smc-main-border-color-darken-5);
   color: #fff;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 9999px;
@@ -50144,7 +50144,7 @@ body .user-data__ctrls button.btn-custom.main-outline {
   color: var(--smc-main-bg-color);
   /* font-weight: 700; */
   font-size: 12px; /*Edited By Kevin.. Watching, Unwatching style. 9/14/2024*/
-  line-height: 20px;
+  line-height: 30px;
   max-height: 32px;
   padding-top: 6px;
   margin-top: 1px;
@@ -50163,7 +50163,7 @@ body button.btn-custom.lg.home {
   /* box-shadow: var(--smc-main-box-shadow-eff); */
   /* border: 1px solid var(--smc-main-border-color); */
   font-size: 16px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 400;
   box-shadow: rgba(0, 0, 0, 0) 0px 8px 28px;
   min-height: 35px;
@@ -50192,7 +50192,7 @@ body.cl-app-profile
   border-color: var(--smc-main-border-color-darken-5);
   color: var(--smc-main-text-color);
   font-size: 12px;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 6px;
   padding-right: 6px;
   border-radius: 9999px;
@@ -50201,7 +50201,7 @@ body.cl-app-profile
 body button.btn-custom.lg {
   padding: 0px 15px;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   font-weight: 500;
   height: 36px;
   cursor: pointer;
@@ -50352,7 +50352,7 @@ body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
   resize: none;
   font-size: 15px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   transition: min-height 0.3s ease;
   outline: 0;
@@ -50365,7 +50365,7 @@ body
   textarea::placeholder {
   color: var(--smc-main-text-color);
   font-size: 20px;
-  line-height: 20px;
+  line-height: 30px;
   margin-top: 10px;
   font-weight: 400;
 }
@@ -50526,7 +50526,7 @@ body
   div.emoticons-group {
   width: 100%;
   display: block;
-  line-height: 20px;
+  line-height: 30px;
   border-bottom: 1px solid var(--smc-main-border-color);
   padding: 15px;
 }
@@ -50962,7 +50962,7 @@ body
   padding: 0;
   margin: 0 0 5px 0;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   word-wrap: break-word;
 }
@@ -52851,7 +52851,7 @@ body
   border-color: var(--smc-main-border-color);
   color: var(--smc-main-text-color);
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 9999px;
@@ -53223,7 +53223,7 @@ body.cl-app-confirm_email
   div.form-header
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-uiel-color);
   text-align: center;
   margin-bottom: 50px;
@@ -53300,7 +53300,7 @@ body.cl-app-confirm_reg
   div.form-header
   p {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-uiel-color);
   text-align: center;
   margin-bottom: 50px;
@@ -54069,7 +54069,7 @@ body.cl-app-conversation
   p.message-text {
   padding: 10px;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 400;
   margin: 0;
@@ -55011,7 +55011,7 @@ body.cl-app-err404
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -55025,7 +55025,7 @@ body.cl-app-err404
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -55131,7 +55131,7 @@ body.cl-app-err500
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -55145,7 +55145,7 @@ body.cl-app-err500
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -55443,7 +55443,7 @@ body.cl-app-connections
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -55675,7 +55675,7 @@ body.cl-app-connections
   font-size: 20px;
   padding: 0;
   margin: 0 0 10px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -55689,7 +55689,7 @@ body.cl-app-connections
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -55982,7 +55982,7 @@ body.cl-app-guest
   padding: 0px;
   margin: 0px 0px 5px 0px;
   color: rgba(255, 255, 255, 0.9);
-  line-height: 20px;
+  line-height: 30px;
 }
 
 body.cl-app-guest
@@ -57087,7 +57087,7 @@ body.cl-app-guest
   > a {
   font-size: 13px;
   color: var(--smc-main-text-color-2);
-  line-height: 20px;
+  line-height: 30px;
   text-decoration: none;
 }
 
@@ -57960,7 +57960,7 @@ body.cl-app-symbol
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -57974,7 +57974,7 @@ body.cl-app-symbol
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -58809,7 +58809,7 @@ body.cl-app-symbol
   resize: none;
   font-size: 16px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   border-radius: 0px;
   outline: 0;
@@ -58978,7 +58978,7 @@ body.cl-app-symbol
   div.emoticons-group {
   width: 100%;
   display: block;
-  line-height: 20px;
+  line-height: 30px;
   border-bottom: 1px solid var(--smc-main-border-color);
   padding: 15px;
 }
@@ -59727,7 +59727,7 @@ body.cl-app-home
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -59741,7 +59741,7 @@ body.cl-app-home
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -60576,7 +60576,7 @@ body.cl-app-home
   resize: none;
   font-size: 16px;
   color: var(--smc-main-text-color);
-  line-height: 20px;
+  line-height: 30px;
   border: none;
   border-radius: 0px;
   outline: 0;
@@ -60745,7 +60745,7 @@ body.cl-app-home
   div.emoticons-group {
   width: 100%;
   display: block;
-  line-height: 20px;
+  line-height: 30px;
   border-bottom: 1px solid var(--smc-main-border-color);
   padding: 15px;
 }
@@ -61697,7 +61697,7 @@ body.cl-app-chat
   div.rp-inner-content-header
   b.name {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
 }
@@ -61718,7 +61718,7 @@ body.cl-app-chat
   div.rp-inner-content-header
   span.uname {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   font-weight: 400;
   margin-left: 5px;
@@ -61782,7 +61782,7 @@ body.cl-app-chat
   span.time
   time {
   font-size: 11px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
 }
 
@@ -61982,7 +61982,7 @@ body.cl-app-chat
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -62000,7 +62000,7 @@ body.cl-app-chat
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -62124,7 +62124,7 @@ body.cl-app-chat
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -62142,7 +62142,7 @@ body.cl-app-chat
   div.pl-message
   p {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -63128,7 +63128,7 @@ body.cl-app-notifications
   font-size: 20px;
   padding: 0;
   margin: 0 0 15px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -63147,7 +63147,7 @@ body.cl-app-notifications
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -63735,7 +63735,7 @@ body.cl-app-profile
   color: var(--smc-main-bg-color);
   font-weight: 700;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 1px 16px;
   min-height: 36px;
 }
@@ -63767,7 +63767,7 @@ body.cl-app-profile
   border-color: var(--smc-main-border-color-darken-5);
   color: var(--smc-main-text-color);
   font-size: 12px;
-  line-height: 20px;
+  line-height: 30px;
   padding-left: 6px;
   padding-right: 6px;
   border-radius: 9999px;
@@ -64400,7 +64400,7 @@ body.cl-app-profile
   font-size: 20px;
   padding: 0;
   margin: 0 0 10px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -64416,7 +64416,7 @@ body.cl-app-profile
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -65164,7 +65164,7 @@ body.cl-app-search
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -65303,7 +65303,7 @@ body.cl-app-search
   font-size: 20px;
   padding: 0;
   margin: 0 0 10px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -65320,7 +65320,7 @@ body.cl-app-search
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -65846,7 +65846,7 @@ body.cl-app-page_settings
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -66300,7 +66300,7 @@ body.cl-app-settings
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -66438,7 +66438,7 @@ body.cl-app-start_up
   div.startup-body-title
   p {
   font-size: 15px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   text-align: center;
 }
@@ -66790,7 +66790,7 @@ body.cl-app-start_up
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -66884,7 +66884,7 @@ body.cl-app-start_up
   padding: 0;
   margin: 0 0 20px 0;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   text-transform: uppercase;
   text-align: center;
@@ -67084,7 +67084,7 @@ body.cl-app-suggested
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -67617,7 +67617,7 @@ body.cl-app-thread
   div.post-reply{
     width: 100%;
     display: block;
-    line-height: 20px;
+    line-height: 30px;
     margin-bottom: 5px;
     margin-top: 5px;
   }
@@ -67635,7 +67635,7 @@ body.cl-app-thread
     color: var(--smc-main-text-color-2);
     font-weight: 400;
     font-size: 15px;
-    line-height: 20px;
+    line-height: 30px;
   }
 body.cl-app-thread
   main.main-content-container
@@ -68247,7 +68247,7 @@ body.cl-app-thread
   padding: 0;
   margin: 0 0 10px 0;
   font-size: 18px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   word-wrap: break-word;
 }
@@ -68727,7 +68727,7 @@ div.publication-content
 div.publication-text
 p.pub-text {
 font-size: 15px;
-line-height: 20px;
+line-height: 30px;
 font-weight: 400;
 padding: 0;
 margin: 0;
@@ -69629,7 +69629,7 @@ overflow-wrap: break-word;
 color: var(--smc-main-text-color-2);
 font-weight: 400;
 font-size: 14px;
-line-height: 20px;
+line-height: 30px;
 cursor: pointer;
 display: inline-flex;
 white-space: nowrap;
@@ -70937,7 +70937,7 @@ body.cl-app-thread
   padding: 0;
   margin: 0;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
   margin-left: 15px;
 }
@@ -71928,7 +71928,7 @@ body.cl-app-trending
   font-size: 20px;
   padding: 0;
   margin: 0 0 10px 0;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color);
   font-weight: 700;
   text-align: center;
@@ -71943,7 +71943,7 @@ body.cl-app-trending
   div.pl-message
   p {
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   padding: 0;
   margin: 0;
   color: var(--smc-main-text-color-2);
@@ -72362,7 +72362,7 @@ body.cl-app-wallet
   padding: 0;
   margin: 0;
   font-size: 13px;
-  line-height: 20px;
+  line-height: 30px;
   color: var(--smc-main-text-color-2);
 }
 
