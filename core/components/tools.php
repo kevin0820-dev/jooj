@@ -233,8 +233,9 @@ function cl_get_media($media = '', $is_upload = false){
     }
     
     if ($config['as3_storage'] == 'on') {
-        $as3_bucket = $config['as3_bucket_name'];
-        $media_url  = cl_strf("https://%s.s3.amazonaws.com/%s", $as3_bucket, $media);
+        $as3_bucket_region = $config['as3_bucket_region'];
+        $as3_bucket_name = $config['as3_bucket_name'];
+        $media_url  = cl_strf("https://s3.%s.amazonaws.com/%s/%s", $as3_bucket_region, $as3_bucket_name, $media);
         return $media_url;
     }
     else {
@@ -680,8 +681,6 @@ function cl_upload2s3($filename = null, $del_localfile = "Y") {
             try {
 
                 include_once(cl_full_path("core/libs/s3/vendor/autoload.php"));
-                
-                return false;
 
                 $amazon_s3        = new \Aws\S3\S3Client(array(
                     'version'     => 'latest',
@@ -691,6 +690,7 @@ function cl_upload2s3($filename = null, $del_localfile = "Y") {
                         'secret'  => $cl['config']['as3_api_secret_key']
                     )
                 ));
+
 
                 $fileHandle = fopen($filename, 'r+');
                 if ($fileHandle) {
