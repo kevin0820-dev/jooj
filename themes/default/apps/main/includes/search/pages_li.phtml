@@ -25,37 +25,6 @@
                     $<?php echo($cl['li']['username']); ?>
                 </div>
             </div>
-            <?php
-
-                use Aws\DynamoDb\NumberValue;
-
-                $coin_id = strtoupper($cl['li']['symbol_price']);
-                $url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" . $coin_id . "&tsyms=USD";
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: Mozilla/5.0'));
-                $response = curl_exec($ch);
-                if ($response === false) {
-                    echo 'Curl error: ' . curl_error($ch);
-                    curl_close($ch);
-                    exit;
-                }
-                curl_close($ch);
-                $data = json_decode($response, true);
-                if ($data && isset($data['RAW'][$coin_id]['USD']['PRICE'])) {
-                    $cl['coin_one']['change_pct_24h'] = number_format((float)$data['RAW'][$coin_id]['USD']['CHANGEPCT24HOUR'], 2);
-                } else {
-                    $cl['coin_one'] = [];
-                }
-            ?>
-            <div style="padding-left:10px; font-weight:bold; color: <?php echo (isset($cl['coin_one']['change_pct_24h']) && floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
-                <?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
-                    <?php echo $cl['coin_one']['change_pct_24h']; ?>%
-                <?php else : ?>
-                    <?php echo "Error"; ?>
-                <?php endif; ?>
-            </div>
         </div>
     </a>
 </div>
