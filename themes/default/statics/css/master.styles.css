@@ -19402,6 +19402,7 @@ body.cl-app-notifications
   div.notifications-data__topline
   a {
   text-decoration: none;
+  display: flex;
 }
 
 body.cl-app-notifications
@@ -19417,6 +19418,8 @@ body.cl-app-notifications
   font-size: var(--cl-primary-name-size);
   color: var(--cl-primary-text-color);
   font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
 body.cl-app-notifications
