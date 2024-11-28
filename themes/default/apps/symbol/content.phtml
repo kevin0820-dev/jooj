@@ -120,22 +120,18 @@
 					</span>
 				<?php endif; ?>
 			</div>
-			<div style="display: none;" id="priceHeader">
-				<div style="display:flex;">
-					<div style="padding-left: 14px; font-size:large; color:var(--smc-main-text-color); font-weight:bold">
-						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : echo "$" . $cl['coin_one']['price']; ?>
-						<?php else : echo "Error" ?>
-						<?php endif ?>
-					</div>
-					<div style="padding-left:10px; font-weight:bold; color: <?php echo (isset($cl['coin_one']['change_pct_24h']) && floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
-						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
+			<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : ?>
+				<div style="display: none;" id="priceHeader">
+					<div style="display:flex;">
+						<div style="padding-left: 14px; font-size:large; color:var(--smc-main-text-color); font-weight:bold">
+							<?php echo "$" . $cl['coin_one']['price']; ?>
+						</div>
+						<div style="padding-left:10px; font-weight:bold; color: <?php echo (isset($cl['coin_one']['change_pct_24h']) && floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
 							<?php echo $cl['coin_one']['change_pct_24h']; ?>% (1d)
-						<?php else : ?>
-							<?php echo "Error"; ?>
-						<?php endif; ?>
+						</div>
 					</div>
 				</div>
-			</div>
+			<?php endif; ?>
 		</div>
 		<div class="profile-activity-navbar noBorder" id="selectionPane" style="display: none;">
 			<a>
@@ -374,18 +370,14 @@
 				</div>
 				<div style="display: flex; text-align:left; align-items:center; padding: 9px 0px">
 					<div style="width: 85%; display:flex;">
-						<div style="padding-left: 14px; font-size:xx-large; color:var(--smc-main-text-color); font-weight:bold" id='price'>
-							<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : echo "$" . $cl['coin_one']['price']; ?>
-							<?php else : echo "No Data"; ?>
-							<?php endif ?>
-						</div>
-						<div style="padding-left:10px; font-weight:bold; color: <?php echo (isset($cl['coin_one']['change_pct_24h']) && floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
-							<?php if (isset($cl['coin_one']) && !empty($cl['coin_one']) && isset($cl['coin_one']['change_pct_24h'])) : ?>
+						<?php if (isset($cl['coin_one']) && !empty($cl['coin_one'])) : ?>
+							<div style="padding-left: 14px; font-size:xx-large; color:var(--smc-main-text-color); font-weight:bold" id='price'>
+								<?php echo "$" . $cl['coin_one']['price']; ?>
+							</div>
+							<div style="padding-left:10px; font-weight:bold; color: <?php echo (isset($cl['coin_one']['change_pct_24h']) && floatval($cl['coin_one']['change_pct_24h']) > 0) ? '#06806b' : '#dc3545'; ?>;">
 								<?php echo $cl['coin_one']['change_pct_24h']; ?>% (1d)
-							<?php else : ?>
-								<?php echo "No Data"; ?>
-							<?php endif; ?>
-						</div>
+							</div>
+						<?php endif; ?>
 					</div>
 					<div style="width: 15%; padding:10px 0px;">
 						<div class="profile-activity-stats-info" style="justify-content: end; margin-bottom: 0px; padding:0px 10px 0px 0px;">
