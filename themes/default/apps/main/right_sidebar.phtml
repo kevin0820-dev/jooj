@@ -55,61 +55,62 @@
 			<?php endif ?>
 		<?php endif ?>
 		<?php if (not_empty($cl["is_logged"])): ?>
-			<div class="topical-posts">
-				<div class="topical-posts__header">
-					<h4><?php echo cl_translate("Watchlist"); ?></h4>
-				</div>
-				<div class="spinner-container" style="display: none;">
-					<div class="spinner"></div>
-				</div>
-				<div class="topical-posts__body" id="topical-posts-body">
-					<?php
-						$count = 0;
-						$cl['watchers']	= cl_get_watchings($me['id'], 7, false);
-						global $db;
-						foreach ($cl['watchers'] as $row):
-							if ($count >= 5) break;
-							$db        = $db->where('id', $row['id']);
-							$symbol_data = $db->getOne(T_SYMBOLS, 'avatar, id');
-							if (empty($symbol_data)) { // Check if data is found
-								continue;
-							}
-							$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
-							$symbol_data['is_following'] = cl_is_watching($me['id'], $symbol_data['id']);
-							$symbol_data['follow_requested'] = cl_watch_requested($me['id'], $symbol_data['id']);
-							$count++;
-					?>
-						<div class="topical-posts__item">
-							<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['username']))); ?>">
-								<img src="<?php echo $symbol_data['avatar']; ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
-								<b>$</b>
-								<strong><?php echo ($row['username']); ?></strong>
-								<span><?php echo ($row['fname'].' | '.$row['posts']); ?> <?php echo cl_translate("Posts"); ?></span>
-							</a>
-							<?php if ($symbol_data['is_following']): ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
-									<?php echo cl_translate("unwatch"); ?>
-								</button>
-							<?php elseif ($symbol_data['follow_requested']): ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
-									<?php echo cl_translate("Pending"); ?>
-								</button>
-							<?php else: ?>
-								<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
-									<?php echo cl_translate("watch"); ?>
-								</button>
-							<?php endif; ?>
-						</div>
-					<?php endforeach; ?>
-				</div>
-				<?php if (count($cl['watchers']) > 5): ?>
-					<div class="topical-posts__footer">
-						<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
-							<?php echo cl_translate("Show more"); ?>
-						</a>
+			<?php $cl['watchers']	= cl_get_watchings($me['id'], 7, false); if(not_empty($cl['watchers'])): ?>
+				<div class="topical-posts">
+					<div class="topical-posts__header">
+						<h4><?php echo cl_translate("Watchlist"); ?></h4>
 					</div>
-				<?php endif; ?>
-			</div>
+					<div class="spinner-container" style="display: none;">
+						<div class="spinner"></div>
+					</div>
+					<div class="topical-posts__body" id="topical-posts-body">
+						<?php
+							$count = 0;
+							global $db;
+							foreach ($cl['watchers'] as $row):
+								if ($count >= 5) break;
+								$db        = $db->where('id', $row['id']);
+								$symbol_data = $db->getOne(T_SYMBOLS, 'avatar, id');
+								if (empty($symbol_data)) { // Check if data is found
+									continue;
+								}
+								$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+								$symbol_data['is_following'] = cl_is_watching($me['id'], $symbol_data['id']);
+								$symbol_data['follow_requested'] = cl_watch_requested($me['id'], $symbol_data['id']);
+								$count++;
+						?>
+							<div class="topical-posts__item">
+								<a class="htag" href="<?php echo cl_link(cl_strf("symbol/%s", ($row['username']))); ?>">
+									<img src="<?php echo $symbol_data['avatar']; ?>" style="height: 17px; border-radius:50%; margin-right: 2px;" alt="">
+									<b>$</b>
+									<strong><?php echo ($row['username']); ?></strong>
+									<span><?php echo ($row['fname'].' | '.$row['posts']); ?> <?php echo cl_translate("Posts"); ?></span>
+								</a>
+								<?php if ($symbol_data['is_following']): ?>
+									<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
+										<?php echo cl_translate("unwatch"); ?>
+									</button>
+								<?php elseif ($symbol_data['follow_requested']): ?>
+									<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
+										<?php echo cl_translate("Pending"); ?>
+									</button>
+								<?php else: ?>
+									<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($row['username']); ?>" class="right-sidebar-flex-button" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
+										<?php echo cl_translate("watch"); ?>
+									</button>
+								<?php endif; ?>
+							</div>
+						<?php endforeach; ?>
+					</div>
+					<?php if (count($cl['watchers']) > 5): ?>
+						<div class="topical-posts__footer">
+							<a href="<?php echo ($me['url']); ?>/watching" data-spa="true">
+								<?php echo cl_translate("Show more"); ?>
+							</a>
+						</div>
+					<?php endif; ?>
+				</div>
+			<?php endif; ?>
 			<div class="topical-posts">
 				<div class="topical-posts__header">
 					<h4><?php echo cl_translate("hot_symbols_for_you"); ?></h4>
