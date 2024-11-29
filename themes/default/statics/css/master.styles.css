@@ -10971,7 +10971,7 @@ body div.modal div.modal-content {
   border: none;
   box-shadow: var(--cl-primary-box-shadow);
   border-radius: 16px;
-  border: 1px solid white;
+  border: 1px solid var(--smc-main-border-color-darken-5);
 }
 
 body div.modal div.modal-content div.modal-header {

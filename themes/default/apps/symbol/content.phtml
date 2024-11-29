@@ -227,11 +227,14 @@
 											</svg>
 										</span>
 										<span class="flex-item">
-											<?php echo cl_translate('Copy link to Coin page'); ?>
+											<?php echo cl_translate('Copy link'); ?>
 										</span>
 									</a>
-									<a class="dropdown-item" onclick="SMColibri.PS.profile_report.open();"
-										href="javascript:void(0);">
+									<?php if (not_empty($cl["is_logged"])): ?>
+										<a class="dropdown-item" onclick="SMColibri.PS.profile_report.open();" href="javascript:void(0);">
+									<?php else : ?>
+										<a class="dropdown-item" data-toggle="modal" data-target="#loginModal" href="javascript:void(0);">
+									<?php endif; ?>
 										<span class="flex-item dropdown-item-icon">
 											<?php echo cl_ikon("flag"); ?>
 										</span>
@@ -313,7 +316,7 @@
 											<?php echo cl_ikon("copy"); ?>
 										</span>
 										<span class="flex-item">
-											<?php echo cl_translate('Copy link to Coin page'); ?>
+											<?php echo cl_translate('Copy link'); ?>
 										</span>
 									</a>
 									<?php if (not_empty($cl['is_logged'])): ?>

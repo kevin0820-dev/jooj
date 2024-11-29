@@ -11508,7 +11508,7 @@ body div.modal div.modal-content {
   border: none;
   box-shadow: var(--smc-main-box-shadow-eff);
   border-radius: var(--smc-main-border-rad1);
-  border: 1px solid white;
+  border: 1px solid var(--smc-main-border-color-darken-5);
 }
 
 body div.modal div.modal-content div.modal-header {
@@ -14609,15 +14609,15 @@ body .user-data__ctrls button.btn-custom.main-outline {
   background-color: var(--smc-main-bg-color-4);
   min-height: 33px;
   min-width: 32px;
-  padding-left: 23px;
-  padding-right: 23px;
+  padding-left: 16px;
+  padding-right: 16px;
   border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 9999px;
   color: var(--smc-main-bg-color);
-  /* font-weight: 700; */
-  font-size: 12px; /*Edited By Kevin.. Watching, Unwatching style. 9/14/2024*/
-  line-height: 30px;
+  font-weight: 700;
+  font-size: 15px; /*Edited By Kevin.. Watching, Unwatching style. 9/14/2024*/
+  line-height: 18px;
   max-height: 32px;
   padding-top: 6px;
   margin-top: 1px;
@@ -50079,33 +50079,6 @@ body button.btn-custom.main-inline:not([disabled]):focus {
 
 body button.btn-custom.lg.home:hover {
   background: #008ee6;
-}
-
-body button.btn-custom.main-outline {
-  color: var(--smc-main-uiel-color);
-  background: transparent;
-  font-weight: 500;
-  box-shadow: none;
-  border: 1px solid var(--smc-main-uiel-color);
-  outline: 0;
-}
-
-body .user-data__ctrls button.btn-custom.main-outline {
-  background-color: var(--smc-main-bg-color-4);
-  min-height: 33px;
-  min-width: 32px;
-  padding-left: 23px;
-  padding-right: 23px;
-  border-color: rgba(0, 0, 0, 0);
-  border-width: 1px;
-  border-radius: 9999px;
-  color: var(--smc-main-bg-color);
-  /* font-weight: 700; */
-  font-size: 12px; /*Edited By Kevin.. Watching, Unwatching style. 9/14/2024*/
-  line-height: 30px;
-  max-height: 32px;
-  padding-top: 6px;
-  margin-top: 1px;
 }
 
 body .user-data__ctrls button.btn-custom.main-outline:not([disabled]):hover,
