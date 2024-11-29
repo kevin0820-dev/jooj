@@ -1056,7 +1056,7 @@ function cl_is_following($follower_id = false, $following_id = false) {
     $db  = $db->where('follower_id', $follower_id);
     $db  = $db->where('following_id', $following_id);
     $db  = $db->where('status', 'active');
-    $res = $db->getValue(T_WATCHERS,'COUNT(id)');
+    $res = $db->getValue(T_CONNECTIONS,'COUNT(id)');
     
     return is_posnum($res);
 }

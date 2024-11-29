@@ -159,6 +159,9 @@
 										_app_.reset_form();
 										_app_.get_new_messages();
 									}
+									else if (data.error == 'not_following') {
+										cl_bs_notify("<?php echo cl_translate("You must follow this user before you can send them a message."); ?>", 5000);
+									}
 									else {
 										SMColibri.errorMSG();
 									}

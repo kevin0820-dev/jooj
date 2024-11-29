@@ -23,6 +23,10 @@ else {
 		$data['err_code'] = 0;
 		$send_to          = cl_session('interloc_user_id');
 		
+		if(cl_is_following($me['id'], $send_to) == false){
+			$data['error']  = 'not_following';
+			return;
+		}
 		if (is_posnum($send_to) && cl_is_blocked($send_to, $me['id']) != true && cl_is_blocked($me['id'], $send_to) != true) {
 			if (cl_can_direct_message($send_to)) {
 				if (not_empty($_FILES['image']) && not_empty($_FILES['image']['tmp_name'])) {	
