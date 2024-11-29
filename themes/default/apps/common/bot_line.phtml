@@ -47,6 +47,18 @@
 				</a>
 			</div>
 		</div>
+		<div class="search-result-holder" v-show="init_search">
+			<div class="search-result-body">
+				<ul class="result-list" data-an="result">
+					<?php echo cl_template('main/includes/search/searchbox'); ?>
+				</ul>
+			</div>
+			<div class="search-result-footer" v-bind:class="{'disabled': (advanced_search != true) }">
+				<a v-bind:href="search_page_url" data-spa="true">
+					<?php echo cl_translate('Advanced search'); ?>
+				</a>
+			</div>
+		</div>
 	</form>
 </div>
 
@@ -57,7 +69,8 @@
 			searching: false,
 			search_query: "",
 			advanced_search: false,
-			search_result: false
+			search_result: false,
+			init_search: true,
 		},
 		computed: {
 			search_page_url: function() {
@@ -95,7 +108,7 @@
 				this.search();
 			},
 			search: function() {
-				if (this.search_query.length > 1) {
+				// if (this.search_query.length > 0) {
 					var _app_ = this;
 					delay(function() {
 						$.ajax({
@@ -111,12 +124,18 @@
 							}
 						}).done(function(data) {
 							_app_.search_result = true;
+							_app_.init_search = false;
 							$(_app_.$el).find('[data-an="result"]').html($(data.html));
 						}).always(function() {
 							_app_.searching = false;
 						});
 					}, 800);
-				} else this.search_result = false;
+				if(this.search_query.length > 0) {
+					this.init_search = false;
+				}
+				else {
+					this.init_search = true;
+				}
 			},
 			cancel: function() {
 				var _app_ = this;
@@ -124,8 +143,8 @@
 				_app_.search_query = "";
 				_app_.advanced_search = false;
 				_app_.search_result = false;
-
-				$(_app_.$el).find('[data-an="result"]').empty('');
+				_app_.init_search = true;
+				this.search();
 			}
 		}
 	});
