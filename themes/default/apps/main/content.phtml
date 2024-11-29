@@ -164,8 +164,7 @@
 							</div>
 						</div>
 					</div>
-					<?php $cl["right_sidebar_main"] = cl_template('main/right_sidebar');?>
-					<?php echo fetch_or_get($cl["right_sidebar"], $cl["right_sidebar_main"]); ?>
+					<?php echo (($cl["is_logged"]) ? cl_template('main/right_sidebar') : cl_template('main/guest_sidebar')); ?>
 				</div>
 			<?php endif; ?>
 		</main>
