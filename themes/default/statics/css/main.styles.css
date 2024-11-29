@@ -4068,7 +4068,7 @@ body
   width: 100%;
   display: block;
   padding: 15px;
-  border-bottom: 1px solid var(--smc-main-border-color);
+  border-bottom: 1px solid #2c2c2e;
   transition: all 0.27s ease-in-out;
   padding-bottom: 5px !important;
   padding-top: 5px;
@@ -39993,24 +39993,6 @@ body
   div.timeline-container
   div.timeline-posts-container
   div.timeline-posts-ls
-  div.post-list-item {
-  width: 100%;
-  display: block;
-  padding: 15px;
-  border-bottom: 1px solid var(--smc-main-border-color);
-  transition: all 0.27s ease-in-out;
-  padding-bottom: 5px !important;
-  padding-top: 5px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
   div.post-list-item:hover {
   background: var(--smc-main-ehbg-color);
 }
@@ -70897,22 +70879,6 @@ body.cl-app-thread
   div.timeline-posts-ls
   div.timeline-posts-ls-group
   div.timeline-posts-ls-group-inner
-  div.post-list-item {
-  position: relative;
-  border-bottom: none;
-}
-
-body.cl-app-thread
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.publication--thread-container
-  div.publication--thread-container-inner
-  div.publication--thread-replys-holder
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.timeline-posts-ls-group
-  div.timeline-posts-ls-group-inner
   div.post-list-item:hover,
 body.cl-app-thread
   main.main-content-container
@@ -71393,19 +71359,6 @@ body.cl-app-thread
   div.publication--thread-chain-holder {
   width: 100%;
   display: block;
-}
-
-body.cl-app-thread
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.publication--thread-container
-  div.publication--thread-container-inner
-  div.publication--thread-chain-holder
-  div.post-list-item {
-  border-bottom: none;
-  position: relative;
-  border-bottom: none !important;
 }
 
 body.cl-app-thread
