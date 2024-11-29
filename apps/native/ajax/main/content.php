@@ -2535,12 +2535,8 @@ else if($action == 'search') {
     $search_query     = fetch_or_get($_GET['query'], false); 
     $type             = fetch_or_get($_GET['type'], false);
     $data['html']   = cl_template('main/includes/search/no_result');
-    
-    if(empty($search_query)) {
-        $data['status'] = 200;
-        $data['html']   = cl_template('main/includes/search/searchbox');
-    }
-    else if (not_empty($search_query) && len_between($search_query,1, 32) && in_array($type, array('users','htags','symbols'))) {
+
+    if (not_empty($search_query) && len_between($search_query,1, 32) && in_array($type, array('users','htags','symbols'))) {
         require_once(cl_full_path("core/apps/explore/app_ctrl.php"));
 
         if ($type == "htags") {

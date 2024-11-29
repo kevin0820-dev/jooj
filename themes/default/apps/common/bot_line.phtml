@@ -49,8 +49,13 @@
 		</div>
 		<div class="search-result-holder" v-show="init_search">
 			<div class="search-result-body">
-				<ul class="result-list" data-an="result">
-					<?php echo cl_template('main/includes/search/searchbox'); ?>
+				<div class="px-3 text-[14px] font-semibold mb-3 mt-4 text-white">
+					<?php echo cl_translate('Trending'); ?>
+				</div>
+				<ul class="result-list">
+					<?php foreach ($cl['hot_symbols'] as $cl['li']): ?>
+						<?php echo cl_template('main/includes/search/searchbox'); ?>
+					<?php endforeach; ?>
 				</ul>
 			</div>
 			<div class="search-result-footer" v-bind:class="{'disabled': (advanced_search != true) }">
@@ -108,7 +113,7 @@
 				this.search();
 			},
 			search: function() {
-				// if (this.search_query.length > 0) {
+				if (this.search_query.length > 0) {
 					var _app_ = this;
 					delay(function() {
 						$.ajax({
@@ -130,10 +135,9 @@
 							_app_.searching = false;
 						});
 					}, 800);
-				if(this.search_query.length > 0) {
-					this.init_search = false;
 				}
 				else {
+					this.search_result = false;
 					this.init_search = true;
 				}
 			},
@@ -144,7 +148,7 @@
 				_app_.advanced_search = false;
 				_app_.search_result = false;
 				_app_.init_search = true;
-				this.search();
+				// this.search();
 			}
 		}
 	});
