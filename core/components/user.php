@@ -1056,7 +1056,7 @@ function cl_is_following($follower_id = false, $following_id = false) {
     $db  = $db->where('follower_id', $follower_id);
     $db  = $db->where('following_id', $following_id);
     $db  = $db->where('status', 'active');
-    $res = $db->getValue(T_CONNECTIONS,'COUNT(id)');
+    $res = $db->getValue(T_WATCHERS,'COUNT(id)');
     
     return is_posnum($res);
 }
@@ -1808,6 +1808,10 @@ function cl_notify_user($data = array()) {
 
             else if ($data['subject'] == "ad_approval") {
                 $cl['enotif_data']['url'] = cl_link(cl_strf("ads/%d", $data['entry_id']));
+            }
+
+            else if ($data['subject'] == "comment") {
+                $cl['enotif_data']['url'] = cl_link(cl_strf("conversation/%s", $me['id']));
             }
             
             $send_email_data = array(
