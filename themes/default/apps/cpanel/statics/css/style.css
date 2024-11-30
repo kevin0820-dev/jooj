@@ -30598,7 +30598,8 @@ body.dark-only .nav-tabs .nav-link {
 body.dark-only .nav-tabs .nav-link.active {
     background-color: #262932;
     color: rgba(255, 255, 255, 0.6);
-    border-color: #374558 #374558 #262932
+    border-color: #374558 #374558 #262932;
+    text-align: center;
 }
 
 body.dark-only .nav-tabs .nav-link:hover,
@@ -33315,7 +33316,8 @@ body[class*='dark-'] .for-light {
 }
 
 .nav-tabs .nav-link.active {
-    font-weight: 500
+    font-weight: 500;
+    text-align: center;
 }
 
 .nav-tabs.nav-bottom .nav-item .nav-link.active {
@@ -36555,7 +36557,8 @@ body[class*='dark-'] .for-light {
 }
 
 .page-wrapper.modern-type .nav-tabs .nav-link.active {
-    background-color: transparent
+    background-color: transparent;
+    text-align: center;
 }
 
 .page-wrapper.modern-type .activity-timeline .media .activity-line {

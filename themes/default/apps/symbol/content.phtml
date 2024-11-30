@@ -165,9 +165,19 @@
 				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'trending') {
 															echo ('active');
 														} ?>" onclick='select("trending")'>
-					<?php echo cl_translate("Top"); ?>
+					&nbsp;&nbsp;<?php echo cl_translate("Top"); ?>&nbsp;&nbsp;
 				</button>
 				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'trending') {
+												echo ('active');
+											} ?>"></div>
+			</a>
+			<a style="margin-left: 15px;">
+				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'about') {
+															echo ('active');
+														} ?>" onclick='select("about")'>
+					<?php echo cl_translate("About"); ?>
+				</button>
+				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'about') {
 												echo ('active');
 											} ?>"></div>
 			</a>
@@ -181,16 +191,6 @@
 												echo ('active');
 											} ?>"></div>
 			</a> -->
-			<a style="margin-left: 15px;">
-				<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'about') {
-															echo ('active');
-														} ?>" onclick='select("about")'>
-					<?php echo cl_translate("About"); ?>
-				</button>
-				<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'about') {
-												echo ('active');
-											} ?>"></div>
-			</a>
 		</div>
 	</div>
 	<div style="background-color:var(--smc-main-bg-color); position:relative; top: 10px;">
@@ -492,22 +492,10 @@
 														} ?>"></div>
 						</a>
 						<a style="margin-left: 15px;">
-							<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'trending') {
-																		echo ('active');
-																	} ?>" onclick='select("trending")'>
-								<?php echo cl_translate("Top"); ?>
+							<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'trending') {echo ('active');} ?>" onclick='select("trending")'>
+								&nbsp;&nbsp;<?php echo cl_translate("Top"); ?>&nbsp;&nbsp;
 							</button>
 							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'trending') {
-															echo ('active');
-														} ?>"></div>
-						</a>
-						<a style="margin-left: 15px;">
-							<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'news') {
-																		echo ('active');
-																	} ?>" onclick='select("news")'>
-								<?php echo cl_translate("News"); ?>
-							</button>
-							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'news') {
 															echo ('active');
 														} ?>"></div>
 						</a>
@@ -521,6 +509,16 @@
 															echo ('active');
 														} ?>"></div>
 						</a>
+						<!-- <a style="margin-left: 15px;">
+							<button class="navbar-item-btn btn-top <?php if ($cl['page_tab'] == 'news') {
+																		echo ('active');
+																	} ?>" onclick='select("news")'>
+								<?php echo cl_translate("News"); ?>
+							</button>
+							<div class="css-1dbjc4nc1 <?php if ($cl['page_tab'] == 'news') {
+															echo ('active');
+														} ?>"></div>
+						</a> -->
 					</div>
 				<?php endif; ?>
 			</div>
@@ -657,36 +655,36 @@
 			if (state === 'posts') return;
 			$("#posts").addClass("show active");
 			if ($("#trending").removeClass("show active"));
-			if ($("#news").removeClass("show active"));
+			// if ($("#news").removeClass("show active"));
 			if ($("#about").removeClass("show active"));
 			state = "posts";
 			for (var i = 0; i < 4; i++) {
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.add("active");
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.remove("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
+				// selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.add("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
+				// selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
 			}
 		}
 		else if (pane === 'trending') {
 			if (state === 'trending') return;
 			$("#trending").addClass("show active");
 			if ($("#posts").removeClass("show active"));
-			if ($("#news").removeClass("show active"));
+			// if ($("#news").removeClass("show active"));
 			if ($("#about").removeClass("show active"));
 			state = 'trending';
 			for (var i = 0; i < 4; i++) {
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.add("active");
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.remove("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
+				// selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.add("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
+				// selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
 			}
 			if (window.scrollY > 400) {
 				about.scrollIntoView({
@@ -696,22 +694,22 @@
 				window.scrollTo(0, 400);
 			}
 		}
-		else if (pane === 'news') {
-			if (state === 'news') return;
-			$("#news").addClass("show active");
+		else if (pane === 'about') {
+			if (state === 'about') return;
+			$("#about").addClass("show active");
 			if ($("#posts").removeClass("show active"));
 			if ($("#trending").removeClass("show active"));
-			if ($("#about").removeClass("show active"));
-			state = 'news';
+			// if ($("#news").removeClass("show active"));
+			state = 'about';
 			for (var i = 0; i < 4; i++) {
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.add("active");
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
 				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
+				// selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.add("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
 				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
+				// selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.remove("active");
 			}
 			if (window.scrollY > 400) {
 				trending.scrollIntoView({
@@ -720,30 +718,30 @@
 				});
 			}
 		}
-		else if (pane === 'about') {
-			if (state === 'about') return;
-			$("#about").addClass("show active");
-			if ($("#posts").removeClass("show active"));
-			if ($("#trending").removeClass("show active"));
-			if ($("#news").removeClass("show active"));
-			state = 'about';
-			for (var i = 0; i < 4; i++) {
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.add("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
-				selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.add("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
-				selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.remove("active");
-			}
-			if (window.scrollY > 400) {
-				news.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start'
-				});
-			}
-		}
+		// else if (pane === 'news') {
+		// 	if (state === 'news') return;
+		// 	$("#news").addClass("show active");
+		// 	if ($("#posts").removeClass("show active"));
+		// 	if ($("#trending").removeClass("show active"));
+		// 	if ($("#about").removeClass("show active"));
+		// 	state = 'news';
+		// 	for (var i = 0; i < 4; i++) {
+		// 		selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[3].classList.add("active");
+		// 		selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[0].classList.remove("active");
+		// 		selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[1].classList.remove("active");
+		// 		selectionPane[i].getElementsByClassName("css-1dbjc4nc1")[2].classList.remove("active");
+		// 		selectionPane[i].getElementsByClassName("navbar-item-btn")[3].classList.add("active");
+		// 		selectionPane[i].getElementsByClassName("navbar-item-btn")[0].classList.remove("active");
+		// 		selectionPane[i].getElementsByClassName("navbar-item-btn")[1].classList.remove("active");
+		// 		selectionPane[i].getElementsByClassName("navbar-item-btn")[2].classList.remove("active");
+		// 	}
+		// 	if (window.scrollY > 400) {
+		// 		news.scrollIntoView({
+		// 			behavior: 'smooth',
+		// 			block: 'start'
+		// 		});
+		// 	}
+		// }
 	}
 
 	new Vue({
