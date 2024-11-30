@@ -11,7 +11,7 @@
 var pubbox_form_app_mixin = Object({
 	data: function() {
 		return {
-			expect: "select",
+			expect: "expection",
 			text: "",
 			text_ph_orig: "<?php echo cl_translate('Hello {@name@}, What is new with you today?', array('name' => $cl['me']['name'])); ?>",
 			text_ph: "",
@@ -1624,6 +1624,7 @@ var pubbox_form_app_mixin = Object({
 				_app_.record_audio_reset();
 			}
 
+			_app.expect = "expectation";
 			_app_.image_ctrl   = true;
 			_app_.gif_ctrl     = true;
 			_app_.poll_ctrl    = true;
@@ -1861,6 +1862,7 @@ var pubbox_form_app_mixin_question = Object({
 			_app_.question = "",
 			_app_.answer = "",
 			_app_.submitting = false;
+			_app_.expect = "";
 		},
 	},
 	updated: function() {

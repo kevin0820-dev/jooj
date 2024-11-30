@@ -9,6 +9,9 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.publication-data {
+  overflow: hidden;
+}
 .timeline-container-inner {
   height: 100%;
 }

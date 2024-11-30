@@ -837,6 +837,7 @@ else if ($action == 'publish_new_post') {
         $post_privacy     = fetch_or_get($_POST['privacy'], "everyone");
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
+        $expect           = fetch_or_get($_POST['expect'], "select");
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){
             $data['status'] = 400;
@@ -872,7 +873,8 @@ else if ($action == 'publish_new_post') {
                 "thread_id" => $thread_id,
                 "time"      => time(),
                 "priv_wcs"  => $me["profile_privacy"],
-                "priv_wcr"  => $post_privacy
+                "priv_wcr"  => $post_privacy,
+                "expect"    => $expect
             ));
 
             if (empty($thread_id)) {
@@ -931,7 +933,8 @@ else if ($action == 'publish_new_post') {
                     "thread_id" => $thread_id,
                     "time"      => time(),
                     "priv_wcs"  => $me["profile_privacy"],
-                    "priv_wcr"  => $post_privacy
+                    "priv_wcr"  => $post_privacy,
+                    "expect"    => $expect
                 );
 
                 if(not_empty($post_text) && not_empty($poll_data) && cl_is_valid_poll($poll_data)) {
@@ -1071,6 +1074,7 @@ else if ($action == 'publish_new_repost') {
         $post_text        = cl_croptxt($post_text, $max_post_length);
         $thread_data      = array();
         $comment_id       = fetch_or_get($_POST['selected_repost_id'], 0);
+        $expect           = fetch_or_get($_POST['expect'], "select");
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
             $data['status'] = 400;
@@ -1112,7 +1116,8 @@ else if ($action == 'publish_new_repost') {
                 "thread_id" => $thread_id,
                 "time"      => time(),
                 "priv_wcs"  => $me["profile_privacy"],
-                "priv_wcr"  => $post_privacy
+                "priv_wcr"  => $post_privacy,
+                "expect"    => $expect
             ));
 
             if (empty($thread_id)) {
@@ -1175,7 +1180,8 @@ else if ($action == 'publish_new_repost') {
                     "thread_id" => $thread_id,
                     "time"      => time(),
                     "priv_wcs"  => $me["profile_privacy"],
-                    "priv_wcr"  => $post_privacy
+                    "priv_wcr"  => $post_privacy,
+                    "expect"    => $expect
                 );
 
                 if(not_empty($post_text) && not_empty($poll_data) && cl_is_valid_poll($poll_data)) {
@@ -1342,6 +1348,7 @@ else if ($action == 'publish_new_post_symbol') {
         $post_privacy = fetch_or_get($_POST['privacy'], "everyone");
         $post_text = cl_croptxt($post_text, $max_post_length);
         $thread_data = array();
+        $expect = fetch_or_get($_POST['expect'], "select");
 
         if (not_empty($thread_id)) {
             $thread_data  = cl_raw_post_data($thread_id);
@@ -1371,7 +1378,8 @@ else if ($action == 'publish_new_post_symbol') {
                 "thread_id" => $thread_id,
                 "time"      => time(),
                 "priv_wcs"  => $me["profile_privacy"],
-                "priv_wcr"  => $post_privacy
+                "priv_wcr"  => $post_privacy,
+                "expect"    => $expect
             ));
 
             if (empty($thread_id)) {
@@ -1442,7 +1450,8 @@ else if ($action == 'publish_new_post_symbol') {
                     "thread_id" => $thread_id,
                     "time"      => time(),
                     "priv_wcs"  => $me["profile_privacy"],
-                    "priv_wcr"  => $post_privacy
+                    "priv_wcr"  => $post_privacy,
+                    "expect"    => $expect
                 );
 
                 if(not_empty($post_text) && not_empty($poll_data) && cl_is_valid_poll($poll_data)) {
@@ -1587,6 +1596,7 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
         $post_text = cl_croptxt($post_text, $max_post_length);
         $thread_data = array();
         $comment_id       = fetch_or_get($_POST['selected_repost_id_symbol'], 0);
+        $expect           = fetch_or_get($_POST['expect'], "select");
 
         if(cl_is_spam($me['id'], cl_text_secure($post_text))){            
             $data['status'] = 400;
@@ -1623,7 +1633,8 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
                 "thread_id" => $thread_id,
                 "time"      => time(),
                 "priv_wcs"  => $me["profile_privacy"],
-                "priv_wcr"  => $post_privacy
+                "priv_wcr"  => $post_privacy,
+                "expect"    => $expect
             ));
 
 
@@ -1696,7 +1707,8 @@ else if ($action == 'publish_new_repost_symbol') {             /* edited by kevi
                     "thread_id" => $thread_id,
                     "time"      => time(),
                     "priv_wcs"  => $me["profile_privacy"],
-                    "priv_wcr"  => $post_privacy
+                    "priv_wcr"  => $post_privacy,
+                    "expect"    => $expect
                 );
 
                 if(not_empty($post_text) && not_empty($poll_data) && cl_is_valid_poll($poll_data)) {

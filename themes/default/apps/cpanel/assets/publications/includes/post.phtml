@@ -182,6 +182,12 @@
 						<div class="publication-text">
 							<p class="pub-text">
 								<?php
+									$expect = '';
+									if($cl['li']['expect'] == 'bearish'):
+										$expect = '<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">' . $cl['li']['expect'] . '</span>';
+									elseif($cl['li']['expect'] == 'bullish'):
+										$expect = '<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">' . $cl['li']['expect'] . '</span>';
+									endif;
 									$text = $cl['li']['text'];
 									$extendable = false;
 									$extendedText = "";
@@ -201,7 +207,7 @@
 										$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
 										return $image_tag . $matches[1];
 									}, $text);
-									echo $modified_text;
+									echo $modified_text . $expect;												
 									if($extendable){
 										$modified_text = preg_replace_callback($pattern, function($matches) {
 											$symbol = strtolower($matches[2]);
@@ -212,7 +218,7 @@
 											$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
 											return $image_tag . $matches[1];
 										}, $extendedText);
-										echo "<br/><a class='readAll' href='javascript:void(0);' onclick='this.parentElement.innerHTML = \"" . addslashes($modified_text) . "\";'>Read all</a>";
+										echo "<br/><a class='readAll' href='javascript:void(0);' onclick='this.parentElement.innerHTML = \"" . addslashes($modified_text . $expect) . "\";'>Read all</a>";
 									}
 								?>
 							</p>
