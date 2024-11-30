@@ -10,7 +10,7 @@
 # @*************************************************************************@
 
 if (empty($cl["is_logged"])) {
-    cl_redirect("404");
+    cl_redirect("guest");
 }
 
 $cl["page_title"] = cl_translate("Account settings");
