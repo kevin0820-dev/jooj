@@ -1,0 +1,472 @@
+
+	
+<div class="post-list-item" data-list-item="<?php echo ($cl['li']['post_data']['id']); ?>" onclick="analyze(event, <?php echo ($cl['li']['post_data']['id']); ?>)" style="cursor:pointer">
+	<?php if (not_empty($cl['li']['post_data']['is_repost'])): ?>
+		<div class="post-list-item-header">
+			<div class="publication-repost">
+				<?php echo cl_ikon('repeat'); ?>
+				<?php if (not_empty($cl['li']['post_data']['is_reposter'])): ?>
+					<a href="<?php echo $me['url']; ?>" data-spa="true">
+						<?php echo cl_translate('You reposted'); ?>
+					</a>
+				<?php else: ?>
+					<a href="<?php echo ($cl['li']['post_data']['reposter']['url']); ?>" data-spa="true">
+						<?php echo cl_translate('{@uname@} reposted', array('uname' => $cl['li']['post_data']['reposter']['name'])) ?>
+					</a>
+				<?php endif; ?>
+			</div>
+		</div>
+	<?php endif; ?>
+	<div class="post-list-item-content">
+		<div class="publisher-avatar">
+			<!-- For post -->
+			<?php if ($cl['li']['post_data']['symbol_id'] == 0): ?>
+				<a class="block-link" href="<?php echo ($cl['li']['post_data']['owner']['url']); ?>" data-spa="true">
+					<div class="avatar-holder">
+						<img class="lozad" src="<?php echo ($cl['li']['post_data']['owner']['avatar']); ?>">
+					</div>
+				</a>
+			<?php else: ?>
+				<!-- For Page -->
+				<?php if ($cl['li']['post_data']['owner']['id'] == 1): ?>
+					<a class="block-link" href="<?php echo ($cl['li']['post_data']['owner']['url']); ?>" data-spa="true">
+						<div  class="avatar-holder">
+							<img class="lozad" src="<?php echo ($cl['li']['post_data']['page']['avatar']); ?>">
+						</div>
+					</a>
+				<?php else: ?>
+					<!-- For post page coauthor -->
+						<a class="block-link" href="<?php echo ($cl['li']['post_data']['owner']['url']); ?>" data-spa="true">
+							<div class="avatar-holder">
+								<img class="lozad" src="<?php echo ($cl['li']['post_data']['owner']['avatar']); ?>">
+							</div>
+						</a>
+				<?php endif; ?>
+			<?php endif; ?>
+		</div>
+		<div class="publication-data">
+			<?php if (not_empty($cl['li']['post_data']['is_blocked'])): ?>
+				<div class="soft-hidden-post" data-softhidden-post="<?php echo ($cl['li']['post_data']['id']); ?>">
+					<div class="d-flex align-items-center flex-wn">
+						<div class="flex-item flex-grow-1">
+							<p>
+								<?php echo cl_translate('This is a message from the user you blocked'); ?>
+							</p>
+						</div>
+						<div class="flex-item">
+							<button class="btn btn-custom main-outline sm"
+								onclick="SMColibri.show_post(<?php echo ($cl['li']['post_data']['id']); ?>, 'blocked');">
+								<?php echo cl_translate('View'); ?>
+							</button>
+						</div>
+					</div>
+				</div>
+			<?php elseif (not_empty($cl['li']['post_data']['is_reported'])): ?>
+				<div class="soft-hidden-post" data-softhidden-post="<?php echo ($cl['li']['post_data']['id']); ?>">
+					<div class="d-flex align-items-center flex-wn">
+						<div class="flex-item flex-grow-1">
+							<p>
+								<?php echo cl_translate('This post is currently under review'); ?>
+							</p>
+						</div>
+						<div class="flex-item">
+							<button class="btn btn-custom main-outline sm"
+								onclick="SMColibri.show_post(<?php echo ($cl['li']['post_data']['id']); ?>, 'reported');">
+								<?php echo cl_translate('View'); ?>
+							</button>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+
+			<div class="publication-data-inner">
+				<div class="publisher-info">
+					<?php if ($cl['li']['post_data']['symbol_id'] == 0): ?>
+						<div class="lp">
+							<a href="<?php echo $cl['li']['post_data']['owner']['url']; ?>" data-spa="true"
+								data-uinfo-lbox="<?php echo $cl['li']['post_data']['owner']['id']; ?>" data-toggle="popover"
+								data-placement="bottom">
+								<b>
+									<span class="user-name-holder">
+										<?php echo $cl['li']['post_data']['owner']['name']; ?>
+									</span>
+									<p class="<?php if ($cl['li']['post_data']['owner']['verified'] == '1')
+													echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+								</b>
+							</a>
+							<span class="uname">
+								@<?php echo $cl['li']['post_data']['owner']['username']; ?>
+							</span>
+							<span class="point">&#183;</span>
+							<span class="posted-time">
+								<time><?php echo $cl['li']['post_data']['time']; ?></time>
+								<?php if (not_empty($cl['li']['post_data']['edited'])): ?>
+									<span
+										title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['post_data']['edited']); ?>">
+										&nbsp; (E)
+									</span>
+								<?php endif; ?>
+							</span>
+						</div>
+					<?php else: ?>
+						<div class="lp">
+							<?php if ($cl['li']['post_data']['owner']['id'] == 1): ?>
+								<a href="<?php echo cl_link(cl_strf("symbol/%s", $cl['li']['post_data']['page']['username'])); ?>"
+									data-sinfo-lbox="<?php echo $cl['li']['post_data']['page']['id']; ?>" data-toggle="popover"
+									data-placement="bottom">
+									<b>
+										<span class="user-name-holder">
+											<?php echo $cl['li']['post_data']['page']['name']; ?>
+										</span>
+										<p class="<?php if ($cl['li']['post_data']['owner']['verified'] == '1')
+														echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+									</b>
+								</a>
+								<span class="uname">
+									$<?php echo $cl['li']['post_data']['page']['username']; ?>
+								</span>
+								<span class="point">&#183;</span>
+								<span class="posted-time">
+									<time><?php echo $cl['li']['post_data']['time']; ?></time>
+									<?php if (not_empty($cl['li']['post_data']['edited'])): ?>
+										<span
+											title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['post_data']['edited']); ?>">
+											&nbsp; (E)
+										</span>
+									<?php endif; ?>
+								</span>
+							<?php else: ?>
+								<a href="<?php echo $cl['li']['post_data']['owner']['url']; ?>" data-spa="true"
+									data-uinfo-lbox="<?php echo $cl['li']['post_data']['owner']['id']; ?>" data-toggle="popover"
+									data-placement="bottom">
+									<b>
+										<span class="user-name-holder">
+											<?php echo $cl['li']['post_data']['owner']['name']; ?>
+										</span>
+										<p class="<?php if ($cl['li']['post_data']['owner']['verified'] == '1')
+														echo 'verified-badge'; ?>" style="display:inline-block;"></p>
+									</b>
+								</a>
+								<span class="uname">
+									@<?php echo $cl['li']['post_data']['owner']['username']; ?>
+								</span>
+								<span class="point px-2">&#183;</span>
+
+								<span class="posted-time">
+									<time><?php echo $cl['li']['post_data']['time']; ?></time>
+									<?php if (not_empty($cl['li']['post_data']['edited'])): ?>
+										<span
+											title="<?php echo cl_translate("Edited"); ?>: <?php echo cl_date("h:i A - M d, Y", $cl['li']['post_data']['edited']); ?>">
+											&nbsp; (E)
+										</span>
+									<?php endif; ?>
+								</span>
+							<?php endif; ?>
+						</div>
+					<?php endif; ?>
+				</div>
+
+				<div class="publication-content">
+					<?php if (not_empty($cl['li']['post_data']['text'])): ?>
+						<?php
+							$cl['li']['post_data']['text'] = cl_rn2br($cl['li']['post_data']['text']);
+							$cl['li']['post_data']['text'] = cl_strip_brs($cl['li']['post_data']['text']);
+						?>
+						<script>
+							jQuery(document).ready(function($) {
+
+								$('div.publication-text').find('a[href*="/search/"]').addClass('hash');
+							})
+						</script>
+
+						<div class="publication-text">
+							<p class="pub-text">
+								<?php
+									$text = $cl['li']['post_data']['text'];
+									$extendable = false;
+									$extendedText = "";
+									$word_count = str_word_count($text);
+									if ($word_count > 60) {
+										$extendable = true;
+										$extendedText = $text;
+										$text = implode(' ', array_slice(explode(' ', $text), 0, 60)) . '...';
+									}
+									$pattern = '/(<a[^>]*>\s*\$([a-zA-Z]+)\s*<\/a>)/';
+									$modified_text = preg_replace_callback($pattern, function($matches) {
+										$symbol = strtolower($matches[2]);
+										global $db;
+										$db        = $db->where('username', $symbol);
+										$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+										$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+										$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
+										return $image_tag . $matches[1];
+									}, $text);
+									echo $modified_text;
+									if($extendable){
+										$modified_text = preg_replace_callback($pattern, function($matches) {
+											$symbol = strtolower($matches[2]);
+											global $db;
+											$db        = $db->where('username', $symbol);
+											$symbol_data = $db->getOne(T_SYMBOLS, 'avatar');
+											$symbol_data['avatar']       = cl_get_media($symbol_data['avatar']);
+											$image_tag = '<img src="' . $symbol_data['avatar'] . '" style="height: 16px; display:inline; position:relative; bottom:2px; border-radius:50%; margin-right: 2px;" alt="' . $symbol . '">';
+											return $image_tag . $matches[1];
+										}, $extendedText);
+										echo "<br/><a class='readAll' href='javascript:void(0);' onclick='this.parentElement.innerHTML = \"" . addslashes($modified_text) . "\";'>Read all</a>";
+									}
+								?>
+							</p>
+						</div>
+					<?php endif; ?>
+					<?php if ($cl['li']['post_data']['type'] == 'image' && not_empty($cl['li']['post_data']['media'])): ?>
+						<?php if (count($cl['li']['post_data']['media']) == 1): ?>
+							<div class="lozad-media">
+								<div class="publication-image">
+									<a href="<?php echo cl_get_media(fetch_or_get($cl['li']['post_data']['media'][0]['src'], '')); ?>"
+										class="fbox-media2" data-btn='<?php echo cl_template('timeline/likes'); ?>'
+										data-fancybox="gallery" data-info='<?php echo cl_template('timeline/right_col'); ?>'>
+										<img class="lozad"
+											src="<?php echo cl_get_media(fetch_or_get($cl['li']['post_data']['media'][0]['src'], '')); ?>"
+											alt="Picture">
+									</a>
+								</div>
+							</div>
+						<?php else: ?>
+							<div class="publication-images-collage">
+								<?php foreach ($cl['li']['post_data']['media'] as $i => $row): ?>
+									<a href="<?php echo cl_get_media($row['src']); ?>" class="fbox-media2"
+										data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
+										data-info='<?php echo cl_template('timeline/right_col'); ?>'>
+										<div class="image-collage-item">
+											<div class="lozad-media">
+												<div class="publication-image">
+													<img class="d-block w-100 lozad"
+														src='<?php echo cl_get_media($row['x']['image_thumb']); ?>'
+														alt="Image">
+												</div>
+											</div>
+										</div>
+									</a>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>
+					<?php elseif ($cl['li']['post_data']['type'] == 'video' && not_empty($cl['li']['post_data']['media'])): ?>
+						<div class="lozad-media">
+							<div class="publication-image">
+								<a href="<?php echo cl_get_media(fetch_or_get($cl['li']['post_data']['media'][0]['src'], '')); ?>"
+									data-type="html5video" class="fbox-media2"
+									data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
+									data-info='<?php echo cl_template('timeline/right_col'); ?>'>
+									<img class="lozad"
+										src="<?php echo cl_get_media(fetch_or_get($cl['li']['post_data']['media'][0]['x']['poster_thumb'], '')); ?>"
+										alt="Video">
+									<div class="video-icon">
+										<span>
+											<?php echo cl_ikon("play"); ?>
+										</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					<?php elseif ($cl['li']['post_data']['type'] == 'audio' && not_empty($cl['li']['post_data']['media'])): ?>
+						<div class="publication-audio" style="margin-top:15px;">
+							<div class="cl-plyr-audio">
+								<audio controls preload="metadata" class="plyr">
+									<source
+										src="<?php echo cl_get_media(fetch_or_get($cl['li']['post_data']['media'][0]['src'], '')); ?>"
+										type="audio/mp3">
+									<source
+										src="<?php echo cl_get_media(fetch_or_get($cl['li']['post_data']['media'][0]['src'], '')); ?>"
+										type="audio/mpeg">
+									<source
+										src="<?php echo cl_get_media(fetch_or_get($cl['li']['post_data']['media'][0]['src'], '')); ?>"
+										type="audio/wav">
+								</audio>
+							</div>
+						</div>
+					<?php elseif ($cl['li']['post_data']['type'] == 'document' && not_empty($cl['li']['post_data']['media'])): ?>
+						<div class="publication-document">
+							<a href="<?php echo cl_get_media($cl['li']['post_data']['media'][0]['src']); ?>" target="_blank"
+								class="document-file">
+								<div class="document-file__icon">
+									<?php echo cl_icon("description"); ?>
+								</div>
+								<div class="document-file__body">
+									<?php echo ($cl['li']['post_data']['media'][0]['x']["filename"]); ?>
+								</div>
+								<div class="document-file__type">
+									<?php echo ($cl['li']['post_data']['media'][0]['x']["file_type"]); ?>-<?php echo cl_translate("FILE"); ?>
+								</div>
+								<div class="document-file__icon">
+									<?php echo cl_icon("open_in_new"); ?>
+								</div>
+							</a>
+						</div>
+					<?php elseif ($cl['li']['post_data']['type'] == 'gif' && not_empty($cl['li']['post_data']['media'])): ?>
+						<div class="lozad-media">
+							<div class="publication-image">
+								<a href="<?php echo fetch_or_get($cl['li']['post_data']['media'][0]['src'], ''); ?>" class="fbox-media2"
+									data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
+									data-info='<?php echo cl_template('timeline/right_col'); ?>'>
+									<img class="lozad"
+										src="<?php echo fetch_or_get($cl['li']['post_data']['media'][0]['src'], ''); ?>"
+										alt="GIF-Image">
+								</a>
+							</div>
+						</div>
+					<?php elseif ($cl['li']['post_data']['type'] == 'poll' && not_empty($cl['li']['post_data']['poll'])): ?>
+						<div class="publication-poll-data" data-post-poll="<?php echo ($cl['li']['post_data']['id']); ?>"
+							data-status="<?php echo ($cl['li']['post_data']['poll']['has_voted']); ?>">
+							<div class="publication-poll-data-inner">
+								<?php foreach ($cl['li']['post_data']['poll']['options'] as $i => $poll_data): ?>
+									<div class="poll-option-bar"
+										onclick="SMColibri.vote_poll(<?php echo ($cl['li']['post_data']['id']); ?>, <?php echo ($i); ?>);"
+										data-poll-option="<?php echo ($i); ?>">
+										<div class="bar-icon">
+											<?php echo cl_ikon("ok-circle"); ?>
+										</div>
+										<div class="bar-text">
+											<p>
+												<?php echo $poll_data["option"]; ?>
+											</p>
+										</div>
+										<div class="bar-num">
+											<b>
+												<?php if (not_empty($cl['li']['post_data']['poll']['has_voted'])): ?>
+													<?php echo $poll_data["percentage"]; ?>%
+												<?php endif; ?>
+											</b>
+										</div>
+
+										<?php if (not_empty($cl['li']['post_data']['poll']['has_voted'])): ?>
+											<span class="bar-slider"
+												style="width: <?php echo $poll_data["percentage"]; ?>%;"></span>
+										<?php else: ?>
+											<span class="bar-slider"></span>
+										<?php endif; ?>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					<?php elseif (not_empty($cl['li']['post_data']['og_data'])): ?>
+						<?php if (not_empty($cl['li']['post_data']['og_data']['video_embed'])): ?>
+							<div class="publication-og-data">
+								<div class="publication-og-data-inner embeded-iframe">
+									<div class="og-image">
+										<div class="lozad-media">
+											<a href="<?php echo ($cl['li']['post_data']['og_data']['video_embed']); ?>" class="fbox-media2"
+												data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
+												data-info='<?php echo cl_template('timeline/right_col'); ?>'>
+												<img class="lozad" src="<?php echo ($cl['li']['post_data']['og_data']['image']); ?>"
+													alt="Video">
+												<div class="og-icon">
+													<span>
+														<?php echo cl_ikon("play"); ?>
+													</span>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="og-url-data">
+										<h5>
+											<?php echo ($cl['li']['post_data']['og_data']['title']); ?>
+										</h5>
+										<?php if (not_empty($cl['li']['post_data']['og_data']['description'])): ?>
+											<p>
+												<?php echo ($cl['li']['post_data']['og_data']['description']); ?>
+											</p>
+										<?php else: ?>
+											<p>
+												<a target="_blank" href="<?php echo ($cl['li']['post_data']['og_data']['video_embed']); ?>">
+													<?php echo ($cl['li']['post_data']['og_data']['video_embed']); ?>
+												</a>
+											</p>
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
+						<?php elseif (not_empty($cl['li']['post_data']['og_data']['google_maps_embed'])): ?>
+							<div class="publication-og-data">
+								<div class="publication-og-data-inner embeded-iframe">
+									<div class="og-image">
+										<div class="lozad-media">
+											<a href="<?php echo ($cl['li']['post_data']['og_data']['url']); ?>" class="fbox-media">
+												<img class="lozad" src="<?php echo ($cl['li']['post_data']['og_data']['image']); ?>"
+													alt="Video">
+												<div class="og-icon no-ml">
+													<span>
+														<?php echo cl_ikon("location"); ?>
+													</span>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="og-url-data">
+										<h5>
+											<?php echo ($cl['li']['post_data']['og_data']['title']); ?>
+										</h5>
+
+										<?php if (not_empty($cl['li']['post_data']['og_data']['description'])): ?>
+											<p>
+												<?php echo ($cl['li']['post_data']['og_data']['description']); ?>
+											</p>
+										<?php endif; ?>
+									</div>
+								</div>
+							</div>
+						<?php else: ?>
+							<div class="publication-og-data">
+								<div class="publication-og-data-inner link">
+									<?php if (not_empty($cl['li']['post_data']['og_data']['image'])): ?>
+										<a href="<?php echo ($cl['li']['post_data']['og_data']['image']); ?>" class="fbox-media2"
+											data-btn='<?php echo cl_template('timeline/likes'); ?>' data-fancybox="gallery"
+											data-info='<?php echo cl_template('timeline/right_col'); ?>'>
+											<div class="og-image">
+												<img src="<?php echo ($cl['li']['post_data']['og_data']['image']); ?>" alt="IMG">
+											</div>
+										</a>
+									<?php endif; ?>
+
+									<div class="og-url-data">
+										<h5>
+											<?php echo ($cl['li']['post_data']['og_data']['title']); ?>
+										</h5>
+										<p>
+											<?php echo ($cl['li']['post_data']['og_data']['description']); ?>
+										</p>
+										<a href="<?php echo ($cl['li']['post_data']['og_data']['url']); ?>" target="_blank">
+											<span class="pup-link-icon">
+												<?php echo cl_ikon('pub-icon'); ?>
+											</span><span class="pup-link-icon-a">
+												<?php echo ($cl['li']['post_data']['og_data']['url']); ?>
+											</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						<?php endif; ?>
+					<?php endif; ?>
+					<?php if (not_empty($cl['li']['post_data']['comment_on'])): ?>			<!-- edited by kevin to show quoted post -->
+						<?php echo cl_template('timeline/post_comment_on'); ?>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	analyze = function(e, id) {
+		if(e.target === HTMLImageElement) return;
+		// Check if the click is not on an anchor tag (or any interactive element)
+		if (!e.target.closest('a') && !e.target.closest('.inner-content') && !e.target.closest('button') && !e.target.closest('.publication-poll-data')) {
+			window.location.href = '/thread/' + id; // Set your root link here
+		}
+	}
+	analyze_quote = function(e, id) {
+		if(e.target === HTMLImageElement) return;
+		// Check if the click is not on an anchor tag (or any interactive element)
+		if (!e.target.closest('a') && !e.target.closest('button') && !e.target.closest('.publication-poll-data')) {
+			window.location.href = '/thread/' + id; // Set your root link here
+		}
+	}
+</script>
