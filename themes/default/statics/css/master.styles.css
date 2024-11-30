@@ -19481,6 +19481,7 @@ body.cl-app-notifications
   a
   span.notif-time {
   font-size: 13px;
+  margin-left: 10px;
 }
 
 body.cl-app-notifications

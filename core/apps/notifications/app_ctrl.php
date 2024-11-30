@@ -95,3 +95,56 @@ function cl_get_total_notifications($type = false) {
 
 	return $total;
 }
+
+function cl_notification_post($id = 0) {
+	global $db,$cl,$me;
+
+	$data           = array();
+	$sql            = cl_sqltepmlate("apps/notifications/sql/fetch_post",array(
+		"t_pubs"    => T_PUBS,
+        "t_posts"   => T_POSTS,
+        "t_blocks"  => T_BLOCKS,
+        "t_conns"   => T_CONNECTIONS,
+        't_reports' => T_PUB_REPORTS,
+        "id"   => $id,
+ 	));
+
+	$query_res = $db->rawQuery($sql);
+    $counter   = 0;
+
+	if (cl_queryset($query_res)) {
+		foreach ($query_res as $row) {
+			$post_data = cl_raw_post_data($row['publication_id']);
+			if (not_empty($post_data) && in_array($post_data['status'], array('active'))) {
+				$post_data['is_repost']   = (($row['type'] == 'repost') ? true : false);
+				$post_data['is_quote']   = (($row['type'] == 'quote') ? true : false);		/* edited by kevin to quote comment */
+				$post_data['is_reposter'] = false;
+				$post_data['attrs']       = array();
+				$post_data['comment_on']  = null;						/* edited by kevin to fetch comment on (added) */
+
+				if ($post_data['is_repost']) {
+					$reposter_data         = cl_user_data($row['user_id']);
+					$post_data['reposter'] = array(
+						'name' => $reposter_data['name'],
+						'username' => $reposter_data['username'],
+						'url' => $reposter_data['url'],
+					);
+				}
+
+				if($post_data['is_quote']){
+					$post_data['comment_on']  = cl_get_guest_feed_one($row['comment_on']);
+					if($post_data['comment_on']) $post_data['comment_on'] = $post_data['comment_on'][0];		/* edited by kevin to fetch comment on (added) */
+				}
+
+				if (isset($me['id']) && $row['user_id'] == $me['id']) {
+					$post_data['is_reposter'] = true;
+				}
+
+				$post_data['attrs'] = ((not_empty($post_data['attrs'])) ? implode(' ', $post_data['attrs']) : '');
+				$data             = cl_post_data($post_data);
+			}
+		}
+	}
+
+	return $data;
+}
