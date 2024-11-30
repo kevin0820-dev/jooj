@@ -474,6 +474,38 @@
 							<?php endif; ?>
 						<?php endif; ?>
 					</div>
+					<div class="flex-item" v-if="post_privacy">
+						<button class="privacy-settings dropdown" type="button">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="d-inline-flex align-items-center flex-wn">
+
+									<span class="flex-item icon" v-if="expect == 'bullish'">
+										Bullish
+									</span>
+									<span class="flex-item icon" v-else-if="expect == 'bearish'">
+										Bearish
+									</span>
+									<span class="flex-item icon" v-else>
+										expectation
+									</span>
+								</span>
+							</a>
+							<div class="pub dropdown-menu dropdown-icons">
+								<a class="dropdown-item" href="javascript:void(0);"
+									v-on:click="expect = 'bullish'">
+									<span class="flex-item ">
+										<?php echo cl_translate('Bullish'); ?>
+									</span>
+								</a>
+								<a class="dropdown-item" href="javascript:void(0);"
+									v-on:click="expect = 'bearish'">
+									<span class="flex-item ">
+										<?php echo cl_translate('Bearish'); ?>
+									</span>
+								</a>
+							</div>
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="post-ctrls-holder">

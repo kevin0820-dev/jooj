@@ -11,6 +11,7 @@
 var pubbox_form_app_mixin = Object({
 	data: function() {
 		return {
+			expect: "select",
 			text: "",
 			text_ph_orig: "<?php echo cl_translate('Hello {@name@}, What is new with you today?', array('name' => $cl['me']['name'])); ?>",
 			text_ph: "",
@@ -603,7 +604,8 @@ var pubbox_form_app_mixin = Object({
 					curr_pn: SMColibri.curr_pn,
 					og_data: _app_.og_data,
 					privacy: _app_.post_privacy,
-					poll_data: _app_.poll
+					poll_data: _app_.poll,
+					expect: _app_.expect
 				},
 				beforeSend: function() {
 					_app_.submitting = true;
