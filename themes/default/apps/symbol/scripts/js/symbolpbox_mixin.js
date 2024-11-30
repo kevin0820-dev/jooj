@@ -11,6 +11,7 @@
 var pubbox_form_app_mixin = Object({
     data: function() {
         return {
+			expect : "expectation",
             text: "",
             prefix: "$<?php echo ($cl['prof_user']['username']); ?>",
             text_ph_orig: "<?php echo cl_translate('Hello, What is new with you today?'); ?>",
@@ -612,7 +613,8 @@ var pubbox_form_app_mixin = Object({
                     privacy: _app_.post_privacy,
                     poll_data: _app_.poll,
                     symbol_id: form.find('input[name="symbol_id"]').val(),
-                    text: _app_.text.replace(_app_.prefix, '')
+                    text: _app_.text.replace(_app_.prefix, ''),
+					expect: _app_.expect
                 },
                 beforeSend: function() {
                     _app_.submitting = true;
@@ -1481,6 +1483,7 @@ var pubbox_form_app_mixin = Object({
 				_app_.record_audio_reset();
 			}
 
+			_app_.expect       = "expectation";
 			_app_.image_ctrl   = true;
 			_app_.gif_ctrl     = true;
 			_app_.poll_ctrl    = true;
