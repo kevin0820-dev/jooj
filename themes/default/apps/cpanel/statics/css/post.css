@@ -29,7 +29,7 @@ div.avatar-holder {
     overflow: hidden;
     width: 45px;
     height: 45px;
-    background: var(--smc-main-border-color);
+    background: #eee;
     border-radius: 10em;
 }
 
@@ -151,7 +151,7 @@ div.publication-og-data {
     overflow: hidden;
     background: var(--smc-main-bg-color);
     border-radius: var(--smc-main-border-rad1);
-    border: 1px solid var(--smc-main-border-color);
+    border: 1px solid #eee;
     position: relative;
 }
 
@@ -169,8 +169,8 @@ div.publication-og-data-inner.embeded-iframe {
 div.og-image {
     width: 100%;
     overflow: hidden;
-    border-bottom: 1px solid var(--smc-main-border-color);
-    background: var(--smc-main-ehbg-color);
+    border-bottom: 1px solid #eee;
+    background: #e6ecf0;
 }
 
 div.lozad-media {
@@ -202,6 +202,34 @@ div.og-url-data {
     flex: 1;
     padding: 15px;
     overflow: hidden;
+}
+
+div.og-url-data a {
+    overflow-wrap: break-word;
+    color: var(--smc-main-text-color-2);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    cursor: pointer;
+    display: inline-flex;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 220px;
+    text-decoration: none;
+}
+
+div.og-url-data span.pup-link-icon {
+    margin-right: 2px;
+    line-height: 25px;
+    font-size: 13px;
+    overflow-wrap: break-word;
+}
+
+div.og-url-data span.pup-link-icon svg {
+    width: 15px;
+    height: auto;
+    fill: var(--smc-main-text-color-2);
 }
 
 div.lp a b span {
