@@ -434,7 +434,7 @@ else if ($action == 'get_posts') {
 
 	if ($offset_to == 'up' && $offset_lt) {
 		$posts          = cl_admin_get_posts(array(
-			'limit'     => 10,
+			'limit'     => 50,
 			'offset'    => $offset_lt,
 			'offset_to' => 'gt',
 			'order'     => 'ASC'
@@ -445,7 +445,7 @@ else if ($action == 'get_posts') {
 
 	else if($offset_to == 'down' && $offset_gt) {
 		$posts          = cl_admin_get_posts(array(
-			'limit'     => 10,
+			'limit'     => 50,
 			'offset'    => $offset_gt,
 			'offset_to' => 'lt',
 			'order'     => 'DESC'

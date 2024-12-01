@@ -111,7 +111,7 @@
 .nav-container{
   padding: 0px 22px;
   position: sticky;
-  top: 53px;
+  top: 12px;
   z-index: 500;
   background: var(--smc-main-bg-color);
 }
@@ -36242,16 +36242,6 @@ body.cl-app-wallet
       position: relative !important;
   }
 }
-.nav-container-top{
-  display: none;
-}
-.nav-container{
-  padding: 0px 22px;
-  position: sticky;
-  top: 43px;
-  z-index: 500;
-  background: var(--smc-main-bg-color);
-}
 .timeline-header-chat{
     display: flex;
     flex-direction: row;
@@ -37804,12 +37794,6 @@ body.modal-open {
     div.timeline-container-inner
     div.timeline-container {
     padding-top: 80px !important;
-  }
-  .nav-container-top{
-    display: block;
-  }
-  .nav-container-bottom{
-    display: none;
   }
   body.cl-app-bookmarks
     main.main-content-container
