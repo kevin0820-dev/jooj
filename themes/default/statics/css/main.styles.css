@@ -9,7 +9,17 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
-
+.expect-text {
+  background-color: var(--smc-expect-color);
+}
+@media (max-width: 767.98px) {
+  .post-ctrls-holder button:nth-child(6) {
+    display: none;
+  }
+}
+.post-ctrls-holder button:nth-child(2) {
+  display: none;
+}
 .modal-header-title {
   font-size: 18px;
   font-weight: 600;
@@ -443,6 +453,7 @@ body[data-bg="dark"] {
   --smc-main-icon-color: #93b7d8;
   /*==================================================*/
   /*BG-COLORS*/
+  --smc-expect-color: black;
   --smc-main-bg-color: rgb(21, 32, 43);
   --smc-main-bg-color-2: rgb(30, 39, 50);
   --smc-main-bg-color-3: rgb(21, 32, 43, 0.85);
@@ -481,6 +492,7 @@ body[data-bg="default"] {
   --smc-main-icon-color: #475d71;
   /*==================================================*/
   /*BG-COLORS*/
+  --smc-expect-color: #f2f2f7;
   --smc-main-bg-color: #ffffff;
   --smc-main-bg-color-2: #f8fafd;
   --smc-main-bg-color-3: rgba(255, 255, 255, 0.85);
