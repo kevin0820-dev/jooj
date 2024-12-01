@@ -150,7 +150,7 @@ div.publication-og-data {
     margin-bottom: 10px;
     overflow: hidden;
     background: var(--smc-main-bg-color);
-    border-radius: var(--smc-main-border-rad1);
+    border-radius: 15px;
     border: 1px solid #eee;
     position: relative;
 }
