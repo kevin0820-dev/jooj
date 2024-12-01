@@ -13,8 +13,9 @@
         $symbol_data['follow_requested'] = cl_watch_requested($me['id'], $symbol_data['id']);
     }
 ?>
-<div class="search-result__list-item search-result__list-item_user -mt-2">
-    <a href="<?php echo($cl['li']['url']); ?>" >
+
+<div class="search-result__list-item search-result__list-item_user mt-2">
+    <a href="#" >
         <div class="result-item-data">
             <div class="result-item-data__avatar">
                 <div class="avatar">
@@ -35,16 +36,16 @@
             </div>
             <?php if(isset($me['id'])): ?>
                 <?php if ($symbol_data['is_following']): ?>
-                    <button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($symbol_data['username']); ?>" class="right-sidebar-flex-button" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
-                        <?php echo cl_translate("unwatch"); ?>
+                    <button onclick="SMColibri.req_watch_mobile(this);" data-user-name="<?php echo($symbol_data['username']); ?>" class="search-ctrls-item" data-action="unfollow" data-id="<?php echo($symbol_data['id']); ?>">
+                        <span class = "icon"><?php echo cl_ikon("minus"); ?></span>
                     </button>
                 <?php elseif ($symbol_data['follow_requested']): ?>
-                    <button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($symbol_data['username']); ?>" class="right-sidebar-flex-button" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
-                        <?php echo cl_translate("Pending"); ?>
+                    <button onclick="SMColibri.req_watch_mobile(this);" data-user-name="<?php echo($symbol_data['username']); ?>" class="search-ctrls-item" data-action="cancel" data-id="<?php echo($symbol_data['id']); ?>">
+                        <span class = "icon"><?php echo cl_ikon("pr-down"); ?></span>
                     </button>
                 <?php else: ?>
-                    <button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($symbol_data['username']); ?>" class="right-sidebar-flex-button" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
-                        <?php echo cl_translate("watch"); ?>
+                    <button onclick="SMColibri.req_watch_mobile(this);" data-user-name="<?php echo($symbol_data['username']); ?>" class="search-ctrls-item" data-action="follow" data-id="<?php echo($symbol_data['id']); ?>">
+                        <span class = "icon"><?php echo cl_ikon("plus"); ?></span>
                     </button>
                 <?php endif; ?>
             <?php endif; ?>

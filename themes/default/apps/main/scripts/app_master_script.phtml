@@ -1180,6 +1180,89 @@ _smc.userlbox.curr_el = false;
 				}
 			}
 
+			_smc.req_watch_mobile = function (event = false) {
+				if (event) {
+					if (_smc.is_logged()) {
+						var target = $(event);
+
+						if (target.data('action') == 'unfollow') {
+							var promise = SMColibri.confirm_action({
+								btn_1: "<?php echo cl_translate("Cancel"); ?>",
+								btn_2: "<?php echo cl_translate("Unwatch"); ?>",
+								title: "<?php echo cl_translate("Please confirm your actions!"); ?>",
+								message: "<?php echo cl_translate("Please note that, if you unsubscribe then posts regarding this coin will no longer appear in the feed on your main page."); ?>",
+							});
+
+							promise.done(function () {
+								target.data('action', 'follow');
+								target.html('<span class = "icon"><?php echo cl_ikon("plus"); ?></span>');
+								target.replaceClass('main-inline', 'main-outline');
+
+								console.log("Unfollowing ID:", target.data('id')); // ??????? ID
+
+								$.ajax({
+									url: '<?php echo cl_link("native_api/main/watch"); ?>',
+									type: 'POST',
+									dataType: 'json',
+									data: { id: target.data('id') },
+								}).done(function (data) {
+									console.log("Response data:", data); // ?????????? ?????
+									if (data.status != 200) {
+										_smc.errorMSG();
+									}
+									else {
+										if (_smc.curr_pn == "symbol") {
+											if (data.refresh != undefined) {
+												$(window).reloadPage(1000);
+											}
+										}
+									}
+								}).always(function () {
+									$("div.confirm-actions-modal").modal("hide");
+								});
+
+								cl_bs_notify("<?php echo cl_translate("You unwatched <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
+							});
+
+							promise.fail(function () {
+								$("div.confirm-actions-modal").modal("hide");
+							});
+						}
+						else {
+							target.data('action', 'unfollow');
+							target.replaceClass('main-outline', 'main-inline');
+							target.html('<span class = "icon"><?php echo cl_ikon("minus"); ?></span>');
+
+							console.log("Following ID:", target.data('id')); // ??????? ID
+
+							$.ajax({
+								url: '<?php echo cl_link("native_api/main/watch"); ?>',
+								type: 'POST',
+								dataType: 'json',
+								data: { id: target.data('id') },
+							}).done(function (data) {
+								console.log("Response data:", data); // ?????????? ?????
+								if (data.status != 200) {
+									_smc.errorMSG();
+								}
+								else {
+									if (_smc.curr_pn == "symbol") {
+										if (data.refresh != undefined) {
+											$(window).reloadPage(1000);
+										}
+									}
+								}
+							});
+
+							cl_bs_notify("<?php echo cl_translate("You watched <b>@{0}</b>"); ?>".format(target.data("user-name")), 1500);
+						}
+					}
+					else {
+						_smc.req_auth();
+					}
+				}
+			}
+
 			_smc.follow = function (event = false) {
 				if (event) {
 					if (_smc.is_logged()) {

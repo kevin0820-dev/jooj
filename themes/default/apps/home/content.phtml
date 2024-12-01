@@ -1,76 +1,7 @@
 <div class="timeline-container" data-app="homepage">
 	<div class="timeline-header symbol_header" data-el="tl-header">
-		<div class="timeline-header__botline">
-			<div class="lp w-[5%]">
-				<div class="nav-link-holder h-mobile">
-					<a href="<?php echo cl_link("/"); ?>" data-spa="true">
-						<?php echo cl_translate("Home"); ?>
-					</a>
-				</div>
-			</div>
-			<div class="cp auto-x">
-				<a href="" class="h-laptop">
-					<img src="/themes/default/statics/img/logo.svg" alt="Logo" style="visibility: visible;">
-					<span class="logo-text">Cointweets</span>
-				</a>
-			</div>
-			<div class="rp middle">
-				<div class="flex nav-link-holde h-laptop">
-					<a href="javascript:void(0);" onclick="SMColibri.display_settings();">
-						<span class="dropdown-item-icon">
-							<img class="h-[18px] w-[18px] mr-1 ml-1" src="/themes/default/statics/ikons/display.svg" alt="">
-						</span>
-					</a>
-					<button class="go-options dropleft show mr-1 ml-1" onclick='$("#searchBar").slideToggle()'>
-						<?php echo cl_icon('search'); ?>
-					</button>
-				</div>
-			</div>
-		</div>
-		<div class="main-search-bar-container mt-1" id="searchBar" style="display: none;">
-		<form class="form" id="vue-main-search-app" v-on:submit="search_onsubmit" autocomplete="off">
-			<div class="input-holder">
-				<input v-model="search_query" v-on:input="search" type="text" class="form-control"
-					placeholder="<?php echo cl_translate("Search for people, hashtags..", array('name' => $cl['config']['name'])); ?>">
-				<a href="#">
-					<?php echo cl_ikon('search'); ?>
-				</a>
-				<span class="spinner-icon" v-if="searching">
-					<?php echo cl_ikon('spinner-icon'); ?>
-				</span>
-				<span v-on:click="cancel" class="clear-result" v-else-if="search_result">
-					<?php echo cl_ikon('close'); ?>
-				</span>
-			</div>
-			<div class="search-result-holder" v-show="search_result">
-				<div class="search-result-body">
-					<ul class="result-list" data-an="result"></ul>
-				</div>
-				<div class="search-result-footer" v-bind:class="{'disabled': (advanced_search != true) }">
-					<a v-bind:href="search_page_url" data-spa="true">
-						<?php echo cl_translate('Advanced search'); ?>
-					</a>
-				</div>
-			</div>
-			<div class="search-result-holder" v-show="init_search">
-				<div class="search-result-body">
-					<div class="px-3 text-[14px] font-semibold mb-3 mt-4 text-white">
-						<?php echo cl_translate('Trending'); ?>
-					</div>
-					<ul class="result-list">
-						<?php foreach ($cl['hot_symbols'] as $cl['li']): ?>
-							<?php echo cl_template('main/includes/search/searchbox'); ?>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-				<div class="search-result-footer" v-bind:class="{'disabled': (advanced_search != true) }">
-					<a v-bind:href="search_page_url" data-spa="true">
-						<?php echo cl_translate('Advanced search'); ?>
-					</a>
-				</div>
-			</div>
-		</form>
-		</div>
+		
+	<?php echo cl_template('common/bot_line'); ?>
 		<div class="nav-container-top">
 			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li role="presentation">

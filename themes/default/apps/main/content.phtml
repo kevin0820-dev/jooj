@@ -249,6 +249,58 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade modal-pubbox" data-app="modal-pubbox" id="searchbox-dialog" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header no-border-bottom">
+							<div class="modal-header-title">
+								Search
+							</div>
+							<div class="close">
+								<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+							</div>
+						</div>
+						<div class="modal-body" id="vue-main-searchbox-app">
+							<div class="main-search-bar-container mt-1" id="searchBar">
+								<form class="form"  v-on:submit="search_onsubmit" autocomplete="off">
+									<div class="input-holder">
+										<input v-model="search_query" v-on:input="search" type="text" class="form-control"
+											placeholder="<?php echo cl_translate("Search for people, hashtags..", array('name' => $cl['config']['name'])); ?>">
+										<a href="#">
+											<?php echo cl_ikon('search'); ?>
+										</a>
+										<span class="spinner-icon" v-if="searching">
+											<?php echo cl_ikon('spinner-icon'); ?>
+										</span>
+										<span v-on:click="cancel" class="clear-result" v-else-if="search_result">
+											<?php echo cl_ikon('close'); ?>
+										</span>
+									</div>
+								</form>
+							</div>							
+							<div class="search-result-holder" v-show="search_result">
+								<div class="search-result-body">
+									<ul class="result-list" data-an="result"></ul>
+								</div>
+							</div>
+							<div class="search-result-holder" v-show="init_search">
+								<div class="search-result-body">
+									<div class="px-3 text-[14px] font-semibold mb-3 mt-4 text-white">
+										<?php echo cl_translate('Trending'); ?>
+									</div>
+									<ul class="result-list">
+										<?php if (is_array($cl['hot_symbols'])): ?>
+											<?php foreach ($cl['hot_symbols'] as $cl['li']): ?>
+												<?php echo cl_template('main/includes/search/searchbox'); ?>
+											<?php endforeach; ?>
+										<?php endif; ?>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<?php echo cl_template('timeline/scripts/pubbox_master_script'); ?>
 		<?php endif; ?>
 		<div data-app="black-hole"></div>
@@ -283,6 +335,95 @@
 	<script>
 		<?php echo (cl_get_custom_code("footerjs")); ?>
 	</script>
+
+	<script>
+		new Vue({
+			el: "#vue-main-searchbox-app",
+			data: {
+				searching: false,
+				search_query: "",
+				advanced_search: false,
+				search_result: false,
+				init_search: true,
+			},
+			computed: {
+				search_page_url: function() {
+					if (this.search_query.length > 2) {
+						var search_htags_url = "<?php echo cl_link('search/htags?q={0}'); ?>";
+						var search_users_url = "<?php echo cl_link('search/people?q={0}'); ?>";
+						var search_symbols_url = "<?php echo cl_link('search/symbols?q={0}'); ?>";
+						this.advanced_search = true;
+
+						if (this.search_query.charAt(0) == '#') {
+							return search_htags_url.format(this.search_query.replace('#', ''));
+						} else if (this.search_query.charAt(0) == '$') {
+							return search_symbols_url.format(this.search_query.replace('$', ''));
+						} else {
+							return search_users_url.format(this.search_query);
+						}
+					} else {
+						this.advanced_search = false;
+						return "javascript:void(0);";
+					}
+				},
+				query_type: function() {
+					if (this.search_query.charAt(0) == '#') {
+						return 'htags';
+					} else if (this.search_query.charAt(0) == '$') {
+						return 'symbols';
+					} else {
+						return 'users';
+					}
+				}
+			},
+			methods: {
+				search_onsubmit: function(e = false) {
+					e.preventDefault();
+					this.search();
+				},
+				search: function() {
+					if (this.search_query.length > 0) {
+						var _app_ = this;
+						delay(function() {
+							$.ajax({
+								url: '<?php echo cl_link('native_api/main/search'); ?>',
+								type: 'GET',
+								dataType: 'json',
+								data: {
+									query: _app_.search_query.replace(/^[#\$]/, ''), // Remove # or $ at the beginning
+									type: _app_.query_type
+								},
+								beforeSend: function() {
+									_app_.searching = true;
+								}
+							}).done(function(data) {
+								_app_.search_result = true;
+								_app_.init_search = false;
+								$(_app_.$el).find('[data-an="result"]').html($(data.html));
+							}).always(function() {
+								_app_.searching = false;
+							});
+						}, 800);
+					}
+					else {
+						this.search_result = false;
+						this.init_search = true;
+					}
+				},
+				cancel: function() {
+					var _app_ = this;
+					_app_.searching = false;
+					_app_.search_query = "";
+					_app_.advanced_search = false;
+					_app_.search_result = false;
+					_app_.init_search = true;
+					// this.search();
+				}
+			}
+		});
+	</script>
+
+	<script src="https://cdn.tailwindcss.com"></script>
 
 	<style>
 		#add_new_post .modal-dialog {
