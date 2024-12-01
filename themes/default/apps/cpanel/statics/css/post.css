@@ -231,7 +231,6 @@ div.og-url-data span.pup-link-icon svg {
     height: auto;
     fill: var(--smc-main-text-color-2);
 }
-
 div.lp a b span {
     color: inherit;
     text-transform: none;
@@ -264,7 +263,7 @@ body p.verified-badge {
 }
 
 body p.verified-badge:after {
-    color: var(--smc-main-uiel-color);
+    color: #eee;
     content: url("data:image/svg+xml; utf8, <svg style='vertical-align: middle;'  xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><path fill='dodgerblue' d='M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z'></path></svg>");
     margin-left: 0px;
     max-width: 20px;
@@ -312,7 +311,7 @@ div.video-icon span svg {
 }
 
 div.publication-image {
-    border-radius: var(--smc-main-border-rad2);
+    border-radius: #eee;
 }
 
 div.publication-image {
@@ -375,7 +374,7 @@ div.og-url-data p {
 div.og-url-data a {
     font-size: 13px;
     line-height: 18px;
-    color: var(--smc-main-uiel-color);
+    color: #eee;
     padding: 0;
     margin: 0;
     word-wrap: break-word;
@@ -392,7 +391,7 @@ div.bar-icon {
 dv.bar-icon svg {
     width: 100%;
     height: 100%;
-    stroke: var(--smc-main-uiel-color);
+    stroke: #eee;
 }
 
 div.bar-text {
