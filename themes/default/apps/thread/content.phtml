@@ -222,9 +222,9 @@
 											<?php
 												$expect = '';
 												if($cl['thread_data']['post']['expect'] == 'bearish'):
-													$expect = '&nbsp;&nbsp;&nbsp;<span class="expect-text text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">' . $cl['li']['expect'] . '</span>';
+													$expect = '&nbsp;&nbsp;&nbsp;<span class="expect-text text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">' . $cl['thread_data']['post']['expect'] . '</span>';
 												elseif($cl['thread_data']['post']['expect'] == 'bullish'):
-													$expect = '&nbsp;&nbsp;&nbsp;<span class="expect-text text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">' . $cl['li']['expect'] . '</span>';
+													$expect = '&nbsp;&nbsp;&nbsp;<span class="expect-text text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">' . $cl['thread_data']['post']['expect'] . '</span>';
 												endif;
 												$text = $cl['thread_data']['post']['text'];
 												$extendable = false;
