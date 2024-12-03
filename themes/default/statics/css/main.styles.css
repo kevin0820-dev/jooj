@@ -46134,11 +46134,6 @@ body form div.form-group input.form-control {
   color: var(--smc-main-text-color);
 }
 
-body form div.form-group input.form-control::placeholder {
-  font-size: 15px;
-  color: var(--smc-main-text-color-2);
-}
-
 body form div.form-group input.form-control:disabled {
   opacity: 0.65;
   cursor: not-allowed;
@@ -46191,10 +46186,6 @@ body form div.form-group input.form-control:not(:disabled):active {
 body form div.form-group input.form-control.is-invalid {
   border-color: var(--smc-main-red-color);
   box-shadow: none;
-}
-
-body form div.form-group input.form-control.is-invalid::placeholder {
-  color: var(--smc-main-red-color);
 }
 
 body form div.form-group div.password-ctrl {
@@ -46337,11 +46328,6 @@ body form div.form-group textarea.form-control {
   outline: 0;
   font-size: 15px;
   color: var(--cl-primary-text-color);
-}
-
-body form div.form-group textarea.form-control::placeholder {
-  font-size: 14px;
-  color: var(--cl-secondary-text-color);
 }
 
 body form div.form-group textarea.form-control:hover,
@@ -47313,11 +47299,6 @@ body div.modal.share-post-modal div.raw-link div.link-input input {
   font-size: 13px;
   color: #004874;
   padding: 0px 20px;
-}
-
-body div.modal.share-post-modal div.raw-link div.link-input input::placeholder {
-  font-size: 13px;
-  color: var(--smc-main-text-color-2);
 }
 
 body div.modal.share-post-modal div.raw-link div.link-input input:hover,
@@ -50113,18 +50094,6 @@ body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
   transition: min-height 0.3s ease;
   outline: 0;
 }
-body
-  div.timeline-pubbox-container
-  > div.rp
-  form
-  div.input-holder
-  textarea::placeholder {
-  color: var(--smc-main-text-color);
-  font-size: 20px;
-  line-height: 30px;
-  margin-top: 10px;
-  font-weight: 400;
-}
 
 body div.timeline-pubbox-container > div.rp form div.cl-emoticons {
   display: block;
@@ -51025,18 +50994,6 @@ body
   div.preview-gifs-holder
   div.preview-gifs-loader
   div.search-bar-holder
-  input::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 13px;
-}
-
-body
-  div.timeline-pubbox-container
-  > div.rp
-  form
-  div.preview-gifs-holder
-  div.preview-gifs-loader
-  div.search-bar-holder
   input:active,
 body
   div.timeline-pubbox-container
@@ -51817,18 +51774,6 @@ body
   color: var(--smc-main-text-color);
   padding-left: 15px;
   padding-right: 50px;
-}
-
-body
-  div.timeline-pubbox-container
-  > div.rp
-  form
-  div.preview-poll-holder
-  div.poll-data-inputs
-  div.data-input-item
-  input::placeholder {
-  font-size: 13px;
-  color: var(--smc-main-text-color-2);
 }
 
 body
@@ -53212,22 +53157,6 @@ body.cl-app-conversation
   div.conversation--search-form-wrapper
   form
   div.keyword-input
-  input::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 12px;
-}
-
-body.cl-app-conversation
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-inner
-  div.timeline-container
-  div.conversation-app-body
-  div.vue-app-body
-  div.vue-app-body-inner
-  div.conversation--search-form-wrapper
-  form
-  div.keyword-input
   input:active,
 body.cl-app-conversation
   main.main-content-container
@@ -54235,23 +54164,6 @@ body.cl-app-conversation
   form.form
   div.message-inputs-holder
   div.message-input
-  input::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 13px;
-}
-
-body.cl-app-conversation
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-inner
-  div.timeline-container
-  div.conversation-app-body
-  div.vue-app-body
-  div.vue-app-body-inner
-  div.conversation--messages-form-wrapper
-  form.form
-  div.message-inputs-holder
-  div.message-input
   input:active,
 body.cl-app-conversation
   main.main-content-container
@@ -54424,23 +54336,6 @@ body.cl-app-conversation
   font-size: 12px;
   color: var(--smc-main-text-color);
   cursor: not-allowed;
-}
-
-body.cl-app-conversation
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-inner
-  div.timeline-container
-  div.conversation-app-body
-  div.vue-app-body
-  div.vue-app-body-inner
-  div.conversation--messages-form-wrapper
-  div.ghost-form
-  div.message-inputs-holder
-  div.message-input
-  input::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 12px;
 }
 
 body.cl-app-conversation
@@ -57206,12 +57101,6 @@ body.cl-app-guest
     align-items: center;
     justify-content: center;
   }
-  .nav-tabs .nav-link {
-    min-width: 340px !important;
-  }
-  #myTab.nav-tabs .nav-link {
-    min-width: 60px !important;
-  }
   .fancybox__rightCol {
     display: none !important;
   }
@@ -58570,17 +58459,6 @@ body.cl-app-symbol
   border-radius: 0px;
   outline: 0;
   background: transparent;
-}
-
-body.cl-app-symbol
-  div.modal.modal-swift-pubbox
-  div.modal-body
-  form
-  div.input-holder
-  textarea::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 17px;
-  font-weight: normal;
 }
 
 body.cl-app-symbol
@@ -60322,17 +60200,6 @@ body.cl-app-home
   div.modal.modal-swift-pubbox
   div.modal-body
   form
-  div.input-holder
-  textarea::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 17px;
-  font-weight: normal;
-}
-
-body.cl-app-home
-  div.modal.modal-swift-pubbox
-  div.modal-body
-  form
   div.cl-emoticons {
   display: block;
   width: 100%;
@@ -60988,21 +60855,6 @@ body.cl-app-chat
   width: 100%;
   font-size: 15px;
   color: var(--smc-main-text-color);
-}
-
-body.cl-app-chat
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-container-inner
-  div.vue-app-body
-  div.vue-app-body-inner
-  div.chat-search-form-wrapper
-  form
-  div.keyword-input
-  input::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 15px;
 }
 
 body.cl-app-chat
@@ -64281,19 +64133,6 @@ body.cl-app-search
   width: 100%;
   font-size: 15px;
   color: var(--smc-main-text-color);
-}
-
-body.cl-app-search
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.vue-app-body
-  div.main--search-form-wrapper
-  form
-  div.keyword-input
-  input::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 15px;
 }
 
 body.cl-app-search
