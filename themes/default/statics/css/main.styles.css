@@ -54,9 +54,6 @@
   stroke-width: 0;
 }
 
-.publication-data {
-  overflow: hidden;
-}
 .timeline-container-inner {
   height: 100%;
 }
@@ -4372,7 +4369,7 @@ body
   div.publication-data {
   flex: 1;
   padding-left: 15px;
-   overflow: hidden;
+   /* overflow: hidden; */
 }
 
 body
@@ -4776,6 +4773,7 @@ body
   display: block;
   line-height: 0px;
   margin-top: -3px;
+  display: grid;
 }
 
 body
@@ -40514,25 +40512,6 @@ body
   div.post-list-item-content
   div.publication-data
   div.publication-data-inner
-  div.publication-content {
-  width: 100%;
-  display: block;
-  line-height: 0px;
-  margin-top: -3px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
   div.publication-content
   div.publication-text {
   width: 100%;
@@ -42687,27 +42666,6 @@ body
   padding: 0;
   color: var(--smc-main-link-color);
   text-decoration: underline;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item.post-ad-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
-  div.publication-content {
-  background: var(--smc-main-bg-color-2);
-  box-shadow: none;
-  border: 1px solid var(--smc-main-border-color);
-  border-radius: var(--smc-main-border-rad1);
-  overflow: hidden;
-  margin-top: 20px;
 }
 
 body
@@ -67345,20 +67303,6 @@ body.cl-app-thread
     font-size: 15px;
     line-height: 30px;
   }
-body.cl-app-thread
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.publication--thread-container
-  div.publication--thread-container-inner
-  div.publication--thread-data-holder
-  div.publication-data
-  div.publication-data-inner
-  div.publication-content {
-  width: 100%;
-  display: block;
-  line-height: 0px;
-}
 
 body.cl-app-thread
   main.main-content-container
