@@ -109,7 +109,7 @@
   text-align: center;
 }
 .nav-container{
-  padding: 0px 22px;
+  padding: 0px 15px;
   position: sticky;
   top: 12px;
   z-index: 500;
@@ -29109,7 +29109,7 @@ body.cl-app-profile
   height: 4px;
   max-width: 30px;
   text-align: center;
-  margin-left: 23%;
+  margin-left: 17%;
   margin-bottom: 3px;
   margin-top:-3px;
 }
@@ -63960,20 +63960,7 @@ body.cl-app-profile
   margin-bottom: 3px;
   margin-top:-9px;
 }
-.css-1dbjc4nc1.active {
-  border-radius: 9999px;
-  display: flex;
-  position: relative;
-  width: 100%;
-  background-color: var(--smc-main-uiel-color);
-  align-self: center;
-  height: 4px;
-  max-width: 30px;
-  text-align: center;
-  margin-left: 23%;
-  margin-bottom: 3px;
-  margin-top:-3px;
-}
+
 
 .css-1dbjc4ncb.active {
   border-radius: 9999px;
