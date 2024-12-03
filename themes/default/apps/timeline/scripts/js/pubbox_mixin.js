@@ -656,9 +656,6 @@ var pubbox_form_app_mixin = Object({
 							});
 							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
 						}
-						else {
-							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 3000);
-						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
 							_app_.reset_data();
@@ -676,6 +673,7 @@ var pubbox_form_app_mixin = Object({
 							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
+						cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 5000);
 					}				
                     else if(data.status == 400){						
                         cl_bs_notify(data.error, 3000, "danger");
@@ -747,9 +745,6 @@ var pubbox_form_app_mixin = Object({
 
 							thread_timeline.find('[data-an="pub-replys-total"]').text(data.replys_total);
 						}
-						else {
-							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 3000);
-						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
 							_app_.reset_data();
@@ -767,6 +762,7 @@ var pubbox_form_app_mixin = Object({
 							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
+						cl_bs_notify("<?php echo cl_translate('Your new quote has been posted on your timeline'); ?>", 5000);
 					}
 					else if(data.status == 400){						
 						cl_bs_notify(data.error, 3000, "danger");
@@ -818,7 +814,6 @@ var pubbox_form_app_mixin = Object({
 						}
 						else {
 							SMColibri.spa_reload();
-							cl_bs_notify("<?php echo cl_translate('Your new publication has been posted on your timeline'); ?>", 3000);
 						}
 
 						if($(_app_.$el).attr('id') == 'vue-pubbox-app-2') {
@@ -837,6 +832,7 @@ var pubbox_form_app_mixin = Object({
 							_app_.reset_data();
 							$(_app_.$el).parents("div#add_new_post_repost_symbol").modal('hide');
 						}
+						cl_bs_notify("<?php echo cl_translate('Your new quote has been posted on this coin page'); ?>", 5000);
 					}
 					else if(data.status == 400){						
 						cl_bs_notify(data.error, 3000, "danger");
