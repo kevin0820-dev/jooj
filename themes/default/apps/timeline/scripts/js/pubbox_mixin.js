@@ -1626,7 +1626,7 @@ var pubbox_form_app_mixin = Object({
 				_app_.record_audio_reset();
 			}
 
-			_app.expect = "expectation";
+			_app_.expect = "expectation";
 			_app_.image_ctrl   = true;
 			_app_.gif_ctrl     = true;
 			_app_.poll_ctrl    = true;

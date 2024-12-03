@@ -63961,20 +63961,6 @@ body.cl-app-profile
   margin-top:-9px;
 }
 
-
-.css-1dbjc4ncb.active {
-  border-radius: 9999px;
-  display: flex;
-  position: relative;
-  min-width: 25px;
-  background-color: var(--smc-main-uiel-color);
-  align-self: center;
-  height: 4px;
-  max-width: 23px;
-  text-align: center;
-  margin-left: calc(37% - 3px);
-}
-
 body.cl-app-profile
   main.main-content-container
   div.main-content-container-inner
