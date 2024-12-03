@@ -117,44 +117,44 @@
 			        });
 				}
 			}
-			// _smc.delete_post = function(id = false) {
-			// 	if ($.isNumeric(id) && id) {
-		    //     	var promise = SMC_CPanel.confirm_action({
-			// 			btn_1: "Cancel",
-			// 			btn_2: "Delete",
-			// 			title: "Please confirm your actions!",
-			// 			message: "Please note that if you delete this post, then with the removal of this post all posts related to this thread will also be permanently deleted!"
-			// 		});
+			_smc.delete_post = function(id = false) {
+				if ($.isNumeric(id) && id) {
+		        	var promise = SMC_CPanel.confirm_action({
+						btn_1: "Cancel",
+						btn_2: "Delete",
+						title: "Please confirm your actions!",
+						message: "Please note that if you delete this post, then with the removal of this post all posts related to this thread will also be permanently deleted!"
+					});
 
-			// 		promise.done(function() {
-			// 			$.ajax({
-			// 				url: '<?php echo cl_link("native_api/cpanel/delete_post"); ?>',
-			// 				type: 'POST',
-			// 				dataType: 'json',
-			// 				data: {id: id},
-			// 			}).done(function(data) {
-			// 				if (data.status != 200) {
-			// 					_smc.errorMSG();
-			// 				}
-			// 				else {
-			// 					$('[data-list-item="{0}"]'.format(id)).slideUp(300, function() {
-			// 						$(this).remove();
+					promise.done(function() {
+						$.ajax({
+							url: '<?php echo cl_link("native_api/cpanel/delete_post"); ?>',
+							type: 'POST',
+							dataType: 'json',
+							data: {id: id},
+						}).done(function(data) {
+							if (data.status != 200) {
+								_smc.errorMSG();
+							}
+							else {
+								$('[data-list-item="{0}"]'.format(id)).slideUp(300, function() {
+									$(this).remove();
 
-			// 						if ($('[data-list-item]').length < 1) {
-			// 							$(window).reloadPage(500);
-			// 						}
-			// 					});
-			// 				}
-			// 			}).always(function() {
-			// 				$("div.confirm-actions-modal").modal("hide");
-			// 			});
-			//         });
+									if ($('[data-list-item]').length < 1) {
+										$(window).reloadPage(500);
+									}
+								});
+							}
+						}).always(function() {
+							$("div.confirm-actions-modal").modal("hide");
+						});
+			        });
 
-			// 		promise.fail(function() {
-			//             $("div.confirm-actions-modal").modal("hide");
-			//         });
-			// 	}
-			// }
+					promise.fail(function() {
+			            $("div.confirm-actions-modal").modal("hide");
+			        });
+				}
+			}
 	
 			_smc.extend_vue = function(app_name = "", vue_instance = {}) {
 				_smc.vue[app_name] = vue_instance;
