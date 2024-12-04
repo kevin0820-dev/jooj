@@ -9,6 +9,9 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.result-list {
+  padding-left: 0px;
+}
 .expect-text {
   background-color: var(--smc-expect-color);
 }
