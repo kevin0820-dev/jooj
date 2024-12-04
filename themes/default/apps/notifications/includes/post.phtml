@@ -1,22 +1,6 @@
 
 	
 <div class="post-list-item" data-list-item="<?php echo ($cl['li']['post_data']['id']); ?>" onclick="analyze(event, <?php echo ($cl['li']['post_data']['id']); ?>)" style="cursor:pointer">
-	<?php if (not_empty($cl['li']['post_data']['is_repost'])): ?>
-		<div class="post-list-item-header">
-			<div class="publication-repost">
-				<?php echo cl_ikon('repeat'); ?>
-				<?php if (not_empty($cl['li']['post_data']['is_reposter'])): ?>
-					<a href="<?php echo $me['url']; ?>" data-spa="true">
-						<?php echo cl_translate('You reposted'); ?>
-					</a>
-				<?php else: ?>
-					<a href="<?php echo ($cl['li']['post_data']['reposter']['url']); ?>" data-spa="true">
-						<?php echo cl_translate('{@uname@} reposted', array('uname' => $cl['li']['post_data']['reposter']['name'])) ?>
-					</a>
-				<?php endif; ?>
-			</div>
-		</div>
-	<?php endif; ?>
 	<div class="post-list-item-content">
 		<div class="publisher-avatar">
 			<!-- For post -->
