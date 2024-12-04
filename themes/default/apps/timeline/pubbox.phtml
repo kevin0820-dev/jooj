@@ -475,43 +475,6 @@
 						<?php endif; ?>
 					</div>
 				</div>
-				<div class="flex-item" v-if="post_privacy">
-					<button class="privacy-settings dropdown" type="button">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<span class="d-inline-flex align-items-center flex-wn">
-								<span class="flex-item icon" v-if="expect == 'bullish'">
-									Bullish
-								</span>
-								<span class="flex-item icon" v-else-if="expect == 'bearish'">
-									Bearish
-								</span>
-								<span class="flex-item icon" v-else>
-									expectation
-								</span>
-							</span>
-						</a>
-						<div class="pub dropdown-menu dropdown-icons">
-							<a class="dropdown-item" href="javascript:void(0);"
-								v-on:click="expect = 'bullish'">
-								<span class="flex-item ">
-									<?php echo cl_translate('Bullish'); ?>
-								</span>
-							</a>
-							<a class="dropdown-item" href="javascript:void(0);"
-								v-on:click="expect = 'bearish'">
-								<span class="flex-item ">
-									<?php echo cl_translate('Bearish'); ?>
-								</span>
-							</a>
-							<a class="dropdown-item" href="javascript:void(0);"
-								v-on:click="expect = 'expectation'">
-								<span class="flex-item ">
-									<?php echo cl_translate('None'); ?>
-								</span>
-							</a>
-						</div>
-					</button>
-				</div>
 			</div>
 			<div class="post-ctrls-holder">
 				<button type="button" class="ctrl-item" data-toggle="tooltip" data-placement="bottom"
@@ -554,13 +517,20 @@
 					v-on:click="record_audio_stop" v-bind:disabled="audio_ctrl != true || audio_rec.record_time < 1">
 					<?php echo cl_ikon("stop"); ?> <span class="record-timer">{{audio_rec.record_ftime}}</span>
 				</button>
-
 				<!-- Audio record CTRLs -->
 				<!-- <button type="button" class="ctrl-item doc" data-toggle="tooltip" data-placement="bottom"
 					title="<?php echo cl_translate("Document"); ?>" v-on:click="select_doc"
 					v-bind:disabled="doc_ctrl != true">
 					<?php echo cl_icon('file_present'); ?>
 				</button> -->
+				<div class="inline-flex shadow-sm expect-btn-holder" role="group">
+					<button type="button" v-on:click="expect = 'bullish'" class="expect-btn px-2 py-1 text-sm text-green-700" v-bind:class="{'ring-2 border-green-700 ring-green-700 z-10': expect === 'bullish', 'border-transparent': expect !== 'bullish'}">
+						Bullish
+					</button>
+					<button type="button" v-on:click="expect = 'bearish'" class="expect-btn px-2 py-1 text-sm text-red-700" v-bind:class="{'ring-2 border-red-700 ring-red-700 z-10': expect === 'bearish', 'border-transparent': expect !== 'bearish'}">
+						Bearish
+					</button>
+				</div>
 				<div class="flex-item ml-auto">
 					<button v-bind:disabled="valid_form != true || submitting" type="submit"
 						class="btn-custom main-inline md post-pub-btn">
@@ -568,18 +538,12 @@
 					</button>
 				</div>
 				<!-- Document -->
-
 			</div>
-
-
-
-			<input multiple="multiple" type="file" class="d-none" data-an="images-input" accept="image/*"
-				v-on:change="upload_images($event)">
+			<input multiple="multiple" type="file" class="d-none" data-an="images-input" accept="image/*" v-on:change="upload_images($event)">
 			<input type="file" class="d-none" data-an="music-input" accept="audio/*" v-on:change="upload_music($event)">
 			<input type="file" class="d-none" data-an="video-input" accept="video/*" v-on:change="upload_video($event)">
 			<input type="file" class="d-none" data-an="doc-input" v-on:change="upload_document($event)">
-			<input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>"
-				name="hash">
+			<input type="hidden" class="d-none" value="<?php echo fetch_or_get($cl['csrf_token'], 'none'); ?>" name="hash">
 		</form>
 	</div>
 </div>

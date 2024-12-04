@@ -9,10 +9,21 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+.expect-btn-holder{
+  background-color: var(--smc-expect-color);
+  border-radius: 9999px;
+}
+
+.expect-btn {
+  border-radius: 9999px;
+  transition-duration: .3s
+}
 .result-list {
   padding-left: 0px;
 }
 .expect-text {
+  padding: 5px;
+  border-radius: 9999px;
   background-color: var(--smc-expect-color);
 }
 @media (max-width: 767.98px) {
@@ -20,7 +31,7 @@
     display: none;
   }
 }
-.post-ctrls-holder button:nth-child(2) {
+.post-ctrls-holder button:nth-child(2).ctrls-item {
   display: none;
 }
 .modal-header-title {
