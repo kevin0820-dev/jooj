@@ -3789,7 +3789,7 @@ body.cl-app-bookmarks
 
 html {
   scroll-behavior: smooth;
-  font-family: Inter, sans-serif;
+  font-family: Source Sans Pro,Arial,Helvetica Neue,Helvetica,sans-serif;
 }
 
 body {
@@ -4827,7 +4827,7 @@ body
   div.publication-text
   p.pub-text {
   font-size: 15px;
-  line-height: 30px;
+  line-height: 25px;
   font-weight: 400;
   padding: 0;
   margin: 0;
@@ -14880,7 +14880,7 @@ body
   div.input-holder
   textarea::placeholder {
   color: var(--smc-main-text-color);
-  font-size: 20px;
+  font-size: 17px;
   line-height: 30px;
   margin-top: 10px;
   font-weight: 400;
@@ -16813,6 +16813,9 @@ body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
 @media only screen and (max-width: 586px) {
   body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
     margin-left: 1px;
+    position: absolute;
+    left: 0px;
+    padding: 0px 10px;
   }
 }
 
@@ -36614,9 +36617,6 @@ div.publication--thread-container-inner div.publication--thread-data-holder {
 .fancybox__rightCol .name .user-name {
   color: var(--smc-main-text-color-2) !important;
 }
-.nav-justified .nav-item .nav-link:hover {
-  /* background: var(--smc-main-bg-color-2) !important; */
-}
 .nav-justified .nav-item .nav-link {
   color: var(--smc-main-text-color-2) !important;
 }
@@ -37177,21 +37177,6 @@ body
   color: var(--smc-main-text-color);
   font-family: "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
-}
-
-.social_login p {
-  color: var(--smc-main-text-color-2);
-  padding-left: 12px;
-  padding-right: 12px;
-  line-height: 16px;
-  font-size: 13px;
-  font-family: "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-}
-
-.social_login p a {
-  text-decoration: none !important;
 }
 /* login form */
 .form-title h2 {
@@ -40549,31 +40534,6 @@ body
   div.publication-data-inner
   div.publication-content
   div.publication-text
-  p.pub-text {
-  font-size: 15px;
-  line-height: 30px;
-  font-weight: 400;
-  padding: 0;
-  margin: 0;
-  color: var(--smc-main-text-color);
-  word-break: break-word;
-  display: block;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
-  div.publication-content
-  div.publication-text
   p.pub-text
   a.inline-link {
   /* display: inline-flex;  */
@@ -42721,25 +42681,6 @@ body
   color: var(--smc-main-text-color);
   padding: 0;
   margin: 0 0 15px 0;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item.post-ad-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
-  div.publication-content
-  div.publication-text
-  p.pub-text {
-  font-size: 13px;
-  line-height: 1.4;
 }
 
 body
@@ -68194,35 +68135,6 @@ display: block;
 line-height: 0px;
 margin-bottom: 10px;
 }
-
-
-body.cl-app-thread 
-main.main-content-container 
-div.main-content-container-inner 
-div.timeline-container 
-div.publication--thread-container 
-div.publication--thread-container-inner 
-div.publication--thread-data-holder 
-div.publication-data 
-div.publication-data-inner 
-div.publication-content
-div.inner-content
-div.post-list-item-content
-div.publication-data
-div.publication-data-inner
-div.publication-content
-div.publication-text
-p.pub-text {
-font-size: 15px;
-line-height: 30px;
-font-weight: 400;
-padding: 0;
-margin: 0;
-color: var(--smc-main-text-color);
-word-break: break-word;
-display: block;
-}
-
 
 body.cl-app-thread 
 main.main-content-container 
