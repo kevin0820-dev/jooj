@@ -4,7 +4,6 @@
 	$(document).ready(function($) {
 
 		var _app     = $('[data-app="symbol"]');
-		var count = 0;
 		var login = <?php echo $cl['is_logged'] ? 1 : 0; ?>;
 
 		<?php if($cl['is_logged']): ?>
@@ -24,9 +23,11 @@
 						mixins: [pubbox_form_app_mixin]
 					});
 				}
-				
-				$(window).on('scroll', function() {
 
+				var count = 0;
+				var lastScrollTop = 0;
+
+				$(window).on('scroll', function() {
 					var y = window.scrollY;
 					if (y > 120) $("#priceHeader").slideDown();
 					else $("#priceHeader").slideUp();
@@ -35,20 +36,20 @@
 
 					var navbarItem = document.getElementsByClassName("navbar-item-btn btn-top active");
 					if (navbarItem && navbarItem[1].innerHTML.includes("Latest")){
-						if (SMColibri.curr_pn == "symbol") {
-							if(($(window).scrollTop() + $(window).height()) > ($(document).height() - 100)) {
-								if (_self_.timeline.loadmore) {
-									if(!login && count > 5){
-										$('#loginModal').modal('show');
-										return;
-									}
-									_self_.timeline.load_old();
-									count++;
-									console.log(count);
+						if((y + $(window).height()) > ($(document).height() - 100)) {
+							if (cl_empty(SMColibri.PS.timeline.loading) && SMColibri.PS.timeline.loadmore && y > lastScrollTop) {
+								console.log(y, lastScrollTop);
+								if(!login && count > 1){
+									$('#loginModal').modal('show');
+									lastScrollTop = y;
+									return;
 								}
+								_self_.timeline.load_old();
+								count++;
 							}
 						}
 					}
+					lastScrollTop = y;
 				});
 
 				setInterval(function() {
@@ -62,19 +63,23 @@
 				loadmore: true,
 				load_offset: 30,
 				load_old: function() {
-					var post_ls = _app.find('[data-an="entry-list"]');
-		            var offset  = 10;
+					var post_ls = SMColibri.PS.app.find('[data-an="entry-list"]');
+		            var offset  = 0;
 		            var _self_  = this;
+		 
+		            if (post_ls.find('div[data-post-offset]').length) {
+		            	offset = post_ls.find('div[data-post-offset]').last().data('post-offset');
+		            }
 
 		            if ($.isNumeric(offset) && offset) {
-						console.log("<?php echo($cl['prof_user']['id']); ?>",);
 						$.ajax({
 							url: '<?php echo cl_link("native_api/symbol/load_more"); ?>',
 							type: 'GET',
 							dataType: 'json',
 							data: {
-								prof_id: "<?php echo($cl['prof_user']['id']); ?>",
-								offset: _self_.load_offset
+								offset: offset, 
+								type: SMColibri.PS.page_tab,
+								prof_id: SMColibri.PS.prof_user
 							},
 							beforeSend: function() {
 								_self_.loading = true;
@@ -82,14 +87,16 @@
 						}).done(function(data) {
 							if (data.status == 200) {
 								post_ls.append($(data.html));
-
-								_self_.load_offset += 30;
 							}
 							else{
 								_self_.loadmore = false;
 							}
 						}).always(function() {
 							_self_.loading = false;
+
+							delay(function() {
+								SMColibri.fix_sidebars();
+							}, 50);
 						});
 					}
 				},

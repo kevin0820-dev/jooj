@@ -91,16 +91,16 @@ if (not_empty($cl["is_logged"])) {
 if (empty($cl['prof_user']['is_blocked']) && empty($cl['prof_user']['me_blocked']) && $cl['prof_user']['active'] == "1") {
     if (in_array($cl['page_tab'], array('posts', 'trending'))) {
         if (not_empty($cl["can_view"])) {
-            $cl["user_posts"] = cl_get_profile_posts($cl['prof_user']['id'], 10);
-            $cl["user_posts_trending"] = cl_get_profile_posts_trending($cl['prof_user']['id'], 10);
+            $cl["user_posts"] = cl_get_profile_posts($cl['prof_user']['id'], 30);
+            $cl["user_posts_trending"] = cl_get_profile_posts_trending($cl['prof_user']['id'], 30);
         }
     } else {
         if (not_empty($cl["can_view"])) {
-            $cl["user_likes"] = cl_get_profile_likes($cl['prof_user']['id'], 10);
+            $cl["user_likes"] = cl_get_profile_likes($cl['prof_user']['id'], 30);
         }
     }
     // Fetch and display posts mentioning the symbol
-    $cl["user_mentions"] = cl_get_profile_posts($cl['prof_user']['id'], 10, false, false);
+    $cl["user_mentions"] = cl_get_profile_posts($cl['prof_user']['id'], 30, false, false);
 
     // Ensure user_mentions is an array
     if (!is_array($cl["user_mentions"])) {
