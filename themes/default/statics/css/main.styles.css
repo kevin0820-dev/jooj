@@ -1217,6 +1217,8 @@ body
   color: var(--smc-main-text-color);
   font-family: "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
 }
 
 .social_login p {
@@ -1228,10 +1230,13 @@ body
   font-family: "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
   font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .social_login p a {
   text-decoration: none !important;
+  color: #0d6efd;
 }
 /* login form */
 .form-title h2 {
@@ -37143,42 +37148,11 @@ body
     z-index: 700 !important;
 }
 
-.social_login .social_button {
-  margin-top: 16px;
-  margin-right: 24px;
-  margin-left: 12px;
-  margin-bottom: 16px;
-}
-
-.social_login {
-  margin-bottom: 16px;
-  background-color: var(--smc-main-bg-color);
-  border-radius: 16px;
-  overflow: hidden;
-  /* border-color: var(--smc-main-border-color); */
-  /* border-width: 1px; */
-  /* border-style: solid; */
-}
 .site_rule {
   margin-bottom: 70px;
   overflow: hidden;
 }
 
-.social_login h2 {
-  padding-bottom: 6px;
-  padding-top: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  font-weight: 700;
-  align-self: center;
-  line-height: 24px;
-  font-size: 20px;
-  color: var(--smc-main-text-color);
-  font-family: "TwitterChirp", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-}
 /* login form */
 .form-title h2 {
   line-height: 36px;
