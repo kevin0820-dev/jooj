@@ -539,6 +539,7 @@ body[data-bg="default"] {
 }
 
 body[data-bg="black"] {
+  --smc-expect-color: rgb(15, 20, 25);
   /*SVG-IKON-COLORS*/
   --smc-main-icon-color: #676767;
   /*==================================================*/
