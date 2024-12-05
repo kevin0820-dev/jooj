@@ -38,11 +38,12 @@
 					if (navbarItem && navbarItem[1].innerHTML.includes("Latest")){
 						if((y + $(window).height()) > ($(document).height() - 100)) {
 							if (cl_empty(SMColibri.PS.timeline.loading) && SMColibri.PS.timeline.loadmore && y > lastScrollTop) {
-								if(!login && count > 1){
-									$('#loginModal').modal('show');
-									lastScrollTop = y;
-									return;
-								}
+								console.log(count);
+								// if(!login && count > 1){
+								// 	$('#loginModal').modal('show');
+								// 	lastScrollTop = y;
+								// 	return;
+								// }
 								_self_.timeline.load_old();
 								count++;
 							}
