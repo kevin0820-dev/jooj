@@ -19,11 +19,11 @@ if ($action == 'load_more') {
     $type             = fetch_or_get($_GET['type'], false);
     $html_arr         = array();
 
-    if (is_posnum($prof_id) && is_posnum($offset) && cl_can_view_profile($prof_id)) { 	
+    if (is_posnum($prof_id) && is_posnum($offset)) { 	
     	if (in_array($type, array('posts', 'media'))) {
 
             $media_type = (($type == 'media') ? true : false);
-            $posts_ls   = cl_get_profile_posts($prof_id, 30, $media_type, $offset);
+            $posts_ls   = cl_get_profile_posts($prof_id, 10, $media_type, $offset);
 
             if (not_empty($posts_ls)) {
                 foreach ($posts_ls as $cl['li']) {
@@ -42,14 +42,12 @@ if ($action == 'load_more') {
                     foreach ($posts_ls as $cl['li']) {
                         $html_arr[] = cl_template('timeline/post_symdol');
                     }
-
                     $data['status'] = 200;
                     $data['html']   = implode("", $html_arr);
                 }
             }
         }
     }
-    
 }
 
 

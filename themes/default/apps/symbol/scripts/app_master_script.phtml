@@ -38,12 +38,13 @@
 						if (SMColibri.curr_pn == "symbol") {
 							if(($(window).scrollTop() + $(window).height()) > ($(document).height() - 100)) {
 								if (_self_.timeline.loadmore) {
-									if(!login && count > 3){
+									if(!login && count > 5){
 										$('#loginModal').modal('show');
 										return;
 									}
 									_self_.timeline.load_old();
 									count++;
+									console.log(count);
 								}
 							}
 						}
@@ -62,15 +63,17 @@
 				load_offset: 30,
 				load_old: function() {
 					var post_ls = _app.find('[data-an="entry-list"]');
-		            var offset  = 30;
+		            var offset  = 10;
 		            var _self_  = this;
 
 		            if ($.isNumeric(offset) && offset) {
+						console.log("<?php echo($cl['prof_user']['id']); ?>",);
 						$.ajax({
 							url: '<?php echo cl_link("native_api/symbol/load_more"); ?>',
 							type: 'GET',
 							dataType: 'json',
 							data: {
+								prof_id: "<?php echo($cl['prof_user']['id']); ?>",
 								offset: _self_.load_offset
 							},
 							beforeSend: function() {
