@@ -38,7 +38,6 @@
 					if (navbarItem && navbarItem[1].innerHTML.includes("Latest")){
 						if((y + $(window).height()) > ($(document).height() - 100)) {
 							if (cl_empty(SMColibri.PS.timeline.loading) && SMColibri.PS.timeline.loadmore && y > lastScrollTop) {
-								console.log(y, lastScrollTop);
 								if(!login && count > 1){
 									$('#loginModal').modal('show');
 									lastScrollTop = y;
@@ -68,7 +67,7 @@
 		            var _self_  = this;
 		 
 		            if (post_ls.find('div[data-post-offset]').length) {
-		            	offset = post_ls.find('div[data-post-offset]').last().data('post-offset');
+		            	offset = post_ls.find('div[data-post-offset]').last().data('data-list-item');
 		            }
 
 		            if ($.isNumeric(offset) && offset) {
@@ -77,7 +76,7 @@
 							type: 'GET',
 							dataType: 'json',
 							data: {
-								offset: offset, 
+								offset: offset,
 								type: SMColibri.PS.page_tab,
 								prof_id: SMColibri.PS.prof_user
 							},

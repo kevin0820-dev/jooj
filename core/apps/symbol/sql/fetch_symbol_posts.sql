@@ -19,7 +19,7 @@ INNER JOIN `<?php echo($data['t_pubs']); ?>` pubs ON posts.`publication_id` = pu
 WHERE posts.`symbol_id` = <?php echo($data['symbol_id']); ?>
 
 <?php if($data['offset']): ?>
-    AND posts.`id` < <?php echo($data['offset']); ?>
+    AND pubs.`id` < <?php echo($data['offset']); ?>
 <?php endif; ?>
 
 ORDER BY posts.`id` DESC, pubs.`likes_count` DESC, pubs.`replys_count` DESC, pubs.`reposts_count` DESC

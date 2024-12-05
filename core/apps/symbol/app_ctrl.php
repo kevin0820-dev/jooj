@@ -10,7 +10,7 @@
 # @*************************************************************************@
 
 function cl_get_profile_posts($symbol_id = false, $limit = 30, $offset = false) {
-    global $db, $cl, $me, $se;
+    global $db, $cl, $me;
 
     if (not_num($symbol_id)) {
         return array();
@@ -63,7 +63,7 @@ function cl_get_profile_posts($symbol_id = false, $limit = 30, $offset = false) 
 				}
                 
                 if (not_empty($cl['is_logged'])) {
-                    if ($row['symbol_id'] == $se['id']) {
+                    if ($row['symbol_id'] == $me['id']) {
                         $post_data['is_reposter'] = true;
                     }
                 }
