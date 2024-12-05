@@ -1294,7 +1294,7 @@ body
   padding-left: 16px;
   padding-right: 16px;
   margin-bottom: 8px;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   border-color: var(--smc-main-border-color) !important;
   border-width: 1px;
   border-style: solid;
@@ -1348,8 +1348,6 @@ body
   width: 100%;
   padding-left: 16px;
   padding-right: 16px;
-  margin-bottom: 12px;
-  margin-top: 12px;
   border-color: var(--smc-main-border-color);
   border-width: 1px;
   border-style: solid;
@@ -37194,51 +37192,6 @@ body
   position: absolute;
   width: 150px;
   margin-left: 10px;
-}
-
-.form-cta-link.forgot a {
-  text-decoration: none;
-}
-
-.form-group.oauth-login-providers button {
-  background-color: rgba(0, 0, 0, 0) !important;
-  outline-style: none;
-  transition-duration: 0.2s;
-  min-width: 36px;
-  min-height: 36px;
-  width: 100%;
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  border-color: var(--smc-main-border-color) !important;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 9999px;
-  cursor: pointer;
-  height: 40px !important;
-}
-
-.form-group.oauth-login-providers button:hover {
-  background-color: rgba(15, 20, 25, 0.1) !important;
-}
-
-.form-cta-link.forgot {
-  background-color: rgba(0, 0, 0, 0);
-  outline-style: none;
-  transition-duration: 0.2s;
-  min-width: 36px;
-  min-height: 36px;
-  width: 100%;
-  padding-left: 16px;
-  padding-right: 16px;
-  margin-bottom: 12px;
-  margin-top: 12px;
-  border-color: var(--smc-main-border-color);
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 9999px;
-  cursor: pointer;
 }
 
 #forgotModal .close:hover,
