@@ -39633,19 +39633,6 @@ body main.main-content-container div.main-content-container-inner {
 body
   main.main-content-container
   div.main-content-container-inner
-  div.timeline-container-wrapper {
-  flex: 2;
-  max-width: 700px;
-  min-width: 700px;
-  /* border-left: 1px solid var(--smc-main-border-color); */
-  /* border-right: 1px solid var(--smc-main-border-color); */
-  min-height: 100vh;
-  position: relative;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
   div.timeline-container-wrapper
   div.timeline-container-inner
   div.timeline-container {
@@ -43017,19 +43004,6 @@ body
   svg {
   width: 100%;
   height: 100%;
-}
-
-@media (max-width: 1199.98px) {
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.timeline-container-wrapper {
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    border-right: none;
-    border-left: none;
-  }
 }
 
 body
@@ -55355,16 +55329,6 @@ body.cl-app-guest main.main-content-container div.main-content-container-inner {
 body.cl-app-guest
   main.main-content-container
   div.main-content-container-inner
-  div.timeline-container-wrapper {
-  display: block !important;
-  max-width: 100% !important;
-  min-width: 100% !important;
-  border: none;
-}
-
-body.cl-app-guest
-  main.main-content-container
-  div.main-content-container-inner
   div.welcome-page-container {
   display: block;
   width: 100%;
@@ -61801,13 +61765,6 @@ body.cl-app-notifications
   /* height: 100vh !important; */
   padding-bottom: 0px !important;
 }
-
-/* body.cl-app-notifications
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper {
-  min-height: 100%;
-} */
 
 body.cl-app-notifications
   main.main-content-container

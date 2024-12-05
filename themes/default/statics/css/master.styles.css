@@ -1202,7 +1202,7 @@ body
   /* border-left: 1px solid var(--cl-primary-border-color); */
   /* border-right: 1px solid var(--cl-primary-border-color); */
   /* box-shadow: var(--smc-main-box-shadow-eff); */
-  min-height: 100%;
+  min-height: 100vh;
   position: relative;
 }
 
