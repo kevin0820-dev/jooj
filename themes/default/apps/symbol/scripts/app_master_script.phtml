@@ -37,14 +37,14 @@
 					if (navbarItem && navbarItem[1].innerHTML.includes("Latest")){
 						if (SMColibri.curr_pn == "symbol") {
 							if(($(window).scrollTop() + $(window).height()) > ($(document).height() - 100)) {
-								// if (_self_.timeline.loadmore) {
-									// if(!login && count > 3){
-									// 	$('#loginModal').modal('show');
-									// 	return;
-									// }
+								if (_self_.timeline.loadmore) {
+									if(!login && count > 3){
+										$('#loginModal').modal('show');
+										return;
+									}
 									_self_.timeline.load_old();
-									// count++;
-								// }
+									count++;
+								}
 							}
 						}
 					}
