@@ -1811,7 +1811,7 @@ function cl_notify_user($data = array()) {
             }
 
             else if ($data['subject'] == "comment") {
-                $cl['enotif_data']['url'] = cl_link(cl_strf("conversation/%s", $me['id']));
+                $cl['enotif_data']['url'] = cl_link(cl_strf("conversation/%s", $me['name']));
             }
             
             $send_email_data = array(
