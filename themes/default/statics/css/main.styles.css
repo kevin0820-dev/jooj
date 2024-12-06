@@ -14876,13 +14876,41 @@ body div.timeline-pubbox-container > div.rp form div.input-holder {
   max-width: 100%;
   height: auto;
 }
+body div.timeline-pubbox-container > div.rp form div.input-holder {
+  margin-top:0px;
+  width: 100%;
+  margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
+}
 
-body
-  div.timeline-pubbox-container
-  > div.rp
-  form
-  div.input-holder
-  textarea::placeholder {
+body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
+  background-color: #73737321;
+  border-radius: 10px;
+  padding-left: 15px;
+  padding-top: 16px;
+  padding-bottom: 15px;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 40px;
+  max-height: 400px;
+  resize: none;
+  font-size: 15px;
+  color: var(--smc-main-text-color);
+  line-height: 30px;
+  border: none;
+  transition: min-height 0.3s ease;
+  outline: 0;
+}
+
+@media (max-width: 390px) {
+  .modal-body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
+    min-height: 105px;
+  }
+}
+
+body div.timeline-pubbox-container > div.rp form div.input-holder textarea::placeholder {
   color: var(--smc-main-text-color);
   font-size: 17px;
   line-height: 30px;
@@ -16804,23 +16832,22 @@ body
   opacity: 0.5;
 }
 
+/* Edited by Kevin */
+@media only screen and (max-width: 586px) {
+  body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
+    margin-left: -68px;
+    padding: 0px 10px;
+    width: calc(100% + 68px) !important;
+  }
+}
+
 body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
   width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 10px;
-}
-
-/* Edited by Kevin */
-@media only screen and (max-width: 586px) {
-  body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
-    margin-left: 1px;
-    position: absolute;
-    left: 0px;
-    padding: 0px 10px;
-  }
 }
 
 body
@@ -49924,34 +49951,6 @@ body div.timeline-pubbox-container > div.rp form {
   max-width: 100%;
 }
 
-body div.timeline-pubbox-container > div.rp form div.input-holder {
-  margin-top:0px;
-  width: 100%;
-  margin-bottom: 10px;
-  max-width: 100%;
-  height: auto;
-}
-
-body div.timeline-pubbox-container > div.rp form div.input-holder textarea {
-  background-color: #73737321;
-  border-radius: 10px;
-  padding-left: 15px;
-  padding-top: 16px;
-  padding-bottom: 15px;
-  display: block;
-  width: 100%;
-  height: auto;
-  min-height: 40px;
-  max-height: 400px;
-  resize: none;
-  font-size: 15px;
-  color: var(--smc-main-text-color);
-  line-height: 30px;
-  border: none;
-  transition: min-height 0.3s ease;
-  outline: 0;
-}
-
 body div.timeline-pubbox-container > div.rp form div.cl-emoticons {
   display: block;
   width: 100%;
@@ -49960,15 +49959,6 @@ body div.timeline-pubbox-container > div.rp form div.cl-emoticons {
   border-radius: var(--smc-main-border-rad1);
   overflow: hidden;
 }
-/* Edited by Kevin.. Emoj Responsive Issue */
-@media only screen and (max-width: 586px) {
-  body div.timeline-pubbox-container > div.rp form div.cl-emoticons{
-    margin-top: 5px;
-    margin-left: -68px;
-    width: calc(100vw - 40px);
-  }
-}
-
 
 body
   div.timeline-pubbox-container
@@ -50784,14 +50774,6 @@ body div.timeline-pubbox-container > div.rp form div.preview-gifs-holder {
   overflow: hidden;
 }
 
-/* Edited by Kevin.. Gif responsive issue */
-@media only screen and (max-width: 586px) {
-  body div.timeline-pubbox-container > div.rp form div.preview-gifs-holder{
-    margin-left: -68px;
-    width: calc(100vw - 40px);
-  }
-}
-
 body
   div.timeline-pubbox-container
   > div.rp
@@ -51574,16 +51556,6 @@ body div.timeline-pubbox-container > div.rp form div.preview-poll-holder {
   border: 1px solid var(--smc-main-border-color);
 }
 
-/*Edited by Kevin.. Poll responsive issue*/
-@media only screen and (max-width: 586px) {
-  body div.timeline-pubbox-container > div.rp form div.preview-poll-holder{
-    margin-top: 5px;
-    margin-left: -68px;
-    width: calc(100vw - 40px);
-  }
-}
-
-
 body
   div.timeline-pubbox-container
   > div.rp
@@ -51840,22 +51812,6 @@ body
   div.poll-data-ctrls:disabled {
   cursor: not-allowed;
   opacity: 0.5;
-}
-
-body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-/* Edited by Kevin */
-@media only screen and (max-width: 586px) {
-  body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
-    margin-left: 1px;
-  }
 }
 
 body
