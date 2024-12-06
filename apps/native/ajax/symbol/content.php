@@ -19,11 +19,11 @@ if ($action == 'load_more') {
     $type             = fetch_or_get($_GET['type'], false);
     $html_arr         = array();
 
-    if (is_posnum($prof_id) && is_posnum($offset) && cl_can_view_profile($prof_id)) { 	
-    	if (in_array($type, array('posts', 'media'))) {
+    $data['offset'] = $offset;
 
-            $media_type = (($type == 'media') ? true : false);
-            $posts_ls   = cl_get_profile_posts($prof_id, 30, $media_type, $offset);
+    if (is_posnum($prof_id) && is_posnum($offset) && cl_can_view_profile($prof_id)) { 	
+    	if (in_array($type, array('posts'))) {
+            $posts_ls   = cl_get_profile_posts($prof_id, 30, $offset);
 
             if (not_empty($posts_ls)) {
                 foreach ($posts_ls as $cl['li']) {
@@ -36,7 +36,7 @@ if ($action == 'load_more') {
         }
         else {
             if (cl_can_view_profile($prof_id)) {
-                $posts_ls = cl_get_profile_likes($prof_id, 30, $offset);
+                $posts_ls = cl_get_profile_posts_trending($prof_id, 30, $offset);
 
                 if (not_empty($posts_ls)) {
                     foreach ($posts_ls as $cl['li']) {

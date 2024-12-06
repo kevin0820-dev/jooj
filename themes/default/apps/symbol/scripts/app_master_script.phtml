@@ -38,12 +38,11 @@
 					if (navbarItem && navbarItem[1].innerHTML.includes("Latest")){
 						if((y + $(window).height()) > ($(document).height() - 100)) {
 							if (cl_empty(SMColibri.PS.timeline.loading) && SMColibri.PS.timeline.loadmore && y > lastScrollTop) {
-								console.log(count);
-								// if(!login && count > 1){
-								// 	$('#loginModal').modal('show');
-								// 	lastScrollTop = y;
-								// 	return;
-								// }
+								if(!login && count > 1){
+									$('#loginModal').modal('show');
+									lastScrollTop = y;
+									return;
+								}
 								_self_.timeline.load_old();
 								count++;
 							}
@@ -67,11 +66,12 @@
 		            var offset  = 0;
 		            var _self_  = this;
 		 
-		            if (post_ls.find('div[data-post-offset]').length) {
-		            	offset = post_ls.find('div[data-post-offset]').last().data('data-list-item');
+		            if (post_ls.find('div[data-list-item]').length) {
+		            	offset = post_ls.find('div[data-list-item]').last().data('list-item');
 		            }
 
 		            if ($.isNumeric(offset) && offset) {
+						console.log("offset", offset);
 						$.ajax({
 							url: '<?php echo cl_link("native_api/symbol/load_more"); ?>',
 							type: 'GET',
@@ -86,6 +86,7 @@
 							}
 						}).done(function(data) {
 							if (data.status == 200) {
+								console.log(data.offset);
 								post_ls.append($(data.html));
 							}
 							else{

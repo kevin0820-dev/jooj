@@ -18,6 +18,10 @@ INNER JOIN `<?php echo($data['t_pubs']); ?>` pubs ON posts.`publication_id` = pu
 
 WHERE posts.`symbol_id` = <?php echo($data['symbol_id']); ?>
 
+<?php if($data['offset']): ?>
+    AND pubs.id < <?php echo($data['offset']); ?>
+<?php endif; ?>
+
 AND CAST(pubs.`time` AS UNSIGNED) >= UNIX_TIMESTAMP(NOW() - INTERVAL 7 DAY)
 
 AND pubs.`likes_count` > 0
@@ -26,9 +30,4 @@ ORDER BY pubs.`likes_count` DESC, pubs.`replys_count` DESC, pubs.`reposts_count`
 
 <?php if(is_posnum($data['limit'])): ?>
 	LIMIT <?php echo($data['limit']); ?>
-
-	<?php if(not_empty($data['offset'])): ?>
-		OFFSET <?php echo($data['offset']); ?>
-	<?php endif; ?>
-
 <?php endif; ?>
