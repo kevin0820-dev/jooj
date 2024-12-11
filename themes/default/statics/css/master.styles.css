@@ -1176,7 +1176,7 @@ body.modal-open {
 }
 
 body main.main-content-container {
-  background: var(--smc-main-bg-color-2);
+  background: var(--smc-main-bg-color);
   min-width: 320px;
 }
 

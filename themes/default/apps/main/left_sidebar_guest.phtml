@@ -1,6 +1,6 @@
 <div class="left-sb-container sidebar" data-app="left-sidebar">
 	<div class="sidebar__inner">
-		<div class="cp h-mobile" style="margin-bottom: 10px; margin-left:25px;">
+		<div class="cp h-mobile" style="margin-bottom: 10px;">
 			<a href="<?php echo cl_link("/"); ?>" style="align-items:center;">
 				<img src="{%config site_logo%}" alt="Logo">
 				<span class="ml11">
@@ -13,7 +13,9 @@
 		</div>
 		<div class="user-info h-laptop">
 			<div class="left_account">
-				<h6>Cointweets Menu</h6>
+				<div class="avatar">
+					<img src="{%config site_logo%}" alt="Logo">
+				</div>
 				<a href="#" onclick="SMColibri.toggleSB();" class="b_close">
 					<svg viewBox="0 0 24 24" aria-hidden="true" class="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03">
 						<g>
@@ -24,7 +26,15 @@
 					</svg>
 				</a>
 			</div>
+			<div class="mobile_menu" style="display:flex;" style="cursor: pointer;">
+				<div class="uname">
+					<h2>Join Crypto Community</h2>
+					<button class="left-login blue" data-toggle="modal" data-target="#signupModal">Sign up</button>
+					<button class="btn-outline-light left-login" data-toggle="modal" data-target="#loginModal">Sign in</button>
+				</div>
+			</div>
 		</div>
+		<hr/>
 		<div class="sidebar-v-nav-wrapper">
 			<ul class="sidebar-v-nav">
 				<li data-navitem="home" onclick="window.location.href='/./'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'feed') {
@@ -76,6 +86,14 @@
 					</span>
 				</li>
 			</ul>
+		</div>
+		<hr/>
+		<div class="sidebar-login-container">
+			<div class="sidebar-login">
+				<button type="button" class="btn btn-light left-login blue" data-toggle="modal" data-target="#signupModal"><?php echo cl_translate("Sign up"); ?></button>
+				<button type="button" class="btn btn-outline-light left-login" data-toggle="modal" data-target="#loginModal"><?php echo cl_translate("Log in"); ?></button>
+			</div>
+			<hr/>
 		</div>
 		<div class="mobile-sb-footer ">
 			<?php echo cl_template('main/footer'); ?>
@@ -184,8 +202,7 @@
 </style>
 <style>
 	body main.main-content-container div.main-content-container-inner div.left-sb-container div.sidebar__inner div.mobile-sb-footer div.main-footer ul.footer-nav {
-		justify-content: center;
-		margin-top: 47px;
+		margin-top: 17px;
 	}
 	body button.btn-custom.lg.home {
 		margin-left: 0 !important;
