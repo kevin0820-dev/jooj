@@ -152,12 +152,7 @@
 																																							} ?>">
 							<span class="icon">
 								<?php
-								// Check if the current page is 'connections' to use the active icon
-								if ($cl['pn'] == 'notifications') {
-									echo cl_ikon('bell_h_active');
-								} else {
-									echo cl_ikon('bell_h');
-								}
+									echo cl_ikon('bell-h');
 								?>
 							</span>
 
@@ -177,12 +172,7 @@
 																																			} ?>">
 							<span class="icon msg_icon">
 								<?php
-								// Check if the current page is 'connections' to use the active icon
-								if ($cl['pn'] == 'chat') {
-									echo cl_ikon('envelope-h_active');
-								} else {
 									echo cl_ikon('envelope-h');
-								}
 								?>
 							</span>
 							<span class="nav-item-holder">
@@ -263,12 +253,7 @@
 																																					} ?>">
 							<span style="fill: var(--smc-main-text-color);" class="icon">
 								<?php
-								// Check if the current page is 'connections' to use the active icon
-								if ($cl['pn'] == 'bookmarks') {
-									echo cl_ikon('bookmark_active');
-								} else {
 									echo cl_ikon('bookmark');
-								}
 								?>
 							</span>
 							<span class="nav-item-holder">
