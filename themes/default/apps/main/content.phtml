@@ -249,58 +249,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal fade modal-pubbox" data-app="modal-pubbox" id="searchbox-dialog" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header no-border-bottom">
-							<div class="modal-header-title">
-								Search
-							</div>
-							<div class="close">
-								<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-							</div>
-						</div>
-						<div class="modal-body" id="vue-main-searchbox-app">
-							<div class="main-search-bar-container mt-1" id="searchBar">
-								<form class="form"  v-on:submit="search_onsubmit" autocomplete="off">
-									<div class="input-holder">
-										<input v-model="search_query" v-on:input="search" type="text" class="form-control"
-											placeholder="<?php echo cl_translate("Search for people, hashtags..", array('name' => $cl['config']['name'])); ?>">
-										<a href="#">
-											<?php echo cl_ikon('search'); ?>
-										</a>
-										<span class="spinner-icon" v-if="searching">
-											<?php echo cl_ikon('spinner-icon'); ?>
-										</span>
-										<span v-on:click="cancel" class="clear-result" v-else-if="search_result">
-											<?php echo cl_ikon('close'); ?>
-										</span>
-									</div>
-								</form>
-							</div>							
-							<div class="search-result-holder" v-show="search_result">
-								<div class="search-result-body">
-									<ul class="result-list" data-an="result"></ul>
-								</div>
-							</div>
-							<div class="search-result-holder" v-show="init_search">
-								<div class="search-result-body">
-									<div class="px-3 text-[14px] font-semibold mb-3 mt-4 text-white">
-										<?php echo cl_translate('Trending'); ?>
-									</div>
-									<ul class="result-list">
-										<?php if (is_array($cl['hot_symbols'])): ?>
-											<?php foreach ($cl['hot_symbols'] as $cl['li']): ?>
-												<?php echo cl_template('main/includes/search/searchbox'); ?>
-											<?php endforeach; ?>
-										<?php endif; ?>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 			<?php echo cl_template('timeline/scripts/pubbox_master_script'); ?>
 		<?php endif; ?>
 		<div data-app="black-hole"></div>
@@ -322,7 +270,58 @@
 			<?php echo cl_template("main/modals/display_settings_not_logged"); ?>
 		<?php endif; ?>
 	</div>
-
+	<div class="modal fade modal-pubbox" data-app="modal-pubbox" id="searchbox-dialog" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header no-border-bottom">
+					<div class="modal-header-title">
+						Search
+					</div>
+					<div class="close">
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+					</div>
+				</div>
+				<div class="modal-body" id="vue-main-searchbox-app">
+					<div class="main-search-bar-container mt-1" id="searchBar">
+						<form class="form"  v-on:submit="search_onsubmit" autocomplete="off">
+							<div class="input-holder">
+								<input v-model="search_query" v-on:input="search" type="text" class="form-control"
+									placeholder="<?php echo cl_translate("Search for people, hashtags..", array('name' => $cl['config']['name'])); ?>">
+								<a href="#">
+									<?php echo cl_ikon('search'); ?>
+								</a>
+								<span class="spinner-icon" v-if="searching">
+									<?php echo cl_ikon('spinner-icon'); ?>
+								</span>
+								<span v-on:click="cancel" class="clear-result" v-else-if="search_result">
+									<?php echo cl_ikon('close'); ?>
+								</span>
+							</div>
+						</form>
+					</div>							
+					<div class="search-result-holder" v-show="search_result">
+						<div class="search-result-body">
+							<ul class="result-list" data-an="result"></ul>
+						</div>
+					</div>
+					<div class="search-result-holder" v-show="init_search">
+						<div class="search-result-body">
+							<div class="px-3 text-[14px] font-semibold mb-3 mt-4">
+								<?php echo cl_translate('Trending'); ?>
+							</div>
+							<ul class="result-list">
+								<?php if (is_array($cl['hot_symbols'])): ?>
+									<?php foreach ($cl['hot_symbols'] as $cl['li']): ?>
+										<?php echo cl_template('main/includes/search/searchbox'); ?>
+									<?php endforeach; ?>
+								<?php endif; ?>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<?php if ($cl['config']['cookie_warning_popup'] == "on"): ?>
 		<?php if (empty($_COOKIE['__c_u_a__'])): ?>
 			<?php if ($cl["pn"] != "stat_pages"): ?>

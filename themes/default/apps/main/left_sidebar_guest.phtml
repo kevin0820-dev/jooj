@@ -63,61 +63,18 @@
 						</a>
 					</span>
 				</li>
-				<li data-navitem="coins" onclick="window.location.href='<?php echo cl_link('coins'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {	/* edited by kevin change into button with full width */
-																																				echo ('active');
-																																			} ?>">
+				<li data-navitem="search" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {echo ('active');} ?>" data-toggle = "modal" data-target = "#searchbox-dialog" >
 					<span class="icon">
 						<?php
-							if ($cl['pn'] == 'coins') {
-								echo cl_ikon('coins_active');
-							} else {
-								echo cl_ikon('coins');
-							}
+							echo cl_ikon('search-m');
 						?>
 					</span>
 					<span class="nav-item-holder">
-						<a href="<?php echo cl_link("coins"); ?>">
-							<?php echo cl_translate('Coins'); ?>
+						<a href="#">
+							Search
 						</a>
 					</span>
 				</li>
-				<li data-navitem="display" onclick="SMColibri.display_settings();" class="sidebar-v-nav-item">
-					<span class="icon">
-						<?php echo cl_ikon('display'); ?>
-					</span>
-					<span class="nav-item-holder">
-						<a>
-							<?php echo cl_translate('Display'); ?>
-						</a>
-					</span>
-				</li>
-				<li data-navitem="profile" onclick="" class="sidebar-v-nav-item" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
-					<span class="icon">
-						<?php echo cl_ikon('user'); ?>
-					</span>
-					<span class="nav-item-holder">
-						<a>
-							<?php echo cl_translate('Profile'); ?>
-						</a>
-					</span>
-				</li>
-				<li data-navitem="more" onclick="" class="sidebar-v-nav-item" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
-					<span class="icon">
-						<?php echo cl_ikon('more'); ?>
-					</span>
-					<span class="nav-item-holder">
-						<a>
-							<?php echo cl_translate('More'); ?>
-						</a>
-					</span>
-				</li>
-				<li class="mt-8 w-40" data-toggle="modal" data-target="#loginModal" style="cursor: pointer;">
-					<button class="btn btn-custom main-inline lg home btn-block" data-toggle="modal"
-						data-target="#add_new_post">
-						<?php echo cl_translate('New post'); ?>
-					</button>
-				</li>
-				
 			</ul>
 		</div>
 		<div class="mobile-sb-footer ">

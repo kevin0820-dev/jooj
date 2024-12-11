@@ -9,6 +9,11 @@
   --smc-main-border-rad1: 10px;
   --smc-main-border-rad2: 5px;
 }
+
+.search-result-body div {
+  color: var(--smc-main-text-color);
+}
+
 .expect-btn-holder{
   background-color: var(--smc-expect-color);
   border-radius: 9999px;
@@ -18,27 +23,33 @@
   border-radius: 9999px;
   transition-duration: .3s
 }
+
 .result-list {
   padding-left: 0px;
 }
+
 .expect-text {
   padding: 5px;
   border-radius: 9999px;
   background-color: var(--smc-expect-color);
 }
+
 @media (max-width: 767.98px) {
   .post-ctrls-holder button:nth-child(6) {
     display: none;
   }
 }
+
 .post-ctrls-holder button:nth-child(2).ctrls-item {
   display: none;
 }
+
 .modal-header-title {
   font-size: 18px;
   font-weight: 600;
   color: var(--smc-main-text-color);
 }
+
 .search-ctrls-item {
   line-height: 0px;
   background: transparent;
