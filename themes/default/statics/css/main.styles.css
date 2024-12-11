@@ -39,6 +39,7 @@
   box-shadow: none;
   border-color: var(--smc-main-border-color-darken-5);
   color: var(--smc-main-text-color);
+  background-color: var(--smc-main-bg-color);
 }
 
 .left-login.blue {  
@@ -8260,8 +8261,8 @@ body
   li.sidebar-v-nav-item
   span.nav-item-holder
   > a {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+  font-family: InterVariable, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 18.75px;
   color: var(--smc-main-text-color);
   font-weight: 400;
   text-decoration: none;
@@ -8789,7 +8790,7 @@ body
   border-top: 0px solid var(--smc-main-border-color);
   padding-top: 20px;
   margin-bottom: 20px;
-  margin-left: 40px;
+  margin-left: 24px;
 }
 
 body
@@ -8799,7 +8800,7 @@ body
   div.sidebar__inner
   div.publish-post-btn
   button {
-  max-width: 160px;
+  max-width: 180px;
 }
 
 body
@@ -14762,7 +14763,7 @@ body button.btn-custom.lg.home {
   line-height: 30px;
   font-weight: 400;
   box-shadow: rgba(0, 0, 0, 0) 0px 8px 28px;
-  min-height: 35px;
+  min-height: 45px;
   cursor: pointer;
   border-radius: 9999px;
 }
@@ -43622,53 +43623,6 @@ body
   margin-left: 20px;
 }
 
-/* Edited by Kevin... Left menu bar font size and icon arragement*/
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
-  div.sidebar-v-nav-wrapper
-  ul.sidebar-v-nav
-  li.sidebar-v-nav-item
-  span.nav-item-holder
-  > a {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  color: var(--smc-main-text-color);
-  font-weight: 400;
-  text-decoration: none;
-  line-height: 10px;
-  letter-spacing: 1px
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
-  div.sidebar-v-nav-wrapper
-  ul.sidebar-v-nav
-  li.sidebar-v-nav-item
-  span.nav-item-holder
-  > a.dropdown-toggle::after {
-  display: none;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
-  div.sidebar-v-nav-wrapper
-  ul.sidebar-v-nav
-  li.sidebar-v-nav-item
-  span.nav-item-holder
-  > a
-  b.wallet {
-  color: green;
-}
-
 body
   main.main-content-container
   div.main-content-container-inner
@@ -43783,31 +43737,6 @@ body
   opacity: 0;
 }
 
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
-  div.sidebar-v-nav-wrapper
-  ul.sidebar-v-nav
-  li.sidebar-v-nav-item:hover
-  span.nav-item-holder
-  > a {
-  color: var(--smc-main-text-color);
-  font-weight: 400;
-}
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
-  div.sidebar-v-nav-wrapper
-  ul.sidebar-v-nav
-  li.sidebar-v-nav-item.active
-  span.nav-item-holder
-  > a {
-  font-weight:bolder;
-}
 body
   main.main-content-container
   div.main-content-container-inner
@@ -44125,19 +44054,6 @@ body
   div.main-content-container-inner
   div.left-sb-container
   div.sidebar__inner
-  div.publish-post-btn {
-  width: 100%;
-  border-top: 0px solid var(--smc-main-border-color);
-  padding-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 40px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.left-sb-container
-  div.sidebar__inner
   div.publish-post-btn
   button {
   max-width: 160px;
@@ -44188,45 +44104,6 @@ body
     display: block;
     opacity: 1;
     margin-top: 15px;
-  }
-}
-
-@media (max-width: 1199.98px) {
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.left-sb-container {
-    height: 100vh;
-    display: block;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: -330px;
-    border-right: none;
-    z-index: 110;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.left-sb-container::-webkit-scrollbar {
-    display: none;
-  }
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.left-sb-container.show {
-    left: 0px;
-    width: 250px;
-  }
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.left-sb-container
-    div.publish-post-btn {
-    display: none;
   }
 }
 
