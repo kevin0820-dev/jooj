@@ -14,7 +14,58 @@
 				<?php echo cl_translate("Privacy policy"); ?>
 			</a>
 		</li>
+		<li class="footer-nav-item dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">More</a>
+			<div class="dropdown-menu dorpdown-icons">
+					<a class="dropdown-item" href="<?php echo cl_link('search'); ?>">
+						<?php echo cl_translate("Explore"); ?>
+					</a>
+				<?php if (not_empty($cl['is_logged'])): ?>
+					<?php if ($cl['config']['advertising_system'] == 'on'): ?>
+							<a class="dropdown-item" href="<?php echo cl_link('ads'); ?>">
+								<?php echo cl_translate("Advertising"); ?>
+							</a>
+					<?php endif; ?>
+				<?php endif; ?>
+					<a class="dropdown-item" href="<?php echo cl_link('cookies_policy'); ?>" data-spa="true">
+						<?php echo cl_translate("Cookies"); ?>
+					</a>
+					<a class="dropdown-item" href="<?php echo cl_link('about_us'); ?>" data-spa="true">
+						<?php echo cl_translate("About us"); ?>
+					</a>
+				
+					<a class="dropdown-item" href="<?php echo cl_link('faqs'); ?>" data-spa="true">
+						<?php echo cl_translate('Help center'); ?>
+					</a>
+				<?php if (not_empty($cl["curr_lang"])): ?>
+						<a class="dropdown-item" href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<?php echo cl_translate($cl["curr_lang"]["lang_data"]["name"]); ?>
+						</a>
+						<div class="dropdown-menu dropdown-icons">
+							<?php foreach ($cl["languages"] as $lang): ?>
+								<a class="dropdown-item <?php if($lang["slug"] == $cl["curr_lang"]["lang_data"]["slug"]) {echo('active');} ?>" href="<?php echo cl_link(cl_strf("language/%s", $lang["slug"])); ?>">
+									<?php echo cl_translate($lang["name"]); ?>
+								</a>
+							<?php endforeach; ?>
+						</div>
+				<?php endif; ?>
+					<a class="dropdown-item" href="<?php echo cl_link('about_us'); ?>">&copy; {%config name%} - <?php echo date('Y') ?>.</a>
+			</div>
+		</li>
 	</ul>
+
+	<div>
+		<div class="right-disclaimer-drop">
+			<a class="dropdown-item btn-disclaimer" href="#" class="dropdown-toggle" data-toggle="dropdown">
+				Disclaimer
+			</a>
+			<div class="dropdown-menu dropdown-icons">
+				<p class="dropdown-item">
+					Cointweets sources data from third parties and does not create the content. Content on the platform is not an offer, solicitation, or financial advice for buying or selling securities or investments.
+				</p>
+			</div>
+		</div>
+	</div>
 
 	<?php if (not_empty($cl["config"]["android_app_url"]) || not_empty($cl["config"]["ios_app_url"])): ?>
 		<div class="footer-nav-get-apps h-mobile" style="margin-bottom:20px;">
