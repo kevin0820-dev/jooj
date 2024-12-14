@@ -7567,6 +7567,12 @@ body
     border-right: none;
     border-left: none;
   }
+  body
+  main.main-content-container
+  div.main-content-container-inner
+  div.left-sb-container {
+    background: var(--smc-main-bg-color-2) !important;
+  }
 }
 
 body
