@@ -56,6 +56,25 @@
 						</a>
 					</span>
 				</li>
+				<li data-navitem="coins" onclick="window.location.href='<?php echo cl_link('coins'); ?>'" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {	/* edited by kevin change into button with full width */
+					echo ('active');
+				} ?>">
+					<span class="icon">
+						<?php
+						// Check if the current page is 'connections' to use the active icon
+						if ($cl['pn'] == 'coins') {
+							echo cl_ikon('coins_active');
+						} else {
+							echo cl_ikon('coins');
+						}
+						?>
+					</span>
+					<span class="nav-item-holder">
+						<a href="<?php echo cl_link("coins"); ?>">
+							<?php echo cl_translate('Coins'); ?>
+						</a>
+					</span>
+				</li>
 				<li data-navitem="search" class="sidebar-v-nav-item <?php if ($cl['pn'] == 'coins') {echo ('active');} ?>" data-toggle = "modal" data-target = "#searchbox-dialog" >
 					<span class="icon">
 						<?php
