@@ -11,7 +11,7 @@
 }
 
 hr {
-  margin: 1rem 0;;
+  margin: 1rem 0 !important;
 }
 
 .mobile_menu .uname h2 {
@@ -3959,7 +3959,7 @@ body::-webkit-scrollbar-thumb {
 
 body main.main-content-container {
   width: 100%;
-  background: var(--smc-main-bg-color);
+  background: var(--smc-main-bg-color-2);
   min-width: 320px;
   -moz-transition: right 0.5s;
   -o-transition: right 0.5s;
@@ -7582,7 +7582,7 @@ body
   width: 275px;
   min-width: 275px;
   flex-basis: 275px;
-  background: var(--smc-main-bg-color);
+  background: var(--smc-main-bg-color-2);
   -moz-transition: left 0.5s;
   -o-transition: left 0.5s;
   -webkit-transition: left 0.5s;
@@ -7892,6 +7892,20 @@ body
   width: 45px;
   height: 45px;
   overflow: hidden;
+  margin-left: 15px;
+}
+
+body
+  main.main-content-container
+  div.main-content-container-inner
+  div.left-sb-container
+  div.sidebar__inner
+  div.user-info
+  div.logo {
+  min-width: 45px;
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
   margin-left: 5px;
 }
 
@@ -7967,7 +7981,7 @@ body
   padding: 0;
   margin: 0;
   font-size: 20px;
-  line-height: 15px;
+  line-height: 30px;
   font-weight: 700;
   color: var(--smc-main-text-color);
   overflow: hidden;
@@ -8164,6 +8178,23 @@ body
   flex-direction: row;
   flex-wrap: nowrap;
   height: 53px;
+  padding-left: 5px;
+  align-items: center;
+}
+
+body
+  main.main-content-container.guest-mode
+  div.main-content-container-inner
+  div.left-sb-container
+  div.sidebar__inner
+  div.sidebar-v-nav-wrapper
+  ul.sidebar-v-nav
+  li.sidebar-v-nav-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 40px;
   padding-left: 5px;
   align-items: center;
 }
@@ -39529,16 +39560,6 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--smc-main-uiel-color);
   outline: 0;
   border-radius: 5px;
-}
-
-body main.main-content-container {
-  width: 100%;
-  background: var(--smc-main-bg-color);
-  min-width: 320px;
-  -moz-transition: right 0.5s;
-  -o-transition: right 0.5s;
-  -webkit-transition: right 0.5s;
-  transition: right 0.5s;
 }
 
 body main.main-content-container div.main-content-container-inner {

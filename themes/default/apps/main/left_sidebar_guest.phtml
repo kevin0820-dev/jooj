@@ -13,7 +13,7 @@
 		</div>
 		<div class="user-info h-laptop">
 			<div class="left_account">
-				<div class="avatar">
+				<div class="logo">
 					<img src="{%config site_logo%}" alt="Logo">
 				</div>
 			</div>
@@ -33,11 +33,7 @@
 																										} ?>" style="cursor: pointer;">
 					<span class="icon home">
 						<?php
-							if ($cl['pn'] == 'feed') {
-								echo cl_ikon('home_active');
-							} else {
-								echo cl_ikon('home');
-							}
+							echo cl_ikon('home');
 						?>
 					</span>
 					<span class="nav-item-holder">
@@ -51,11 +47,7 @@
 																																		} ?>" style="cursor: pointer;">
 					<span class="icon">
 						<?php
-							if ($cl['pn'] == 'explore') {
-								echo cl_ikon('explore_active');
-							} else {
-								echo cl_ikon('explore');
-							}
+							echo cl_ikon('explore');
 						?>
 					</span>
 					<span class="nav-item-holder">
