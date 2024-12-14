@@ -669,15 +669,11 @@
 					<?php endif; ?>
 				</div>
 			</div>
-			<!-- Edited by Kevin -->
-			<?php /*
-			if (not_empty($cl["gads_horiz"])): ?>
+			<?php if (not_empty($cl["gads_horiz"])): ?>
 				<div class="cl-google-ads centered">
 					<?php echo $cl["gads_horiz"]; ?>
 				</div>
-			<?php endif; 
-			*/
-			?>
+			<?php endif; ?>
 			<?php if (empty($cl['thread_data']['can_reply']) && not_empty($cl['thread_data']['post']['can_see'])): ?>
 				<?php if ($cl['thread_data']["post"]["priv_wcr"] == "followers"): ?>
 					<div class="publication--thread-reply-privacy">
