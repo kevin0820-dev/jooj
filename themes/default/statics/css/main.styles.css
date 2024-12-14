@@ -10,6 +10,10 @@
   --smc-main-border-rad2: 5px;
 }
 
+span.uname {
+  font-size: 15px;
+}
+
 hr {
   margin: 1rem 0 !important;
 }
@@ -9617,7 +9621,7 @@ div.lp span.posted-time {
   flex-wrap: nowrap;
   justify-content: space-between;
   margin-left: 1px;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 div.lp span.point {
@@ -32490,7 +32494,7 @@ body.cl-app-thread
   a.uname
   span {
   display: inline-block;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 18px;
   width: 100%;
   color: var(--smc-main-text-color-2);
@@ -37644,22 +37648,13 @@ body.modal-open {
     font-weight: 400;
     line-height: 30px;
   }
+
   body span.user-name-holder p {
     display: inline-block;
   }
+
   body span.user-name-holder p.verified-badge span.uname {
     margin-left: 25px;
-  }
-  div.lp span.posted-time {
-    overflow-wrap: break-word;
-    min-width: 0px;
-    max-width: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: inline-block !important;
-    font-weight: 400;
-    line-height: 30px;
   }
 
   body
@@ -40360,27 +40355,6 @@ body
   text-decoration-thickness: 1.5px;
   white-space: nowrap;
   text-underline-offset: auto;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.timeline-posts-ls
-  div.post-list-item
-  div.post-list-item-content
-  div.publication-data
-  div.publication-data-inner
-  div.publisher-info
-  div.rp
-  span.posted-time {
-  display: inline-block;
-  line-height: 0px;
-  padding: 0;
-  margin: 0;
 }
 
 body
@@ -44519,19 +44493,6 @@ body
 .post-ctrls-holder button.post-pub-btn:disabled {
   opacity: 0.6;
   cursor: default;
-}
-
-div.lp span.posted-time {
-  display: inline-flex;
-  line-height: 30px;
-  padding: 0;
-  margin: 0;
-  margin-left: 0px;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  margin-left: 1px;
-  font-size: 13px;
 }
 
 div.lp span.point {
