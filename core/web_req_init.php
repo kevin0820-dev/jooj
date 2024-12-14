@@ -210,8 +210,10 @@ if (not_empty($_GET['language'])) {
 
 if (not_empty($cl["config"]["google_ad_horiz"])) {
     $cl["gads_horiz"] = htmlspecialchars_decode($cl["config"]["google_ad_horiz"]);
+    // $cl["gads_horiz"] = "horizontal ads";
 }
 
 if (not_empty($cl["config"]["google_ad_vert"])) {
     $cl["gads_vert"] = htmlspecialchars_decode($cl["config"]["google_ad_vert"]);
+    // $cl["gads_vert"] = "vertical ads";
 }
