@@ -75,7 +75,7 @@ hr {
   position: fixed;
   bottom: 15px;
   flex-direction: row !important;
-  background-color: var(--smc-main-bg-color-2);
+  background-color: var(--smc-main-bg-color);
   border-radius: 10px;
   padding: 14px 0px 14px 0px;
 }
@@ -8531,7 +8531,7 @@ body
   li.sidebar-v-nav-item.active
   span.nav-item-holder
   > a {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 body
