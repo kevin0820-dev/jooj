@@ -10,6 +10,10 @@
   --smc-main-border-rad2: 5px;
 }
 
+#Layer_x0020_1 path {
+  fill: var(--smc-main-text-color);
+}
+
 span.uname {
   font-size: 15px;
 }
