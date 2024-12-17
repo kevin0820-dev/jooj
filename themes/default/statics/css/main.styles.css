@@ -9866,7 +9866,7 @@ body
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 15px;
-  line-height: 30px;
+  line-height: 20px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -44737,7 +44737,7 @@ body
   text-decoration: none;
   color: var(--smc-main-text-color-2);
   font-size: 15px;
-  line-height: 30px;
+  line-height: 20px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

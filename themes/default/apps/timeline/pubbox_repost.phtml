@@ -461,6 +461,16 @@
 			</div>
 			<div class="post-privacy-holder" v-show="text.length">
 				<div class="d-flex align-items-center flex-wn">
+					<div class="flex-item">						
+						<div class="inline-flex shadow-sm expect-btn-holder" role="group">
+							<button type="button" v-on:click="expect = 'bullish'" class="expect-btn px-2 py-1 text-sm text-green-700" v-bind:class="{'ring-2 border-green-700 ring-green-700 z-10': expect === 'bullish', 'border-transparent': expect !== 'bullish'}">
+								Bullish
+							</button>
+							<button type="button" v-on:click="expect = 'bearish'" class="expect-btn px-2 py-1 text-sm text-red-700" v-bind:class="{'ring-2 border-red-700 ring-red-700 z-10': expect === 'bearish', 'border-transparent': expect !== 'bearish'}">
+								Bearish
+							</button>
+						</div>
+					</div>
 					<div class="flex-item" v-if="post_privacy">
 						<button class="privacy-settings dropdown" type="button">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -578,14 +588,6 @@
 					v-bind:disabled="doc_ctrl != true">
 					<?php echo cl_icon('file_present'); ?>
 				</button> -->
-				<div class="inline-flex shadow-sm expect-btn-holder" role="group">
-					<button type="button" v-on:click="expect = 'bullish'" class="expect-btn px-2 py-1 text-sm text-green-700" v-bind:class="{'ring-2 border-green-700 ring-green-700 z-10': expect === 'bullish', 'border-transparent': expect !== 'bullish'}">
-						Bullish
-					</button>
-					<button type="button" v-on:click="expect = 'bearish'" class="expect-btn px-2 py-1 text-sm text-red-700" v-bind:class="{'ring-2 border-red-700 ring-red-700 z-10': expect === 'bearish', 'border-transparent': expect !== 'bearish'}">
-						Bearish
-					</button>
-				</div>
 				<div class="flex-item ml-auto right-top">
 					<button v-bind:disabled="valid_form != true || submitting" type="submit"
 						class="btn-custom main-inline md post-pub-btn">
