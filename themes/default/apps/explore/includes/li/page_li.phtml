@@ -49,15 +49,15 @@
 						<div class="user-data__ctrls">
 							<?php if (empty($cl['li']['is_user'])): ?>
 									<?php if (not_empty($cl['li']['is_following'])): ?>
-										<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="btn btn-custom md main-inline" data-action="unfollow" data-id="<?php echo($cl['li']['id']); ?>">
+										<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="right-sidebar-flex-button" data-action="unfollow" data-id="<?php echo($cl['li']['id']); ?>">
 											<?php echo cl_translate("unwatch"); ?>
 										</button>
 									<?php elseif (not_empty($cl['li']['follow_requested'])): ?>
-										<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="btn btn-custom main-inline md" data-action="cancel" data-id="<?php echo($cl['li']['id']); ?>">
+										<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="right-sidebar-flex-button" data-action="cancel" data-id="<?php echo($cl['li']['id']); ?>">
 											<?php echo cl_translate("Pending"); ?>
 										</button>
 									<?php else: ?>
-										<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="btn btn-custom main-outline md" data-action="follow" data-id="<?php echo($cl['li']['id']); ?>">
+										<button onclick="SMColibri.req_watch(this);" data-user-name="<?php echo($cl['li']['name']); ?>" class="right-sidebar-flex-button" data-action="follow" data-id="<?php echo($cl['li']['id']); ?>">
 											<?php echo cl_translate("watch"); ?>
 										</button>
 									<?php endif; ?>

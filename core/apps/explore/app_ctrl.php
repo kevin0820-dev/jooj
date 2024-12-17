@@ -151,10 +151,10 @@ function cl_search_page($keyword = "", $offset = false, $limit = 30) {
             $row['type']             = 'page';
             if (not_empty($user_id)) {
             	$row['is_user']      = ($user_id == $row['id']);
-            	$row['is_following'] = cl_is_following($user_id, $row['id']);
+            	$row['is_following'] = cl_is_watching($user_id, $row['id']);
 
                 if (empty($row['is_following'])) {
-                    $row['follow_requested'] = cl_follow_requested($user_id, $row['id']);
+                    $row['follow_requested'] = cl_watch_requested($user_id, $row['id']);
                 }
 
                 $row['common_follows'] = cl_get_common_follows($row['id']);
