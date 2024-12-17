@@ -8985,7 +8985,7 @@ body
   form
   div.input-holder
   input {
-  border: 1px solid var(--smc-main-border-color);
+  border: 1px solid var(--smc-main-bg-color);
   background: var(--smc-main-ibg-color);
   border-radius: 1em;
   padding: 0 0 0px 50px;
@@ -43844,24 +43844,6 @@ body
   display: block;
   line-height: 0;
   position: relative;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  input {
-  border: 1px solid var(--smc-main-border-color);
-  background: var(--smc-main-ibg-color);
-  border-radius: 1em;
-  padding: 0 0 0px 50px;
-  height: 44px;
-  font-size: 13px;
-  color: var(--smc-main-text-color);
 }
 
 body
