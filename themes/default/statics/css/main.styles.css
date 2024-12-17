@@ -473,16 +473,15 @@ div.main-search-bar-container form div.input-holder span.clear-result svg {
   margin-top: 10px;
   outline: 0;
 }
-.custom-lineheight textarea{
-  /* align-content: center; */
-  /* height: 57px !important; */
-}
+
 .user-name-holder{
   display: inline-flex;
 }
+
 .btn-top{
   padding: 10px 5px 19px 0px !important;
 }
+
 body[data-skin="default"] {
   
   /*UI-EL-COLORS*/
@@ -658,7 +657,7 @@ body[data-bg="default"] {
   /*==================================================*/
   /*INPUT-COLORS*/
   --smc-main-iph-color: #5b7083;
-  --smc-main-ibg-color: #eff3f4;
+  --smc-main-ibg-color: #ffffff;
   --smc-main-ibg-color2: rgb(247, 249, 249);
   /*==================================================*/
   /*BOX-SHAD-EFF*/
