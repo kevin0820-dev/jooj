@@ -35367,6 +35367,8 @@ body.cl-app-thread
   margin-bottom: 15px;
   width: 100%;
   text-align: center;
+  display: inline-flex;
+  justify-content: center;
 }
 
 body.cl-app-thread
@@ -69883,21 +69885,6 @@ body.cl-app-thread
   padding: 50px;
   height: 300px;
   overflow: hidden;
-}
-
-body.cl-app-thread
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.publication--thread-container
-  div.publication--thread-container-inner
-  div.publication--thread-replys-holder
-  div.no-thread-replys
-  div.icon {
-  line-height: 0px;
-  margin-bottom: 15px;
-  width: 100%;
-  text-align: center;
 }
 
 body.cl-app-thread
