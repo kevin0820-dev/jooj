@@ -3813,6 +3813,8 @@ body.cl-app-bookmarks
   margin-bottom: 35px;
   width: 100%;
   text-align: center;
+  display: inline-flex;
+  justify-content: center;
 }
 
 body.cl-app-bookmarks
@@ -37772,14 +37774,7 @@ body.modal-open {
     div.timeline-container {
     padding-top: 80px !important;
   }
-  body.cl-app-bookmarks
-    main.main-content-container
-    div.main-content-container-inner
-    div.timeline-container
-    div.timeline-posts-container
-    div.empty-bookmarks-list {
-    padding: 5px !important;
-  }
+
   .left-sb-container.sidebar {
     display: none;
   }
@@ -39382,36 +39377,6 @@ body.cl-app-affiliates
 }
 
 /* ===================================================== */
-
-body.cl-app-bookmarks
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.empty-bookmarks-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: center;
-  line-height: 0px;
-  padding: 50px 50px;
-  height: calc(100vh - 20px);
-  overflow: hidden;
-}
-
-body.cl-app-bookmarks
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.timeline-posts-container
-  div.empty-bookmarks-list
-  div.icon {
-  line-height: 0px;
-  margin-bottom: 35px;
-  width: 100%;
-  text-align: center;
-}
 
 body.cl-app-bookmarks
   main.main-content-container

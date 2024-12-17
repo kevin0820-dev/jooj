@@ -9318,6 +9318,7 @@ div.search-result__list-item
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 16px;
 }
 
 div.search-result__list-item.search-result__list-item_htag
