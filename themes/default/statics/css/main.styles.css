@@ -14,6 +14,30 @@
   fill: var(--smc-main-text-color);
 }
 
+.mobile_menu {
+  display: flex;
+}
+
+.verified-badge-mobile {
+  position: relative; /* Positioning context */
+  margin: 0; /* Combined margin properties */
+  vertical-align: top; /* Aligns the badge vertically */
+  line-height: 24px; /* Adjusted line height for consistency */
+  color: var(--smc-main-uiel-color); /* Main UI color */
+  content: url("data:image/svg+xml;utf8,<svg style='vertical-align: middle;' xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><path fill='dodgerblue' d='M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z'/></svg>");
+  margin-left: 0; /* Left margin */
+  max-width: 20px; /* Maximum width */
+  max-height: 20px; /* Maximum height */
+  user-select: none; /* Prevents text selection */
+  height: 1.25em; /* Height of the badge */
+  display: inline-block; /* Inline block for layout */
+  font-size: 16px; /* Font size */
+  overflow-wrap: break-word; /* Prevents overflow */
+  cursor: pointer; /* Pointer cursor on hover */
+  /* Removed duplicate vertical-align and line-height properties */
+  font-weight: 400; /* Font weight */
+}
+
 .under-login {
   display: flex;
   flex-direction: row;
@@ -7996,7 +8020,7 @@ body
   padding: 0;
   margin: 0;
   font-size: 20px;
-  line-height: 30px;
+  line-height: 22px;
   font-weight: 700;
   color: var(--smc-main-text-color);
   overflow: hidden;
