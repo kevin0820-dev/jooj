@@ -6233,6 +6233,7 @@ body
   div.timeline-container-inner
   div.timeline-container
   div.timeline-navbar {
+    /* padding-bottom:8px; */
     overflow: visible;
     display: flex;
     flex-direction: row;
@@ -6240,12 +6241,9 @@ body
     background: var(--smc-main-bg-color);
     opacity: 0.97;
     z-index: 500;
-    /* border-bottom: 1px solid var(--smc-main-border-color); */
     position: sticky;
-    top: 59px;
+    top: 45px;
 }
-
-
 
 .ads-management{
   top: 13px;
@@ -6358,24 +6356,7 @@ body
   }
 }
 
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-navbar {
-    /* padding-bottom:8px; */
-    overflow: visible;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    background: var(--smc-main-bg-color);
-    opacity: 0.97;
-    z-index: 500;
-    position: sticky;
-    top: 52px;
-}
+
 
   /* body
     main.main-content-container
