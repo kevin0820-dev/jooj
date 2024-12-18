@@ -177,19 +177,9 @@
 						<?php endif; ?>
 					</div>
 				<?php else: ?>
-					<div class="timeline-placeholder">
-						<div class="icon">
-							<div class="icon__bg">
-								<?php echo cl_icon('feed'); ?>
-							</div>
-						</div>
-						<div class="pl-message">
-							<h4>
-								<?php echo cl_translate("No data to display yet!"); ?>
-							</h4>
-							<p>
-								<?php echo cl_translate("It looks like the site has no content to display yet. All featured posts will be displayed on this page"); ?>
-							</p>
+					<div class="timeline-posts-container">
+						<div class="timeline-posts-ls" data-an="entry-list">
+							<?php echo cl_template('home/includes/no_top_posts'); ?>
 						</div>
 					</div>
 				<?php endif; ?>
