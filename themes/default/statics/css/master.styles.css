@@ -16030,7 +16030,7 @@ body.cl-app-conversation
   div.message-input
   div.message-input__field {
   flex: 1;
-  margin: 0px var(--cl-primary-offset-size);
+  margin: 0px var(--cl-primary-offset-size) 0px 0px;
 }
 
 body.cl-app-conversation
