@@ -80,6 +80,7 @@
 				}
 			}
 			_smc.delete_symbol = function(id = false) {
+				alert(id);
 				if ($.isNumeric(id) && id) {
 		        	var promise = SMC_CPanel.confirm_action({
 						btn_1: "Cancel",

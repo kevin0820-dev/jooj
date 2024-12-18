@@ -626,6 +626,38 @@ _smc.userlbox.curr_el = false;
 					}
 				}
 			}
+			_smc.delete_symbol = function(id = false) {
+				if ($.isNumeric(id) && id) {
+		        	var promise = SMColibri.confirm_action({
+						btn_1: "Cancel",
+						btn_2: "Delete",
+						title: "Please confirm your actions!",
+						message: "Please note that if you delete this page symbol, then all posts, replies, and all other data associated with this Page will also be deleted!",
+					});
+
+					promise.done(function() {
+						$.ajax({
+							url: '<?php echo cl_link("native_api/cpanel/delete_symbol"); ?>',
+							type: 'POST',
+							dataType: 'json',
+							data: {id: id},
+						}).done(function(data) {
+							if (data.status != 200) {
+								_smc.errorMSG();
+							}
+							else {
+								_smc.go_back();
+							}
+						}).always(function() {
+							$("div.confirm-actions-modal").modal("hide");
+						});
+			        });
+
+					promise.fail(function() {
+			            $("div.confirm-actions-modal").modal("hide");
+			        });
+				}
+			}
 			_smc.suspend_account = function (id = false) {
 				if ($.isNumeric(id) && id) {
 					if (_smc.is_logged()) {
