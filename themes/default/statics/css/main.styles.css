@@ -558,9 +558,9 @@ body[data-skin="default"] {
   color:var(--cl-primary-text-color);
 }
 .symbol_header{
-  height:auto !important;
-  line-height:normal;
-  padding:12px 12px 0px 12px;
+  height: auto !important;
+  line-height: normal;
+  padding: 5px 12px 0px 12px;
   display: block !important;
 }
 .selectable{
@@ -4141,7 +4141,7 @@ body
   right: 0;
   margin: auto;
   width: 30px;
-  height: 30px;
+  height: 35px;
 }
 
 body
@@ -10627,7 +10627,7 @@ div.mobile-bottom-navbar2 div.mobile-bottom-navbar-inner {
 
 .avatar-menu svg {
   width: 25px;
-  height: 15px;
+  height: 25px;
   border-radius: 9999px;
   margin-left: 12px;
   fill: var(--smc-main-text-color);
@@ -22373,7 +22373,7 @@ body.cl-app-guest
     div.cp
     a
     img {
-    height: 25px;
+    height: 35px;
   }
   body
     main.main-content-container
@@ -36643,30 +36643,29 @@ body[data-skin="default"] {
   margin-left: 3px;
   color:var(--cl-primary-text-color);
 }
-.symbol_header{
-  height:auto !important;
-  line-height:normal;
-  padding:12px 12px 0px 12px;
-  display: block !important;
-}
+
 .selectable{
   display: none !important;
 }
+
 @media (max-width: 1230px) {
   .selectable {
       display: flex !important;
   }
 }
+
 .bt-3{
   bottom: 3px;
   position: relative;
 }
+
 div.nav-link-holder-symbol{
   display: flex !important;
   align-items: center;
   font-size: large;
   font-weight: bold;
 }
+
 body[data-skin="green"] {
   /*UI-EL-COLORS*/
   --smc-main-uiel-color: rgb(0, 186, 124);
@@ -39648,40 +39647,9 @@ body
   div.timeline-container-inner
   div.timeline-container
   div.timeline-header
-  div.cp {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  width: 30px;
-  height: 30px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-header
   div.cp
   a {
   text-decoration: none;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container-wrapper
-  div.timeline-container-inner
-  div.timeline-container
-  div.timeline-header
-  div.cp
-  a
-  img {
-  height: 25px;
 }
 
 body
@@ -45328,20 +45296,6 @@ body
   height: 24px;
   stroke: var(--smc-main-icon-color);
   stroke-width: 0.3;
-}
-
-div.mobile-bottom-navbar2 {
-  display: block;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  border-top: 0px solid #e6ecf0;
-  background: transparent;
-  z-index: 701;
-  height: 50px;
-  width: 50px;
-  opacity: 0.97;
 }
 
 div.mobile-bottom-navbar2 div.mobile-bottom-navbar-inner {
@@ -56242,18 +56196,6 @@ body.cl-app-guest
   .icons_bottom {
     margin-left: 10px;
     margin-right: 10px;
-  }
-  body
-    main.main-content-container
-    div.main-content-container-inner
-    div.timeline-container-wrapper
-    div.timeline-container-inner
-    div.timeline-container
-    div.timeline-header
-    div.cp
-    a
-    img {
-    height: 25px;
   }
   /* body
     main.main-content-container
