@@ -66,7 +66,7 @@ else if ($action == 'save_profile_info') {
     $country_list     = array_keys($cl["countries"]);
     $user_data_fields = array(
         'fname'       => fetch_or_get($_POST['fname'], null),
-        'bio'         => fetch_or_get($_POST['bio'], null),
+        'bio'         => fetch_or_get($_POST['bio'], ""),
         'country'     => fetch_or_get($_POST['country'], null),
         'gender'      => fetch_or_get($_POST['gender'], null)
     );

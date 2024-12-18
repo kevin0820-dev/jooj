@@ -220,7 +220,8 @@
 								_app_.progstat = data.progstat;
 							}
 							else{
-								SMColibri.errorMSG();
+								// SMColibri.errorMSG();
+								alert(data.err_code);
 							}
 						}).always(function() {
 							setTimeout(function() {
