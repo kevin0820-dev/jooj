@@ -18,6 +18,10 @@
   display: flex;
 }
 
+.nav-tabs .nav-link {
+  font-weight: 700 !important;
+}
+
 .verified-badge-mobile {
   position: relative; /* Positioning context */
   margin: 0; /* Combined margin properties */
@@ -1612,7 +1616,7 @@ body .login-form button.btn-custom.lg {
   padding-left: 16px;
   padding-right: 16px;
   max-height: 36px;
-  margin-right: 16px;
+  margin-right: 5px;
   transition-property: background-color, box-shadow;
   font-size: 15px;
   line-height: 22px;
@@ -1639,7 +1643,7 @@ body.modal-open {
   bottom: 0;
   box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px,
     rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
-  background-color: rgb(0, 0, 0);
+  background-color: var(--smc-main-bg-color);
   pointer-events: auto;
   z-index: 700;
   display: flex;
@@ -1664,21 +1668,10 @@ body.modal-open {
 }
 
 .guest_bottom .guest_login .login_txt h1 {
-  color: rgb(255, 255, 255);
+  color: var(--smc-main-text-color);
   font-weight: 700;
   line-height: 28px;
   font-size: 23px;
-  overflow-wrap: break-word;
-  margin: 0px;
-  padding: 0px;
-  white-space: pre-wrap;
-}
-
-.guest_bottom .guest_login .login_txt h6 {
-  color: rgb(255, 255, 255);
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 30px;
   overflow-wrap: break-word;
   margin: 0px;
   padding: 0px;
@@ -1784,6 +1777,10 @@ body.modal-open {
   hr{
     display: none;
   }
+  .guest_bottom {
+    height: auto;
+    display: none;
+  }
 }
 
 @media (max-width: 1230px) {
@@ -1821,11 +1818,6 @@ body.modal-open {
     padding: 5px 16px;
     line-height: 16px;
   }
-  .guest_bottom .guest_login {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-  }
   #forgotModal .modal-dialog,
   #signupModal .modal-dialog,
   #loginModal .modal-dialog {
@@ -1847,15 +1839,7 @@ body.modal-open {
     min-height: 100%;
     border-radius: 0px !important;
   }
-  .guest_bottom .guest_login .login_txt {
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
   .r-o96wvk {
-    display: none;
-  }
-  .guest_bottom {
-    height: auto;
     display: none;
   }
   body
@@ -9062,7 +9046,7 @@ body
   border: 2px solid var(--smc-main-uiel-color);
 }
 
-body
+/* body
   main.main-content-container
   div.main-content-container-inner
   div.right-sb-container
@@ -9074,7 +9058,7 @@ body
   box-shadow: none;
   outline: none;
   border: 2px solid var(--smc-main-uiel-color);
-}
+} */
 
 body
   main.main-content-container
@@ -9087,7 +9071,7 @@ body
   input:active
   + a
   svg,
-body
+/* body
   main.main-content-container
   div.main-content-container-inner
   div.right-sb-container
@@ -9097,7 +9081,7 @@ body
   div.input-holder
   input:hover
   + a
-  svg,
+  svg, */
 body
   main.main-content-container
   div.main-content-container-inner
@@ -36448,87 +36432,6 @@ div.main-search-bar-container form div.input-holder a {
   height: 22px;
 }
 
-div.main-search-bar-container form div.input-holder input {
-  border: 1px solid var(--smc-main-border-color);
-  background: var(--smc-main-bg-color);
-  border-radius: 1em;
-  padding: 0 0 0px 50px;
-  height: 44px;
-  font-size: 13px;
-  color: var(--smc-main-text-color);
-}
-
-div.main-search-bar-container form div.input-holder {
-  width: 100%;
-  overflow: hidden;
-  display: block;
-  line-height: 0;
-  position: relative;
-}
-
-div.main-search-bar-container form {
-  display: block;
-  position: relative;
-  margin-bottom: 0px;
-}
-
-div.main-search-bar-container form div.search-result-holder div.search-result-body {
-  width: 100%;
-  display: block;
-  line-height: 0;
-}
-
-div.main-search-bar-container form div.search-result-holder div.search-result-body ul.result-list {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-height: 250px;
-}
-
-div.search-result-footer {
-  width: 100%;
-  display: block;
-  text-align: center;
-  border-top: 1px solid var(--smc-main-border-color);
-  padding: 10px 20px;
-  background: var(--smc-main-uiel-color);
-}
-
-div.main-search-bar-container form div.search-result-holder div.search-result-footer a {
-  color: #fff;
-  font-size: 11px;
-  line-height: 11px;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: #fff;
-  font-size: 14px;
-  line-height: 11px;
-  text-transform: none;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-div.main-search-bar-container form div.input-holder span.clear-result {
-  position: absolute;
-  right: 15px;
-  top: 7px;
-  text-decoration: none;
-  line-height: 0px;
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-}
-
-div.main-search-bar-container form div.input-holder span.clear-result svg {
-  width: 100%;
-  height: 100%;
-  stroke: #fff;
-  background: var(--smc-main-uiel-color);
-  border-radius: 50%;
-}
 .publication-data{
   flex: 1;
 }
@@ -37360,60 +37263,6 @@ body.modal-open {
   padding: 0px !important;
 }
 
-.guest_bottom {
-  right: 0px;
-  position: fixed;
-  left: 0px;
-  bottom: 0;
-
-  box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px,
-    rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
-  background-color: rgb(0, 0, 0);
-  pointer-events: auto;
-  z-index: 700;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  height: 60px;
-}
-
-.guest_bottom .guest_login {
-  margin-bottom: 12px;
-  margin-top: 12px;
-  display: flex;
-  -moz-box-align: stretch;
-  justify-content: space-between;
-  width: 990px;
-  -moz-box-align: center;
-  align-items: center;
-  -moz-box-direction: normal;
-  -moz-box-orient: horizontal;
-  flex-direction: row;
-}
-
-.guest_bottom .guest_login .login_txt h1 {
-  color: rgb(255, 255, 255);
-  font-weight: 700;
-  line-height: 28px;
-  font-size: 23px;
-  overflow-wrap: break-word;
-  margin: 0px;
-  padding: 0px;
-  white-space: pre-wrap;
-}
-
-.guest_bottom .guest_login .login_txt h6 {
-  color: rgb(255, 255, 255);
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 30px;
-  overflow-wrap: break-word;
-  margin: 0px;
-  padding: 0px;
-  white-space: pre-wrap;
-}
-
 .r-o96wvk {
   width: 275px;
 }
@@ -37509,11 +37358,6 @@ body.modal-open {
     padding: 5px 16px;
     line-height: 16px;
   }
-  .guest_bottom .guest_login {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-  }
   #forgotModal .modal-dialog,
   #signupModal .modal-dialog,
   #loginModal .modal-dialog {
@@ -37535,15 +37379,7 @@ body.modal-open {
     min-height: 100%;
     border-radius: 0px !important;
   }
-  .guest_bottom .guest_login .login_txt {
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
   .r-o96wvk {
-    display: none;
-  }
-  .guest_bottom {
-    height: auto;
     display: none;
   }
   body
@@ -43879,57 +43715,6 @@ body
   div.main-search-bar-container
   form
   div.input-holder
-  input:hover {
-  box-shadow: none;
-  outline: none;
-  border: 2px solid var(--smc-main-uiel-color);
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  input:active
-  + a
-  svg,
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  input:hover
-  + a
-  svg,
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  input:focus
-  + a
-  svg {
-  stroke: var(--smc-main-uiel-color);
-  opacity: 1;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
   a {
   position: absolute;
   left: 15px;
@@ -50143,36 +49928,6 @@ body
   font-size: 13px;
   color: var(--smc-main-text-color);
   padding: 0px 40px;
-}
-
-body
-  div.timeline-pubbox-container
-  > div.rp
-  form
-  div.preview-gifs-holder
-  div.preview-gifs-loader
-  div.search-bar-holder
-  input:active,
-body
-  div.timeline-pubbox-container
-  > div.rp
-  form
-  div.preview-gifs-holder
-  div.preview-gifs-loader
-  div.search-bar-holder
-  input:hover,
-body
-  div.timeline-pubbox-container
-  > div.rp
-  form
-  div.preview-gifs-holder
-  div.preview-gifs-loader
-  div.search-bar-holder
-  input:focus {
-  box-shadow: none;
-  outline: none;
-  background: none;
-  border: 1px solid var(--smc-main-uiel-color);
 }
 
 body

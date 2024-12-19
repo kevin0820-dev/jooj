@@ -2110,7 +2110,7 @@ body
   form.timeline-searchbar__form
   div.keyword-input
   input:active,
-body
+/* body
   main.main-content-container
   div.main-content-container-inner
   div.timeline-container-wrapper
@@ -2119,7 +2119,7 @@ body
   div.timeline-searchbar
   form.timeline-searchbar__form
   div.keyword-input
-  input:hover,
+  input:hover, */
 body
   main.main-content-container
   div.main-content-container-inner

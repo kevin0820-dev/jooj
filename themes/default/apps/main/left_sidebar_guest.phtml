@@ -100,27 +100,24 @@
 		</div>
 	</div>
 </div>
-<!-- <div class="guest_bottom">
+<div class="guest_bottom">
 	<div class="r-o96wvk"></div>
 	<div class="guest_login">
 		<div class="login_txt">
 			<span style="display: flex; align-items: center;">
-				<img class="icon" src="{%config site_logo%}" alt="" height="50" width="60" style="margin-right:26px; display: block; height: auto;  border: 0;">
+				<img class="icon" src="{%config site_logo%}" alt="" height="50" width="60" style="display: block; height: auto;  border: 0;">
 				<span>
-					<h1><?php echo cl_translate("dont_miss"); ?></h1>
-					<h6><?php echo cl_translate("dont_miss_desc", array(
-							"site_name" => $cl["config"]["name"]
-						)); ?></h6>
+					<h1><?php echo cl_translate("Cointweets"); ?></h1>
 				</span>
 			</span>
 
 		</div>
 		<div class="login_btn">
-			<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal"><?php echo cl_translate("Log in"); ?></button>
-			<button type="button" class="btn btn-light" data-toggle="modal" data-target="#signupModal"><?php echo cl_translate("Sign up"); ?></button>
+			<button class="left-login blue" data-toggle="modal" data-target="#signupModal">Sign up</button>
+			<button class="left-login" data-toggle="modal" data-target="#loginModal">Sign in</button>
 		</div>
 	</div>
-</div> -->
+</div>
 
 <?php echo cl_template('main/bottom_navbar'); ?>
 
