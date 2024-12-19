@@ -965,7 +965,7 @@ function cl_linkify_urls($text = "") {
 
                     $url = cl_add_http_scheme($m['url']);
 
-                    return cl_html_el('a', cl_croptxt($m['url'], 500, "..."), array(
+                    return cl_html_el('a', cl_croptxt($m['url'], 50, "..."), array(
                         'href' => $url,
                         'target' => '_blank',
                         'class' => 'inline-link'

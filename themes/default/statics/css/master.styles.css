@@ -5140,10 +5140,11 @@ body
   text-align: left;
   width: 73%;
   margin-left: 20px;
-vertical-align: top;
-line-height: 20px;
-display: flex;
-font-size: 13px;
+  vertical-align: top;
+  line-height: 20px;
+  display: flex;
+  font-size: 13px;
+  color: var(--smc-main-text-color-2);
 }
 
 body
