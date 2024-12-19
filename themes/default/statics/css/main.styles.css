@@ -3953,7 +3953,7 @@ body.cl-app-bookmarks
 
 html {
   scroll-behavior: smooth;
-  font-family: Source Sans Pro,Arial,Helvetica Neue,Helvetica,sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 body {
@@ -39351,11 +39351,6 @@ body.cl-app-bookmarks
 }
 
 /* ===================================================== */
-
-html {
-  scroll-behavior: smooth;
-  font-family: Inter, sans-serif;
-}
 
 body {
   /* font-family: inherit !important; */
