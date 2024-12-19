@@ -15,14 +15,14 @@
 		<div>
 			<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 				<li  role="presentation">
-					<a class="nav-link active home_nav_btn" id="trending-tab" data-toggle="tab" href="#trending" role="tab"	aria-controls="trending" aria-selected="true">
-						<?php echo cl_translate("Top"); ?>
+					<a class="nav-link active home_nav_btn" id="latest-tab" data-toggle="tab" href="#latest" role="tab"	aria-controls="latest" aria-selected="true">
+						<?php echo cl_translate("Latest"); ?>
 						<div class="css-1dbjc4n"></div>
 					</a>
 				</li>
 				<li  role="presentation">
-					<a class="nav-link home_nav_btn" id="latest-tab" data-toggle="tab" href="#latest" role="tab"	aria-controls="latest" aria-selected="true">
-						<?php echo cl_translate("Latest"); ?>
+					<a class="nav-link home_nav_btn" id="trending-tab" data-toggle="tab" href="#trending" role="tab"	aria-controls="trending" aria-selected="true">
+						<?php echo cl_translate("Top"); ?>
 						<div class="css-1dbjc4n"></div>
 					</a>
 				</li>
@@ -42,41 +42,7 @@
 		</div>
 	</div>
 	<div class="tab-content pt-2" id="myTabContent">
-		<div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
-			<?php if (not_empty($cl["feed_trending"])): ?>
-				<div class="timeline-posts-container">
-					<div class="timeline-posts-ls" data-an="entry-list">
-						<?php foreach ($cl["feed_trending"] as $cl['li']): ?>
-								<?php echo cl_template('timeline/post'); ?>
-						<?php endforeach; ?>
-					</div>
-					<?php if (count($cl["feed_trending"]) == 30): ?>
-							<div class="timeline-data-loader">
-								<button class="btn btn-custom main-outline lg" data-an="load-more">
-									<?php echo cl_translate("Show more"); ?>
-								</button>
-							</div>
-					<?php endif; ?>
-				</div>
-			<?php else: ?>
-				<div class="timeline-placeholder">
-					<div class="icon">
-						<div class="icon__bg">
-							<?php echo cl_icon('feed'); ?>
-						</div>
-					</div>
-					<div class="pl-message">
-						<h4>
-							<?php echo cl_translate("No data to display yet!"); ?>
-						</h4>
-						<p>
-							<?php echo cl_translate("It looks like the site has no content to display yet. All featured posts will be displayed on this page"); ?>
-						</p>
-					</div>
-				</div>
-			<?php endif; ?>
-		</div>
-		<div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="latest-tab">
+		<div class="tab-pane fade show active" id="latest" role="tabpanel" aria-labelledby="latest-tab">
 			<div class="timeline-posts-container" style="margin-top: 0px;">
 				<?php if (not_empty($cl["feed_latest"])): ?>
 					<div class="timeline-posts-ls" data-an="entry-list">
@@ -109,6 +75,40 @@
 					</div>
 				<?php endif; ?>
 			</div>
+		</div>
+		<div class="tab-pane fade" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+			<?php if (not_empty($cl["feed_trending"])): ?>
+				<div class="timeline-posts-container">
+					<div class="timeline-posts-ls" data-an="entry-list">
+						<?php foreach ($cl["feed_trending"] as $cl['li']): ?>
+								<?php echo cl_template('timeline/post'); ?>
+						<?php endforeach; ?>
+					</div>
+					<?php if (count($cl["feed_trending"]) == 30): ?>
+							<div class="timeline-data-loader">
+								<button class="btn btn-custom main-outline lg" data-an="load-more">
+									<?php echo cl_translate("Show more"); ?>
+								</button>
+							</div>
+					<?php endif; ?>
+				</div>
+			<?php else: ?>
+				<div class="timeline-placeholder">
+					<div class="icon">
+						<div class="icon__bg">
+							<?php echo cl_icon('feed'); ?>
+						</div>
+					</div>
+					<div class="pl-message">
+						<h4>
+							<?php echo cl_translate("No data to display yet!"); ?>
+						</h4>
+						<p>
+							<?php echo cl_translate("It looks like the site has no content to display yet. All featured posts will be displayed on this page"); ?>
+						</p>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
 		<div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
 			<div class="timeline-placeholder">
@@ -197,16 +197,18 @@
 		font-weight: 500;
 		font-size: 18px;
 	}
+
 	.nav-tabs .nav-link {
 		color: var(--smc-main-text-color-2);
 	}
+
 	.nav-tabs .nav-item.show .nav-link,
 	.nav-tabs .nav-link.active {
+		border-bottom: 0px transparent;
 		color: var(--smc-main-text-color);
-		border-bottom-color: var(--smc-main-border-color);
-		border-bottom-width: 0px;
-		/* font-weight: 700; */
+		font-weight: 700;
 		background: transparent;
+		text-align: center;
 	}
 
 	.nav-tabs .nav-item.show .nav-link,
@@ -221,27 +223,32 @@
 		bottom: 0;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: 12px;
+		margin-top: 9px;
 		margin-bottom: -7px;
 	}
-	.left-push-nav{
+
+	.left-push-nav {
 		display: inline-flex;
 	}
+
 	.nav-tabs .nav-link:hover {
 		background-color: inherit;
 		border: 0px !important;
 		border-color: transparent !important;
 		transition: none !important;
 	}
-	.home_nav_btn{
+
+	.home_nav_btn {
 		color: var(--smc-main-text-color-2);
 		font-size: 18px !important;
 		text-transform: none !important;
 	}
+
 	.nav-tabs .nav-link {
-		padding:10px 10px 12px 10px !important;
+		padding: 15px 20px 12px 4px !important;
 	}
 </style>
+
 <script>
 	// Initialise Carousel
 	const cardSlider = new Carousel(document.querySelector("#cardSlider"), {
