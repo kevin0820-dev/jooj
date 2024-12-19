@@ -231,10 +231,10 @@ hr{
 
 .search-ctrls-item .icon svg {
   fill: var(--smc-main-text-color);
-  width: 15px !important;
-  height: 15px !important;
-  margin: 9px;
-  stroke-width: 0;
+  width: 23px;
+  height: 23px;
+  /* margin: 9px; */
+  /* stroke-width: 0; */
 }
 
 .timeline-container-inner {

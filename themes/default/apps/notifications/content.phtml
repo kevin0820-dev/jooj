@@ -181,18 +181,18 @@ div.post-list-item-content {
 }
 
 div.publisher-avatar {
-    width: 45px;
-    flex-basis: 45px;
-    max-width: 45px;
-    min-width: 45px;
+    width: 30px;
+    flex-basis: 30px;
+    max-width: 30px;
+    min-width: 30px;
     padding-top: 5px;
 }
 
 div.avatar-holder {
     display: block;
     overflow: hidden;
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     background: var(--smc-main-border-color);
     border-radius: 10em;
 }
@@ -205,7 +205,7 @@ img.lozad {
 
 div.publication-data {
     flex: 1;
-    padding-left: 15px;
+    padding-left: 5px;
     overflow: hidden;
 }
 
@@ -230,6 +230,7 @@ div.lp {
     display: flex;
     align-items: center;
     overflow: hidden;
+    gap: 3px;
 }
 
 span.uname {
@@ -371,6 +372,8 @@ div.lp a b {
     font-size: 14px;
     line-height: 14px;
     color: var(--smc-main-text-color);
+    display: flex;
+    align-items: center;
 }
 
 .lp a {
@@ -732,5 +735,69 @@ div.poll-option-bar {
     overflow: hidden;
     position: relative;
     z-index: 1;
+}
+@media (max-width: 1230px) {
+    body span.uname {
+        overflow-wrap: break-word;
+        min-width: 0px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        font-weight: 400;
+        line-height: 30px;
+    }
+    div.lp span.posted-time {
+        overflow-wrap: break-word;
+        min-width: 0px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block !important;
+        font-weight: 400;
+        line-height: 30px;
+    }
+}
+@media (max-width: 470px) {
+    body span.uname {
+        overflow-wrap: break-word;
+        min-width: 0px;
+        max-width: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        font-weight: 400;
+        line-height: 30px;
+    }
+    div.lp span.posted-time {
+        overflow-wrap: break-word;
+        min-width: 0px;
+        max-width: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block !important;
+        font-weight: 400;
+        line-height: 30px;
+    }
+}
+@media (max-width: 400px) {
+    body span.uname {
+        display: none;
+    }
+    div.lp span.posted-time {
+        overflow-wrap: break-word;
+        min-width: 0px;
+        max-width: 35px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block !important;
+        font-weight: 400;
+        line-height: 30px;
+    }
 }
 </style>
