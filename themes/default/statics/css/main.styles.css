@@ -17233,7 +17233,7 @@ body
   button.privacy-settings
   a.dropdown-toggle
   span.d-inline-flex {
-  height: 30px;
+  height: 28px;
   padding-left: 12px;
   padding-right: 12px;
 }
@@ -50990,18 +50990,6 @@ body
   div.post-privacy-holder
   button.privacy-settings
   a.dropdown-toggle
-  span.d-inline-flex {
-  height: 30px;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-body
-  div.timeline-pubbox-container
-  > div.rp
-  form
-  div.post-privacy-holder
-  button.privacy-settings
-  a.dropdown-toggle
   span.d-inline-flex:hover {
   background: rgba(29, 155, 240, 0.1);
   border-radius: 16px;
@@ -68151,23 +68139,6 @@ body.cl-app-thread
   button.privacy-settings
   a.dropdown-toggle:before {
   display: none;
-}
-
-body.cl-app-thread
-  main.main-content-container
-  div.main-content-container-inner
-  div.timeline-container
-  div.publication--thread-container
-  div.publication--thread-container-inner
-  div.publication--thread-data-holder
-  div.publication-data
-  div.publication-data-inner
-  div.publication-meta-info
-  div.post-privacy
-  button.privacy-settings
-  a.dropdown-toggle
-  span.d-inline-flex {
-  height: 30px;
 }
 
 body.cl-app-thread
