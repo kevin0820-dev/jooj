@@ -18,6 +18,10 @@
   display: flex;
 }
 
+.bg-origin {
+  background-color: var(--smc-main-bg-color-2) !important;
+}
+
 .verified-badge-mobile {
   position: relative; /* Positioning context */
   margin: 0; /* Combined margin properties */
@@ -16917,15 +16921,6 @@ body
   div.poll-data-ctrls:disabled {
   cursor: not-allowed;
   opacity: 0.5;
-}
-
-/* Edited by Kevin */
-@media only screen and (max-width: 586px) {
-  body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
-    margin-left: -68px;
-    padding: 0px 10px;
-    width: calc(100% + 68px) !important;
-  }
 }
 
 body div.timeline-pubbox-container > div.rp form div.post-ctrls-holder {
