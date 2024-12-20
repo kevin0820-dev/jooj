@@ -9002,7 +9002,7 @@ body
   form
   div.input-holder
   input {
-  border: 1px solid var(--smc-main-bg-color);
+  border: 2px solid var(--smc-main-bg-color);
   background: var(--smc-main-ibg-color);
   border-radius: 1em;
   padding: 0 0 0px 50px;
@@ -14968,7 +14968,7 @@ body div.timeline-pubbox-container > div.rp form div.input-holder {
   max-width: 100%;
   height: auto;
 }
-body div.timeline-pubbox-container > div.rp form div.input-holder {
+body div.timeline-pubbox-container > div.rp form  {
   margin-top:0px;
   width: 100%;
   margin-bottom: 10px;
@@ -36397,34 +36397,6 @@ body.cl-app-wallet
     height: 35px;
     border-radius: 100%;
 }
-div.main-search-bar-container form div.input-holder span.spinner-icon {
-  position: absolute;
-  right: 15px;
-  top: 7px;
-  text-decoration: none;
-  line-height: 0px;
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-}
-
-div.main-search-bar-container form div.input-holder a svg {
-  width: 100%;
-  height: 100%;
-  stroke: var(--smc-main-text-color-2);
-  opacity: 0.8;
-}
-
-div.main-search-bar-container form div.input-holder a {
-  position: absolute;
-  left: 15px;
-  top: 12px;
-  text-decoration: none;
-  line-height: 0px;
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-}
 
 .publication-data{
   flex: 1;
@@ -43641,164 +43613,6 @@ body
   line-height: 0;
   display: block;
   position: relative;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder {
-  width: 100%;
-  overflow: hidden;
-  display: block;
-  line-height: 0;
-  position: relative;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  input::placeholder {
-  color: var(--smc-main-iph-color);
-  font-size: 15px;
-  line-height: 40px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  input:active,
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  input:focus {
-  box-shadow: none;
-  outline: none;
-  background: transparent;
-  border: 2px solid var(--smc-main-uiel-color);
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  a {
-  position: absolute;
-  left: 15px;
-  top: 12px;
-  text-decoration: none;
-  line-height: 0px;
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  a
-  svg {
-  width: 100%;
-  height: 100%;
-  stroke: var(--smc-main-text-color-2);
-  opacity: 0.8;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  span.spinner-icon {
-  position: absolute;
-  right: 15px;
-  top: 7px;
-  text-decoration: none;
-  line-height: 0px;
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  span.spinner-icon
-  svg {
-  width: 100%;
-  height: 100%;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  span.clear-result {
-  position: absolute;
-  right: 15px;
-  top: 7px;
-  text-decoration: none;
-  line-height: 0px;
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-  cursor: pointer;
-}
-
-body
-  main.main-content-container
-  div.main-content-container-inner
-  div.right-sb-container
-  div.sidebar__inner
-  div.main-search-bar-container
-  form
-  div.input-holder
-  span.clear-result
-  svg {
-  width: 100%;
-  height: 100%;
-  stroke: #fff;
-  background: var(--smc-main-uiel-color);
-  border-radius: 50%;
 }
 
 body
@@ -57239,36 +57053,6 @@ body.cl-app-symbol
   div.modal.modal-swift-pubbox
   div.modal-body
   form
-  div.input-holder {
-  width: 100%;
-  margin-bottom: 10px;
-  max-width: 100%;
-}
-
-body.cl-app-symbol
-  div.modal.modal-swift-pubbox
-  div.modal-body
-  form
-  div.input-holder
-  textarea {
-  display: block;
-  width: 100%;
-  min-height: 40px;
-  max-height: 400px;
-  resize: none;
-  font-size: 16px;
-  color: var(--smc-main-text-color);
-  line-height: 30px;
-  border: none;
-  border-radius: 0px;
-  outline: 0;
-  background: transparent;
-}
-
-body.cl-app-symbol
-  div.modal.modal-swift-pubbox
-  div.modal-body
-  form
   div.cl-emoticons {
   display: block;
   width: 100%;
@@ -58968,36 +58752,6 @@ body.cl-app-home
 body.cl-app-home div.modal.modal-swift-pubbox div.modal-body form {
   width: 100%;
   max-width: 100%;
-}
-
-body.cl-app-home
-  div.modal.modal-swift-pubbox
-  div.modal-body
-  form
-  div.input-holder {
-  width: 100%;
-  margin-bottom: 10px;
-  max-width: 100%;
-}
-
-body.cl-app-home
-  div.modal.modal-swift-pubbox
-  div.modal-body
-  form
-  div.input-holder
-  textarea {
-  display: block;
-  width: 100%;
-  min-height: 40px;
-  max-height: 400px;
-  resize: none;
-  font-size: 16px;
-  color: var(--smc-main-text-color);
-  line-height: 30px;
-  border: none;
-  border-radius: 0px;
-  outline: 0;
-  background: transparent;
 }
 
 body.cl-app-home
