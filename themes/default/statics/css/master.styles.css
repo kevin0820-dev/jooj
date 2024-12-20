@@ -1566,15 +1566,7 @@ div.rp
   justify-content: space-between;
   position:relative;
 }
-.timeline-header__botline::after {
-  content: "";
-  position: absolute;
-  left: -10px; /* Align to the left, offset by parent's padding */
-  right: -10px; /* Align to the right, offset by parent's padding */
-  bottom: 0; /* Position at the bottom */
-  height: 1px; /* Height of the border */
-  background: var(--smc-main-bg-color-2); /* Use the same color as the border */
-}
+
 body
   main.main-content-container
   div.main-content-container-inner
