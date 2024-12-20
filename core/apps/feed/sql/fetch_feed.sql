@@ -22,7 +22,7 @@ INNER JOIN (SELECT `type`, comment_on, publication_id from `<?php echo($data['t_
 
 	AND `priv_wcs` = "everyone"
 
-	ORDER BY `likes_count` DESC, `replys_count` DESC, `reposts_count` DESC
+	ORDER BY `time` DESC
 
 <?php if(is_posnum($data['limit'])): ?>
 	LIMIT <?php echo($data['limit']); ?>
