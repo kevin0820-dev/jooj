@@ -26,7 +26,7 @@ INNER JOIN (SELECT `type`, comment_on, publication_id from `<?php echo($data['t_
 
 	AND pub.`likes_count` > 0
 
-	ORDER BY pub.`likes_count` DESC, pub.`replys_count` DESC, pub.`reposts_count` DESC
+	ORDER BY pub.`likes_count` DESC, pub.`replys_count` DESC, pub.`reposts_count` DESC, pub.`time` DESC
 
 <?php if(is_posnum($data['limit'])): ?>
 	LIMIT <?php echo($data['limit']); ?>
