@@ -295,20 +295,13 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
 <!-- MDB -->
 <style>
+	.timeline-header__botline::after {
+		height: 0px;
+	}
 	body main.main-content-container div.main-content-container-inner div.timeline-container-wrapper div.timeline-container-inner div.timeline-container div.timeline-header {
 		height: 107px;
 		/* background-color: var(--smc-main-bg-color-3); header opacity background*/
 		backdrop-filter: blur(12px);
-	}
-
-	.timeline-header__botline {
-		border-bottom: 1px solid var(--smc-main-bg-color-2);
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		align-items: center;
-		padding-left: 16px;
-		/* padding-right: 16px; */
 	}
 
 	.nav-fill .nav-item .nav-link,
