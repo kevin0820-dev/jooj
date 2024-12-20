@@ -22483,11 +22483,6 @@ body.cl-app-guest
     justify-content: start !important;
     align-items: normal !important;
   }
-  #add_new_post .modal-content {
-    position: absolute;
-    height: 100vh;
-    border-radius: 0px;
-  }
   #add_new_post .modal-dialog {
     margin: 0;
   }
@@ -55858,11 +55853,6 @@ body.cl-app-guest
   body div.modal.vh-center.modal-pubbox.show {
     justify-content: start !important;
     align-items: normal !important;
-  }
-  #add_new_post .modal-content {
-    position: absolute;
-    height: 100vh;
-    border-radius: 0px;
   }
   #add_new_post .modal-dialog {
     margin: 0;
